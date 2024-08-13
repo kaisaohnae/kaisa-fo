@@ -45,7 +45,6 @@ git add -A
 git commit -m 'deploy'
 git remote add origin "https://github.com/kaisaohnae/kaisa-fo.git"
 git push -u --force origin main
-Remove-Item -Recurse -Force .git
 rm -rf .git
 cd ..
 
