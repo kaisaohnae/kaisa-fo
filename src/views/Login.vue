@@ -3,7 +3,7 @@
     <form v-on:submit.prevent="submitForm()" method="POST" ref="login">
       <fieldset>
         <legend>로그인</legend>
-        <h1>관리자 로그인</h1>
+        <h1>준비중입니다.</h1>
         <label class="label">
           <span class="icon">&#xe809;</span>
           <input type="text" v-model="param.userId" name="userId" placeholder="아이디를 입력해주세요" required />
