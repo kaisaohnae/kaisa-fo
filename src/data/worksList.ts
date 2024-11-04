@@ -7,7 +7,14 @@ export default [
         url: process.env.NEXT_PUBLIC_IMG_HOST + '/works/fokaisa.png'
     },*/
     {
-        title: '펌프킨',
+        title: 'Anypass',
+        date: '2023.11 ~ ',
+        link: 'https://www.anyssign.com/welcome',
+        skil: 'Spring Boot, Batch, Vue3, React, React Native, IOS, Android',
+        url: process.env.NEXT_PUBLIC_IMG_HOST + '/works/ana.png'
+    },
+    {
+        title: 'Pumpkin',
         date: '2022.05 ~ 2023.07',
         link: 'https://e-bab.com/',
         skil: 'Spring Boot, Batch, Vue2, Vue3, Vite, Mssql, Maria Migrate, Java, Naver Cloud, Jenkins, Nginx, Toast Grid',
@@ -54,14 +61,14 @@ export default [
         link: 'https://bo.kaisa.co.kr',
         skil: 'Project Manager, Vue3, Pinia, Maria, Spring Boot, JWT, CORS, SSG, ISR, Node18, Toast UI Grid, Vite',
         url: process.env.NEXT_PUBLIC_IMG_HOST + '/works/bokaisa.png'
-    },*/
+    },
     {
         title: '모비딕',
         date: '2018.04 ~ 2018.04',
         link: 'http://mobydic.co.kr',
         skil: 'Git Page, PHP API, Maria, Angular',
         url: process.env.NEXT_PUBLIC_IMG_HOST + '/works/mobydic.png'
-    },
+    },*/
     {
         title: 'Lfmall',
         date: '2017.02 ~ 2018.04.20',

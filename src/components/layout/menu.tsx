@@ -25,9 +25,9 @@ export default function Menu() {
         mounted &&
         <div id="menu" className={isFixed ? 'fixed' : ''}>
             <ul>
-                <li className={pathname === '/welcome' ? 'on' : ''}><Link href="/">Works</Link></li>
-                <li className={pathname === '/illustrator' ? 'on' : ''}><Link href="/illustrator">Illustrator</Link></li>
-                {/*<li className={pathname === '/blog' ? 'on' : ''}><Link href="/blog">Blog</Link></li>*/}
+                <li className={pathname === '/works/' ? 'on' : ''}><Link href="/works/">Works</Link></li>
+                <li className={pathname === '/illustrator/' ? 'on' : ''}><Link href="/illustrator/">Illustrator</Link></li>
+                {/*<li className={pathname === '/blog/' ? 'on' : ''}><Link href="/blog/">Blog</Link></li>*/}
             </ul>
         </div>
     )

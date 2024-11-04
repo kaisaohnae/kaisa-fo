@@ -7,8 +7,8 @@ export default function Index() {
   let pathname = usePathname();
 
   useEffect(() => {
-    if (!pathname || pathname === '/' || pathname === '/web') {
-      router.push('/welcome');
+    if (!pathname || pathname === '/' || pathname === '/welcome/') {
+      router.push('/works');
     }
   }, []);
 
