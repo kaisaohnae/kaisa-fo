@@ -4,6 +4,7 @@
 ```
 yarn build
 cd out
+touch .nojekyll
 echo 'kaisa.co.kr' > CNAME
 git init
 git checkout -b main
