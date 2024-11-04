@@ -16,3 +16,4 @@ rm -rf .git
 cd ..
 ```
 
+.nojekyll 이 없으면 _next.. 리소스를 빼먹음 
