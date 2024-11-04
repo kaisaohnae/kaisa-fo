@@ -122,8 +122,8 @@ button.audit {position:absolute; right:5px; top:0; padding:0 5px; line-height:19
 button.white {background:#fff; color:#666; border:1px solid #ccc; text-shadow:none;}
 button.gray {background:#666; color:#fff; border:1px solid #666; text-shadow:none;}
 button.excel {background:#107c41; color:#fff; border:1px solid #107c41;}
-button.large {padding:0 20px; height:40px; line-height:40px;}
-button.big {padding:0 25px; height:50px; line-height:50px;}
+button.large {padding:0 20px; height:40px; font-size: 18px; line-height:40px;}
+button.big {padding:0 25px; font-size: 20px; height:50px; line-height:50px;}
 button.small {padding:0 10px; height:25px; line-height:24px;}
 button.gray.on {background:#ff5500; color:#fff; border:1px solid #ff5500;}
 
