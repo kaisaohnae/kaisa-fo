@@ -1,0 +1,15 @@
+export default [
+    {url : process.env.NEXT_PUBLIC_IMG_HOST + '/illustrator/1.jpg'},
+    {url : process.env.NEXT_PUBLIC_IMG_HOST + '/illustrator/2.jpg'},
+    {url : process.env.NEXT_PUBLIC_IMG_HOST + '/illustrator/3.jpg'},
+    {url : process.env.NEXT_PUBLIC_IMG_HOST + '/illustrator/4.jpg'},
+    {url : process.env.NEXT_PUBLIC_IMG_HOST + '/illustrator/6.jpg'},
+    {url : process.env.NEXT_PUBLIC_IMG_HOST + '/illustrator/5.jpg'},
+    {url : process.env.NEXT_PUBLIC_IMG_HOST + '/illustrator/7.jpg'},
+    {url : process.env.NEXT_PUBLIC_IMG_HOST + '/illustrator/8.jpg'},
+    {url : process.env.NEXT_PUBLIC_IMG_HOST + '/illustrator/9.jpg'},
+    {url : process.env.NEXT_PUBLIC_IMG_HOST + '/illustrator/10.jpg'},
+    {url : process.env.NEXT_PUBLIC_IMG_HOST + '/illustrator/11.jpg'},
+    // {url : process.env.NEXT_PUBLIC_IMG_HOST + '/illustrator/12.jpg'},
+    // {url : process.env.NEXT_PUBLIC_IMG_HOST + '/illustrator/13.png'},
+]
