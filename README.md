@@ -8,6 +8,12 @@ kaisa-fo 2.0 홈페이지
 - React: 18.x.x
 - Next.js: 14.x.x
 
+```
+brew uninstall yarn
+yarn upgrade-interactive
+yarn install
+```
+
 ## 프로젝트 구조
 
 ```
