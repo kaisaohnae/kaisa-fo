@@ -36,3 +36,8 @@ GitHub Pages 에 gh-pages 로 설정
 ```
 깃헙 pushstate 에 대한 url 관리는 next js 가 유리  
 ```
+
+## 배포 후 조치
+```
+배포하고 풀 받아야함
+```
