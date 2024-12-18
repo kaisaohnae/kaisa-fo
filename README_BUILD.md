@@ -31,3 +31,8 @@ GitHub Pages 에 gh-pages 로 설정
 ```
 .env.development.local
 ```
+
+### vue3 와 비교 
+```
+깃헙 pushstate 에 대한 url 관리는 next js 가 유리  
+```
