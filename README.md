@@ -108,16 +108,15 @@ yarn dev
 ### 빌드
 
 ```bash
-yarn build
+yarn build 
+# 빌드 후 생성되는 `out`의 모든 파일들을 서버에 업로드 해도 되지만 github/workflows/deploy.yml 사용 
+# README_BUILD.md 참조 
 ```
 
-빌드 후 생성되는 `out`의 모든 파일들을 서버에 업로드 합니다.
-
-
-
+### 초기화 
 ```
 git config --global user.name "kaisa"
-git config --global user.email "kaisa@a-na.me"
+git config --global user.email "kaisa@kaisa.co.kr"
 rm -rf .git
 git init
 git add .
