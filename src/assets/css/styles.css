@@ -1,0 +1,254 @@
+@charset "utf-8";
+
+/*
+body::-webkit-scrollbar {width:10px; height:10px; background:transparent; display:block; border:0}
+body::-webkit-scrollbar-thumb {background:#ddd; border:4px solid transparent; background-clip:content-box; cursor:pointer;}
+*/
+body::-webkit-scrollbar {display:none;}
+
+#container,
+#header,
+#side,
+#contents,
+#menu ul li {transition:0.2s all linear;}
+.tui-grid-container div {transition: none;}
+
+#container {width:100%;}
+#header {width:100%; height:170px; position:relative;}
+#header h1 {text-align:center; padding:30px 0 20px 0;}
+#header .loginInfo {position:absolute; right:10px; top:10px; font-size:11px; white-space:nowrap; display:none;}
+.loginInfo span {color:#999; display:inline-block; margin:0 5px; cursor:pointer;}
+.loginInfo a {color:#999;}
+#menu {width:100%; padding-bottom:10px; height:60px; position:absolute; left:0; bottom:0;}
+#menu ul {width:100%; text-align:center; white-space:nowrap; overflow:auto;}
+#menu ul::-webkit-scrollbar {display: none;}
+#menu ul li {display:inline-block; font-weight:bold; line-height:50px; padding:0 10px;}
+#menu ul li a {display:inline-block; color:#000; padding:0 10px;}
+#menu ul li.on a {color:#ff5500; cursor:default;}
+
+#menu.fixed ul {position:fixed; z-index:1000; left:0; top:0; background:#fff; box-shadow:5px 5px 5px rgba(0,0,0,0.2);}
+
+#content {width:100%; clear:both; padding:10px; min-height:600px;}
+#footer {width:100%; clear:both; font-size:11px; padding:50px 0 15px 0; text-align:center;}
+#footer .link {display:block; width:32px; height:30px; margin:10px auto;}
+
+.ready {text-align:center; padding: 100px 0;}
+th.required:after {content:'*'; display:inline-block; font-size:12px; color:#ff0000; padding-left:5px;}
+
+#error {width:100%; text-align:center; padding: 100px 0;}
+#error h2 {font-size:30px; color:#000;}
+#error .logo {padding-bottom:50px;}
+#error p {font-size:20px; color:#333; line-height:35px; padding: 30px 0;}
+#error p strong {font-size:30px; color:#ff5500; line-height:50px;}
+#error p.guide {font-size:14px; color:#999;}
+
+/* loading */
+#loading {width:100%; height:100%; position:absolute; left:0; top:0; background:rgba(0,0,0,0); z-index:9000;}
+#loading .loadingCircle {width:100px; height:100px; position:fixed; left:50%; top:50%; margin:-50px 0 0 -50px;}
+@keyframes animation {
+  0% {
+    stroke-dasharray: 2 98;
+    stroke-dashoffset: -105;
+  }
+  50% {
+    stroke-dasharray: 80 10;
+    stroke-dashoffset: -160;
+  }
+  100% {
+    stroke-dasharray: 2 98;
+    stroke-dashoffset: -200;
+  }
+}
+#spinner {
+    fill:transparent;
+    stroke:#ff5500;
+    stroke-width:8px;
+    stroke-linecap:round;
+    filter:url(#shadow);
+    transform-origin: center;
+    animation-name: animation;
+    animation-duration: 1.2s;
+    animation-timing-function: cubic-bezier(.78,.2,.95,.63);
+    animation-iteration-count: infinite;
+}
+/* print */
+@media print {
+	html,
+	body {height:auto;}
+	#header,
+	#menu,
+	#footer,
+	span.print,
+	ul.tab,
+	#content {display:none;}
+	#print {display:block;}
+}
+
+/* post */
+#blog {width:100%; position:relative; line-height:30px;}
+#blog .btnWrap {position:absolute; right:0; top:0;}
+#blog .btnWrap button {background:#888; border:1px solid #555;}
+#blog .writerInfo {font-size:11px; color:#999; text-align:right;}
+#blog .writerInfo span {display:inline-block; padding:0 10px;}
+
+#blog .btnBottomWrap {text-align:right; padding:10px 0; border-top:1px solid #ccc; margin-top:30px;}
+#blog .btnBottomWrap button {background:#888; border:1px solid #555;}
+
+#blog h1,
+#blog h2,
+#blog h3,
+#blog h4,
+#blog h5,
+#blog h6 {color:#000; border-bottom:1px dashed #eee; font-weight:bold; padding:20px 0 10px 0; margin:15px 0; text-shadow:2px 2px 2px rgba(0,0,0,0.2);}
+
+#blog h1 {font-size:28px; line-height:35px; padding:0 50px 10px 0; border-bottom:1px solid #ccc;}
+#blog h2 {font-size:23px; line-height:33px;}
+#blog h3 {font-size:20px; line-height:30px;}
+#blog h4 {font-size:18px; line-height:28px;}
+#blog h5 {font-size:16px; line-height:26px;}
+#blog h6 {font-size:14px; line-height:24px;}
+
+#blog table {width:100%;}
+#blog table th {border:1px solid #ddd; padding:10px;}
+#blog table td {border:1px solid #ddd; padding:10px;}
+
+#blog img {width:100%; max-width:1000px; margin:15px 0; border:1px solid #ccc; box-shadow:5px 5px 5px rgba(0,0,0,0.1);}
+#blog p strong {font-weight:bold; color:#ff5500;}
+#blog .content {width:100%; padding:15px;}
+#blog .content ul,
+#blog .content ol {padding:10px 0 10px 20px;}
+#blog .content ul li {list-style-type: disc;}
+#blog .content ol li {list-style-type: decimal;}
+
+/* auth */
+#login {width:100%; max-width:500px; clear:both; margin:20px auto; padding:80px 15px 130px 15px; border:1px solid #ddd; border-radius:5px; background:#fff; box-shadow:3px 3px 3px rgba(0,0,0,0.05); position:relative;}
+#login h2 {color:#000; text-align:center; padding:0; font-size:20px; display:block;}
+#login p.txt {color:#999; padding:10px 0 20px 0; text-align:center;}
+#login form {width:100%; max-width:300px; margin:0 auto; position:relative;}
+#login label {width:calc(100% - 100px); display:block; margin-bottom:10px; position:relative;}
+#login label .icon {position:absolute; left:2px; top:6px; color:#aaa;}
+#login input[type="text"],
+#login input[type="password"] {width:100%; padding-left:28px; color:#000;}
+#login button {width:90px; height:80px; position:absolute; right:0; top:0;}
+#login p.find {position:absolute; left:0; bottom:25px; width:100%; font-size:11px; color:#333; text-align:center;}
+#login p.find span {display:inline-block; padding:0 10px;}
+#login p.find a {color:#333;}
+#login .txt_error {color:#ff0000; font-size:11px;}
+
+/* auth */
+#join {width:100%; max-width:500px; clear:both; margin:20px auto; padding:80px 15px 130px 15px; border:1px solid #ddd; border-radius:5px; background:#fff; box-shadow:3px 3px 3px rgba(0,0,0,0.05); position:relative;}
+#join h2 {color:#000; text-align:center; padding:0; font-size:20px; display:block;}
+#join p.txt {color:#999; padding:10px 0 20px 0; text-align:center;}
+#join form {width:100%; max-width:300px; margin:0 auto; position:relative;}
+#join label {width:100%; display:block; margin-bottom:10px; position:relative;}
+#join label .icon {position:absolute; left:2px; top:6px; color:#aaa;}
+#join label .tit {font-size:11px;}
+#join input[type="text"],
+#join input[type="password"] {width:100%; color:#000;}
+#join button {width:100%;}
+#join p.find {position:absolute; left:0; bottom:25px; width:100%; font-size:11px; color:#333; text-align:center;}
+#join p.find span {display:inline-block; padding:0 10px;}
+#join p.find a {color:#333;}
+#join .txt_error {color:#ff0000; font-size:11px;}
+
+/* char */
+#char {width:600px; clear:both; margin:0 auto; overflow:auto;}
+#char .selectWrap {width:250px; float:left; margin:0 auto; padding-top:80px;}
+#char ol { display:block; padding-left:35px; position:relative;}
+#char ol li {width:14px; height:14px; vertical-align:middle; border-radius:100%; cursor:pointer; display:inline-block; background:#ddd; margin:2px; font-size:0; text-indent:-900px; overflow:hidden;}
+#char ol li.on {background:#555; width:16px; height:16px;}
+#char ol::before {content:''; position:absolute; left:5px; top:1px; line-height:20px; font-size:11px;}
+#char ol.hair::before {content:'머리';}
+#char ol.eyebrow::before {content:'눈썹';}
+#char ol.eye::before {content:'눈';}
+#char ol.nose::before {content:'코';}
+#char ol.mouth::before {content:'입';}
+#char .base {scale:0.9; float:left; width:250px; height:270px; position:relative; background-image:url('https://img.kaisa.co.kr/common/char.png'); margin:0 auto;}
+#char .base > div {background-image:url('https://img.kaisa.co.kr/common/char.png'); position:absolute;}
+div.hair {width:250px; height:270px; left:0; top:0; background-position:-250px 0;}
+div.hair.hair1 {background-position:-250px -270px;}
+div.hair.hair2 {background-position:-250px -540px;}
+div.hair.hair3 {background-position:-250px -810px;}
+div.hair.hair4 {background-position:-250px -1080px;}
+div.hair.hair5 {background-position:-250px -1350px;}
+div.hair.hair6 {background-position:-250px -1620px;}
+div.hair.hair7 {background-position:-250px -1890px;}
+div.hair.hair8 {background-position:-250px -2160px;}
+
+div.eyebrow {width:150px; height:40px; left:50px; top:100px; background-position:-500px 0;}
+div.eyebrow.eyebrow1 {background-position:-500px -40px;}
+div.eyebrow.eyebrow2 {background-position:-500px -80px;}
+div.eyebrow.eyebrow3 {background-position:-500px -120px;}
+div.eyebrow.eyebrow4 {background-position:-500px -160px;}
+div.eyebrow.eyebrow5 {background-position:-500px -200px;}
+
+div.eye {width:150px; height:70px; left:50px; top:110px; background-position:-650px 0;}
+div.eye.eye1 {background-position:-650px -70px;}
+div.eye.eye2 {background-position:-650px -140px;}
+div.eye.eye3 {background-position:-650px -210px;}
+div.eye.eye4 {background-position:-650px -280px;}
+div.eye.eye5 {background-position:-650px -350px;}
+div.eye.eye6 {background-position:-650px -420px;}
+div.eye.eye7 {background-position:-650px -490px;}
+div.eye.eye8 {background-position:-650px -560px;}
+div.eye.eye9 {background-position:-650px -630px;}
+
+div.nose {width:50px; height:40px; left:100px; top:170px; background-position:-800px 0;}
+div.nose.nose1 {background-position:-800px -40px;}
+div.nose.nose2 {background-position:-800px -80px;}
+div.nose.nose3 {background-position:-800px -120px;}
+div.nose.nose4 {background-position:-800px -160px;}
+div.nose.nose5 {background-position:-800px -200px;}
+
+div.mouth {width:150px; height:80px; left:50px; top:170px; background-position:-850px 0;}
+div.mouth.mouth1 {background-position:-850px -80px;}
+div.mouth.mouth2 {background-position:-850px -160px;}
+div.mouth.mouth3 {background-position:-850px -240px;}
+div.mouth.mouth4 {background-position:-850px -320px;}
+div.mouth.mouth5 {background-position:-850px -400px;}
+div.mouth.mouth6 {background-position:-850px -480px;}
+
+@media screen and (max-width:600px) {
+  #char {width:100%; padding-bottom:30px;}
+	#char .selectWrap {float:none; padding-top:0;}
+	#char .base {float:none;}
+}
+
+
+.main {width:100%; max-width:1000px; margin:0 auto; padding-top:100px;}
+.main img {width:100%; max-width:530px; display:block; margin:0 auto;}
+
+.works {width:100%; max-width:1000px; margin:0 auto;}
+.works ul {width:100%;}
+.works ul li {width:33.3%; display:inline-block; padding:10px; position:relative;}
+.works ul li p {font-size:11px; color:#888;}
+.works ul li p strong {font-size:11px; color:#333; font-weight:normal;}
+.works ul li img {transition:0.3s all linear; width:100%; min-height:120px; border:1px solid rgba(0,0,0,0.2); box-shadow:5px 5px 5px rgba(0,0,0,0.1); opacity:1;}
+.works ul li div {transition:0.3s all linear; opacity:0; overflow:hidden; position:absolute; left:10px; bottom:10px; width:calc(100% - 20px); padding:10px; background:rgba(0,0,0,0.7); color:#fff; text-shadow:1px 1px 1px rgba(0,0,0,0.3); font-size:11px; line-height:17px; font-weight:normal;}
+.works ul li:hover div {opacity:0;}
+.works ul li:hover img {border:1px solid rgba(0,0,0,0.7);}
+
+@media screen and (max-width:700px) {
+  .works ul li {width:50%;}
+}
+@media screen and (max-width:400px) {
+  .works ul li {width:100%;}
+}
+
+.illustrator {width:100%; clear:both;}
+.illustrator ul {column-count:5; font-size:0; width:100%; margin:0 auto; max-width:1000px; clear:both;}
+.illustrator ul li {display:inline-block; padding:5px; position:relative; width:100%;}
+.illustrator ul li img {width:100%; min-height:67px; box-shadow:5px 5px 5px rgba(0,0,0,0.1); border:1px solid #eee;}
+
+@media screen and (max-width:800px) {
+  .illustrator ul {column-count:4;}
+}
+@media screen and (max-width:700px) {
+  .illustrator ul {column-count:3;}
+}
+@media screen and (max-width:500px) {
+  .illustrator ul {column-count:2;}
+}
+@media screen and (max-width:400px) {
+  .illustrator ul {column-count:1;}
+}
