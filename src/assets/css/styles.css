@@ -252,3 +252,6 @@ div.mouth.mouth6 {background-position:-850px -480px;}
 @media screen and (max-width:400px) {
   .illustrator ul {column-count:1;}
 }
+
+
+a.home {color:#000; text-decoration:underline; font-size:30px; line-height: 25px;}

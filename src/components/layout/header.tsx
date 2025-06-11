@@ -3,7 +3,7 @@
 import React, {} from 'react';
 import Link from 'next/link';
 import Menu from './menu';
-import IconLogo from '@/components/icons/icon-logo';
+import IconLogo from '@/components/icons/common/icon-logo';
 
 export default function Header() {
 
