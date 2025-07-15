@@ -1,9 +1,9 @@
 import axios, {AxiosInstance, AxiosError} from 'axios';
-import loadingStore from '@/components/store/loading-store';
+import useLoadingStore from '@/store/use-loading-store';
 
 let baseURL = process.env.NEXT_PUBLIC_API_URL;
 
-const { startLoading, stopLoading } = loadingStore.getState();
+const { startLoading, stopLoading } = useLoadingStore.getState();
 
 const service: AxiosInstance = axios.create({
   timeout: 10000,

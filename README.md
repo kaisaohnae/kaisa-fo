@@ -79,7 +79,24 @@ nvm install 20
 corepack enable
 
 # 프로젝트 루트에서
+rm -rf node_modules 
+rm -rf yarn.lock
+rm -rf android/.gradle
+yarn cache clean
+cd android && ./gradlew clean && cd ..
+
+
 yarn install
+
+# 마이너끼지하려면 --latest 를 빼면됨 
+yarn upgrade --latest
+yarn upgrade-interactive --latest
+
+# 플러그인으로 package.json 수정하려면
+npm install -g npm-check-updates
+ncu --target minor
+ncu -u --target minor
+
 ```
 
 🚨 npm이나 Bun을 사용해도 됩니다.

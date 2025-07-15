@@ -1,7 +1,7 @@
 'use client';
 
 import {useEffect} from 'react';
-import {useRouter} from '@/components/hooks/use-custom-router';
+import {useRouter} from '@/hooks/use-custom-router';
 
 type Props = {
   onReady: () => void;

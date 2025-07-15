@@ -1,10 +1,10 @@
 'use client';
 
 import React, { useCallback } from 'react';
-import loadingStore from '@/components/store/loading-store';
+import useLoadingStore from '@/store/use-loading-store';
 
 export default function AlertComponent() {
-  const loading = loadingStore(useCallback((state) => state.loading, []));
+  const loading = useLoadingStore(useCallback((state) => state.loading, []));
 
   if (!loading) {
     return null;

@@ -10,13 +10,13 @@ type Actions = {
   stopLoading: () => void;
 };
 
-const loadingStore = create<State & Actions>((set) => ({
+const useLoadingStore = create<State & Actions>((set) => ({
   loading: false,
   target: '',
   startLoading: (o?: any) => {
     set(() => ({
       loading: true,
-      target: (o && o.target) ? o.target : ''
+      target: o?.target ?? ''
     }));
   },
   stopLoading: () => {
@@ -27,4 +27,4 @@ const loadingStore = create<State & Actions>((set) => ({
     }));
   },
 }));
-export default loadingStore;
+export default useLoadingStore;
