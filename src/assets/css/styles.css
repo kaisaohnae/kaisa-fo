@@ -118,6 +118,7 @@ body {
 }
 .header__actions {
   display: flex;
+  padding-top:20px;
   align-items: center;
   gap: clamp(16px, 2.5vw, 28px);
 }
@@ -244,7 +245,7 @@ body {
   content: '';
   position: absolute;
   left: 0;
-  bottom: -4px;
+  bottom: 2px;
   width: 100%;
   height: 1px;
   background: var(--color-accent);
@@ -1451,5 +1452,60 @@ body.page-home.scrolled #header.header--home {
 @media (max-width: 480px) {
   .hero__scroll {
     bottom: 24px;
+  }
+}
+@media screen and (max-width: 450px) {
+  :root {
+    --header-height: 108px;
+  }
+
+  #header {
+    height: auto;
+  }
+
+  .site-shell--header {
+    height: auto;
+    padding-block: 10px 14px;
+  }
+
+  .header__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-rows: auto auto;
+    align-items: center;
+    column-gap: 12px;
+    row-gap: 16px;
+    height: auto;
+  }
+
+  .header__logo {
+    grid-column: 1;
+    grid-row: 1;
+    min-width: 0;
+  }
+
+  .header__actions {
+    display: contents;
+    padding-top: 0;
+  }
+
+  #menu {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    width: 100%;
+    margin-top: 6px;
+  }
+
+  .menu__list {
+    gap: clamp(12px, 4vw, 20px);
+    flex-wrap: wrap;
+  }
+
+  .theme-toggle {
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+    align-self: start;
+    margin-top: 6px;
   }
 }

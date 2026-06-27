@@ -340,20 +340,3 @@
   font-size: 12px;
   line-height: 1.5;
 }
-
-@media screen and (max-width: 960px) {
-  .ex3 {
-    grid-template-columns: 1fr;
-  }
-
-  .ex3-sidebar {
-    border-right: 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  }
-
-  .ex3-sidebar__nav {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 6px;
-  }
-}

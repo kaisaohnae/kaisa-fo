@@ -54,7 +54,7 @@ const EXPERTISE: {
     num: '02',
     title: 'Develop',
     titleKo: '개발',
-    desc: '프론트엔드, 백엔드, 인프라, 모바일, HMI. Spring, React, Android, IOS, React Native, Vue, C#, Next.js, OCPP, WebSocket — 서비스 전체를 직접 구현합니다.',
+    desc: '프론트엔드, 백엔드, 인프라, 모바일, HMI. Spring, React, Android, IOS, React Native, Vue, C#, Next.js, OCPP, WebSocket — 서비스를 직접 구현합니다.',
     tags: ['Frontend', 'Backend', 'Mobile', 'DevOps', 'OCPP', 'WebSocket', 'HMI · C#'],
     icon: <IconDevelop />,
   },
