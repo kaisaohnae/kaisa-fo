@@ -10,19 +10,19 @@ export type ExampleLink = {
 export const EXAMPLE_LINKS: ExampleLink[] = [
   {
     id: 'example1',
-    label: '펜션 관리 example1',
+    label: '관리화면 example1',
     href: '/example/example1',
     show: true
   },
   {
     id: 'example2',
-    label: '충전소 관리 example2',
+    label: '관리화면 example2',
     href: '/example/example2',
     show: true
   },
   {
     id: 'example3',
-    label: 'UI 컴포넌트 example3',
+    label: '컴포넌트 example3',
     href: '/example/example3',
     show: true
   }
