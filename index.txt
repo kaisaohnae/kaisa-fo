@@ -1,14 +1,14 @@
 1:"$Sreact.fragment"
-2:I[562,["259","static/chunks/259-0d924a322e83f1bb.js","177","static/chunks/app/layout-26de8bbb55ee9b92.js"],"default"]
-3:I[7110,["259","static/chunks/259-0d924a322e83f1bb.js","177","static/chunks/app/layout-26de8bbb55ee9b92.js"],"default"]
-4:I[8704,["259","static/chunks/259-0d924a322e83f1bb.js","177","static/chunks/app/layout-26de8bbb55ee9b92.js"],"default"]
+2:I[562,["259","static/chunks/259-0d924a322e83f1bb.js","177","static/chunks/app/layout-da8683ec80ddf6e5.js"],"default"]
+3:I[7110,["259","static/chunks/259-0d924a322e83f1bb.js","177","static/chunks/app/layout-da8683ec80ddf6e5.js"],"default"]
+4:I[8704,["259","static/chunks/259-0d924a322e83f1bb.js","177","static/chunks/app/layout-da8683ec80ddf6e5.js"],"default"]
 5:I[7555,[],""]
 6:I[1901,["39","static/chunks/app/error-4da453ae60cb43cb.js"],"default"]
 7:I[1295,[],""]
 8:I[9543,["345","static/chunks/app/not-found-e358ef2941dcb4d6.js"],"default"]
-9:I[6996,["259","static/chunks/259-0d924a322e83f1bb.js","177","static/chunks/app/layout-26de8bbb55ee9b92.js"],"default"]
-a:I[5652,["259","static/chunks/259-0d924a322e83f1bb.js","177","static/chunks/app/layout-26de8bbb55ee9b92.js"],"default"]
-b:I[209,["259","static/chunks/259-0d924a322e83f1bb.js","177","static/chunks/app/layout-26de8bbb55ee9b92.js"],"default"]
+9:I[6996,["259","static/chunks/259-0d924a322e83f1bb.js","177","static/chunks/app/layout-da8683ec80ddf6e5.js"],"default"]
+a:I[5652,["259","static/chunks/259-0d924a322e83f1bb.js","177","static/chunks/app/layout-da8683ec80ddf6e5.js"],"default"]
+b:I[209,["259","static/chunks/259-0d924a322e83f1bb.js","177","static/chunks/app/layout-da8683ec80ddf6e5.js"],"default"]
 c:I[5173,["352","static/chunks/352-b93bfb5b12373594.js","974","static/chunks/app/page-19a86d9fac11c493.js"],"default"]
 d:I[9665,[],"OutletBoundary"]
 f:I[4911,[],"AsyncMetadataOutlet"]
@@ -18,8 +18,8 @@ f:I[4911,[],"AsyncMetadataOutlet"]
 16:I[8393,[],""]
 :HL["/_next/static/media/13971731025ec697-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/media/8a1d8947e5852e30-s.p.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-:HL["/_next/static/css/0d5b405b9eb33bd3.css","style"]
-0:{"P":null,"b":"psN6s5rxvHLWKT8n05spH","p":"","c":["",""],"i":false,"f":[[["",{"children":["__PAGE__",{}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/0d5b405b9eb33bd3.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"ko","className":"__variable_744198 __variable_0d7163","suppressHydrationWarning":true,"children":[null,["$","body",null,{"children":[["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var t=localStorage.getItem('kaisa-theme');document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();"}}],["$","$L2",null,{}],["$","$L3",null,{}],["$","$L4",null,{"children":["$","$L5",null,{"parallelRouterKey":"children","error":"$6","errorStyles":[],"errorScripts":[],"template":["$","$L7",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","$L8",null,{}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],["$","$L9",null,{}],["$","$La",null,{}],["$","$Lb",null,{}]]}]]}]]}],{"children":["__PAGE__",["$","$1","c",{"children":[["$","$Lc",null,{"initialSection":"home"}],null,["$","$Ld",null,{"children":["$Le",["$","$Lf",null,{"promise":"$@10"}]]}]]}],{},null,false]},null,false],["$","$1","h",{"children":[null,[["$","$L11",null,{"children":"$L12"}],["$","meta",null,{"name":"next-size-adjust","content":""}]],["$","$L13",null,{"children":["$","div",null,{"hidden":true,"children":["$","$14",null,{"fallback":null,"children":"$L15"}]}]}]]}],false]],"m":"$undefined","G":["$16",[]],"s":false,"S":true}
+:HL["/_next/static/css/a67515798efc4e3a.css","style"]
+0:{"P":null,"b":"lJInQHi62rUowTROot-_G","p":"","c":["",""],"i":false,"f":[[["",{"children":["__PAGE__",{}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/a67515798efc4e3a.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"ko","className":"__variable_744198 __variable_0d7163","suppressHydrationWarning":true,"children":[null,["$","body",null,{"children":[["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var t=localStorage.getItem('kaisa-theme');document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();"}}],["$","$L2",null,{}],["$","$L3",null,{}],["$","$L4",null,{"children":["$","$L5",null,{"parallelRouterKey":"children","error":"$6","errorStyles":[],"errorScripts":[],"template":["$","$L7",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","$L8",null,{}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],["$","$L9",null,{}],["$","$La",null,{}],["$","$Lb",null,{}]]}]]}]]}],{"children":["__PAGE__",["$","$1","c",{"children":[["$","$Lc",null,{"initialSection":"home"}],null,["$","$Ld",null,{"children":["$Le",["$","$Lf",null,{"promise":"$@10"}]]}]]}],{},null,false]},null,false],["$","$1","h",{"children":[null,[["$","$L11",null,{"children":"$L12"}],["$","meta",null,{"name":"next-size-adjust","content":""}]],["$","$L13",null,{"children":["$","div",null,{"hidden":true,"children":["$","$14",null,{"fallback":null,"children":"$L15"}]}]}]]}],false]],"m":"$undefined","G":["$16",[]],"s":false,"S":true}
 12:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
 e:null
 10:{"metadata":[["$","title","0",{"children":"Kaisa — Design · Develop · Plan"}],["$","meta","1",{"name":"description","content":"20년 경력의 풀스택 크리에이티브 개발자. 기획, 디자인, 개발을 하나의 흐름으로 완성합니다."}]],"error":null,"digest":"$undefined"}
