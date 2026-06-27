@@ -1044,14 +1044,32 @@ a.home {color:var(--color-text); text-decoration:underline; font-size:30px; line
   letter-spacing: 0.05em;
   margin: 0;
 }
-.site-footer__email {
+.site-footer__contact {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+}
+.site-footer__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-size: 13px;
   color: var(--color-text);
   letter-spacing: 0.03em;
+  text-decoration: none;
   transition: color 0.3s;
 }
-.site-footer__email:hover {
+.site-footer__link:hover {
   color: var(--color-accent);
+}
+.site-footer__link:hover .site-footer__icon {
+  color: var(--color-accent);
+}
+.site-footer__icon {
+  flex-shrink: 0;
+  color: var(--color-text-muted);
+  transition: color 0.3s;
 }
 
 /* Home page header scroll state */
