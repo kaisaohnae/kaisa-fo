@@ -8,9 +8,6 @@ import '@/assets/css/styles.css';
 import MetaTags from '@/components/layout/meta-tags';
 import Alert from '@/components/alert';
 import Loading from '@/components/loading';
-import LayoutSub from '@/app/layout-sub';
-import Header from '@/components/layout/header';
-import Footer from '@/components/layout/footer';
 import ThemeProvider from '@/components/layout/theme-provider';
 import {THEME_STORAGE_KEY} from '@/store/use-theme-store';
 
@@ -52,9 +49,7 @@ export default function RootLayout({
       }}
     />
     <ThemeProvider />
-    <Header />
-    <LayoutSub>{children}</LayoutSub>
-    <Footer />
+    {children}
     <Alert />
     <Loading />
     </body>

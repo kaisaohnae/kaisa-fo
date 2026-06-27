@@ -1,9 +1,11 @@
 'use client';
 
 import {useEffect, useRef} from 'react';
+import {getVisibleExampleLinks} from '@/modules/example';
 
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
+  const visibleExampleLinks = getVisibleExampleLinks();
 
   useEffect(() => {
     const el = sectionRef.current;
@@ -27,11 +29,29 @@ export default function HeroSection() {
             Full-Stack Creative Developer
           </p>
 
-          <h1 className="hero__title reveal reveal--2">
-            <span className="hero__title-line">Design</span>
-            <span className="hero__title-line hero__title-line--accent">Develop</span>
-            <span className="hero__title-line">Plan</span>
-          </h1>
+          <div className="hero__title-row reveal reveal--2">
+            <h1 className="hero__title">
+              <span className="hero__title-line">Design</span>
+              <span className="hero__title-line hero__title-line--accent">Develop</span>
+              <span className="hero__title-line">Plan</span>
+            </h1>
+
+            {visibleExampleLinks.length > 0 && (
+              <div className="hero__examples">
+                {visibleExampleLinks.map((item) => (
+                  <a
+                    key={item.id}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hero__example-link"
+                  >
+                    {item.label}
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
 
           <p className="hero__desc reveal reveal--3">
             20년간 아이디어를 설계하고, 디자인하고, 코드로 완성해온
