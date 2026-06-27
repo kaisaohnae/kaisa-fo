@@ -2,35 +2,61 @@
 
 import {useEffect, useState} from 'react';
 import Link from 'next/link';
-import {usePathname} from 'next/navigation';
+import usePortfolioNav from '@/hooks/use-portfolio-nav';
+import type {PortfolioSection} from '@/etc/scroll-to-section';
+
+const MENU_ITEMS: {section: PortfolioSection; label: string; href: string}[] = [
+  {section: 'home', label: 'Home', href: '/'},
+  {section: 'works', label: 'Works', href: '/works/'},
+  {section: 'illustrator', label: 'Illustration', href: '/illustrator/'},
+];
 
 export default function Menu() {
-  let pathname = usePathname();
-  if (pathname && pathname.match('/blog')) {
-    pathname = '/blog';
-  }
-  const [mounted, setMounted] = useState<boolean>(false);
+  const [mounted, setMounted] = useState(false);
   const [isFixed, setFixed] = useState(false);
+  const {isPortfolio, activeSection, navigateToSection} = usePortfolioNav();
+
   useEffect(() => {
     setMounted(true);
     const handleFixed = () => {
-      if (window.scrollY >= 109) {
-        setFixed(true);
-      } else {
-        setFixed(false);
-      }
+      setFixed(window.scrollY >= 80);
     };
-    window.addEventListener('scroll', handleFixed, true);
-    return window.removeEventListener('scroll', handleFixed);
+    window.addEventListener('scroll', handleFixed, {passive: true});
+    handleFixed();
+    return () => window.removeEventListener('scroll', handleFixed);
   }, []);
+
+  if (!mounted) return null;
+
   return (
-    mounted &&
-    <div id="menu" className={isFixed ? 'fixed' : ''}>
-      <ul>
-        <li className={pathname === '/works/' ? 'on' : ''}><Link href="/works/">Works</Link></li>
-        <li className={pathname === '/illustrator/' ? 'on' : ''}><Link href="/illustrator/">Illustrator</Link></li>
-        {/*<li className={pathname === '/blog/' ? 'on' : ''}><Link href="/blog/">Blog</Link></li>*/}
+    <nav id="menu" className={isFixed ? 'menu--fixed' : ''} aria-label="Main navigation">
+      <ul className="menu__list">
+        {MENU_ITEMS.map((item) => {
+          const isActive = isPortfolio && activeSection === item.section;
+
+          return (
+            <li
+              key={item.section}
+              className={isActive ? 'menu__item menu__item--active' : 'menu__item'}
+            >
+              {isPortfolio ? (
+                <button
+                  type="button"
+                  className="menu__link"
+                  aria-current={isActive ? 'page' : undefined}
+                  onClick={() => navigateToSection(item.section)}
+                >
+                  {item.label}
+                </button>
+              ) : (
+                <Link href={item.href} className="menu__link">
+                  {item.label}
+                </Link>
+              )}
+            </li>
+          );
+        })}
       </ul>
-    </div>
+    </nav>
   );
 }

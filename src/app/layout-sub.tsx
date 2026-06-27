@@ -21,7 +21,7 @@ export default function LayoutSub({
   };
   return (
     <Suspense>
-      <>{isReady && children}</>
+      <div id="content">{isReady && children}</div>
       <SiteValidator onReady={onReady} />
     </Suspense>
   );
