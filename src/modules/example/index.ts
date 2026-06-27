@@ -10,10 +10,10 @@ export type ExampleLink = {
 export const EXAMPLE_LINKS: ExampleLink[] = [
   {
     id: 'example1',
-    label: 'example1',
+    label: '펜션 관리 example1',
     href: '/example/example1',
-    show: false,
-  },
+    show: true
+  }
 ];
 
 export const getVisibleExampleLinks = () =>

@@ -24,6 +24,8 @@
     "typescript": "^5"
   },
   "dependencies": {
+    "ag-grid-community": "^36.0.0",
+    "ag-grid-react": "^36.0.0",
     "axios": "^1.10.0",
     "dayjs": "^1.11.13",
     "next": "15.4.1",
