@@ -38,9 +38,7 @@ export default function HeroSection() {
             </h1>
 
             <p className="hero__desc reveal reveal--3">
-              아이디어를 설계하고, 디자인하고, 코드로 완성해온
-              {/*<br className="hero__br" />*/}
-              풀스택 프로덕트 메이커입니다.
+              아이디어를 설계하고, 디자인하고, 코드로 완성해 온 풀스택 프로덕트 메이커입니다.
             </p>
 
             {visibleExampleLinks.length > 0 && (

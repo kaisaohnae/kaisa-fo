@@ -5,9 +5,9 @@ import type {Metadata} from 'next';
 import {Syne, DM_Sans} from 'next/font/google';
 import '@/assets/css/reset.css';
 import '@/assets/css/styles.css';
+import '@/ui-components/styles/ui-components.css';
 import MetaTags from '@/components/layout/meta-tags';
-import Alert from '@/components/alert';
-import Loading from '@/components/loading';
+import {UiAlert, UiLoading, UiPopup} from '@/ui-components';
 import ThemeProvider from '@/components/layout/theme-provider';
 import {THEME_STORAGE_KEY} from '@/store/use-theme-store';
 
@@ -50,8 +50,9 @@ export default function RootLayout({
     />
     <ThemeProvider />
     {children}
-    <Alert />
-    <Loading />
+    <UiAlert />
+    <UiLoading />
+    <UiPopup />
     </body>
     </html>
   );

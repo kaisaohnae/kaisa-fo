@@ -19,6 +19,12 @@ export const EXAMPLE_LINKS: ExampleLink[] = [
     label: '충전소 관리 example2',
     href: '/example/example2',
     show: true
+  },
+  {
+    id: 'example3',
+    label: 'UI 컴포넌트 example3',
+    href: '/example/example3',
+    show: true
   }
 ];
 

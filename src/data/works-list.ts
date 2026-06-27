@@ -3,7 +3,7 @@ export default [
         title: '카이사',
         date: '2022.10',
         link: 'https://kaisa.co.kr/',
-        skil: 'Centos7 Home Server, Spring Boot, NextJS13, React18, Zustand, Maria, Jenkins, Ftp Server, Nginx, NodeJS, Redis, CertBot LetsEncript, 개발중...',
+        skil: 'Centos7 Home Server, Spring Boot, NextJS13, React18, Zustand, Maria, Jenkins, Ftp Server, Nginx, NodeJS, Redis, CertBot LetsEncript, 개발 중...',
         url: process.env.NEXT_PUBLIC_IMG_HOST + '/works/fokaisa.png'
     },*/
   {

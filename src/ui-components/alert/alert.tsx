@@ -3,7 +3,7 @@
 import React, { useCallback } from 'react';
 import useAlertStore from '@/store/use-alert-store';
 
-export default function AlertComponent() {
+export default function UiAlert() {
   const alert = useAlertStore(useCallback((state) => state.alert, []));
   const { hideAlert } = useAlertStore.getState();
   if (!alert) {

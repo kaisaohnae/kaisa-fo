@@ -32,7 +32,7 @@ export default function WorksSection() {
           <span className="page-hero__label">Portfolio</span>
           <h2 className="page-hero__title">Works</h2>
           <p className="page-hero__desc">
-            2005년부터 현재까지, 함께해온 프로젝트 기록입니다.
+            2005년부터 현재까지, 함께해 온 프로젝트 기록입니다.
           </p>
         </header>
 

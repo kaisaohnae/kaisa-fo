@@ -128,7 +128,7 @@ export default function Example1SeasonPage() {
         maxWidth: 90,
         cellEditor: 'agSelectCellEditor',
         cellEditorParams: {values: ['active', 'draft']},
-        valueFormatter: ({value}) => (value === 'active' ? '적용중' : '검토중'),
+        valueFormatter: ({value}) => (value === 'active' ? '적용 중' : '검토 중'),
       },
       {field: 'note', headerName: '메모', minWidth: 160},
     ],
