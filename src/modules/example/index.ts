@@ -12,7 +12,13 @@ export const EXAMPLE_LINKS: ExampleLink[] = [
     id: 'example1',
     label: '펜션 관리 example1',
     href: '/example/example1',
-    show: false
+    show: true
+  },
+  {
+    id: 'example2',
+    label: '충전소 관리 example2',
+    href: '/example/example2',
+    show: true
   }
 ];
 

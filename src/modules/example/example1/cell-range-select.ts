@@ -93,41 +93,51 @@ export async function copyRangeToClipboard(api: GridApi, range: NormalizedCellRa
   return true;
 }
 
-export const CELL_RANGE_CLASS_RULES: ColDef['cellClassRules'] = {
-  'ex1-cell-range': (params) =>
-    isCellInRange(
-      getCellRangeFromContext(params.context),
-      params.node.rowIndex,
-      params.column.getColId(),
-    ),
-  'ex1-cell-range-edge-top': (params) => {
-    const range = getCellRangeFromContext(params.context);
-    if (!range) return false;
-    const colId = params.column.getColId();
-    return (
-      isCellInRange(range, params.node.rowIndex, colId) &&
-      isRangeEdgeTop(range, params.node.rowIndex)
-    );
-  },
-  'ex1-cell-range-edge-bottom': (params) => {
-    const range = getCellRangeFromContext(params.context);
-    if (!range) return false;
-    const colId = params.column.getColId();
-    return (
-      isCellInRange(range, params.node.rowIndex, colId) &&
-      isRangeEdgeBottom(range, params.node.rowIndex)
-    );
-  },
-  'ex1-cell-range-edge-left': (params) => {
-    const range = getCellRangeFromContext(params.context);
-    if (!range) return false;
-    const colId = params.column.getColId();
-    return isCellInRange(range, params.node.rowIndex, colId) && isRangeEdgeLeft(range, colId);
-  },
-  'ex1-cell-range-edge-right': (params) => {
-    const range = getCellRangeFromContext(params.context);
-    if (!range) return false;
-    const colId = params.column.getColId();
-    return isCellInRange(range, params.node.rowIndex, colId) && isRangeEdgeRight(range, colId);
-  },
-};
+export function createCellRangeClassRules(classPrefix: string): ColDef['cellClassRules'] {
+  const rangeClass = `${classPrefix}-cell-range`;
+  const edgeTopClass = `${classPrefix}-cell-range-edge-top`;
+  const edgeBottomClass = `${classPrefix}-cell-range-edge-bottom`;
+  const edgeLeftClass = `${classPrefix}-cell-range-edge-left`;
+  const edgeRightClass = `${classPrefix}-cell-range-edge-right`;
+
+  return {
+    [rangeClass]: (params) =>
+      isCellInRange(
+        getCellRangeFromContext(params.context),
+        params.node.rowIndex,
+        params.column.getColId(),
+      ),
+    [edgeTopClass]: (params) => {
+      const range = getCellRangeFromContext(params.context);
+      if (!range) return false;
+      const colId = params.column.getColId();
+      return (
+        isCellInRange(range, params.node.rowIndex, colId) &&
+        isRangeEdgeTop(range, params.node.rowIndex)
+      );
+    },
+    [edgeBottomClass]: (params) => {
+      const range = getCellRangeFromContext(params.context);
+      if (!range) return false;
+      const colId = params.column.getColId();
+      return (
+        isCellInRange(range, params.node.rowIndex, colId) &&
+        isRangeEdgeBottom(range, params.node.rowIndex)
+      );
+    },
+    [edgeLeftClass]: (params) => {
+      const range = getCellRangeFromContext(params.context);
+      if (!range) return false;
+      const colId = params.column.getColId();
+      return isCellInRange(range, params.node.rowIndex, colId) && isRangeEdgeLeft(range, colId);
+    },
+    [edgeRightClass]: (params) => {
+      const range = getCellRangeFromContext(params.context);
+      if (!range) return false;
+      const colId = params.column.getColId();
+      return isCellInRange(range, params.node.rowIndex, colId) && isRangeEdgeRight(range, colId);
+    },
+  };
+}
+
+export const CELL_RANGE_CLASS_RULES = createCellRangeClassRules('ex1');

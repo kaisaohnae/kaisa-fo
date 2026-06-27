@@ -11,27 +11,29 @@ import type {
   SelectionChangedEvent,
 } from 'ag-grid-community';
 import {forwardRef, useImperativeHandle, useMemo, useRef} from 'react';
-import {CELL_RANGE_CLASS_RULES} from './cell-range-select';
-import {useCellRangeSelect} from './use-cell-range-select';
+import {createCellRangeClassRules} from '../example1/cell-range-select';
+import {useCellRangeSelect} from '../example1/use-cell-range-select';
+
+const EX2_CELL_RANGE_CLASS_RULES = createCellRangeClassRules('ex2');
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
-const EX1_GRID_THEME = themeQuartz.withParams({
-  accentColor: '#ff4d00',
+const EX2_GRID_THEME = themeQuartz.withParams({
+  accentColor: '#0096c7',
   backgroundColor: '#ffffff',
   borderColor: 'transparent',
   borderRadius: 10,
   cellHorizontalPadding: 16,
-  chromeBackgroundColor: '#faf9f7',
+  chromeBackgroundColor: '#f4f9fc',
   fontSize: 13,
-  headerBackgroundColor: '#f7f5f2',
+  headerBackgroundColor: '#edf6fb',
   headerFontSize: 12,
   headerFontWeight: 600,
-  headerTextColor: '#6f6a62',
-  foregroundColor: '#171717',
+  headerTextColor: '#5a7186',
+  foregroundColor: '#0f2233',
   oddRowBackgroundColor: '#ffffff',
   rowHoverColor: 'transparent',
-  selectedRowBackgroundColor: 'rgba(255, 77, 0, 0.07)',
+  selectedRowBackgroundColor: 'rgba(0, 150, 199, 0.08)',
   rowBorder: false,
   columnBorder: false,
   headerColumnBorder: false,
@@ -49,12 +51,12 @@ const ROW_SELECTION: RowSelectionOptions = {
   enableClickSelection: true,
 };
 
-export type Example1AgGridHandle = {
+export type Example2AgGridHandle = {
   getSelectedRows: () => unknown[];
   deselectAll: () => void;
 };
 
-type Example1AgGridProps<T> = {
+type Example2AgGridProps<T> = {
   rowData: T[];
   columnDefs: ColDef<T>[];
   height?: number;
@@ -68,7 +70,7 @@ type Example1AgGridProps<T> = {
   onSelectionChanged?: (count: number) => void;
 };
 
-function Example1AgGridInner<T>(
+function Example2AgGridInner<T>(
   {
     rowData,
     columnDefs,
@@ -81,8 +83,8 @@ function Example1AgGridInner<T>(
     getRowId,
     onCellValueChanged,
     onSelectionChanged,
-  }: Example1AgGridProps<T>,
-  ref: React.Ref<Example1AgGridHandle>,
+  }: Example2AgGridProps<T>,
+  ref: React.Ref<Example2AgGridHandle>,
 ) {
   const gridRef = useRef<AgGridReact<T>>(null);
   const {gridContext, bindGridApi, onCellMouseDown, onCellMouseOver} = useCellRangeSelect(cellSelection);
@@ -101,7 +103,7 @@ function Example1AgGridInner<T>(
       minWidth: 96,
       editable,
       suppressHeaderMenuButton: true,
-      cellClassRules: cellSelection ? CELL_RANGE_CLASS_RULES : undefined,
+      cellClassRules: cellSelection ? EX2_CELL_RANGE_CLASS_RULES : undefined,
     }),
     [cellSelection, editable, filterable],
   );
@@ -115,22 +117,14 @@ function Example1AgGridInner<T>(
     onSelectionChanged?.(event.api.getSelectedRows().length);
   };
 
-  const handleCellMouseDown = (event: Parameters<NonNullable<typeof onCellMouseDown>>[0]) => {
-    onCellMouseDown?.(event);
-  };
-
-  const handleCellMouseOver = (event: Parameters<NonNullable<typeof onCellMouseOver>>[0]) => {
-    onCellMouseOver?.(event);
-  };
-
   return (
     <div
-      className={`ex1-ag-grid${cellSelection ? ' ex1-ag-grid--cell-select' : ''}${className ? ` ${className}` : ''}`}
+      className={`ex2-ag-grid${cellSelection ? ' ex2-ag-grid--cell-select' : ''}${className ? ` ${className}` : ''}`}
       style={{width: '100%', height}}
     >
       <AgGridReact<T>
         ref={gridRef}
-        theme={EX1_GRID_THEME}
+        theme={EX2_GRID_THEME}
         rowData={rowData}
         columnDefs={columnDefs}
         defaultColDef={defaultColDef}
@@ -149,15 +143,15 @@ function Example1AgGridInner<T>(
         onGridReady={handleGridReady}
         onSelectionChanged={handleSelectionChanged}
         onCellValueChanged={onCellValueChanged}
-        onCellMouseDown={cellSelection ? handleCellMouseDown : undefined}
-        onCellMouseOver={cellSelection ? handleCellMouseOver : undefined}
+        onCellMouseDown={cellSelection ? onCellMouseDown : undefined}
+        onCellMouseOver={cellSelection ? onCellMouseOver : undefined}
       />
     </div>
   );
 }
 
-const Example1AgGrid = forwardRef(Example1AgGridInner) as <T>(
-  props: Example1AgGridProps<T> & {ref?: React.Ref<Example1AgGridHandle>},
-) => ReturnType<typeof Example1AgGridInner>;
+const Example2AgGrid = forwardRef(Example2AgGridInner) as <T>(
+  props: Example2AgGridProps<T> & {ref?: React.Ref<Example2AgGridHandle>},
+) => ReturnType<typeof Example2AgGridInner>;
 
-export default Example1AgGrid;
+export default Example2AgGrid;

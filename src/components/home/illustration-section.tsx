@@ -30,6 +30,7 @@ export default function IllustrationSection() {
         <header className="page-hero site-shell__inner">
           <span className="page-hero__label">Gallery</span>
           <h2 className="page-hero__title">Illustration</h2>
+          <p className="page-hero__desc">직접 그린그림입니다</p>
         </header>
 
         <ul className="illustration-grid site-shell__inner">
