@@ -12,7 +12,7 @@ export const EXAMPLE_LINKS: ExampleLink[] = [
     id: 'example1',
     label: '펜션 관리 example1',
     href: '/example/example1',
-    show: true
+    show: false
   }
 ];
 
