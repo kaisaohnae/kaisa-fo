@@ -14,18 +14,18 @@ export default [
     url: process.env.NEXT_PUBLIC_IMG_HOST + '/works/ppk.png'
   },
   {
-    title: '신한올댓',
-    date: '2021.11 ~ 2022.04',
-    link: 'https://allthat.shinhancard.com/',
-    skil: 'Spring Boot, Batch, File to File Interface, Postgre, SwaggerUI, AWS S3, Redis, Vue2, JWT Token, AgGrid, WebPack',
-    url: process.env.NEXT_PUBLIC_IMG_HOST + '/works/allthat.png'
-  },
-  {
     title: 'Anypass',
     date: '2023.11 ~ 2025.08',
     link: 'https://www.anyssign.com/welcome',
     skil: 'Spring Boot, Batch, Vue3, React, React Native, IOS, Android',
     url: process.env.NEXT_PUBLIC_IMG_HOST + '/works/ana.png'
+  },
+  {
+    title: '신한올댓',
+    date: '2021.11 ~ 2022.04',
+    link: 'https://allthat.shinhancard.com/',
+    skil: 'Spring Boot, Batch, File to File Interface, Postgre, SwaggerUI, AWS S3, Redis, Vue2, JWT Token, AgGrid, WebPack',
+    url: process.env.NEXT_PUBLIC_IMG_HOST + '/works/allthat.png'
   },
   {
     title: '여기어때',
