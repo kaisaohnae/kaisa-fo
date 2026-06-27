@@ -11,18 +11,18 @@ import {
 const SECTION_PATH: Record<PortfolioSection, string> = {
   home: '/',
   works: '/works/',
-  illustrator: '/illustrator/',
+  illustration: '/illustration/',
 };
 
 function detectActiveSection(): PortfolioSection {
   if (window.scrollY < 80) return 'home';
 
   const offset = 120;
-  const illustrator = document.getElementById('illustrator');
+  const illustration = document.getElementById('illustration');
   const works = document.getElementById('works');
 
-  if (illustrator && illustrator.getBoundingClientRect().top <= offset) {
-    return 'illustrator';
+  if (illustration && illustration.getBoundingClientRect().top <= offset) {
+    return 'illustration';
   }
   if (works && works.getBoundingClientRect().top <= offset) {
     return 'works';

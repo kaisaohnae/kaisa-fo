@@ -1,15 +1,22 @@
 'use client';
 
-import React from "react";
+import Link from 'next/link';
 
 export default function Custom500() {
   return (
-    <div id="error">
-      {/*<div className="logo"><img src={process.env.NEXT_PUBLIC_IMG_HOST + '/common/logo.png'} width={140} alt=''/></div>*/}
-      <p>
-        알수 없는 에러가 발생하였습니다.
-      </p>
-      <a href="/" className="home">홈으로</a>
+    <div className="error-page">
+      <div className="error-page__inner">
+        <p className="error-page__code">500</p>
+        <h1 className="error-page__title">Something Went Wrong</h1>
+        <p className="error-page__desc">
+          알 수 없는 에러가 발생하였습니다.
+          <br />
+          잠시 후 다시 시도해 주세요.
+        </p>
+        <Link href="/" className="error-page__cta">
+          HOME
+        </Link>
+      </div>
     </div>
   );
 }

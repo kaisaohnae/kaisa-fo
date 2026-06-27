@@ -4,7 +4,7 @@ import {useEffect, useState} from 'react';
 import HeroSection from '@/components/home/hero-section';
 import ExpertiseSection from '@/components/home/expertise-section';
 import WorksSection from '@/components/home/works-section';
-import IllustratorSection from '@/components/home/illustrator-section';
+import IllustrationSection from '@/components/home/illustration-section';
 import {scrollToSection, type PortfolioSection} from '@/etc/scroll-to-section';
 
 type Props = {
@@ -42,7 +42,7 @@ export default function PortfolioPage({initialSection = 'home'}: Props) {
       <HeroSection />
       <ExpertiseSection />
       <WorksSection />
-      <IllustratorSection />
+      <IllustrationSection />
     </div>
   );
 }

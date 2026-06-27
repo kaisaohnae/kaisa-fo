@@ -1,9 +1,9 @@
 'use client';
 
 import {useEffect, useRef} from 'react';
-import illustratorList from '@/data/illustratorList';
+import illustrationList from '@/data/illustration-list';
 
-export default function IllustratorSection() {
+export default function IllustrationSection() {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -25,15 +25,15 @@ export default function IllustratorSection() {
   }, []);
 
   return (
-    <section id="illustrator" ref={sectionRef} className="illustrator-section">
+    <section id="illustration" ref={sectionRef} className="illustration-section">
       <div className="site-shell">
         <header className="page-hero site-shell__inner">
           <span className="page-hero__label">Gallery</span>
           <h2 className="page-hero__title">Illustration</h2>
         </header>
 
-        <ul className="illustrator-grid site-shell__inner">
-          {illustratorList.map((item, idx) => (
+        <ul className="illustration-grid site-shell__inner">
+          {illustrationList.map((item, idx) => (
             <li key={idx}>
               <img src={item.url} alt="" loading="lazy" />
             </li>

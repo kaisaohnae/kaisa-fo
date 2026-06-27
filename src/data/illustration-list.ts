@@ -1,0 +1,15 @@
+export default [
+    {url : process.env.NEXT_PUBLIC_IMG_HOST + '/illustration/1.jpg'},
+    {url : process.env.NEXT_PUBLIC_IMG_HOST + '/illustration/2.jpg'},
+    {url : process.env.NEXT_PUBLIC_IMG_HOST + '/illustration/3.jpg'},
+    {url : process.env.NEXT_PUBLIC_IMG_HOST + '/illustration/4.jpg'},
+    {url : process.env.NEXT_PUBLIC_IMG_HOST + '/illustration/6.jpg'},
+    {url : process.env.NEXT_PUBLIC_IMG_HOST + '/illustration/5.jpg'},
+    {url : process.env.NEXT_PUBLIC_IMG_HOST + '/illustration/7.jpg'},
+    {url : process.env.NEXT_PUBLIC_IMG_HOST + '/illustration/8.jpg'},
+    {url : process.env.NEXT_PUBLIC_IMG_HOST + '/illustration/9.jpg'},
+    {url : process.env.NEXT_PUBLIC_IMG_HOST + '/illustration/10.jpg'},
+    {url : process.env.NEXT_PUBLIC_IMG_HOST + '/illustration/11.jpg'},
+    // {url : process.env.NEXT_PUBLIC_IMG_HOST + '/illustration/12.jpg'},
+    // {url : process.env.NEXT_PUBLIC_IMG_HOST + '/illustration/13.png'},
+]

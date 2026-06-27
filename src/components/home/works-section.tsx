@@ -2,7 +2,7 @@
 
 import {useEffect, useRef} from 'react';
 import WorkGrid from '@/components/works/work-grid';
-import worksList from '@/data/worksList';
+import worksList from '@/data/works-list';
 
 export default function WorksSection() {
   const sectionRef = useRef<HTMLElement>(null);

@@ -8,7 +8,7 @@ import type {PortfolioSection} from '@/etc/scroll-to-section';
 const MENU_ITEMS: {section: PortfolioSection; label: string; href: string}[] = [
   {section: 'home', label: 'Home', href: '/'},
   {section: 'works', label: 'Works', href: '/works/'},
-  {section: 'illustrator', label: 'Illustration', href: '/illustrator/'},
+  {section: 'illustration', label: 'Illustration', href: '/illustration/'},
 ];
 
 export default function Menu() {

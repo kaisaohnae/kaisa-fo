@@ -1,12 +1,12 @@
-export type PortfolioSection = 'home' | 'works' | 'illustrator';
+export type PortfolioSection = 'home' | 'works' | 'illustration';
 
 const SECTION_IDS: Record<PortfolioSection, string> = {
   home: 'home',
   works: 'works',
-  illustrator: 'illustrator',
+  illustration: 'illustration',
 };
 
-export const PORTFOLIO_PATHS = ['/', '/works', '/works/', '/illustrator', '/illustrator/'];
+export const PORTFOLIO_PATHS = ['/', '/works', '/works/', '/illustration', '/illustration/'];
 
 export function scrollToSection(section: PortfolioSection, behavior: ScrollBehavior = 'smooth') {
   const id = SECTION_IDS[section];
