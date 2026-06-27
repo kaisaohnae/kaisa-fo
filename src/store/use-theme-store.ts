@@ -1,8 +1,13 @@
 import {create} from 'zustand';
+import {
+  getStoredTheme,
+  setThemeCookie,
+  THEME_COOKIE_KEY,
+  type Theme,
+} from '@/etc/theme-cookie';
 
-export type Theme = 'light' | 'dark';
-
-export const THEME_STORAGE_KEY = 'kaisa-theme';
+export type {Theme};
+export const THEME_STORAGE_KEY = THEME_COOKIE_KEY;
 
 type State = {
   theme: Theme;
@@ -17,7 +22,7 @@ type Actions = {
 
 const applyTheme = (theme: Theme) => {
   document.documentElement.setAttribute('data-theme', theme);
-  localStorage.setItem(THEME_STORAGE_KEY, theme);
+  setThemeCookie(theme);
 };
 
 export const useThemeStore = create<State & Actions>((set, get) => ({
@@ -32,8 +37,7 @@ export const useThemeStore = create<State & Actions>((set, get) => ({
     get().setTheme(next);
   },
   initTheme: () => {
-    const stored = localStorage.getItem(THEME_STORAGE_KEY) as Theme | null;
-    const theme = stored === 'light' || stored === 'dark' ? stored : 'light';
+    const theme = getStoredTheme() ?? 'light';
     applyTheme(theme);
     set({theme, hydrated: true});
   },
