@@ -1,7 +1,7 @@
 ## 방법1. 깃헙에 정적페이지로 배포할경우...
 
 ```
-yarn build
+npm run build
 cd out
 touch .nojekyll
 echo 'kaisa.co.kr' > CNAME

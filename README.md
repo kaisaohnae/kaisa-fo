@@ -9,9 +9,7 @@ kaisa-fo 2.0 홈페이지
 - Next.js: 14.x.x
 
 ```
-brew uninstall yarn
-yarn upgrade-interactive
-yarn install
+npm install
 ```
 
 ## 프로젝트 구조
@@ -70,45 +68,22 @@ root
 nvm install 20
 ```
 
-### Yarn
+### npm
 
 프로젝트에서 의존하는 NPM 패키지들을 설치합니다.
 
 ```bash
-# yarn 활성화
-corepack enable
-
 # 프로젝트 루트에서
-rm -rf node_modules 
-rm -rf yarn.lock
-rm -rf android/.gradle
-yarn cache clean
-cd android && ./gradlew clean && cd ..
+npm install
 
+# 패키지 업데이트 확인
+npm outdated
 
-yarn install
-
-# 마이너끼지하려면 --latest 를 빼면됨 
-yarn upgrade --latest
-yarn upgrade-interactive --latest
-
-# 플러그인으로 package.json 수정하려면
-npm install -g npm-check-updates
-ncu --target minor
-ncu -u --target minor
-
-```
-
-🚨 npm이나 Bun을 사용해도 됩니다.
-
-Yarn으로 NPM 패키지를 추가하거나 삭제하는 명령어는 다음과 같습니다:
-
-```bash
 # 모듈 추가하기
-yarn add PACKAGE_NAME
+npm install PACKAGE_NAME
 
 # 모듈 삭제하기
-yarn remove PACKAGE_NAME
+npm uninstall PACKAGE_NAME
 ```
 
 ### Next.js
@@ -117,7 +92,7 @@ yarn remove PACKAGE_NAME
 
 ```bash
 # 개발 모드로 로컬 서버 시작
-yarn dev
+npm run dev
 ```
 
 ## 서버 배포하기
@@ -125,7 +100,7 @@ yarn dev
 ### 빌드
 
 ```bash
-yarn build 
+npm run build
 # 빌드 후 생성되는 `out`의 모든 파일들을 서버에 업로드 해도 되지만 github/workflows/deploy.yml 사용 
 # README_BUILD.md 참조 
 ```

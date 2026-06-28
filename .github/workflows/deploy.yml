@@ -13,14 +13,11 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 20.11.1
-      - name: Enable Corepack
-        run: corepack enable
-      - name: Set Yarn version
-        run: corepack prepare yarn@4.5.1 --activate
+          cache: npm
       - name: Install dependencies
-        run: yarn install
+        run: npm ci
       - name: Build project
-        run: yarn build
+        run: npm run build
       # - name: Add 404.html
       #   run: echo '<meta http-equiv="refresh" content="0; URL=/">' > dist/404.html
       - name: Add CNAME file
