@@ -1,7 +1,7 @@
 'use client';
 
-import {useMemo} from 'react';
 import type {ReactNode} from 'react';
+import {useTodayLabel} from '../shared/use-today-label';
 
 type Example1PageHeaderProps = {
   title: string;
@@ -10,16 +10,7 @@ type Example1PageHeaderProps = {
 };
 
 export default function Example1PageHeader({title, description, actions}: Example1PageHeaderProps) {
-  const today = useMemo(
-    () =>
-      new Intl.DateTimeFormat('ko-KR', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        weekday: 'long',
-      }).format(new Date()),
-    [],
-  );
+  const today = useTodayLabel();
 
   const pageTitle = title.replace(/\s*Example1\s*$/i, '').trim();
 

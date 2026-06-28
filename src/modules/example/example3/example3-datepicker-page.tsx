@@ -8,6 +8,8 @@ import Example3StateCard from './example3-state-card';
 
 const MARKED_DAYS = [2, 5, 8, 12, 15, 18, 21, 24, 26, 27, 28, 30];
 
+const DEMO_ANCHOR = new Date(2026, 5, 28);
+
 function buildMarkedDates(year: number, month: number) {
   return MARKED_DAYS.map((day) => ({
     date: new Date(year, month, day),
@@ -16,8 +18,8 @@ function buildMarkedDates(year: number, month: number) {
 }
 
 export default function Example3DatepickerPage() {
-  const [anchorDate] = useState(() => new Date());
-  const [selectedDate, setSelectedDate] = useState<Date | null>(() => new Date());
+  const [anchorDate] = useState(() => DEMO_ANCHOR);
+  const [selectedDate, setSelectedDate] = useState<Date | null>(() => DEMO_ANCHOR);
   const [rangeDate, setRangeDate] = useState<Date | null>(null);
   const markedDates = buildMarkedDates(anchorDate.getFullYear(), anchorDate.getMonth());
 

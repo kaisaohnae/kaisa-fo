@@ -8,6 +8,8 @@ import Example3StateCard from './example3-state-card';
 
 const MARKED_DAYS = [2, 5, 8, 12, 15, 18, 21, 24, 26, 27, 28, 30];
 
+const DEMO_ANCHOR = new Date(2026, 5, 28);
+
 function buildMarkedDates(year: number, month: number) {
   return MARKED_DAYS.map((day) => ({
     date: new Date(year, month, day),
@@ -16,8 +18,8 @@ function buildMarkedDates(year: number, month: number) {
 }
 
 export default function Example3CalendarPage() {
-  const [anchorDate] = useState(() => new Date());
-  const [selectedDate, setSelectedDate] = useState<Date | null>(() => new Date());
+  const [anchorDate] = useState(() => DEMO_ANCHOR);
+  const [selectedDate, setSelectedDate] = useState<Date | null>(() => DEMO_ANCHOR);
   const markedDates = buildMarkedDates(anchorDate.getFullYear(), anchorDate.getMonth());
 
   const minDate = new Date(anchorDate.getFullYear(), anchorDate.getMonth(), 1);
@@ -49,13 +51,13 @@ export default function Example3CalendarPage() {
       <Example3ShowcaseSection title="Size" description="sm · md · lg">
         <div className="ex3-state-grid ex3-state-grid--calendar">
           <Example3StateCard label="Small">
-            <UiCalendar uiSize="sm" defaultValue={new Date()} />
+            <UiCalendar uiSize="sm" defaultValue={anchorDate} />
           </Example3StateCard>
           <Example3StateCard label="Medium">
-            <UiCalendar uiSize="md" defaultValue={new Date()} />
+            <UiCalendar uiSize="md" defaultValue={anchorDate} />
           </Example3StateCard>
           <Example3StateCard label="Large">
-            <UiCalendar uiSize="lg" defaultValue={new Date()} />
+            <UiCalendar uiSize="lg" defaultValue={anchorDate} />
           </Example3StateCard>
         </div>
       </Example3ShowcaseSection>

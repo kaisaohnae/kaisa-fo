@@ -5,8 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "next dev -p 8887",
-    "build:dev": "cross-env shx cp .env.production.dev .env.production && next build && cross-env shx rm .env.production",
-    "build": "cross-env shx cp .env.production.prod .env.production && next build && cross-env shx rm .env.production",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "test": "vitest"
@@ -15,12 +14,10 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "cross-env": "^7.0.3",
     "eslint": "^9",
     "eslint-config-next": "15.4.1",
     "jsdom": "^24.1.3",
     "prettier": "^3.6.2",
-    "shx": "^0.4.0",
     "typescript": "^5"
   },
   "dependencies": {
