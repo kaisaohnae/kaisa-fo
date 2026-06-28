@@ -23,7 +23,7 @@
   "dependencies": {
     "ag-grid-community": "^36.0.0",
     "ag-grid-react": "^36.0.0",
-    "axios": "^1.10.0",
+    "axios": "^1.18.1",
     "dayjs": "^1.11.13",
     "next": "16.2.9",
     "react": "^19.1.0",
