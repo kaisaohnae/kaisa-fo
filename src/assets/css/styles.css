@@ -543,10 +543,13 @@ div.mouth.mouth6 {background-position:-850px -480px;}
 }
 
 #home,
-#expertise,
+#expertise {
+  scroll-margin-top: var(--header-height);
+}
+
 #works,
 #illustration {
-  scroll-margin-top: var(--header-height);
+  scroll-margin-top: -16px;
 }
 
 .illustration-grid {
