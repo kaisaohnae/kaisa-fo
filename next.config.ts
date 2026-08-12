@@ -4,10 +4,19 @@ const nextConfig: NextConfig = {
   reactStrictMode: false,
   output: 'export',
   trailingSlash: true,
-  eslint: {
-    // ESLint 에러를 무시하고 빌드 진행
-    ignoreDuringBuilds: true,
-  },
+  transpilePackages: [
+    'recharts',
+    'echarts',
+    'zrender',
+    'echarts-for-react',
+    '@nivo/core',
+    '@nivo/pie',
+    '@nivo/bar',
+    '@nivo/heatmap',
+    '@nivo/radar',
+    '@nivo/treemap',
+    '@nivo/line',
+  ],
 };
 
 export default nextConfig;

@@ -1,6 +1,6 @@
 'use client';
 
-export type ExampleShell = 'ex1' | 'ex2' | 'ex3';
+export type ExampleShell = 'ex1' | 'ex2' | 'ex3' | 'ex4' | 'ex5';
 
 type ExampleSidebarToggleProps = {
   shell: ExampleShell;
