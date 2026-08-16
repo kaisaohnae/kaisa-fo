@@ -53,3 +53,27 @@ export const getVisibleExampleLinks = () =>
   EXAMPLE_LINKS.filter((item) => item.show !== false);
 
 export const isExamplePath = (pathname: string) => pathname.startsWith('/example');
+
+/** Windows 데스크톱 앱 다운로드 (Google Drive) — Hero example 링크 아래 노출 */
+export type WindowsAppDownload = {
+  id: string;
+  label: string;
+  href: string;
+  /** CSS modifier: logger | uploader */
+  tone: 'logger' | 'uploader';
+};
+
+export const WINDOWS_APP_DOWNLOADS: WindowsAppDownload[] = [
+  {
+    id: 'kaisa-logger',
+    label: 'Kaisa Logger',
+    href: 'https://drive.google.com/uc?export=download&id=1koGd-TKoZLAWm1AQ2DVAkOVFz4DnvJpe',
+    tone: 'logger'
+  },
+  {
+    id: 'kaisa-uploader',
+    label: 'Kaisa Uploader',
+    href: 'https://drive.google.com/uc?export=download&id=1t-pnSedsU0lZZDlEfshExwPw_X8NG6v0',
+    tone: 'uploader'
+  }
+];

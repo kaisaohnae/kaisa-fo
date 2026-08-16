@@ -41,7 +41,7 @@ export default function HeroKoreaMap() {
       >
         <defs>
           <filter id="hero-map-gap" filterUnits="userSpaceOnUse">
-            <feMorphology operator="erode" radius="1.25" />
+            <feMorphology operator="erode" radius="1" />
           </filter>
         </defs>
         {paths.map((d, index) => (

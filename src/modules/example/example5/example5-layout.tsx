@@ -18,7 +18,9 @@ export default function Example5Layout({children}: {children: ReactNode}) {
       <aside className={open ? 'ex5-sidebar ex5-sidebar--open' : 'ex5-sidebar'}>
         <div className="ex5-sidebar__brand">
           <div className="ex5-sidebar__logo">
-            <IconLogo width={92} height={39} />
+            <Link href="/" aria-label="메인으로 이동">
+              <IconLogo width={92} height={39} />
+            </Link>
           </div>
           <ExampleSidebarToggle shell="ex5" open={open} onToggle={toggle} />
         </div>

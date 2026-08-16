@@ -19,7 +19,9 @@ export default function Example4Layout({children}: {children: ReactNode}) {
       <aside className={open ? 'ex4-sidebar ex4-sidebar--open' : 'ex4-sidebar'}>
         <div className="ex4-sidebar__brand">
           <div className="ex4-sidebar__logo">
-            <IconLogo width={88} height={37} />
+            <Link href="/" aria-label="메인으로 이동">
+              <IconLogo width={88} height={37} />
+            </Link>
           </div>
           <ExampleSidebarToggle shell="ex4" open={open} onToggle={toggle} />
         </div>
