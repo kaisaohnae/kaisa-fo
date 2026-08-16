@@ -7,15 +7,15 @@ export default function Example3OverviewPage() {
 
   return (
     <Example3ShowcaseShell
-      title="개요"
-      description="src/ui-components 공통 UI · 상태·옵션·로딩 variant 쇼케이스"
+      title="Overview"
+      description="Independent kit - floating labels, card radios, chip checks, press states"
     >
       <section className="ex3-panel">
         <div className="ex3-panel__head">
-          <h2>컴포넌트 목록</h2>
+          <h2>Components</h2>
           <p>
-            disabled · readOnly · invalid · loading 등 상태별 미리보기와 Alert · Popup · Loading
-            variant 데모를 제공합니다.
+            Same IA as example3, but controls live in <code>Example3/kit</code>. The shell is
+            plain; the interaction is not.
           </p>
         </div>
         <div className="ex3-panel__body">
@@ -31,8 +31,8 @@ export default function Example3OverviewPage() {
       </section>
 
       <p className="ex3-note">
-        CSS와 React 컴포넌트는 <code>src/ui-components</code>에 두고, example3는 쇼케이스
-        전용입니다.
+        Default kit: <code>src/ui-components</code>. Interaction kit:{' '}
+        <code>src/modules/example/example3/kit</code>.
       </p>
     </Example3ShowcaseShell>
   );

@@ -1,59 +1,53 @@
 'use client';
 
-import useAlertStore from '@/store/use-alert-store';
+import {useState} from 'react';
+import {Ex3Alert, Ex3Button} from './kit';
 import Example3ShowcaseSection from './example3-showcase-section';
 import Example3ShowcaseShell from './example3-showcase-shell';
 import Example3StateCard from './example3-state-card';
 
+type AlertDemo = 'single' | 'confirm' | 'long' | null;
+
+const COPY: Record<Exclude<AlertDemo, null>, {message: string; cancelText?: string; confirmText: string}> = {
+  single: {message: 'Saved.', confirmText: 'OK'},
+  confirm: {message: 'Delete this item?', cancelText: 'Cancel', confirmText: 'Delete'},
+  long: {
+    message: 'Changes were saved.\nSome items need admin approval.\nYou will get a notification.',
+    confirmText: 'OK',
+  },
+};
+
 export default function Example3AlertPage() {
-  const showAlert = useAlertStore((state) => state.showAlert);
+  const [demo, setDemo] = useState<AlertDemo>(null);
 
   return (
-    <Example3ShowcaseShell title="Alert" description="message · single · confirm/cancel · long text">
+    <Example3ShowcaseShell title="Alert" description="local overlay · slide-up dialog · not the global store">
       <Example3ShowcaseSection title="Message type">
         <div className="ex3-state-grid">
           <Example3StateCard label="Single confirm">
-            <button
-              type="button"
-              className="ex3-btn ex3-btn--primary"
-              onClick={() => showAlert({message: '저장되었습니다.'})}
-            >
-              기본 Alert
-            </button>
+            <Ex3Button onClick={() => setDemo('single')}>Open alert</Ex3Button>
           </Example3StateCard>
           <Example3StateCard label="Confirm / Cancel">
-            <button
-              type="button"
-              className="ex3-btn"
-              onClick={() =>
-                showAlert({
-                  message: '정말 삭제하시겠습니까?',
-                  button: [
-                    {type: 'off', text: '취소', rate: 1, callback: () => useAlertStore.getState().hideAlert()},
-                    {type: 'on', text: '삭제', rate: 1, callback: () => useAlertStore.getState().hideAlert()},
-                  ],
-                })
-              }
-            >
-              2버튼 Alert
-            </button>
+            <Ex3Button variant="secondary" onClick={() => setDemo('confirm')}>
+              2-button alert
+            </Ex3Button>
           </Example3StateCard>
           <Example3StateCard label="Long message">
-            <button
-              type="button"
-              className="ex3-btn"
-              onClick={() =>
-                showAlert({
-                  message:
-                    '변경 사항이 저장되었습니다.\n일부 항목은 관리자 승인 후 반영됩니다.\n승인 상태는 알림에서 확인할 수 있습니다.',
-                })
-              }
-            >
-              여러 줄 Alert
-            </button>
+            <Ex3Button variant="ghost" onClick={() => setDemo('long')}>
+              Multi-line alert
+            </Ex3Button>
           </Example3StateCard>
         </div>
       </Example3ShowcaseSection>
+
+      <Ex3Alert
+        open={demo !== null}
+        message={demo ? COPY[demo].message : ''}
+        confirmText={demo ? COPY[demo].confirmText : 'OK'}
+        cancelText={demo ? COPY[demo].cancelText : undefined}
+        onConfirm={() => setDemo(null)}
+        onCancel={() => setDemo(null)}
+      />
     </Example3ShowcaseShell>
   );
 }

@@ -39,13 +39,6 @@ export const EXAMPLE_LINKS: ExampleLink[] = [
     href: '/example/example4',
     kind: 'dashboard',
     show: true
-  },
-  {
-    id: 'example5',
-    label: '컴포넌트 example5',
-    href: '/example/example5',
-    kind: 'component',
-    show: true
   }
 ];
 

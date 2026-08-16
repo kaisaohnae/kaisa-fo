@@ -1,8 +1,7 @@
 .ex1-sidebar__toggle,
 .ex2-sidebar__toggle,
 .ex3-sidebar__toggle,
-.ex4-sidebar__toggle,
-.ex5-sidebar__toggle {
+.ex4-sidebar__toggle {
   display: none;
 }
 
@@ -10,8 +9,7 @@
   .ex1,
   .ex2,
   .ex3,
-  .ex4,
-  .ex5 {
+  .ex4 {
     --ex-mobile-bar-height: 48px;
     display: block;
     width: 100%;
@@ -25,8 +23,7 @@
   .ex1-sidebar,
   .ex2-sidebar,
   .ex3-sidebar,
-  .ex4-sidebar,
-  .ex5-sidebar {
+  .ex4-sidebar {
     position: fixed;
     top: 0;
     left: 0;
@@ -46,8 +43,7 @@
   .ex1-sidebar__brand,
   .ex2-sidebar__brand,
   .ex3-sidebar__brand,
-  .ex4-sidebar__brand,
-  .ex5-sidebar__brand {
+  .ex4-sidebar__brand {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -62,8 +58,7 @@
   .ex1-sidebar__logo,
   .ex2-sidebar__logo,
   .ex3-sidebar__logo,
-  .ex4-sidebar__logo,
-  .ex5-sidebar__logo {
+  .ex4-sidebar__logo {
     display: inline-flex;
     align-items: center;
     justify-content: flex-start;
@@ -75,8 +70,7 @@
   .ex1-sidebar__logo svg,
   .ex2-sidebar__logo svg,
   .ex3-sidebar__logo svg,
-  .ex4-sidebar__logo svg,
-  .ex5-sidebar__logo svg {
+  .ex4-sidebar__logo svg {
     display: block;
     width: 72px;
     height: auto;
@@ -85,8 +79,7 @@
   .ex1-sidebar__toggle,
   .ex2-sidebar__toggle,
   .ex3-sidebar__toggle,
-  .ex4-sidebar__toggle,
-  .ex5-sidebar__toggle {
+  .ex4-sidebar__toggle {
     display: inline-flex;
     flex-direction: column;
     justify-content: center;
@@ -110,16 +103,14 @@
   .ex1-sidebar__toggle:hover,
   .ex2-sidebar__toggle:hover,
   .ex3-sidebar__toggle:hover,
-  .ex4-sidebar__toggle:hover,
-  .ex5-sidebar__toggle:hover {
+  .ex4-sidebar__toggle:hover {
     opacity: 0.82;
   }
 
   .ex1-sidebar__toggle-bar,
   .ex2-sidebar__toggle-bar,
   .ex3-sidebar__toggle-bar,
-  .ex4-sidebar__toggle-bar,
-  .ex5-sidebar__toggle-bar {
+  .ex4-sidebar__toggle-bar {
     display: block;
     width: 16px;
     height: 2px;
@@ -134,32 +125,28 @@
   .ex1-sidebar__toggle[aria-expanded='true'] .ex1-sidebar__toggle-bar:nth-child(1),
   .ex2-sidebar__toggle[aria-expanded='true'] .ex2-sidebar__toggle-bar:nth-child(1),
   .ex3-sidebar__toggle[aria-expanded='true'] .ex3-sidebar__toggle-bar:nth-child(1),
-  .ex4-sidebar__toggle[aria-expanded='true'] .ex4-sidebar__toggle-bar:nth-child(1),
-  .ex5-sidebar__toggle[aria-expanded='true'] .ex5-sidebar__toggle-bar:nth-child(1) {
+  .ex4-sidebar__toggle[aria-expanded='true'] .ex4-sidebar__toggle-bar:nth-child(1) {
     transform: translateY(6px) rotate(45deg);
   }
 
   .ex1-sidebar__toggle[aria-expanded='true'] .ex1-sidebar__toggle-bar:nth-child(2),
   .ex2-sidebar__toggle[aria-expanded='true'] .ex2-sidebar__toggle-bar:nth-child(2),
   .ex3-sidebar__toggle[aria-expanded='true'] .ex3-sidebar__toggle-bar:nth-child(2),
-  .ex4-sidebar__toggle[aria-expanded='true'] .ex4-sidebar__toggle-bar:nth-child(2),
-  .ex5-sidebar__toggle[aria-expanded='true'] .ex5-sidebar__toggle-bar:nth-child(2) {
+  .ex4-sidebar__toggle[aria-expanded='true'] .ex4-sidebar__toggle-bar:nth-child(2) {
     opacity: 0;
   }
 
   .ex1-sidebar__toggle[aria-expanded='true'] .ex1-sidebar__toggle-bar:nth-child(3),
   .ex2-sidebar__toggle[aria-expanded='true'] .ex2-sidebar__toggle-bar:nth-child(3),
   .ex3-sidebar__toggle[aria-expanded='true'] .ex3-sidebar__toggle-bar:nth-child(3),
-  .ex4-sidebar__toggle[aria-expanded='true'] .ex4-sidebar__toggle-bar:nth-child(3),
-  .ex5-sidebar__toggle[aria-expanded='true'] .ex5-sidebar__toggle-bar:nth-child(3) {
+  .ex4-sidebar__toggle[aria-expanded='true'] .ex4-sidebar__toggle-bar:nth-child(3) {
     transform: translateY(-6px) rotate(-45deg);
   }
 
   .ex1-sidebar__nav,
   .ex2-sidebar__nav,
   .ex3-sidebar__nav,
-  .ex4-sidebar__nav,
-  .ex5-sidebar__nav {
+  .ex4-sidebar__nav {
     display: flex;
     flex-direction: column;
     gap: 4px;
@@ -177,8 +164,7 @@
   .ex1-sidebar--open .ex1-sidebar__nav,
   .ex2-sidebar--open .ex2-sidebar__nav,
   .ex3-sidebar--open .ex3-sidebar__nav,
-  .ex4-sidebar--open .ex4-sidebar__nav,
-  .ex5-sidebar--open .ex5-sidebar__nav {
+  .ex4-sidebar--open .ex4-sidebar__nav {
     max-height: min(70vh, 560px);
     opacity: 1;
     overflow-y: auto;
@@ -190,8 +176,7 @@
   .ex1-main,
   .ex2-main,
   .ex3-main,
-  .ex4-main,
-  .ex5-main {
+  .ex4-main {
     display: flex;
     flex-direction: column;
     gap: 24px;
@@ -206,12 +191,9 @@
   .ex2-main > *,
   .ex3-main > *,
   .ex4-main > *,
-  .ex5-main > *,
   .ex3-content,
-  .ex5-content,
   .ex3-panel,
-  .ex4-panel,
-  .ex5-panel {
+  .ex4-panel {
     width: 100%;
     max-width: none;
     min-width: 0;
@@ -244,8 +226,7 @@
   }
 
   .ex3-topbar,
-  .ex4-topbar,
-  .ex5-topbar {
+  .ex4-topbar {
     flex-direction: column;
     gap: 12px;
   }
