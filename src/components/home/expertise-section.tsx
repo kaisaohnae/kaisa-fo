@@ -100,7 +100,7 @@ export default function ExpertiseSection() {
             <em>하나의 흐름으로</em>
           </h2>
           <p className="section-header__desc">
-            처음부터 끝까지 한 사람의 시선으로 프로덕트를 완성합니다.
+            처음부터 끝까지 한 사람의 시선으로 프로덕트를 완성합니다. 구현은 누구나 할 수 있지만, 설계와 결정은 여전히 경험의 영역입니다.
           </p>
         </div>
 
