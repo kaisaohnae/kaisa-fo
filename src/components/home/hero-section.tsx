@@ -24,7 +24,7 @@ export default function HeroSection() {
         <div className="hero__inner site-shell__inner">
           <div className="hero__content">
             <p className="hero__eyebrow reveal reveal--1">
-              Full-Stack Creative Developer
+              Simple is Great
             </p>
 
             <h1 className="hero__title reveal reveal--2">
