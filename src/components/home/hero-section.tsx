@@ -46,6 +46,9 @@ export default function HeroSection() {
                       key={item.id}
                       href={item.href}
                       className="hero__example-link"
+                      {...(item.external
+                        ? {target: '_blank', rel: 'noopener noreferrer'}
+                        : {})}
                     >
                       {item.label}
                     </a>

@@ -8,6 +8,8 @@ export type ExampleLink = {
   kind: ExampleKind;
   /** false면 Hero 등에서 숨김 (기본: true) */
   show?: boolean;
+  /** true면 새 창으로 열기 */
+  external?: boolean;
 };
 
 /** 포트폴리오 Hero 등에서 노출할 example 링크 목록 — 제거 시 이 배열만 수정 */
@@ -39,6 +41,14 @@ export const EXAMPLE_LINKS: ExampleLink[] = [
     href: '/example/example4',
     kind: 'dashboard',
     show: true
+  },
+  {
+    id: 'kaisa-kids',
+    label: 'Kaisa Kids',
+    href: 'https://game.kaisa.co.kr/',
+    kind: 'dashboard',
+    show: true,
+    external: true
   }
 ];
 
