@@ -20,7 +20,6 @@ export default function MetaTags() {
       <meta name="viewport" content="initial-scale=1.0,minimum-scale=0,maximum-scale=1.0,user-scalable=no"/>
       <meta name="format-detection" content="telephone=no, address=no, email=no"/>
       <meta name="application-name" content="Kaisa"/>
-      <meta name="google-adsense-account" content="ca-pub-2641553863829571"/>
     </Head>
   );
 }
