@@ -8,6 +8,8 @@ export type ExampleLink = {
   kind: ExampleKind;
   /** false면 Hero 등에서 숨김 (기본: true) */
   show?: boolean;
+  /** true면 새 창으로 열기 */
+  external?: boolean;
 };
 
 /** 포트폴리오 Hero 등에서 노출할 example 링크 목록 — 제거 시 이 배열만 수정 */
@@ -41,11 +43,12 @@ export const EXAMPLE_LINKS: ExampleLink[] = [
     show: true
   },
   {
-    id: 'example5',
-    label: '컴포넌트 example5',
-    href: '/example/example5',
-    kind: 'component',
-    show: true
+    id: 'kaisa-kids',
+    label: 'Kaisa Kids',
+    href: 'https://game.kaisa.co.kr/',
+    kind: 'dashboard',
+    show: true,
+    external: true
   }
 ];
 
@@ -53,3 +56,27 @@ export const getVisibleExampleLinks = () =>
   EXAMPLE_LINKS.filter((item) => item.show !== false);
 
 export const isExamplePath = (pathname: string) => pathname.startsWith('/example');
+
+/** Windows 데스크톱 앱 다운로드 (Google Drive) — Hero example 링크 아래 노출 */
+export type WindowsAppDownload = {
+  id: string;
+  label: string;
+  href: string;
+  /** CSS modifier: logger | uploader */
+  tone: 'logger' | 'uploader';
+};
+
+export const WINDOWS_APP_DOWNLOADS: WindowsAppDownload[] = [
+  {
+    id: 'kaisa-logger',
+    label: 'Kaisa Logger',
+    href: 'https://drive.google.com/uc?export=download&id=1koGd-TKoZLAWm1AQ2DVAkOVFz4DnvJpe',
+    tone: 'logger'
+  },
+  {
+    id: 'kaisa-uploader',
+    label: 'Kaisa Uploader',
+    href: 'https://drive.google.com/uc?export=download&id=1t-pnSedsU0lZZDlEfshExwPw_X8NG6v0',
+    tone: 'uploader'
+  }
+];

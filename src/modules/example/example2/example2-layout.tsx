@@ -18,7 +18,9 @@ export default function Example2Layout({children}: {children: ReactNode}) {
       <aside className={open ? 'ex2-sidebar ex2-sidebar--open' : 'ex2-sidebar'}>
         <div className="ex2-sidebar__brand">
           <div className="ex2-sidebar__logo">
-            <IconLogo width={92} height={39} />
+            <Link href="/" aria-label="메인으로 이동">
+              <IconLogo width={92} height={39} />
+            </Link>
           </div>
           <ExampleSidebarToggle shell="ex2" open={open} onToggle={toggle} />
         </div>

@@ -1,7 +1,7 @@
 'use client';
 
 import {useState} from 'react';
-import {UiCalendar, UiField} from '@/ui-components';
+import {Ex3Calendar, Ex3Field} from './kit';
 import Example3ShowcaseSection from './example3-showcase-section';
 import Example3ShowcaseShell from './example3-showcase-shell';
 import Example3StateCard from './example3-state-card';
@@ -33,12 +33,12 @@ export default function Example3CalendarPage() {
       <Example3ShowcaseSection title="Basic" description="월 이동 · 날짜 선택 · 오늘 표시">
         <div className="ex3-state-grid ex3-state-grid--calendar">
           <Example3StateCard label="Default">
-            <UiField label="일정 날짜" hint="날짜를 클릭해 선택">
-              <UiCalendar value={selectedDate} onChange={setSelectedDate} />
-            </UiField>
+            <Ex3Field label="일정 날짜" hint="날짜를 클릭해 선택">
+              <Ex3Calendar value={selectedDate} onChange={setSelectedDate} />
+            </Ex3Field>
           </Example3StateCard>
           <Example3StateCard label="With legend">
-            <UiCalendar
+            <Ex3Calendar
               showLegend
               legendLabel="예약일"
               markedDates={markedDates}
@@ -51,13 +51,13 @@ export default function Example3CalendarPage() {
       <Example3ShowcaseSection title="Size" description="sm · md · lg">
         <div className="ex3-state-grid ex3-state-grid--calendar">
           <Example3StateCard label="Small">
-            <UiCalendar uiSize="sm" defaultValue={anchorDate} />
+            <Ex3Calendar uiSize="sm" defaultValue={anchorDate} />
           </Example3StateCard>
           <Example3StateCard label="Medium">
-            <UiCalendar uiSize="md" defaultValue={anchorDate} />
+            <Ex3Calendar uiSize="md" defaultValue={anchorDate} />
           </Example3StateCard>
           <Example3StateCard label="Large">
-            <UiCalendar uiSize="lg" defaultValue={anchorDate} />
+            <Ex3Calendar uiSize="lg" defaultValue={anchorDate} />
           </Example3StateCard>
         </div>
       </Example3ShowcaseSection>
@@ -65,7 +65,7 @@ export default function Example3CalendarPage() {
       <Example3ShowcaseSection title="Marked tone" description="accent · muted · danger">
         <div className="ex3-state-grid ex3-state-grid--calendar">
           <Example3StateCard label="Accent">
-            <UiCalendar
+            <Ex3Calendar
               markedDates={[
                 {date: new Date(anchorDate.getFullYear(), anchorDate.getMonth(), 5), tone: 'accent'},
                 {date: new Date(anchorDate.getFullYear(), anchorDate.getMonth(), 12), tone: 'accent'},
@@ -74,7 +74,7 @@ export default function Example3CalendarPage() {
             />
           </Example3StateCard>
           <Example3StateCard label="Muted">
-            <UiCalendar
+            <Ex3Calendar
               markedDates={[
                 {date: new Date(anchorDate.getFullYear(), anchorDate.getMonth(), 8), tone: 'muted'},
                 {date: new Date(anchorDate.getFullYear(), anchorDate.getMonth(), 16), tone: 'muted'},
@@ -83,7 +83,7 @@ export default function Example3CalendarPage() {
             />
           </Example3StateCard>
           <Example3StateCard label="Danger">
-            <UiCalendar
+            <Ex3Calendar
               markedDates={[
                 {date: new Date(anchorDate.getFullYear(), anchorDate.getMonth(), 20), tone: 'danger'},
                 {date: new Date(anchorDate.getFullYear(), anchorDate.getMonth(), 21), tone: 'danger'},
@@ -97,12 +97,12 @@ export default function Example3CalendarPage() {
       <Example3ShowcaseSection title="State" description="min/max · disabled dates · disabled · readOnly">
         <div className="ex3-state-grid ex3-state-grid--calendar">
           <Example3StateCard label="Min / Max">
-            <UiField label="이번 달만 선택" hint={`${minDate.getDate()}일 ~ ${maxDate.getDate()}일`}>
-              <UiCalendar minDate={minDate} maxDate={maxDate} defaultValue={anchorDate} />
-            </UiField>
+            <Ex3Field label="이번 달만 선택" hint={`${minDate.getDate()}일 ~ ${maxDate.getDate()}일`}>
+              <Ex3Calendar minDate={minDate} maxDate={maxDate} defaultValue={anchorDate} />
+            </Ex3Field>
           </Example3StateCard>
           <Example3StateCard label="Disabled dates">
-            <UiCalendar
+            <Ex3Calendar
               disabledDates={markedDates.map((item) => item.date)}
               showLegend
               legendLabel="예약 마감"
@@ -110,12 +110,12 @@ export default function Example3CalendarPage() {
             />
           </Example3StateCard>
           <Example3StateCard label="Disabled">
-            <UiCalendar disabled defaultValue={anchorDate} />
+            <Ex3Calendar disabled defaultValue={anchorDate} />
           </Example3StateCard>
           <Example3StateCard label="Read only">
-            <UiField label="확정 일정" hint="조회만 가능">
-              <UiCalendar readOnly value={new Date(anchorDate.getFullYear(), anchorDate.getMonth(), 18)} />
-            </UiField>
+            <Ex3Field label="확정 일정" hint="조회만 가능">
+              <Ex3Calendar readOnly value={new Date(anchorDate.getFullYear(), anchorDate.getMonth(), 18)} />
+            </Ex3Field>
           </Example3StateCard>
         </div>
       </Example3ShowcaseSection>

@@ -18,7 +18,9 @@ export default function Example1Layout({children}: {children: ReactNode}) {
       <aside className={open ? 'ex1-sidebar ex1-sidebar--open' : 'ex1-sidebar'}>
         <div className="ex1-sidebar__brand">
           <div className="ex1-sidebar__logo">
-            <IconLogo width={92} height={39} />
+            <Link href="/" aria-label="메인으로 이동">
+              <IconLogo width={92} height={39} />
+            </Link>
           </div>
           <ExampleSidebarToggle shell="ex1" open={open} onToggle={toggle} />
         </div>

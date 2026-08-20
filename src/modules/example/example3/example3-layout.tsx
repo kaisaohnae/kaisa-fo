@@ -14,16 +14,18 @@ export default function Example3Layout({children}: {children: ReactNode}) {
   const {open, toggle, close} = useExampleMobileNav();
 
   return (
-    <div className="ex3 ui-root">
+    <div className="ex3 ex3-kit">
       <aside className={open ? 'ex3-sidebar ex3-sidebar--open' : 'ex3-sidebar'}>
         <div className="ex3-sidebar__brand">
           <div className="ex3-sidebar__logo">
-            <IconLogo width={92} height={39} />
+            <Link href="/" aria-label="메인으로 이동">
+              <IconLogo width={92} height={39} />
+            </Link>
           </div>
           <ExampleSidebarToggle shell="ex3" open={open} onToggle={toggle} />
         </div>
 
-        <nav id="ex3-sidebar-nav" className="ex3-sidebar__nav" aria-label="UI 컴포넌트 쇼케이스 메뉴">
+        <nav id="ex3-sidebar-nav" className="ex3-sidebar__nav" aria-label="UI kit menu">
           {NAV_ITEMS.map((item) => (
             <Link
               key={item.id}
