@@ -53,7 +53,7 @@ export const EXAMPLE_LINKS: ExampleLink[] = [
   {
     id: 'kaisa-blog',
     label: 'Kaisa Blog',
-    href: 'https://kaisa.co.kr/',
+    href: 'https://blog.kaisa.co.kr/',
     kind: 'dashboard',
     show: true,
     external: true
