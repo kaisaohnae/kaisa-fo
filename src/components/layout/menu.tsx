@@ -4,14 +4,16 @@ import {useEffect, useState} from 'react';
 import Link from 'next/link';
 import usePortfolioNav from '@/hooks/use-portfolio-nav';
 import type {PortfolioSection} from '@/etc/scroll-to-section';
+import {useT} from '@/i18n/locale-context';
 
 const MENU_ITEMS: {section: PortfolioSection; label: string; href: string}[] = [
   {section: 'home', label: 'Home', href: '/'},
   {section: 'works', label: 'Works', href: '/works/'},
-  {section: 'illustration', label: 'Illustration', href: '/illustration/'},
+  {section: 'illustration', label: 'Illustration', href: '/illustration/'}
 ];
 
 export default function Menu() {
+  const t = useT();
   const [mounted, setMounted] = useState(false);
   const [isFixed, setFixed] = useState(false);
   const {isPortfolio, activeSection, navigateToSection} = usePortfolioNav();
@@ -29,16 +31,13 @@ export default function Menu() {
   if (!mounted) return null;
 
   return (
-    <nav id="menu" className={isFixed ? 'menu--fixed' : ''} aria-label="Main navigation">
+    <nav id="menu" className={isFixed ? 'menu--fixed' : ''} aria-label={t('Main navigation')}>
       <ul className="menu__list">
-        {MENU_ITEMS.map((item) => {
+        {MENU_ITEMS.map(item => {
           const isActive = isPortfolio && activeSection === item.section;
 
           return (
-            <li
-              key={item.section}
-              className={isActive ? 'menu__item menu__item--active' : 'menu__item'}
-            >
+            <li key={item.section} className={isActive ? 'menu__item menu__item--active' : 'menu__item'}>
               {isPortfolio ? (
                 <button
                   type="button"
@@ -46,11 +45,11 @@ export default function Menu() {
                   aria-current={isActive ? 'page' : undefined}
                   onClick={() => navigateToSection(item.section)}
                 >
-                  {item.label}
+                  {t(item.label)}
                 </button>
               ) : (
                 <Link href={item.href} className="menu__link">
-                  {item.label}
+                  {t(item.label)}
                 </Link>
               )}
             </li>

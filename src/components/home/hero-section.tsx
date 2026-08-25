@@ -4,8 +4,10 @@ import {useEffect, useRef} from 'react';
 import {getVisibleExampleLinks, WINDOWS_APP_DOWNLOADS} from '@/modules/example';
 import HeroBrowserIcons from '@/components/home/hero-browser-icons';
 import HeroKoreaMap from '@/components/home/hero-korea-map';
+import {useT} from '@/i18n/locale-context';
 
 export default function HeroSection() {
+  const t = useT();
   const sectionRef = useRef<HTMLElement>(null);
   const visibleExampleLinks = getVisibleExampleLinks();
 
@@ -23,9 +25,7 @@ export default function HeroSection() {
       <div className="site-shell">
         <div className="hero__inner site-shell__inner">
           <div className="hero__content">
-            <p className="hero__eyebrow reveal reveal--1">
-              Simple is Great
-            </p>
+            <p className="hero__eyebrow reveal reveal--1">{t('Simple is Great')}</p>
 
             <h1 className="hero__title reveal reveal--2">
               <span className="hero__title-line">Design</span>
@@ -34,21 +34,19 @@ export default function HeroSection() {
             </h1>
 
             <p className="hero__desc reveal reveal--3">
-              아이디어를 설계하고, 디자인하고, 코드로 완성해 온 풀스택 프로덕트 메이커입니다.
+              {t('A full-stack product maker who plans, designs, and ships in code.')}
             </p>
 
             {visibleExampleLinks.length > 0 && (
               <div className="hero__examples reveal reveal--4">
                 <HeroBrowserIcons />
                 <div className="hero__examples-list">
-                  {visibleExampleLinks.map((item) => (
+                  {visibleExampleLinks.map(item => (
                     <a
                       key={item.id}
                       href={item.href}
                       className="hero__example-link"
-                      {...(item.external
-                        ? {target: '_blank', rel: 'noopener noreferrer'}
-                        : {})}
+                      {...(item.external ? {target: '_blank', rel: 'noopener noreferrer'} : {})}
                     >
                       {item.label}
                     </a>
@@ -68,7 +66,7 @@ export default function HeroSection() {
                   <span>Windows</span>
                 </div>
                 <div className="hero__windows-list">
-                  {WINDOWS_APP_DOWNLOADS.map((app) => (
+                  {WINDOWS_APP_DOWNLOADS.map(app => (
                     <a
                       key={app.id}
                       href={app.href}
@@ -98,10 +96,10 @@ export default function HeroSection() {
       <button
         type="button"
         className="hero__scroll"
-        aria-label="아래로 스크롤"
+        aria-label={t('Scroll down')}
         onClick={() => document.getElementById('expertise')?.scrollIntoView({behavior: 'smooth'})}
       >
-        <span>Scroll</span>
+        <span>{t('Scroll')}</span>
         <div className="hero__scroll-line" />
       </button>
     </section>

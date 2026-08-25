@@ -11,6 +11,7 @@ import GoogleAnalytics from '@/components/layout/google-analytics';
 import GoogleAdsense from '@/components/layout/google-adsense';
 import {UiAlert, UiLoading, UiPopup} from '@/ui-components';
 import ThemeProvider from '@/components/layout/theme-provider';
+import {LocaleProvider} from '@/i18n/locale-context';
 import {THEME_STORAGE_KEY} from '@/store/use-theme-store';
 
 const syne = Syne({
@@ -26,8 +27,8 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: 'Kaisa — Design · Develop · Plan',
-  description: '20년 경력의 풀스택 크리에이티브 개발자. 기획, 디자인, 개발을 하나의 흐름으로 완성합니다.',
+  title: 'Kaisa',
+  description: 'Full-stack creative developer. Plan, design, and develop in one flow.',
 };
 
 /**
@@ -42,7 +43,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" className={`${syne.variable} ${dmSans.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${syne.variable} ${dmSans.variable}`} suppressHydrationWarning>
     <head>
       <GoogleAdsense />
     </head>
@@ -55,7 +56,9 @@ export default function RootLayout({
     <MetaTags />
     <GoogleAnalytics />
     <ThemeProvider />
-    {children}
+    <LocaleProvider>
+      {children}
+    </LocaleProvider>
     <UiAlert />
     <UiLoading />
     <UiPopup />
