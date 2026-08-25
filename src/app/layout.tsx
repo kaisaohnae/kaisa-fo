@@ -8,6 +8,7 @@ import '@/assets/css/styles.css';
 import '@/ui-components/styles/ui-components.css';
 import MetaTags from '@/components/layout/meta-tags';
 import GoogleAnalytics from '@/components/layout/google-analytics';
+import GoogleAdsense from '@/components/layout/google-adsense';
 import {UiAlert, UiLoading, UiPopup} from '@/ui-components';
 import ThemeProvider from '@/components/layout/theme-provider';
 import {THEME_STORAGE_KEY} from '@/store/use-theme-store';
@@ -42,14 +43,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" className={`${syne.variable} ${dmSans.variable}`} suppressHydrationWarning>
-    <MetaTags />
-    <GoogleAnalytics />
+    <head>
+      <GoogleAdsense />
+    </head>
     <body>
     <script
       dangerouslySetInnerHTML={{
         __html: `(function(){try{var t=null;document.cookie.split(';').forEach(function(c){var p=c.trim().split('=');if(p[0]==='${THEME_STORAGE_KEY}')t=decodeURIComponent(p[1]||'');});document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();`,
       }}
     />
+    <MetaTags />
+    <GoogleAnalytics />
     <ThemeProvider />
     {children}
     <UiAlert />
