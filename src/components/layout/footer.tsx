@@ -38,17 +38,11 @@ const Footer = () => {
     <footer id="footer" className="site-footer">
       <div className="site-shell">
         <div className="site-footer__inner site-shell__inner">
-          <p className="site-footer__copy">
-            © 2005 Kaisa. All Rights Reserved.
-          </p>
+          <p className="site-footer__copy">© 2005 Kaisa. All Rights Reserved.</p>
           <div className="site-footer__contact">
-            <a href="mailto:7083620@hanmail.net" className="site-footer__link">
+            <a href="mailto:kaisa@kaisa.co.kr" className="site-footer__link">
               <IconMail />
-              7083620@hanmail.net
-            </a>
-            <a href="tel:01073115111" className="site-footer__link">
-              <IconPhone />
-              010.7311.5111
+              kaisa@kaisa.co.kr
             </a>
           </div>
         </div>
