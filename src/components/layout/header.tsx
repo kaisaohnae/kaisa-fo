@@ -27,7 +27,7 @@ export default function Header() {
     <header id="header" className={isPortfolio ? 'header--home' : 'header--sub'}>
       <div className="site-shell site-shell--header">
         <div className="header__inner site-shell__inner">
-        <h1 className="header__logo">
+        <p className="header__logo">
           {isPortfolio ? (
             <button
               type="button"
@@ -42,7 +42,7 @@ export default function Header() {
               <IconLogo width={100} height={42} />
             </Link>
           )}
-        </h1>
+        </p>
           <div className="header__actions">
             <Menu />
             <ThemeToggle />

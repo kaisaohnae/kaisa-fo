@@ -1,5 +1,14 @@
 import PortfolioPage from '@/components/home/portfolio-page';
+import JsonLd from '@/components/seo/json-ld';
+import {homeJsonLd, homePageMetadata} from '@/lib/seo';
+
+export const metadata = homePageMetadata();
 
 export default function Page() {
-  return <PortfolioPage initialSection="home" />;
+  return (
+    <>
+      <JsonLd data={homeJsonLd()} />
+      <PortfolioPage initialSection="home" />
+    </>
+  );
 }
