@@ -1,6 +1,6 @@
 1:"$Sreact.fragment"
-2:I[10142,["/_next/static/chunks/185k6clh7om_9.js","/_next/static/chunks/44p37290qsddb.js","/_next/static/chunks/14o7bj6-jara8.js","/_next/static/chunks/1nb7u0mti-__g.js"],"default"]
+2:I[10142,["/_next/static/chunks/185k6clh7om_9.js","/_next/static/chunks/44p37290qsddb.js","/_next/static/chunks/21j7vvp0f2kkf.js","/_next/static/chunks/1nb7u0mti-__g.js"],"default"]
 3:I[97367,["/_next/static/chunks/185k6clh7om_9.js","/_next/static/chunks/44p37290qsddb.js"],"OutletBoundary"]
 4:"$Sreact.suspense"
-0:{"rsc":["$","$1","c",{"children":[["$","$L2",null,{"initialSection":"home"}],[["$","script","script-0",{"src":"/_next/static/chunks/1nb7u0mti-__g.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"EsRhFbhRSY4wNDw5mPeki"}
+0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@type\":\"WebSite\",\"name\":\"Kaisa\",\"description\":\"Full-stack creative developer. Plan, design, and develop in one flow.\",\"url\":\"https://kaisa.co.kr/\"}"}}],["$","$L2",null,{"initialSection":"home"}]],[["$","script","script-0",{"src":"/_next/static/chunks/1nb7u0mti-__g.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"mGvZzufWB_asbCu3ZDhHb"}
 5:null
