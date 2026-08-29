@@ -1,70 +1,161 @@
 1:"$Sreact.fragment"
 2:I[22016,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],""]
 3:I[55489,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],"default"]
-5:I[44398,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],"default"]
-6:I[97367,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"OutletBoundary"]
-7:"$Sreact.suspense"
+b:I[44398,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],"default"]
+c:I[97367,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"OutletBoundary"]
+d:"$Sreact.suspense"
 :HL["/_next/static/chunks/3j-1lpdn3an_-.css","style"]
-4:T6b8,# MongoDB: 문서형 DB로 유연한 스키마 다루기
+4:T1c9e,# MongoDB: 문서형 DB로 유연한 스키마 다루기
 
-> 요약: 컬렉션·도큐먼트·인덱스·트랜잭션 경계를 기준으로 MongoDB가 맞는 워크로드와 설계 주의를 정리한다.
+> 요약: 문서 단위로 읽고 쓰는 워크로드에 맞는 문서형 DB로, 임베드·인덱스·레플리카의 실무 경계를 정리한다.
 
 ---
 
 ## 1. 언제 MongoDB인가
 
-| 맞는 경우 | 조심할 경우 |
-|-----------|-------------|
-| 문서 구조가 자주 변함 | 강한 조인·정규화가 핵심 |
-| 수평 확장·샤딩 전제 | 단순 키-값만 (Redis가 나을 수 있음) |
-| 읽기 패턴이 문서 단위 | 복잡한 다테이블 트랜잭션 중심 |
+MongoDB는 문서형(NoSQL) 데이터베이스다. 행이 아니라 **JSON과 비슷한 문서** 한 장을 기본 단위로 저장한다. 내부 저장은 BSON이다. BSON은 Binary JSON, JSON을 이진으로 확장한 형식이다.
 
-“SQL이 싫어서”만으로 고르면 나중에 조인·일관성에서 비용이 커진다.
+“SQL이 싫어서”만으로 고르면 나중에 조인·일관성에서 비용이 커진다. **함께 읽는 데이터가 한 문서에 모이는지**가 선택 기준이다.
+
+| 맞는 경우 | 덜 맞는 경우 |
+|-----------|--------------|
+| 상품·게시글처럼 문서 구조가 자주 변할 때 | 주문·재고처럼 강한 조인·정규화가 핵심일 때 |
+| 한 화면이 문서 하나면 충분할 때 | 여러 컬렉션을 매번 조인해야 할 때 |
+| 수평 확장·샤딩을 전제로 키를 설계할 때 | 단순 키-값·TTL 캐시면 충분할 때 (Redis) |
+| 이벤트·로그성 문서를 대량 적재할 때 | 복잡한 다테이블 트랜잭션이 업무의 중심일 때 |
+| 프로토타입에서 스키마를 빠르게 바꿀 때 | 리포팅 SQL·제약 엔진이 필요할 때 (PostgreSQL/MySQL) |
+
+유연함은 무기이자 부채다. 필드 이름이 문서마다 달라지면 조회·인덱스가 무너진다.
 
 ---
 
-## 2. 기본 모델
+## 2. 핵심 개념
+
+**데이터베이스 → 컬렉션 → 문서.** 컬렉션은 테이블에 가깝다. 문서에는 `_id`가 있다. 기본값은 ObjectId다.
+
+**임베드 vs 참조.** 자주 함께 읽는 작은 객체는 문서 안에 넣는다(임베드). 커지거나 수명주기가 다르면 `ObjectId`로 가리킨다(참조). 배열이 끝없이 늘어나면 문서 16MB 상한과 갱신 비용이 문제가 된다.
+
+**단일 문서 갱신은 원자적**이다. 한 문서 안의 여러 필드는 같이 커밋된다. 여러 문서에 걸친 트랜잭션은 가능하다. 다만 비용·제약이 있다. 관계형처럼 쓰려고 멀티 도큐먼트 트랜잭션을 남발하면 이득이 사라진다.
+
+**레플리카 셋**이 운영 기본이다. Primary에 쓰고 Secondary가 복제한다. 노드 하나짜리 단독 프로세스는 개발용으로만 둔다.
+
+**스키마 검증(Schema Validation)** 으로 “아무 필드나”를 완화한다. 완전 자유는 운영에서 디버깅 비용이 된다.
+
+**TTL 인덱스**는 Time To Live, 만료 후 삭제다. 세션·임시 문서에 쓴다. 캐시 전용이면 Redis가 더 단순한 경우가 많다.
+
+**샤딩**은 데이터를 여러 샤드에 나누는 기법이다. 샤드 키를 잘못 고르면 한 샤드에만 쓰기가 몰린다. 트래픽이 한 노드로 충분하면 샤딩을 미룬다. 레플리카로 읽기·가용성을 먼저 확보한다.
+
+---
+
+## 3. 최소 예제 — 게시글 문서
+
+블로그 글과 작성자 스냅샷을 한 문서에 둔다. 작성자 마스터가 자주 바뀌면 참조로 나눈다. 목록 화면이 글+이름이면 임베드가 맞다.
 
 ```js
-// posts 컬렉션
+// posts 컬렉션 문서 예시
 {
-  _id: ObjectId("…"),
-  title: "제목",
+  _id: ObjectId("64f0a1b2c3d4e5f678901234"),
+  title: "문서 설계 메모",
   tags: ["db", "mongodb"],
   author: { id: "u1", name: "Ada" },
+  published: true,
   createdAt: ISODate("2026-08-26T00:00:00Z")
 }
 ```
 
-- 자주 함께 읽는 데이터는 **임베드**
-- 커지거나 독립 수명주기면 **참조**
-- 배열·중첩이 커질수록 문서 500KB~MB 상한을 의식
-
----
-
-## 3. 인덱스·쿼리
-
 ```js
 db.posts.createIndex({ tags: 1, createdAt: -1 })
-db.posts.find({ tags: "mongodb" }).sort({ createdAt: -1 }).limit(20)
+db.posts.createIndex({ "author.id": 1 })
+
+db.posts.insertOne({
+  title: "문서 설계 메모",
+  tags: ["db", "mongodb"],
+  author: { id: "u1", name: "Ada" },
+  published: true,
+  createdAt: new Date()
+})
+
+db.posts.find({ tags: "mongodb", published: true })
+  .sort({ createdAt: -1 })
+  .limit(20)
 ```
 
-- 쿼리 패턴에 맞춰 인덱스
-- `explain("executionStats")`
-- 멀티키·TTL·텍스트 인덱스 용도를 구분
+느린 쿼리는 실행 계획을 본다.
+
+```js
+db.posts.find({ tags: "mongodb" }).sort({ createdAt: -1 }).explain("executionStats")
+```
+
+`IXSCAN`이 아니라 `COLLSCAN`이면 인덱스가 안 탄다. 쿼리 패턴이 바뀌면 인덱스도 다시 짠다. 인덱스는 쓰기 비용을 올린다. “나중에 쓸지도”로 만들지 않는다.
+
+연결 문자열은 시크릿이다. 예시는 플레이스홀더만 쓴다.
+
+```
+mongodb://APP_USER:YOUR_DB_PASSWORD@db.internal:27017/app?authSource=admin
+```
 
 ---
 
-## 4. 트랜잭션·운영
+## 4. 운영 시 주의
 
-- 단일 문서 갱신은 원자적
-- 멀티 도큐먼트 트랜잭션은 가능하지만 **비용·제약**을 알고 쓴다
-- 레플리카 셋이 운영 기본
-- 스키마 검증(Schema Validation)으로 “완전 자유”를 완화
+**연결.** 드라이버 풀 기본값을 앱 인스턴스 수와 곱해 본다. 유휴 연결이 너무 길면 방화벽이 끊는다. `retryWrites`와 타임아웃을 드라이버 문서대로 맞춘다.
+
+**백업.** Atlas 같은 관리형은 스냅샷·PITR을 상품으로 제공한다. PITR은 Point-In-Time Recovery다. 직접 운영이면 레플리카 + 주기 스냅샷을 최소로 둔다. `mongodump`는 논리 백업이다. 큰 클러스터에서는 시간과 부하를 계산한다. 복원을 스테이징에서 한 번 돌린다.
+
+**보안.** 인증을 켠다. 앱 사용자는 해당 DB만. 27017을 인터넷에 열지 않는다. VPC 또는 프라이빗 링크 안쪽에서만 붙는다.
+
+**스키마 드리프트.** 필드명 오타가 조용히 새 필드를 만든다. 검증 규칙이나 앱 DTO로 허용 필드를 고정한다.
+
+**핫 도큐먼트.** 한 문서의 배열에 댓글을 수만 개 붙이면 갱신이 싸워진다. 커지는 관계는 컬렉션을 나눈다.
+
+**비용.** Atlas 등 관리형은 클러스터 티어·스토리지·백업이 요금이다. 인덱스와 불필요 필드가 문서를 키운다. 프로젝션으로 큰 필드를 목록 조회에서 뺀다.
+
+**관측.** 프로파일러 또는 Atlas 슬로우 쿼리로 `COLLSCAN`을 찾는다. 커넥션 수와 replication lag를 대시보드에 둔다.
+
+스키마 검증은 “완전 자유”를 한 단계 줄인다.
+
+```js
+db.createCollection("posts", {
+  validator: {
+    $jsonSchema: {
+      bsonType: "object",
+      required: ["title", "createdAt"],
+      properties: {
+        title: { bsonType: "string", minLength: 1 },
+        published: { bsonType: "bool" }
+      }
+    }
+  }
+})
+```
+
+규칙은 느슨하게 시작해도 된다. 필수 필드만이라도 막으면 오타 필드가 줄어든다.
+
+**흔한 실수.** 댓글 배열을 글 문서에 무한히 붙이기, 인덱스 없이 `regex` 전체 스캔, 멀티 도큐먼트 트랜잭션으로 관계형을 흉내 내기. 세 가지가 운영 비용을 키운다.
 
 ---
 
-## 정리
+## 5. 정리
 
-MongoDB는 유연함이 무기이지만, **읽기 패턴에 맞는 문서 설계·인덱스** 없이 쓰면 관계형보다 더 아프다.0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"MongoDB: 문서형 DB로 유연한 스키마 다루기\",\"description\":\"컬렉션·도큐먼트·인덱스·트랜잭션 경계를 기준으로 MongoDB가 맞는 워크로드와 설계 주의를 정리한다.\",\"datePublished\":\"2026-08-26\",\"url\":\"https://kaisa.co.kr/posts/db-03/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"db\",\"keywords\":\"db\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"MongoDB: 문서형 DB로 유연한 스키마 다루기\",\"item\":\"https://kaisa.co.kr/posts/db-03/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2026-08-26"}]}],["$","h1",null,{"className":"blog-post__title","children":"MongoDB: 문서형 DB로 유연한 스키마 다루기"}],["$","$L3",null,{"content":"$4"}],["$","$L5",null,{"pathKey":"db-03"}],["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/db-02/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"MySQL: 웹 서비스에서 가장 흔한 관계형 DB"}]]}],["$","$L2",null,{"href":"/posts/db-04/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Redis: 인메모리 키-값으로 캐시·세션·큐"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]]}]}]}]],[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3j-1lpdn3an_-.css","precedence":"next"}],["$","script","script-0",{"src":"/_next/static/chunks/2_h6is8-aperz.js","async":true}],["$","script","script-1",{"src":"/_next/static/chunks/3qcoeqbx1mias.js","async":true}]],["$","$L6",null,{"children":["$","$7",null,{"name":"Next.MetadataOutlet","children":"$@8"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"DJX3Zf-ybBx2vscYgjP8o"}
-8:null
+MongoDB는 유연함이 무기다. **읽기 패턴에 맞는 문서 설계와 인덱스** 없이 쓰면 관계형보다 더 아프다. 임베드는 작게, 트랜잭션은 드물게, 레플리카와 백업은 기본값으로 둔다.
+
+### 체크리스트
+
+- [ ] 화면 단위로 임베드/참조를 정한다. 조인을 전제로 시작하면 모델이 무너진다.
+- [ ] 실제 `find`/`sort`에 인덱스를 맞춘다. `explain`이 COLLSCAN이면 데이터가 커질수록 죽는다.
+- [ ] 레플리카 셋을 운영 기본으로 둔다. 단일 노드는 디스크 장애에 약하다.
+- [ ] 스키마 검증 또는 앱 계약으로 필드 난립을 막는다.
+- [ ] 인증·네트워크 범위를 최소로 두고 덤프/스냅샷 복원을 연습한다.
+
+### 연습
+
+1. `posts`에 글 다섯 건을 넣고 `tags`+`createdAt` 인덱스로 목록을 조회한다.
+2. 같은 쿼리에 `explain("executionStats")`를 붙여 스캔 방식을 확인한다.
+3. `mongodump` 후 다른 DB 이름에 복원해 건수가 같은지 본다.0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"MongoDB: 문서형 DB로 유연한 스키마 다루기\",\"description\":\"문서 단위로 읽고 쓰는 워크로드에 맞는 문서형 DB로, 임베드·인덱스·레플리카의 실무 경계를 정리한다.\",\"datePublished\":\"2024-07-04\",\"url\":\"https://kaisa.co.kr/posts/db-03/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"db\",\"keywords\":\"db\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"MongoDB: 문서형 DB로 유연한 스키마 다루기\",\"item\":\"https://kaisa.co.kr/posts/db-03/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2024-07-04"}]}],["$","h1",null,{"className":"blog-post__title","children":"MongoDB: 문서형 DB로 유연한 스키마 다루기"}],["$","$L3",null,{"content":"$4"}],"$L5","$L6"]}]}]}]],["$L7","$L8","$L9"],"$La"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"rgIajyDGnwYL9Qdz0xIG3"}
+5:["$","$Lb",null,{"pathKey":"db-03"}]
+6:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/db-02/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"MySQL: 웹 서비스에서 가장 흔한 관계형 DB"}]]}],["$","$L2",null,{"href":"/posts/db-04/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Redis: 인메모리 키-값으로 캐시·세션·큐"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
+7:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3j-1lpdn3an_-.css","precedence":"next"}]
+8:["$","script","script-0",{"src":"/_next/static/chunks/2_h6is8-aperz.js","async":true}]
+9:["$","script","script-1",{"src":"/_next/static/chunks/3qcoeqbx1mias.js","async":true}]
+a:["$","$Lc",null,{"children":["$","$d",null,{"name":"Next.MetadataOutlet","children":"$@e"}]}]
+e:null

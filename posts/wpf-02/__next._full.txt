@@ -12,13 +12,13 @@ b:I[45872,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__
 c:I[20683,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js"],"default"]
 d:I[86979,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/0hs6l77ykwsoc.js"],"default"]
 16:I[68027,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default",1]
-:HL["/_next/static/chunks/3ou3k_oca-ann.css","style"]
+:HL["/_next/static/chunks/0aw5gw7bg_b6q.css","style"]
 :HL["/_next/static/chunks/0g93akm33ce_n.css","style"]
 :HL["/_next/static/chunks/0l7zbvjzypglv.css","style"]
 :HL["/_next/static/media/0c795a286deabae8-s.p.3vm0tq4e-zz_5.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/media/5c285b27cdda1fe8-s.p.2_mbdogr7ni8i.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/chunks/3j-1lpdn3an_-.css","style"]
-0:{"P":null,"c":["","posts","wpf-02",""],"q":"","i":false,"f":[[["",{"children":["(site)",{"children":["posts",{"children":[["slug","wpf-02","d",null],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3ou3k_oca-ann.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0g93akm33ce_n.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/0l7zbvjzypglv.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/3t-_5l233af4w.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1uymn__-_z4ug.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ko","className":"syne_53f86cd1-module__kiT3Eq__variable dm_sans_fd62f040-module__0jgVUW__variable","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","script",null,{"async":true,"src":"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2641553863829571","crossOrigin":"anonymous"}]}],["$","body",null,{"children":[["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var t=null;document.cookie.split(';').forEach(function(c){var p=c.trim().split('=');if(p[0]==='kaisa-theme')t=decodeURIComponent(p[1]||'');});document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();"}}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var KEY='kaisa-locale';var loc=null;try{loc=sessionStorage.getItem(KEY);}catch(e){}function fromNav(){var list=[navigator.language].concat(navigator.languages||[]);for(var i=0;i<list.length;i++){var l=String(list[i]||'').toLowerCase();if(l.indexOf('ko')===0)return 'ko';if(l.indexOf('zh')===0)return 'zh';if(l.indexOf('hi')===0)return 'hi';if(l.indexOf('en')===0)return 'en';}return null;}if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc=fromNav();if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc='ko';document.documentElement.lang=loc;}catch(e){document.documentElement.lang='ko';}})();"}}],[["$","$L2",null,{"src":"https://www.googletagmanager.com/gtag/js?id=G-2281QQ6XP4","strategy":"afterInteractive"}],["$","$L2",null,{"id":"google-analytics","strategy":"afterInteractive","children":"\n          window.dataLayer = window.dataLayer || [];\n          function gtag(){dataLayer.push(arguments);}\n          gtag('js', new Date());\n          gtag('config', 'G-2281QQ6XP4');\n        "}]],["$","$L3",null,{}],["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}],["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","$L7",null,{}],["$","$L8",null,{}],["$","$L9",null,{}]]}]]}]]}],{"children":[["$","$1","c",{"children":[[["$","script","script-0",{"src":"/_next/static/chunks/23u3jdspf1pgv.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1hr7-4fb6m83q.js","async":true,"nonce":"$undefined"}]],["$","$La",null,{"children":["$","div",null,{"className":"site-layout","children":[["$","$Lb",null,{}],["$","$Lc",null,{"children":["$","$L4",null,{"parallelRouterKey":"children","error":"$d","errorStyles":[],"errorScripts":[["$","script","script-0",{"src":"/_next/static/chunks/0hs6l77ykwsoc.js","async":true}]],"template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],"$Le","$Lf"]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],"$L10"]}]}]]}],{"children":["$L11",{"children":["$L12",{"children":["$L13",{},null,false,null]},null,false,"$@14"]},null,false,"$@14"]},null,false,null]},null,false,null],"$L15",false]],"m":"$undefined","G":["$16",["$L17","$L18","$L19"]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"DJX3Zf-ybBx2vscYgjP8o"}
+0:{"P":null,"c":["","posts","wpf-02",""],"q":"","i":false,"f":[[["",{"children":["(site)",{"children":["posts",{"children":[["slug","wpf-02","d",null],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0aw5gw7bg_b6q.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0g93akm33ce_n.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/0l7zbvjzypglv.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/3t-_5l233af4w.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1uymn__-_z4ug.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ko","className":"syne_53f86cd1-module__kiT3Eq__variable dm_sans_fd62f040-module__0jgVUW__variable","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","script",null,{"async":true,"src":"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2641553863829571","crossOrigin":"anonymous"}]}],["$","body",null,{"children":[["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var t=null;document.cookie.split(';').forEach(function(c){var p=c.trim().split('=');if(p[0]==='kaisa-theme')t=decodeURIComponent(p[1]||'');});document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();"}}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var KEY='kaisa-locale';var loc=null;try{loc=sessionStorage.getItem(KEY);}catch(e){}function fromNav(){var list=[navigator.language].concat(navigator.languages||[]);for(var i=0;i<list.length;i++){var l=String(list[i]||'').toLowerCase();if(l.indexOf('ko')===0)return 'ko';if(l.indexOf('zh')===0)return 'zh';if(l.indexOf('hi')===0)return 'hi';if(l.indexOf('en')===0)return 'en';}return null;}if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc=fromNav();if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc='ko';document.documentElement.lang=loc;}catch(e){document.documentElement.lang='ko';}})();"}}],[["$","$L2",null,{"src":"https://www.googletagmanager.com/gtag/js?id=G-2281QQ6XP4","strategy":"afterInteractive"}],["$","$L2",null,{"id":"google-analytics","strategy":"afterInteractive","children":"\n          window.dataLayer = window.dataLayer || [];\n          function gtag(){dataLayer.push(arguments);}\n          gtag('js', new Date());\n          gtag('config', 'G-2281QQ6XP4');\n        "}]],["$","$L3",null,{}],["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}],["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","$L7",null,{}],["$","$L8",null,{}],["$","$L9",null,{}]]}]]}]]}],{"children":[["$","$1","c",{"children":[[["$","script","script-0",{"src":"/_next/static/chunks/23u3jdspf1pgv.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1hr7-4fb6m83q.js","async":true,"nonce":"$undefined"}]],["$","$La",null,{"children":["$","div",null,{"className":"site-layout","children":[["$","$Lb",null,{}],["$","$Lc",null,{"children":["$","$L4",null,{"parallelRouterKey":"children","error":"$d","errorStyles":[],"errorScripts":[["$","script","script-0",{"src":"/_next/static/chunks/0hs6l77ykwsoc.js","async":true}]],"template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],"$Le","$Lf"]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],"$L10"]}]}]]}],{"children":["$L11",{"children":["$L12",{"children":["$L13",{},null,false,null]},null,false,"$@14"]},null,false,"$@14"]},null,false,null]},null,false,null],"$L15",false]],"m":"$undefined","G":["$16",["$L17","$L18","$L19"]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"rgIajyDGnwYL9Qdz0xIG3"}
 1a:I[44604,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js"],"default"]
 1c:I[97367,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"OutletBoundary"]
 1d:"$Sreact.suspense"
@@ -33,86 +33,198 @@ f:["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]
 1f:[]
 14:"$W1f"
 15:["$","$1","h",{"children":[null,["$","$L20",null,{"children":"$L21"}],["$","div",null,{"hidden":true,"children":["$","$L22",null,{"children":["$","$1d",null,{"name":"Next.Metadata","children":"$L23"}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}]
-17:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3ou3k_oca-ann.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
+17:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0aw5gw7bg_b6q.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
 18:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0g93akm33ce_n.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
 19:["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/0l7zbvjzypglv.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
 24:I[55489,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],"default"]
-26:I[44398,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],"default"]
-25:T681,# 데이터 바인딩과 ObservableCollection
+25:T19d0,# 데이터 바인딩과 ObservableCollection
 
-> 요약: INotifyPropertyChanged, ObservableCollection, DataTemplate로 UI와 상태를 동기화하는 핵심 패턴을 정리한다.
+> 요약: INotifyPropertyChanged와 ObservableCollection으로 값·목록 변경을 화면에 반영하고, DataTemplate로 행 UI를 분리하는 방법을 정리한다.
 
 ---
 
-## 1. 바인딩 핵심
+## 1. 왜 바인딩인가
 
-WPF UI는 바인딩으로 상태를 읽고 반영한다.
+WPF 컨트롤에 `textBlock.Text = name`을 매번 대입하면 View와 상태가 섞인다. 바인딩은 **소스 속성 ↔ 컨트롤 속성**을 XAML이 연결한다. 소스가 “바뀌었다”고 알려야 화면이 따라간다.
 
-| 구성 | 역할 |
+언제 무엇을 쓰는가.
+
+| 상황 | 선택 |
 |------|------|
-| DataContext | 바인딩 루트 |
-| Binding Path | 속성 경로 |
-| Mode | OneWay/TwoWay |
-| Converter | 타입 변환 |
+| 이름·체크처럼 필드 하나 | `INotifyPropertyChanged` 속성 |
+| 추가·삭제가 있는 목록 | `ObservableCollection<T>` |
+| 행의 모양 | `DataTemplate` |
+| 표시 형식만 다름 (bool → 색) | `IValueConverter` |
+
+`List<T>`에 `Add`해도 UI는 모른다. 컬렉션 변경 알림이 있는 `ObservableCollection<T>`를 쓴다.
 
 ---
 
-## 2. 변경 통지
+## 2. 핵심 구성
+
+| 구성 | 한 줄 |
+|------|--------|
+| DataContext | 이 화면이 바라보는 데이터 소스. 바인딩의 루트 |
+| Path | `User.Name`처럼 속성 경로 |
+| Mode | `OneWay` 표시만, `TwoWay` 입력도 소스로 |
+| UpdateSourceTrigger | `LostFocus` 기본. 타이핑마다면 `PropertyChanged` |
+| `INotifyPropertyChanged` | 속성 setter에서 UI에 변경을 알린다 |
+| `ObservableCollection<T>` | 항목 추가·삭제·이동을 UI에 알린다 |
+
+`TextBox.Text`의 기본 Mode는 TwoWay다. `TextBlock.Text`는 OneWay다.
+
+---
+
+## 3. 동작하는 예: 사용자 목록
+
+`ViewModels/UserItem.cs`:
 
 ```csharp
-public class UserViewModel : INotifyPropertyChanged {
-    private string _name = "";
-    public string Name {
-        get => _name;
-        set { _name = value; OnPropertyChanged(); }
-    }
+using CommunityToolkit.Mvvm.ComponentModel;
 
-    public event PropertyChangedEventHandler? PropertyChanged;
-    void OnPropertyChanged([CallerMemberName] string? m = null)
-        => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(m));
+namespace MyApp.ViewModels;
+
+public partial class UserItem : ObservableObject
+{
+    [ObservableProperty]
+    private string name = "";
+
+    [ObservableProperty]
+    private bool isActive = true;
 }
 ```
 
-속성 변경 알림이 없으면 화면이 갱신되지 않는다.
+항목 안의 `Name`이 바뀌려면 항목 자체도 알림 객체여야 한다. `record` 문자열만 바꿔서는 행 텍스트가 안 바뀐다.
 
----
-
-## 3. 목록 바인딩
+`ViewModels/MainViewModel.cs`:
 
 ```csharp
-public ObservableCollection<string> Items { get; } = new();
+using System.Collections.ObjectModel;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+
+namespace MyApp.ViewModels;
+
+public partial class MainViewModel : ObservableObject
+{
+    public ObservableCollection<UserItem> Users { get; } = new();
+
+    [ObservableProperty]
+    private UserItem? selectedUser;
+
+    [ObservableProperty]
+    private string draftName = "";
+
+    public MainViewModel()
+    {
+        Users.Add(new UserItem { Name = "김하늘", IsActive = true });
+        Users.Add(new UserItem { Name = "이준", IsActive = false });
+    }
+
+    [RelayCommand]
+    private void AddUser()
+    {
+        var name = DraftName.Trim();
+        if (name.Length == 0) return;
+        Users.Add(new UserItem { Name = name });
+        DraftName = "";
+    }
+
+    [RelayCommand]
+    private void RemoveSelected()
+    {
+        if (SelectedUser is null) return;
+        Users.Remove(SelectedUser);
+        SelectedUser = null;
+    }
+}
 ```
+
+`[ObservableProperty]` private 필드 `draftName`은 생성 코드에서 `DraftName` 속성이 된다. XAML과 명령은 `DraftName`을 쓴다.
+
+`Views/MainWindow.xaml` 본문:
 
 ```xml
-<ListBox ItemsSource="{Binding Items}" />
+<DockPanel Margin="16">
+  <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+    <TextBox Width="180"
+             Text="{Binding DraftName, UpdateSourceTrigger=PropertyChanged}" />
+    <Button Content="추가" Command="{Binding AddUserCommand}" Margin="8,0,0,0" />
+    <Button Content="선택 삭제" Command="{Binding RemoveSelectedCommand}" />
+  </StackPanel>
+  <ListBox ItemsSource="{Binding Users}"
+           SelectedItem="{Binding SelectedUser}">
+    <ListBox.ItemTemplate>
+      <DataTemplate>
+        <StackPanel Orientation="Horizontal">
+          <CheckBox IsChecked="{Binding IsActive}" VerticalAlignment="Center" />
+          <TextBlock Text="{Binding Name}" Margin="8,0,0,0" />
+        </StackPanel>
+      </DataTemplate>
+    </ListBox.ItemTemplate>
+  </ListBox>
+</DockPanel>
 ```
 
-`ObservableCollection`은 add/remove 변경을 UI에 자동 반영한다.
+- `ItemsSource` — 목록 소스
+- `ItemTemplate` — 한 행이 바라보는 DataContext는 `UserItem`
+- `SelectedItem` — 현재 선택. TwoWay로 ViewModel과 맞춘다
+- `AddUserCommand` — `[RelayCommand] AddUser`가 생성하는 명령 이름
+
+툴킷 없이 알림을 직접 쓰려면:
+
+```csharp
+public event PropertyChangedEventHandler? PropertyChanged;
+
+private void OnPropertyChanged([CallerMemberName] string? name = null)
+    => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+```
+
+setter에서 `_name = value` 뒤에 `OnPropertyChanged()`를 호출한다. 알림이 없으면 바인딩 소스는 바뀌었는데 화면은 옛 값이다.
 
 ---
 
-## 4. DataTemplate
+## 4. 변환과 모드
 
 ```xml
-<ListBox ItemsSource="{Binding Users}">
-  <ListBox.ItemTemplate>
-    <DataTemplate>
-      <StackPanel Orientation="Horizontal">
-        <TextBlock Text="{Binding Name}" />
-      </StackPanel>
-    </DataTemplate>
-  </ListBox.ItemTemplate>
-</ListBox>
+<TextBlock Text="{Binding Price, StringFormat={}{0:N0}원}" />
 ```
 
-템플릿으로 리스트 항목 렌더링을 분리하면 유지보수가 쉬워진다.
+형식만이면 `StringFormat`으로 충분하다. bool → Visibility는 내장 `BooleanToVisibilityConverter` 또는 작은 `IValueConverter`다. ViewModel에 UI 타입(`Visibility`, `Brush`)을 넣지 않는 편이 테스트가 쉽다.
+
+백그라운드 스레드에서 컬렉션을 바꾸면 예외가 난다. UI 스레드(`Dispatcher.Invoke`) 또는 `BindingOperations.EnableCollectionSynchronization`을 검토한다. 기본은 UI 스레드에서만 `Add`/`Remove`한다.
+
+---
+
+## 5. 주의 / 흔한 실수
+
+- **속성 알림 없이 `Name = x`.** 화면이 안 바뀐다. 툴킷 또는 `OnPropertyChanged`.
+- **`List<T>`를 `ItemsSource`에 넣고 나중에 `Add`.** 초기 표시만 되고 추가분이 안 붙는다.
+- **컬렉션 프로퍼티를 get-only가 아닌 채 재할당.** `Users = new ObservableCollection<...>()`는 새 객체라, 바인딩이 옛 컬렉션을 볼 수 있다. `Clear` 후 `Add`하거나 알림이 있는 setter로 교체한다.
+- **행 모델이 `string`뿐인데 행 내용을 바꾸고 기대.** 문자열은 알림이 없다. `UserItem`처럼 객체를 둔다.
+- **`UpdateSourceTrigger` 기본값으로 타이핑마다 검증.** `TextBox`는 포커스를 잃어야 소스가 갱신된다. 즉시면 `PropertyChanged`를 명시한다.
 
 ---
 
 ## 정리
 
-WPF 생산성의 핵심은 컨트롤이 아니라 **변경 통지 + 컬렉션 + 템플릿** 조합이다.1b:[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"데이터 바인딩과 ObservableCollection\",\"description\":\"INotifyPropertyChanged, ObservableCollection, DataTemplate로 UI와 상태를 동기화하는 핵심 패턴을 정리한다.\",\"datePublished\":\"2026-08-26\",\"url\":\"https://kaisa.co.kr/posts/wpf-02/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"wpf\",\"keywords\":\"wpf\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"데이터 바인딩과 ObservableCollection\",\"item\":\"https://kaisa.co.kr/posts/wpf-02/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L6",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2026-08-26"}]}],["$","h1",null,{"className":"blog-post__title","children":"데이터 바인딩과 ObservableCollection"}],["$","$L24",null,{"content":"$25"}],["$","$L26",null,{"pathKey":"wpf-02"}],["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L6",null,{"href":"/posts/wpf-01/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"WPF와 XAML·MVVM 시작하기"}]]}],["$","$L6",null,{"href":"/posts/wpf-03/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"이벤트 대신 ICommand로 액션 연결하기"}]]}]]}],["$","$L6",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]]}]}]}]]
+WPF 생산성은 컨트롤 종류가 아니라 **변경 통지 + 컬렉션 + 템플릿**이다.
+
+- 필드 → `INotifyPropertyChanged` / `[ObservableProperty]`
+- 목록 → `ObservableCollection<T>`
+- 행 UI → `DataTemplate` (행의 DataContext = 항목)
+
+---
+
+## 연습
+
+1. 추가 버튼으로 이름이 목록에 붙는지, 선택 삭제로 빠지는지 확인한다.
+2. 행의 `CheckBox`를 토글해 `IsActive`가 유지되는지 확인한다.
+3. `Users`를 `List<UserItem>`으로 바꿔 `Add`한 뒤 화면이 안 바뀌는 것을 보고 다시 `ObservableCollection`으로 되돌린다.1b:[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"데이터 바인딩과 ObservableCollection\",\"description\":\"INotifyPropertyChanged와 ObservableCollection으로 값·목록 변경을 화면에 반영하고, DataTemplate로 행 UI를 분리하는 방법을 정리한다.\",\"datePublished\":\"2023-09-11\",\"url\":\"https://kaisa.co.kr/posts/wpf-02/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"wpf\",\"keywords\":\"wpf\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"데이터 바인딩과 ObservableCollection\",\"item\":\"https://kaisa.co.kr/posts/wpf-02/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L6",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2023-09-11"}]}],["$","h1",null,{"className":"blog-post__title","children":"데이터 바인딩과 ObservableCollection"}],["$","$L24",null,{"content":"$25"}],"$L26","$L27"]}]}]}]]
+28:I[44398,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],"default"]
+26:["$","$L28",null,{"pathKey":"wpf-02"}]
+27:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L6",null,{"href":"/posts/wpf-01/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"WPF와 XAML·MVVM 시작하기"}]]}],["$","$L6",null,{"href":"/posts/wpf-03/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"이벤트 대신 ICommand로 액션 연결하기"}]]}]]}],["$","$L6",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
 21:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
-27:I[27201,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"IconMark"]
+29:I[27201,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"IconMark"]
 1e:null
-23:[["$","title","0",{"children":"데이터 바인딩과 ObservableCollection · Kaisa"}],["$","meta","1",{"name":"description","content":"INotifyPropertyChanged, ObservableCollection, DataTemplate로 UI와 상태를 동기화하는 핵심 패턴을 정리한다."}],["$","meta","2",{"name":"application-name","content":"Kaisa"}],["$","meta","3",{"name":"robots","content":"index, follow"}],["$","meta","4",{"name":"naver-site-verification","content":"4bc13b857695ff44988c260cb26124eedbcda90e"}],["$","link","5",{"rel":"canonical","href":"https://kaisa.co.kr/posts/wpf-02/"}],["$","meta","6",{"property":"og:title","content":"데이터 바인딩과 ObservableCollection · Kaisa"}],["$","meta","7",{"property":"og:description","content":"INotifyPropertyChanged, ObservableCollection, DataTemplate로 UI와 상태를 동기화하는 핵심 패턴을 정리한다."}],["$","meta","8",{"property":"og:url","content":"https://kaisa.co.kr/posts/wpf-02/"}],["$","meta","9",{"property":"og:site_name","content":"Kaisa"}],["$","meta","10",{"property":"og:locale","content":"ko_KR"}],["$","meta","11",{"property":"og:type","content":"article"}],["$","meta","12",{"name":"twitter:card","content":"summary"}],["$","meta","13",{"name":"twitter:title","content":"데이터 바인딩과 ObservableCollection · Kaisa"}],["$","meta","14",{"name":"twitter:description","content":"INotifyPropertyChanged, ObservableCollection, DataTemplate로 UI와 상태를 동기화하는 핵심 패턴을 정리한다."}],["$","link","15",{"rel":"shortcut icon","href":"/img/common/favicon.ico"}],["$","link","16",{"rel":"icon","href":"/img/common/favicon.ico"}],["$","link","17",{"rel":"apple-touch-icon","href":"/img/common/favicon.ico"}],["$","$L27","18",{}]]
+23:[["$","title","0",{"children":"데이터 바인딩과 ObservableCollection · Kaisa"}],["$","meta","1",{"name":"description","content":"INotifyPropertyChanged와 ObservableCollection으로 값·목록 변경을 화면에 반영하고, DataTemplate로 행 UI를 분리하는 방법을 정리한다."}],["$","meta","2",{"name":"application-name","content":"Kaisa"}],["$","meta","3",{"name":"robots","content":"index, follow"}],["$","meta","4",{"name":"naver-site-verification","content":"4bc13b857695ff44988c260cb26124eedbcda90e"}],["$","link","5",{"rel":"canonical","href":"https://kaisa.co.kr/posts/wpf-02/"}],["$","meta","6",{"property":"og:title","content":"데이터 바인딩과 ObservableCollection · Kaisa"}],["$","meta","7",{"property":"og:description","content":"INotifyPropertyChanged와 ObservableCollection으로 값·목록 변경을 화면에 반영하고, DataTemplate로 행 UI를 분리하는 방법을 정리한다."}],["$","meta","8",{"property":"og:url","content":"https://kaisa.co.kr/posts/wpf-02/"}],["$","meta","9",{"property":"og:site_name","content":"Kaisa"}],["$","meta","10",{"property":"og:locale","content":"ko_KR"}],["$","meta","11",{"property":"og:type","content":"article"}],["$","meta","12",{"name":"twitter:card","content":"summary"}],["$","meta","13",{"name":"twitter:title","content":"데이터 바인딩과 ObservableCollection · Kaisa"}],["$","meta","14",{"name":"twitter:description","content":"INotifyPropertyChanged와 ObservableCollection으로 값·목록 변경을 화면에 반영하고, DataTemplate로 행 UI를 분리하는 방법을 정리한다."}],["$","link","15",{"rel":"shortcut icon","href":"/img/common/favicon.ico"}],["$","link","16",{"rel":"icon","href":"/img/common/favicon.ico"}],["$","link","17",{"rel":"apple-touch-icon","href":"/img/common/favicon.ico"}],["$","$L29","18",{}]]

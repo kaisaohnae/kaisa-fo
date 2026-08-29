@@ -12,13 +12,13 @@ b:I[45872,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__
 c:I[20683,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js"],"default"]
 d:I[86979,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/0hs6l77ykwsoc.js"],"default"]
 16:I[68027,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default",1]
-:HL["/_next/static/chunks/3ou3k_oca-ann.css","style"]
+:HL["/_next/static/chunks/0aw5gw7bg_b6q.css","style"]
 :HL["/_next/static/chunks/0g93akm33ce_n.css","style"]
 :HL["/_next/static/chunks/0l7zbvjzypglv.css","style"]
 :HL["/_next/static/media/0c795a286deabae8-s.p.3vm0tq4e-zz_5.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/media/5c285b27cdda1fe8-s.p.2_mbdogr7ni8i.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/chunks/3j-1lpdn3an_-.css","style"]
-0:{"P":null,"c":["","posts","react-native-05",""],"q":"","i":false,"f":[[["",{"children":["(site)",{"children":["posts",{"children":[["slug","react-native-05","d",null],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3ou3k_oca-ann.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0g93akm33ce_n.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/0l7zbvjzypglv.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/3t-_5l233af4w.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1uymn__-_z4ug.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ko","className":"syne_53f86cd1-module__kiT3Eq__variable dm_sans_fd62f040-module__0jgVUW__variable","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","script",null,{"async":true,"src":"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2641553863829571","crossOrigin":"anonymous"}]}],["$","body",null,{"children":[["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var t=null;document.cookie.split(';').forEach(function(c){var p=c.trim().split('=');if(p[0]==='kaisa-theme')t=decodeURIComponent(p[1]||'');});document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();"}}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var KEY='kaisa-locale';var loc=null;try{loc=sessionStorage.getItem(KEY);}catch(e){}function fromNav(){var list=[navigator.language].concat(navigator.languages||[]);for(var i=0;i<list.length;i++){var l=String(list[i]||'').toLowerCase();if(l.indexOf('ko')===0)return 'ko';if(l.indexOf('zh')===0)return 'zh';if(l.indexOf('hi')===0)return 'hi';if(l.indexOf('en')===0)return 'en';}return null;}if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc=fromNav();if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc='ko';document.documentElement.lang=loc;}catch(e){document.documentElement.lang='ko';}})();"}}],[["$","$L2",null,{"src":"https://www.googletagmanager.com/gtag/js?id=G-2281QQ6XP4","strategy":"afterInteractive"}],["$","$L2",null,{"id":"google-analytics","strategy":"afterInteractive","children":"\n          window.dataLayer = window.dataLayer || [];\n          function gtag(){dataLayer.push(arguments);}\n          gtag('js', new Date());\n          gtag('config', 'G-2281QQ6XP4');\n        "}]],["$","$L3",null,{}],["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}],["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","$L7",null,{}],["$","$L8",null,{}],["$","$L9",null,{}]]}]]}]]}],{"children":[["$","$1","c",{"children":[[["$","script","script-0",{"src":"/_next/static/chunks/23u3jdspf1pgv.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1hr7-4fb6m83q.js","async":true,"nonce":"$undefined"}]],["$","$La",null,{"children":["$","div",null,{"className":"site-layout","children":[["$","$Lb",null,{}],["$","$Lc",null,{"children":["$","$L4",null,{"parallelRouterKey":"children","error":"$d","errorStyles":[],"errorScripts":[["$","script","script-0",{"src":"/_next/static/chunks/0hs6l77ykwsoc.js","async":true}]],"template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],"$Le","$Lf"]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],"$L10"]}]}]]}],{"children":["$L11",{"children":["$L12",{"children":["$L13",{},null,false,null]},null,false,"$@14"]},null,false,"$@14"]},null,false,null]},null,false,null],"$L15",false]],"m":"$undefined","G":["$16",["$L17","$L18","$L19"]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"DJX3Zf-ybBx2vscYgjP8o"}
+0:{"P":null,"c":["","posts","react-native-05",""],"q":"","i":false,"f":[[["",{"children":["(site)",{"children":["posts",{"children":[["slug","react-native-05","d",null],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0aw5gw7bg_b6q.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0g93akm33ce_n.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/0l7zbvjzypglv.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/3t-_5l233af4w.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1uymn__-_z4ug.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ko","className":"syne_53f86cd1-module__kiT3Eq__variable dm_sans_fd62f040-module__0jgVUW__variable","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","script",null,{"async":true,"src":"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2641553863829571","crossOrigin":"anonymous"}]}],["$","body",null,{"children":[["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var t=null;document.cookie.split(';').forEach(function(c){var p=c.trim().split('=');if(p[0]==='kaisa-theme')t=decodeURIComponent(p[1]||'');});document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();"}}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var KEY='kaisa-locale';var loc=null;try{loc=sessionStorage.getItem(KEY);}catch(e){}function fromNav(){var list=[navigator.language].concat(navigator.languages||[]);for(var i=0;i<list.length;i++){var l=String(list[i]||'').toLowerCase();if(l.indexOf('ko')===0)return 'ko';if(l.indexOf('zh')===0)return 'zh';if(l.indexOf('hi')===0)return 'hi';if(l.indexOf('en')===0)return 'en';}return null;}if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc=fromNav();if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc='ko';document.documentElement.lang=loc;}catch(e){document.documentElement.lang='ko';}})();"}}],[["$","$L2",null,{"src":"https://www.googletagmanager.com/gtag/js?id=G-2281QQ6XP4","strategy":"afterInteractive"}],["$","$L2",null,{"id":"google-analytics","strategy":"afterInteractive","children":"\n          window.dataLayer = window.dataLayer || [];\n          function gtag(){dataLayer.push(arguments);}\n          gtag('js', new Date());\n          gtag('config', 'G-2281QQ6XP4');\n        "}]],["$","$L3",null,{}],["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}],["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","$L7",null,{}],["$","$L8",null,{}],["$","$L9",null,{}]]}]]}]]}],{"children":[["$","$1","c",{"children":[[["$","script","script-0",{"src":"/_next/static/chunks/23u3jdspf1pgv.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1hr7-4fb6m83q.js","async":true,"nonce":"$undefined"}]],["$","$La",null,{"children":["$","div",null,{"className":"site-layout","children":[["$","$Lb",null,{}],["$","$Lc",null,{"children":["$","$L4",null,{"parallelRouterKey":"children","error":"$d","errorStyles":[],"errorScripts":[["$","script","script-0",{"src":"/_next/static/chunks/0hs6l77ykwsoc.js","async":true}]],"template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],"$Le","$Lf"]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],"$L10"]}]}]]}],{"children":["$L11",{"children":["$L12",{"children":["$L13",{},null,false,null]},null,false,"$@14"]},null,false,"$@14"]},null,false,null]},null,false,null],"$L15",false]],"m":"$undefined","G":["$16",["$L17","$L18","$L19"]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"rgIajyDGnwYL9Qdz0xIG3"}
 1a:I[44604,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js"],"default"]
 1c:I[97367,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"OutletBoundary"]
 1d:"$Sreact.suspense"
@@ -33,28 +33,44 @@ f:["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]
 1f:[]
 14:"$W1f"
 15:["$","$1","h",{"children":[null,["$","$L20",null,{"children":"$L21"}],["$","div",null,{"hidden":true,"children":["$","$L22",null,{"children":["$","$1d",null,{"name":"Next.Metadata","children":"$L23"}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}]
-17:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3ou3k_oca-ann.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
+17:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0aw5gw7bg_b6q.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
 18:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0g93akm33ce_n.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
 19:["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/0l7zbvjzypglv.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
 24:I[55489,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],"default"]
-25:T128e,# 네트워킹 — Fetch, React Query, 에러 처리
+25:T1631,# 네트워킹 — Fetch, React Query, 에러 처리
 
-> 요약: API 클라이언트를 정리하고, TanStack Query로 캐시·로딩·에러·재시도를 표준화한다.
-
----
+> 요약: 서버 데이터는 fetch 래퍼와 React Query로 가져와 로딩·에러·재시도를 표준화한다.
 
 ---
 
-## 1. 서버 상태 vs 클라이언트 상태
+## 1. 왜 React Query인가
 
-- **서버 상태**: 게시글 목록, 프로필, 설정(서버 원본) → React Query
-- **클라이언트 상태**: 모달 open, 토글, 마법사 단계 → useState/Zustand
+게시글 목록·프로필은 **서버가 원본**이다. 모달 열림·토글은 **클라이언트가 원본**이다.
 
-둘을 `useState` 하나로 섞으면 로딩/캐시/동기화 버그가 는다.
+서버 상태를 `useState` + `useEffect`로 따라가면 캐시, 재시도, 화면 복귀 시 갱신을 직접 짜게 된다. **TanStack Query**(React Query)가 그 층을 표준화한다.
+
+앱에는 `fetch` 한 곳이 있으면 된다. 상태 코드, JSON, 토큰 헤더를 화면마다 반복하지 않는다.
 
 ---
 
-## 2. fetch 래퍼
+## 2. 핵심 개념
+
+| 종류 | 예 | 도구 |
+|------|----|------|
+| 서버 상태 | 목록, 프로필 | `useQuery` / `useMutation` |
+| 클라이언트 상태 | 모달, 마법사 단계 | `useState` / Zustand |
+
+`queryKey`가 캐시 주소다. 같은 키면 같은 데이터다. mutation이 성공하면 관련 키를 `invalidate`한다.
+
+Expo 환경변수는 `EXPO_PUBLIC_*`만 클라이언트에 노출된다. API 베이스 URL은 공개돼도 된다. 비밀키는 넣지 않는다.
+
+RN은 브라우저 탭 포커스가 없다. 앱이 다시 `active`가 될 때 Query에 알려 주면 목록이 신선해진다.
+
+401은 토큰 갱신 또는 로그아웃이다. 토큰 저장은 다음 글의 SecureStore다.
+
+---
+
+## 3. 예제
 
 ```tsx
 // lib/api.ts
@@ -95,49 +111,37 @@ export async function api<T>(
 }
 ```
 
-Expo 환경변수: `EXPO_PUBLIC_*` 만 클라이언트에 노출. 비밀키는 넣지 말 것.
-
 ```env
 EXPO_PUBLIC_API_URL=https://api.example.com
 ```
-
----
-
-## 3. TanStack Query 세팅
 
 ```bash
 npx expo install @tanstack/react-query
 ```
 
+루트에 Provider를 둔다.
+
 ```tsx
-// app/_layout.tsx
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const queryClient = new QueryClient({
   defaultOptions: {
-    queries: {
-      staleTime: 30_000,
-      retry: 1,
-    },
+    queries: { staleTime: 30_000, retry: 1 },
   },
 });
 
 export default function RootLayout() {
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Stack / Slot */}
+      {/* Stack */}
     </QueryClientProvider>
   );
 }
 ```
 
----
-
-## 4. useQuery / useMutation
+조회와 생성:
 
 ```tsx
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-
 function usePosts() {
   return useQuery({
     queryKey: ['posts'],
@@ -145,17 +149,21 @@ function usePosts() {
   });
 }
 
-function useCreatePost() {
+function useCreatePost(token: string) {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: (input: CreatePostInput) =>
-      api<Post>('/posts', { method: 'POST', body: JSON.stringify(input), token }),
+      api<Post>('/posts', {
+        method: 'POST',
+        body: JSON.stringify(input),
+        token,
+      }),
     onSuccess: () => qc.invalidateQueries({ queryKey: ['posts'] }),
   });
 }
 ```
 
-화면:
+화면은 상태별로 UI를 나눈다.
 
 ```tsx
 const { data, isPending, isError, error, refetch } = usePosts();
@@ -165,9 +173,7 @@ if (isError) return <ErrorView message={error.message} onRetry={refetch} />;
 return <PostList data={data} />;
 ```
 
----
-
-## 5. 무한 스크롤
+무한 스크롤:
 
 ```tsx
 const {
@@ -185,13 +191,9 @@ const {
 const items = data?.pages.flatMap((p) => p.items) ?? [];
 ```
 
-`FlatList`의 `onEndReached`와 연결.
+`FlatList`의 `onEndReached`에서 `hasNextPage`일 때만 `fetchNextPage`를 호출한다.
 
----
-
-## 6. 포커스·온라인 리패치
-
-RN에서는 앱 포커스 이벤트를 Query에 알려주면 좋다.
+앱 포커스:
 
 ```tsx
 import { focusManager } from '@tanstack/react-query';
@@ -205,13 +207,7 @@ focusManager.setEventListener((handleFocus) => {
 });
 ```
 
----
-
-## 7. 인증 토큰과 401
-
-- 토큰은 `expo-secure-store`에 저장 (SecureStore)
-- `api()`에서 401 → 토큰 갱신 또는 로그아웃 로그아웃
-- Query `queryFn`이 토큰을 읽도록 훅에서 주입
+토큰이 있을 때만 프로필을 가져온다.
 
 ```tsx
 useQuery({
@@ -221,40 +217,49 @@ useQuery({
 });
 ```
 
----
-
-## 8. UX 상태 설계
-
 | 상태 | UI |
 |------|----|
-| pending (최초) | 스켈레톤/스피너 |
+| 최초 pending | 스켈레톤/스피너 |
 | error | 메시지 + 재시도 |
 | empty | 빈 화면 CTA |
-| fetching (백그라운드) | 리스트 유지 + 약한 인디케이터 |
+| 백그라운드 fetching | 리스트 유지 + 약한 인디케이터 |
 | mutation pending | 버튼 비활성 |
 
-에러를 `alert()`만으로 처리하지 말고, 화면 수준 폴백을 둔다.
+에러를 `alert()`만으로 끝내지 않는다. 화면 폴백을 둔다.
 
 ---
 
-## 9. 개발 도구
+## 4. 흔한 실수
 
-- TanStack Query Devtools (웹 쪽에 가깝지만 로깅으로 대체 가능)
-- 네트워크: Charles / Proxyman / Flipper 대안들
-- API 타입: openapi-typescript로 클라이언트 타입 생성
+| 실수 | 대안 |
+|------|------|
+| 화면마다 `fetch` 복사 | `api()` 한 곳 |
+| 서버 데이터를 전역 Zustand에 복제 | Query 캐시가 원본 |
+| `queryKey`를 매번 다른 객체로 | 안정적 배열 `['posts', id]` |
+| 생성 후 목록이 안 바뀜 | `invalidateQueries` |
+| 비밀키를 `EXPO_PUBLIC_` | 서버만 보유 |
+| 401을 일반 에러 메시지로만 | 세션 정리 또는 갱신 |
 
 ---
+
+## 5. 정리
+
+네트워크 층은 **얇은 `api()` + Query 훅**이면 된다. 화면은 pending/error/empty만 그린다.
+
+- 서버 상태와 UI 상태를 섞지 않는다.
+- 토큰은 헤더로만. 저장 위치는 SecureStore.
+- 무한 스크롤은 `useInfiniteQuery` + `onEndReached`.
 
 ## 연습
 
-1. `api()` 헬퍼와 `ApiError`를 만든다.
-2. 게시글 목록 `useQuery` + 에러/로딩 UI를 구현한다.
-3. 생성 `useMutation` 후 목록 invalidate.
-4. `useInfiniteQuery` + FlatList 무한 스크롤을 연결한다.1b:[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"네트워킹 — Fetch, React Query, 에러 처리\",\"description\":\"API 클라이언트를 정리하고, TanStack Query로 캐시·로딩·에러·재시도를 표준화한다.\",\"datePublished\":\"2026-08-26\",\"url\":\"https://kaisa.co.kr/posts/react-native-05/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"react-native\",\"keywords\":\"react-native\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"네트워킹 — Fetch, React Query, 에러 처리\",\"item\":\"https://kaisa.co.kr/posts/react-native-05/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L6",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2026-08-26"}]}],["$","h1",null,{"className":"blog-post__title","children":"네트워킹 — Fetch, React Query, 에러 처리"}],["$","$L24",null,{"content":"$25"}],"$L26","$L27"]}]}]}]]
+1. `api()`와 `ApiError`를 만든다.
+2. 게시글 목록 `useQuery`에 로딩·에러 UI를 붙인다.
+3. 생성 `useMutation` 후 목록을 invalidate한다.
+4. `useInfiniteQuery`와 FlatList를 연결한다.1b:[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"네트워킹 — Fetch, React Query, 에러 처리\",\"description\":\"서버 데이터는 fetch 래퍼와 React Query로 가져와 로딩·에러·재시도를 표준화한다.\",\"datePublished\":\"2025-06-12\",\"url\":\"https://kaisa.co.kr/posts/react-native-05/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"react-native\",\"keywords\":\"react-native\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"네트워킹 — Fetch, React Query, 에러 처리\",\"item\":\"https://kaisa.co.kr/posts/react-native-05/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L6",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2025-06-12"}]}],["$","h1",null,{"className":"blog-post__title","children":"네트워킹 — Fetch, React Query, 에러 처리"}],["$","$L24",null,{"content":"$25"}],"$L26","$L27"]}]}]}]]
 28:I[44398,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],"default"]
 26:["$","$L28",null,{"pathKey":"react-native-05"}]
 27:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L6",null,{"href":"/posts/react-native-04/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"리스트·네비게이션 — FlatList와 Expo Router"}]]}],["$","$L6",null,{"href":"/posts/react-native-06/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"인증·보안 저장소·디바이스 권한"}]]}]]}],["$","$L6",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
 21:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
 29:I[27201,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"IconMark"]
 1e:null
-23:[["$","title","0",{"children":"네트워킹 — Fetch, React Query, 에러 처리 · Kaisa"}],["$","meta","1",{"name":"description","content":"API 클라이언트를 정리하고, TanStack Query로 캐시·로딩·에러·재시도를 표준화한다."}],["$","meta","2",{"name":"application-name","content":"Kaisa"}],["$","meta","3",{"name":"robots","content":"index, follow"}],["$","meta","4",{"name":"naver-site-verification","content":"4bc13b857695ff44988c260cb26124eedbcda90e"}],["$","link","5",{"rel":"canonical","href":"https://kaisa.co.kr/posts/react-native-05/"}],["$","meta","6",{"property":"og:title","content":"네트워킹 — Fetch, React Query, 에러 처리 · Kaisa"}],["$","meta","7",{"property":"og:description","content":"API 클라이언트를 정리하고, TanStack Query로 캐시·로딩·에러·재시도를 표준화한다."}],["$","meta","8",{"property":"og:url","content":"https://kaisa.co.kr/posts/react-native-05/"}],["$","meta","9",{"property":"og:site_name","content":"Kaisa"}],["$","meta","10",{"property":"og:locale","content":"ko_KR"}],["$","meta","11",{"property":"og:type","content":"article"}],["$","meta","12",{"name":"twitter:card","content":"summary"}],["$","meta","13",{"name":"twitter:title","content":"네트워킹 — Fetch, React Query, 에러 처리 · Kaisa"}],["$","meta","14",{"name":"twitter:description","content":"API 클라이언트를 정리하고, TanStack Query로 캐시·로딩·에러·재시도를 표준화한다."}],["$","link","15",{"rel":"shortcut icon","href":"/img/common/favicon.ico"}],["$","link","16",{"rel":"icon","href":"/img/common/favicon.ico"}],["$","link","17",{"rel":"apple-touch-icon","href":"/img/common/favicon.ico"}],["$","$L29","18",{}]]
+23:[["$","title","0",{"children":"네트워킹 — Fetch, React Query, 에러 처리 · Kaisa"}],["$","meta","1",{"name":"description","content":"서버 데이터는 fetch 래퍼와 React Query로 가져와 로딩·에러·재시도를 표준화한다."}],["$","meta","2",{"name":"application-name","content":"Kaisa"}],["$","meta","3",{"name":"robots","content":"index, follow"}],["$","meta","4",{"name":"naver-site-verification","content":"4bc13b857695ff44988c260cb26124eedbcda90e"}],["$","link","5",{"rel":"canonical","href":"https://kaisa.co.kr/posts/react-native-05/"}],["$","meta","6",{"property":"og:title","content":"네트워킹 — Fetch, React Query, 에러 처리 · Kaisa"}],["$","meta","7",{"property":"og:description","content":"서버 데이터는 fetch 래퍼와 React Query로 가져와 로딩·에러·재시도를 표준화한다."}],["$","meta","8",{"property":"og:url","content":"https://kaisa.co.kr/posts/react-native-05/"}],["$","meta","9",{"property":"og:site_name","content":"Kaisa"}],["$","meta","10",{"property":"og:locale","content":"ko_KR"}],["$","meta","11",{"property":"og:type","content":"article"}],["$","meta","12",{"name":"twitter:card","content":"summary"}],["$","meta","13",{"name":"twitter:title","content":"네트워킹 — Fetch, React Query, 에러 처리 · Kaisa"}],["$","meta","14",{"name":"twitter:description","content":"서버 데이터는 fetch 래퍼와 React Query로 가져와 로딩·에러·재시도를 표준화한다."}],["$","link","15",{"rel":"shortcut icon","href":"/img/common/favicon.ico"}],["$","link","16",{"rel":"icon","href":"/img/common/favicon.ico"}],["$","link","17",{"rel":"apple-touch-icon","href":"/img/common/favicon.ico"}],["$","$L29","18",{}]]

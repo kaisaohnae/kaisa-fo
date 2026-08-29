@@ -12,13 +12,13 @@ b:I[45872,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__
 c:I[20683,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js"],"default"]
 d:I[86979,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/0hs6l77ykwsoc.js"],"default"]
 16:I[68027,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default",1]
-:HL["/_next/static/chunks/3ou3k_oca-ann.css","style"]
+:HL["/_next/static/chunks/0aw5gw7bg_b6q.css","style"]
 :HL["/_next/static/chunks/0g93akm33ce_n.css","style"]
 :HL["/_next/static/chunks/0l7zbvjzypglv.css","style"]
 :HL["/_next/static/media/0c795a286deabae8-s.p.3vm0tq4e-zz_5.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/media/5c285b27cdda1fe8-s.p.2_mbdogr7ni8i.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/chunks/3j-1lpdn3an_-.css","style"]
-0:{"P":null,"c":["","posts","html-css-06",""],"q":"","i":false,"f":[[["",{"children":["(site)",{"children":["posts",{"children":[["slug","html-css-06","d",null],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3ou3k_oca-ann.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0g93akm33ce_n.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/0l7zbvjzypglv.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/3t-_5l233af4w.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1uymn__-_z4ug.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ko","className":"syne_53f86cd1-module__kiT3Eq__variable dm_sans_fd62f040-module__0jgVUW__variable","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","script",null,{"async":true,"src":"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2641553863829571","crossOrigin":"anonymous"}]}],["$","body",null,{"children":[["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var t=null;document.cookie.split(';').forEach(function(c){var p=c.trim().split('=');if(p[0]==='kaisa-theme')t=decodeURIComponent(p[1]||'');});document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();"}}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var KEY='kaisa-locale';var loc=null;try{loc=sessionStorage.getItem(KEY);}catch(e){}function fromNav(){var list=[navigator.language].concat(navigator.languages||[]);for(var i=0;i<list.length;i++){var l=String(list[i]||'').toLowerCase();if(l.indexOf('ko')===0)return 'ko';if(l.indexOf('zh')===0)return 'zh';if(l.indexOf('hi')===0)return 'hi';if(l.indexOf('en')===0)return 'en';}return null;}if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc=fromNav();if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc='ko';document.documentElement.lang=loc;}catch(e){document.documentElement.lang='ko';}})();"}}],[["$","$L2",null,{"src":"https://www.googletagmanager.com/gtag/js?id=G-2281QQ6XP4","strategy":"afterInteractive"}],["$","$L2",null,{"id":"google-analytics","strategy":"afterInteractive","children":"\n          window.dataLayer = window.dataLayer || [];\n          function gtag(){dataLayer.push(arguments);}\n          gtag('js', new Date());\n          gtag('config', 'G-2281QQ6XP4');\n        "}]],["$","$L3",null,{}],["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}],["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","$L7",null,{}],["$","$L8",null,{}],["$","$L9",null,{}]]}]]}]]}],{"children":[["$","$1","c",{"children":[[["$","script","script-0",{"src":"/_next/static/chunks/23u3jdspf1pgv.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1hr7-4fb6m83q.js","async":true,"nonce":"$undefined"}]],["$","$La",null,{"children":["$","div",null,{"className":"site-layout","children":[["$","$Lb",null,{}],["$","$Lc",null,{"children":["$","$L4",null,{"parallelRouterKey":"children","error":"$d","errorStyles":[],"errorScripts":[["$","script","script-0",{"src":"/_next/static/chunks/0hs6l77ykwsoc.js","async":true}]],"template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],"$Le","$Lf"]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],"$L10"]}]}]]}],{"children":["$L11",{"children":["$L12",{"children":["$L13",{},null,false,null]},null,false,"$@14"]},null,false,"$@14"]},null,false,null]},null,false,null],"$L15",false]],"m":"$undefined","G":["$16",["$L17","$L18","$L19"]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"DJX3Zf-ybBx2vscYgjP8o"}
+0:{"P":null,"c":["","posts","html-css-06",""],"q":"","i":false,"f":[[["",{"children":["(site)",{"children":["posts",{"children":[["slug","html-css-06","d",null],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0aw5gw7bg_b6q.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0g93akm33ce_n.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/0l7zbvjzypglv.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/3t-_5l233af4w.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1uymn__-_z4ug.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ko","className":"syne_53f86cd1-module__kiT3Eq__variable dm_sans_fd62f040-module__0jgVUW__variable","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","script",null,{"async":true,"src":"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2641553863829571","crossOrigin":"anonymous"}]}],["$","body",null,{"children":[["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var t=null;document.cookie.split(';').forEach(function(c){var p=c.trim().split('=');if(p[0]==='kaisa-theme')t=decodeURIComponent(p[1]||'');});document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();"}}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var KEY='kaisa-locale';var loc=null;try{loc=sessionStorage.getItem(KEY);}catch(e){}function fromNav(){var list=[navigator.language].concat(navigator.languages||[]);for(var i=0;i<list.length;i++){var l=String(list[i]||'').toLowerCase();if(l.indexOf('ko')===0)return 'ko';if(l.indexOf('zh')===0)return 'zh';if(l.indexOf('hi')===0)return 'hi';if(l.indexOf('en')===0)return 'en';}return null;}if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc=fromNav();if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc='ko';document.documentElement.lang=loc;}catch(e){document.documentElement.lang='ko';}})();"}}],[["$","$L2",null,{"src":"https://www.googletagmanager.com/gtag/js?id=G-2281QQ6XP4","strategy":"afterInteractive"}],["$","$L2",null,{"id":"google-analytics","strategy":"afterInteractive","children":"\n          window.dataLayer = window.dataLayer || [];\n          function gtag(){dataLayer.push(arguments);}\n          gtag('js', new Date());\n          gtag('config', 'G-2281QQ6XP4');\n        "}]],["$","$L3",null,{}],["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}],["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","$L7",null,{}],["$","$L8",null,{}],["$","$L9",null,{}]]}]]}]]}],{"children":[["$","$1","c",{"children":[[["$","script","script-0",{"src":"/_next/static/chunks/23u3jdspf1pgv.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1hr7-4fb6m83q.js","async":true,"nonce":"$undefined"}]],["$","$La",null,{"children":["$","div",null,{"className":"site-layout","children":[["$","$Lb",null,{}],["$","$Lc",null,{"children":["$","$L4",null,{"parallelRouterKey":"children","error":"$d","errorStyles":[],"errorScripts":[["$","script","script-0",{"src":"/_next/static/chunks/0hs6l77ykwsoc.js","async":true}]],"template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],"$Le","$Lf"]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],"$L10"]}]}]]}],{"children":["$L11",{"children":["$L12",{"children":["$L13",{},null,false,null]},null,false,"$@14"]},null,false,"$@14"]},null,false,null]},null,false,null],"$L15",false]],"m":"$undefined","G":["$16",["$L17","$L18","$L19"]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"rgIajyDGnwYL9Qdz0xIG3"}
 1a:I[44604,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js"],"default"]
 1c:I[97367,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"OutletBoundary"]
 1d:"$Sreact.suspense"
@@ -33,50 +33,89 @@ f:["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]
 1f:[]
 14:"$W1f"
 15:["$","$1","h",{"children":[null,["$","$L20",null,{"children":"$L21"}],["$","div",null,{"hidden":true,"children":["$","$L22",null,{"children":["$","$1d",null,{"name":"Next.Metadata","children":"$L23"}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}]
-17:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3ou3k_oca-ann.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
+17:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0aw5gw7bg_b6q.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
 18:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0g93akm33ce_n.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
 19:["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/0l7zbvjzypglv.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
 24:I[55489,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],"default"]
-26:I[44398,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],"default"]
-25:T5ff,# 타이포·색·CSS 변수로 디자인 토큰
+25:T12c9,# 타이포·색·CSS 변수로 디자인 토큰 잡기
 
-> 요약: 글꼴·행간·색 대비와 CSS 커스텀 프로퍼티로 일관된 디자인 토큰을 만드는 방법을 정리한다.
+> 요약: 글자 크기·행간·색을 CSS 변수로 이름 붙여 두고, 컴포넌트는 그 이름만 참조하여 화면을 일관되게 만든다.
 
 ---
 
-## 1. 타이포 기본
+## 언제 토큰을 만드는가
 
-| 항목 | 권장 |
-|------|------|
-| 본문 | 16px 전후 (`1rem`) |
-| 행간 | 1.5 전후 |
-| 제목 | 단계적으로, 과도한 단계 수 금지 |
-| 줄길이 | 대략 45–75자 |
+페이지마다 `font-size: 15px`, `#333`, `margin: 13px`가 섞이면 다음 화면을 그릴 때마다 값이 흔들린다. 반복되는 값에 이름을 붙인 것이 디자인 토큰이다.
+
+CSS 변수(커스텀 프로퍼티)로 토큰을 두면 테마 전환과 간격 통일이 한곳 수정으로 끝난다. 컴포넌트 파일에 raw hex를 직접 쓰지 않는다.
+
+---
+
+## 본문이 읽히는 타이포
+
+본문은 16px 전후(`1rem`)에서 시작한다. 행간은 1.5 전후이다. 줄이 너무 길면 눈이 줄을 잃는다. 한 줄은 대략 45–75자가 읽기 쉽다.
 
 ```css
 :root {
   --font-sans: "Pretendard", system-ui, sans-serif;
   --text-body: 1rem;
+  --text-sm: 0.875rem;
+  --text-lg: 1.25rem;
   --leading: 1.6;
 }
+
 body {
   font-family: var(--font-sans);
   font-size: var(--text-body);
   line-height: var(--leading);
 }
+
+.lead {
+  font-size: var(--text-lg);
+  max-width: 40rem;
+}
 ```
 
----
+제목 단계를 너무 많이 두지 않는다. `h1`–`h3` 정도로 시작하고, 같은 역할이면 같은 크기를 쓴다. 본문보다 작은 글자는 캡션·보조 설명에만 쓴다.
 
-## 2. 색과 대비
-
-- 본문/배경 대비를 확보한다 (대략 WCAG AA 목표)
-- “브랜드 색 = 본문 색”으로 쓰지 않는다
-- 상태색(성공/위험)은 색만으로 전달하지 말고 아이콘·텍스트 병행
+시스템 폰트 스택을 뒤에 두면 웹폰트 로드 전에도 글자가 보인다. `"Pretendard"`만 단독으로 두지 않는다.
 
 ---
 
-## 3. CSS 변수(토큰)
+## 색은 대비가 역할이다
+
+배경과 본문 글자의 밝기 차이가 커야 읽힌다. WCAG(웹 콘텐츠 접근성 지침) AA를 목표로 하면 본문은 대비율 4.5:1 전후가 필요하다. 브라우저 확장이나 개발자 도구로 한 번 잰다.
+
+브랜드 초록을 본문 색으로 쓰지 않는다. 브랜드 색은 링크·버튼 같은 강조에 둔다. 본문은 거의 검정에 가까운 중립색이다.
+
+성공·오류를 색만으로 알리지 않는다. 아이콘이나 “저장됨”, “필수 항목” 텍스트를 같이 둔다. 색각 차이와 흑백 인쇄에서도 의미가 남아야 한다.
+
+```css
+:root {
+  --color-bg: #f7f7f5;
+  --color-text: #1a1a1a;
+  --color-muted: #5c5c5c;
+  --color-accent: #0b6e4f;
+  --color-danger: #b42318;
+}
+
+.button-primary {
+  background: var(--color-accent);
+  color: #fff;
+}
+
+.error {
+  color: var(--color-danger);
+}
+```
+
+`.error` 옆에는 반드시 문구가 있다. 빨간 테두리만으로 끝내지 않는다.
+
+---
+
+## 변수로 테마를 바꾼다
+
+`:root`에 토큰을 모은다. 다크 모드는 같은 이름에 값만 바꾼다. 컴포넌트는 `var(--color-bg)`만 보면 된다.
 
 ```css
 :root {
@@ -85,6 +124,7 @@ body {
   --color-accent: #0b6e4f;
   --space-2: 0.5rem;
   --space-4: 1rem;
+  --space-6: 1.5rem;
   --radius: 8px;
 }
 
@@ -94,23 +134,57 @@ body {
     --color-text: #f2f2f2;
   }
 }
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+.card {
+  padding: var(--space-4);
+  border-radius: var(--radius);
+}
 ```
 
-컴포넌트는 raw hex 대신 **토큰만** 참조하게 하면 테마 전환이 쉽다.
+컴포넌트에 `#121212`를 다시 적으면 다크 모드가 빠지기 쉽다. 색이 필요하면 토큰을 추가하고 이름만 참조한다.
+
+인라인 스타일이나 유틸 클래스에 hex를 흩뿌리는 것도 같은 문제이다. 토큰 이름과 유틸 이름을 대응시킨다.
 
 ---
 
-## 4. 간격 스케일
+## 간격도 스케일로 제한한다
 
-`4 / 8 / 12 / 16 / 24 / 32`처럼 제한된 스케일을 쓰면 화면이 정돈된다.  
-임의 `13px` 간격이 늘수록 디자인이 흔들린다.
+`4 / 8 / 12 / 16 / 24 / 32`(px)처럼 쓸 수 있는 칸을 정해 둔다. `--space-2`, `--space-4`가 그 칸이다.
+
+임의 `13px`, `17px`가 늘수록 카드마다 숨이 달라 보인다. 새 간격이 필요하면 스케일에 단계를 추가할지 먼저 정한다.
+
+---
+
+## 흔한 실수
+
+- 본문 색을 브랜드 색으로 둔다. 본문은 중립, 강조만 브랜드이다.
+- 버튼마다 `#0b6e4f`를 직접 쓴다. `--color-accent`로 올린다.
+- 제목 크기를 페이지마다 다르게 잡는다. `--text-lg` 같은 단계를 재사용한다.
+- 다크 모드에서 배경만 바꾸고 테두리·muted 텍스트를 그대로 둔다. 같이 쓰는 토큰도 덮는다.
+- 오류를 빨간 테두리만으로 표시한다. 텍스트를 입력 근처에 둔다.
 
 ---
 
 ## 정리
 
-예쁜 한 페이지보다 **토큰이 있는 시스템**이 다음 페이지를 싸게 만든다.1b:[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"타이포·색·CSS 변수로 디자인 토큰\",\"description\":\"글꼴·행간·색 대비와 CSS 커스텀 프로퍼티로 일관된 디자인 토큰을 만드는 방법을 정리한다.\",\"datePublished\":\"2026-08-26\",\"url\":\"https://kaisa.co.kr/posts/html-css-06/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"html-css\",\"keywords\":\"html-css\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"타이포·색·CSS 변수로 디자인 토큰\",\"item\":\"https://kaisa.co.kr/posts/html-css-06/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L6",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2026-08-26"}]}],["$","h1",null,{"className":"blog-post__title","children":"타이포·색·CSS 변수로 디자인 토큰"}],["$","$L24",null,{"content":"$25"}],["$","$L26",null,{"pathKey":"html-css-06"}],["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L6",null,{"href":"/posts/html-css-05/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"반응형 디자인과 미디어 쿼리"}]]}],["$","$L6",null,{"href":"/posts/html-css-07/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"폼·포커스·접근성 기본"}]]}]]}],["$","$L6",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]]}]}]}]]
+한 페이지를 예쁘게 만드는 값보다, 다음 페이지가 같은 이름을 쓰게 하는 값이 유지비용을 낮춘다. 글자·색·간격에 이름을 붙이고 컴포넌트는 그 이름만 참조하면 된다.
+
+---
+
+## 연습
+
+1. `:root`에 본문 색·배경·강조색·행간을 변수로 옮기고, `body`와 버튼에서 hex를 제거한다.
+2. `prefers-color-scheme: dark`에서 배경과 본문 색만 바꿔 카드가 따라오는지 확인한다.
+3. 카드 padding을 `13px` 대신 `--space-4`로 바꾸고, 다른 카드도 같은 변수를 쓰게 한다.1b:[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"타이포·색·CSS 변수로 디자인 토큰 잡기\",\"description\":\"글자 크기·행간·색을 CSS 변수로 이름 붙여 두고, 컴포넌트는 그 이름만 참조하여 화면을 일관되게 만든다.\",\"datePublished\":\"2025-09-15\",\"url\":\"https://kaisa.co.kr/posts/html-css-06/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"html-css\",\"keywords\":\"html-css\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"타이포·색·CSS 변수로 디자인 토큰 잡기\",\"item\":\"https://kaisa.co.kr/posts/html-css-06/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L6",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2025-09-15"}]}],["$","h1",null,{"className":"blog-post__title","children":"타이포·색·CSS 변수로 디자인 토큰 잡기"}],["$","$L24",null,{"content":"$25"}],"$L26","$L27"]}]}]}]]
+28:I[44398,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],"default"]
+26:["$","$L28",null,{"pathKey":"html-css-06"}]
+27:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L6",null,{"href":"/posts/html-css-05/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"반응형 디자인과 미디어 쿼리"}]]}],["$","$L6",null,{"href":"/posts/html-css-07/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"폼·포커스·접근성 기본"}]]}]]}],["$","$L6",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
 21:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
-27:I[27201,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"IconMark"]
+29:I[27201,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"IconMark"]
 1e:null
-23:[["$","title","0",{"children":"타이포·색·CSS 변수로 디자인 토큰 · Kaisa"}],["$","meta","1",{"name":"description","content":"글꼴·행간·색 대비와 CSS 커스텀 프로퍼티로 일관된 디자인 토큰을 만드는 방법을 정리한다."}],["$","meta","2",{"name":"application-name","content":"Kaisa"}],["$","meta","3",{"name":"robots","content":"index, follow"}],["$","meta","4",{"name":"naver-site-verification","content":"4bc13b857695ff44988c260cb26124eedbcda90e"}],["$","link","5",{"rel":"canonical","href":"https://kaisa.co.kr/posts/html-css-06/"}],["$","meta","6",{"property":"og:title","content":"타이포·색·CSS 변수로 디자인 토큰 · Kaisa"}],["$","meta","7",{"property":"og:description","content":"글꼴·행간·색 대비와 CSS 커스텀 프로퍼티로 일관된 디자인 토큰을 만드는 방법을 정리한다."}],["$","meta","8",{"property":"og:url","content":"https://kaisa.co.kr/posts/html-css-06/"}],["$","meta","9",{"property":"og:site_name","content":"Kaisa"}],["$","meta","10",{"property":"og:locale","content":"ko_KR"}],["$","meta","11",{"property":"og:type","content":"article"}],["$","meta","12",{"name":"twitter:card","content":"summary"}],["$","meta","13",{"name":"twitter:title","content":"타이포·색·CSS 변수로 디자인 토큰 · Kaisa"}],["$","meta","14",{"name":"twitter:description","content":"글꼴·행간·색 대비와 CSS 커스텀 프로퍼티로 일관된 디자인 토큰을 만드는 방법을 정리한다."}],["$","link","15",{"rel":"shortcut icon","href":"/img/common/favicon.ico"}],["$","link","16",{"rel":"icon","href":"/img/common/favicon.ico"}],["$","link","17",{"rel":"apple-touch-icon","href":"/img/common/favicon.ico"}],["$","$L27","18",{}]]
+23:[["$","title","0",{"children":"타이포·색·CSS 변수로 디자인 토큰 잡기 · Kaisa"}],["$","meta","1",{"name":"description","content":"글자 크기·행간·색을 CSS 변수로 이름 붙여 두고, 컴포넌트는 그 이름만 참조하여 화면을 일관되게 만든다."}],["$","meta","2",{"name":"application-name","content":"Kaisa"}],["$","meta","3",{"name":"robots","content":"index, follow"}],["$","meta","4",{"name":"naver-site-verification","content":"4bc13b857695ff44988c260cb26124eedbcda90e"}],["$","link","5",{"rel":"canonical","href":"https://kaisa.co.kr/posts/html-css-06/"}],["$","meta","6",{"property":"og:title","content":"타이포·색·CSS 변수로 디자인 토큰 잡기 · Kaisa"}],["$","meta","7",{"property":"og:description","content":"글자 크기·행간·색을 CSS 변수로 이름 붙여 두고, 컴포넌트는 그 이름만 참조하여 화면을 일관되게 만든다."}],["$","meta","8",{"property":"og:url","content":"https://kaisa.co.kr/posts/html-css-06/"}],["$","meta","9",{"property":"og:site_name","content":"Kaisa"}],["$","meta","10",{"property":"og:locale","content":"ko_KR"}],["$","meta","11",{"property":"og:type","content":"article"}],["$","meta","12",{"name":"twitter:card","content":"summary"}],["$","meta","13",{"name":"twitter:title","content":"타이포·색·CSS 변수로 디자인 토큰 잡기 · Kaisa"}],["$","meta","14",{"name":"twitter:description","content":"글자 크기·행간·색을 CSS 변수로 이름 붙여 두고, 컴포넌트는 그 이름만 참조하여 화면을 일관되게 만든다."}],["$","link","15",{"rel":"shortcut icon","href":"/img/common/favicon.ico"}],["$","link","16",{"rel":"icon","href":"/img/common/favicon.ico"}],["$","link","17",{"rel":"apple-touch-icon","href":"/img/common/favicon.ico"}],["$","$L29","18",{}]]

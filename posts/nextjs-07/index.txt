@@ -12,13 +12,13 @@ b:I[45872,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__
 c:I[20683,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js"],"default"]
 d:I[86979,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/0hs6l77ykwsoc.js"],"default"]
 16:I[68027,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default",1]
-:HL["/_next/static/chunks/3ou3k_oca-ann.css","style"]
+:HL["/_next/static/chunks/0aw5gw7bg_b6q.css","style"]
 :HL["/_next/static/chunks/0g93akm33ce_n.css","style"]
 :HL["/_next/static/chunks/0l7zbvjzypglv.css","style"]
 :HL["/_next/static/media/0c795a286deabae8-s.p.3vm0tq4e-zz_5.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/media/5c285b27cdda1fe8-s.p.2_mbdogr7ni8i.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/chunks/3j-1lpdn3an_-.css","style"]
-0:{"P":null,"c":["","posts","nextjs-07",""],"q":"","i":false,"f":[[["",{"children":["(site)",{"children":["posts",{"children":[["slug","nextjs-07","d",null],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3ou3k_oca-ann.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0g93akm33ce_n.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/0l7zbvjzypglv.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/3t-_5l233af4w.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1uymn__-_z4ug.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ko","className":"syne_53f86cd1-module__kiT3Eq__variable dm_sans_fd62f040-module__0jgVUW__variable","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","script",null,{"async":true,"src":"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2641553863829571","crossOrigin":"anonymous"}]}],["$","body",null,{"children":[["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var t=null;document.cookie.split(';').forEach(function(c){var p=c.trim().split('=');if(p[0]==='kaisa-theme')t=decodeURIComponent(p[1]||'');});document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();"}}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var KEY='kaisa-locale';var loc=null;try{loc=sessionStorage.getItem(KEY);}catch(e){}function fromNav(){var list=[navigator.language].concat(navigator.languages||[]);for(var i=0;i<list.length;i++){var l=String(list[i]||'').toLowerCase();if(l.indexOf('ko')===0)return 'ko';if(l.indexOf('zh')===0)return 'zh';if(l.indexOf('hi')===0)return 'hi';if(l.indexOf('en')===0)return 'en';}return null;}if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc=fromNav();if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc='ko';document.documentElement.lang=loc;}catch(e){document.documentElement.lang='ko';}})();"}}],[["$","$L2",null,{"src":"https://www.googletagmanager.com/gtag/js?id=G-2281QQ6XP4","strategy":"afterInteractive"}],["$","$L2",null,{"id":"google-analytics","strategy":"afterInteractive","children":"\n          window.dataLayer = window.dataLayer || [];\n          function gtag(){dataLayer.push(arguments);}\n          gtag('js', new Date());\n          gtag('config', 'G-2281QQ6XP4');\n        "}]],["$","$L3",null,{}],["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}],["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","$L7",null,{}],["$","$L8",null,{}],["$","$L9",null,{}]]}]]}]]}],{"children":[["$","$1","c",{"children":[[["$","script","script-0",{"src":"/_next/static/chunks/23u3jdspf1pgv.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1hr7-4fb6m83q.js","async":true,"nonce":"$undefined"}]],["$","$La",null,{"children":["$","div",null,{"className":"site-layout","children":[["$","$Lb",null,{}],["$","$Lc",null,{"children":["$","$L4",null,{"parallelRouterKey":"children","error":"$d","errorStyles":[],"errorScripts":[["$","script","script-0",{"src":"/_next/static/chunks/0hs6l77ykwsoc.js","async":true}]],"template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],"$Le","$Lf"]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],"$L10"]}]}]]}],{"children":["$L11",{"children":["$L12",{"children":["$L13",{},null,false,null]},null,false,"$@14"]},null,false,"$@14"]},null,false,null]},null,false,null],"$L15",false]],"m":"$undefined","G":["$16",["$L17","$L18","$L19"]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"DJX3Zf-ybBx2vscYgjP8o"}
+0:{"P":null,"c":["","posts","nextjs-07",""],"q":"","i":false,"f":[[["",{"children":["(site)",{"children":["posts",{"children":[["slug","nextjs-07","d",null],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0aw5gw7bg_b6q.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0g93akm33ce_n.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/0l7zbvjzypglv.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/3t-_5l233af4w.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1uymn__-_z4ug.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ko","className":"syne_53f86cd1-module__kiT3Eq__variable dm_sans_fd62f040-module__0jgVUW__variable","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","script",null,{"async":true,"src":"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2641553863829571","crossOrigin":"anonymous"}]}],["$","body",null,{"children":[["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var t=null;document.cookie.split(';').forEach(function(c){var p=c.trim().split('=');if(p[0]==='kaisa-theme')t=decodeURIComponent(p[1]||'');});document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();"}}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var KEY='kaisa-locale';var loc=null;try{loc=sessionStorage.getItem(KEY);}catch(e){}function fromNav(){var list=[navigator.language].concat(navigator.languages||[]);for(var i=0;i<list.length;i++){var l=String(list[i]||'').toLowerCase();if(l.indexOf('ko')===0)return 'ko';if(l.indexOf('zh')===0)return 'zh';if(l.indexOf('hi')===0)return 'hi';if(l.indexOf('en')===0)return 'en';}return null;}if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc=fromNav();if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc='ko';document.documentElement.lang=loc;}catch(e){document.documentElement.lang='ko';}})();"}}],[["$","$L2",null,{"src":"https://www.googletagmanager.com/gtag/js?id=G-2281QQ6XP4","strategy":"afterInteractive"}],["$","$L2",null,{"id":"google-analytics","strategy":"afterInteractive","children":"\n          window.dataLayer = window.dataLayer || [];\n          function gtag(){dataLayer.push(arguments);}\n          gtag('js', new Date());\n          gtag('config', 'G-2281QQ6XP4');\n        "}]],["$","$L3",null,{}],["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}],["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","$L7",null,{}],["$","$L8",null,{}],["$","$L9",null,{}]]}]]}]]}],{"children":[["$","$1","c",{"children":[[["$","script","script-0",{"src":"/_next/static/chunks/23u3jdspf1pgv.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1hr7-4fb6m83q.js","async":true,"nonce":"$undefined"}]],["$","$La",null,{"children":["$","div",null,{"className":"site-layout","children":[["$","$Lb",null,{}],["$","$Lc",null,{"children":["$","$L4",null,{"parallelRouterKey":"children","error":"$d","errorStyles":[],"errorScripts":[["$","script","script-0",{"src":"/_next/static/chunks/0hs6l77ykwsoc.js","async":true}]],"template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],"$Le","$Lf"]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],"$L10"]}]}]]}],{"children":["$L11",{"children":["$L12",{"children":["$L13",{},null,false,null]},null,false,"$@14"]},null,false,"$@14"]},null,false,null]},null,false,null],"$L15",false]],"m":"$undefined","G":["$16",["$L17","$L18","$L19"]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"rgIajyDGnwYL9Qdz0xIG3"}
 1a:I[44604,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js"],"default"]
 1c:I[97367,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"OutletBoundary"]
 1d:"$Sreact.suspense"
@@ -33,18 +33,37 @@ f:["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]
 1f:[]
 14:"$W1f"
 15:["$","$1","h",{"children":[null,["$","$L20",null,{"children":"$L21"}],["$","div",null,{"hidden":true,"children":["$","$L22",null,{"children":["$","$1d",null,{"name":"Next.Metadata","children":"$L23"}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}]
-17:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3ou3k_oca-ann.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
+17:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0aw5gw7bg_b6q.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
 18:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0g93akm33ce_n.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
 19:["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/0l7zbvjzypglv.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
 24:I[55489,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],"default"]
-26:I[44398,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],"default"]
-25:T90c,# Route Handler와 Server Actions
+25:T1a8c,# Route Handler와 Server Actions
 
-> 요약: 앱 내 API(Route Handler)와 폼용 Server Actions의 역할·제약·정적 export와의 관계를 정리한다.
+> 요약: 앱 밖 API는 Route Handler로, 같은 앱의 폼 저장은 Server Action으로 나누고, 정적 호스팅 제약을 확인한다.
 
 ---
 
-## 1. Route Handler
+## 1. 왜 이 주제가 필요한가
+
+브라우저만으로는 메일을 보내거나 DB에 쓰지 못한다. 그 작업은 서버가 한다.
+
+App Router에는 길이 두 개다. **Route Handler**는 `app/api/.../route.ts`에 HTTP 메서드를 여는 방식이다. **Server Action**은 함수를 서버에서 실행하고, 폼의 `action`에 바로 연결한다.
+
+둘 다 Node 서버가 있는 배포에서 의미가 있다. `output: 'export'`면 이 런타임이 없다.
+
+---
+
+## 2. 한 줄 규칙
+
+외부 시스템·웹훅·다른 클라이언트가 치는 엔드포인트는 Route Handler다. 같은 Next 앱의 폼·뮤테이션은 Server Action이다.
+
+입력은 반드시 검증한다. 시크릿은 서버 파일에만 둔다.
+
+---
+
+## 3. 예제
+
+### Route Handler
 
 ```ts
 // app/api/hello/route.ts
@@ -55,96 +74,180 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
-  const body = await request.json();
-  return NextResponse.json({received: body});
+  const body = (await request.json()) as {message?: string};
+  const message = body.message?.trim() ?? '';
+  if (!message) {
+    return NextResponse.json({error: 'message가 필요하다'}, {status: 400});
+  }
+  return NextResponse.json({received: message});
 }
 ```
 
-용도: 웹훅, 외부 클라이언트 API, 서버 전용 프록시.
+`GET` / `POST` / `PUT` / `PATCH` / `DELETE`를 함수 이름으로 export한다. URL은 폴더 경로다. 위 파일은 `/api/hello`.
 
-`output: 'export'`에서는 **지원이 제한**된다. 정적 호스팅이면 백엔드를 별도(Cafe24 API 등)로 두는 편이 흔하다.
+용도: 결제 웹훅, 모바일 앱이 치는 API, 브라우저 CORS를 피해 서버에서 외부 API를 대신 호출하는 프록시.
 
----
+Next.js 15부터 GET Handler도 기본적으로 캐시하지 않는다. 캐시가 필요하면 응답 헤더나 Route Segment Config를 명시한다.
 
-## 2. Server Actions
+```ts
+export const dynamic = 'force-dynamic';
+```
 
-```tsx
+정적 내보내기에서는 이 파일이 빌드 산출물에 서버로 남지 않거나 지원이 제한된다. 정적 호스팅이면 백엔드를 별도 서버(Cafe24, 클라우드 함수 등)로 둔다.
+
+### Server Actions
+
+```ts
 // app/contact/actions.ts
 'use server';
 
+import {z} from 'zod';
+
+const schema = z.object({
+  email: z.string().email(),
+  body: z.string().min(1).max(2000),
+});
+
 export async function sendMessage(formData: FormData) {
-  const email = String(formData.get('email') || '');
-  // DB / 메일 발송
-  return {ok: true};
+  const parsed = schema.safeParse({
+    email: formData.get('email'),
+    body: formData.get('body'),
+  });
+  if (!parsed.success) {
+    return {ok: false as const, error: '입력 형식이 맞지 않는다'};
+  }
+
+  // 메일 발송·DB 저장은 여기
+  return {ok: true as const};
 }
 ```
 
+`'use server'`는 이 파일의 export 함수가 서버에서만 실행된다는 표시다. 클라이언트는 네트워크 호출로 이 함수를 부른다. 함수 본문은 브라우저에 안 실리는 것이 정상이다.
+
 ```tsx
+// app/contact/page.tsx
 import {sendMessage} from './actions';
 
-export default function ContactForm() {
+export default function ContactPage() {
   return (
     <form action={sendMessage}>
-      <input name="email" type="email" required />
+      <label>
+        이메일
+        <input name="email" type="email" required />
+      </label>
+      <label>
+        내용
+        <textarea name="body" required />
+      </label>
       <button type="submit">보내기</button>
     </form>
   );
 }
 ```
 
-폼·뮤테이션에 적합. 네트워크 왕복을 줄이고 progressive enhancement에 가깝다.
+폼은 Server Component에 둬도 된다. `action`에 서버 함수를 넘긴다. JS가 꺼져 있어도 폼 submit은 HTML 기본 동작으로 진행되는 쪽에 가깝다.
 
----
+진행 상태·에러 메시지를 화면에 바로 쓰려면 Client에서 `useActionState`를 쓴다.
 
-## 3. 언제 무엇을
+```tsx
+'use client';
 
-| 상황 | 선택 |
-|------|------|
-| 외부 앱이 호출 | Route Handler / 별도 API |
-| 같은 Next 앱 폼 | Server Action |
-| 순수 정적 사이트 | 외부 API + 클라이언트 또는 빌드 타임만 |
+import {useActionState} from 'react';
+import {sendMessage} from './actions';
 
----
+export function ContactForm() {
+  const [state, formAction, pending] = useActionState(sendMessage, null);
 
-## 4. 보안
-
-- Action·Handler 모두 **입력 검증**
-- 쿠키·세션 확인
-- CSRF: Server Actions는 프레임워크 보호가 있으나 팀 정책 확인
-- 시크릿은 서버에만
-
-```ts
-import {z} from 'zod';
-const schema = z.object({email: z.string().email()});
-```
-
----
-
-## 5. 재검증
-
-```ts
-'use server';
-import {revalidatePath} from 'next/cache';
-
-export async function updatePost(id: string) {
-  // ...
-  revalidatePath(`/posts/${id}`);
+  return (
+    <form action={formAction}>
+      <input name="email" type="email" required />
+      <textarea name="body" required />
+      <button type="submit" disabled={pending}>
+        {pending ? '보내는 중' : '보내기'}
+      </button>
+      {state && !state.ok ? <p>{state.error}</p> : null}
+    </form>
+  );
 }
 ```
 
-정적 export 환경에서는 런타임 재검증이 어렵다. 배포 파이프라인으로 다시 빌드한다.
+이 패턴을 쓰려면 Action이 이전 state를 첫 인자로 받도록 시그니처를 맞춘다.
+
+```ts
+'use server';
+
+type State = {ok: true} | {ok: false; error: string} | null;
+
+export async function sendMessage(_prev: State, formData: FormData): Promise<State> {
+  // 검증·저장
+  return {ok: true};
+}
+```
+
+### 무엇을 고를지
+
+| 상황 | 선택 |
+|------|------|
+| 외부 앱·웹훅이 HTTP로 호출 | Route Handler 또는 별도 API |
+| 같은 Next 앱의 폼·버튼 | Server Action |
+| 순수 정적 사이트 | 외부 API + Client, 또는 빌드 타임만 |
+
+### 저장 후 화면 갱신
+
+```ts
+'use server';
+
+import {revalidatePath} from 'next/cache';
+import {redirect} from 'next/navigation';
+
+export async function updatePost(id: string, formData: FormData) {
+  const title = String(formData.get('title') ?? '');
+  // DB 업데이트
+  revalidatePath(`/posts/${id}`);
+  redirect(`/posts/${id}/`);
+}
+```
+
+`revalidatePath`는 그 주소의 캐시된 HTML을 버린다. 정적 내보내기에서는 런타임 재검증이 없다. 배포 파이프라인에서 다시 빌드한다.
+
+### 보안
+
+- Action·Handler 모두 스키마로 입력 검증
+- 쿠키 세션이 있으면 핸들러·액션 안에서 다시 확인
+- **CSRF(Cross-Site Request Forgery, 다른 사이트가 사용자를 대신해 요청을 보내는 공격)** : Server Actions는 Origin 검사를 한다. 팀 정책과 SameSite 쿠키를 확인한다
+- `NEXT_PUBLIC_`이 붙은 값은 브라우저에 노출된다. API 키는 붙이지 않는다
+
+---
+
+## 4. 흔한 실수
+
+| 실수 | 결과 | 대안 |
+|------|------|------|
+| export 배포에 `route.ts`를 의존 | 런타임 404 | 별도 백엔드 또는 서버 호스팅 |
+| Action에서 `formData.get`만 신뢰 | 잘못된·악의적 입력 | zod 등으로 검증 |
+| 시크릿을 Client 컴포넌트에 둠 | 키 유출 | `'use server'` / Route Handler |
+| GET Handler로 데이터를 변경 | 캐시·크롤러가 부작용 | 변경은 POST + Action/Handler |
+| 모든 API를 `/api`에 넣고 폼도 fetch | 중복 계층 | 앱 내부 뮤테이션은 Action |
+
+---
+
+## 정리
+
+Route Handler는 HTTP 엔드포인트다. Server Action은 앱 내부 서버 함수다.
+
+서버가 있는 호스팅에서만 둘 다 살아 있다. 정적 사이트면 쓰기 작업을 외부 API로 빼고, Next는 HTML을 굽는 쪽에 둔다.
 
 ---
 
 ## 연습
 
-1. `POST /api/echo` Route Handler를 만든다 (Node 런타임 호스팅에서).
-2. 간단한 Server Action 폼을 만든다.
-3. 현재 배포가 export면 “Next API 없이” 설계도를 그린다.1b:[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"Route Handler와 Server Actions\",\"description\":\"앱 내 API(Route Handler)와 폼용 Server Actions의 역할·제약·정적 export와의 관계를 정리한다.\",\"datePublished\":\"2026-08-26\",\"url\":\"https://kaisa.co.kr/posts/nextjs-07/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"nextjs\",\"keywords\":\"nextjs\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Route Handler와 Server Actions\",\"item\":\"https://kaisa.co.kr/posts/nextjs-07/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L6",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2026-08-26"}]}],["$","h1",null,{"className":"blog-post__title","children":"Route Handler와 Server Actions"}],["$","$L24",null,{"content":"$25"}],["$","$L26",null,{"pathKey":"nextjs-07"}],["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L6",null,{"href":"/posts/nextjs-06/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],"$L27"]}],"$L28"]}],"$L29"]}]]}]}]}]]
-27:["$","span",null,{"className":"blog-post__adjacent-title","children":"Metadata·Open Graph·SEO 기본기"}]
-28:["$","$L6",null,{"href":"/posts/nextjs-08/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"미들웨어와 인증 경계"}]]}]
-29:["$","$L6",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]
+1. Node 런타임 호스팅에서 `POST /api/echo` Route Handler를 만들고 JSON을 그대로 돌려준다.
+2. 이메일 필드가 있는 Server Action 폼을 만들고, 실패 시 메시지를 보여 준다.
+3. 현재 배포가 export면 Next API 없이 연락 폼이 어디로 POST되는지 한 장으로 그린다.1b:[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"Route Handler와 Server Actions\",\"description\":\"앱 밖 API는 Route Handler로, 같은 앱의 폼 저장은 Server Action으로 나누고, 정적 호스팅 제약을 확인한다.\",\"datePublished\":\"2026-01-14\",\"url\":\"https://kaisa.co.kr/posts/nextjs-07/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"nextjs\",\"keywords\":\"nextjs\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Route Handler와 Server Actions\",\"item\":\"https://kaisa.co.kr/posts/nextjs-07/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L6",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2026-01-14"}]}],["$","h1",null,{"className":"blog-post__title","children":"Route Handler와 Server Actions"}],["$","$L24",null,{"content":"$25"}],"$L26","$L27"]}]}]}]]
+28:I[44398,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],"default"]
+26:["$","$L28",null,{"pathKey":"nextjs-07"}]
+27:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L6",null,{"href":"/posts/nextjs-06/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Metadata·Open Graph·SEO 기본기"}]]}],["$","$L6",null,{"href":"/posts/nextjs-08/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"미들웨어와 인증 경계"}]]}]]}],["$","$L6",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
 21:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
-2a:I[27201,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"IconMark"]
+29:I[27201,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"IconMark"]
 1e:null
-23:[["$","title","0",{"children":"Route Handler와 Server Actions · Kaisa"}],["$","meta","1",{"name":"description","content":"앱 내 API(Route Handler)와 폼용 Server Actions의 역할·제약·정적 export와의 관계를 정리한다."}],["$","meta","2",{"name":"application-name","content":"Kaisa"}],["$","meta","3",{"name":"robots","content":"index, follow"}],["$","meta","4",{"name":"naver-site-verification","content":"4bc13b857695ff44988c260cb26124eedbcda90e"}],["$","link","5",{"rel":"canonical","href":"https://kaisa.co.kr/posts/nextjs-07/"}],["$","meta","6",{"property":"og:title","content":"Route Handler와 Server Actions · Kaisa"}],["$","meta","7",{"property":"og:description","content":"앱 내 API(Route Handler)와 폼용 Server Actions의 역할·제약·정적 export와의 관계를 정리한다."}],["$","meta","8",{"property":"og:url","content":"https://kaisa.co.kr/posts/nextjs-07/"}],["$","meta","9",{"property":"og:site_name","content":"Kaisa"}],["$","meta","10",{"property":"og:locale","content":"ko_KR"}],["$","meta","11",{"property":"og:type","content":"article"}],["$","meta","12",{"name":"twitter:card","content":"summary"}],["$","meta","13",{"name":"twitter:title","content":"Route Handler와 Server Actions · Kaisa"}],["$","meta","14",{"name":"twitter:description","content":"앱 내 API(Route Handler)와 폼용 Server Actions의 역할·제약·정적 export와의 관계를 정리한다."}],["$","link","15",{"rel":"shortcut icon","href":"/img/common/favicon.ico"}],["$","link","16",{"rel":"icon","href":"/img/common/favicon.ico"}],["$","link","17",{"rel":"apple-touch-icon","href":"/img/common/favicon.ico"}],["$","$L2a","18",{}]]
+23:[["$","title","0",{"children":"Route Handler와 Server Actions · Kaisa"}],["$","meta","1",{"name":"description","content":"앱 밖 API는 Route Handler로, 같은 앱의 폼 저장은 Server Action으로 나누고, 정적 호스팅 제약을 확인한다."}],["$","meta","2",{"name":"application-name","content":"Kaisa"}],["$","meta","3",{"name":"robots","content":"index, follow"}],["$","meta","4",{"name":"naver-site-verification","content":"4bc13b857695ff44988c260cb26124eedbcda90e"}],["$","link","5",{"rel":"canonical","href":"https://kaisa.co.kr/posts/nextjs-07/"}],["$","meta","6",{"property":"og:title","content":"Route Handler와 Server Actions · Kaisa"}],["$","meta","7",{"property":"og:description","content":"앱 밖 API는 Route Handler로, 같은 앱의 폼 저장은 Server Action으로 나누고, 정적 호스팅 제약을 확인한다."}],["$","meta","8",{"property":"og:url","content":"https://kaisa.co.kr/posts/nextjs-07/"}],["$","meta","9",{"property":"og:site_name","content":"Kaisa"}],["$","meta","10",{"property":"og:locale","content":"ko_KR"}],["$","meta","11",{"property":"og:type","content":"article"}],["$","meta","12",{"name":"twitter:card","content":"summary"}],["$","meta","13",{"name":"twitter:title","content":"Route Handler와 Server Actions · Kaisa"}],["$","meta","14",{"name":"twitter:description","content":"앱 밖 API는 Route Handler로, 같은 앱의 폼 저장은 Server Action으로 나누고, 정적 호스팅 제약을 확인한다."}],["$","link","15",{"rel":"shortcut icon","href":"/img/common/favicon.ico"}],["$","link","16",{"rel":"icon","href":"/img/common/favicon.ico"}],["$","link","17",{"rel":"apple-touch-icon","href":"/img/common/favicon.ico"}],["$","$L29","18",{}]]

@@ -12,13 +12,13 @@ b:I[45872,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__
 c:I[20683,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js"],"default"]
 d:I[86979,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/0hs6l77ykwsoc.js"],"default"]
 16:I[68027,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default",1]
-:HL["/_next/static/chunks/3ou3k_oca-ann.css","style"]
+:HL["/_next/static/chunks/0aw5gw7bg_b6q.css","style"]
 :HL["/_next/static/chunks/0g93akm33ce_n.css","style"]
 :HL["/_next/static/chunks/0l7zbvjzypglv.css","style"]
 :HL["/_next/static/media/0c795a286deabae8-s.p.3vm0tq4e-zz_5.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/media/5c285b27cdda1fe8-s.p.2_mbdogr7ni8i.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/chunks/3j-1lpdn3an_-.css","style"]
-0:{"P":null,"c":["","posts","react-native-07",""],"q":"","i":false,"f":[[["",{"children":["(site)",{"children":["posts",{"children":[["slug","react-native-07","d",null],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3ou3k_oca-ann.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0g93akm33ce_n.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/0l7zbvjzypglv.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/3t-_5l233af4w.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1uymn__-_z4ug.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ko","className":"syne_53f86cd1-module__kiT3Eq__variable dm_sans_fd62f040-module__0jgVUW__variable","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","script",null,{"async":true,"src":"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2641553863829571","crossOrigin":"anonymous"}]}],["$","body",null,{"children":[["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var t=null;document.cookie.split(';').forEach(function(c){var p=c.trim().split('=');if(p[0]==='kaisa-theme')t=decodeURIComponent(p[1]||'');});document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();"}}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var KEY='kaisa-locale';var loc=null;try{loc=sessionStorage.getItem(KEY);}catch(e){}function fromNav(){var list=[navigator.language].concat(navigator.languages||[]);for(var i=0;i<list.length;i++){var l=String(list[i]||'').toLowerCase();if(l.indexOf('ko')===0)return 'ko';if(l.indexOf('zh')===0)return 'zh';if(l.indexOf('hi')===0)return 'hi';if(l.indexOf('en')===0)return 'en';}return null;}if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc=fromNav();if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc='ko';document.documentElement.lang=loc;}catch(e){document.documentElement.lang='ko';}})();"}}],[["$","$L2",null,{"src":"https://www.googletagmanager.com/gtag/js?id=G-2281QQ6XP4","strategy":"afterInteractive"}],["$","$L2",null,{"id":"google-analytics","strategy":"afterInteractive","children":"\n          window.dataLayer = window.dataLayer || [];\n          function gtag(){dataLayer.push(arguments);}\n          gtag('js', new Date());\n          gtag('config', 'G-2281QQ6XP4');\n        "}]],["$","$L3",null,{}],["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}],["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","$L7",null,{}],["$","$L8",null,{}],["$","$L9",null,{}]]}]]}]]}],{"children":[["$","$1","c",{"children":[[["$","script","script-0",{"src":"/_next/static/chunks/23u3jdspf1pgv.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1hr7-4fb6m83q.js","async":true,"nonce":"$undefined"}]],["$","$La",null,{"children":["$","div",null,{"className":"site-layout","children":[["$","$Lb",null,{}],["$","$Lc",null,{"children":["$","$L4",null,{"parallelRouterKey":"children","error":"$d","errorStyles":[],"errorScripts":[["$","script","script-0",{"src":"/_next/static/chunks/0hs6l77ykwsoc.js","async":true}]],"template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],"$Le","$Lf"]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],"$L10"]}]}]]}],{"children":["$L11",{"children":["$L12",{"children":["$L13",{},null,false,null]},null,false,"$@14"]},null,false,"$@14"]},null,false,null]},null,false,null],"$L15",false]],"m":"$undefined","G":["$16",["$L17","$L18","$L19"]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"DJX3Zf-ybBx2vscYgjP8o"}
+0:{"P":null,"c":["","posts","react-native-07",""],"q":"","i":false,"f":[[["",{"children":["(site)",{"children":["posts",{"children":[["slug","react-native-07","d",null],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0aw5gw7bg_b6q.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0g93akm33ce_n.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/0l7zbvjzypglv.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/3t-_5l233af4w.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1uymn__-_z4ug.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ko","className":"syne_53f86cd1-module__kiT3Eq__variable dm_sans_fd62f040-module__0jgVUW__variable","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","script",null,{"async":true,"src":"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2641553863829571","crossOrigin":"anonymous"}]}],["$","body",null,{"children":[["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var t=null;document.cookie.split(';').forEach(function(c){var p=c.trim().split('=');if(p[0]==='kaisa-theme')t=decodeURIComponent(p[1]||'');});document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();"}}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var KEY='kaisa-locale';var loc=null;try{loc=sessionStorage.getItem(KEY);}catch(e){}function fromNav(){var list=[navigator.language].concat(navigator.languages||[]);for(var i=0;i<list.length;i++){var l=String(list[i]||'').toLowerCase();if(l.indexOf('ko')===0)return 'ko';if(l.indexOf('zh')===0)return 'zh';if(l.indexOf('hi')===0)return 'hi';if(l.indexOf('en')===0)return 'en';}return null;}if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc=fromNav();if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc='ko';document.documentElement.lang=loc;}catch(e){document.documentElement.lang='ko';}})();"}}],[["$","$L2",null,{"src":"https://www.googletagmanager.com/gtag/js?id=G-2281QQ6XP4","strategy":"afterInteractive"}],["$","$L2",null,{"id":"google-analytics","strategy":"afterInteractive","children":"\n          window.dataLayer = window.dataLayer || [];\n          function gtag(){dataLayer.push(arguments);}\n          gtag('js', new Date());\n          gtag('config', 'G-2281QQ6XP4');\n        "}]],["$","$L3",null,{}],["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}],["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","$L7",null,{}],["$","$L8",null,{}],["$","$L9",null,{}]]}]]}]]}],{"children":[["$","$1","c",{"children":[[["$","script","script-0",{"src":"/_next/static/chunks/23u3jdspf1pgv.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1hr7-4fb6m83q.js","async":true,"nonce":"$undefined"}]],["$","$La",null,{"children":["$","div",null,{"className":"site-layout","children":[["$","$Lb",null,{}],["$","$Lc",null,{"children":["$","$L4",null,{"parallelRouterKey":"children","error":"$d","errorStyles":[],"errorScripts":[["$","script","script-0",{"src":"/_next/static/chunks/0hs6l77ykwsoc.js","async":true}]],"template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],"$Le","$Lf"]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],"$L10"]}]}]]}],{"children":["$L11",{"children":["$L12",{"children":["$L13",{},null,false,null]},null,false,"$@14"]},null,false,"$@14"]},null,false,null]},null,false,null],"$L15",false]],"m":"$undefined","G":["$16",["$L17","$L18","$L19"]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"rgIajyDGnwYL9Qdz0xIG3"}
 1a:I[44604,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js"],"default"]
 1c:I[97367,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"OutletBoundary"]
 1d:"$Sreact.suspense"
@@ -33,40 +33,64 @@ f:["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]
 1f:[]
 14:"$W1f"
 15:["$","$1","h",{"children":[null,["$","$L20",null,{"children":"$L21"}],["$","div",null,{"hidden":true,"children":["$","$L22",null,{"children":["$","$1d",null,{"name":"Next.Metadata","children":"$L23"}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}]
-17:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3ou3k_oca-ann.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
+17:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0aw5gw7bg_b6q.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
 18:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0g93akm33ce_n.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
 19:["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/0l7zbvjzypglv.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
 24:I[55489,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],"default"]
-25:T127a,# 애니메이션·제스처·사용자 경험
+25:T151e,# 애니메이션·제스처·사용자 경험
 
-> 요약: Reanimated와 Gesture Handler로 부드러운 60fps 인터랙션을 만들고, 접근성·햅틱까지 챙긴다.
-
----
+> 요약: Reanimated와 Gesture Handler로 터치 피드백을 만들고, 햅틱·접근성까지 맞춘다.
 
 ---
 
-## 1. 왜 RN Animated만으로 부족한가
+## 1. 왜 Reanimated인가
 
-구 `Animated` API도 쓸 수 있지만, 복잡한 제스처·UI 스레드는 **react-native-reanimated** + **react-native-gesture-handler**가 사실상 표준이다.  
-Expo 템플릿에 이미 포함되는 경우가 많다.
+웹은 CSS transition과 메인 스레드가 가깝다. RN에서 `setState`로 매 프레임 위치를 바꾸면 JS 스레드가 막혀 터치가 늦다.
+
+복잡한 제스처와 60fps 애니메이션은 **react-native-reanimated**와 **react-native-gesture-handler**가 표준이다. 값을 UI 스레드에서 읽는다. Expo 템플릿에 이미 들어 있는 경우가 많다.
+
+모든 화면에 모션을 넣지 않는다. 누르기, 스와이프 삭제, 모달처럼 **의미가 있는 피드백**만 남긴다.
+
+---
+
+## 2. 핵심 개념
+
+- `useSharedValue`: UI 스레드가 읽는 값
+- `useAnimatedStyle`: 그 값 → 스타일
+- `withSpring` / `withTiming`: 목표까지 보간
+- worklet: UI 스레드에서 도는 함수
+
+제스처는 `GestureDetector`에 제스처 객체를 넘긴다. `Pan`, `Pinch`, `Tap`을 `Simultaneous` / `Exclusive`로 조합한다.
+
+레이아웃 애니메이션(`entering`/`exiting`)은 리스트 추가·삭제에 쓰면 이해가 된다. 매 화면 페이드는 피로하다.
+
+Expo Router의 native stack 전환은 기본으로 충분하다. 커스텀 트랜지션은 필요할 때만.
+
+OS “동작 줄이기”가 켜져 있으면 큰 애니메이션을 건너뛴다.
+
+---
+
+## 3. 예제
 
 ```bash
-npx expo install react-native-reanimated react-native-gesture-handler react-native-safe-area-context
+npx expo install react-native-reanimated react-native-gesture-handler
 ```
 
-Babel 플러그인(`reanimated/plugin`은 **마지막**)과 루트에서 GestureHandlerRootView가 필요하다.
+Babel의 `reanimated/plugin`은 **마지막**에 둔다. 루트는 `GestureHandlerRootView`로 감싼다.
 
 ```tsx
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 export default function Root() {
-  return <GestureHandlerRootView style={{ flex: 1 }}>{/* app */}</GestureHandlerRootView>;
+  return (
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      {/* app */}
+    </GestureHandlerRootView>
+  );
 }
 ```
 
----
-
-## 2. Reanimated 기본
+누르는 동안 살짝 줄어드는 버튼:
 
 ```tsx
 import Animated, {
@@ -78,7 +102,6 @@ import { Pressable } from 'react-native';
 
 export function BounceButton({ children }: { children: React.ReactNode }) {
   const scale = useSharedValue(1);
-
   const style = useAnimatedStyle(() => ({
     transform: [{ scale: scale.value }],
   }));
@@ -98,22 +121,10 @@ export function BounceButton({ children }: { children: React.ReactNode }) {
 }
 ```
 
-핵심 개념:
-
-- `useSharedValue`: UI 스레드에서 읽히는 값
-- `useAnimatedStyle`: 공유 값 → 스타일
-- `withTiming` / `withSpring` / `withSequence`
-- worklet: `'worklet';` 지시로 UI 스레드 실행
-
-JS 스레드 `setState`로 매 프레임 애니메이션 하면 버벅인다.
-
----
-
-## 3. 제스처
+드래그:
 
 ```tsx
 import { Gesture, GestureDetector } from 'react-native-gesture-handler';
-import Animated, { useSharedValue, useAnimatedStyle } from 'react-native-reanimated';
 
 export function Draggable() {
   const x = useSharedValue(0);
@@ -130,58 +141,38 @@ export function Draggable() {
 
   return (
     <GestureDetector gesture={pan}>
-      <Animated.View style={[{ width: 80, height: 80, backgroundColor: '#38bdf8' }, style]} />
+      <Animated.View
+        style={[{ width: 80, height: 80, backgroundColor: '#38bdf8' }, style]}
+      />
     </GestureDetector>
   );
 }
 ```
 
-실무 패턴: 하단 시트, 스와이프 삭제, 핀치 줌, 카드 스택.
+실무에서 자주 쓰는 조합: 하단 시트, 스와이프 삭제, 핀치 줌.
 
 ```tsx
 Gesture.Simultaneous(pan, pinch);
 Gesture.Exclusive(native, swipe);
 ```
 
----
-
-## 4. 레이아웃 애니메이션
-
-리스트 추가/삭제 시:
+리스트 행이 들어올 때:
 
 ```tsx
 import Animated, { LinearTransition, FadeIn, FadeOut } from 'react-native-reanimated';
 
-<Animated.View
-  entering={FadeIn}
-  exiting={FadeOut}
-  layout={LinearTransition}
->
+<Animated.View entering={FadeIn} exiting={FadeOut} layout={LinearTransition}>
   ...
 </Animated.View>
 ```
 
-과도한 진입 애니메이션은 피로감을 준다. **의미 있는 피드백**에만.
-
----
-
-## 5. 내비 전환
-
-Expo Router / React Navigation의 native stack은 플랫폼 전환이 기본으로 좋다.  
-커스텀이 필요하면 shared element / 커스텀 트랜지션을 제한적으로.
-
-모달:
+모달 화면:
 
 ```tsx
-<Stack.Screen
-  name="compose"
-  options={{ presentation: 'modal' }}
-/>
+<Stack.Screen name="compose" options={{ presentation: 'modal' }} />
 ```
 
----
-
-## 6. 햅틱·사운드
+약한 햅틱:
 
 ```bash
 npx expo install expo-haptics
@@ -194,53 +185,53 @@ await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
 await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
 ```
 
-성공/삭제/토글에 약하게. 남발 금지.
+성공·삭제·토글에만 쓴다. 스크롤마다 울리면 방해다.
 
----
+로딩은 스피너보다 스켈레톤이 목록에서 체감이 낫다. mutation은 낙관적 업데이트 후 실패 시 롤백한다.
 
-## 7. 스켈레톤·낙관적 UI
-
-- 로딩: 스피너보다 **스켈레톤**이 체감이 좋음
-- mutation: 낙관적 업데이트 + 실패 롤백 (React Query)
-- 버튼: pressed 스케일·opacity
+최소 피드백은 opacity만으로도 된다.
 
 ```tsx
 style={({ pressed }) => [{ opacity: pressed ? 0.7 : 1 }]}
 ```
 
----
-
-## 8. 접근성 & 모션 감소
-
-```tsx
-import { AccessibilityInfo } from 'react-native';
-import { reduceMotion } from 'react-native-reanimated'; // 버전별 API 확인
-```
-
-OS “동작 줄이기”가 켜져 있으면 큰 애니메이션을 스킵하는 것이 좋다.  
-스크린 리더용 `accessibilityLabel`, 포커스 순서도 함께.
+접근성: `accessibilityLabel`, 포커스 순서, 동작 줄이기.
 
 ---
 
-## 9. 성능 주의
+## 4. 흔한 실수
 
-- 애니메이션 중 무거운 JS 금지
-- `console.log` 남발 금지 (특히 worklet)
-- 이미지·섀도우 과다 주의
-- `memo`로 리스트 행 보호
+| 실수 | 대안 |
+|------|------|
+| `setState`로 매 프레임 좌표 | `useSharedValue` |
+| 루트에 GestureHandlerRootView 없음 | `_layout`에서 감싼다 |
+| Reanimated 플러그인 순서 | Babel 마지막 |
+| 모든 화면에 FadeIn | CTA·제스처만 |
+| worklet 안에서 `console.log` 남발 | 디버그 때만 |
+| 햅틱 남용 | 의미 있는 한두 곳 |
+
+애니메이션 중 무거운 JS(JSON 파싱, 큰 리스트 필터)는 버벅임의 원인이다. 이미지·그림자 과다도 같다. 리스트 행은 `memo`로 보호한다.
 
 ---
+
+## 5. 정리
+
+모션은 장식이 아니라 **터치가 먹혔다는 신호**다. UI 스레드에서 돌리고, 접근성과 햅틱을 같이 본다.
+
+- Reanimated + Gesture Handler가 기본 조합이다.
+- 내비 전환은 native stack, 화면은 `presentation: 'modal'`.
+- 동작 줄이기가 켜져 있으면 큰 스프링을 끈다.
 
 ## 연습
 
 1. Pressable 스프링 스케일 버튼을 만든다.
-2. 스와이프로 삭제할 수 있는 리스트 행을 구현한다.
-3. 모달 화면 `presentation: 'modal'`을 추가한다.
-4. 주요 CTA에 햅틱 피드백을 붙인다.1b:[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"애니메이션·제스처·사용자 경험\",\"description\":\"Reanimated와 Gesture Handler로 부드러운 60fps 인터랙션을 만들고, 접근성·햅틱까지 챙긴다.\",\"datePublished\":\"2026-08-26\",\"url\":\"https://kaisa.co.kr/posts/react-native-07/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"react-native\",\"keywords\":\"react-native\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"애니메이션·제스처·사용자 경험\",\"item\":\"https://kaisa.co.kr/posts/react-native-07/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L6",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2026-08-26"}]}],["$","h1",null,{"className":"blog-post__title","children":"애니메이션·제스처·사용자 경험"}],["$","$L24",null,{"content":"$25"}],"$L26","$L27"]}]}]}]]
+2. 스와이프로 지울 수 있는 리스트 행을 구현한다.
+3. `presentation: 'modal'` 화면을 추가한다.
+4. 주요 CTA에 약한 햅틱을 붙인다.1b:[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"애니메이션·제스처·사용자 경험\",\"description\":\"Reanimated와 Gesture Handler로 터치 피드백을 만들고, 햅틱·접근성까지 맞춘다.\",\"datePublished\":\"2025-11-17\",\"url\":\"https://kaisa.co.kr/posts/react-native-07/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"react-native\",\"keywords\":\"react-native\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"애니메이션·제스처·사용자 경험\",\"item\":\"https://kaisa.co.kr/posts/react-native-07/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L6",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2025-11-17"}]}],["$","h1",null,{"className":"blog-post__title","children":"애니메이션·제스처·사용자 경험"}],["$","$L24",null,{"content":"$25"}],"$L26","$L27"]}]}]}]]
 28:I[44398,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],"default"]
 26:["$","$L28",null,{"pathKey":"react-native-07"}]
 27:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L6",null,{"href":"/posts/react-native-06/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"인증·보안 저장소·디바이스 권한"}]]}],["$","$L6",null,{"href":"/posts/react-native-08/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"상태 관리·아키텍처·모듈화"}]]}]]}],["$","$L6",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
 21:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
 29:I[27201,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"IconMark"]
 1e:null
-23:[["$","title","0",{"children":"애니메이션·제스처·사용자 경험 · Kaisa"}],["$","meta","1",{"name":"description","content":"Reanimated와 Gesture Handler로 부드러운 60fps 인터랙션을 만들고, 접근성·햅틱까지 챙긴다."}],["$","meta","2",{"name":"application-name","content":"Kaisa"}],["$","meta","3",{"name":"robots","content":"index, follow"}],["$","meta","4",{"name":"naver-site-verification","content":"4bc13b857695ff44988c260cb26124eedbcda90e"}],["$","link","5",{"rel":"canonical","href":"https://kaisa.co.kr/posts/react-native-07/"}],["$","meta","6",{"property":"og:title","content":"애니메이션·제스처·사용자 경험 · Kaisa"}],["$","meta","7",{"property":"og:description","content":"Reanimated와 Gesture Handler로 부드러운 60fps 인터랙션을 만들고, 접근성·햅틱까지 챙긴다."}],["$","meta","8",{"property":"og:url","content":"https://kaisa.co.kr/posts/react-native-07/"}],["$","meta","9",{"property":"og:site_name","content":"Kaisa"}],["$","meta","10",{"property":"og:locale","content":"ko_KR"}],["$","meta","11",{"property":"og:type","content":"article"}],["$","meta","12",{"name":"twitter:card","content":"summary"}],["$","meta","13",{"name":"twitter:title","content":"애니메이션·제스처·사용자 경험 · Kaisa"}],["$","meta","14",{"name":"twitter:description","content":"Reanimated와 Gesture Handler로 부드러운 60fps 인터랙션을 만들고, 접근성·햅틱까지 챙긴다."}],["$","link","15",{"rel":"shortcut icon","href":"/img/common/favicon.ico"}],["$","link","16",{"rel":"icon","href":"/img/common/favicon.ico"}],["$","link","17",{"rel":"apple-touch-icon","href":"/img/common/favicon.ico"}],["$","$L29","18",{}]]
+23:[["$","title","0",{"children":"애니메이션·제스처·사용자 경험 · Kaisa"}],["$","meta","1",{"name":"description","content":"Reanimated와 Gesture Handler로 터치 피드백을 만들고, 햅틱·접근성까지 맞춘다."}],["$","meta","2",{"name":"application-name","content":"Kaisa"}],["$","meta","3",{"name":"robots","content":"index, follow"}],["$","meta","4",{"name":"naver-site-verification","content":"4bc13b857695ff44988c260cb26124eedbcda90e"}],["$","link","5",{"rel":"canonical","href":"https://kaisa.co.kr/posts/react-native-07/"}],["$","meta","6",{"property":"og:title","content":"애니메이션·제스처·사용자 경험 · Kaisa"}],["$","meta","7",{"property":"og:description","content":"Reanimated와 Gesture Handler로 터치 피드백을 만들고, 햅틱·접근성까지 맞춘다."}],["$","meta","8",{"property":"og:url","content":"https://kaisa.co.kr/posts/react-native-07/"}],["$","meta","9",{"property":"og:site_name","content":"Kaisa"}],["$","meta","10",{"property":"og:locale","content":"ko_KR"}],["$","meta","11",{"property":"og:type","content":"article"}],["$","meta","12",{"name":"twitter:card","content":"summary"}],["$","meta","13",{"name":"twitter:title","content":"애니메이션·제스처·사용자 경험 · Kaisa"}],["$","meta","14",{"name":"twitter:description","content":"Reanimated와 Gesture Handler로 터치 피드백을 만들고, 햅틱·접근성까지 맞춘다."}],["$","link","15",{"rel":"shortcut icon","href":"/img/common/favicon.ico"}],["$","link","16",{"rel":"icon","href":"/img/common/favicon.ico"}],["$","link","17",{"rel":"apple-touch-icon","href":"/img/common/favicon.ico"}],["$","$L29","18",{}]]

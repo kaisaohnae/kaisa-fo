@@ -1,100 +1,177 @@
 1:"$Sreact.fragment"
 2:I[22016,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],""]
 3:I[55489,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],"default"]
-5:I[44398,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],"default"]
-b:I[97367,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"OutletBoundary"]
-c:"$Sreact.suspense"
+b:I[44398,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],"default"]
+c:I[97367,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"OutletBoundary"]
+d:"$Sreact.suspense"
 :HL["/_next/static/chunks/3j-1lpdn3an_-.css","style"]
-4:T835,# SSG·generateStaticParams·정적 export
+4:T14a6,# SSG·generateStaticParams·정적 export
 
-> 요약: 빌드 타임에 HTML을 고정하는 SSG와 generateStaticParams, output export의 제약까지 정리한다.
+> 요약: 빌드할 때 HTML을 미리 만들고, 동적 주소는 generateStaticParams로 목록을 넘기며, 정적 내보내기 제약을 확인한다.
 
 ---
 
-## 1. 왜 정적 HTML인가
+## 1. 왜 이 주제가 필요한가
 
-검색·공유 미리보기는 **첫 응답 HTML**을 본다.  
-빌드 때 본문이 들어 있으면 SEO에 유리하고, CDN 캐시도 쉽다.
+검색엔진과 카카오·슬랙 미리보기는 **첫 응답 HTML**을 본다. 빌드 시점에 제목과 본문이 들어 있으면 공유·SEO가 안정적이다. CDN(가까운 서버에서 파일을 나눠 주는 망)에도 올리기 쉽다.
 
-App Router에서 동적 경로를 정적화하려면:
+**SSG(Static Site Generation, 빌드할 때 HTML을 고정하는 방식)** 가 그 수단이다. `/posts/hello`처럼 칸이 바뀌는 주소도, 미리 어떤 slug가 있는지 알려 주면 같은 방식으로 만들 수 있다.
+
+---
+
+## 2. 한 줄 규칙
+
+공개되는 모든 slug를 `generateStaticParams`에 넣는다. 페이지에서 `await params`를 써도 정적 HTML이다.
+
+정적 내보내기(`output: 'export'`)는 서버가 없다. 빌드 때 읽을 수 있는 데이터만 쓴다.
+
+---
+
+## 3. 예제
+
+### generateStaticParams
 
 ```tsx
-export function generateStaticParams() {
-  return getAllSlugs().map((slug) => ({slug}));
+// lib/posts.ts
+export type Post = {
+  slug: string;
+  title: string;
+  body: string;
+};
+
+const POSTS: Post[] = [
+  {slug: 'hello', title: '첫 글', body: '본문 A'},
+  {slug: 'world', title: '둘째 글', body: '본문 B'},
+];
+
+export function getAllPosts(): Post[] {
+  return POSTS;
+}
+
+export function getPost(slug: string): Post | undefined {
+  return POSTS.find((p) => p.slug === slug);
 }
 ```
 
-빌드 로그에 `/posts/[slug]`가 ● (SSG)로 찍히는지 확인한다.
-
----
-
-## 2. params는 Promise여도 정적이다
-
 ```tsx
-export default async function Page({params}: {params: Promise<{slug: string}>}) {
+// app/posts/[slug]/page.tsx
+import {notFound} from 'next/navigation';
+import {getAllPosts, getPost} from '@/lib/posts';
+
+type Props = {
+  params: Promise<{slug: string}>;
+};
+
+export function generateStaticParams() {
+  return getAllPosts().map((post) => ({slug: post.slug}));
+}
+
+export default async function PostPage({params}: Props) {
   const {slug} = await params;
   const post = getPost(slug);
   if (!post) notFound();
-  return <Article post={post} />;
+
+  return (
+    <article>
+      <h1>{post.title}</h1>
+      <p>{post.body}</p>
+    </article>
+  );
 }
 ```
 
-`await params`는 Next API일 뿐, 페이지를 CSR로 바꾸지 않는다.  
-`generateStaticParams`가 있으면 **미리 렌더된 HTML**이 나온다.
+`npm run build` 로그에서 `/posts/hello`가 ●(정적)으로 찍히는지 확인한다. `ƒ`는 서버가 필요한 동적 라우트다.
 
----
+`await params`는 Next.js 15 API다. 페이지를 CSR(브라우저에서 JS로 그리는 방식)로 바꾸지 않는다. `generateStaticParams`가 있으면 해당 slug는 미리 렌더된 HTML이 나온다.
 
-## 3. `output: 'export'`
+### 빌드에 없는 slug
 
-```ts
-const nextConfig = {
-  output: 'export',
-  trailingSlash: true,
-};
+```tsx
+export const dynamicParams = false;
 ```
 
-결과물: `out/` 정적 파일 → GitHub Pages, S3, 일반 웹서버.
+`dynamicParams`가 `false`면 `generateStaticParams`에 없는 주소는 404다. 문서·블로그는 보통 알려진 slug만 빌드한다.
 
-제약 예:
+기본값 `true`면 빌드에 없던 slug를 서버가 그때 만들 수 있다. 정적 내보내기에서는 서버가 없으므로 이 경로에 기대지 않는다.
 
-- 서버 Runtime Route Handler 제한
-- 미들웨어·ISR·On-demand revalidate 제한
-- 동적 서버만 가능한 기능 사용 불가
+### 정적 내보내기
 
-가능하면: MD/API를 **빌드 시** 읽어 HTML 생성.
+```ts
+// next.config.ts
+import type {NextConfig} from 'next';
 
----
+const nextConfig: NextConfig = {
+  output: 'export',
+  trailingSlash: true,
+  images: {
+    unoptimized: true,
+  },
+};
 
-## 4. notFound와 누락 경로
+export default nextConfig;
+```
+
+결과는 `out/` 아래 HTML·JS·CSS다. GitHub Pages, S3, 일반 웹 서버에 올린다.
+
+되는 것:
+
+- 빌드 시 마크다운·공개 API를 읽어 HTML 생성
+- `generateStaticParams`로 만든 상세 페이지
+- 클라이언트에서 외부 API를 치는 화면(SEO 본문이 필요 없을 때)
+
+안 되는 것(대표):
+
+- 요청마다 도는 Route Handler
+- 미들웨어로 세션을 검사하는 보호
+- ISR·`revalidateTag` 같은 런타임 재검증
+- 서버만 가능한 이미지 최적화(그래서 `unoptimized`)
+
+호스팅에 서버가 있으면 `output: 'export'`를 켜지 않는 편이 기능이 넓다. 정적만 필요하면 켜서 단순화한다.
+
+### notFound
 
 ```tsx
 import {notFound} from 'next/navigation';
 
+const post = getPost(slug);
 if (!post) notFound();
 ```
 
-`dynamicParams` 설정에 따라 빌드에 없는 slug 처리가 달라진다.  
-문서 사이트는 보통 **알려진 slug만** 빌드한다.
+`notFound()`는 `not-found.tsx`를 렌더한다. `throw new Error`와 다르다. 없는 글은 404, 파일 읽기 실패는 `error.tsx`로 나눈다.
+
+목록·sitemap·`generateStaticParams`에 같은 slug 집합을 쓴다. 한쪽만 빠지면 죽은 링크가 생긴다.
 
 ---
 
-## 5. 체크리스트
+## 4. 흔한 실수
 
-- [ ] 공개 글 slug가 `generateStaticParams`에 포함
-- [ ] 상세 HTML에 제목·본문·메타가 들어 있음
-- [ ] export면 서버 전용 기능 미사용
-- [ ] sitemap에 동일 URL 반영
+| 실수 | 결과 | 대안 |
+|------|------|------|
+| `generateStaticParams`를 안 넣는다 | 동적 라우트가 되거나 export 빌드 실패 | 공개 slug를 모두 반환 |
+| `await params`면 CSR이라고 생각한다 | 불필요하게 `'use client'` | 서버 페이지 + 정적 params |
+| export인데 `revalidate` / Route Handler | 빌드 에러 또는 죽은 엔드포인트 | 빌드 타임 데이터만 |
+| slug는 빌드했는데 sitemap은 빠짐 | 검색이 일부 URL만 봄 | 같은 목록 함수를 공유 |
+| `dynamicParams: true`에 export로 의존 | 새 글 URL이 404 | 글 추가 후 다시 빌드 |
+
+---
+
+## 정리
+
+SSG는 “주소 목록을 빌드에 알려 주고 HTML을 미리 굽는 것”이다. 동적 칸은 `generateStaticParams`가 그 목록이다.
+
+정적 내보내기는 서버 기능을 포기하는 선택이다. 공개 문서에 맞고, 로그인·웹훅에는 보통 맞지 않는다.
 
 ---
 
 ## 연습
 
-1. 동적 `[slug]` 3개를 SSG로 빌드해 `out/` HTML을 연다.
-2. `await params`로 바꾼 뒤에도 정적 HTML인지 확인한다.
-3. export 모드에서 깨지는 API를 목록으로 적는다.0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"SSG·generateStaticParams·정적 export\",\"description\":\"빌드 타임에 HTML을 고정하는 SSG와 generateStaticParams, output export의 제약까지 정리한다.\",\"datePublished\":\"2026-08-26\",\"url\":\"https://kaisa.co.kr/posts/nextjs-05/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"nextjs\",\"keywords\":\"nextjs\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"SSG·generateStaticParams·정적 export\",\"item\":\"https://kaisa.co.kr/posts/nextjs-05/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2026-08-26"}]}],["$","h1",null,{"className":"blog-post__title","children":"SSG·generateStaticParams·정적 export"}],["$","$L3",null,{"content":"$4"}],["$","$L5",null,{"pathKey":"nextjs-05"}],["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/nextjs-04/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"데이터 페칭과 캐시 전략"}]]}],["$","$L2",null,{"href":"/posts/nextjs-06/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Metadata·Open Graph·SEO 기본기"}]]}]]}],"$L6"]}]]}]}]}]],["$L7","$L8","$L9"],"$La"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"DJX3Zf-ybBx2vscYgjP8o"}
-6:["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]
+1. `[slug]` 세 개를 SSG로 빌드한 뒤 `out/posts/hello/index.html`에 제목이 있는지 연다.
+2. 페이지를 `await params`로 바꿔도 빌드 로그가 정적(●)인지 확인한다.
+3. `output: 'export'`를 켠 뒤 깨지는 API·미들웨어·이미지를 목록으로 적는다.0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"SSG·generateStaticParams·정적 export\",\"description\":\"빌드할 때 HTML을 미리 만들고, 동적 주소는 generateStaticParams로 목록을 넘기며, 정적 내보내기 제약을 확인한다.\",\"datePublished\":\"2025-02-07\",\"url\":\"https://kaisa.co.kr/posts/nextjs-05/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"nextjs\",\"keywords\":\"nextjs\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"SSG·generateStaticParams·정적 export\",\"item\":\"https://kaisa.co.kr/posts/nextjs-05/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2025-02-07"}]}],["$","h1",null,{"className":"blog-post__title","children":"SSG·generateStaticParams·정적 export"}],["$","$L3",null,{"content":"$4"}],"$L5","$L6"]}]}]}]],["$L7","$L8","$L9"],"$La"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"rgIajyDGnwYL9Qdz0xIG3"}
+5:["$","$Lb",null,{"pathKey":"nextjs-05"}]
+6:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/nextjs-04/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"데이터 페칭과 캐시 전략"}]]}],["$","$L2",null,{"href":"/posts/nextjs-06/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Metadata·Open Graph·SEO 기본기"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
 7:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3j-1lpdn3an_-.css","precedence":"next"}]
 8:["$","script","script-0",{"src":"/_next/static/chunks/2_h6is8-aperz.js","async":true}]
 9:["$","script","script-1",{"src":"/_next/static/chunks/3qcoeqbx1mias.js","async":true}]
-a:["$","$Lb",null,{"children":["$","$c",null,{"name":"Next.MetadataOutlet","children":"$@d"}]}]
-d:null
+a:["$","$Lc",null,{"children":["$","$d",null,{"name":"Next.MetadataOutlet","children":"$@e"}]}]
+e:null

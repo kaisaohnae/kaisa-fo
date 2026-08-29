@@ -12,13 +12,13 @@ b:I[45872,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__
 c:I[20683,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js"],"default"]
 d:I[86979,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/0hs6l77ykwsoc.js"],"default"]
 16:I[68027,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default",1]
-:HL["/_next/static/chunks/3ou3k_oca-ann.css","style"]
+:HL["/_next/static/chunks/0aw5gw7bg_b6q.css","style"]
 :HL["/_next/static/chunks/0g93akm33ce_n.css","style"]
 :HL["/_next/static/chunks/0l7zbvjzypglv.css","style"]
 :HL["/_next/static/media/0c795a286deabae8-s.p.3vm0tq4e-zz_5.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/media/5c285b27cdda1fe8-s.p.2_mbdogr7ni8i.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/chunks/3j-1lpdn3an_-.css","style"]
-0:{"P":null,"c":["","posts","flutter-07",""],"q":"","i":false,"f":[[["",{"children":["(site)",{"children":["posts",{"children":[["slug","flutter-07","d",null],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3ou3k_oca-ann.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0g93akm33ce_n.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/0l7zbvjzypglv.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/3t-_5l233af4w.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1uymn__-_z4ug.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ko","className":"syne_53f86cd1-module__kiT3Eq__variable dm_sans_fd62f040-module__0jgVUW__variable","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","script",null,{"async":true,"src":"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2641553863829571","crossOrigin":"anonymous"}]}],["$","body",null,{"children":[["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var t=null;document.cookie.split(';').forEach(function(c){var p=c.trim().split('=');if(p[0]==='kaisa-theme')t=decodeURIComponent(p[1]||'');});document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();"}}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var KEY='kaisa-locale';var loc=null;try{loc=sessionStorage.getItem(KEY);}catch(e){}function fromNav(){var list=[navigator.language].concat(navigator.languages||[]);for(var i=0;i<list.length;i++){var l=String(list[i]||'').toLowerCase();if(l.indexOf('ko')===0)return 'ko';if(l.indexOf('zh')===0)return 'zh';if(l.indexOf('hi')===0)return 'hi';if(l.indexOf('en')===0)return 'en';}return null;}if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc=fromNav();if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc='ko';document.documentElement.lang=loc;}catch(e){document.documentElement.lang='ko';}})();"}}],[["$","$L2",null,{"src":"https://www.googletagmanager.com/gtag/js?id=G-2281QQ6XP4","strategy":"afterInteractive"}],["$","$L2",null,{"id":"google-analytics","strategy":"afterInteractive","children":"\n          window.dataLayer = window.dataLayer || [];\n          function gtag(){dataLayer.push(arguments);}\n          gtag('js', new Date());\n          gtag('config', 'G-2281QQ6XP4');\n        "}]],["$","$L3",null,{}],["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}],["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","$L7",null,{}],["$","$L8",null,{}],["$","$L9",null,{}]]}]]}]]}],{"children":[["$","$1","c",{"children":[[["$","script","script-0",{"src":"/_next/static/chunks/23u3jdspf1pgv.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1hr7-4fb6m83q.js","async":true,"nonce":"$undefined"}]],["$","$La",null,{"children":["$","div",null,{"className":"site-layout","children":[["$","$Lb",null,{}],["$","$Lc",null,{"children":["$","$L4",null,{"parallelRouterKey":"children","error":"$d","errorStyles":[],"errorScripts":[["$","script","script-0",{"src":"/_next/static/chunks/0hs6l77ykwsoc.js","async":true}]],"template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],"$Le","$Lf"]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],"$L10"]}]}]]}],{"children":["$L11",{"children":["$L12",{"children":["$L13",{},null,false,null]},null,false,"$@14"]},null,false,"$@14"]},null,false,null]},null,false,null],"$L15",false]],"m":"$undefined","G":["$16",["$L17","$L18","$L19"]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"DJX3Zf-ybBx2vscYgjP8o"}
+0:{"P":null,"c":["","posts","flutter-07",""],"q":"","i":false,"f":[[["",{"children":["(site)",{"children":["posts",{"children":[["slug","flutter-07","d",null],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0aw5gw7bg_b6q.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0g93akm33ce_n.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/0l7zbvjzypglv.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/3t-_5l233af4w.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1uymn__-_z4ug.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ko","className":"syne_53f86cd1-module__kiT3Eq__variable dm_sans_fd62f040-module__0jgVUW__variable","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","script",null,{"async":true,"src":"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2641553863829571","crossOrigin":"anonymous"}]}],["$","body",null,{"children":[["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var t=null;document.cookie.split(';').forEach(function(c){var p=c.trim().split('=');if(p[0]==='kaisa-theme')t=decodeURIComponent(p[1]||'');});document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();"}}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var KEY='kaisa-locale';var loc=null;try{loc=sessionStorage.getItem(KEY);}catch(e){}function fromNav(){var list=[navigator.language].concat(navigator.languages||[]);for(var i=0;i<list.length;i++){var l=String(list[i]||'').toLowerCase();if(l.indexOf('ko')===0)return 'ko';if(l.indexOf('zh')===0)return 'zh';if(l.indexOf('hi')===0)return 'hi';if(l.indexOf('en')===0)return 'en';}return null;}if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc=fromNav();if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc='ko';document.documentElement.lang=loc;}catch(e){document.documentElement.lang='ko';}})();"}}],[["$","$L2",null,{"src":"https://www.googletagmanager.com/gtag/js?id=G-2281QQ6XP4","strategy":"afterInteractive"}],["$","$L2",null,{"id":"google-analytics","strategy":"afterInteractive","children":"\n          window.dataLayer = window.dataLayer || [];\n          function gtag(){dataLayer.push(arguments);}\n          gtag('js', new Date());\n          gtag('config', 'G-2281QQ6XP4');\n        "}]],["$","$L3",null,{}],["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}],["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","$L7",null,{}],["$","$L8",null,{}],["$","$L9",null,{}]]}]]}]]}],{"children":[["$","$1","c",{"children":[[["$","script","script-0",{"src":"/_next/static/chunks/23u3jdspf1pgv.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1hr7-4fb6m83q.js","async":true,"nonce":"$undefined"}]],["$","$La",null,{"children":["$","div",null,{"className":"site-layout","children":[["$","$Lb",null,{}],["$","$Lc",null,{"children":["$","$L4",null,{"parallelRouterKey":"children","error":"$d","errorStyles":[],"errorScripts":[["$","script","script-0",{"src":"/_next/static/chunks/0hs6l77ykwsoc.js","async":true}]],"template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],"$Le","$Lf"]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],"$L10"]}]}]]}],{"children":["$L11",{"children":["$L12",{"children":["$L13",{},null,false,null]},null,false,"$@14"]},null,false,"$@14"]},null,false,null]},null,false,null],"$L15",false]],"m":"$undefined","G":["$16",["$L17","$L18","$L19"]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"rgIajyDGnwYL9Qdz0xIG3"}
 1a:I[44604,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js"],"default"]
 1c:I[97367,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"OutletBoundary"]
 1d:"$Sreact.suspense"
@@ -33,13 +33,210 @@ f:["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]
 1f:[]
 14:"$W1f"
 15:["$","$1","h",{"children":[null,["$","$L20",null,{"children":"$L21"}],["$","div",null,{"hidden":true,"children":["$","$L22",null,{"children":["$","$1d",null,{"name":"Next.Metadata","children":"$L23"}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}]
-17:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3ou3k_oca-ann.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
+17:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0aw5gw7bg_b6q.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
 18:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0g93akm33ce_n.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
 19:["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/0l7zbvjzypglv.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
 24:I[55489,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],"default"]
-25:I[44398,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],"default"]
-1b:[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"리스트·키·성능의 기본\",\"description\":\"ListView.builder, key, 이미지 캐시, 불필요 리빌드를 줄여 스크롤 성능을 지키는 방법을 정리한다.\",\"datePublished\":\"2026-08-26\",\"url\":\"https://kaisa.co.kr/posts/flutter-07/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"flutter\",\"keywords\":\"flutter\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"리스트·키·성능의 기본\",\"item\":\"https://kaisa.co.kr/posts/flutter-07/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L6",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2026-08-26"}]}],["$","h1",null,{"className":"blog-post__title","children":"리스트·키·성능의 기본"}],["$","$L24",null,{"content":"# 리스트·키·성능의 기본\n\n> 요약: ListView.builder, key, 이미지 캐시, 불필요 리빌드를 줄여 스크롤 성능을 지키는 방법을 정리한다.\n\n---\n\n## 1. 빌더 리스트\n\n아이템이 많으면 `Column` + map이 아니라 **`ListView.builder`**.\n\n```dart\nListView.builder(\n  itemCount: items.length,\n  itemBuilder: (context, index) {\n    final item = items[index];\n    return ListTile(\n      key: ValueKey(item.id),\n      title: Text(item.title),\n    );\n  },\n)\n```\n\n화면에 보이는 만큼만 빌드한다.\n\n---\n\n## 2. Key\n\n같은 타입 위젯이 재배열되면 Flutter는 key로 정체성을 맞춘다.  \n폼·애니메이션·리스트 아이템에 **안정적 id 키**를 준다.\n\n---\n\n## 3. 스크롤 성능\n\n- 무거운 위젯을 타일 안에 중첩하지 않기\n- 네트워크 이미지는 캐시 패키지·사이즈 지정\n- `RepaintBoundary`는 측정 후\n- DevTools Performance / rebuild 하이라이트\n\n---\n\n## 4. const와 분리\n\n변하지 않는 서브트리는 `const` 위젯으로 분리한다.  \n상위 `setState`가 리스트 전체를 흔들지 않게 타일을 Stateless로 둔다.\n\n---\n\n## 정리\n\n리스트 성능은 마법이 아니라 **빌더 + 키 + 작은 타일**의 합이다."}],["$","$L25",null,{"pathKey":"flutter-07"}],["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L6",null,{"href":"/posts/flutter-06/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"비동기·HTTP·JSON으로 서버 연동"}]]}],["$","$L6",null,{"href":"/posts/flutter-08/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"ThemeData로 머티리얼 디자인 토큰"}]]}]]}],["$","$L6",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]]}]}]}]]
+25:T190b,# 리스트·키·성능의 기본
+
+> 요약: 긴 목록은 빌더로 그리고, 키로 아이템 정체성을 지키면 스크롤이 버틴다.
+
+---
+
+## 1. 왜 / 언제
+
+피드·검색 결과·채팅처럼 아이템이 많으면 `Column` + `map`은 한 번에 모든 자식을 만든다. 스크롤이 버벅이고 메모리만 는다.
+
+`ListView.builder`는 화면에 보이는 근처만 위젯으로 만든다. 이것이 기본이다.
+
+같은 타입 행이 재배열되면 또 다른 문제가 생긴다. 입력 중이던 글자가 다른 행으로 옮겨 간다. 원인은 레이아웃이 아니다. Flutter가 **누가 같은 위젯인지**를 자리로만 맞춰서다. 그때 키가 필요하다.
+
+---
+
+## 2. 핵심
+
+키는 위젯의 이름표다.
+
+Flutter는 리빌드할 때 이전 트리와 새 트리를 맞춘다. 기본 규칙은 타입과 위치다. 같은 자리의 `ListTile`은 같은 것으로 본다. 목록이 섞이면 3번 자리의 State가 새 3번 아이템에 붙는다.
+
+키를 주면 타입+키로 맞춘다. 서버 id처럼 **안 바뀌는 값**을 `ValueKey`로 붙인다. 인덱스를 키로 쓰면 재배열과 함께 키가 바뀌므로 의미가 없다.
+
+| 키 | 언제 |
+|----|------|
+| `ValueKey(id)` | 리스트 아이템, 폼 필드. 값이 안정적이어야 한다. |
+| `ObjectKey(obj)` | 동일 인스턴스로 구분할 때. |
+| `UniqueKey()` | 매번 새 위젯으로 강제해 상태를 리셋할 때. |
+| `GlobalKey` | 다른 서브트리에서 State에 접근할 때. 남용하면 비싸다. |
+
+빌더 리스트는 `itemBuilder`가 index마다 위젯을 돌려준다. 화면에 안 보이면 만들지 않는다. 타일은 가볍게 둔다. 무거운 차트·큰 이미지를 행 안에 중첩하지 않는다.
+
+상위 `setState`가 리스트 전체를 다시 돌리지 않게 행을 Stateless로 분리한다. 변하지 않는 서브트리는 `const`다.
+
+네트워크 이미지는 크기와 캐시를 지정한다. 원본 해상도를 스크롤에 그대로 넣지 않는다.
+
+---
+
+## 3. 예제
+
+### 빌더 + 안정적 키
+
+```dart
+class Post {
+  const Post({required this.id, required this.title});
+
+  final String id;
+  final String title;
+}
+
+class PostList extends StatelessWidget {
+  const PostList({super.key, required this.items});
+
+  final List<Post> items;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: items.length,
+      itemBuilder: (BuildContext context, int index) {
+        final Post item = items[index];
+        return PostTile(
+          key: ValueKey<String>(item.id),
+          post: item,
+        );
+      },
+    );
+  }
+}
+
+class PostTile extends StatelessWidget {
+  const PostTile({super.key, required this.post});
+
+  final Post post;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: Text(post.title),
+    );
+  }
+}
+```
+
+`key`는 리스트의 직접 자식에 둔다. `ListTile` 안쪽이 아니라 `PostTile`에 붙인다. Flutter가 맞추는 대상은 부모 `children`의 그 자리다.
+
+아이템이 매우 많으면 `ListView.separated`로 구분선을 빌더에 맡긴다. `Column`에 `Divider`를 미리 다 만들지 않는다.
+
+### 키가 없을 때 깨지는 입력
+
+```dart
+class NamedField extends StatefulWidget {
+  const NamedField({super.key, required this.label});
+
+  final String label;
+
+  @override
+  State<NamedField> createState() => _NamedFieldState();
+}
+
+class _NamedFieldState extends State<NamedField> {
+  final TextEditingController controller = TextEditingController();
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      controller: controller,
+      decoration: InputDecoration(labelText: widget.label),
+    );
+  }
+}
+```
+
+이 필드를 리스트에서 순서를 바꾸면, 키가 없을 때 컨트롤러가 잘못된 행에 남는다. 각 행에 `ValueKey(label)` 또는 항목 id를 준다.
+
+### 스크롤 성능
+
+```dart
+class AvatarTile extends StatelessWidget {
+  const AvatarTile({super.key, required this.url, required this.title});
+
+  final String url;
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: Image.network(
+        url,
+        width: 40,
+        height: 40,
+        fit: BoxFit.cover,
+        cacheWidth: 80,
+      ),
+      title: Text(title, maxLines: 1, overflow: TextOverflow.ellipsis),
+    );
+  }
+}
+```
+
+`cacheWidth`는 디코드 크기를 제한한다. 디스플레이 픽셀을 고려해 논리 크기의 2배 정도가 흔하다.
+
+고정 높이 행이면 `itemExtent`를 준다. 스크롤 오프셋 계산이 싸진다.
+
+```dart
+ListView.builder(
+  itemExtent: 56,
+  itemCount: items.length,
+  itemBuilder: (BuildContext context, int index) {
+    return PostTile(
+      key: ValueKey<String>(items[index].id),
+      post: items[index],
+    );
+  },
+);
+```
+
+`RepaintBoundary`는 측정 후에 쓴다. 추측으로 모든 행에 씌우지 않는다. DevTools Performance와 rebuild 하이라이트로 먼저 본다.
+
+---
+
+## 4. 흔한 실수
+
+| 실수 | 결과 | 대안 |
+|------|------|------|
+| `Column` + `map`으로 긴 목록 | 한 번에 전부 빌드 | `ListView.builder` |
+| `key: ValueKey(index)` | 재배열 때 상태 꼬임 | 안정적 id |
+| 행을 화면 State 안에 인라인 | 상위 setState가 전부 리빌드 | 타일 Stateless 분리 |
+| 원본 이미지를 행에 그대로 | 스크롤 드롭 | 크기·캐시 지정 |
+| `shrinkWrap` 기본값화 | 가상화 포기 | 부모가 유한 높이 |
+
+`GlobalKey`로 행을 식별하지 않는다. 리스트 길이만큼 전역 키가 생기면 비용이 크다. `ValueKey`면 충분하다.
+
+`Sliver`는 커스텀 스크롤(헤더 고정, 그리드 혼합)이 필요할 때 쓴다. 일반 목록은 `ListView.builder`로 시작한다.
+
+---
+
+## 정리
+
+리스트 성능은 마법이 아니다. **빌더 + 키 + 작은 타일**의 합이다. 키는 자리 대신 정체성을 알려 주는 이름표다.
+
+---
+
+## 연습
+
+1. 200개 항목을 `Column`과 `ListView.builder`로 각각 그려 스크롤을 비교한다.
+2. 입력 필드 리스트를 재배열하고, id 키 전후에 텍스트가 따라오는지 확인한다.
+3. 타일을 Stateless로 분리하고 `const` 생성자를 붙인다.
+4. 네트워크 이미지에 `width`/`height`/`cacheWidth`를 지정한다.1b:[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"리스트·키·성능의 기본\",\"description\":\"긴 목록은 빌더로 그리고, 키로 아이템 정체성을 지키면 스크롤이 버틴다.\",\"datePublished\":\"2026-01-26\",\"url\":\"https://kaisa.co.kr/posts/flutter-07/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"flutter\",\"keywords\":\"flutter\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"리스트·키·성능의 기본\",\"item\":\"https://kaisa.co.kr/posts/flutter-07/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L6",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2026-01-26"}]}],["$","h1",null,{"className":"blog-post__title","children":"리스트·키·성능의 기본"}],["$","$L24",null,{"content":"$25"}],"$L26","$L27"]}]}]}]]
+28:I[44398,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],"default"]
+26:["$","$L28",null,{"pathKey":"flutter-07"}]
+27:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L6",null,{"href":"/posts/flutter-06/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"비동기·HTTP·JSON으로 서버 연동"}]]}],["$","$L6",null,{"href":"/posts/flutter-08/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"ThemeData로 머티리얼 디자인 토큰"}]]}]]}],["$","$L6",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
 21:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
-26:I[27201,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"IconMark"]
+29:I[27201,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"IconMark"]
 1e:null
-23:[["$","title","0",{"children":"리스트·키·성능의 기본 · Kaisa"}],["$","meta","1",{"name":"description","content":"ListView.builder, key, 이미지 캐시, 불필요 리빌드를 줄여 스크롤 성능을 지키는 방법을 정리한다."}],["$","meta","2",{"name":"application-name","content":"Kaisa"}],["$","meta","3",{"name":"robots","content":"index, follow"}],["$","meta","4",{"name":"naver-site-verification","content":"4bc13b857695ff44988c260cb26124eedbcda90e"}],["$","link","5",{"rel":"canonical","href":"https://kaisa.co.kr/posts/flutter-07/"}],["$","meta","6",{"property":"og:title","content":"리스트·키·성능의 기본 · Kaisa"}],["$","meta","7",{"property":"og:description","content":"ListView.builder, key, 이미지 캐시, 불필요 리빌드를 줄여 스크롤 성능을 지키는 방법을 정리한다."}],["$","meta","8",{"property":"og:url","content":"https://kaisa.co.kr/posts/flutter-07/"}],["$","meta","9",{"property":"og:site_name","content":"Kaisa"}],["$","meta","10",{"property":"og:locale","content":"ko_KR"}],["$","meta","11",{"property":"og:type","content":"article"}],["$","meta","12",{"name":"twitter:card","content":"summary"}],["$","meta","13",{"name":"twitter:title","content":"리스트·키·성능의 기본 · Kaisa"}],["$","meta","14",{"name":"twitter:description","content":"ListView.builder, key, 이미지 캐시, 불필요 리빌드를 줄여 스크롤 성능을 지키는 방법을 정리한다."}],["$","link","15",{"rel":"shortcut icon","href":"/img/common/favicon.ico"}],["$","link","16",{"rel":"icon","href":"/img/common/favicon.ico"}],["$","link","17",{"rel":"apple-touch-icon","href":"/img/common/favicon.ico"}],["$","$L26","18",{}]]
+23:[["$","title","0",{"children":"리스트·키·성능의 기본 · Kaisa"}],["$","meta","1",{"name":"description","content":"긴 목록은 빌더로 그리고, 키로 아이템 정체성을 지키면 스크롤이 버틴다."}],["$","meta","2",{"name":"application-name","content":"Kaisa"}],["$","meta","3",{"name":"robots","content":"index, follow"}],["$","meta","4",{"name":"naver-site-verification","content":"4bc13b857695ff44988c260cb26124eedbcda90e"}],["$","link","5",{"rel":"canonical","href":"https://kaisa.co.kr/posts/flutter-07/"}],["$","meta","6",{"property":"og:title","content":"리스트·키·성능의 기본 · Kaisa"}],["$","meta","7",{"property":"og:description","content":"긴 목록은 빌더로 그리고, 키로 아이템 정체성을 지키면 스크롤이 버틴다."}],["$","meta","8",{"property":"og:url","content":"https://kaisa.co.kr/posts/flutter-07/"}],["$","meta","9",{"property":"og:site_name","content":"Kaisa"}],["$","meta","10",{"property":"og:locale","content":"ko_KR"}],["$","meta","11",{"property":"og:type","content":"article"}],["$","meta","12",{"name":"twitter:card","content":"summary"}],["$","meta","13",{"name":"twitter:title","content":"리스트·키·성능의 기본 · Kaisa"}],["$","meta","14",{"name":"twitter:description","content":"긴 목록은 빌더로 그리고, 키로 아이템 정체성을 지키면 스크롤이 버틴다."}],["$","link","15",{"rel":"shortcut icon","href":"/img/common/favicon.ico"}],["$","link","16",{"rel":"icon","href":"/img/common/favicon.ico"}],["$","link","17",{"rel":"apple-touch-icon","href":"/img/common/favicon.ico"}],["$","$L29","18",{}]]

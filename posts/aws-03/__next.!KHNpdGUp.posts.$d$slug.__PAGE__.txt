@@ -1,9 +1,142 @@
 1:"$Sreact.fragment"
 2:I[22016,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],""]
 3:I[55489,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],"default"]
-4:I[44398,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],"default"]
-5:I[97367,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"OutletBoundary"]
-6:"$Sreact.suspense"
+b:I[44398,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],"default"]
+c:I[97367,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"OutletBoundary"]
+d:"$Sreact.suspense"
 :HL["/_next/static/chunks/3j-1lpdn3an_-.css","style"]
-0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"EC2 인스턴스 기초와 운영 포인트\",\"description\":\"AMI·인스턴스 타입·키페어·스토리지까지 EC2를 올리고 안전하게 접속·운영하는 기본을 정리한다.\",\"datePublished\":\"2026-08-26\",\"url\":\"https://kaisa.co.kr/posts/aws-03/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"aws\",\"keywords\":\"aws\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"EC2 인스턴스 기초와 운영 포인트\",\"item\":\"https://kaisa.co.kr/posts/aws-03/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2026-08-26"}]}],["$","h1",null,{"className":"blog-post__title","children":"EC2 인스턴스 기초와 운영 포인트"}],["$","$L3",null,{"content":"# EC2 인스턴스 기초와 운영 포인트\n\n> 요약: AMI·인스턴스 타입·키페어·스토리지까지 EC2를 올리고 안전하게 접속·운영하는 기본을 정리한다.\n\n---\n\n## 1. EC2 선택 체크리스트\n\n| 항목 | 고민 |\n|------|------|\n| AMI | Amazon Linux 2023 / Ubuntu LTS |\n| 타입 | `t3.micro` 실험, 부하는 측정 후 |\n| 스토리지 | gp3, 암호화 기본 |\n| 네트워크 | 프라이빗 서브넷 + SSM 권장 |\n| IAM 역할 | 인스턴스 프로필로 권한 부여 |\n\nSSH 키를 인터넷에 계속 열어두는 구성보다 **Systems Manager Session Manager**를 우선 검토한다.\n\n---\n\n## 2. 최소 생성 흐름\n\n1. IAM 역할: `AmazonSSMManagedInstanceCore` 등\n2. 보안 그룹: 필요한 포트만\n3. 유저 데이터로 패키지/에이전트 설치(선택)\n4. 태그: `Name`, `Env`, `Owner`\n\n```bash\naws ec2 describe-instances --filters Name=tag:Env,Values=dev\n```\n\n---\n\n## 3. 스토리지\n\n- **EBS**: 인스턴스에 붙는 블록. 스냅샷으로 백업.\n- **인스턴스 스토어**: 휘발성. 중요 데이터 금지.\n\n스냅샷 수명주기(DLM)를 초기에 걸어 두면 사고 대응이 쉬워진다.\n\n---\n\n## 4. 운영에서 자주 하는 일\n\n- CPU/메모리 알람\n- 오토스케일 전에 단일 인스턴스 헬스체크\n- 변경은 AMI 또는 구성 관리(이미지 베이킹)로 재현\n\n---\n\n## 정리\n\nEC2는 “서버 한 대”가 아니라 **역할·SG·스토리지·접속 경로**를 세트로 설계한다."}],["$","$L4",null,{"pathKey":"aws-03"}],["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/aws-02/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"VPC·서브넷·보안 그룹으로 네트워크 설계하기"}]]}],["$","$L2",null,{"href":"/posts/aws-04/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"S3 버킷·접근 제어·수명주기"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]]}]}]}]],[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3j-1lpdn3an_-.css","precedence":"next"}],["$","script","script-0",{"src":"/_next/static/chunks/2_h6is8-aperz.js","async":true}],["$","script","script-1",{"src":"/_next/static/chunks/3qcoeqbx1mias.js","async":true}]],["$","$L5",null,{"children":["$","$6",null,{"name":"Next.MetadataOutlet","children":"$@7"}]}]]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"DJX3Zf-ybBx2vscYgjP8o"}
-7:null
+4:T1e2d,# EC2 인스턴스 기초와 운영 포인트
+
+> 요약: 가상 서버(EC2)를 고르고 올리는 과정과, 키·스토리지·접속 경로를 안전하게 운영하는 기본을 정리한다.
+
+---
+
+## 1. 언제 EC2인가
+
+EC2는 Elastic Compute Cloud, AWS의 가상 서버다. OS를 고르고, 패키지를 깔고, 프로세스를 직접 운영할 때 쓴다.
+
+| 맞는 경우 | 덜 맞는 경우 |
+|-----------|--------------|
+| 커스텀 런타임·에이전트가 필요할 때 | 컨테이너만으로 충분하고 ECS/Fargate가 맞을 때 |
+| 기존 VM 운영 방식이 팀에 익숙할 때 | 요청 단위 실행이면 Lambda가 더 단순할 때 |
+| GPU·특수 인스턴스 패밀리가 필요할 때 | 정적 사이트면 S3+CloudFront면 충분할 때 |
+| 장시간 프로세스, 특수 라이선스 소프트웨어 | 관리형 데이터베이스만 필요할 때 (RDS) |
+
+“서버 한 대”로 시작해도 된다. 다만 역할·보안 그룹·스토리지·접속 경로를 세트로 본다. 공인 IP에 SSH를 열어 두는 구성은 데모에서 끝낸다.
+
+---
+
+## 2. 핵심 개념
+
+**AMI**는 Amazon Machine Image, 부팅 템플릿이다. Amazon Linux 2023 또는 Ubuntu LTS가 무난하다. 출처 불명 AMI는 쓰지 않는다.
+
+**인스턴스 타입**은 CPU·메모리 묶음이다. 실험은 `t3.micro` 또는 프리 티어 해당 타입으로 시작한다. 부하는 측정 후에 키운다. 감으로 `c6i.2xlarge`를 켜지 않는다.
+
+**키 페어**는 SSH용 공개키/비밀키다. 비밀키(`.pem`)는 로컬에만 둔다. 저장소·슬랙에 올리지 않는다. 가능하면 SSH 대신 **Systems Manager Session Manager**를 쓴다. 인스턴스에 퍼블릭 22를 안 열어도 된다.
+
+**인스턴스 프로필**은 EC2에 붙인 IAM 역할이다. 액세스 키를 서버에 파일로 두지 않는다. S3 읽기가 필요하면 역할에 `s3:GetObject`만 준다.
+
+**EBS**는 Elastic Block Store, 인스턴스에 붙는 디스크다. `gp3`, 암호화 기본이 실무선이다. 인스턴스 스토어는 휘발성이다. 중요 데이터를 두지 않는다.
+
+**유저 데이터**는 최초 부팅 스크립트다. 비밀을 여기에 평문으로 넣지 않는다. 시크릿은 IAM + Secrets Manager 또는 SSM Parameter Store다.
+
+태그는 선택이 아니다. `Name`, `Env`, `Owner`, `Project`를 붙인다. 비용과 정리의 단위다.
+
+---
+
+## 3. 최소 생성 흐름
+
+1. IAM 역할: `AmazonSSMManagedInstanceCore`를 붙인 인스턴스 프로필
+2. 보안 그룹: 앱 포트는 ALB SG만. 22는 닫거나 내 IP만 임시
+3. 서브넷: 가능하면 프라이빗. 아웃바운드는 NAT 또는 엔드포인트
+4. 스토리지: gp3, 암호화, 필요한 크기만
+5. 태그: `Name=app-dev`, `Env=dev`
+6. 종료 보호는 프로덕션에서 검토
+
+```bash
+aws ec2 describe-instances --filters Name=tag:Env,Values=dev \
+  --query "Reservations[].Instances[].{id:InstanceId,st:State.Name,az:Placement.AvailabilityZone}"
+```
+
+SSM 접속 개념:
+
+```bash
+aws ssm start-session --target i-YOUR_INSTANCE_ID
+```
+
+유저 데이터에는 패키지·에이전트만. 예시는 비밀이 없다.
+
+```bash
+#!/bin/bash
+dnf update -y
+# 앱 설치는 이미지 베이킹 또는 배포 파이프라인에서
+```
+
+이미지를 매번 손으로 고치지 않는다. 변경은 AMI를 새로 굽거나, 구성 관리로 재현한다. “프로덕션만 손 수정”은 다음 장애의 원인이다.
+
+---
+
+## 4. 운영 시 주의
+
+**접속.** 키 페어를 분실하면 기본 AMI로는 회수가 어렵다. SSM이 있으면 키 분실 영향이 작다. 배스천을 둘 거면 배스천도 패치·SG·로그를 운영 대상에 넣는다.
+
+**백업.** EBS 스냅샷을 주기적으로 뜬다. DLM(Data Lifecycle Manager)으로 수명을 정한다. 스냅샷만 쌓이면 비용이 는다. 복원 테스트를 한 번 한다. 루트 볼륨만 믿고 DB 파일을 EC2 로컬에 두면 RDS를 쓰는 편이 낫다.
+
+**비용.** 중지(Stop)는 EBS 요금이 남는다. 종료(Terminate)는 볼륨 삭제 옵션을 확인한다. 탄력적 IP를 인스턴스에 안 붙이고 들고 있으면 과금된다. 개발 인스턴스는 스케줄 중지를 검토한다.
+
+**보안.** 퍼블릭 IP + 열린 22 + 약한 사용자는 수 분 안에 스캔 대상이다. IMDSv2를 요구하는 설정이 기본에 가깝다. IMDS는 인스턴스 메타데이터 서비스다. 역할 자격이 앱 버그로 새지 않게 한다.
+
+**관측.** CPU 크레딧(T 계열), 상태 체크 실패, 디스크 사용률 알람을 단다. 메모리·디스크는 CloudWatch 에이전트가 필요할 수 있다.
+
+**패치.** 보안 업데이트를 미루지 않는다. 오토스케일 그룹이면 새 AMI로 롤링하는 편이 재현 가능하다.
+
+**IMDSv2.** 인스턴스 메타데이터는 역할 자격을 앱에 건네는 통로다. SSRF로 IMDS를 읽으면 키가 샌다. hop limit과 IMDSv2 필수 옵션을 시작 템플릿에 넣는다. 구형 에이전트가 깨지면 그때만 예외를 문서화한다.
+
+**종료 vs 중지.** 중지는 과금이 줄지만 EBS는 남는다. 종료는 실수 삭제가 난다. 프로덕션은 종료 보호. 개발은 태그 `Keep=false`면 주기 스크립트가 지우게 할 수 있다. 스크립트는 dry-run을 먼저 한다.
+
+**스팟.** 가격이 싸지만 회수된다. 상태 없는 워커·CI에만 검토한다. 데이터베이스와 세션 원본은 온디맨드다.
+
+---
+
+## 5. 정리
+
+EC2는 가상머신이 아니다. **역할·SG·스토리지·접속 경로**를 세트로 설계한 컴퓨트다. SSH를 인터넷에 상시 열지 않고, 키 대신 역할, 로컬 디스크 대신 스냅샷·관리형 DB를 기본으로 둔다.
+
+### 체크리스트
+
+- [ ] IAM 인스턴스 프로필을 붙인다. 서버에 액세스 키 파일을 두지 않는다.
+- [ ] SSM을 우선하고 22번 상시 오픈을 피한다. 공개 SSH는 무차별 대입 대상이다.
+- [ ] EBS 암호화를 켠다. 스냅샷에도 암호화가 이어지게 한다.
+- [ ] `Name`/`Env`/`Owner` 태그를 단다. 태그 없는 인스턴스는 비용 추적에서 실종된다.
+- [ ] 스냅샷 주기와 개발 인스턴스 중지 정책을 정한다. 켜 둔 채 잊으면 요금만 남는다.
+
+### 연습
+
+1. SSM 역할만으로 인스턴스를 올리고 퍼블릭 22 없이 세션이 되는지 확인한다.
+2. `describe-instances`를 태그 필터로 실행해 목록이 비지 않는지 본다.
+3. 스냅샷을 하나 뜨고, 새 볼륨으로 복원해 파일이 있는지 확인한다.
+
+시작 템플릿에 넣을 최소 IAM·스토리지 메모:
+
+- 역할: SSM + 앱이 필요한 S3 읽기만. `AmazonS3FullAccess` 금지
+- 루트 볼륨: 20–30 GiB gp3로 시작. 로그가 디스크를 먹기 전에 CloudWatch로 보낸다
+- 퍼블릭 IP: 프라이빗 서브넷이면 자동 할당 끄기
+
+인스턴스가 `running`인데 SSM이 안 되면 대부분 역할, 서브넷 아웃바운드(443), SSM 엔드포인트 세 가지다. 22를 열어서 우회하지 말고 그 셋을 고친다.
+
+CPU 크레딧이 떨어진 T 계열은 갑자기 느려진다. 개발은 참을 수 있다. 프로덕션 API에 burstable만 두고 알람이 없으면 원인 찾기가 늦다. 부하 테스트를 한 뒤에 고정 성능 패밀리로 바꿀지 정한다.
+
+키 페어를 팀 공유 폴더에 두지 않는다. 사람마다 SSM과 IAM이 있다. `.pem`이 슬랙에 올라가면 그 키로 열리는 인스턴스는 모두 오염으로 본다.
+
+CloudWatch 에이전트 설치를 유저 데이터에 넣을 수 있다. 다만 시크릿은 넣지 말고, 역할로 메트릭을 보낸다. 디스크 90% 알람이 없으면 로그가 루트를 채운 뒤에야 접속이 실패한다.
+
+---
+
+---0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"EC2 인스턴스 기초와 운영 포인트\",\"description\":\"가상 서버(EC2)를 고르고 올리는 과정과, 키·스토리지·접속 경로를 안전하게 운영하는 기본을 정리한다.\",\"datePublished\":\"2024-02-28\",\"url\":\"https://kaisa.co.kr/posts/aws-03/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"aws\",\"keywords\":\"aws\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"EC2 인스턴스 기초와 운영 포인트\",\"item\":\"https://kaisa.co.kr/posts/aws-03/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2024-02-28"}]}],["$","h1",null,{"className":"blog-post__title","children":"EC2 인스턴스 기초와 운영 포인트"}],["$","$L3",null,{"content":"$4"}],"$L5","$L6"]}]}]}]],["$L7","$L8","$L9"],"$La"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"rgIajyDGnwYL9Qdz0xIG3"}
+5:["$","$Lb",null,{"pathKey":"aws-03"}]
+6:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/aws-02/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"VPC·서브넷·보안 그룹으로 네트워크 설계하기"}]]}],["$","$L2",null,{"href":"/posts/aws-04/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"S3 버킷·접근 제어·수명주기"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
+7:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3j-1lpdn3an_-.css","precedence":"next"}]
+8:["$","script","script-0",{"src":"/_next/static/chunks/2_h6is8-aperz.js","async":true}]
+9:["$","script","script-1",{"src":"/_next/static/chunks/3qcoeqbx1mias.js","async":true}]
+a:["$","$Lc",null,{"children":["$","$d",null,{"name":"Next.MetadataOutlet","children":"$@e"}]}]
+e:null

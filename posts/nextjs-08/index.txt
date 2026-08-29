@@ -12,13 +12,13 @@ b:I[45872,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__
 c:I[20683,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js"],"default"]
 d:I[86979,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/0hs6l77ykwsoc.js"],"default"]
 16:I[68027,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default",1]
-:HL["/_next/static/chunks/3ou3k_oca-ann.css","style"]
+:HL["/_next/static/chunks/0aw5gw7bg_b6q.css","style"]
 :HL["/_next/static/chunks/0g93akm33ce_n.css","style"]
 :HL["/_next/static/chunks/0l7zbvjzypglv.css","style"]
 :HL["/_next/static/media/0c795a286deabae8-s.p.3vm0tq4e-zz_5.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/media/5c285b27cdda1fe8-s.p.2_mbdogr7ni8i.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/chunks/3j-1lpdn3an_-.css","style"]
-0:{"P":null,"c":["","posts","nextjs-08",""],"q":"","i":false,"f":[[["",{"children":["(site)",{"children":["posts",{"children":[["slug","nextjs-08","d",null],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3ou3k_oca-ann.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0g93akm33ce_n.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/0l7zbvjzypglv.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/3t-_5l233af4w.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1uymn__-_z4ug.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ko","className":"syne_53f86cd1-module__kiT3Eq__variable dm_sans_fd62f040-module__0jgVUW__variable","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","script",null,{"async":true,"src":"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2641553863829571","crossOrigin":"anonymous"}]}],["$","body",null,{"children":[["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var t=null;document.cookie.split(';').forEach(function(c){var p=c.trim().split('=');if(p[0]==='kaisa-theme')t=decodeURIComponent(p[1]||'');});document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();"}}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var KEY='kaisa-locale';var loc=null;try{loc=sessionStorage.getItem(KEY);}catch(e){}function fromNav(){var list=[navigator.language].concat(navigator.languages||[]);for(var i=0;i<list.length;i++){var l=String(list[i]||'').toLowerCase();if(l.indexOf('ko')===0)return 'ko';if(l.indexOf('zh')===0)return 'zh';if(l.indexOf('hi')===0)return 'hi';if(l.indexOf('en')===0)return 'en';}return null;}if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc=fromNav();if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc='ko';document.documentElement.lang=loc;}catch(e){document.documentElement.lang='ko';}})();"}}],[["$","$L2",null,{"src":"https://www.googletagmanager.com/gtag/js?id=G-2281QQ6XP4","strategy":"afterInteractive"}],["$","$L2",null,{"id":"google-analytics","strategy":"afterInteractive","children":"\n          window.dataLayer = window.dataLayer || [];\n          function gtag(){dataLayer.push(arguments);}\n          gtag('js', new Date());\n          gtag('config', 'G-2281QQ6XP4');\n        "}]],["$","$L3",null,{}],["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}],["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","$L7",null,{}],["$","$L8",null,{}],["$","$L9",null,{}]]}]]}]]}],{"children":[["$","$1","c",{"children":[[["$","script","script-0",{"src":"/_next/static/chunks/23u3jdspf1pgv.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1hr7-4fb6m83q.js","async":true,"nonce":"$undefined"}]],["$","$La",null,{"children":["$","div",null,{"className":"site-layout","children":[["$","$Lb",null,{}],["$","$Lc",null,{"children":["$","$L4",null,{"parallelRouterKey":"children","error":"$d","errorStyles":[],"errorScripts":[["$","script","script-0",{"src":"/_next/static/chunks/0hs6l77ykwsoc.js","async":true}]],"template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],"$Le","$Lf"]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],"$L10"]}]}]]}],{"children":["$L11",{"children":["$L12",{"children":["$L13",{},null,false,null]},null,false,"$@14"]},null,false,"$@14"]},null,false,null]},null,false,null],"$L15",false]],"m":"$undefined","G":["$16",["$L17","$L18","$L19"]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"DJX3Zf-ybBx2vscYgjP8o"}
+0:{"P":null,"c":["","posts","nextjs-08",""],"q":"","i":false,"f":[[["",{"children":["(site)",{"children":["posts",{"children":[["slug","nextjs-08","d",null],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0aw5gw7bg_b6q.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0g93akm33ce_n.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/0l7zbvjzypglv.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/3t-_5l233af4w.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1uymn__-_z4ug.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ko","className":"syne_53f86cd1-module__kiT3Eq__variable dm_sans_fd62f040-module__0jgVUW__variable","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","script",null,{"async":true,"src":"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2641553863829571","crossOrigin":"anonymous"}]}],["$","body",null,{"children":[["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var t=null;document.cookie.split(';').forEach(function(c){var p=c.trim().split('=');if(p[0]==='kaisa-theme')t=decodeURIComponent(p[1]||'');});document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();"}}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var KEY='kaisa-locale';var loc=null;try{loc=sessionStorage.getItem(KEY);}catch(e){}function fromNav(){var list=[navigator.language].concat(navigator.languages||[]);for(var i=0;i<list.length;i++){var l=String(list[i]||'').toLowerCase();if(l.indexOf('ko')===0)return 'ko';if(l.indexOf('zh')===0)return 'zh';if(l.indexOf('hi')===0)return 'hi';if(l.indexOf('en')===0)return 'en';}return null;}if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc=fromNav();if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc='ko';document.documentElement.lang=loc;}catch(e){document.documentElement.lang='ko';}})();"}}],[["$","$L2",null,{"src":"https://www.googletagmanager.com/gtag/js?id=G-2281QQ6XP4","strategy":"afterInteractive"}],["$","$L2",null,{"id":"google-analytics","strategy":"afterInteractive","children":"\n          window.dataLayer = window.dataLayer || [];\n          function gtag(){dataLayer.push(arguments);}\n          gtag('js', new Date());\n          gtag('config', 'G-2281QQ6XP4');\n        "}]],["$","$L3",null,{}],["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}],["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","$L7",null,{}],["$","$L8",null,{}],["$","$L9",null,{}]]}]]}]]}],{"children":[["$","$1","c",{"children":[[["$","script","script-0",{"src":"/_next/static/chunks/23u3jdspf1pgv.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1hr7-4fb6m83q.js","async":true,"nonce":"$undefined"}]],["$","$La",null,{"children":["$","div",null,{"className":"site-layout","children":[["$","$Lb",null,{}],["$","$Lc",null,{"children":["$","$L4",null,{"parallelRouterKey":"children","error":"$d","errorStyles":[],"errorScripts":[["$","script","script-0",{"src":"/_next/static/chunks/0hs6l77ykwsoc.js","async":true}]],"template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],"$Le","$Lf"]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],"$L10"]}]}]]}],{"children":["$L11",{"children":["$L12",{"children":["$L13",{},null,false,null]},null,false,"$@14"]},null,false,"$@14"]},null,false,null]},null,false,null],"$L15",false]],"m":"$undefined","G":["$16",["$L17","$L18","$L19"]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"rgIajyDGnwYL9Qdz0xIG3"}
 1a:I[44604,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js"],"default"]
 1c:I[97367,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"OutletBoundary"]
 1d:"$Sreact.suspense"
@@ -33,18 +33,39 @@ f:["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]
 1f:[]
 14:"$W1f"
 15:["$","$1","h",{"children":[null,["$","$L20",null,{"children":"$L21"}],["$","div",null,{"hidden":true,"children":["$","$L22",null,{"children":["$","$1d",null,{"name":"Next.Metadata","children":"$L23"}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}]
-17:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3ou3k_oca-ann.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
+17:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0aw5gw7bg_b6q.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
 18:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0g93akm33ce_n.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
 19:["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/0l7zbvjzypglv.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
 24:I[55489,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],"default"]
-26:I[44398,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],"default"]
-25:T950,# 미들웨어와 인증 경계
+25:T1861,# 미들웨어와 인증 경계
 
-> 요약: middleware로 경로 보호·리다이렉트를 다루고, 세션·토큰을 어디에 둘지 실무 기준으로 정리한다.
+> 요약: 요청이 페이지에 닿기 전에 경로를 가리고, 실제 권한은 서버 레이아웃에서 다시 확인한다.
 
 ---
 
-## 1. middleware.ts
+## 1. 왜 이 주제가 필요한가
+
+관리자 URL을 아는 사람만 막아도 부족하다. 주소가 열리기 전에 한 번 거르고, 페이지·API에서 세션을 다시 본다.
+
+**미들웨어**는 요청이 라우트 핸들러·페이지에 들어가기 전, 네트워크 경계에서 돌아가는 함수다. 리다이렉트·헤더·매처로 경로를 가른다. DB를 깊게 조회하는 자리가 아니다.
+
+인증 정보(세션 쿠키 vs 토큰)를 어디에 둘지가 XSS·CSRF 표면을 가른다.
+
+---
+
+## 2. 한 줄 규칙
+
+미들웨어는 거친 차단(로그인 여부, 경로 prefix)만 한다. 역할·권한은 서버 레이아웃이나 Route Handler에서 다시 검사한다.
+
+토큰은 HttpOnly 쿠키가 기본선이다. `localStorage`에 액세스 토큰만 두면 XSS에 그대로 노출된다.
+
+---
+
+## 3. 예제
+
+### middleware.ts (Next.js 15)
+
+프로젝트 루트 또는 `src/middleware.ts`다. `app/` 안이 아니다.
 
 ```ts
 // middleware.ts
@@ -53,9 +74,14 @@ import type {NextRequest} from 'next/server';
 
 export function middleware(request: NextRequest) {
   const token = request.cookies.get('session')?.value;
-  if (!token && request.nextUrl.pathname.startsWith('/manager')) {
-    return NextResponse.redirect(new URL('/login/', request.url));
+  const isManager = request.nextUrl.pathname.startsWith('/manager');
+
+  if (isManager && !token) {
+    const login = new URL('/login/', request.url);
+    login.searchParams.set('from', request.nextUrl.pathname);
+    return NextResponse.redirect(login);
   }
+
   return NextResponse.next();
 }
 
@@ -64,71 +90,123 @@ export const config = {
 };
 ```
 
-엣지에서 빠르게 경로를 가른다. **무거운 DB 조회**는 넣지 않는 편이 좋다.
+`matcher`로 검사할 경로만 지정한다. 모든 정적 파일에 미들웨어를 태우면 비용만 는다.
 
----
+쿠키 존재만 본다. 서명 검증·DB 조회는 레이아웃으로 미룬다. 만료된 쿠키를 들고 온 사용자는 미들웨어를 통과한 뒤 레이아웃에서 `redirect`된다.
 
-## 2. 인증 정보 위치
+Next.js 16은 같은 역할을 `proxy.ts`로 옮기는 방향이다. 파일 이름과 런타임 기본값이 다를 수 있다. “경로를 가르는 네트워크 경계”라는 역할은 같다. 프로젝트 버전의 파일명을 확인한다.
+
+### 인증 정보 위치
 
 | 저장 | 장점 | 주의 |
 |------|------|------|
-| HttpOnly 쿠키 | XSS에 상대적으로 안전 | CSRF·SameSite |
-| 메모리/상태 | XSS 표면 | 새로고침 시 소실 → 보통 쿠키와 조합 |
-| localStorage | 구현 쉬움 | XSS 위험 |
+| HttpOnly + Secure 쿠키 | JS가 못 읽음. XSS에 상대적으로 안전 | SameSite, CSRF, 도메인 |
+| 메모리(React state) | XSS 표면이 작음 | 새로고침 시 소실. 쿠키와 조합 |
+| `localStorage` | 구현이 쉬움 | XSS 시 토큰 탈취 |
 
-SPA+별도 API면 쿠키 또는 Bearer.  
-Next 풀스택이면 쿠키 세션 + Server Component에서 검증이 흔하다.
+Next 풀스택이면 쿠키 세션 + Server Component에서 `cookies()`로 읽는 구성이 흔하다. SPA + 별도 API면 쿠키 또는 Authorization 헤더. 헤더만 쓰면 CSRF는 줄어들고 XSS 위험은 커진다.
 
----
+### 레이아웃에서 가드
 
-## 3. 레이아웃에서 가드
+```ts
+// lib/auth.ts
+import {cookies} from 'next/headers';
+
+export type Session = {userId: string; role: 'admin' | 'user'};
+
+export async function getSession(): Promise<Session | null> {
+  const jar = await cookies();
+  const token = jar.get('session')?.value;
+  if (!token) return null;
+  // 서명 검증·만료 확인. 실패하면 null
+  return verifySessionToken(token);
+}
+
+async function verifySessionToken(token: string): Promise<Session | null> {
+  void token;
+  return null;
+}
+```
+
+Next.js 15에서 `cookies()`는 Promise다. `await`한다.
 
 ```tsx
 // app/manager/layout.tsx
+import type {ReactNode} from 'react';
 import {redirect} from 'next/navigation';
 import {getSession} from '@/lib/auth';
 
-export default async function ManagerLayout({children}: {children: React.ReactNode}) {
+export default async function ManagerLayout({children}: {children: ReactNode}) {
   const session = await getSession();
   if (!session) redirect('/login/');
+  if (session.role !== 'admin') redirect('/');
   return <div>{children}</div>;
 }
 ```
 
-미들웨어(거친 차단) + 레이아웃/페이지(정확한 권한) **이중**이 안전하다.
+미들웨어(prefix 차단) + 레이아웃(정확한 권한)이 한 쌍이다. 하나만 있으면 구멍 난다.
+
+관리자 API도 같은 `getSession`을 탄다. UI만 숨기고 API가 열려 있으면 의미가 없다.
+
+```ts
+// app/api/manager/stats/route.ts
+import {NextResponse} from 'next/server';
+import {getSession} from '@/lib/auth';
+
+export async function GET() {
+  const session = await getSession();
+  if (!session || session.role !== 'admin') {
+    return NextResponse.json({error: 'forbidden'}, {status: 403});
+  }
+  return NextResponse.json({ok: true});
+}
+```
+
+### 정적 내보내기와의 관계
+
+`output: 'export'`면 미들웨어·서버 세션이 제한되거나 없다.
+
+그때의 선택:
+
+- 관리자만 서버가 있는 호스팅으로 분리
+- 공개 글은 정적 HTML, 이슈·관리자는 별도 API + Client 가드
+
+Client 가드만 있으면 소스에 화면이 남아 있다. API가 401/403을 내야 데이터가 막힌다. UI 숨김은 편의일 뿐 보안이 아니다.
+
+로그인·회원가입 페이지는 `robots: {index: false}`로 색인에서 뺀다.
 
 ---
 
-## 4. 정적 export와의 관계
+## 4. 흔한 실수
 
-`output: 'export'`면 미들웨어·서버 세션이 제한될 수 있다.  
-그 경우:
-
-- 관리자 인증은 **클라이언트 + API**
-- 또는 관리자만 별도 서버 호스팅
-
-공개 Posts는 정적, Issues/Manager는 API — 역할 분리와 잘 맞는다.
+| 실수 | 결과 | 대안 |
+|------|------|------|
+| 미들웨어에서만 막고 API는 열어둠 | 직접 호출로 우회 | Handler·Action에서 세션 재검증 |
+| 미들웨어에서 DB 조회 | 지연·엣지 제약 | 쿠키 존재만, 검증은 서버 |
+| `localStorage` 토큰 + 공개 API | XSS 시 계정 탈취 | HttpOnly 쿠키 또는 짧은 수명 |
+| matcher를 너무 넓게 | 정적 자산까지 통과 | `/manager/:path*`처럼 제한 |
+| export인데 서버 세션을 가정 | 빌드 실패 또는 빈 보호 | 호스팅을 나누거나 API 가드 |
+| 로그아웃 후 캐시된 관리자 HTML | 뒤로 가기로 내용이 보임 | 쿠키 삭제 + Cache-Control |
 
 ---
 
-## 5. 체크리스트
+## 정리
 
-- [ ] matcher로 보호 경로 명시
-- [ ] 관리자 API는 서버에서 토큰 재검증
-- [ ] 로그인·회원가입 noindex
-- [ ] 로그아웃아웃 시 쿠키·캐시 정리
+미들웨어는 문을 닫는 역할이다. 열쇠가 맞는지(서명·역할)는 서버 컴포넌트와 API가 본다.
+
+공개 페이지는 정적 HTML, 관리자는 서버 또는 별도 API. 이 경계를 호스팅 선택과 같이 적는다.
 
 ---
 
 ## 연습
 
-1. `/manager/*` 미들웨어 리다이렉트를 만든다 (Node 호스팅).
-2. 레이아웃에서 세션 없는 사용자를 `redirect` 한다.
-3. export 배포라면 클라이언트 가드 + API 401 처리 흐름을 문서화한다.1b:[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"미들웨어와 인증 경계\",\"description\":\"middleware로 경로 보호·리다이렉트를 다루고, 세션·토큰을 어디에 둘지 실무 기준으로 정리한다.\",\"datePublished\":\"2026-08-26\",\"url\":\"https://kaisa.co.kr/posts/nextjs-08/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"nextjs\",\"keywords\":\"nextjs\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"미들웨어와 인증 경계\",\"item\":\"https://kaisa.co.kr/posts/nextjs-08/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L6",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2026-08-26"}]}],["$","h1",null,{"className":"blog-post__title","children":"미들웨어와 인증 경계"}],["$","$L24",null,{"content":"$25"}],["$","$L26",null,{"pathKey":"nextjs-08"}],["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L6",null,{"href":"/posts/nextjs-07/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Route Handler와 Server Actions"}]]}],["$","$L6",null,{"href":"/posts/nextjs-09/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":["$L27","$L28"]}]]}],"$L29"]}]]}]}]}]]
-27:["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}]
-28:["$","span",null,{"className":"blog-post__adjacent-title","children":"이미지·폰트·성능 최적화"}]
-29:["$","$L6",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]
+1. Node 호스팅에서 `/manager/*` 미들웨어 리다이렉트를 만들고, 세션 쿠키가 없으면 `/login/`으로 보낸다.
+2. `app/manager/layout.tsx`에서 `getSession()`이 없으면 `redirect`한다. 일반 사용자 role도 막는다.
+3. 정적 내보내기 배포라면 Client 가드와 API 401 처리 순서를 문서 한 줄로 적는다.1b:[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"미들웨어와 인증 경계\",\"description\":\"요청이 페이지에 닿기 전에 경로를 가리고, 실제 권한은 서버 레이아웃에서 다시 확인한다.\",\"datePublished\":\"2026-03-06\",\"url\":\"https://kaisa.co.kr/posts/nextjs-08/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"nextjs\",\"keywords\":\"nextjs\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"미들웨어와 인증 경계\",\"item\":\"https://kaisa.co.kr/posts/nextjs-08/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L6",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2026-03-06"}]}],["$","h1",null,{"className":"blog-post__title","children":"미들웨어와 인증 경계"}],["$","$L24",null,{"content":"$25"}],"$L26","$L27"]}]}]}]]
+28:I[44398,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],"default"]
+26:["$","$L28",null,{"pathKey":"nextjs-08"}]
+27:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L6",null,{"href":"/posts/nextjs-07/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Route Handler와 Server Actions"}]]}],["$","$L6",null,{"href":"/posts/nextjs-09/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"이미지·폰트·성능 최적화"}]]}]]}],["$","$L6",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
 21:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
-2a:I[27201,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"IconMark"]
+29:I[27201,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"IconMark"]
 1e:null
-23:[["$","title","0",{"children":"미들웨어와 인증 경계 · Kaisa"}],["$","meta","1",{"name":"description","content":"middleware로 경로 보호·리다이렉트를 다루고, 세션·토큰을 어디에 둘지 실무 기준으로 정리한다."}],["$","meta","2",{"name":"application-name","content":"Kaisa"}],["$","meta","3",{"name":"robots","content":"index, follow"}],["$","meta","4",{"name":"naver-site-verification","content":"4bc13b857695ff44988c260cb26124eedbcda90e"}],["$","link","5",{"rel":"canonical","href":"https://kaisa.co.kr/posts/nextjs-08/"}],["$","meta","6",{"property":"og:title","content":"미들웨어와 인증 경계 · Kaisa"}],["$","meta","7",{"property":"og:description","content":"middleware로 경로 보호·리다이렉트를 다루고, 세션·토큰을 어디에 둘지 실무 기준으로 정리한다."}],["$","meta","8",{"property":"og:url","content":"https://kaisa.co.kr/posts/nextjs-08/"}],["$","meta","9",{"property":"og:site_name","content":"Kaisa"}],["$","meta","10",{"property":"og:locale","content":"ko_KR"}],["$","meta","11",{"property":"og:type","content":"article"}],["$","meta","12",{"name":"twitter:card","content":"summary"}],["$","meta","13",{"name":"twitter:title","content":"미들웨어와 인증 경계 · Kaisa"}],["$","meta","14",{"name":"twitter:description","content":"middleware로 경로 보호·리다이렉트를 다루고, 세션·토큰을 어디에 둘지 실무 기준으로 정리한다."}],["$","link","15",{"rel":"shortcut icon","href":"/img/common/favicon.ico"}],["$","link","16",{"rel":"icon","href":"/img/common/favicon.ico"}],["$","link","17",{"rel":"apple-touch-icon","href":"/img/common/favicon.ico"}],["$","$L2a","18",{}]]
+23:[["$","title","0",{"children":"미들웨어와 인증 경계 · Kaisa"}],["$","meta","1",{"name":"description","content":"요청이 페이지에 닿기 전에 경로를 가리고, 실제 권한은 서버 레이아웃에서 다시 확인한다."}],["$","meta","2",{"name":"application-name","content":"Kaisa"}],["$","meta","3",{"name":"robots","content":"index, follow"}],["$","meta","4",{"name":"naver-site-verification","content":"4bc13b857695ff44988c260cb26124eedbcda90e"}],["$","link","5",{"rel":"canonical","href":"https://kaisa.co.kr/posts/nextjs-08/"}],["$","meta","6",{"property":"og:title","content":"미들웨어와 인증 경계 · Kaisa"}],["$","meta","7",{"property":"og:description","content":"요청이 페이지에 닿기 전에 경로를 가리고, 실제 권한은 서버 레이아웃에서 다시 확인한다."}],["$","meta","8",{"property":"og:url","content":"https://kaisa.co.kr/posts/nextjs-08/"}],["$","meta","9",{"property":"og:site_name","content":"Kaisa"}],["$","meta","10",{"property":"og:locale","content":"ko_KR"}],["$","meta","11",{"property":"og:type","content":"article"}],["$","meta","12",{"name":"twitter:card","content":"summary"}],["$","meta","13",{"name":"twitter:title","content":"미들웨어와 인증 경계 · Kaisa"}],["$","meta","14",{"name":"twitter:description","content":"요청이 페이지에 닿기 전에 경로를 가리고, 실제 권한은 서버 레이아웃에서 다시 확인한다."}],["$","link","15",{"rel":"shortcut icon","href":"/img/common/favicon.ico"}],["$","link","16",{"rel":"icon","href":"/img/common/favicon.ico"}],["$","link","17",{"rel":"apple-touch-icon","href":"/img/common/favicon.ico"}],["$","$L29","18",{}]]

@@ -5,95 +5,75 @@ b:I[44398,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__
 c:I[97367,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"OutletBoundary"]
 d:"$Sreact.suspense"
 :HL["/_next/static/chunks/3j-1lpdn3an_-.css","style"]
-4:T19ad,# Spring Boot 3와 Java 21 시작하기
+4:T172b,# Spring Boot 3와 Java 21 시작하기
 
-> 요약: Spring Boot 3.x + Java 17/21 기준으로 프로젝트를 올바르게 세팅하고, 최신 생태계의 기본 개념을 잡는다.
-
----
+> 요약: Java 21과 Spring Boot 3.x로 프로젝트를 세팅하고, 자동 구성·프로파일·record 같은 기본선을 잡는다.
 
 ---
 
 ## 1. 왜 지금 Spring Boot인가
 
-Spring Boot는 **관례 기반(Convention over Configuration)** 으로 애플리케이션을 빠르게 기동하고, 운영에 필요한 기능을 starter로 조합하는 프레임워크다.
+Spring Boot는 **관례 기반(Convention over Configuration)** 으로 기동한다. 자주 쓰는 기능은 starter 의존성으로 붙이고, 나머지는 기본값을 따른다.
 
-2022년 이후의 큰 변화:
+Boot 3의 전제:
 
-| 항목 | Spring Boot 2.x | Spring Boot 3.x |
-|------|-----------------|-----------------|
-| Java | 8+ | **17 필수**, 21 권장 |
-| Jakarta EE | `javax.*` | **`jakarta.*`** |
-| 기본 서블릿 | Servlet 4 | Servlet 5/6 |
-| Native | 실험적 | GraalVM Native 정식 |
-| Observability | Micrometer 1.x | Micrometer 1.x + Observation API |
+| 항목 | Boot 2.x | Boot 3.x |
+|------|----------|----------|
+| Java | 8+ | **17 필수, 21이 실무 기본선** |
+| 패키지 | `javax.*` | **`jakarta.*`** |
+| 서블릿 | 4 | 5/6 |
+| Native | 실험 | GraalVM Native 정식 |
+| 관측 | Micrometer 1.x | Observation API + OpenTelemetry |
 
-실무에서는 **Java 21 LTS + Spring Boot 3.3~3.4+** 조합을 기본선으로 잡는 것이 일반적이다.
+Jakarta는 Java EE가 Eclipse 재단으로 옮기며 패키지 이름이 바뀐 것이다. Boot 3 코드와 의존성은 `jakarta.validation`, `jakarta.persistence`처럼 **`jakarta.*`만** 쓴다.
+
+실무 기본선은 **Java 21 LTS + Spring Boot 3.4+** 다.
 
 ---
 
-## 2. 프로젝트 생성 (권장 방법)
+## 2. 프로젝트 생성
 
-### 2.1 start.spring.io
-
-[https://start.spring.io](https://start.spring.io)에서:
-
-- **Project**: Maven 또는 Gradle (Kotlin DSL 권장하는 팀도 많음)
-- **Language**: Java
-- **Spring Boot**: 최신 안정 버전
-- **Packaging**: Jar
-- **Java**: 21
-- **Dependencies** (최소 세트):
-  - Spring Web
-  - Spring Data JPA
-  - Validation
-  - Lombok (선택 — 팀 합의 후)
-  - H2 / PostgreSQL Driver
-
-### 2.2 CLI
+[start.spring.io](https://start.spring.io)에서 Java 21, Jar, 최신 3.x를 고른다. 최소 의존성은 Spring Web, Validation, Actuator면 충분하다. JPA·DB 드라이버는 영속성이 필요할 때 추가한다.
 
 ```bash
-# Spring Boot CLI 또는 curl로 생성
 curl https://start.spring.io/starter.zip \
   -d type=maven-project \
   -d language=java \
-  -d bootVersion=3.4.0 \
+  -d bootVersion=3.4.5 \
   -d javaVersion=21 \
-  -d dependencies=web,data-jpa,validation,h2 \
+  -d dependencies=web,validation,actuator \
   -o demo.zip
 ```
 
-### 2.3 IDE
-
-IntelliJ IDEA / VS Code / Cursor 모두 start.spring.io 연동 또는 로컬 템플릿으로 생성 가능.
+Lombok은 팀 합의 후에만 넣는다. record와 생성자 주입이면 없어도 된다.
 
 ---
 
-## 3. 표준 디렉터리 구조
+## 3. 디렉터리
+
+패키지를 `controller/service/repository`로만 나누면 기능이 커질수록 파일이 흩어진다. **도메인과 어댑터**를 기준으로 두는 편이 유지보수에 유리하다.
 
 ```
 src/main/java/com/example/demo/
-├── DemoApplication.java          # @SpringBootApplication
-├── config/                       # @Configuration, Bean 정의
-├── domain/                       # 엔티티, 도메인 서비스
-├── application/                  # 유스케이스 / 애플리케이션 서비스
-├── adapter/
-│   ├── web/                      # Controller, DTO
-│   ├── persistence/              # JPA Repository 구현
-│   └── external/                 # 외부 API 클라이언트
-└── common/                       # 예외, 유틸
-
+├── DemoApplication.java
+├── config/
+├── domain/
+├── application/
+├── adapter/web/
+├── adapter/persistence/
+└── common/
 src/main/resources/
 ├── application.yml
 ├── application-local.yml
 ├── application-prod.yml
-└── db/migration/                 # Flyway/Liquibase (권장)
+└── db/migration/
 ```
-
-> 팁: 패키지를 `controller/service/repository`로만 나누는 것보다, **도메인/어댑터(헥사고날)** 방향으로 조금씩 옮기면 규모가 커져도 유지보수가 수월하다.
 
 ---
 
-## 4. `@SpringBootApplication`이 하는 일
+## 4. `@SpringBootApplication`
+
+한 줄 정의: **설정 클래스 + 자동 구성 + 컴포넌트 스캔**을 한 어노테이션으로 묶은 진입점이다.
 
 ```java
 @SpringBootApplication
@@ -104,17 +84,17 @@ public class DemoApplication {
 }
 ```
 
-내부적으로 다음이 합쳐진 메타 어노테이션이다.
+- `@SpringBootConfiguration` — 이 클래스가 설정이다
+- `@EnableAutoConfiguration` — classpath에 있는 starter를 조건에 맞게 켠다
+- `@ComponentScan` — 이 패키지 이하만 스캔한다
 
-1. `@SpringBootConfiguration` — 설정 클래스
-2. `@EnableAutoConfiguration` — classpath 기반 자동 구성
-3. `@ComponentScan` — 현재 패키지 이하 컴포넌트 스캔
-
-자동 구성은 `META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports`에 등록된 클래스들이 조건을 만족할 때 활성화된다.
+자동 구성 목록은 `META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports`에 있다. 메인 클래스를 `com.example.demo` 밖에 두면 스캔 범위가 비는 것이 흔한 실수다.
 
 ---
 
-## 5. 설정: `application.yml` 모범 사례
+## 5. `application.yml`
+
+설정은 YAML + 프로파일 + 환경변수로 나눈다. 시크릿은 파일에 넣지 않는다.
 
 ```yaml
 spring:
@@ -130,11 +110,11 @@ management:
   endpoints:
     web:
       exposure:
-        include: health,info,metrics,prometheus
+        include: health,info
   endpoint:
     health:
       probes:
-        enabled: true   # k8s liveness/readiness
+        enabled: true
 
 logging:
   level:
@@ -142,59 +122,48 @@ logging:
     com.example.demo: DEBUG
 ```
 
-### 프로파일 분리
+Actuator는 운영 상태(헬스·메트릭)를 HTTP로 노출하는 모듈이다. 로컬에서 `health`만 열고, 운영 노출 범위는 나중에 줄인다.
 
 | 파일 | 용도 |
 |------|------|
 | `application.yml` | 공통 |
 | `application-local.yml` | 로컬 DB, 상세 로그 |
 | `application-test.yml` | 테스트 |
-| `application-prod.yml` | 운영 (시크릿은 환경변수/시크릿 매니저) |
-
-시크릿은 파일에 넣지 말고:
-
-```yaml
-spring:
-  datasource:
-    url: ${DB_URL}
-    username: ${DB_USER}
-    password: ${DB_PASSWORD}
-```
+| `application-prod.yml` | 운영. 비밀번호는 `${DB_PASSWORD}` |
 
 ---
 
-## 6. Java 21에서 특히 유용한 문법
+## 6. Java 21에서 바로 쓰는 문법
 
-Spring Boot 3 코드베이스에서 자주 쓰이는 현대 Java 기능:
+### Record
 
-### Record (DTO에 최적)
+DTO·설정값처럼 **불변 데이터**에 맞다. getter·`equals`를 직접 만들지 않는다.
 
 ```java
 public record CreateUserRequest(String email, String name) {}
 public record UserResponse(Long id, String email, String name) {}
 ```
 
-### Sealed class (도메인 이벤트/결과 타입)
+### Sealed + pattern matching
+
+결과가 몇 가지로 닫혀 있으면 컴파일러가 분기를 검사한다.
 
 ```java
 public sealed interface PaymentResult
-    permits PaymentResult.Success, PaymentResult.Failed {
-
+        permits PaymentResult.Success, PaymentResult.Failed {
     record Success(String transactionId) implements PaymentResult {}
     record Failed(String reason) implements PaymentResult {}
 }
-```
 
-### Pattern matching / switch
-
-```java
 String message = switch (result) {
     case PaymentResult.Success s -> "OK: " + s.transactionId();
     case PaymentResult.Failed f -> "FAIL: " + f.reason();
 };
 ```
 
-### Virtual Threads (Spring Boot 3.2+)
+### Virtual Threads
+
+한 줄 정의: OS 스레드에 1:1로 묶이지 않는 **가벼운 스레드**로, JDBC·HTTP처럼 기다리는 I/O 비용을 낮춘다.
 
 ```yaml
 spring:
@@ -203,11 +172,11 @@ spring:
       enabled: true
 ```
 
-블로킹 I/O가 많은 REST/JDBC 서비스에서 처리량을 크게 올릴 수 있다. (Virtual Threads 문서 참고)
+Boot 3.2+에서 Tomcat 요청 처리에 붙는다. CPU 연산이 병목인 작업은 기적이 없고, DB 커넥션 풀 한도는 그대로다.
 
 ---
 
-## 7. 첫 API 한 줄로 이해하기
+## 7. 첫 API
 
 ```java
 @RestController
@@ -221,54 +190,35 @@ public class HelloController {
 }
 ```
 
-실행 후:
-
 ```bash
+./mvnw spring-boot:run
 curl http://localhost:8080/api/hello
 ```
 
----
-
-## 8. 빌드 & 실행
-
-### Maven
-
-```bash
-./mvnw spring-boot:run
-./mvnw -DskipTests package
-java -jar target/demo-0.0.1-SNAPSHOT.jar
-```
-
-### Gradle
-
-```bash
-./gradlew bootRun
-./gradlew bootJar
-java -jar build/libs/demo-0.0.1-SNAPSHOT.jar
-```
+Gradle은 `./gradlew bootRun`, 패키징은 `bootJar` 후 `java -jar`다.
 
 ---
 
-## 9. 최신 기법 체크리스트
+## 8. 흔한 실수
 
-- [ ] Java 21 LTS 사용
-- [ ] `javax.*` → `jakarta.*` 마이그레이션 완료
-- [ ] YAML + 프로파일 + 환경변수로 설정 분리
-- [ ] Actuator health/probes 활성화
-- [ ] DTO는 record 우선 검토
-- [ ] 패키지 구조를 도메인 중심으로 설계
-- [ ] Virtual Threads 도입 여부 검토 (I/O 바운드 서비스)
+| 실수 | 결과 |
+|------|------|
+| `javax.*` import | 컴파일·런타임 불일치 |
+| 메인 클래스를 루트 패키지 밖에 둠 | Bean 스캔 누락 |
+| 운영 yml에 DB 비밀번호 | 저장소 유출 |
+| `show-sql`만 켜고 끝 | 바인딩 값·N+1을 못 봄 |
+| Virtual Threads만 켜고 풀 크기 무시 | DB가 먼저 죽는다 |
 
 ---
 
 ## 연습
 
 1. start.spring.io로 Web + Validation + Actuator 프로젝트를 만든다.
-2. `GET /api/health-demo` 엔드포인트를 추가하고 record로 응답한다.
-3. `local` / `prod` 프로파일을 나누고, `prod`에서는 로그 레벨을 INFO로 맞춘다.
-4. Actuator `/actuator/health`가 200을 반환하는지 확인한다.0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"Spring Boot 3와 Java 21 시작하기\",\"description\":\"Spring Boot 3.x + Java 17/21 기준으로 프로젝트를 올바르게 세팅하고, 최신 생태계의 기본 개념을 잡는다.\",\"datePublished\":\"2026-08-26\",\"url\":\"https://kaisa.co.kr/posts/spring-boot-01/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"spring-boot\",\"keywords\":\"spring-boot\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Spring Boot 3와 Java 21 시작하기\",\"item\":\"https://kaisa.co.kr/posts/spring-boot-01/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2026-08-26"}]}],["$","h1",null,{"className":"blog-post__title","children":"Spring Boot 3와 Java 21 시작하기"}],["$","$L3",null,{"content":"$4"}],"$L5","$L6"]}]}]}]],["$L7","$L8","$L9"],"$La"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"DJX3Zf-ybBx2vscYgjP8o"}
+2. `GET /api/health-demo`를 record 응답으로 추가한다.
+3. `local` / `prod` 프로파일을 나누고, prod 로그는 INFO로 둔다.
+4. `/actuator/health`가 200인지 확인한다.0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"Spring Boot 3와 Java 21 시작하기\",\"description\":\"Java 21과 Spring Boot 3.x로 프로젝트를 세팅하고, 자동 구성·프로파일·record 같은 기본선을 잡는다.\",\"datePublished\":\"2023-01-09\",\"url\":\"https://kaisa.co.kr/posts/spring-boot-01/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"spring-boot\",\"keywords\":\"spring-boot\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Spring Boot 3와 Java 21 시작하기\",\"item\":\"https://kaisa.co.kr/posts/spring-boot-01/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2023-01-09"}]}],["$","h1",null,{"className":"blog-post__title","children":"Spring Boot 3와 Java 21 시작하기"}],["$","$L3",null,{"content":"$4"}],"$L5","$L6"]}]}]}]],["$L7","$L8","$L9"],"$La"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"rgIajyDGnwYL9Qdz0xIG3"}
 5:["$","$Lb",null,{"pathKey":"spring-boot-01"}]
-6:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[null,["$","$L2",null,{"href":"/posts/spring-boot-02/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"IoC, Bean, Configuration — 현대적인 의존성 주입"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
+6:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[null,["$","$L2",null,{"href":"/posts/spring-boot-02/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"IoC, Bean, Configuration — 의존성 주입"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
 7:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3j-1lpdn3an_-.css","precedence":"next"}]
 8:["$","script","script-0",{"src":"/_next/static/chunks/2_h6is8-aperz.js","async":true}]
 9:["$","script","script-1",{"src":"/_next/static/chunks/3qcoeqbx1mias.js","async":true}]

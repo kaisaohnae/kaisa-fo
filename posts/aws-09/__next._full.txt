@@ -12,13 +12,13 @@ b:I[45872,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__
 c:I[20683,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js"],"default"]
 d:I[86979,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/0hs6l77ykwsoc.js"],"default"]
 16:I[68027,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default",1]
-:HL["/_next/static/chunks/3ou3k_oca-ann.css","style"]
+:HL["/_next/static/chunks/0aw5gw7bg_b6q.css","style"]
 :HL["/_next/static/chunks/0g93akm33ce_n.css","style"]
 :HL["/_next/static/chunks/0l7zbvjzypglv.css","style"]
 :HL["/_next/static/media/0c795a286deabae8-s.p.3vm0tq4e-zz_5.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/media/5c285b27cdda1fe8-s.p.2_mbdogr7ni8i.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/chunks/3j-1lpdn3an_-.css","style"]
-0:{"P":null,"c":["","posts","aws-09",""],"q":"","i":false,"f":[[["",{"children":["(site)",{"children":["posts",{"children":[["slug","aws-09","d",null],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3ou3k_oca-ann.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0g93akm33ce_n.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/0l7zbvjzypglv.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/3t-_5l233af4w.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1uymn__-_z4ug.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ko","className":"syne_53f86cd1-module__kiT3Eq__variable dm_sans_fd62f040-module__0jgVUW__variable","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","script",null,{"async":true,"src":"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2641553863829571","crossOrigin":"anonymous"}]}],["$","body",null,{"children":[["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var t=null;document.cookie.split(';').forEach(function(c){var p=c.trim().split('=');if(p[0]==='kaisa-theme')t=decodeURIComponent(p[1]||'');});document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();"}}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var KEY='kaisa-locale';var loc=null;try{loc=sessionStorage.getItem(KEY);}catch(e){}function fromNav(){var list=[navigator.language].concat(navigator.languages||[]);for(var i=0;i<list.length;i++){var l=String(list[i]||'').toLowerCase();if(l.indexOf('ko')===0)return 'ko';if(l.indexOf('zh')===0)return 'zh';if(l.indexOf('hi')===0)return 'hi';if(l.indexOf('en')===0)return 'en';}return null;}if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc=fromNav();if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc='ko';document.documentElement.lang=loc;}catch(e){document.documentElement.lang='ko';}})();"}}],[["$","$L2",null,{"src":"https://www.googletagmanager.com/gtag/js?id=G-2281QQ6XP4","strategy":"afterInteractive"}],["$","$L2",null,{"id":"google-analytics","strategy":"afterInteractive","children":"\n          window.dataLayer = window.dataLayer || [];\n          function gtag(){dataLayer.push(arguments);}\n          gtag('js', new Date());\n          gtag('config', 'G-2281QQ6XP4');\n        "}]],["$","$L3",null,{}],["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}],["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","$L7",null,{}],["$","$L8",null,{}],["$","$L9",null,{}]]}]]}]]}],{"children":[["$","$1","c",{"children":[[["$","script","script-0",{"src":"/_next/static/chunks/23u3jdspf1pgv.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1hr7-4fb6m83q.js","async":true,"nonce":"$undefined"}]],["$","$La",null,{"children":["$","div",null,{"className":"site-layout","children":[["$","$Lb",null,{}],["$","$Lc",null,{"children":["$","$L4",null,{"parallelRouterKey":"children","error":"$d","errorStyles":[],"errorScripts":[["$","script","script-0",{"src":"/_next/static/chunks/0hs6l77ykwsoc.js","async":true}]],"template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],"$Le","$Lf"]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],"$L10"]}]}]]}],{"children":["$L11",{"children":["$L12",{"children":["$L13",{},null,false,null]},null,false,"$@14"]},null,false,"$@14"]},null,false,null]},null,false,null],"$L15",false]],"m":"$undefined","G":["$16",["$L17","$L18","$L19"]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"DJX3Zf-ybBx2vscYgjP8o"}
+0:{"P":null,"c":["","posts","aws-09",""],"q":"","i":false,"f":[[["",{"children":["(site)",{"children":["posts",{"children":[["slug","aws-09","d",null],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0aw5gw7bg_b6q.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0g93akm33ce_n.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/0l7zbvjzypglv.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/3t-_5l233af4w.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1uymn__-_z4ug.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ko","className":"syne_53f86cd1-module__kiT3Eq__variable dm_sans_fd62f040-module__0jgVUW__variable","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","script",null,{"async":true,"src":"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2641553863829571","crossOrigin":"anonymous"}]}],["$","body",null,{"children":[["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var t=null;document.cookie.split(';').forEach(function(c){var p=c.trim().split('=');if(p[0]==='kaisa-theme')t=decodeURIComponent(p[1]||'');});document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();"}}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var KEY='kaisa-locale';var loc=null;try{loc=sessionStorage.getItem(KEY);}catch(e){}function fromNav(){var list=[navigator.language].concat(navigator.languages||[]);for(var i=0;i<list.length;i++){var l=String(list[i]||'').toLowerCase();if(l.indexOf('ko')===0)return 'ko';if(l.indexOf('zh')===0)return 'zh';if(l.indexOf('hi')===0)return 'hi';if(l.indexOf('en')===0)return 'en';}return null;}if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc=fromNav();if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc='ko';document.documentElement.lang=loc;}catch(e){document.documentElement.lang='ko';}})();"}}],[["$","$L2",null,{"src":"https://www.googletagmanager.com/gtag/js?id=G-2281QQ6XP4","strategy":"afterInteractive"}],["$","$L2",null,{"id":"google-analytics","strategy":"afterInteractive","children":"\n          window.dataLayer = window.dataLayer || [];\n          function gtag(){dataLayer.push(arguments);}\n          gtag('js', new Date());\n          gtag('config', 'G-2281QQ6XP4');\n        "}]],["$","$L3",null,{}],["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}],["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","$L7",null,{}],["$","$L8",null,{}],["$","$L9",null,{}]]}]]}]]}],{"children":[["$","$1","c",{"children":[[["$","script","script-0",{"src":"/_next/static/chunks/23u3jdspf1pgv.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1hr7-4fb6m83q.js","async":true,"nonce":"$undefined"}]],["$","$La",null,{"children":["$","div",null,{"className":"site-layout","children":[["$","$Lb",null,{}],["$","$Lc",null,{"children":["$","$L4",null,{"parallelRouterKey":"children","error":"$d","errorStyles":[],"errorScripts":[["$","script","script-0",{"src":"/_next/static/chunks/0hs6l77ykwsoc.js","async":true}]],"template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],"$Le","$Lf"]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],"$L10"]}]}]]}],{"children":["$L11",{"children":["$L12",{"children":["$L13",{},null,false,null]},null,false,"$@14"]},null,false,"$@14"]},null,false,null]},null,false,null],"$L15",false]],"m":"$undefined","G":["$16",["$L17","$L18","$L19"]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"rgIajyDGnwYL9Qdz0xIG3"}
 1a:I[44604,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js"],"default"]
 1c:I[97367,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"OutletBoundary"]
 1d:"$Sreact.suspense"
@@ -33,13 +33,151 @@ f:["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]
 1f:[]
 14:"$W1f"
 15:["$","$1","h",{"children":[null,["$","$L20",null,{"children":"$L21"}],["$","div",null,{"hidden":true,"children":["$","$L22",null,{"children":["$","$1d",null,{"name":"Next.Metadata","children":"$L23"}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}]
-17:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3ou3k_oca-ann.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
+17:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0aw5gw7bg_b6q.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
 18:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0g93akm33ce_n.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
 19:["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/0l7zbvjzypglv.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
 24:I[55489,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],"default"]
-25:I[44398,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],"default"]
-1b:[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"AWS 배포·비용 실무 체크리스트\",\"description\":\"계정부터 관측·백업·비용까지, 서비스를 프로덕션에 올리기 전에 볼 실무 체크리스트를 모은다.\",\"datePublished\":\"2026-08-26\",\"url\":\"https://kaisa.co.kr/posts/aws-09/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"aws\",\"keywords\":\"aws\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"AWS 배포·비용 실무 체크리스트\",\"item\":\"https://kaisa.co.kr/posts/aws-09/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L6",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2026-08-26"}]}],["$","h1",null,{"className":"blog-post__title","children":"AWS 배포·비용 실무 체크리스트"}],["$","$L24",null,{"content":"# AWS 배포·비용 실무 체크리스트\n\n> 요약: 계정부터 관측·백업·비용까지, 서비스를 프로덕션에 올리기 전에 볼 실무 체크리스트를 모은다.\n\n---\n\n## 1. 계정·권한\n\n- [ ] 루트 MFA, 일상 작업은 IAM/SSO\n- [ ] 프로덕션 권한과 배포 파이프라인 분리\n- [ ] 시크릿은 Secrets Manager / SSM Parameter (평문 금지)\n\n---\n\n## 2. 네트워크·컴퓨트\n\n- [ ] 앱/DB 프라이빗, ALB만 퍼블릭\n- [ ] SG 최소 허용 (소스에 SG ID)\n- [ ] 멀티 AZ 또는 최소 2 AZ\n- [ ] 헬스체크·배포 롤링/블루그린 전략\n\n---\n\n## 3. 데이터\n\n- [ ] RDS/스냅샷 백업 주기·보존\n- [ ] S3 퍼블릭 차단, 버전관리(필요 시)\n- [ ] 암호화(저장·전송)\n\n---\n\n## 4. 관측·운영\n\n- [ ] 5xx·latency·디스크·빌링 알람\n- [ ] 로그 보존·개인정보 마스킹\n- [ ] 장애 시 연락 채널(SNS/Slack)\n- [ ] IaC(Terraform/CDK/CloudFormation)로 재현\n\n---\n\n## 5. 비용\n\n- [ ] 태그 필수 (`Project`, `Env`, `Owner`)\n- [ ] 개발 자원 스케줄 중지\n- [ ] NAT·ALB·퍼블릭 IPv4 비용 인지\n- [ ] 예산 알람\n\n---\n\n## 정리\n\n새 서비스보다 **체크리스트를 통과한 서비스**가 싸게, 오래 간다. AWS는 기능이 많아서가 아니라 경계를 명확히 해서 이긴다."}],["$","$L25",null,{"pathKey":"aws-09"}],["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L6",null,{"href":"/posts/aws-08/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"ALB와 Auto Scaling으로 트래픽 받기"}]]}],null]}],["$","$L6",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]]}]}]}]]
+25:T1f90,# AWS 배포·비용 실무 체크리스트
+
+> 요약: 계정·네트워크·데이터·관측·비용까지, 프로덕션에 올리기 전에 통과할 AWS 실무 점검 목록을 모은다.
+
+---
+
+## 1. 이 목록을 언제 쓰는가
+
+새 서비스, 첫 상용 트래픽, 계정 인수인계 전에 쓴다. AWS는 기능이 많아서가 아니라 **경계를 빠뜨리면** 비용과 사고가 난다. 체크리스트를 통과한 서비스가 더 오래, 더 싸게 간다.
+
+대상은 소규모 웹/API다. Organizations·Control Tower가 있는 대기업은 내부 가드레일이 우선이다. 그래도 아래 항목은 겹친다.
+
+통과 기준은 “콘솔에 켜져 있음”이 아니다. **누가 알람을 받는지, 복원이 되는지**까지다.
+
+---
+
+## 2. 계정·권한
+
+루트와 IAM을 다시 본다. 배포 파이프라인이 Admin 키를 들고 있으면 저장소 유출이 곧 계정 탈취다.
+
+- [ ] 루트에 MFA가 있고 일상 작업은 IAM 또는 SSO다. 루트 세션은 결제·계정 변경 뿐이다.
+- [ ] 루트 액세스 키가 없다. 장기 루트 키는 회전·추적이 거의 불가능하다.
+- [ ] 프로덕션 배포 역할은 최소 권한이고, 사람 Admin과 분리되어 있다. 같은 키로 콘솔 탐색과 배포를 하지 않는다.
+- [ ] CI는 OIDC 등 임시 자격이다. 저장소 시크릿의 `AKIA…`는 유출 시 즉시 과금으로 이어진다.
+- [ ] 시크릿은 Secrets Manager 또는 SSM Parameter(SecureString)다. `.env`를 AMI에 굽지 않는다.
+- [ ] CloudTrail 관리 이벤트가 켜져 있다. 사고 후 “누가 지웠는지”를 남기려면 미리 켠다.
+
+---
+
+## 3. 네트워크·컴퓨트
+
+인터넷에 열린 면적을 최소로 둔다. SSH와 DB 포트가 세상에 열려 있으면 ALB 설계가 무의미하다.
+
+- [ ] ALB(또는 CloudFront)만 퍼블릭이고 앱·DB는 프라이빗 서브넷이다. 공인 IP 앱 서버는 스캔 대상이다.
+- [ ] 보안 그룹 소스는 SG ID 중심이다. DB·앱 포트의 `0.0.0.0/0`은 실수가 아니라 취약점이다.
+- [ ] 22번을 인터넷에 상시 열지 않는다. SSM이 있으면 키 분실과 무차별 대입 면적이 줄어든다.
+- [ ] 서브넷이 두 AZ 이상이다. 단일 AZ는 그 존 장애가 곧 전면 장애다.
+- [ ] 헬스체크와 배포 드레인이 정의되어 있다. 배포 중 5xx는 대부분 타깃이 일찍 빠지거나 늦게 붙어서다.
+- [ ] 인스턴스는 IAM 역할을 쓴다. 박스 안 액세스 키 파일은 이미지 유출과 같다.
+
+EC2 대신 ECS/Fargate여도 SG·프라이빗·역할 원칙은 같다.
+
+---
+
+## 4. 데이터
+
+데이터가 있는 서비스는 컴퓨트보다 복구가 어렵다. 백업 없는 RDS, 퍼블릭 S3가 가장 비싼 실수다.
+
+- [ ] RDS(또는 DB) 자동 백업이 켜져 있고 보존 기간이 합의되어 있다. 백업 윈도우만 있고 복원 시험이 없으면 안 된다.
+- [ ] DB 퍼블릭 액세스가 꺼져 있다. 3306/5432 인터넷 개방은 랜섬·탈취의 입구다.
+- [ ] S3 Block Public Access가 기본이다. 정적 웹은 CloudFront 뒤에서 연다. 버킷 직접 공개는 유출이다.
+- [ ] 중요 버킷은 버전 관리 또는 복제를 검토한다. 덮어쓰기 한 번에 원본이 사라진다.
+- [ ] 저장 암호화(EBS, RDS, S3)가 켜져 있다. 스냅샷이 복사되어도 키가 없으면 읽기 어렵다.
+- [ ] Redis·큐도 VPC 안에 있고 인증이 있다. 열린 6379는 데이터 유실·탈취가 쉽다.
+
+연결 문자열의 비밀번호는 `YOUR_DB_PASSWORD`처럼 시크릿에서만 주입한다. 이슈 트래커에 붙여 넣지 않는다.
+
+---
+
+## 5. 관측·운영
+
+알람이 없으면 장애는 SNS가 아니라 트위터로 온다.
+
+- [ ] 5xx 또는 에러율 알람이 SNS까지 연결된다. 그래프만 있고 구독 미확인이면 침묵이다.
+- [ ] 지연(latency) 알람이 있다. 5xx가 없어도 타임아웃은 장애다.
+- [ ] 디스크·RDS 여유 스토리지 알람이 있다. 공간 부족은 예고 없이 쓰기 실패다.
+- [ ] 로그 보존과 PII 마스킹 규칙이 있다. 무기한 로그는 비용이고, 토큰 로그는 유출이다.
+- [ ] 장애 연락 채널이 사람 한 명의 개인 메일이 아니다. 휴가에 알람이 끊긴다.
+- [ ] 인프라가 코드(Terraform/CDK/CloudFormation)로 재현된다. 콘솔 클릭만의 프로덕션은 다음 변경 때 드리프트한다.
+
+---
+
+## 6. 비용
+
+클라우드 비용은 트래픽보다 방치에서 는다. 태그 없는 자원은 아무도 못 끈다.
+
+- [ ] 예산 알람이 계정에 있다. 프리 티어·크레딧은 한도가 아니다.
+- [ ] 태그 `Project`, `Env`, `Owner`가 필수다. 비용 탐색에서 서비스 단위로 못 자르면 절감이 불가능하다.
+- [ ] 개발 자원 중지·삭제 스케줄이 있다. NAT·ALB·RDS를 주말 내내 켜 두면 실험 비용이 상품 비용이 된다.
+- [ ] NAT Gateway, ALB, 퍼블릭 IPv4 요금을 알고 켠다. 컴퓨트보다 네트워킹이 더 나올 수 있다.
+- [ ] 스냅샷·AMI·미사용 EBS·미연결 EIP를 주기적으로 지운다. 종료한 인스턴스의 디스크가 남는 경우가 많다.
+- [ ] ASG 최댓값이 예산과 맞다. 오토스케일은 가용성의 도구이자 과금의 증폭기다.
+
+Cost Explorer를 월 1회라도 본다. 이상 비용 감지를 켜 두면 크립토 마이닝형 유출을 빨리 본다.
+
+---
+
+## 7. 첫 주에 할 순서
+
+한 번에 다 하지 않는다. 순서가 있다.
+
+1. 루트 MFA, 루트 키 없음, IAM/SSO, 예산 알람
+2. 커스텀 VPC, 퍼블릭/프라이빗, SG 최소
+3. 데이터(RDS·S3) 비공개·백업·암호화
+4. 앱은 역할로만 클라우드 API 호출
+5. 5xx·디스크·빌링 알람 + SNS 확인
+6. 태그 강제 후 개발 자원 스케줄
+
+이 순서를 건너뛰고 GPU 인스턴스부터 켜면 청구서와 보안이 동시에 터진다.
+
+**넘기지 말 것.** 프로덕션 데이터를 개발 계정으로 복사할 때 퍼블릭 스냅샷·퍼블릭 AMI로 만들지 않는다. 로그에 주민번호·카드가 있으면 보존을 늘리지 말고 수집을 줄인다.
+
+---
+
+## 8. 정리
+
+새 서비스를 더 켜기 전에 **이 목록을 통과한 서비스**인지 본다. AWS는 속도를 주지만, 루트·퍼블릭 버킷·알람 없음·태그 없음이 겹치면 속도가 곧 사고다.
+
+배포 당일 최소 확인:
+
+```bash
+aws sts get-caller-identity
+aws rds describe-db-instances --query "DBInstances[].PubliclyAccessible"
+aws s3api get-public-access-block --bucket YOUR_BUCKET
+```
+
+세 명령의 결과가 “기대한 계정, DB 비공개, S3 퍼블릭 차단”이어야 한다.
+
+### 연습
+
+1. 위 체크리스트를 현재 계정에 적용해 미체크 항목만 이슈로 남긴다.
+2. 예산 알람 테스트와 SNS 구독 확인을 실제로 한 번 한다.
+3. RDS 또는 EBS 스냅샷을 스테이징에 복원해 앱이 읽는지 기록한다.
+
+체크리스트를 PR 템플릿에 붙여도 된다. “인프라 변경” PR이면 네트워크·IAM·비용 칸만이라도 채운다. 앱 코드 PR에 AWS 전체를 요구하지 않는다. 범위가 넓으면 아무도 안 본다.
+
+마지막으로 계정 별칭과 리전을 README 한 줄에 적는다. `work` 프로필이 프로덕션인지 개발인지 헤매는 시간이 사고보다 먼저 온다.
+
+이 시리즈 앞에서 다룬 순서로 다시 훑어도 된다. 계정(1) → VPC(2) → EC2(3) → S3(4) → RDS(5) → IAM(6) → CloudWatch(7) → ALB(8) → 이 목록. 중간을 건너뛰고 오토스케일만 켜면 상태 있는 앱이 로컬 디스크에 남는다.
+
+체크가 전부 초록이어도 복원 리허설이 없으면 재해 복구는 문서일 뿐이다. 분기 1회, 스테이징에서 스냅샷으로 앱을 올려 보는 일정을 캘린더에 넣는다.
+
+비용 이상이면 그날 Cost Explorer를 서비스·리전으로 자른다. 낯선 리전의 EC2, 낯선 Marketplace, NAT 데이터 처리가 흔한 범인이다. 키를 의심하면 액세스 키를 먼저 비활성화한다. 설명보다 차단이 먼저다.
+
+---
+
+---1b:[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"AWS 배포·비용 실무 체크리스트\",\"description\":\"계정·네트워크·데이터·관측·비용까지, 프로덕션에 올리기 전에 통과할 AWS 실무 점검 목록을 모은다.\",\"datePublished\":\"2026-06-08\",\"url\":\"https://kaisa.co.kr/posts/aws-09/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"aws\",\"keywords\":\"aws\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"AWS 배포·비용 실무 체크리스트\",\"item\":\"https://kaisa.co.kr/posts/aws-09/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L6",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2026-06-08"}]}],["$","h1",null,{"className":"blog-post__title","children":"AWS 배포·비용 실무 체크리스트"}],["$","$L24",null,{"content":"$25"}],"$L26","$L27"]}]}]}]]
+28:I[44398,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],"default"]
+26:["$","$L28",null,{"pathKey":"aws-09"}]
+27:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L6",null,{"href":"/posts/aws-08/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"ALB와 Auto Scaling으로 트래픽 받기"}]]}],null]}],["$","$L6",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
 21:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
-26:I[27201,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"IconMark"]
+29:I[27201,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"IconMark"]
 1e:null
-23:[["$","title","0",{"children":"AWS 배포·비용 실무 체크리스트 · Kaisa"}],["$","meta","1",{"name":"description","content":"계정부터 관측·백업·비용까지, 서비스를 프로덕션에 올리기 전에 볼 실무 체크리스트를 모은다."}],["$","meta","2",{"name":"application-name","content":"Kaisa"}],["$","meta","3",{"name":"robots","content":"index, follow"}],["$","meta","4",{"name":"naver-site-verification","content":"4bc13b857695ff44988c260cb26124eedbcda90e"}],["$","link","5",{"rel":"canonical","href":"https://kaisa.co.kr/posts/aws-09/"}],["$","meta","6",{"property":"og:title","content":"AWS 배포·비용 실무 체크리스트 · Kaisa"}],["$","meta","7",{"property":"og:description","content":"계정부터 관측·백업·비용까지, 서비스를 프로덕션에 올리기 전에 볼 실무 체크리스트를 모은다."}],["$","meta","8",{"property":"og:url","content":"https://kaisa.co.kr/posts/aws-09/"}],["$","meta","9",{"property":"og:site_name","content":"Kaisa"}],["$","meta","10",{"property":"og:locale","content":"ko_KR"}],["$","meta","11",{"property":"og:type","content":"article"}],["$","meta","12",{"name":"twitter:card","content":"summary"}],["$","meta","13",{"name":"twitter:title","content":"AWS 배포·비용 실무 체크리스트 · Kaisa"}],["$","meta","14",{"name":"twitter:description","content":"계정부터 관측·백업·비용까지, 서비스를 프로덕션에 올리기 전에 볼 실무 체크리스트를 모은다."}],["$","link","15",{"rel":"shortcut icon","href":"/img/common/favicon.ico"}],["$","link","16",{"rel":"icon","href":"/img/common/favicon.ico"}],["$","link","17",{"rel":"apple-touch-icon","href":"/img/common/favicon.ico"}],["$","$L26","18",{}]]
+23:[["$","title","0",{"children":"AWS 배포·비용 실무 체크리스트 · Kaisa"}],["$","meta","1",{"name":"description","content":"계정·네트워크·데이터·관측·비용까지, 프로덕션에 올리기 전에 통과할 AWS 실무 점검 목록을 모은다."}],["$","meta","2",{"name":"application-name","content":"Kaisa"}],["$","meta","3",{"name":"robots","content":"index, follow"}],["$","meta","4",{"name":"naver-site-verification","content":"4bc13b857695ff44988c260cb26124eedbcda90e"}],["$","link","5",{"rel":"canonical","href":"https://kaisa.co.kr/posts/aws-09/"}],["$","meta","6",{"property":"og:title","content":"AWS 배포·비용 실무 체크리스트 · Kaisa"}],["$","meta","7",{"property":"og:description","content":"계정·네트워크·데이터·관측·비용까지, 프로덕션에 올리기 전에 통과할 AWS 실무 점검 목록을 모은다."}],["$","meta","8",{"property":"og:url","content":"https://kaisa.co.kr/posts/aws-09/"}],["$","meta","9",{"property":"og:site_name","content":"Kaisa"}],["$","meta","10",{"property":"og:locale","content":"ko_KR"}],["$","meta","11",{"property":"og:type","content":"article"}],["$","meta","12",{"name":"twitter:card","content":"summary"}],["$","meta","13",{"name":"twitter:title","content":"AWS 배포·비용 실무 체크리스트 · Kaisa"}],["$","meta","14",{"name":"twitter:description","content":"계정·네트워크·데이터·관측·비용까지, 프로덕션에 올리기 전에 통과할 AWS 실무 점검 목록을 모은다."}],["$","link","15",{"rel":"shortcut icon","href":"/img/common/favicon.ico"}],["$","link","16",{"rel":"icon","href":"/img/common/favicon.ico"}],["$","link","17",{"rel":"apple-touch-icon","href":"/img/common/favicon.ico"}],["$","$L29","18",{}]]

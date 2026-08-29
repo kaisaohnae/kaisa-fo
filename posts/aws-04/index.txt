@@ -12,13 +12,13 @@ b:I[45872,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__
 c:I[20683,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js"],"default"]
 d:I[86979,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/0hs6l77ykwsoc.js"],"default"]
 16:I[68027,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default",1]
-:HL["/_next/static/chunks/3ou3k_oca-ann.css","style"]
+:HL["/_next/static/chunks/0aw5gw7bg_b6q.css","style"]
 :HL["/_next/static/chunks/0g93akm33ce_n.css","style"]
 :HL["/_next/static/chunks/0l7zbvjzypglv.css","style"]
 :HL["/_next/static/media/0c795a286deabae8-s.p.3vm0tq4e-zz_5.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/media/5c285b27cdda1fe8-s.p.2_mbdogr7ni8i.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/chunks/3j-1lpdn3an_-.css","style"]
-0:{"P":null,"c":["","posts","aws-04",""],"q":"","i":false,"f":[[["",{"children":["(site)",{"children":["posts",{"children":[["slug","aws-04","d",null],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3ou3k_oca-ann.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0g93akm33ce_n.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/0l7zbvjzypglv.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/3t-_5l233af4w.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1uymn__-_z4ug.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ko","className":"syne_53f86cd1-module__kiT3Eq__variable dm_sans_fd62f040-module__0jgVUW__variable","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","script",null,{"async":true,"src":"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2641553863829571","crossOrigin":"anonymous"}]}],["$","body",null,{"children":[["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var t=null;document.cookie.split(';').forEach(function(c){var p=c.trim().split('=');if(p[0]==='kaisa-theme')t=decodeURIComponent(p[1]||'');});document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();"}}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var KEY='kaisa-locale';var loc=null;try{loc=sessionStorage.getItem(KEY);}catch(e){}function fromNav(){var list=[navigator.language].concat(navigator.languages||[]);for(var i=0;i<list.length;i++){var l=String(list[i]||'').toLowerCase();if(l.indexOf('ko')===0)return 'ko';if(l.indexOf('zh')===0)return 'zh';if(l.indexOf('hi')===0)return 'hi';if(l.indexOf('en')===0)return 'en';}return null;}if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc=fromNav();if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc='ko';document.documentElement.lang=loc;}catch(e){document.documentElement.lang='ko';}})();"}}],[["$","$L2",null,{"src":"https://www.googletagmanager.com/gtag/js?id=G-2281QQ6XP4","strategy":"afterInteractive"}],["$","$L2",null,{"id":"google-analytics","strategy":"afterInteractive","children":"\n          window.dataLayer = window.dataLayer || [];\n          function gtag(){dataLayer.push(arguments);}\n          gtag('js', new Date());\n          gtag('config', 'G-2281QQ6XP4');\n        "}]],["$","$L3",null,{}],["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}],["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","$L7",null,{}],["$","$L8",null,{}],["$","$L9",null,{}]]}]]}]]}],{"children":[["$","$1","c",{"children":[[["$","script","script-0",{"src":"/_next/static/chunks/23u3jdspf1pgv.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1hr7-4fb6m83q.js","async":true,"nonce":"$undefined"}]],["$","$La",null,{"children":["$","div",null,{"className":"site-layout","children":[["$","$Lb",null,{}],["$","$Lc",null,{"children":["$","$L4",null,{"parallelRouterKey":"children","error":"$d","errorStyles":[],"errorScripts":[["$","script","script-0",{"src":"/_next/static/chunks/0hs6l77ykwsoc.js","async":true}]],"template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],"$Le","$Lf"]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],"$L10"]}]}]]}],{"children":["$L11",{"children":["$L12",{"children":["$L13",{},null,false,null]},null,false,"$@14"]},null,false,"$@14"]},null,false,null]},null,false,null],"$L15",false]],"m":"$undefined","G":["$16",["$L17","$L18","$L19"]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"DJX3Zf-ybBx2vscYgjP8o"}
+0:{"P":null,"c":["","posts","aws-04",""],"q":"","i":false,"f":[[["",{"children":["(site)",{"children":["posts",{"children":[["slug","aws-04","d",null],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0aw5gw7bg_b6q.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0g93akm33ce_n.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/0l7zbvjzypglv.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/3t-_5l233af4w.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1uymn__-_z4ug.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ko","className":"syne_53f86cd1-module__kiT3Eq__variable dm_sans_fd62f040-module__0jgVUW__variable","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","script",null,{"async":true,"src":"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2641553863829571","crossOrigin":"anonymous"}]}],["$","body",null,{"children":[["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var t=null;document.cookie.split(';').forEach(function(c){var p=c.trim().split('=');if(p[0]==='kaisa-theme')t=decodeURIComponent(p[1]||'');});document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();"}}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var KEY='kaisa-locale';var loc=null;try{loc=sessionStorage.getItem(KEY);}catch(e){}function fromNav(){var list=[navigator.language].concat(navigator.languages||[]);for(var i=0;i<list.length;i++){var l=String(list[i]||'').toLowerCase();if(l.indexOf('ko')===0)return 'ko';if(l.indexOf('zh')===0)return 'zh';if(l.indexOf('hi')===0)return 'hi';if(l.indexOf('en')===0)return 'en';}return null;}if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc=fromNav();if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc='ko';document.documentElement.lang=loc;}catch(e){document.documentElement.lang='ko';}})();"}}],[["$","$L2",null,{"src":"https://www.googletagmanager.com/gtag/js?id=G-2281QQ6XP4","strategy":"afterInteractive"}],["$","$L2",null,{"id":"google-analytics","strategy":"afterInteractive","children":"\n          window.dataLayer = window.dataLayer || [];\n          function gtag(){dataLayer.push(arguments);}\n          gtag('js', new Date());\n          gtag('config', 'G-2281QQ6XP4');\n        "}]],["$","$L3",null,{}],["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}],["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","$L7",null,{}],["$","$L8",null,{}],["$","$L9",null,{}]]}]]}]]}],{"children":[["$","$1","c",{"children":[[["$","script","script-0",{"src":"/_next/static/chunks/23u3jdspf1pgv.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1hr7-4fb6m83q.js","async":true,"nonce":"$undefined"}]],["$","$La",null,{"children":["$","div",null,{"className":"site-layout","children":[["$","$Lb",null,{}],["$","$Lc",null,{"children":["$","$L4",null,{"parallelRouterKey":"children","error":"$d","errorStyles":[],"errorScripts":[["$","script","script-0",{"src":"/_next/static/chunks/0hs6l77ykwsoc.js","async":true}]],"template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],"$Le","$Lf"]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],"$L10"]}]}]]}],{"children":["$L11",{"children":["$L12",{"children":["$L13",{},null,false,null]},null,false,"$@14"]},null,false,"$@14"]},null,false,null]},null,false,null],"$L15",false]],"m":"$undefined","G":["$16",["$L17","$L18","$L19"]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"rgIajyDGnwYL9Qdz0xIG3"}
 1a:I[44604,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js"],"default"]
 1c:I[97367,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"OutletBoundary"]
 1d:"$Sreact.suspense"
@@ -33,13 +33,153 @@ f:["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]
 1f:[]
 14:"$W1f"
 15:["$","$1","h",{"children":[null,["$","$L20",null,{"children":"$L21"}],["$","div",null,{"hidden":true,"children":["$","$L22",null,{"children":["$","$1d",null,{"name":"Next.Metadata","children":"$L23"}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}]
-17:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3ou3k_oca-ann.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
+17:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0aw5gw7bg_b6q.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
 18:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0g93akm33ce_n.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
 19:["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/0l7zbvjzypglv.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
 24:I[55489,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],"default"]
-25:I[44398,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],"default"]
-1b:[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"S3 버킷·접근 제어·수명주기\",\"description\":\"퍼블릭 차단, 버킷 정책·IAM, 버전관리·수명주기로 안전한 오브젝트 스토리지 운영 기준을 잡는다.\",\"datePublished\":\"2026-08-26\",\"url\":\"https://kaisa.co.kr/posts/aws-04/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"aws\",\"keywords\":\"aws\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"S3 버킷·접근 제어·수명주기\",\"item\":\"https://kaisa.co.kr/posts/aws-04/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L6",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2026-08-26"}]}],["$","h1",null,{"className":"blog-post__title","children":"S3 버킷·접근 제어·수명주기"}],["$","$L24",null,{"content":"# S3 버킷·접근 제어·수명주기\n\n> 요약: 퍼블릭 차단, 버킷 정책·IAM, 버전관리·수명주기로 안전한 오브젝트 스토리지 운영 기준을 잡는다.\n\n---\n\n## 1. S3의 위치\n\nS3는 무제한에 가까운 **오브젝트 스토리지**다. 정적 웹, 백업, 로그, 데이터 레이크에 쓴다.\n\n기본 원칙:\n\n- **Block Public Access** 유지\n- 퍼블릭 웹이 필요하면 CloudFront + OAC\n- 암호화(SSE-S3 또는 SSE-KMS)\n\n---\n\n## 2. 권한 모델\n\n| 방식 | 용도 |\n|------|------|\n| IAM 정책 | 누가(역할/사용자) 무엇을 |\n| 버킷 정책 | 이 버킷에 대한 리소스 정책 |\n| ACL | 레거시. 신규는 비권장 |\n\n앱은 **IAM 역할**로 `s3:GetObject` / `PutObject`만 연다. 와일드카드 `*` 버킷은 피한다.\n\n---\n\n## 3. 버전관리·수명주기\n\n- Versioning: 실수 삭제·덮어쓰기 복구\n- Lifecycle: 오래된 버전 → Glacier / 삭제\n- Replication: 재해 복구(필요 시)\n\n```json\n{\n  \"Rules\": [{\n    \"ID\": \"expire-old-logs\",\n    \"Status\": \"Enabled\",\n    \"Filter\": { \"Prefix\": \"logs/\" },\n    \"Expiration\": { \"Days\": 90 }\n  }]\n}\n```\n\n---\n\n## 4. 자주 하는 실수\n\n- 개발 편의로 퍼블릭 읽기 오픈\n- 액세스 키를 프론트에 심기\n- 버킷 이름을 추측 가능하게 만들고 민감 파일 방치\n\n---\n\n## 정리\n\nS3는 편하지만 **퍼블릭 차단 + 최소 IAM + 수명주기** 세 가지를 기본값으로 둔다."}],["$","$L25",null,{"pathKey":"aws-04"}],["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L6",null,{"href":"/posts/aws-03/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"EC2 인스턴스 기초와 운영 포인트"}]]}],["$","$L6",null,{"href":"/posts/aws-05/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"RDS로 관리형 데이터베이스 운영하기"}]]}]]}],["$","$L6",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]]}]}]}]]
+25:T1b45,# S3 버킷·접근 제어·수명주기
+
+> 요약: 객체 스토리지(S3)를 퍼블릭 차단·최소 IAM·수명주기로 안전하게 쓰는 기본선을 정리한다.
+
+---
+
+## 1. 언제 S3인가
+
+S3는 Simple Storage Service, 객체 스토리지다. 파일을 경로처럼 보이지만 실제는 버킷 + 키다. 무제한에 가깝게 늘리고, HTTP로 읽고 쓴다.
+
+| 맞는 경우 | 덜 맞는 경우 |
+|-----------|--------------|
+| 업로드 이미지, 백업, 로그, 정적 자산 | 자주 바꾸는 운영체제 디스크 (EBS) |
+| 데이터 레이크, 덤프, 산출물 보관 | 밀리초 단위 키-값 캐시 (Redis) |
+| CloudFront 앞단 정적 웹 | 관계형 조회·트랜잭션 (RDS) |
+| 다른 리전 복제로 DR | 동시에 같은 파일을 락 잡고 쓰는 공유 디스크 |
+
+기본 원칙은 한 줄이다. **버킷은 비공개로 만들고, 필요할 때만 앞단을 연다.** Block Public Access를 끄고 “일단 퍼블릭 읽기”는 유출 사고의 정석이다. 정적 웹이 필요하면 CloudFront + OAC를 검토한다. OAC는 Origin Access Control, CDN만 원본을 읽게 하는 장치다.
+
+---
+
+## 2. 핵심 개념
+
+**버킷**은 리전 단위 컨테이너다. 이름은 전역에서 유일하다. 추측하기 쉬운 이름 + 민감 파일은 스캔 대상이다.
+
+**객체 키**는 `logs/2026/08/app.json` 같은 문자열이다. 폴더처럼 보이지만 prefix일 뿐이다.
+
+**권한 세 겹.**
+
+| 방식 | 용도 |
+|------|------|
+| IAM 정책 | 누가(역할/사용자) 무엇을 |
+| 버킷 정책 | 이 버킷 리소스에 대한 정책 |
+| ACL | 레거시. 신규 버킷은 ACL 끄기가 기본 |
+
+앱은 **IAM 역할**로 `s3:GetObject` / `PutObject`만 연다. `Resource`를 `arn:aws:s3:::YOUR_BUCKET/*`처럼 버킷으로 좁힌다. `*` 버킷 와일드카드는 피한다.
+
+**암호화.** SSE-S3(S3 관리 키) 또는 SSE-KMS. KMS는 Key Management Service다. 민감하면 KMS + 키 정책으로 누가 쓰는지 남긴다.
+
+**버전 관리.** 덮어쓰기·삭제 실수에서 이전 버전을 남긴다. 용량이 늘므로 수명주기와 세트로 켠다.
+
+**수명주기(Lifecycle).** 오래된 로그를 삭제하거나 Glacier로 내린다. Glacier는 저렴한 아카이브 계층이다. 복원에 시간이 걸린다.
+
+---
+
+## 3. 최소 예제 — 비공개 업로드
+
+앱이 사용자 업로드를 받는다고 가정한다. 브라우저에 액세스 키를 심지 않는다. 서버(또는 서명 URL)가 넣는다.
+
+버킷 정책 예. 퍼블릭 허용이 아니다. CloudFront OAC 전제는 별도 문서의 ARN으로 좁힌다.
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "AllowAppRolePut",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::YOUR_ACCOUNT_ID:role/app-api-role"
+      },
+      "Action": ["s3:PutObject", "s3:GetObject"],
+      "Resource": "arn:aws:s3:::app-uploads-prod/*"
+    }
+  ]
+}
+```
+
+수명주기 규칙 예:
+
+```json
+{
+  "Rules": [{
+    "ID": "expire-old-logs",
+    "Status": "Enabled",
+    "Filter": { "Prefix": "logs/" },
+    "Expiration": { "Days": 90 }
+  }]
+}
+```
+
+CLI 확인. 자격은 역할 또는 로컬 프로필. 키 값은 적지 않는다.
+
+```bash
+aws s3api get-public-access-block --bucket app-uploads-prod
+aws s3 ls s3://app-uploads-prod/logs/ --profile work
+```
+
+`BlockPublicAcls`·`RestrictPublicBuckets`가 true인지 본다. false면 이유가 문서에 있어야 한다.
+
+서명 URL은 만료를 짧게 둔다. 만료 없는 퍼블릭 객체로 우회하지 않는다. 서버가 SDK로 서명을 만들고, 브라우저는 그 URL로만 PUT/GET 한다. 만료는 분 단위가 안전하다.
+
+업로드 용량 상한과 Content-Type을 앱에서 검사한다. S3는 시킨 대로 저장할 뿐이다. 실행 가능한 파일을 공개 prefix에 두면 다른 사고의 시작이다.
+
+---
+
+## 4. 운영 시 주의
+
+**보안.** 개발 편의로 퍼블릭 읽기를 켜지 않는다. 액세스 키를 프론트·모바일 앱에 넣지 않는다. 오픈된 버킷은 검색 엔진과 봇이 먼저 찾는다.
+
+**비용.** 저장 단가는 낮고 요청 수·트래픽·잘못된 LIST가 비용을 만든다. 로그를 무기한 두면 용량이 선형으로 는다. 수명주기를 첫날 켠다. Intelligent-Tiering은 접근 패턴이 제각각일 때 검토한다.
+
+**백업.** 버전 관리 + 다른 리전 복제는 DR용이다. “버킷 하나 = 원본”이면 계정 사고에 같이 죽는다. 중요 백업은 별도 계정·리전을 검토한다.
+
+**실수 방지.** MFA Delete, 오브젝트 잠금은 규제 데이터에 검토한다. `aws s3 rm` recursive는 프로덕션에서 보호한다.
+
+**명명.** 환경별로 버킷을 나눈다. `app-uploads-dev`와 `app-uploads-prod`를 같은 정책으로 묶지 않는다.
+
+**접근 로그.** 서버 액세스 로그 또는 CloudTrail 데이터 이벤트로 “누가 객체를 읽었는지”를 남긴다. 전 버킷 데이터 이벤트는 비용이 난다. 민감 버킷만 켠다.
+
+**CORS.** 브라우저에서 다른 도메인이 버킷에 붙으면 CORS가 필요하다. `*` 오리진은 개발용이다. 프로덕션은 사이트 도메인만. CORS를 연 것과 퍼블릭 객체를 연 것은 다르다. CORS만으로 익명 읽기가 되지는 않는다.
+
+---
+
+## 5. 정리
+
+S3는 편하다. 그래서 **퍼블릭 차단 + 최소 IAM + 수명주기**를 기본값으로 둔다. 웹에 파일을 보여 줄 때는 버킷을 열지 말고 CDN 뒤에서 연다.
+
+### 체크리스트
+
+- [ ] Block Public Access를 켠 채로 둔다. 기본 공개는 유출이다.
+- [ ] 앱은 IAM 역할로 특정 버킷·액션만 허용한다. 키를 프론트에 심지 않는다.
+- [ ] 버전 관리 또는 수명주기 중 운영 목적을 정한다. 무한 보관은 비용이다.
+- [ ] 암호화(SSE-S3 또는 KMS)를 기본으로 둔다.
+- [ ] `get-public-access-block`으로 공개 여부를 주기적으로 확인한다.
+
+### 연습
+
+1. 비공개 버킷을 만들고 역할로만 `PutObject`가 되는지 확인한다. 브라우저 익명 GET이 거절되어야 한다.
+2. `logs/` prefix 90일 삭제 규칙을 적용하고 콘솔에서 규칙이 보이는지 본다.
+3. Block Public Access 네 항목이 모두 켜져 있는지 CLI로 출력한다.
+
+정적 사이트라도 버킷 정책을 `Principal: "*"` `s3:GetObject`로 여는 구성을 기본으로 두지 않는다. 옛날 튜토리얼이 많다. CloudFront OAC가 표준에 가깝다. 꼭 버킷 웹 호스팅을 쓰면 개인정보·백업 prefix는 그 버킷에 넣지 않는다. 사이트용과 업로드용을 나눈다.
+
+멀티파트 업로드가 실패하면 불완전 파트가 요금을 남긴다. 수명주기에서 미완료 업로드를 며칠 뒤 지운다. 큰 영상·덤프를 쓰는 버킷이면 특히 그렇다.
+
+객체 키에 사용자 입력을 그대로 넣지 않는다. `../`와 이상한 문자는 앱에서 걸러 키를 `uploads/{userId}/{uuid}`처럼 만든다.
+
+---1b:[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"S3 버킷·접근 제어·수명주기\",\"description\":\"객체 스토리지(S3)를 퍼블릭 차단·최소 IAM·수명주기로 안전하게 쓰는 기본선을 정리한다.\",\"datePublished\":\"2024-08-14\",\"url\":\"https://kaisa.co.kr/posts/aws-04/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"aws\",\"keywords\":\"aws\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"S3 버킷·접근 제어·수명주기\",\"item\":\"https://kaisa.co.kr/posts/aws-04/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L6",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2024-08-14"}]}],["$","h1",null,{"className":"blog-post__title","children":"S3 버킷·접근 제어·수명주기"}],["$","$L24",null,{"content":"$25"}],"$L26","$L27"]}]}]}]]
+28:I[44398,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],"default"]
+26:["$","$L28",null,{"pathKey":"aws-04"}]
+27:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L6",null,{"href":"/posts/aws-03/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"EC2 인스턴스 기초와 운영 포인트"}]]}],["$","$L6",null,{"href":"/posts/aws-05/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"RDS로 관리형 데이터베이스 운영하기"}]]}]]}],["$","$L6",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
 21:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
-26:I[27201,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"IconMark"]
+29:I[27201,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"IconMark"]
 1e:null
-23:[["$","title","0",{"children":"S3 버킷·접근 제어·수명주기 · Kaisa"}],["$","meta","1",{"name":"description","content":"퍼블릭 차단, 버킷 정책·IAM, 버전관리·수명주기로 안전한 오브젝트 스토리지 운영 기준을 잡는다."}],["$","meta","2",{"name":"application-name","content":"Kaisa"}],["$","meta","3",{"name":"robots","content":"index, follow"}],["$","meta","4",{"name":"naver-site-verification","content":"4bc13b857695ff44988c260cb26124eedbcda90e"}],["$","link","5",{"rel":"canonical","href":"https://kaisa.co.kr/posts/aws-04/"}],["$","meta","6",{"property":"og:title","content":"S3 버킷·접근 제어·수명주기 · Kaisa"}],["$","meta","7",{"property":"og:description","content":"퍼블릭 차단, 버킷 정책·IAM, 버전관리·수명주기로 안전한 오브젝트 스토리지 운영 기준을 잡는다."}],["$","meta","8",{"property":"og:url","content":"https://kaisa.co.kr/posts/aws-04/"}],["$","meta","9",{"property":"og:site_name","content":"Kaisa"}],["$","meta","10",{"property":"og:locale","content":"ko_KR"}],["$","meta","11",{"property":"og:type","content":"article"}],["$","meta","12",{"name":"twitter:card","content":"summary"}],["$","meta","13",{"name":"twitter:title","content":"S3 버킷·접근 제어·수명주기 · Kaisa"}],["$","meta","14",{"name":"twitter:description","content":"퍼블릭 차단, 버킷 정책·IAM, 버전관리·수명주기로 안전한 오브젝트 스토리지 운영 기준을 잡는다."}],["$","link","15",{"rel":"shortcut icon","href":"/img/common/favicon.ico"}],["$","link","16",{"rel":"icon","href":"/img/common/favicon.ico"}],["$","link","17",{"rel":"apple-touch-icon","href":"/img/common/favicon.ico"}],["$","$L26","18",{}]]
+23:[["$","title","0",{"children":"S3 버킷·접근 제어·수명주기 · Kaisa"}],["$","meta","1",{"name":"description","content":"객체 스토리지(S3)를 퍼블릭 차단·최소 IAM·수명주기로 안전하게 쓰는 기본선을 정리한다."}],["$","meta","2",{"name":"application-name","content":"Kaisa"}],["$","meta","3",{"name":"robots","content":"index, follow"}],["$","meta","4",{"name":"naver-site-verification","content":"4bc13b857695ff44988c260cb26124eedbcda90e"}],["$","link","5",{"rel":"canonical","href":"https://kaisa.co.kr/posts/aws-04/"}],["$","meta","6",{"property":"og:title","content":"S3 버킷·접근 제어·수명주기 · Kaisa"}],["$","meta","7",{"property":"og:description","content":"객체 스토리지(S3)를 퍼블릭 차단·최소 IAM·수명주기로 안전하게 쓰는 기본선을 정리한다."}],["$","meta","8",{"property":"og:url","content":"https://kaisa.co.kr/posts/aws-04/"}],["$","meta","9",{"property":"og:site_name","content":"Kaisa"}],["$","meta","10",{"property":"og:locale","content":"ko_KR"}],["$","meta","11",{"property":"og:type","content":"article"}],["$","meta","12",{"name":"twitter:card","content":"summary"}],["$","meta","13",{"name":"twitter:title","content":"S3 버킷·접근 제어·수명주기 · Kaisa"}],["$","meta","14",{"name":"twitter:description","content":"객체 스토리지(S3)를 퍼블릭 차단·최소 IAM·수명주기로 안전하게 쓰는 기본선을 정리한다."}],["$","link","15",{"rel":"shortcut icon","href":"/img/common/favicon.ico"}],["$","link","16",{"rel":"icon","href":"/img/common/favicon.ico"}],["$","link","17",{"rel":"apple-touch-icon","href":"/img/common/favicon.ico"}],["$","$L29","18",{}]]

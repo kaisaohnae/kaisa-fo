@@ -5,31 +5,30 @@ b:I[44398,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__
 c:I[97367,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"OutletBoundary"]
 d:"$Sreact.suspense"
 :HL["/_next/static/chunks/3j-1lpdn3an_-.css","style"]
-4:T1896,# IoC, Bean, Configuration — 현대적인 의존성 주입
+4:T186c,# IoC, Bean, Configuration — 의존성 주입
 
-> 요약: Spring IoC 컨테이너의 핵심을 이해하고, 생성자 주입·구성 클래스·조건부 Bean 등 실무 패턴을 익힌다.
-
----
+> 요약: IoC 컨테이너가 Bean을 조립하는 방식을 이해하고, 생성자 주입과 타입 세이프 설정으로 의존성을 구성한다.
 
 ---
 
-## 1. IoC와 DI란
+## 1. 왜 IoC인가
 
-- **IoC (Inversion of Control)**: 객체 생성·생명주기 제어권을 프레임워크가 가진다.
-- **DI (Dependency Injection)**: 필요한 의존성을 외부에서 주입받는다.
+**IoC(Inversion of Control)** 는 객체 생성과 생명주기 제어권을 프레임워크가 갖는 것이다. **DI(Dependency Injection)** 는 그 구현 방식으로, 필요한 의존성을 외부에서 넣어 준다.
 
-직접 `new`로 조립하면 테스트·교체가 어렵고, Spring은 **Bean**으로 등록된 객체를 조립한다.
+직접 `new`로 조립하면 테스트에서 구현을 바꾸기 어렵다. Spring은 **Bean**—컨테이너가 만들고 주입하는 객체—으로 그래프를 짠다.
 
 ---
 
 ## 2. Bean이 되는 방법
 
-| 방식 | 언제 쓰나 |
-|------|-----------|
-| `@Component` / `@Service` / `@Repository` / `@Controller` | 직접 만든 클래스 |
-| `@Bean` in `@Configuration` | 외부 라이브러리 객체, 세밀한 생성 제어 |
-| `@ConfigurationProperties` + `@EnableConfigurationProperties` | 타입 세이프 설정 바인딩 |
-| Auto-configuration | starter가 자동 등록 |
+직접 만든 클래스는 스테레오타입, 외부 라이브러리 객체는 `@Bean`이 기본이다.
+
+| 방식 | 언제 |
+|------|------|
+| `@Component` / `@Service` / `@Repository` / `@Controller` | 우리가 작성한 클래스 |
+| `@Bean` + `@Configuration` | 생성 과정이 있거나 남이 만든 타입 |
+| `@ConfigurationProperties` | 설정값을 타입으로 바인딩 |
+| Auto-configuration | starter가 조건에 맞으면 등록 |
 
 ```java
 @Service
@@ -37,7 +36,6 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final PaymentClient paymentClient;
 
-    // 생성자 1개면 @Autowired 생략 가능 (권장)
     public OrderService(OrderRepository orderRepository, PaymentClient paymentClient) {
         this.orderRepository = orderRepository;
         this.paymentClient = paymentClient;
@@ -45,40 +43,32 @@ public class OrderService {
 }
 ```
 
+생성자가 하나면 `@Autowired`는 생략한다.
+
 ---
 
-## 3. 주입 방식 — 무엇을 쓸까
+## 3. 주입 방식
 
-### 생성자 주입 (권장, 사실상 표준)
+생성자 주입이 기본선이다. `final`로 불변이고, 순환 의존성은 기동 시점에 드러나며, 테스트에서 목을 넣기 쉽다.
 
 ```java
 @Service
-@RequiredArgsConstructor  // Lombok 사용 시
 public class UserService {
     private final UserRepository userRepository;
+
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 }
 ```
 
-장점:
-
-- `final`로 불변성 보장
-- 순환 의존성을 초기에 발견
-- 테스트에서 목 객체를 생성자로 넣기 쉬움
-
-### 필드 주입 (비권장)
-
-```java
-@Autowired
-private UserRepository userRepository; // 테스트·불변성 약함
-```
-
-### Setter 주입
-
-선택적 의존성일 때만 드물게 사용.
+`@Autowired` 필드 주입은 테스트와 불변성이 약하다. Setter는 정말 선택적 의존성일 때만 쓴다.
 
 ---
 
 ## 4. `@Configuration`과 `@Bean`
+
+한 줄 정의: 설정 클래스는 **조립 공장**이고, `@Bean` 메서드 반환값이 컨테이너에 등록된다.
 
 ```java
 @Configuration
@@ -99,33 +89,33 @@ public class AppConfig {
 }
 ```
 
-`@Configuration`은 CGLIB 프록시로 `@Bean` 메서드 간 호출을 싱글톤으로 보장한다.  
-가벼운 설정만 필요하면 `@Configuration(proxyBeanMethods = false)` (Lite mode)를 쓰면 기동이 빨라진다.
+기본 `@Configuration`은 CGLIB 프록시로 `@Bean` 메서드 간 호출을 싱글톤으로 맞춘다. `@Bean`끼리 서로 호출하지 않으면 `@Configuration(proxyBeanMethods = false)`(Lite)가 기동에 유리하다.
 
 ---
 
 ## 5. 스코프
 
-| Scope | 설명 |
+| Scope | 의미 |
 |-------|------|
-| `singleton` (기본) | 컨테이너당 1개 |
-| `prototype` | 요청마다 새 인스턴스 |
-| `request` | HTTP 요청당 1개 |
-| `session` | HTTP 세션당 1개 |
+| `singleton` (기본) | 컨테이너당 하나 |
+| `prototype` | 조회마다 새 인스턴스 |
+| `request` / `session` | HTTP 요청·세션당 하나 |
+
+서비스·리포지토리는 거의 항상 singleton이다. **요청 상태를 필드로 두지 않는다.** 두면 스레드끼리 데이터가 섞인다.
 
 ```java
 @Bean
 @Scope("prototype")
-public ReportBuilder reportBuilder() {
+ReportBuilder reportBuilder() {
     return new ReportBuilder();
 }
 ```
 
-대부분의 서비스/리포지토리는 **singleton**이면 충분하다. 상태를 필드에 두지 말 것.
-
 ---
 
-## 6. 조건부 Bean (실무에서 자주 씀)
+## 6. 조건부 Bean
+
+환경마다 구현을 바꾸려면 조건 어노테이션을 쓴다. 로컬에서만 가짜 클라이언트를 쓰는 전형적인 패턴이다.
 
 ```java
 @Bean
@@ -141,21 +131,19 @@ MailSender noopMailSender() {
 }
 ```
 
-기타:
-
-- `@ConditionalOnClass`
-- `@ConditionalOnWebApplication`
-- `@Profile("local")`
+`@Profile("!prod")`, `@ConditionalOnClass`, `@ConditionalOnWebApplication`도 같은 계열이다.
 
 ```java
 @Service
 @Profile("!prod")
-public class FakePaymentClient implements PaymentClient { ... }
+public class FakePaymentClient implements PaymentClient { }
 ```
 
 ---
 
-## 7. `@ConfigurationProperties` (하드코딩 설정 금지)
+## 7. `@ConfigurationProperties`
+
+URL·타임아웃을 코드에 쓰지 않는다. Boot 3에서는 **record + `@ConfigurationProperties`** 가 맞다.
 
 ```java
 @ConfigurationProperties(prefix = "app.payment")
@@ -181,21 +169,18 @@ public class PaymentConfig {
 
     @Bean
     PaymentClient paymentClient(PaymentProperties props, RestClient.Builder builder) {
-        return new HttpPaymentClient(
-                builder.baseUrl(props.baseUrl())
-                        .build(),
-                props
-        );
+        return new HttpPaymentClient(builder.baseUrl(props.baseUrl()).build(), props);
     }
 }
 ```
 
-Boot 3에서는 **record + `@ConfigurationProperties`** 조합이 깔끔하다.  
-IDE 자동완성을 위해 `spring-boot-configuration-processor`를 annotationProcessor로 추가하면 좋다.
+IDE 자동완성은 `spring-boot-configuration-processor`를 annotation processor로 넣으면 된다.
 
 ---
 
-## 8. 인터페이스 기반 설계
+## 8. 포트로 의존성 끊기
+
+구현체가 아니라 **인터페이스(포트)** 에 의존하면 테스트에서 구현만 바꾸면 된다.
 
 ```java
 public interface NotificationPort {
@@ -203,78 +188,43 @@ public interface NotificationPort {
 }
 
 @Service
-public class EmailNotificationAdapter implements NotificationPort { ... }
+public class EmailNotificationAdapter implements NotificationPort { }
 ```
-
-테스트:
-
-```java
-@SpringBootTest
-@Import(TestNotificationConfig.class)
-class OrderServiceIT { ... }
-```
-
-의존성을 구현체가 아닌 **포트(인터페이스)** 에 두면 교체·테스트가 쉬워진다.
 
 ---
 
-## 9. 순환 의존성
+## 9. 순환 의존성과 생명주기
 
-Boot 2에서는 경고, Boot 3에서는 **기본적으로 금지**에 가깝다.
+Boot 3는 순환 참조를 기본적으로 허용하지 않는다. 공통 로직을 제3 서비스로 빼거나 `ApplicationEventPublisher`로 결합을 낮춘다. `@Lazy`는 최후 수단이다.
 
-해결:
-
-1. 설계 분리 (공통 로직을 제3 서비스로)
-2. 이벤트(`ApplicationEventPublisher`)로 결합도 낮추기
-3. `@Lazy`는 최후 수단
-
----
-
-## 10. 생명주기 콜백
-
-```java
-@Component
-public class CacheWarmer {
-
-    @PostConstruct
-    void warm() {
-        // 기동 직후
-    }
-
-    @PreDestroy
-    void shutdown() {
-        // 종료 직전
-    }
-}
-```
-
-또는:
+기동·종료 훅은 `@PostConstruct` / `@PreDestroy` 또는 `@Bean(initMethod, destroyMethod)`다. 파일·스레드 풀처럼 닫을 자원이 있으면 destroy를 빠뜨리지 않는다.
 
 ```java
 @Bean(initMethod = "start", destroyMethod = "stop")
-MyWorker myWorker() { return new MyWorker(); }
+MyWorker myWorker() {
+    return new MyWorker();
+}
 ```
-
-리소스 정리는 `destroyMethod` / `@PreDestroy` / `DisposableBean`을 명확히.
 
 ---
 
-## 11. 최신 기법 요약
+## 10. 흔한 실수
 
-- 생성자 주입 + `final`이 기본
-- 설정은 `@ConfigurationProperties`로 타입 세이프하게
-- 외부 연동 Bean은 `@Configuration`에서 조립
-- `@Profile` / `@ConditionalOn*`으로 환경별 구현 교체
-- 순환 참조는 구조로 해결
-- Lite `@Configuration(proxyBeanMethods = false)`로 기동 최적화 가능
+| 실수 | 대안 |
+|------|------|
+| 필드 `@Autowired` | 생성자 + `final` |
+| yml 값을 `@Value`로 흩뿌리기 | `@ConfigurationProperties` |
+| 서비스에 요청 상태 필드 | 메서드 인자·요청 스코프 |
+| 순환을 `@Lazy`로 숨기기 | 설계 분리 |
+| `@Component`와 `@Bean`으로 같은 타입을 두 번 등록 | 하나만 |
 
 ---
 
 ## 연습
 
-1. `AppProperties(record)`를 만들고 `app.greeting` 값을 주입받아 API로 반환한다.
-2. `Clock` Bean을 등록하고 서비스에서 “지금 시각”을 출력한다. 테스트에서는 고정 `Clock`으로 교체한다.
-3. `local` 프로필에만 동작하는 `DevBanner` 컴포넌트를 만든다.0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"IoC, Bean, Configuration — 현대적인 의존성 주입\",\"description\":\"Spring IoC 컨테이너의 핵심을 이해하고, 생성자 주입·구성 클래스·조건부 Bean 등 실무 패턴을 익힌다.\",\"datePublished\":\"2026-08-26\",\"url\":\"https://kaisa.co.kr/posts/spring-boot-02/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"spring-boot\",\"keywords\":\"spring-boot\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"IoC, Bean, Configuration — 현대적인 의존성 주입\",\"item\":\"https://kaisa.co.kr/posts/spring-boot-02/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2026-08-26"}]}],["$","h1",null,{"className":"blog-post__title","children":"IoC, Bean, Configuration — 현대적인 의존성 주입"}],["$","$L3",null,{"content":"$4"}],"$L5","$L6"]}]}]}]],["$L7","$L8","$L9"],"$La"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"DJX3Zf-ybBx2vscYgjP8o"}
+1. `AppProperties` record로 `app.greeting`을 읽어 API로 반환한다.
+2. `Clock` Bean을 등록하고, 테스트에서는 고정 `Clock`으로 교체한다.
+3. `local` 프로필에서만 동작하는 `DevBanner`를 만든다.0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"IoC, Bean, Configuration — 의존성 주입\",\"description\":\"IoC 컨테이너가 Bean을 조립하는 방식을 이해하고, 생성자 주입과 타입 세이프 설정으로 의존성을 구성한다.\",\"datePublished\":\"2023-10-13\",\"url\":\"https://kaisa.co.kr/posts/spring-boot-02/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"spring-boot\",\"keywords\":\"spring-boot\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"IoC, Bean, Configuration — 의존성 주입\",\"item\":\"https://kaisa.co.kr/posts/spring-boot-02/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2023-10-13"}]}],["$","h1",null,{"className":"blog-post__title","children":"IoC, Bean, Configuration — 의존성 주입"}],["$","$L3",null,{"content":"$4"}],"$L5","$L6"]}]}]}]],["$L7","$L8","$L9"],"$La"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"rgIajyDGnwYL9Qdz0xIG3"}
 5:["$","$Lb",null,{"pathKey":"spring-boot-02"}]
 6:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/spring-boot-01/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Spring Boot 3와 Java 21 시작하기"}]]}],["$","$L2",null,{"href":"/posts/spring-boot-03/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"REST API 설계 — Validation, Problem Details, RestClient"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
 7:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3j-1lpdn3an_-.css","precedence":"next"}]

@@ -12,13 +12,13 @@ b:I[45872,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__
 c:I[20683,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js"],"default"]
 d:I[86979,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/0hs6l77ykwsoc.js"],"default"]
 16:I[68027,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default",1]
-:HL["/_next/static/chunks/3ou3k_oca-ann.css","style"]
+:HL["/_next/static/chunks/0aw5gw7bg_b6q.css","style"]
 :HL["/_next/static/chunks/0g93akm33ce_n.css","style"]
 :HL["/_next/static/chunks/0l7zbvjzypglv.css","style"]
 :HL["/_next/static/media/0c795a286deabae8-s.p.3vm0tq4e-zz_5.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/media/5c285b27cdda1fe8-s.p.2_mbdogr7ni8i.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/chunks/3j-1lpdn3an_-.css","style"]
-0:{"P":null,"c":["","posts","angular-04",""],"q":"","i":false,"f":[[["",{"children":["(site)",{"children":["posts",{"children":[["slug","angular-04","d",null],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3ou3k_oca-ann.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0g93akm33ce_n.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/0l7zbvjzypglv.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/3t-_5l233af4w.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1uymn__-_z4ug.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ko","className":"syne_53f86cd1-module__kiT3Eq__variable dm_sans_fd62f040-module__0jgVUW__variable","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","script",null,{"async":true,"src":"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2641553863829571","crossOrigin":"anonymous"}]}],["$","body",null,{"children":[["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var t=null;document.cookie.split(';').forEach(function(c){var p=c.trim().split('=');if(p[0]==='kaisa-theme')t=decodeURIComponent(p[1]||'');});document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();"}}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var KEY='kaisa-locale';var loc=null;try{loc=sessionStorage.getItem(KEY);}catch(e){}function fromNav(){var list=[navigator.language].concat(navigator.languages||[]);for(var i=0;i<list.length;i++){var l=String(list[i]||'').toLowerCase();if(l.indexOf('ko')===0)return 'ko';if(l.indexOf('zh')===0)return 'zh';if(l.indexOf('hi')===0)return 'hi';if(l.indexOf('en')===0)return 'en';}return null;}if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc=fromNav();if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc='ko';document.documentElement.lang=loc;}catch(e){document.documentElement.lang='ko';}})();"}}],[["$","$L2",null,{"src":"https://www.googletagmanager.com/gtag/js?id=G-2281QQ6XP4","strategy":"afterInteractive"}],["$","$L2",null,{"id":"google-analytics","strategy":"afterInteractive","children":"\n          window.dataLayer = window.dataLayer || [];\n          function gtag(){dataLayer.push(arguments);}\n          gtag('js', new Date());\n          gtag('config', 'G-2281QQ6XP4');\n        "}]],["$","$L3",null,{}],["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}],["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","$L7",null,{}],["$","$L8",null,{}],["$","$L9",null,{}]]}]]}]]}],{"children":[["$","$1","c",{"children":[[["$","script","script-0",{"src":"/_next/static/chunks/23u3jdspf1pgv.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1hr7-4fb6m83q.js","async":true,"nonce":"$undefined"}]],["$","$La",null,{"children":["$","div",null,{"className":"site-layout","children":[["$","$Lb",null,{}],["$","$Lc",null,{"children":["$","$L4",null,{"parallelRouterKey":"children","error":"$d","errorStyles":[],"errorScripts":[["$","script","script-0",{"src":"/_next/static/chunks/0hs6l77ykwsoc.js","async":true}]],"template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],"$Le","$Lf"]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],"$L10"]}]}]]}],{"children":["$L11",{"children":["$L12",{"children":["$L13",{},null,false,null]},null,false,"$@14"]},null,false,"$@14"]},null,false,null]},null,false,null],"$L15",false]],"m":"$undefined","G":["$16",["$L17","$L18","$L19"]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"DJX3Zf-ybBx2vscYgjP8o"}
+0:{"P":null,"c":["","posts","angular-04",""],"q":"","i":false,"f":[[["",{"children":["(site)",{"children":["posts",{"children":[["slug","angular-04","d",null],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0aw5gw7bg_b6q.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0g93akm33ce_n.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/0l7zbvjzypglv.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/3t-_5l233af4w.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1uymn__-_z4ug.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ko","className":"syne_53f86cd1-module__kiT3Eq__variable dm_sans_fd62f040-module__0jgVUW__variable","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","script",null,{"async":true,"src":"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2641553863829571","crossOrigin":"anonymous"}]}],["$","body",null,{"children":[["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var t=null;document.cookie.split(';').forEach(function(c){var p=c.trim().split('=');if(p[0]==='kaisa-theme')t=decodeURIComponent(p[1]||'');});document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();"}}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var KEY='kaisa-locale';var loc=null;try{loc=sessionStorage.getItem(KEY);}catch(e){}function fromNav(){var list=[navigator.language].concat(navigator.languages||[]);for(var i=0;i<list.length;i++){var l=String(list[i]||'').toLowerCase();if(l.indexOf('ko')===0)return 'ko';if(l.indexOf('zh')===0)return 'zh';if(l.indexOf('hi')===0)return 'hi';if(l.indexOf('en')===0)return 'en';}return null;}if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc=fromNav();if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc='ko';document.documentElement.lang=loc;}catch(e){document.documentElement.lang='ko';}})();"}}],[["$","$L2",null,{"src":"https://www.googletagmanager.com/gtag/js?id=G-2281QQ6XP4","strategy":"afterInteractive"}],["$","$L2",null,{"id":"google-analytics","strategy":"afterInteractive","children":"\n          window.dataLayer = window.dataLayer || [];\n          function gtag(){dataLayer.push(arguments);}\n          gtag('js', new Date());\n          gtag('config', 'G-2281QQ6XP4');\n        "}]],["$","$L3",null,{}],["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}],["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","$L7",null,{}],["$","$L8",null,{}],["$","$L9",null,{}]]}]]}]]}],{"children":[["$","$1","c",{"children":[[["$","script","script-0",{"src":"/_next/static/chunks/23u3jdspf1pgv.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1hr7-4fb6m83q.js","async":true,"nonce":"$undefined"}]],["$","$La",null,{"children":["$","div",null,{"className":"site-layout","children":[["$","$Lb",null,{}],["$","$Lc",null,{"children":["$","$L4",null,{"parallelRouterKey":"children","error":"$d","errorStyles":[],"errorScripts":[["$","script","script-0",{"src":"/_next/static/chunks/0hs6l77ykwsoc.js","async":true}]],"template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],"$Le","$Lf"]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],"$L10"]}]}]]}],{"children":["$L11",{"children":["$L12",{"children":["$L13",{},null,false,null]},null,false,"$@14"]},null,false,"$@14"]},null,false,null]},null,false,null],"$L15",false]],"m":"$undefined","G":["$16",["$L17","$L18","$L19"]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"rgIajyDGnwYL9Qdz0xIG3"}
 1a:I[44604,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js"],"default"]
 1c:I[97367,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"OutletBoundary"]
 1d:"$Sreact.suspense"
@@ -33,84 +33,236 @@ f:["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]
 1f:[]
 14:"$W1f"
 15:["$","$1","h",{"children":[null,["$","$L20",null,{"children":"$L21"}],["$","div",null,{"hidden":true,"children":["$","$L22",null,{"children":["$","$1d",null,{"name":"Next.Metadata","children":"$L23"}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}]
-17:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3ou3k_oca-ann.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
+17:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0aw5gw7bg_b6q.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
 18:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0g93akm33ce_n.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
 19:["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/0l7zbvjzypglv.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
 24:I[55489,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],"default"]
-26:I[44398,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],"default"]
-25:T6b3,# 라우팅과 리액티브 폼
+25:T1bc5,# 라우팅과 리액티브 폼
 
-> 요약: provideRouter, lazy 로드, 가드와 FormBuilder·validators로 화면 전환과 입력 검증을 구성하는 방법을 정리한다.
+> 요약: provideRouter와 lazy loadComponent로 화면을 나누고, 가드·FormBuilder로 진입 조건과 입력 검증을 구성하는 방법을 정리한다.
 
 ---
 
-## 1. 라우트
+## 1. 왜 라우터와 폼인가
+
+SPA에서 주소는 화면의 이름이다. 새로고침·공유 링크가 같은 화면을 열어야 한다.
+
+폼은 입력을 클래스로 들고 검증한다. 템플릿의 `ngModel`만으로는 필드가 늘고 조건이 겹치면 추적이 어렵다. **복잡한 검증·동적 필드**는 Reactive Forms(리액티브 폼)가 맞다. 검색 한 칸은 `ngModel`로도 충분하다.
+
+| 구성 | 역할 |
+|------|------|
+| `Routes` | path ↔ 컴포넌트 |
+| `loadComponent` | 그 화면 JS를 나중에 받는다 |
+| `CanActivateFn` | 이동 전에 로그인·권한을 검사한다 |
+| `FormGroup` | 필드 묶음. 값·유효·에러를 한 객체로 본다 |
+
+---
+
+## 2. 핵심 라우팅
+
+`src/app/app.routes.ts`:
 
 ```ts
 import { Routes } from '@angular/router';
+import { authGuard } from './auth.guard';
 
 export const routes: Routes = [
-  { path: '', loadComponent: () => import('./home/home').then((m) => m.HomeComponent) },
+  {
+    path: '',
+    loadComponent: () => import('./home/home').then((m) => m.Home),
+  },
+  {
+    path: 'login',
+    loadComponent: () => import('./login/login').then((m) => m.Login),
+  },
   {
     path: 'posts/:id',
-    loadComponent: () => import('./post/post').then((m) => m.PostComponent),
+    loadComponent: () => import('./post/post').then((m) => m.Post),
+    canActivate: [authGuard],
   },
   { path: '**', redirectTo: '' },
 ];
 ```
 
-- `loadComponent`로 코드 스플리팅
-- `RouterLink` / `routerLinkActive`
-- 파라미터는 `inputBinding` 또는 `ActivatedRoute`
-
----
-
-## 2. 가드
+`src/app/app.config.ts`:
 
 ```ts
-export const authGuard = () => {
-  const auth = inject(AuthService);
-  return auth.user() ? true : createUrlTreeFromSnapshot(/* … */);
+import { ApplicationConfig } from '@angular/core';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
+import { provideHttpClient } from '@angular/common/http';
+import { routes } from './app.routes';
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideRouter(routes, withComponentInputBinding()),
+    provideHttpClient(),
+  ],
 };
 ```
 
-`CanActivateFn`으로 로그인·권한을 막는다. 가드에서 무거운 API는 피한다.
+`withComponentInputBinding()`은 라우트 `:id`를 컴포넌트 `input()`과 같은 이름으로 연결한다. `ActivatedRoute.snapshot.paramMap`을 직접 읽지 않아도 된다.
 
----
-
-## 3. 리액티브 폼
+`src/app/post/post.ts`:
 
 ```ts
-import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Component, input } from '@angular/core';
 
-readonly form = inject(FormBuilder).nonNullable.group({
-  email: ['', [Validators.required, Validators.email]],
-  agree: [false, Validators.requiredTrue],
-});
+@Component({
+  selector: 'app-post',
+  standalone: true,
+  template: `<h1>글 {{ id() }}</h1>`,
+})
+export class Post {
+  id = input.required<string>();
+}
 ```
+
+`src/app/auth.guard.ts`:
+
+```ts
+import { inject } from '@angular/core';
+import { CanActivateFn, Router } from '@angular/router';
+import { AuthService } from './auth.service';
+
+export const authGuard: CanActivateFn = (_route, state) => {
+  const auth = inject(AuthService);
+  const router = inject(Router);
+  if (auth.isLoggedIn()) return true;
+  return router.createUrlTree(['/login'], {
+    queryParams: { redirect: state.url },
+  });
+};
+```
+
+가드에서 목록 API를 기다리면 전환이 느려진다. 세션 존재 여부만 본다.
+
+템플릿 이동:
 
 ```html
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <input type="email" formControlName="email" />
-</form>
+<a routerLink="/">홈</a>
+<a [routerLink]="['/posts', '42']">글 42</a>
 ```
 
-템플릿 주도 폼(`ngModel`)은 작은 폼에, **복잡한 검증·동적 필드는 Reactive Forms**.
+`RouterLink`를 해당 컴포넌트 `imports`에 넣는다.
 
 ---
 
-## 4. 접근성
+## 3. 동작하는 예: 로그인 폼
 
-- `label` + `id`
-- 에러 메시지를 `aria-describedby`로 연결
-- 제출 버튼 disabled와 메시지 병행
+`src/app/login/login.ts`:
+
+```ts
+import { Component, inject } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Router, RouterLink, ActivatedRoute } from '@angular/router';
+import { AuthService } from '../auth.service';
+
+@Component({
+  selector: 'app-login',
+  standalone: true,
+  imports: [ReactiveFormsModule, RouterLink],
+  template: `
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <label for="email">이메일</label>
+      <input id="email" type="email" formControlName="email" [attr.aria-describedby]="emailErr ? 'email-err' : null" />
+      @if (emailErr) {
+        <p id="email-err">{{ emailErr }}</p>
+      }
+
+      <label>
+        <input type="checkbox" formControlName="agree" />
+        약관 동의
+      </label>
+      @if (form.controls.agree.touched && form.controls.agree.invalid) {
+        <p>동의해야 진행한다</p>
+      }
+
+      <button type="submit" [disabled]="form.invalid">로그인</button>
+      <a routerLink="/">홈</a>
+    </form>
+  `,
+})
+export class Login {
+  private readonly fb = inject(FormBuilder);
+  private readonly auth = inject(AuthService);
+  private readonly router = inject(Router);
+  private readonly route = inject(ActivatedRoute);
+
+  readonly form = this.fb.nonNullable.group({
+    email: ['', [Validators.required, Validators.email]],
+    agree: [false, Validators.requiredTrue],
+  });
+
+  get emailErr(): string | null {
+    const c = this.form.controls.email;
+    if (!c.touched && !c.dirty) return null;
+    if (c.hasError('required')) return '이메일을 입력한다';
+    if (c.hasError('email')) return '이메일 형식이 아니다';
+    return null;
+  }
+
+  onSubmit() {
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
+    this.auth.login(this.form.getRawValue().email);
+    const redirect = this.route.snapshot.queryParamMap.get('redirect') ?? '/';
+    void this.router.navigateByUrl(redirect);
+  }
+}
+```
+
+- `[formGroup]` / `formControlName` — 템플릿 필드와 모델이 같은 이름
+- `nonNullable.group` — `getRawValue()`가 `string` / `boolean`으로 남는다 (`string | null`이 아니다)
+- `disabled`만으로 제출을 막지 않는다. 엔터 제출 시 `invalid`면 `markAllAsTouched`로 문구를 연다
+
+`label`의 `for`와 `input`의 `id`를 맞춘다. 에러는 `aria-describedby`로 필드와 연결한다.
+
+---
+
+## 4. 템플릿 주도 vs 리액티브
+
+| | 템플릿 주도 | 리액티브 |
+|--|-------------|----------|
+| 모델 | `ngModel` | `FormGroup` |
+| 모듈 | `FormsModule` | `ReactiveFormsModule` |
+| 맞는 규모 | 필드 1~2개 | 검증·교차 필드·동적 배열 |
+
+둘을 한 폼에 섞지 않는다.
+
+---
+
+## 5. 주의 / 흔한 실수
+
+- **`loadComponent` 없이 모든 페이지를 정적 import.** 초기 번들에 관리자 화면이 포함된다.
+- **가드에서 `true`/`false`만 반환하고 URL을 안 바꿈.** `false`는 이동만 취소한다. 로그인 페이지로 보내려면 `UrlTree`를 반환한다.
+- **라우트 `id`와 `input()` 이름 불일치.** `withComponentInputBinding`은 이름이 같아야 한다.
+- **`form.value.email`이 `string | undefined`.** `nonNullable` 또는 `getRawValue()`를 쓴다. disabled 컨트롤은 `value`에서 빠진다.
+- **제출 버튼을 `invalid`로만 disable.** 오류 문구가 안 보여 사용자가 이유를 모른다. `touched`와 메시지를 병행한다.
 
 ---
 
 ## 정리
 
-URL은 라우터가, 입력은 폼 모델이 책임진다. **lazy 라우트 + 가드 + reactive form**이 SPA 실무 기본 세트다.1b:[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"라우팅과 리액티브 폼\",\"description\":\"provideRouter, lazy 로드, 가드와 FormBuilder·validators로 화면 전환과 입력 검증을 구성하는 방법을 정리한다.\",\"datePublished\":\"2026-08-26\",\"url\":\"https://kaisa.co.kr/posts/angular-04/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"angular\",\"keywords\":\"angular\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"라우팅과 리액티브 폼\",\"item\":\"https://kaisa.co.kr/posts/angular-04/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L6",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2026-08-26"}]}],["$","h1",null,{"className":"blog-post__title","children":"라우팅과 리액티브 폼"}],["$","$L24",null,{"content":"$25"}],["$","$L26",null,{"pathKey":"angular-04"}],["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L6",null,{"href":"/posts/angular-03/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"시그널·서비스·의존성 주입"}]]}],["$","$L6",null,{"href":"/posts/angular-05/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Angular 앱 실무 체크리스트"}]]}]]}],["$","$L6",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]]}]}]}]]
+URL은 라우터가, 입력은 폼 모델이 책임진다.
+
+- 화면 분할 → `loadComponent`
+- 진입 조건 → `CanActivateFn` + `createUrlTree`
+- 파라미터 → `withComponentInputBinding` + `input()`
+- 검증 → `FormBuilder` + `Validators`
+
+---
+
+## 연습
+
+1. `/posts/1`에 비로그인으로 진입해 `/login?redirect=...`로 가는지 확인한다. 로그인 후 원래 글로 돌아오게 한다.
+2. 이메일 형식이 틀릴 때 `emailErr` 문구가 필드 아래에 붙는지 확인한다.
+3. `agree`를 끄면 제출이 막히고, 체크하면 `getRawValue()`에 `true`가 들어오는지 확인한다.1b:[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"라우팅과 리액티브 폼\",\"description\":\"provideRouter와 lazy loadComponent로 화면을 나누고, 가드·FormBuilder로 진입 조건과 입력 검증을 구성하는 방법을 정리한다.\",\"datePublished\":\"2024-10-07\",\"url\":\"https://kaisa.co.kr/posts/angular-04/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"angular\",\"keywords\":\"angular\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"라우팅과 리액티브 폼\",\"item\":\"https://kaisa.co.kr/posts/angular-04/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L6",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2024-10-07"}]}],["$","h1",null,{"className":"blog-post__title","children":"라우팅과 리액티브 폼"}],["$","$L24",null,{"content":"$25"}],"$L26","$L27"]}]}]}]]
+28:I[44398,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],"default"]
+26:["$","$L28",null,{"pathKey":"angular-04"}]
+27:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L6",null,{"href":"/posts/angular-03/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"시그널·서비스·의존성 주입"}]]}],["$","$L6",null,{"href":"/posts/angular-05/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Angular 앱 실무 체크리스트"}]]}]]}],["$","$L6",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
 21:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
-27:I[27201,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"IconMark"]
+29:I[27201,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"IconMark"]
 1e:null
-23:[["$","title","0",{"children":"라우팅과 리액티브 폼 · Kaisa"}],["$","meta","1",{"name":"description","content":"provideRouter, lazy 로드, 가드와 FormBuilder·validators로 화면 전환과 입력 검증을 구성하는 방법을 정리한다."}],["$","meta","2",{"name":"application-name","content":"Kaisa"}],["$","meta","3",{"name":"robots","content":"index, follow"}],["$","meta","4",{"name":"naver-site-verification","content":"4bc13b857695ff44988c260cb26124eedbcda90e"}],["$","link","5",{"rel":"canonical","href":"https://kaisa.co.kr/posts/angular-04/"}],["$","meta","6",{"property":"og:title","content":"라우팅과 리액티브 폼 · Kaisa"}],["$","meta","7",{"property":"og:description","content":"provideRouter, lazy 로드, 가드와 FormBuilder·validators로 화면 전환과 입력 검증을 구성하는 방법을 정리한다."}],["$","meta","8",{"property":"og:url","content":"https://kaisa.co.kr/posts/angular-04/"}],["$","meta","9",{"property":"og:site_name","content":"Kaisa"}],["$","meta","10",{"property":"og:locale","content":"ko_KR"}],["$","meta","11",{"property":"og:type","content":"article"}],["$","meta","12",{"name":"twitter:card","content":"summary"}],["$","meta","13",{"name":"twitter:title","content":"라우팅과 리액티브 폼 · Kaisa"}],["$","meta","14",{"name":"twitter:description","content":"provideRouter, lazy 로드, 가드와 FormBuilder·validators로 화면 전환과 입력 검증을 구성하는 방법을 정리한다."}],["$","link","15",{"rel":"shortcut icon","href":"/img/common/favicon.ico"}],["$","link","16",{"rel":"icon","href":"/img/common/favicon.ico"}],["$","link","17",{"rel":"apple-touch-icon","href":"/img/common/favicon.ico"}],["$","$L27","18",{}]]
+23:[["$","title","0",{"children":"라우팅과 리액티브 폼 · Kaisa"}],["$","meta","1",{"name":"description","content":"provideRouter와 lazy loadComponent로 화면을 나누고, 가드·FormBuilder로 진입 조건과 입력 검증을 구성하는 방법을 정리한다."}],["$","meta","2",{"name":"application-name","content":"Kaisa"}],["$","meta","3",{"name":"robots","content":"index, follow"}],["$","meta","4",{"name":"naver-site-verification","content":"4bc13b857695ff44988c260cb26124eedbcda90e"}],["$","link","5",{"rel":"canonical","href":"https://kaisa.co.kr/posts/angular-04/"}],["$","meta","6",{"property":"og:title","content":"라우팅과 리액티브 폼 · Kaisa"}],["$","meta","7",{"property":"og:description","content":"provideRouter와 lazy loadComponent로 화면을 나누고, 가드·FormBuilder로 진입 조건과 입력 검증을 구성하는 방법을 정리한다."}],["$","meta","8",{"property":"og:url","content":"https://kaisa.co.kr/posts/angular-04/"}],["$","meta","9",{"property":"og:site_name","content":"Kaisa"}],["$","meta","10",{"property":"og:locale","content":"ko_KR"}],["$","meta","11",{"property":"og:type","content":"article"}],["$","meta","12",{"name":"twitter:card","content":"summary"}],["$","meta","13",{"name":"twitter:title","content":"라우팅과 리액티브 폼 · Kaisa"}],["$","meta","14",{"name":"twitter:description","content":"provideRouter와 lazy loadComponent로 화면을 나누고, 가드·FormBuilder로 진입 조건과 입력 검증을 구성하는 방법을 정리한다."}],["$","link","15",{"rel":"shortcut icon","href":"/img/common/favicon.ico"}],["$","link","16",{"rel":"icon","href":"/img/common/favicon.ico"}],["$","link","17",{"rel":"apple-touch-icon","href":"/img/common/favicon.ico"}],["$","$L29","18",{}]]

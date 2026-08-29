@@ -12,13 +12,13 @@ b:I[45872,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__
 c:I[20683,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js"],"default"]
 d:I[86979,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/0hs6l77ykwsoc.js"],"default"]
 16:I[68027,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default",1]
-:HL["/_next/static/chunks/3ou3k_oca-ann.css","style"]
+:HL["/_next/static/chunks/0aw5gw7bg_b6q.css","style"]
 :HL["/_next/static/chunks/0g93akm33ce_n.css","style"]
 :HL["/_next/static/chunks/0l7zbvjzypglv.css","style"]
 :HL["/_next/static/media/0c795a286deabae8-s.p.3vm0tq4e-zz_5.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/media/5c285b27cdda1fe8-s.p.2_mbdogr7ni8i.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/chunks/3j-1lpdn3an_-.css","style"]
-0:{"P":null,"c":["","posts","laravel-07",""],"q":"","i":false,"f":[[["",{"children":["(site)",{"children":["posts",{"children":[["slug","laravel-07","d",null],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3ou3k_oca-ann.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0g93akm33ce_n.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/0l7zbvjzypglv.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/3t-_5l233af4w.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1uymn__-_z4ug.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ko","className":"syne_53f86cd1-module__kiT3Eq__variable dm_sans_fd62f040-module__0jgVUW__variable","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","script",null,{"async":true,"src":"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2641553863829571","crossOrigin":"anonymous"}]}],["$","body",null,{"children":[["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var t=null;document.cookie.split(';').forEach(function(c){var p=c.trim().split('=');if(p[0]==='kaisa-theme')t=decodeURIComponent(p[1]||'');});document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();"}}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var KEY='kaisa-locale';var loc=null;try{loc=sessionStorage.getItem(KEY);}catch(e){}function fromNav(){var list=[navigator.language].concat(navigator.languages||[]);for(var i=0;i<list.length;i++){var l=String(list[i]||'').toLowerCase();if(l.indexOf('ko')===0)return 'ko';if(l.indexOf('zh')===0)return 'zh';if(l.indexOf('hi')===0)return 'hi';if(l.indexOf('en')===0)return 'en';}return null;}if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc=fromNav();if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc='ko';document.documentElement.lang=loc;}catch(e){document.documentElement.lang='ko';}})();"}}],[["$","$L2",null,{"src":"https://www.googletagmanager.com/gtag/js?id=G-2281QQ6XP4","strategy":"afterInteractive"}],["$","$L2",null,{"id":"google-analytics","strategy":"afterInteractive","children":"\n          window.dataLayer = window.dataLayer || [];\n          function gtag(){dataLayer.push(arguments);}\n          gtag('js', new Date());\n          gtag('config', 'G-2281QQ6XP4');\n        "}]],["$","$L3",null,{}],["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}],["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","$L7",null,{}],["$","$L8",null,{}],["$","$L9",null,{}]]}]]}]]}],{"children":[["$","$1","c",{"children":[[["$","script","script-0",{"src":"/_next/static/chunks/23u3jdspf1pgv.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1hr7-4fb6m83q.js","async":true,"nonce":"$undefined"}]],["$","$La",null,{"children":["$","div",null,{"className":"site-layout","children":[["$","$Lb",null,{}],["$","$Lc",null,{"children":["$","$L4",null,{"parallelRouterKey":"children","error":"$d","errorStyles":[],"errorScripts":[["$","script","script-0",{"src":"/_next/static/chunks/0hs6l77ykwsoc.js","async":true}]],"template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],"$Le","$Lf"]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],"$L10"]}]}]]}],{"children":["$L11",{"children":["$L12",{"children":["$L13",{},null,false,null]},null,false,"$@14"]},null,false,"$@14"]},null,false,null]},null,false,null],"$L15",false]],"m":"$undefined","G":["$16",["$L17","$L18","$L19"]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"DJX3Zf-ybBx2vscYgjP8o"}
+0:{"P":null,"c":["","posts","laravel-07",""],"q":"","i":false,"f":[[["",{"children":["(site)",{"children":["posts",{"children":[["slug","laravel-07","d",null],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0aw5gw7bg_b6q.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0g93akm33ce_n.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/0l7zbvjzypglv.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/3t-_5l233af4w.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1uymn__-_z4ug.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ko","className":"syne_53f86cd1-module__kiT3Eq__variable dm_sans_fd62f040-module__0jgVUW__variable","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","script",null,{"async":true,"src":"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2641553863829571","crossOrigin":"anonymous"}]}],["$","body",null,{"children":[["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var t=null;document.cookie.split(';').forEach(function(c){var p=c.trim().split('=');if(p[0]==='kaisa-theme')t=decodeURIComponent(p[1]||'');});document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();"}}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var KEY='kaisa-locale';var loc=null;try{loc=sessionStorage.getItem(KEY);}catch(e){}function fromNav(){var list=[navigator.language].concat(navigator.languages||[]);for(var i=0;i<list.length;i++){var l=String(list[i]||'').toLowerCase();if(l.indexOf('ko')===0)return 'ko';if(l.indexOf('zh')===0)return 'zh';if(l.indexOf('hi')===0)return 'hi';if(l.indexOf('en')===0)return 'en';}return null;}if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc=fromNav();if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc='ko';document.documentElement.lang=loc;}catch(e){document.documentElement.lang='ko';}})();"}}],[["$","$L2",null,{"src":"https://www.googletagmanager.com/gtag/js?id=G-2281QQ6XP4","strategy":"afterInteractive"}],["$","$L2",null,{"id":"google-analytics","strategy":"afterInteractive","children":"\n          window.dataLayer = window.dataLayer || [];\n          function gtag(){dataLayer.push(arguments);}\n          gtag('js', new Date());\n          gtag('config', 'G-2281QQ6XP4');\n        "}]],["$","$L3",null,{}],["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}],["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","$L7",null,{}],["$","$L8",null,{}],["$","$L9",null,{}]]}]]}]]}],{"children":[["$","$1","c",{"children":[[["$","script","script-0",{"src":"/_next/static/chunks/23u3jdspf1pgv.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1hr7-4fb6m83q.js","async":true,"nonce":"$undefined"}]],["$","$La",null,{"children":["$","div",null,{"className":"site-layout","children":[["$","$Lb",null,{}],["$","$Lc",null,{"children":["$","$L4",null,{"parallelRouterKey":"children","error":"$d","errorStyles":[],"errorScripts":[["$","script","script-0",{"src":"/_next/static/chunks/0hs6l77ykwsoc.js","async":true}]],"template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],"$Le","$Lf"]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],"$L10"]}]}]]}],{"children":["$L11",{"children":["$L12",{"children":["$L13",{},null,false,null]},null,false,"$@14"]},null,false,"$@14"]},null,false,null]},null,false,null],"$L15",false]],"m":"$undefined","G":["$16",["$L17","$L18","$L19"]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"rgIajyDGnwYL9Qdz0xIG3"}
 1a:I[44604,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js"],"default"]
 1c:I[97367,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"OutletBoundary"]
 1d:"$Sreact.suspense"
@@ -33,32 +33,30 @@ f:["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]
 1f:[]
 14:"$W1f"
 15:["$","$1","h",{"children":[null,["$","$L20",null,{"children":"$L21"}],["$","div",null,{"hidden":true,"children":["$","$L22",null,{"children":["$","$1d",null,{"name":"Next.Metadata","children":"$L23"}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}]
-17:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3ou3k_oca-ann.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
+17:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0aw5gw7bg_b6q.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
 18:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0g93akm33ce_n.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
 19:["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/0l7zbvjzypglv.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
 24:I[55489,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],"default"]
-25:T1248,# 큐·Job·이벤트·스케줄링
+25:T1876,# 큐·Job·이벤트·스케줄링
 
-> 요약: 무거운 작업을 큐로 분리하고, 이벤트/리스너·스케줄러·실패 처리까지 운영 가능하게 구성한다.
-
----
+> 요약: 메일·이미지처럼 느린 일은 Job 큐로 넘기고, 이벤트와 스케줄러로 후처리와 매일 할 일을 운영한다.
 
 ---
 
-## 1. 왜 큐인가
+## 1. 왜 요청 안에서 메일을 보내지 않나
 
-요청 안에서 하지 말 것:
+HTTP 요청은 짧게 끝나야 한다. 아래는 요청 스레드에 두지 않는다.
 
-- 메일/SMS
+- 메일·SMS
 - 이미지 리사이즈
-- 외부 API 연쇄 호출
+- 외부 API를 여러 번 호출
 - 대량 CSV 내보내기
 
-요청은 빠르게 끝내고, **Job으로 비동기** 처리한다.
+**큐(queue)** 는 “나중에 할 일”을 저장하는 대기열이다. **Job**은 그 대기열에 넣는 작업 한 건이다. 사용자는 201을 바로 받고, 워커 프로세스가 메일을 보낸다.
 
 ```env
 QUEUE_CONNECTION=database
-# 운영 권장: redis
+# 운영은 redis를 흔히 쓴다
 ```
 
 ```bash
@@ -68,9 +66,11 @@ php artisan migrate
 php artisan queue:work
 ```
 
+`queue:work`가 안 떠 있으면 Job은 테이블에만 쌓이고 아무 일도 안 일어난다. 로컬에서 “메일이 안 간다”의 원인 1위가 이것이다.
+
 ---
 
-## 2. Job 만들기
+## 2. Job
 
 ```bash
 php artisan make:job SendWelcomeEmail
@@ -81,12 +81,12 @@ class SendWelcomeEmail implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    public int $tries = 3;
+    public int $backoff = 10;
+
     public function __construct(
         public User $user,
     ) {}
-
-    public int $tries = 3;
-    public int $backoff = 10; // seconds
 
     public function handle(Mailer $mailer): void
     {
@@ -103,19 +103,23 @@ class SendWelcomeEmail implements ShouldQueue
 }
 ```
 
+`ShouldQueue`가 있어야 비동기다. 없으면 `dispatch`해도 그 자리에서 `handle`이 돈다.
+
 ```php
 SendWelcomeEmail::dispatch($user);
 SendWelcomeEmail::dispatch($user)->delay(now()->addMinutes(5));
 SendWelcomeEmail::dispatch($user)->onQueue('mail');
 ```
 
-모델은 `SerializesModels`로 id만 큐에 저장된다. 처리 시점에 다시 조회.
+`SerializesModels`는 모델 전체 대신 id를 큐에 넣는다. 워커가 실행할 때 다시 조회한다. 그래서 트랜잭션이 끝나기 전에 디스패치하면 **아직 없는 행**을 워커가 읽는다.
 
 ---
 
-## 3. ShouldBeUnique / 멱등성
+## 3. 멱등성과 중복
 
-같은 사용자 환영 메일 중복 방지:
+큐는 최소 한 번이 아니라 **적어도 한 번, 가끔 두 번**이라고 가정한다. 네트워크 타임아웃 후 재시도가 겹칠 수 있다.
+
+같은 환영 메일이 두 번 나가지 않게:
 
 ```php
 class SendWelcomeEmail implements ShouldQueue, ShouldBeUnique
@@ -127,12 +131,13 @@ class SendWelcomeEmail implements ShouldQueue, ShouldBeUnique
 }
 ```
 
-결제·웹훅 처리는 **idempotency key** 테이블과 함께 설계한다.  
-큐 재시도 = 최소 두 번 실행될 수 있다고 가정.
+결제·웹훅은 unique만으로 부족하다. 처리한 id를 테이블에 남기는 **idempotency key**와 함께 설계한다.
 
 ---
 
-## 4. 이벤트 & 리스너
+## 4. 이벤트와 리스너
+
+**이벤트**는 “주문이 접수됐다”처럼 도메인에서 일어난 일의 이름이다. 주문 서비스가 메일·재고·통계를 직접 알 필요가 없다. 리스너가 각자 구독한다.
 
 ```bash
 php artisan make:event OrderPlaced
@@ -140,37 +145,33 @@ php artisan make:listener SendOrderConfirmation --event=OrderPlaced
 ```
 
 ```php
-event(new OrderPlaced($order));
-// 또는
 OrderPlaced::dispatch($order);
 ```
 
-리스너를 `ShouldQueue`로 구현하면 이벤트 발행은 가볍고 후처리는 비동기.
-
-도메인 사건 이름(`OrderPlaced`)으로 결합도를 낮추면 서비스가 비대해지는 것을 막을 수 있다.
+리스너에 `ShouldQueue`를 붙이면 발행은 가볍고 후처리는 워커가 한다. 서비스 클래스가 비대해지는 것을 막는 것이 목적이다. 이벤트를 남발하면 흐름이 안 보인다. **여러 관심사가 한 유스케이스에 붙을 때**만 쓴다.
 
 ---
 
-## 5. 트랜잭션 이후 디스패치
+## 5. 커밋 후에 디스패치
 
 ```php
 DB::transaction(function () use ($data) {
-    $order = Order::create(...);
+    $order = Order::create(/* ... */);
     DB::afterCommit(fn () => OrderPlaced::dispatch($order));
 });
 ```
 
-또는 Job/이벤트에 `AfterCommit` 구현:
+또는 Job에 `ShouldDispatchAfterCommit`을 붙인다. 커밋 전 디스패치 → 롤백됐는데 메일은 나가고, 워커는 없는 주문을 찾는 레이스가 난다.
 
 ```php
 class SendWelcomeEmail implements ShouldQueue, ShouldDispatchAfterCommit
 ```
 
-커밋 전 디스패치 → 워커가 아직 없는 row를 읽는 레이스가 난다.
-
 ---
 
-## 6. Horizon (Redis 큐 운영)
+## 6. Horizon
+
+**Horizon**은 Redis 큐를 위한 대시보드이자 프로세스 관리자다. 큐별 워커 수, 대기 시간, 실패 Job을 UI로 본다. `QUEUE_CONNECTION=database`면 Horizon의 본래 가치가 없다. Redis일 때 쓴다.
 
 ```bash
 composer require laravel/horizon
@@ -178,21 +179,15 @@ php artisan horizon:install
 php artisan horizon
 ```
 
-- 큐별 프로세스 수
-- 대기 시간 모니터링
-- 실패 Job UI
-- 밸런싱 전략
-
-운영에서 `queue:work`를 직접 감독하기보다 Supervisor + Horizon 조합이 흔하다.
+운영에서는 `queue:work`를 SSH에 띄워 두지 않는다. Supervisor(또는 컨테이너)가 Horizon/워커를 재시작한다.
 
 ---
 
-## 7. 실패 처리
+## 7. 실패와 스케줄
 
 ```bash
 php artisan queue:failed
 php artisan queue:retry all
-php artisan queue:flush
 ```
 
 ```php
@@ -202,13 +197,9 @@ public function retryUntil(): DateTime
 }
 ```
 
-알림: 실패 시 Slack/이메일. Horizon 알림 또는 `failed()` 훅.
+실패를 삼키고 `failed()`도 없으면 사용자는 “메일이 안 온다”만 본다. Slack/메일 알림 또는 Horizon 알림을 붙인다. `$timeout`을 안 주면 워커가 한 Job에 영원히 묶일 수 있다.
 
----
-
-## 8. 스케줄링
-
-`routes/console.php` (Laravel 11+):
+스케줄은 Laravel 11+에서 `routes/console.php`에 둔다. 서버 cron은 **1분마다 `schedule:run` 한 줄**만 있으면 된다.
 
 ```php
 use Illuminate\Support\Facades\Schedule;
@@ -218,17 +209,15 @@ Schedule::job(new PruneOldTokens)->hourly();
 Schedule::call(fn () => Cache::forget('homepage'))->everyFiveMinutes();
 ```
 
-서버 cron은 한 줄만:
-
 ```cron
 * * * * * cd /path && php artisan schedule:run >> /dev/null 2>&1
 ```
 
-`withoutOverlapping()`, `onOneServer()`, `runInBackground()`를 상황에 맞게.
+겹쳐 돌면 안 되는 작업은 `withoutOverlapping()`을, 여러 서버면 `onOneServer()`를 쓴다.
 
 ---
 
-## 9. 메일·알림
+## 8. 메일·알림
 
 ```bash
 php artisan make:mail WelcomeMail --markdown=mail.welcome
@@ -239,31 +228,30 @@ php artisan make:notification InvoicePaid
 $user->notify(new InvoicePaid($invoice));
 ```
 
-채널: mail, database, broadcast, slack.  
-로컬은 Mailpit/Log 드라이버.
+채널은 mail, database, slack 등이다. 로컬은 Mailpit 또는 `log` 드라이버로 실제 발송을 끈다.
 
 ---
 
-## 10. 실무 팁
+## 9. 흔한 실수
 
-- 큐 payload에 큰 파일/HTML 넣지 않기
-- 타임아웃(`$timeout`) 명시
-- 우선순위 큐 분리 (`mail`, `default`, `high`)
-- 로컬: `queue:listen` / Sail
-- 테스트: `Queue::fake()` + 핵심 경로 1~2개는 실제 sync로도
+- 워커를 안 켜 두고 Job이 “먹통”이라고 한다.
+- 트랜잭션 안에서 바로 `dispatch`한다.
+- 큐 payload에 HTML·파일 전체를 넣는다. id만 넣고 워커가 읽는다.
+- `$tries` / `$timeout`이 없어 무한 재시도·무한 점유.
+- 메일·결제 Job을 우선순위 없이 `default` 한 줄에 넣는다. `mail` / `high`로 나눈다.
 
 ---
 
 ## 연습
 
-1. 회원가입 후 `SendWelcomeEmail` Job을 afterCommit으로 보낸다.
-2. `OrderPlaced` 이벤트 + 큐 리스너를 만든다.
-3. 실패를 강제하고 `queue:failed`를 확인한다.
-4. 매일 자정에 임시 파일 정리 스케줄을 등록한다.1b:[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"큐·Job·이벤트·스케줄링\",\"description\":\"무거운 작업을 큐로 분리하고, 이벤트/리스너·스케줄러·실패 처리까지 운영 가능하게 구성한다.\",\"datePublished\":\"2026-08-26\",\"url\":\"https://kaisa.co.kr/posts/laravel-07/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"laravel\",\"keywords\":\"laravel\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"큐·Job·이벤트·스케줄링\",\"item\":\"https://kaisa.co.kr/posts/laravel-07/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L6",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2026-08-26"}]}],["$","h1",null,{"className":"blog-post__title","children":"큐·Job·이벤트·스케줄링"}],["$","$L24",null,{"content":"$25"}],"$L26","$L27"]}]}]}]]
+1. 회원가입 후 `SendWelcomeEmail`을 afterCommit으로 보낸다.
+2. `OrderPlaced` 이벤트와 큐 리스너를 만든다.
+3. Job을 실패시키고 `queue:failed`를 확인한다.
+4. 매일 자정 임시 파일 정리 스케줄을 등록한다.1b:[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"큐·Job·이벤트·스케줄링\",\"description\":\"메일·이미지처럼 느린 일은 Job 큐로 넘기고, 이벤트와 스케줄러로 후처리와 매일 할 일을 운영한다.\",\"datePublished\":\"2026-01-07\",\"url\":\"https://kaisa.co.kr/posts/laravel-07/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"laravel\",\"keywords\":\"laravel\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"큐·Job·이벤트·스케줄링\",\"item\":\"https://kaisa.co.kr/posts/laravel-07/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L6",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2026-01-07"}]}],["$","h1",null,{"className":"blog-post__title","children":"큐·Job·이벤트·스케줄링"}],["$","$L24",null,{"content":"$25"}],"$L26","$L27"]}]}]}]]
 28:I[44398,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/23u3jdspf1pgv.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],"default"]
 26:["$","$L28",null,{"pathKey":"laravel-07"}]
 27:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L6",null,{"href":"/posts/laravel-06/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"테스트 — PHPUnit, Pest, Feature 테스트"}]]}],["$","$L6",null,{"href":"/posts/laravel-08/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"캐시·Redis·성능 최적화"}]]}]]}],["$","$L6",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
 21:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
 29:I[27201,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"IconMark"]
 1e:null
-23:[["$","title","0",{"children":"큐·Job·이벤트·스케줄링 · Kaisa"}],["$","meta","1",{"name":"description","content":"무거운 작업을 큐로 분리하고, 이벤트/리스너·스케줄러·실패 처리까지 운영 가능하게 구성한다."}],["$","meta","2",{"name":"application-name","content":"Kaisa"}],["$","meta","3",{"name":"robots","content":"index, follow"}],["$","meta","4",{"name":"naver-site-verification","content":"4bc13b857695ff44988c260cb26124eedbcda90e"}],["$","link","5",{"rel":"canonical","href":"https://kaisa.co.kr/posts/laravel-07/"}],["$","meta","6",{"property":"og:title","content":"큐·Job·이벤트·스케줄링 · Kaisa"}],["$","meta","7",{"property":"og:description","content":"무거운 작업을 큐로 분리하고, 이벤트/리스너·스케줄러·실패 처리까지 운영 가능하게 구성한다."}],["$","meta","8",{"property":"og:url","content":"https://kaisa.co.kr/posts/laravel-07/"}],["$","meta","9",{"property":"og:site_name","content":"Kaisa"}],["$","meta","10",{"property":"og:locale","content":"ko_KR"}],["$","meta","11",{"property":"og:type","content":"article"}],["$","meta","12",{"name":"twitter:card","content":"summary"}],["$","meta","13",{"name":"twitter:title","content":"큐·Job·이벤트·스케줄링 · Kaisa"}],["$","meta","14",{"name":"twitter:description","content":"무거운 작업을 큐로 분리하고, 이벤트/리스너·스케줄러·실패 처리까지 운영 가능하게 구성한다."}],["$","link","15",{"rel":"shortcut icon","href":"/img/common/favicon.ico"}],["$","link","16",{"rel":"icon","href":"/img/common/favicon.ico"}],["$","link","17",{"rel":"apple-touch-icon","href":"/img/common/favicon.ico"}],["$","$L29","18",{}]]
+23:[["$","title","0",{"children":"큐·Job·이벤트·스케줄링 · Kaisa"}],["$","meta","1",{"name":"description","content":"메일·이미지처럼 느린 일은 Job 큐로 넘기고, 이벤트와 스케줄러로 후처리와 매일 할 일을 운영한다."}],["$","meta","2",{"name":"application-name","content":"Kaisa"}],["$","meta","3",{"name":"robots","content":"index, follow"}],["$","meta","4",{"name":"naver-site-verification","content":"4bc13b857695ff44988c260cb26124eedbcda90e"}],["$","link","5",{"rel":"canonical","href":"https://kaisa.co.kr/posts/laravel-07/"}],["$","meta","6",{"property":"og:title","content":"큐·Job·이벤트·스케줄링 · Kaisa"}],["$","meta","7",{"property":"og:description","content":"메일·이미지처럼 느린 일은 Job 큐로 넘기고, 이벤트와 스케줄러로 후처리와 매일 할 일을 운영한다."}],["$","meta","8",{"property":"og:url","content":"https://kaisa.co.kr/posts/laravel-07/"}],["$","meta","9",{"property":"og:site_name","content":"Kaisa"}],["$","meta","10",{"property":"og:locale","content":"ko_KR"}],["$","meta","11",{"property":"og:type","content":"article"}],["$","meta","12",{"name":"twitter:card","content":"summary"}],["$","meta","13",{"name":"twitter:title","content":"큐·Job·이벤트·스케줄링 · Kaisa"}],["$","meta","14",{"name":"twitter:description","content":"메일·이미지처럼 느린 일은 Job 큐로 넘기고, 이벤트와 스케줄러로 후처리와 매일 할 일을 운영한다."}],["$","link","15",{"rel":"shortcut icon","href":"/img/common/favicon.ico"}],["$","link","16",{"rel":"icon","href":"/img/common/favicon.ico"}],["$","link","17",{"rel":"apple-touch-icon","href":"/img/common/favicon.ico"}],["$","$L29","18",{}]]
