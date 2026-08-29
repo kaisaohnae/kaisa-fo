@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import PostContent from '@/components/blog/post-content';
+import PathCommentSection from '@/components/blog/path-comment-section';
 import type {BlogPost} from '@/data/blog-posts';
 
 export default function BlogPostPage({
@@ -24,11 +25,13 @@ export default function BlogPostPage({
           <h1 className="blog-post__title">{post.title}</h1>
           <PostContent content={post.content.trim()} />
 
+          <PathCommentSection pathKey={post.slug} />
+
           <nav className="blog-post__footer-nav" aria-label="포스트 이동">
             {(prev || next) && (
               <div className="blog-post__adjacent">
                 {prev ? (
-                  <Link href={`/posts/${prev.slug}/`} className="blog-post__adjacent-link">
+                  <Link href={`/posts/${prev.slug}/`} className="blog-post__adjacent-link blog-post__adjacent-link--prev">
                     <span className="blog-post__adjacent-label">이전 글</span>
                     <span className="blog-post__adjacent-title">{prev.title}</span>
                   </Link>

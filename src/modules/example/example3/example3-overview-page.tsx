@@ -13,10 +13,6 @@ export default function Example3OverviewPage() {
       <section className="kaisa-panel">
         <div className="kaisa-panel__head">
           <h2>Components</h2>
-          <p>
-            Same IA as example3, but controls live in <code>Example3/kit</code>. The shell is
-            plain; the interaction is not.
-          </p>
         </div>
         <div className="kaisa-panel__body">
           <div className="kaisa-showcase-grid">
@@ -29,11 +25,6 @@ export default function Example3OverviewPage() {
           </div>
         </div>
       </section>
-
-      <p className="kaisa-note">
-        Default kit: <code>src/ui-components</code>. Interaction kit:{' '}
-        <code>src/modules/example/example3/kit</code>.
-      </p>
     </Example3ShowcaseShell>
   );
 }
