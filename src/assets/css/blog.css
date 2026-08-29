@@ -827,6 +827,7 @@ a.blog-card:active {
   letter-spacing: -0.03em;
   margin: 0 0 24px;
 }
+
 .blog-post__body {
   color: var(--color-text);
   line-height: 1.85;
