@@ -1,4 +1,5 @@
 User-Agent: *
 Allow: /
+Disallow: /example/
 
 Sitemap: https://kaisa.co.kr/sitemap.xml

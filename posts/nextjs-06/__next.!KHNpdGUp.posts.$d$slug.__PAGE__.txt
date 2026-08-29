@@ -1,0 +1,114 @@
+1:"$Sreact.fragment"
+2:I[22016,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/252vz3r2oosf7.js","/_next/static/chunks/2h3bd3lcj1mfq.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/08ziz54sgably.js"],""]
+3:I[55489,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/252vz3r2oosf7.js","/_next/static/chunks/2h3bd3lcj1mfq.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/08ziz54sgably.js"],"default"]
+b:I[97367,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"OutletBoundary"]
+c:"$Sreact.suspense"
+:HL["/_next/static/chunks/3j-1lpdn3an_-.css","style"]
+4:T841,# Metadata·Open Graph·SEO 기본기
+
+> 요약: metadata API와 generateMetadata로 title·description·canonical·OG를 페이지마다 맞춘다.
+
+---
+
+## 1. 정적 metadata
+
+```tsx
+// app/layout.tsx 또는 page.tsx
+export const metadata = {
+  title: {
+    default: 'Kaisa Blog',
+    template: '%s · Kaisa Blog',
+  },
+  description: '기술 블로그',
+};
+```
+
+하위 페이지 `title: 'Posts'` → `Posts · Kaisa Blog`.
+
+---
+
+## 2. 동적 generateMetadata
+
+```tsx
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{slug: string}>;
+}): Promise<Metadata> {
+  const {slug} = await params;
+  const post = getPost(slug);
+  if (!post) return {};
+  return {
+    title: post.title,
+    description: post.excerpt,
+    alternates: {canonical: `https://blog.example.com/posts/${slug}/`},
+    openGraph: {
+      title: post.title,
+      description: post.excerpt,
+      type: 'article',
+      url: `https://blog.example.com/posts/${slug}/`,
+    },
+  };
+}
+```
+
+목록·홈과 **실제 글 URL이 동일**해야 한다.  
+쿼리 스트링 상세(`/view?slug=`)는 메타·sitemap과 어긋나기 쉽다.
+
+---
+
+## 3. 같이 챙길 것
+
+| 항목 | 역할 |
+|------|------|
+| `robots.txt` | 크롤 허용/차단 |
+| `sitemap.xml` | URL 목록 |
+| JSON-LD | Article / Breadcrumb |
+| OG image | 공유 미리보기 CTR |
+| `lang` | `<html lang="ko">` |
+
+```ts
+// app/sitemap.ts
+export default function sitemap() {
+  return getAllSlugs().map((slug) => ({
+    url: `https://blog.example.com/posts/${slug}/`,
+    lastModified: new Date(),
+  }));
+}
+```
+
+---
+
+## 4. noindex가 맞는 곳
+
+- 로그인·회원가입
+- 관리자
+- 검색 결과 중복·내부 도구
+
+```ts
+robots: {index: false, follow: false}
+```
+
+---
+
+## 5. 실수
+
+- 모든 페이지 동일 title
+- canonical이 www/non-www와 불일치
+- 본문은 CSR인데 메타만 정적
+- trailing slash 불일치로 중복 URL
+
+---
+
+## 연습
+
+1. 글 상세에 `generateMetadata` + canonical을 붙인다.
+2. sitemap에 글 URL만 넣고 인증 페이지는 제외/noindex 한다.
+3. 카톡·슬랙에 URL을 붙여 OG 미리보기를 확인한다.0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"Metadata·Open Graph·SEO 기본기\",\"description\":\"metadata API와 generateMetadata로 title·description·canonical·OG를 페이지마다 맞춘다.\",\"datePublished\":\"2026-08-26\",\"url\":\"https://kaisa.co.kr/posts/nextjs-06/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"nextjs\",\"keywords\":\"nextjs\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Metadata·Open Graph·SEO 기본기\",\"item\":\"https://kaisa.co.kr/posts/nextjs-06/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2026-08-26"}]}],["$","h1",null,{"className":"blog-post__title","children":"Metadata·Open Graph·SEO 기본기"}],["$","$L3",null,{"content":"$4"}],["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/nextjs-05/","className":"blog-post__adjacent-link","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"SSG·generateStaticParams·정적 export"}]]}],"$L5"]}],"$L6"]}]]}]}]}]],["$L7","$L8","$L9"],"$La"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"guInvhhF5tdyxtslmFNu8"}
+5:["$","$L2",null,{"href":"/posts/nextjs-07/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Route Handler와 Server Actions"}]]}]
+6:["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]
+7:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3j-1lpdn3an_-.css","precedence":"next"}]
+8:["$","script","script-0",{"src":"/_next/static/chunks/2_h6is8-aperz.js","async":true}]
+9:["$","script","script-1",{"src":"/_next/static/chunks/08ziz54sgably.js","async":true}]
+a:["$","$Lb",null,{"children":["$","$c",null,{"name":"Next.MetadataOutlet","children":"$@d"}]}]
+d:null
