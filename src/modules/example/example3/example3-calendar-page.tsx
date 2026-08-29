@@ -1,7 +1,7 @@
 'use client';
 
 import {useState} from 'react';
-import {Ex3Calendar, Ex3Field} from './kit';
+import {KaisaCalendar, KaisaField} from './kit';
 import Example3ShowcaseSection from './example3-showcase-section';
 import Example3ShowcaseShell from './example3-showcase-shell';
 import Example3StateCard from './example3-state-card';
@@ -31,14 +31,14 @@ export default function Example3CalendarPage() {
       description="month nav · selection · marked · min/max · disabled · readOnly"
     >
       <Example3ShowcaseSection title="Basic" description="월 이동 · 날짜 선택 · 오늘 표시">
-        <div className="ex3-state-grid ex3-state-grid--calendar">
+        <div className="kaisa-state-grid kaisa-state-grid--calendar">
           <Example3StateCard label="Default">
-            <Ex3Field label="일정 날짜" hint="날짜를 클릭해 선택">
-              <Ex3Calendar value={selectedDate} onChange={setSelectedDate} />
-            </Ex3Field>
+            <KaisaField label="일정 날짜" hint="날짜를 클릭해 선택">
+              <KaisaCalendar value={selectedDate} onChange={setSelectedDate} />
+            </KaisaField>
           </Example3StateCard>
           <Example3StateCard label="With legend">
-            <Ex3Calendar
+            <KaisaCalendar
               showLegend
               legendLabel="예약일"
               markedDates={markedDates}
@@ -49,23 +49,23 @@ export default function Example3CalendarPage() {
       </Example3ShowcaseSection>
 
       <Example3ShowcaseSection title="Size" description="sm · md · lg">
-        <div className="ex3-state-grid ex3-state-grid--calendar">
+        <div className="kaisa-state-grid kaisa-state-grid--calendar">
           <Example3StateCard label="Small">
-            <Ex3Calendar uiSize="sm" defaultValue={anchorDate} />
+            <KaisaCalendar uiSize="sm" defaultValue={anchorDate} />
           </Example3StateCard>
           <Example3StateCard label="Medium">
-            <Ex3Calendar uiSize="md" defaultValue={anchorDate} />
+            <KaisaCalendar uiSize="md" defaultValue={anchorDate} />
           </Example3StateCard>
           <Example3StateCard label="Large">
-            <Ex3Calendar uiSize="lg" defaultValue={anchorDate} />
+            <KaisaCalendar uiSize="lg" defaultValue={anchorDate} />
           </Example3StateCard>
         </div>
       </Example3ShowcaseSection>
 
       <Example3ShowcaseSection title="Marked tone" description="accent · muted · danger">
-        <div className="ex3-state-grid ex3-state-grid--calendar">
+        <div className="kaisa-state-grid kaisa-state-grid--calendar">
           <Example3StateCard label="Accent">
-            <Ex3Calendar
+            <KaisaCalendar
               markedDates={[
                 {date: new Date(anchorDate.getFullYear(), anchorDate.getMonth(), 5), tone: 'accent'},
                 {date: new Date(anchorDate.getFullYear(), anchorDate.getMonth(), 12), tone: 'accent'},
@@ -74,7 +74,7 @@ export default function Example3CalendarPage() {
             />
           </Example3StateCard>
           <Example3StateCard label="Muted">
-            <Ex3Calendar
+            <KaisaCalendar
               markedDates={[
                 {date: new Date(anchorDate.getFullYear(), anchorDate.getMonth(), 8), tone: 'muted'},
                 {date: new Date(anchorDate.getFullYear(), anchorDate.getMonth(), 16), tone: 'muted'},
@@ -83,7 +83,7 @@ export default function Example3CalendarPage() {
             />
           </Example3StateCard>
           <Example3StateCard label="Danger">
-            <Ex3Calendar
+            <KaisaCalendar
               markedDates={[
                 {date: new Date(anchorDate.getFullYear(), anchorDate.getMonth(), 20), tone: 'danger'},
                 {date: new Date(anchorDate.getFullYear(), anchorDate.getMonth(), 21), tone: 'danger'},
@@ -95,14 +95,14 @@ export default function Example3CalendarPage() {
       </Example3ShowcaseSection>
 
       <Example3ShowcaseSection title="State" description="min/max · disabled dates · disabled · readOnly">
-        <div className="ex3-state-grid ex3-state-grid--calendar">
+        <div className="kaisa-state-grid kaisa-state-grid--calendar">
           <Example3StateCard label="Min / Max">
-            <Ex3Field label="이번 달만 선택" hint={`${minDate.getDate()}일 ~ ${maxDate.getDate()}일`}>
-              <Ex3Calendar minDate={minDate} maxDate={maxDate} defaultValue={anchorDate} />
-            </Ex3Field>
+            <KaisaField label="이번 달만 선택" hint={`${minDate.getDate()}일 ~ ${maxDate.getDate()}일`}>
+              <KaisaCalendar minDate={minDate} maxDate={maxDate} defaultValue={anchorDate} />
+            </KaisaField>
           </Example3StateCard>
           <Example3StateCard label="Disabled dates">
-            <Ex3Calendar
+            <KaisaCalendar
               disabledDates={markedDates.map((item) => item.date)}
               showLegend
               legendLabel="예약 마감"
@@ -110,12 +110,12 @@ export default function Example3CalendarPage() {
             />
           </Example3StateCard>
           <Example3StateCard label="Disabled">
-            <Ex3Calendar disabled defaultValue={anchorDate} />
+            <KaisaCalendar disabled defaultValue={anchorDate} />
           </Example3StateCard>
           <Example3StateCard label="Read only">
-            <Ex3Field label="확정 일정" hint="조회만 가능">
-              <Ex3Calendar readOnly value={new Date(anchorDate.getFullYear(), anchorDate.getMonth(), 18)} />
-            </Ex3Field>
+            <KaisaField label="확정 일정" hint="조회만 가능">
+              <KaisaCalendar readOnly value={new Date(anchorDate.getFullYear(), anchorDate.getMonth(), 18)} />
+            </KaisaField>
           </Example3StateCard>
         </div>
       </Example3ShowcaseSection>

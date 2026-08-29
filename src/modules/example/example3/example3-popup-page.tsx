@@ -1,7 +1,7 @@
 'use client';
 
 import {useState} from 'react';
-import {Ex3Button, Ex3Popup} from './kit';
+import {KaisaButton, KaisaPopup} from './kit';
 import Example3ShowcaseSection from './example3-showcase-section';
 import Example3ShowcaseShell from './example3-showcase-shell';
 import Example3StateCard from './example3-state-card';
@@ -14,42 +14,42 @@ export default function Example3PopupPage() {
   return (
     <Example3ShowcaseShell title="Popup" description="glass overlay · local dialog · backdrop lock">
       <Example3ShowcaseSection title="Layout">
-        <div className="ex3-state-grid">
+        <div className="kaisa-state-grid">
           <Example3StateCard label="Title + message">
-            <Ex3Button onClick={() => setDemo('title')}>Open popup</Ex3Button>
+            <KaisaButton onClick={() => setDemo('title')}>Open popup</KaisaButton>
           </Example3StateCard>
           <Example3StateCard label="Message only">
-            <Ex3Button variant="secondary" onClick={() => setDemo('message')}>
+            <KaisaButton variant="secondary" onClick={() => setDemo('message')}>
               Body only
-            </Ex3Button>
+            </KaisaButton>
           </Example3StateCard>
           <Example3StateCard label="Confirm / Cancel">
-            <Ex3Button variant="ghost" onClick={() => setDemo('confirm')}>
+            <KaisaButton variant="ghost" onClick={() => setDemo('confirm')}>
               2-button popup
-            </Ex3Button>
+            </KaisaButton>
           </Example3StateCard>
           <Example3StateCard label="Sticky backdrop">
-            <Ex3Button variant="danger" onClick={() => setDemo('lock')}>
+            <KaisaButton variant="danger" onClick={() => setDemo('lock')}>
               Backdrop lock
-            </Ex3Button>
+            </KaisaButton>
           </Example3StateCard>
         </div>
       </Example3ShowcaseSection>
 
-      <Ex3Popup
+      <KaisaPopup
         open={demo === 'title'}
         title="Notice"
         message="Your changes were saved."
         onConfirm={() => setDemo(null)}
         onCancel={() => setDemo(null)}
       />
-      <Ex3Popup
+      <KaisaPopup
         open={demo === 'message'}
         message="Session expired. Please sign in again."
         onConfirm={() => setDemo(null)}
         onCancel={() => setDemo(null)}
       />
-      <Ex3Popup
+      <KaisaPopup
         open={demo === 'confirm'}
         title="Delete"
         message="This cannot be undone."
@@ -58,7 +58,7 @@ export default function Example3PopupPage() {
         onConfirm={() => setDemo(null)}
         onCancel={() => setDemo(null)}
       />
-      <Ex3Popup
+      <KaisaPopup
         open={demo === 'lock'}
         title="Important"
         message="Backdrop click will not close this dialog."

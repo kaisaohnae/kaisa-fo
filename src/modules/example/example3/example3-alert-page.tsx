@@ -1,7 +1,7 @@
 'use client';
 
 import {useState} from 'react';
-import {Ex3Alert, Ex3Button} from './kit';
+import {KaisaAlert, KaisaButton} from './kit';
 import Example3ShowcaseSection from './example3-showcase-section';
 import Example3ShowcaseShell from './example3-showcase-shell';
 import Example3StateCard from './example3-state-card';
@@ -23,24 +23,24 @@ export default function Example3AlertPage() {
   return (
     <Example3ShowcaseShell title="Alert" description="local overlay · slide-up dialog · not the global store">
       <Example3ShowcaseSection title="Message type">
-        <div className="ex3-state-grid">
+        <div className="kaisa-state-grid">
           <Example3StateCard label="Single confirm">
-            <Ex3Button onClick={() => setDemo('single')}>Open alert</Ex3Button>
+            <KaisaButton onClick={() => setDemo('single')}>Open alert</KaisaButton>
           </Example3StateCard>
           <Example3StateCard label="Confirm / Cancel">
-            <Ex3Button variant="secondary" onClick={() => setDemo('confirm')}>
+            <KaisaButton variant="secondary" onClick={() => setDemo('confirm')}>
               2-button alert
-            </Ex3Button>
+            </KaisaButton>
           </Example3StateCard>
           <Example3StateCard label="Long message">
-            <Ex3Button variant="ghost" onClick={() => setDemo('long')}>
+            <KaisaButton variant="ghost" onClick={() => setDemo('long')}>
               Multi-line alert
-            </Ex3Button>
+            </KaisaButton>
           </Example3StateCard>
         </div>
       </Example3ShowcaseSection>
 
-      <Ex3Alert
+      <KaisaAlert
         open={demo !== null}
         message={demo ? COPY[demo].message : ''}
         confirmText={demo ? COPY[demo].confirmText : 'OK'}

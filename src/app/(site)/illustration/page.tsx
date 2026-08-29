@@ -1,5 +1,14 @@
-import PortfolioPage from '@/components/home/portfolio-page';
+'use client';
+
+import {useEffect} from 'react';
+import {useRouter} from 'next/navigation';
 
 export default function Page() {
-  return <PortfolioPage initialSection="illustration" />;
+  const router = useRouter();
+
+  useEffect(() => {
+    router.replace('/works/');
+  }, [router]);
+
+  return null;
 }

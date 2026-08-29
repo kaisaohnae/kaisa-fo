@@ -1,7 +1,7 @@
 'use client';
 
 import {useState} from 'react';
-import {Ex3Colorpicker, Ex3Field} from './kit';
+import {KaisaColorpicker, KaisaField} from './kit';
 import Example3ShowcaseSection from './example3-showcase-section';
 import Example3ShowcaseShell from './example3-showcase-shell';
 import Example3StateCard from './example3-state-card';
@@ -18,81 +18,81 @@ export default function Example3ColorpickerPage() {
       description="hex input, SV plane, hue slider, presets, state"
     >
       <Example3ShowcaseSection title="Basic" description="swatch, hex input, palette">
-        <div className="ex3-state-grid ex3-state-grid--pickers">
+        <div className="kaisa-state-grid kaisa-state-grid--pickers">
           <Example3StateCard label="Default">
-            <Ex3Field label="Brand color" htmlFor="ex3-color-default" hint="Open the palette">
-              <Ex3Colorpicker
-                id="ex3-color-default"
+            <KaisaField label="Brand color" htmlFor="kaisa-color-default" hint="Open the palette">
+              <KaisaColorpicker
+                id="kaisa-color-default"
                 value={primaryColor}
                 onChange={(color) => color && setPrimaryColor(color)}
                 clearable
               />
-            </Ex3Field>
+            </KaisaField>
           </Example3StateCard>
           <Example3StateCard label="Custom presets">
-            <Ex3Field label="Theme color" htmlFor="ex3-color-presets">
-              <Ex3Colorpicker
-                id="ex3-color-presets"
+            <KaisaField label="Theme color" htmlFor="kaisa-color-presets">
+              <KaisaColorpicker
+                id="kaisa-color-presets"
                 value={themeColor}
                 onChange={setThemeColor}
                 presets={BRAND_PRESETS}
                 clearable
               />
-            </Ex3Field>
+            </KaisaField>
           </Example3StateCard>
         </div>
       </Example3ShowcaseSection>
 
       <Example3ShowcaseSection title="Size" description="sm / md / lg">
-        <div className="ex3-state-grid ex3-state-grid--pickers">
+        <div className="kaisa-state-grid kaisa-state-grid--pickers">
           <Example3StateCard label="Small">
-            <Ex3Colorpicker uiSize="sm" defaultValue="#ff4d00" />
+            <KaisaColorpicker uiSize="sm" defaultValue="#ff4d00" />
           </Example3StateCard>
           <Example3StateCard label="Medium">
-            <Ex3Colorpicker uiSize="md" defaultValue="#0f766e" />
+            <KaisaColorpicker uiSize="md" defaultValue="#0f766e" />
           </Example3StateCard>
           <Example3StateCard label="Large">
-            <Ex3Colorpicker uiSize="lg" defaultValue="#b42318" />
+            <KaisaColorpicker uiSize="lg" defaultValue="#b42318" />
           </Example3StateCard>
         </div>
       </Example3ShowcaseSection>
 
       <Example3ShowcaseSection title="Input mode" description="manual / palette only / no presets">
-        <div className="ex3-state-grid ex3-state-grid--pickers">
+        <div className="kaisa-state-grid kaisa-state-grid--pickers">
           <Example3StateCard label="Manual hex">
-            <Ex3Field label="HEX" hint="#1a1a18 format">
-              <Ex3Colorpicker defaultValue="#1a1a18" allowManualInput clearable />
-            </Ex3Field>
+            <KaisaField label="HEX" hint="#1a1a18 format">
+              <KaisaColorpicker defaultValue="#1a1a18" allowManualInput clearable />
+            </KaisaField>
           </Example3StateCard>
           <Example3StateCard label="Palette only">
-            <Ex3Colorpicker
+            <KaisaColorpicker
               allowManualInput={false}
               defaultValue="#ff4d00"
               placeholder="Pick from palette"
             />
           </Example3StateCard>
           <Example3StateCard label="No presets">
-            <Ex3Colorpicker showPresets={false} defaultValue="#1a1a18" />
+            <KaisaColorpicker showPresets={false} defaultValue="#1a1a18" />
           </Example3StateCard>
         </div>
       </Example3ShowcaseSection>
 
       <Example3ShowcaseSection title="State" description="disabled / readOnly / invalid">
-        <div className="ex3-state-grid ex3-state-grid--pickers">
+        <div className="kaisa-state-grid kaisa-state-grid--pickers">
           <Example3StateCard label="Disabled">
-            <Ex3Field label="Locked color" disabled>
-              <Ex3Colorpicker disabled defaultValue="#6b6964" />
-            </Ex3Field>
+            <KaisaField label="Locked color" disabled>
+              <KaisaColorpicker disabled defaultValue="#6b6964" />
+            </KaisaField>
           </Example3StateCard>
           <Example3StateCard label="Read only">
-            <Ex3Field label="Confirmed color" hint="View only">
-              <Ex3Colorpicker readOnly value="#1a1a18" />
-            </Ex3Field>
+            <KaisaField label="Confirmed color" hint="View only">
+              <KaisaColorpicker readOnly value="#1a1a18" />
+            </KaisaField>
           </Example3StateCard>
           <Example3StateCard label="Invalid">
-            <Ex3Field label="Color code" error="HEX value is invalid">
-              <Ex3Colorpicker invalid defaultValue="#1a1a18" />
-            </Ex3Field>
+            <KaisaField label="Color code" error="HEX value is invalid">
+              <KaisaColorpicker invalid defaultValue="#1a1a18" />
+            </KaisaField>
           </Example3StateCard>
         </div>
       </Example3ShowcaseSection>

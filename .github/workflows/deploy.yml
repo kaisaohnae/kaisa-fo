@@ -17,6 +17,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Build project
+        env:
+          NEXT_PUBLIC_SITE_URL: https://kaisa.co.kr
         run: npm run build
       # - name: Add 404.html
       #   run: echo '<meta http-equiv="refresh" content="0; URL=/">' > dist/404.html

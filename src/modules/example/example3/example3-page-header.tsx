@@ -15,16 +15,16 @@ export default function Example3PageHeader({title, description, actions}: Exampl
   const pageTitle = title.replace(/\s*Example3\s*$/i, '').trim();
 
   return (
-    <header className="ex3-topbar">
-      <div className="ex3-topbar__body">
-        <p className="ex3-topbar__label">{today}</p>
-        <h1 className="ex3-topbar__title">
+    <header className="kaisa-topbar">
+      <div className="kaisa-topbar__body">
+        <p className="kaisa-topbar__label">{today}</p>
+        <h1 className="kaisa-topbar__title">
           {pageTitle}
-          <span className="ex3-topbar__example"> Example3</span>
+          <span className="kaisa-topbar__example"> Example3</span>
         </h1>
-        {description ? <p className="ex3-topbar__desc">{description}</p> : null}
+        {description ? <p className="kaisa-topbar__desc">{description}</p> : null}
       </div>
-      <div className="ex3-topbar__actions">{actions ?? null}</div>
+      <div className="kaisa-topbar__actions">{actions ?? null}</div>
     </header>
   );
 }

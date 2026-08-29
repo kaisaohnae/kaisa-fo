@@ -1,58 +1,30 @@
 'use client';
 
-import {useEffect, useState} from 'react';
 import Link from 'next/link';
-import usePortfolioNav from '@/hooks/use-portfolio-nav';
-import type {PortfolioSection} from '@/etc/scroll-to-section';
+import {usePathname} from 'next/navigation';
 
-const MENU_ITEMS: {section: PortfolioSection; label: string; href: string}[] = [
-  {section: 'home', label: 'Home', href: '/'},
-  {section: 'works', label: 'Works', href: '/works/'},
-  {section: 'illustration', label: 'Illustration', href: '/illustration/'},
+const MENU_ITEMS = [
+  {label: 'Posts', href: '/posts/', match: (path: string) => path === '/' || path.startsWith('/posts')},
+  {label: 'Works', href: '/works/', match: (path: string) => path.startsWith('/works')},
 ];
 
 export default function Menu() {
-  const [mounted, setMounted] = useState(false);
-  const [isFixed, setFixed] = useState(false);
-  const {isPortfolio, activeSection, navigateToSection} = usePortfolioNav();
-
-  useEffect(() => {
-    setMounted(true);
-    const handleFixed = () => {
-      setFixed(window.scrollY >= 80);
-    };
-    window.addEventListener('scroll', handleFixed, {passive: true});
-    handleFixed();
-    return () => window.removeEventListener('scroll', handleFixed);
-  }, []);
-
-  if (!mounted) return null;
+  const pathname = usePathname() || '/';
 
   return (
-    <nav id="menu" className={isFixed ? 'menu--fixed' : ''} aria-label="Main navigation">
+    <nav id="menu" aria-label="Main navigation">
       <ul className="menu__list">
         {MENU_ITEMS.map((item) => {
-          const isActive = isPortfolio && activeSection === item.section;
+          const isActive = item.match(pathname);
 
           return (
             <li
-              key={item.section}
+              key={item.href}
               className={isActive ? 'menu__item menu__item--active' : 'menu__item'}
             >
-              {isPortfolio ? (
-                <button
-                  type="button"
-                  className="menu__link"
-                  aria-current={isActive ? 'page' : undefined}
-                  onClick={() => navigateToSection(item.section)}
-                >
-                  {item.label}
-                </button>
-              ) : (
-                <Link href={item.href} className="menu__link">
-                  {item.label}
-                </Link>
-              )}
+              <Link href={item.href} className="menu__link" aria-current={isActive ? 'page' : undefined}>
+                {item.label}
+              </Link>
             </li>
           );
         })}
