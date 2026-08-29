@@ -1,0 +1,159 @@
+---
+slug: db-01
+order: 1
+category: db
+categoryLabel: DB
+title: "PostgreSQL: 관계형 DB의 실무 기본선"
+summary: "관계·트랜잭션·JSON을 한 엔진에서 다루는 오픈소스 관계형 DB로, 웹과 API 백엔드의 기본선이 되는 이유를 정리한다."
+publishedAt: 2023-04-05
+tags: ["db"]
+---
+
+# PostgreSQL: 관계형 DB의 실무 기본선
+
+> 요약: 관계·트랜잭션·JSON을 한 엔진에서 다루는 오픈소스 관계형 DB로, 웹과 API 백엔드의 기본선이 되는 이유를 정리한다.
+
+---
+
+## 1. 언제 PostgreSQL인가
+
+PostgreSQL은 오픈소스 관계형 데이터베이스다. 표(테이블)로 데이터를 넣고, SQL로 조회한다. 웹 API, 관리자 화면, 정산·리포트처럼 **관계가 있고 틀리면 안 되는 데이터**에 잘 맞는다.
+
+| 맞는 경우 | 덜 맞는 경우 |
+|-----------|--------------|
+| 주문·회원처럼 관계가 중요할 때 | 키와 값만 초고속으로 필요할 때 (Redis) |
+| 제약·트랜잭션이 업무의 핵심일 때 | 문서 구조가 매일 바뀌고 조인이 거의 없을 때 (MongoDB) |
+| SQL로 분석·집계·리포팅을 할 때 | 극단적 수평 샤딩만 목표일 때 |
+| JSON과 관계를 한 DB에서 섞을 때 | 단일 파일·임베디드면 충분할 때 (SQLite) |
+| 확장(검색, 지리정보)을 DB 안에서 쓰고 싶을 때 | 호스팅이 MySQL만 제공하는 레거시 환경 |
+
+“그냥 SQL이 필요해서”만으로도 충분한 선택이 많다. 반대로 **캐시 전용**, **초단순 키-값**, **모바일 로컬 DB**에는 다른 도구가 더 단순하다.
+
+실무에서 기본선으로 자주 고르는 이유다. 표준 SQL에 가깝고, JSONB와 확장이 한 엔진에 들어 있다.
+
+---
+
+## 2. 핵심 개념
+
+**트랜잭션**은 여러 쓰기를 한 묶음으로 성공하거나 전부 되돌리는 장치다. PostgreSQL은 ACID를 지킨다. ACID는 원자성(Atomicity)·일관성(Consistency)·격리(Isolation)·지속성(Durability)의 약자다.
+
+```sql
+BEGIN;
+UPDATE accounts SET balance = balance - 1000 WHERE id = 1;
+UPDATE accounts SET balance = balance + 1000 WHERE id = 2;
+COMMIT;
+-- 중간에 실패하면 ROLLBACK
+```
+
+**스키마와 제약**이 데이터의 모양을 지킨다.
+
+- PK(Primary Key, 기본키): 행을 유일하게 가리킨다
+- FK(Foreign Key, 외래키): 다른 테이블의 존재를 강제한다
+- UNIQUE, CHECK: 중복·범위 같은 규칙을 엔진이 검사한다
+
+제약을 앱에만 두면 우회 경로에서 깨진다. DB에 두는 편이 안전하다.
+
+**인덱스**는 조회를 빠르게 하는 보조 구조다. 기본은 B-tree다. `WHERE`·`JOIN`·`ORDER BY`에 자주 쓰는 컬럼에 만든다. 너무 많으면 쓰기가 느려진다.
+
+**JSONB**는 이진 JSON이다. JSON은 JavaScript Object Notation, 키-값 문서 형식이다. 관계형 테이블 안에 유연한 필드를 넣을 때 쓴다. 검색이 필요하면 GIN 인덱스를 붙인다. GIN은 Generalized Inverted Index, 문서·배열 검색용 인덱스다.
+
+**WAL**은 Write-Ahead Log, 미리 쓰기 로그다. 변경을 디스크에 남긴 뒤 데이터 파일에 반영한다. 장애 복구와 연속 백업의 기반이다.
+
+**격리 수준**은 동시에 도는 트랜잭션이 서로를 얼마나 보는지다. 기본은 `READ COMMITTED`인 경우가 많다. 재고처럼 같은 행을 두고 경쟁하면 `SELECT … FOR UPDATE`로 잠근다. 기본값을 올리는 일은 측정 후에 한다. 교착(deadlock)이 늘 수 있다.
+
+연결 문자열은 시크릿이다. 예시는 플레이스홀더만 쓴다.
+
+```
+postgresql://APP_USER:YOUR_DB_PASSWORD@db.internal:5432/app
+```
+
+---
+
+## 3. 최소 예제 — 주문과 JSON 메타
+
+회원과 주문을 가정한다. 고정 필드는 컬럼, 자주 바뀌는 옵션은 JSONB에 둔다.
+
+```sql
+CREATE TABLE users (
+  id         bigserial PRIMARY KEY,
+  email      text NOT NULL UNIQUE,
+  name       text NOT NULL,
+  created_at timestamptz NOT NULL DEFAULT now()
+);
+
+CREATE TABLE orders (
+  id           bigserial PRIMARY KEY,
+  user_id      bigint NOT NULL REFERENCES users(id),
+  status       text NOT NULL CHECK (status IN ('pending', 'paid', 'cancelled')),
+  payload      jsonb NOT NULL DEFAULT '{}',
+  created_at   timestamptz NOT NULL DEFAULT now()
+);
+
+CREATE INDEX orders_user_id_idx ON orders (user_id);
+CREATE INDEX orders_payload_gin ON orders USING gin (payload);
+```
+
+```sql
+INSERT INTO users (email, name) VALUES ('ada@example.com', 'Ada');
+
+INSERT INTO orders (user_id, status, payload)
+VALUES (
+  1,
+  'paid',
+  '{"channel": "web", "coupon": "WELCOME10"}'::jsonb
+);
+
+SELECT o.id, u.email, o.status, o.payload->>'coupon' AS coupon
+FROM orders o
+JOIN users u ON u.id = o.user_id
+WHERE o.payload @> '{"channel": "web"}'::jsonb
+ORDER BY o.created_at DESC
+LIMIT 20;
+```
+
+느린 쿼리는 감으로 고치지 않는다.
+
+```sql
+EXPLAIN (ANALYZE, BUFFERS)
+SELECT * FROM orders WHERE user_id = 1 ORDER BY created_at DESC;
+```
+
+`Seq Scan`이 대량 테이블에서 반복되면 인덱스를 검토한다. 스키마 변경은 Flyway, Prisma migrate 같은 마이그레이션 도구로 버전을 남긴다.
+
+---
+
+## 4. 운영 시 주의
+
+**연결.** PostgreSQL은 연결당 메모리를 쓴다. 앱 인스턴스 수 × 풀 크기가 곧 DB 연결 수다. 과다하면 신규 연결이 거절된다. PgBouncer 같은 풀러를 앞에 두는 구성이 흔하다.
+
+**백업.** `pg_dump`는 논리 백업이다. 소규모·개발에 충분하다. 운영 등급은 WAL을 이은 연속 백업(PITR, Point-In-Time Recovery)을 검토한다. 백업이 복원되는지는 주기적으로 확인한다. 찍기만 하고 복원을 안 해본 백업은 백업이 아니다.
+
+**보안.** 앱 계정은 `SUPERUSER`가 아니다. 필요한 스키마·테이블만 연다. 관리형이면 퍼블릭 액세스를 끄고, 앱 보안 그룹에서만 5432를 연다. 비밀번호는 코드·이미지에 넣지 않는다. `YOUR_DB_PASSWORD` 같은 플레이스홀더를 시크릿 저장소에 둔다.
+
+**성능.** 슬로우 쿼리 로그와 `EXPLAIN`을 먼저 본다. CPU를 키우기 전에 인덱스와 N+1 조회를 고친다.
+
+**마이그레이션.** 큰 테이블에 락이 긴 `ALTER`는 배포 창을 잡는다. `CREATE INDEX CONCURRENTLY`처럼 온라인에 가까운 방법을 버전별로 확인한다.
+
+**확장.** 자주 쓰는 것만 켠다. `pg_trgm`은 유사 문자열 검색, PostGIS는 지리 정보, `pgcrypto`는 해시·암호화 함수다. 확장은 백업·복원·메이저 업그레이드 체크리스트에 넣는다.
+
+**비용.** 관리형(RDS 등)은 인스턴스 클래스·스토리지·IOPS·백업 보존이 요금이다. 슬로우 쿼리를 두고 클래스만 키우면 매달 비용만 는다.
+
+---
+
+## 5. 정리
+
+PostgreSQL은 “그냥 SQL DB”가 아니다. **관계 + JSON + 확장**을 한 엔진에서 다루는 기본선이다. 제약을 DB에 두고, 인덱스는 쿼리 패턴에 맞추고, 연결·백업·권한을 운영 항목으로 본다.
+
+### 체크리스트
+
+- [ ] PK·FK·CHECK를 스키마에 넣는다. 앱만의 규칙은 우회된다.
+- [ ] `WHERE`/`JOIN` 컬럼에 인덱스를 만든다. 풀스캔은 데이터가 커지면 비용이 된다.
+- [ ] 연결 풀 크기를 인스턴스 수와 곱해 본다. 과다 연결은 장애다.
+- [ ] `pg_dump` 또는 WAL 백업을 켜고 복원을 한 번 연습한다. 복원되지 않는 백업은 없다.
+- [ ] 앱 DB 계정에서 슈퍼유저 권한을 뺀다. 최소 권한이 사고 범위를 줄인다.
+
+### 연습
+
+1. 위 `users`/`orders` 테이블을 로컬에 만들고 주문을 세 건 넣는다.
+2. `payload->>'coupon'`으로 조회하는 쿼리에 `EXPLAIN`을 붙여 본다.
+3. `pg_dump`로 덤프한 뒤 빈 DB에 복원해 건수가 같은지 확인한다.

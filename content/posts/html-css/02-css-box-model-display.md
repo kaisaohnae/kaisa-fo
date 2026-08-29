@@ -1,0 +1,160 @@
+---
+slug: html-css-02
+order: 2
+category: html-css
+categoryLabel: HTML/CSS
+title: "CSS 박스 모델과 display 기초"
+summary: "박스가 content·padding·border·margin으로 어떻게 커지는지와 display가 흐름을 어떻게 바꾸는지 구분해 레이아웃을 계산한다."
+publishedAt: 2023-11-15
+tags: ["html-css"]
+---
+
+# CSS 박스 모델과 display 기초
+
+> 요약: 박스가 content·padding·border·margin으로 어떻게 커지는지와 display가 흐름을 어떻게 바꾸는지 구분해 레이아웃을 계산한다.
+
+---
+
+## 언제 박스 모델을 먼저 보는가
+
+CSS(캐스케이딩 스타일시트)에서 모든 요소는 사각형 박스로 그려진다. 너비가 안 맞거나 간격이 겹치면 장식이 아니라 박스 계산을 의심한다.
+
+레이아웃을 잡기 전에 두 가지만 고정한다. 이 박스의 너비에 padding과 border가 포함되는가. 이 박스는 한 줄을 차지하는가, 글자처럼 흐르는가.
+
+---
+
+## 박스는 네 겹이다
+
+안에서 바깥으로 content, padding, border, margin이다.
+
+```
+margin          ← 이웃 박스와의 바깥 간격. 배경이 없다
+  border        ← 테두리. width에 포함할지 box-sizing이 정한다
+    padding     ← 내용과 테두리 사이 안쪽 여백
+      content   ← 텍스트·이미지·자식이 들어가는 영역
+```
+
+기본값 `content-box`에서는 `width: 200px`이 content만 200px이다. padding 16px와 border 1px를 더하면 화면에 234px가 된다. 옆 박스가 밀려 난다.
+
+`border-box`면 `width`에 padding과 border가 포함된다. 200px이라고 쓰면 테두리까지 합쳐 200px이다. 계산이 예측 가능하다.
+
+```css
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+```
+
+프로젝트 전역에 이 한 줄을 둔다. 컴포넌트마다 `box-sizing`을 바꾸지 않는다.
+
+---
+
+## display가 흐름을 정한다
+
+`display`는 박스가 이웃과 어떻게 줄을 서는지를 정한다.
+
+| 값 | 동작 | 쓸 때 |
+|----|------|-------|
+| `block` | 가로를 한 줄 차지하고 위아래로 쌓인다 | 문단, 섹션, 카드 |
+| `inline` | 글자처럼 옆에 붙는다. width·height가 거의 안 먹는다 | 문장 속 강조, 링크 |
+| `inline-block` | 옆에 붙으면서 박스 크기를 지정한다 | 뱃지, 작은 버튼 나열 |
+| `none` | 그리지도 않고 자리도 없앤다 | 닫힌 메뉴, 숨긴 영역 |
+| `flex` / `grid` | 자식 배치용 컨텍스트를 연다 | 다음 글에서 다룬다 |
+
+`visibility: hidden`은 안 보이지만 자리는 남긴다. `display: none`은 자리까지 없앤다. 레이아웃이 당겨지면 `none`이고, 자리만 비워 두면 `hidden`이다.
+
+```css
+.badge {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid #ccc;
+}
+
+.is-closed {
+  display: none;
+}
+```
+
+---
+
+## 카드 한 장으로 계산해 보기
+
+```html
+<article class="card">
+  <h2>제목</h2>
+  <p>본문</p>
+</article>
+```
+
+```css
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.card {
+  width: 320px;
+  padding: 16px;
+  border: 1px solid #ddd;
+  margin: 16px;
+}
+```
+
+`border-box`이므로 테두리까지 합쳐 가로 320px이다. 바깥으로 16px 간격이 더해진다. `content-box`였다면 padding·border만큼 더 넓어져 옆 카드와 줄이 안 맞는다.
+
+이미지가 부모를 넘치지 않게 하는 최소 리셋이다.
+
+```css
+html {
+  line-height: 1.5;
+}
+
+body {
+  margin: 0;
+}
+
+img,
+svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+```
+
+`body`의 기본 margin을 0으로 두지 않으면 페이지 가장자리에 예상 못 한 여백이 생긴다. `img`를 `block`으로 두면 인라인 이미지 아래 틈이 사라진다.
+
+---
+
+## 세로 margin이 합쳐지는 이유
+
+인접한 block끼리는 위아래 margin이 더해지지 않고 큰 쪽만 남는다. 이를 margin collapse(마진 병합)라고 한다.
+
+부모의 첫 자식 `margin-top`이 부모 밖으로 새어 나가기도 한다. 부모에 padding이나 border를 두면 막힌다. overflow를 `auto`로 두는 방법도 있다.
+
+컴포넌트 사이 간격은 각자 `margin`을 쌓기보다 부모의 `gap`으로 통일하는 편이 덜 겹친다. Flexbox나 Grid에서 `gap`을 쓴다.
+
+---
+
+## 흔한 실수
+
+- `width: 100%`에 padding을 더하고 가로 스크롤이 생긴다. `border-box`인지 확인한다.
+- `inline` 요소에 `width`·`height`를 준다. `inline-block`이나 `block`으로 바꾼다.
+- 숨길 때 `display: none`과 `visibility: hidden`을 혼동한다. 자리가 필요하면 `hidden`이다.
+- 세로 간격이 의도의 절반만 나온다. margin collapse를 의심한다.
+- 전체 태그 리셋으로 `ul`·`button`까지 지운다. 팀이 합의한 최소 세트만 둔다.
+
+---
+
+## 정리
+
+레이아웃 버그의 상당수는 박스 크기와 `display` 오해에서 온다. 먼저 이 박스가 몇 픽셀인지, 한 줄을 차지하는지부터 본다. `border-box`를 전역으로 두고 나면 나머지는 간격과 흐름이다.
+
+---
+
+## 연습
+
+1. 같은 카드에 `content-box`와 `border-box`를 번갈아 적용하고 개발자 도구에서 실제 너비를 비교한다.
+2. `inline` 링크 세 개에 padding을 준 뒤, `inline-block`으로 바꿨을 때 줄 높이가 어떻게 달라지는지 본다.
+3. 부모·자식에 `margin-top: 20px`을 각각 주고, 화면에 40px가 아니라 20px만 생기는지 확인한다.

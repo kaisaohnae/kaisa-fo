@@ -57,14 +57,6 @@ export const EXAMPLE_LINKS: ExampleLink[] = [
     kind: 'dashboard',
     show: true,
     external: true
-  },
-  {
-    id: 'kaisa-tool',
-    label: 'Kaisa Tool',
-    href: 'https://tool.kaisa.co.kr/',
-    kind: 'dashboard',
-    show: true,
-    external: true
   }
 ];
 

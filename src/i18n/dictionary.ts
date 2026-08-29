@@ -1,115 +1,165 @@
 export type LocaleEntry = Partial<Record<'ko' | 'zh' | 'hi', string>>;
 
 export const dictionary: Record<string, LocaleEntry> = {
-  "Home": {
-    "ko": "홈",
-    "zh": "首页",
-    "hi": "होम"
+  "Login": {
+    "ko": "로그인",
+    "zh": "登录",
+    "hi": "लॉगिन"
+  },
+  "Posts": {
+    "ko": "포스트",
+    "zh": "文章",
+    "hi": "पोस्ट"
+  },
+  "Issues": {
+    "ko": "이슈",
+    "zh": "议题",
+    "hi": "मुद्दे"
   },
   "Works": {
-    "ko": "Works",
-    "zh": "Works",
-    "hi": "Works"
+    "ko": "작업",
+    "zh": "作品",
+    "hi": "वर्क"
   },
   "Illustration": {
-    "ko": "Illustration",
-    "zh": "Illustration",
-    "hi": "Illustration"
+    "ko": "일러스트",
+    "zh": "插画",
+    "hi": "इलस्ट्रेशन"
   },
-  "Simple is Great": {
-    "ko": "Simple is Great",
-    "zh": "Simple is Great",
-    "hi": "Simple is Great"
+  "Main navigation": {
+    "ko": "주 메뉴",
+    "zh": "主导航",
+    "hi": "मुख्य नेविगेशन"
   },
-  "A full-stack product maker who plans, designs, and ships in code.": {
-    "ko": "아이디어를 설계하고, 디자인하고, 코드로 완성해 온 풀스택 프로덕트 메이커입니다.",
-    "zh": "从构想、设计到代码落地的全栈产品创作者。",
-    "hi": "आइडिया से डिज़ाइन और कोड तक पूरा करने वाला फुल-स्टैक प्रोडक्ट मेकर।"
+  "Mobile navigation": {
+    "ko": "모바일 메뉴",
+    "zh": "移动导航",
+    "hi": "मोबाइल नेविगेशन"
   },
-  "Scroll": {
-    "ko": "스크롤",
-    "zh": "滚动",
-    "hi": "स्क्रॉल"
+  "Open menu": {
+    "ko": "메뉴 열기",
+    "zh": "打开菜单",
+    "hi": "मेनू खोलें"
   },
-  "Scroll down": {
-    "ko": "아래로 스크롤",
-    "zh": "向下滚动",
-    "hi": "नीचे स्क्रॉल करें"
+  "Close menu": {
+    "ko": "메뉴 닫기",
+    "zh": "关闭菜单",
+    "hi": "मेनू बंद करें"
   },
-  "What I Do": {
-    "ko": "What I Do",
-    "zh": "What I Do",
-    "hi": "What I Do"
+  "Register": {
+    "ko": "회원가입",
+    "zh": "注册",
+    "hi": "पंजीकरण"
   },
-  "Plan · Design · Develop": {
-    "ko": "기획 · 디자인 · 개발",
-    "zh": "策划 · 设计 · 开发",
-    "hi": "प्लान · डिज़ाइन · डेवलप"
+  "Email": {
+    "ko": "이메일",
+    "zh": "邮箱",
+    "hi": "ईमेल"
   },
-  "In one flow": {
-    "ko": "하나의 흐름으로",
-    "zh": "一气呵成",
-    "hi": "एक प्रवाह में"
+  "Password": {
+    "ko": "비밀번호",
+    "zh": "密码",
+    "hi": "पासवर्ड"
   },
-  "I finish products end to end through one person’s lens.": {
-    "ko": "처음부터 끝까지 한 사람의 시선으로 프로덕트를 완성합니다.",
-    "zh": "从始至终，以同一个人的视角完成产品。",
-    "hi": "शुरुआत से अंत तक एक ही नज़रिए से प्रोडक्ट पूरा करता हूँ।"
+  "Confirm password": {
+    "ko": "비밀번호 확인",
+    "zh": "确认密码",
+    "hi": "पासवर्ड पुष्टि"
   },
-  "Design subtitle": {
-    "ko": "디자인",
-    "zh": "设计",
-    "hi": "डिज़ाइन"
+  "Save email": {
+    "ko": "아이디 저장",
+    "zh": "保存账号",
+    "hi": "ईमेल सहेजें"
   },
-  "Develop subtitle": {
-    "ko": "개발",
-    "zh": "开发",
-    "hi": "डेवलपमेंट"
+  "Member": {
+    "ko": "Member",
+    "zh": "Member",
+    "hi": "Member"
   },
-  "Plan subtitle": {
-    "ko": "기획",
-    "zh": "策划",
-    "hi": "प्लानिंग"
+  "Complete the robot check.": {
+    "ko": "로봇 방지 확인을 완료해 주세요.",
+    "zh": "请完成人机验证。",
+    "hi": "रोबोट जांच पूरी करें।"
   },
-  "Centered on user experience — UI/UX, style guides, and visual direction. Beyond looking good, I build interfaces that feel good to use.": {
-    "ko": "사용자 경험을 중심으로 UI/UX, 스타일 가이드, 비주얼 디렉션까지. 보기 좋은 것을 넘어, 쓰기 좋은 인터페이스를 만듭니다.",
-    "zh": "以用户体验为中心，覆盖 UI/UX、风格指南与视觉方向。不只好看，更要好用。",
-    "hi": "यूज़र अनुभव केंद्र में — UI/UX, स्टाइल गाइड और विज़ुअल डायरेक्शन। सिर्फ दिखने में नहीं, इस्तेमाल में भी अच्छे इंटरफ़ेस।"
+  "Login failed.": {
+    "ko": "로그인에 실패했습니다.",
+    "zh": "登录失败。",
+    "hi": "लॉगिन विफल।"
   },
-  "Frontend, backend, infra, mobile, HMI. Spring, React, Android, iOS, React Native, Vue, C#, Next.js, OCPP, WebSocket — I build the service myself.": {
-    "ko": "프론트엔드, 백엔드, 인프라, 모바일, HMI. Spring, React, Android, IOS, React Native, Vue, C#, Next.js, OCPP, WebSocket — 서비스를 직접 구현합니다.",
-    "zh": "前端、后端、基础设施、移动端、HMI。Spring、React、Android、iOS、React Native、Vue、C#、Next.js、OCPP、WebSocket — 亲手实现服务。",
-    "hi": "फ्रंटएंड, बैकएंड, इन्फ्रा, मोबाइल, HMI। Spring, React, Android, iOS, React Native, Vue, C#, Next.js, OCPP, WebSocket — सेवा खुद बनाता हूँ।"
+  "No account? ": {
+    "ko": "계정이 없으면 ",
+    "zh": "没有账号？",
+    "hi": "खाता नहीं है? "
   },
-  "From requirements to architecture and project leadership — a product planner connecting tech and business.": {
-    "ko": "요구사항 분석부터 아키텍처 설계, 프로젝트 리딩까지. 기술과 비즈니스 사이를 연결하는 프로덕트 플래너입니다.",
-    "zh": "从需求分析到架构设计与项目带领，连接技术与业务的产品规划者。",
-    "hi": "आवश्यकताओं से आर्किटेक्चर और लीडिंग तक — तकनीक और बिज़नेस जोड़ने वाला प्रोडक्ट प्लानर।"
+  "Find ID": {
+    "ko": "아이디 찾기",
+    "zh": "找回账号",
+    "hi": "आईडी खोजें"
   },
-  "Portfolio": {
-    "ko": "포트폴리오",
-    "zh": "作品集",
-    "hi": "पोर्टफोलियो"
+  "Forgot password": {
+    "ko": "비밀번호 찾기",
+    "zh": "找回密码",
+    "hi": "पासवर्ड भूल गए"
   },
-  "A record of projects since 2005.": {
-    "ko": "2005년부터 현재까지, 함께해 온 프로젝트 기록입니다.",
-    "zh": "自 2005 年至今的项目记录。",
-    "hi": "2005 से अब तक के प्रोजेक्ट रिकॉर्ड।"
+  "Send verification code": {
+    "ko": "인증번호 받기",
+    "zh": "获取验证码",
+    "hi": "सत्यापन कोड भेजें"
   },
-  "Key skills and domains": {
-    "ko": "주요 기술·영역",
-    "zh": "主要技术与领域",
-    "hi": "मुख्य कौशल और क्षेत्र"
+  "6-digit code": {
+    "ko": "인증번호 6자리",
+    "zh": "6位验证码",
+    "hi": "6 अंकों का कोड"
   },
-  "Gallery": {
-    "ko": "갤러리",
-    "zh": "图库",
-    "hi": "गैलरी"
+  "Nickname": {
+    "ko": "닉네임",
+    "zh": "昵称",
+    "hi": "उपनाम"
   },
-  "Drawings I made myself.": {
-    "ko": "직접 그린 그림입니다",
-    "zh": "我亲手绘制的插画。",
-    "hi": "मेरे खुद बनाए चित्र।"
+  "Resend": {
+    "ko": "다시 받기",
+    "zh": "重新发送",
+    "hi": "फिर भेजें"
+  },
+  "Sign up": {
+    "ko": "가입하기",
+    "zh": "注册",
+    "hi": "साइन अप"
+  },
+  "Already have an account? ": {
+    "ko": "이미 계정이 있으면 ",
+    "zh": "已有账号？",
+    "hi": "पहले से खाता है? "
+  },
+  "We sent a verification code to your email. Enter it within 5 minutes. Check spam if you do not see it.": {
+    "ko": "인증번호를 메일로 보냈습니다. 5분 안에 입력해 주세요. 메일이 없으면 스팸함을 확인해 주세요.",
+    "zh": "验证码已发送到邮箱，请在5分钟内输入。如未收到请检查垃圾邮件。",
+    "hi": "हमने ईमेल पर सत्यापन कोड भेजा है। 5 मिनट में दर्ज करें। न दिखे तो स्पैम जांचें।"
+  },
+  "Failed to send verification code.": {
+    "ko": "인증번호 발송에 실패했습니다.",
+    "zh": "验证码发送失败。",
+    "hi": "सत्यापन कोड भेजने में विफल।"
+  },
+  "Please request a verification code first.": {
+    "ko": "인증번호 받기를 먼저 진행해 주세요.",
+    "zh": "请先获取验证码。",
+    "hi": "पहले सत्यापन कोड का अनुरोध करें।"
+  },
+  "Passwords do not match.": {
+    "ko": "비밀번호가 일치하지 않습니다.",
+    "zh": "密码不一致。",
+    "hi": "पासवर्ड मेल नहीं खाते।"
+  },
+  "Registration failed.": {
+    "ko": "회원가입에 실패했습니다.",
+    "zh": "注册失败。",
+    "hi": "पंजीकरण विफल।"
+  },
+  "If you request a new code, the previous one will no longer work. ": {
+    "ko": "인증번호를 다시 받으면 이전 번호는 사용할 수 없습니다. ",
+    "zh": "重新获取后，旧验证码将失效。",
+    "hi": "नया कोड मांगने पर पुराना कोड काम नहीं करेगा। "
   },
   "Switch to light mode": {
     "ko": "라이트 모드로 전환",
@@ -121,34 +171,144 @@ export const dictionary: Record<string, LocaleEntry> = {
     "zh": "切换到深色模式",
     "hi": "डार्क मोड पर जाएँ"
   },
-  "Main navigation": {
-    "ko": "메인 메뉴",
-    "zh": "主导航",
-    "hi": "मुख्य नेविगेशन"
+  "Admin": {
+    "ko": "관리자",
+    "zh": "管理",
+    "hi": "प्रशासक"
   },
-  "Page Not Found": {
-    "ko": "페이지를 찾을 수 없습니다",
-    "zh": "页面未找到",
-    "hi": "पृष्ठ नहीं मिला"
+  "Account settings": {
+    "ko": "회원 설정",
+    "zh": "账号设置",
+    "hi": "खाता सेटिंग"
   },
-  "The page you requested could not be found. The address may have changed or the page may have been removed.": {
-    "ko": "요청하신 페이지를 찾을 수 없습니다.\n주소가 변경되었거나 삭제된 페이지일 수 있습니다.",
-    "zh": "找不到您请求的页面。\n地址可能已更改或页面已删除。",
-    "hi": "अनुरोधित पृष्ठ नहीं मिला।\nपता बदला हो सकता है या पृष्ठ हटाया गया हो।"
+  "Logout": {
+    "ko": "로그아웃",
+    "zh": "退出登录",
+    "hi": "लॉग आउट"
   },
-  "Something Went Wrong": {
-    "ko": "문제가 발생했습니다",
-    "zh": "出错了",
-    "hi": "कुछ गलत हो गया"
+  "Change password": {
+    "ko": "비밀번호 변경",
+    "zh": "修改密码",
+    "hi": "पासवर्ड बदलें"
   },
-  "An unexpected error occurred. Please try again later.": {
-    "ko": "알 수 없는 에러가 발생하였습니다.\n잠시 후 다시 시도해 주세요.",
-    "zh": "发生未知错误。\n请稍后再试。",
-    "hi": "अनजान त्रुटि हुई।\nबाद में फिर कोशिश करें।"
+  "Current password": {
+    "ko": "현재 비밀번호",
+    "zh": "当前密码",
+    "hi": "वर्तमान पासवर्ड"
   },
-  "HOME": {
-    "ko": "홈",
-    "zh": "首页",
-    "hi": "होम"
+  "New password": {
+    "ko": "새 비밀번호",
+    "zh": "新密码",
+    "hi": "नया पासवर्ड"
+  },
+  "Confirm new password": {
+    "ko": "새 비밀번호 확인",
+    "zh": "确认新密码",
+    "hi": "नया पासवर्ड पुष्टि"
+  },
+  "Close": {
+    "ko": "닫기",
+    "zh": "关闭",
+    "hi": "बंद करें"
+  },
+  "Change": {
+    "ko": "변경",
+    "zh": "更改",
+    "hi": "बदलें"
+  },
+  "New passwords do not match.": {
+    "ko": "새 비밀번호가 일치하지 않습니다.",
+    "zh": "新密码不一致。",
+    "hi": "नए पासवर्ड मेल नहीं खाते।"
+  },
+  "Password changed.": {
+    "ko": "비밀번호가 변경되었습니다.",
+    "zh": "密码已更改。",
+    "hi": "पासवर्ड बदल दिया गया।"
+  },
+  "Change failed.": {
+    "ko": "변경에 실패했습니다.",
+    "zh": "更改失败。",
+    "hi": "परिवर्तन विफल।"
+  },
+  "Delete account": {
+    "ko": "회원 탈퇴",
+    "zh": "注销账号",
+    "hi": "खाता हटाएँ"
+  },
+  "Enter your password to permanently delete this account.": {
+    "ko": "비밀번호를 입력하면 회원 정보가 즉시 삭제됩니다.",
+    "zh": "输入密码后将立即删除账号信息。",
+    "hi": "पासवर्ड डालते ही खाता जानकारी हमेशा के लिए हट जाएगी।"
+  },
+  "Delete this account? This cannot be undone.": {
+    "ko": "탈퇴하면 회원 정보가 즉시 삭제되며 되돌릴 수 없습니다. 계속할까요?",
+    "zh": "注销后账号信息将立即删除且无法恢复。要继续吗？",
+    "hi": "खाता हटाने पर जानकारी तुरंत मिट जाएगी और वापस नहीं आएगी। जारी रखें?"
+  },
+  "Could not delete account.": {
+    "ko": "회원 탈퇴에 실패했습니다.",
+    "zh": "无法注销账号。",
+    "hi": "खाता हटाया नहीं जा सका।"
+  },
+  "Comments": {
+    "ko": "댓글",
+    "zh": "评论",
+    "hi": "टिप्पणियाँ"
+  },
+  "Leave a comment": {
+    "ko": "댓글을 남겨 주세요",
+    "zh": "留下评论",
+    "hi": "टिप्पणी लिखें"
+  },
+  "Submit": {
+    "ko": "등록",
+    "zh": "提交",
+    "hi": "भेजें"
+  },
+  "Cancel": {
+    "ko": "취소",
+    "zh": "取消",
+    "hi": "रद्द करें"
+  },
+  "Reply": {
+    "ko": "답글",
+    "zh": "回复",
+    "hi": "जवाब"
+  },
+  "No comments yet.": {
+    "ko": "아직 댓글이 없습니다.",
+    "zh": "暂无评论。",
+    "hi": "अभी कोई टिप्पणी नहीं।"
+  },
+  "Failed to submit comment.": {
+    "ko": "댓글 등록에 실패했습니다.",
+    "zh": "提交失败。",
+    "hi": "टिप्पणी भेजने में विफल।"
+  },
+  "Log in to leave a comment.": {
+    "ko": "댓글은 로그인 후 작성할 수 있습니다.",
+    "zh": "登录后才能发表评论。",
+    "hi": "टिप्पणी के लिए लॉगिन करें।"
+  },
+  "Writing as {name}": {
+    "ko": "{name}님으로 작성 중",
+    "zh": "正在以 {name} 的身份撰写",
+    "hi": "{name} के रूप में लिख रहे हैं"
+  },
+  "Write a reply": {
+    "ko": "답글을 입력해 주세요",
+    "zh": "填写回复",
+    "hi": "जवाब लिखें"
+  },
+  "Post reply": {
+    "ko": "답글 등록",
+    "zh": "提交回复",
+    "hi": "जवाब भेजें"
+  },
+  "No comments yet. Be the first.": {
+    "ko": "아직 댓글이 없습니다. 첫 댓글을 남겨보세요.",
+    "zh": "暂无评论。来写第一条吧。",
+    "hi": "अभी कोई टिप्पणी नहीं। पहली लिखें।"
   }
 };

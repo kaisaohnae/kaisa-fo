@@ -14,37 +14,37 @@ export default function Example3Layout({children}: {children: ReactNode}) {
   const {open, toggle, close} = useExampleMobileNav();
 
   return (
-    <div className="ex3 ex3-kit">
-      <aside className={open ? 'ex3-sidebar ex3-sidebar--open' : 'ex3-sidebar'}>
-        <div className="ex3-sidebar__brand">
-          <div className="ex3-sidebar__logo">
+    <div className="ex3 kaisa-kit">
+      <aside className={open ? 'kaisa-sidebar kaisa-sidebar--open' : 'kaisa-sidebar'}>
+        <div className="kaisa-sidebar__brand">
+          <div className="kaisa-sidebar__logo">
             <Link href="/" aria-label="메인으로 이동">
               <IconLogo width={92} height={39} />
             </Link>
           </div>
-          <ExampleSidebarToggle shell="ex3" open={open} onToggle={toggle} />
+          <ExampleSidebarToggle shell="kaisa" open={open} onToggle={toggle} />
         </div>
 
-        <nav id="ex3-sidebar-nav" className="ex3-sidebar__nav" aria-label="UI kit menu">
+        <nav id="kaisa-sidebar-nav" className="kaisa-sidebar__nav" aria-label="UI kit menu">
           {NAV_ITEMS.map((item) => (
             <Link
               key={item.id}
               href={item.href}
               className={
                 isNavActive(item.href, pathname)
-                  ? 'ex3-sidebar__link ex3-sidebar__link--active'
-                  : 'ex3-sidebar__link'
+                  ? 'kaisa-sidebar__link kaisa-sidebar__link--active'
+                  : 'kaisa-sidebar__link'
               }
               onClick={close}
             >
-              <Example3NavIcon name={item.id} className="ex3-sidebar__icon" />
+              <Example3NavIcon name={item.id} className="kaisa-sidebar__icon" />
               <span>{item.label}</span>
             </Link>
           ))}
         </nav>
       </aside>
 
-      <div className="ex3-main">{children}</div>
+      <div className="kaisa-main">{children}</div>
     </div>
   );
 }

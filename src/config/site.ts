@@ -1,10 +1,10 @@
 export const SITE_NAME = 'Kaisa';
 
 export const SITE_DESCRIPTION =
-  'Full-stack creative developer. Plan, design, and develop in one flow.';
+  'Development, design, and notes from Kaisa — articles on building products and tools.';
 
 export function getSiteUrl(): string {
-  const raw = process.env.NEXT_PUBLIC_SITE_URL?.trim() || 'http://localhost:8688';
+  const raw = process.env.NEXT_PUBLIC_SITE_URL?.trim() || 'http://localhost:8887';
   return raw.replace(/\/+$/, '');
 }
 

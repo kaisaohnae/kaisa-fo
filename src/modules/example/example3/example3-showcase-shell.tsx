@@ -15,7 +15,7 @@ export default function Example3ShowcaseShell({
   return (
     <>
       <Example3PageHeader title={title} description={description} />
-      <div className="ex3-content">{children}</div>
+      <div className="kaisa-content">{children}</div>
     </>
   );
 }

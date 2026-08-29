@@ -1,0 +1,229 @@
+---
+slug: laravel-02
+order: 2
+category: laravel
+categoryLabel: Laravel
+title: "라우팅·미들웨어·컨트롤러 — 요청 생명주기"
+summary: "요청은 라우트와 미들웨어를 지나 컨트롤러에 도착하며, 인증·제한·응답을 어디에 둘지는 이 흐름에서 정한다."
+publishedAt: 2023-08-21
+tags: ["laravel"]
+---
+
+# 라우팅·미들웨어·컨트롤러 — 요청 생명주기
+
+> 요약: 요청은 라우트와 미들웨어를 지나 컨트롤러에 도착하며, 인증·제한·응답을 어디에 둘지는 이 흐름에서 정한다.
+
+---
+
+## 1. 한 요청이 지나가는 길
+
+브라우저나 앱이 URL을 치면 Laravel은 대략 이렇게 움직인다.
+
+1. `public/index.php`가 앱을 켠다.
+2. `bootstrap/app.php`가 라우트·미들웨어·예외를 묶는다.
+3. **미들웨어**(요청 앞뒤에서 가로채는 필터)가 인증·CSRF·속도 제한을 한다.
+4. **라우트**가 URL과 HTTP 메서드를 컨트롤러에 연결한다.
+5. **컨트롤러**가 응답(HTML, JSON, 리다이렉트)을 만든다.
+
+컨트롤러는 **얇게** 두는 편이 유지보수에 유리하다. 쿼리와 트랜잭션이 길어지면 Action이나 Service로 뺀다. 컨트롤러가 두꺼워지는 이유는 대개 “일단 여기 넣으면 된다”는 습관이다.
+
+---
+
+## 2. 라우트 기본
+
+```php
+Route::get('/posts', [PostController::class, 'index']);
+Route::post('/posts', [PostController::class, 'store']);
+Route::get('/posts/{post}', [PostController::class, 'show']);
+```
+
+`{post}`가 Eloquent 모델이면 Laravel이 `Post::findOrFail($id)`처럼 찾아 주입한다. 못 찾으면 404다. 이게 **라우트 모델 바인딩**이다.
+
+```php
+Route::get('/posts/{post:slug}', [PostController::class, 'show']);
+```
+
+슬러그로 찾고 싶으면 `{post:slug}` 또는 모델의 `getRouteKeyName()`을 쓴다. id를 URL에 드러내기 싫을 때 흔하다.
+
+리소스 라우트는 index/store/show/update/destroy를 한 줄로 연다. `apiResource`는 폼용 create/edit 뷰 경로를 빼므로 API에 맞다.
+
+```php
+Route::resource('posts', PostController::class);
+Route::apiResource('posts', PostController::class);
+```
+
+```bash
+php artisan route:list --path=posts
+```
+
+이름이 겹치거나 순서가 꼬이면 `route:list`가 가장 빠른 디버기다.
+
+---
+
+## 3. 그룹 — 접두사·이름·미들웨어
+
+같은 인증·URL 접두사를 반복하지 않으려면 그룹으로 묶는다.
+
+```php
+Route::middleware(['auth', 'verified'])
+    ->prefix('dashboard')
+    ->name('dashboard.')
+    ->group(function () {
+        Route::get('/', [DashboardController::class, 'index'])->name('home');
+        Route::resource('posts', PostController::class);
+    });
+```
+
+링크는 `url('/dashboard')`보다 `route('dashboard.home')`을 쓴다. URL이 바뀌어도 이름만 유지하면 된다.
+
+API 버전은 `/api/v1`처럼 URL로 시작하는 팀이 많다. Sanctum(API 인증, 5편)이면 그룹에 `auth:sanctum`을 건다.
+
+```php
+Route::middleware('auth:sanctum')
+    ->prefix('api/v1')
+    ->group(base_path('routes/api.php'));
+```
+
+---
+
+## 4. 컨트롤러 스타일
+
+리소스 컨트롤러는 CRUD가 한 모델에 모일 때 읽기 좋다.
+
+```php
+class PostController extends Controller
+{
+    public function index() { /* ... */ }
+    public function store(StorePostRequest $request) { /* ... */ }
+    public function show(Post $post) { /* ... */ }
+    public function update(UpdatePostRequest $request, Post $post) { /* ... */ }
+    public function destroy(Post $post) { /* ... */ }
+}
+```
+
+유스케이스가 하나면 **invokable**(단일 `__invoke`)이 더 짧다. “발행”, “결제 확정”처럼 동사가 분명한 엔드포인트에 잘 맞는다.
+
+```php
+class PublishPostController extends Controller
+{
+    public function __invoke(Post $post)
+    {
+        $post->publish();
+        return redirect()->route('posts.show', $post);
+    }
+}
+
+Route::post('/posts/{post}/publish', PublishPostController::class);
+```
+
+생성자 주입으로 서비스를 받는다. 컨트롤러 안에서 `new PostService`를 하지 않는다.
+
+```php
+public function __construct(
+    private readonly PostService $posts,
+) {}
+```
+
+---
+
+## 5. 미들웨어
+
+내장 예: `auth`, `guest`, `throttle`, `verified`, `can`. 로그인 여부·요청 횟수·권한처럼 **여러 라우트에 같은 규칙**이 필요할 때 쓴다.
+
+```bash
+php artisan make:middleware EnsureUserIsAdmin
+```
+
+```php
+public function handle(Request $request, Closure $next): Response
+{
+    if (! $request->user()?->isAdmin()) {
+        abort(403);
+    }
+
+    return $next($request);
+}
+```
+
+Laravel 11+ 등록은 Kernel이 아니라 `bootstrap/app.php`다.
+
+```php
+->withMiddleware(function (Middleware $middleware) {
+    $middleware->alias([
+        'admin' => \App\Http\Middleware\EnsureUserIsAdmin::class,
+    ]);
+})
+```
+
+```php
+Route::middleware('admin')->group(/* ... */);
+```
+
+로그인·결제처럼 brute-force가 무서운 곳은 throttle을 더 빡세게 둔다.
+
+```php
+Route::middleware('throttle:10,1')->post('/login', /* ... */);
+
+RateLimiter::for('api', function (Request $request) {
+    return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
+});
+```
+
+---
+
+## 6. 응답과 CSRF
+
+```php
+return view('posts.show', compact('post'));
+return response()->json(['data' => $post], 201);
+return redirect()->route('posts.index')->with('status', 'created');
+return to_route('posts.show', $post);
+```
+
+API는 상태 코드 계약을 먼저 정한다. 생성 201, 삭제 204, 검증 실패 422.
+
+**CSRF**는 다른 사이트가 로그인된 브라우저로 POST를 보내는 공격을 막는다. `web` 그룹의 폼에는 `@csrf`가 필요하다. SPA/API는 Sanctum 쿠키 또는 Bearer 토큰을 쓰고, `web` CSRF 규칙을 그대로 복사하면 깨진다.
+
+```html
+<form method="POST" action="/posts">
+    @csrf
+    ...
+</form>
+```
+
+---
+
+## 7. 예외
+
+```php
+abort(404);
+abort(403, '권한 없음');
+throw ValidationException::withMessages(['email' => '이미 사용 중']);
+```
+
+API와 HTML이 섞이면 `bootstrap/app.php`의 `withExceptions`에서 JSON 여부를 통일한다.
+
+```php
+$exceptions->shouldRenderJsonWhen(function (Request $request, Throwable $e) {
+    return $request->is('api/*') || $request->expectsJson();
+});
+```
+
+---
+
+## 8. 흔한 실수
+
+- 링크에 `/posts/1`을 하드코딩한다. 이름이 있는 `route()`만 쓴다.
+- 컨트롤러에 쿼리·메일·트랜잭션을 다 넣는다. 테스트와 재사용이 어려워진다.
+- 미들웨어를 `app/Http/Kernel.php`에 등록하려 한다. 11+는 `bootstrap/app.php`다.
+- 로그인 API에 throttle을 안 건다.
+- API인데 CSRF 예외를 아무 경로에나 연다. 필요한 그룹만 연다.
+
+---
+
+## 연습
+
+1. `apiResource('posts')`를 등록하고 `route:list`로 일곱 개가 아니라 API용인지 확인한다.
+2. `PublishPostController` invokable을 만든다.
+3. `admin` 미들웨어로 삭제만 막는다.
+4. 로그인 POST에 `throttle:10,1`을 건다.

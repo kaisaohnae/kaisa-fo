@@ -1,0 +1,184 @@
+---
+slug: laravel-08
+order: 8
+category: laravel
+categoryLabel: Laravel
+title: "캐시·Redis·성능 최적화"
+summary: "느린 쿼리를 먼저 고친 뒤 Redis 캐시를 쓰고, 무효화 지점을 정해 두지 않으면 캐시는 낡은 화면이 된다."
+publishedAt: 2026-04-02
+tags: ["laravel"]
+---
+
+# 캐시·Redis·성능 최적화
+
+> 요약: 느린 쿼리를 먼저 고친 뒤 Redis 캐시를 쓰고, 무효화 지점을 정해 두지 않으면 캐시는 낡은 화면이 된다.
+
+---
+
+## 1. 최적화 순서
+
+캐시는 느린 증상을 가릴 수 있지만, N+1을 캐시하면 **틀린 결과가 더 빨리** 나간다. 순서를 지킨다.
+
+1. 느린 쿼리·N+1 제거 (3편)
+2. 메일·리사이즈는 큐로 (7편)
+3. 읽기 많은 결과를 캐시
+4. HTTP 캐시·CDN
+5. 필요할 때만 Octane·스케일 아웃
+
+`Cache::remember`를 모든 메서드에 뿌리면 **무효화**(언제 지울지)를 아무도 모른다.
+
+---
+
+## 2. Redis와 드라이버
+
+**Redis**는 메모리 키-값 저장소다. Laravel에서는 캐시, 세션, 큐, 속도 제한, 분산 락에 같은 인스턴스를 쓰는 경우가 많다. 용도별로 DB 번호를 나누거나, 트래픽이 커지면 인스턴스를 분리한다.
+
+```env
+CACHE_STORE=redis
+REDIS_CLIENT=phpredis
+```
+
+| 드라이버 | 언제 |
+|----------|------|
+| `array` | 요청 안만. 테스트 |
+| `database` / `file` | 작은 단일 서버 |
+| `redis` | 실무 기본 |
+
+파일 캐시는 여러 웹 서버에서 공유되지 않는다. 스케일 아웃하면 Redis(또는 Memcached)가 맞다.
+
+---
+
+## 3. 기본 API
+
+```php
+$post = Cache::remember('posts.'.$id, now()->addMinutes(10), function () use ($id) {
+    return Post::with('user')->findOrFail($id);
+});
+
+Cache::put('key', $value, 600);
+Cache::forget('posts.'.$id);
+Cache::flush(); // 운영에서 전부 삭제 — 거의 쓰지 않는다
+```
+
+`remember`는 키가 있으면 반환하고, 없으면 클로저를 실행해 저장한다. TTL(수명) 없는 `forever`는 무효화를 반드시 코드로 해야 한다.
+
+태그(Redis/Memcached)로 게시글 묶음을 한 번에 지운다.
+
+```php
+Cache::tags(['posts', 'user:'.$userId])->put($key, $value, 600);
+Cache::tags(['posts'])->flush();
+```
+
+database 드라이버는 태그를 지원하지 않는다. 로컬은 database, 운영은 Redis면 태그 코드가 운영에서만 동작한다. 드라이버를 맞춘다.
+
+갱신은 Observer 한곳에 모은다. 컨트롤러마다 `forget`을 흩뿌리면 빠뜨린다.
+
+```php
+public function updated(Post $post): void
+{
+    Cache::forget('posts.'.$post->id);
+    Cache::tags(['posts'])->flush();
+}
+```
+
+목록을 `posts.published.page.'.$page`로 캐시하면 페이지마다 키가 는다. 글 하나 수정에 태그 flush가 없으면 목록이 하루 종일 옛날이다.
+
+---
+
+## 4. 프레임워크 캐시 (운영)
+
+설정·라우트·뷰를 PHP 파일로 묶어 부팅을 줄인다. **배포 파이프라인**에서 돌리고, 로컬에서 `route:cache`를 켜 두면 새 라우트가 안 보인다.
+
+```bash
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+php artisan event:cache
+```
+
+`config:cache` 뒤에 코드의 `env()`가 비는 문제는 1편과 같다.
+
+---
+
+## 5. HTTP 캐시
+
+```php
+return response($content)
+    ->header('Cache-Control', 'public, max-age=60')
+    ->setEtag(md5($content));
+```
+
+`public`은 CDN·공유 캐시가 응답을 저장해도 된다는 뜻이다. **로그인 사용자마다 다른 JSON**에 `public`을 붙이면 남의 이름이 캐시에 남는다. 개인화는 `private` 또는 캐시하지 않는다.
+
+---
+
+## 6. 락
+
+같은 주문에 결제 요청이 두 번 들어오면 Redis 락으로 임계 구역을 좁힌다. 락은 DB 유니크 제약을 대체하지 않는다. 둘 다 쓰는 편이 안전하다.
+
+```php
+$lock = Cache::lock('order:'.$orderId, 10);
+
+if ($lock->get()) {
+    try {
+        // 한 번에 하나만
+    } finally {
+        $lock->release();
+    }
+}
+```
+
+락을 못 받으면 빈 200을 주면 클라이언트가 성공으로 오해한다. 409나 재시도 안내를 정한다.
+
+---
+
+## 7. 쿼리가 여전히 먼저다
+
+- `preventLazyLoading`으로 N+1을 로컬에서 터뜨린다.
+- `select`로 필요한 컬럼만. `with(['user:id,name'])`처럼 제한한다.
+- `where`/`orderBy`에 인덱스, 의심되면 `EXPLAIN`.
+- 대량은 `chunkById` / `lazyById`.
+
+```php
+Post::with([
+    'user:id,name',
+    'tags:id,name',
+    'comments' => fn ($q) => $q->latest()->limit(5),
+])->get();
+```
+
+Debugbar·Telescope는 로컬/스테이징용이다. 요청당 쿼리 개수를 숫자로 본다. 감으로 “Redis 넣자”보다 쿼리 20번이 원인인 경우가 많다.
+
+---
+
+## 8. Octane은 선택
+
+**Octane**은 Swoole/RoadRunner로 앱을 메모리에 상주시켜, 요청마다 프레임워크를 다시 켜는 비용을 줄인다. 트래픽이 크고 부트 비용이 CPU를 잡아먹을 때 이득이다.
+
+주의: static이나 싱글톤에 요청 데이터를 남기면 **다음 사용자에게 유출**된다. 일반 PHP-FPM에서는 요청이 끝나면 사라지던 습관이 Octane에서는 남는다. 도입 전에 상태 오염을 점검하고, 배포 시 워커 리로드 전략이 필요하다.
+
+```bash
+composer require laravel/octane
+php artisan octane:install
+```
+
+---
+
+## 9. 흔한 실수
+
+- 측정 없이 전부 `remember`한다.
+- `Cache::flush()`로 세션·다른 앱 키까지 지운다.
+- 개인화 응답에 `Cache-Control: public`.
+- 수정 시 `forget`을 빼먹어 관리자가 “저장했는데 안 바뀐다”고 한다.
+- Redis 없이 태그 캐시를 전제한다.
+
+측정은 p95 지연, 요청당 쿼리 수, Redis hit 비율, 큐 대기 시간을 같이 본다. Telescope는 운영 전면 공개 금지.
+
+---
+
+## 연습
+
+1. 게시글 상세를 `remember`하고, 수정 Observer에서 `forget`한다.
+2. Redis lock으로 중복 결제 요청을 거절한다.
+3. 스테이징에서 `config:cache` / `route:cache` 후 앱이 뜨는지 확인한다.
+4. 목록 API 쿼리 수를 `with` 전후로 비교한다.

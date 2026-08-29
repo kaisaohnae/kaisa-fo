@@ -1,0 +1,208 @@
+---
+slug: react-native-04
+order: 4
+category: react-native
+categoryLabel: React Native
+title: "리스트·네비게이션 — FlatList와 Expo Router"
+summary: "긴 목록은 FlatList로 가상화하고, 화면 이동은 Expo Router의 파일 기반 라우팅으로 구성한다."
+publishedAt: 2024-12-18
+tags: ["react-native"]
+---
+
+# 리스트·네비게이션 — FlatList와 Expo Router
+
+> 요약: 긴 목록은 FlatList로 가상화하고, 화면 이동은 Expo Router의 파일 기반 라우팅으로 구성한다.
+
+---
+
+## 1. 왜 FlatList와 파일 라우팅인가
+
+목록이 길어지면 웹처럼 `map`으로 전부 그리면 안 된다. 화면에 안 보이는 행까지 마운트되어 스크롤이 끊긴다. **FlatList**는 보이는 근처만 렌더한다.
+
+화면 이동은 **Expo Router**가 기본이다. `app/` 폴더가 URL이 된다. Next.js App Router와 감각이 비슷하다. React Navigation을 직접 짜는 것보다 파일 구조가 문서가 된다.
+
+둘을 같이 익혀야 “목록에서 상세로”가 한 흐름이 된다.
+
+---
+
+## 2. 핵심 개념
+
+| 컴포넌트 | 언제 |
+|----------|------|
+| `ScrollView` | 짧은 고정 콘텐츠 |
+| `FlatList` | 긴 동종 리스트. **기본** |
+| `SectionList` | 섹션 헤더가 있는 목록 |
+| `FlashList` | 더 공격적인 가상화 (Shopify) |
+
+라우트는 파일이 경로다. 괄호 폴더 `(tabs)`는 URL에 안 나온다. `[id]`는 동적 세그먼트다.
+
+이동은 `Link` 또는 `router.push`. 큰 객체를 params에 넣지 않는다. id만 넘기고 상세는 캐시나 fetch로 채운다.
+
+인증 분기는 레이아웃에서 한다. 각 화면마다 `if (!user)`를 반복하지 않는다.
+
+딥링크는 `app.json`의 `scheme`이다. `myapp://posts/1`처럼 연다. HTTPS 유니버설 링크는 스토어·도메인 검증이 필요하다.
+
+---
+
+## 3. 예제
+
+```tsx
+import { FlatList, Text, View } from 'react-native';
+
+type Item = { id: string; title: string };
+
+export function PostList({ data }: { data: Item[] }) {
+  return (
+    <FlatList
+      data={data}
+      keyExtractor={(item) => item.id}
+      renderItem={({ item }) => (
+        <View style={{ padding: 16 }}>
+          <Text>{item.title}</Text>
+        </View>
+      )}
+      ItemSeparatorComponent={() => (
+        <View style={{ height: 1, backgroundColor: '#e2e8f0' }} />
+      )}
+      ListEmptyComponent={<Text style={{ padding: 24 }}>게시글이 없습니다</Text>}
+      contentContainerStyle={{ flexGrow: 1 }}
+    />
+  );
+}
+```
+
+행 높이가 고정이면 `getItemLayout`으로 스크롤 측정 비용을 줄인다. 행 컴포넌트는 `memo`를 검토한다.
+
+```tsx
+<FlatList
+  initialNumToRender={10}
+  windowSize={7}
+  removeClippedSubviews
+  getItemLayout={(_, index) => ({
+    length: ROW_HEIGHT,
+    offset: ROW_HEIGHT * index,
+    index,
+  })}
+/>
+```
+
+당겨서 새로고침과 무한 스크롤:
+
+```tsx
+<FlatList
+  refreshing={refreshing}
+  onRefresh={onRefresh}
+  onEndReached={loadMore}
+  onEndReachedThreshold={0.3}
+  ListFooterComponent={isFetchingNextPage ? <ActivityIndicator /> : null}
+/>
+```
+
+페이지 데이터는 React Query `useInfiniteQuery`와 맞는다.
+
+폴더 예시:
+
+```
+app/
+├── _layout.tsx
+├── index.tsx
+├── (auth)/
+│   ├── _layout.tsx
+│   └── login.tsx
+├── (tabs)/
+│   ├── _layout.tsx
+│   ├── index.tsx
+│   └── settings.tsx
+└── posts/
+    ├── index.tsx
+    └── [id].tsx
+```
+
+```tsx
+// app/_layout.tsx
+import { Stack } from 'expo-router';
+
+export default function RootLayout() {
+  return (
+    <Stack screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="(tabs)" />
+      <Stack.Screen name="(auth)" />
+      <Stack.Screen name="posts/[id]" options={{ headerShown: true, title: 'Post' }} />
+    </Stack>
+  );
+}
+```
+
+```tsx
+// app/(tabs)/_layout.tsx
+import { Tabs } from 'expo-router';
+
+export default function TabsLayout() {
+  return (
+    <Tabs>
+      <Tabs.Screen name="index" options={{ title: 'Home' }} />
+      <Tabs.Screen name="settings" options={{ title: 'Settings' }} />
+    </Tabs>
+  );
+}
+```
+
+이동과 파라미터:
+
+```tsx
+import { Link, router, useLocalSearchParams } from 'expo-router';
+
+<Link href={`/posts/${id}`}>열기</Link>
+router.push(`/posts/${id}`);
+router.replace('/login');
+router.back();
+```
+
+```tsx
+// app/posts/[id].tsx
+export default function PostDetail() {
+  const { id } = useLocalSearchParams<{ id: string }>();
+  return <Text>Post {id}</Text>;
+}
+```
+
+로그인 전후 분기(버전별 API는 `Redirect`로도 가능):
+
+```tsx
+import { Redirect } from 'expo-router';
+
+if (isLoading) return <Splash />;
+if (!user) return <Redirect href="/login" />;
+```
+
+typed routes 옵션을 켜면 `href` 자동완성이 좋아진다.
+
+---
+
+## 4. 흔한 실수
+
+| 실수 | 대안 |
+|------|------|
+| `ScrollView` + 수천 개 `map` | `FlatList` / `FlashList` |
+| `keyExtractor`를 index로만 | 안정적 `id` |
+| 상세에 객체 전체 params | `id` + Query 캐시 |
+| 모든 화면에 로그인 가드 | 루트/그룹 레이아웃 |
+| 인라인 `renderItem` + 인라인 style 과다 | 행 컴포넌트 분리, `memo` |
+| 빈 목록에 높이 0 | `contentContainerStyle={{ flexGrow: 1 }}` |
+
+---
+
+## 5. 정리
+
+목록은 가상화, 화면은 파일이다. 이 두 규칙이면 피드·상세·탭의 뼈대가 끝난다.
+
+- 짧은 스크롤만 `ScrollView`.
+- 탭은 `(tabs)`, 인가는 `(auth)`, 상세는 `[id]`.
+- params는 식별자만. 데이터는 fetch.
+
+## 연습
+
+1. `FlatList`로 50개 이상 아이템 리스트를 만든다.
+2. pull-to-refresh와 empty 상태를 구현한다.
+3. 탭 + `posts/[id]` 상세를 Expo Router로 연결한다.
+4. 로그인 여부에 따라 `(auth)` / `(tabs)`로 보낸다.

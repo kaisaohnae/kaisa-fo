@@ -1,53 +1,125 @@
 'use client';
 
-import React, {useEffect} from 'react';
 import Link from 'next/link';
+import {useEffect, useId, useRef, useState} from 'react';
 import {usePathname} from 'next/navigation';
-import Menu from './menu';
 import ThemeToggle from './theme-toggle';
 import IconLogo from '@/components/icons/common/icon-logo';
-import usePortfolioNav from '@/hooks/use-portfolio-nav';
+import {useT} from '@/i18n/locale-context';
+
+const NAV = [
+  {
+    href: '/posts/',
+    labelKey: 'Posts',
+    match: (path: string) => path === '/' || path.startsWith('/posts'),
+  },
+  {
+    href: '/works/',
+    labelKey: 'Works',
+    match: (path: string) => path.startsWith('/works') || path.startsWith('/illustration'),
+  },
+] as const;
 
 export default function Header() {
-  const pathname = usePathname();
-  const {isPortfolio, navigateToSection} = usePortfolioNav();
+  const t = useT();
+  const pathname = usePathname() || '/';
+  const [open, setOpen] = useState(false);
+  const navId = useId();
+  const headerRef = useRef<HTMLElement>(null);
+  const isWorks = pathname.startsWith('/works') || pathname.startsWith('/illustration');
 
   useEffect(() => {
-    if (!isPortfolio) return;
+    setOpen(false);
+  }, [pathname]);
 
+  useEffect(() => {
     const onScroll = () => {
-      document.body.classList.toggle('scrolled', window.scrollY > 60);
+      document.body.classList.toggle('scrolled', window.scrollY > 8);
     };
     window.addEventListener('scroll', onScroll, {passive: true});
     onScroll();
-    return () => window.removeEventListener('scroll', onScroll);
-  }, [isPortfolio]);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      document.body.classList.remove('scrolled');
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!open) return;
+
+    const onPointerDown = (e: PointerEvent) => {
+      const target = e.target as Node | null;
+      if (target && headerRef.current && !headerRef.current.contains(target)) {
+        setOpen(false);
+      }
+    };
+
+    document.addEventListener('pointerdown', onPointerDown);
+    return () => document.removeEventListener('pointerdown', onPointerDown);
+  }, [open]);
+
+  const items = NAV.map((item) => {
+    const isActive = item.match(pathname);
+
+    return (
+      <li key={item.href} className={isActive ? 'menu__item menu__item--active' : 'menu__item'}>
+        <Link
+          href={item.href}
+          className="menu__link"
+          aria-current={isActive ? 'page' : undefined}
+          onClick={() => setOpen(false)}
+        >
+          {t(item.labelKey)}
+        </Link>
+      </li>
+    );
+  });
+
+  const headerClass = [isWorks ? 'header--home' : 'header--sub', open ? 'header--nav-open' : '']
+    .filter(Boolean)
+    .join(' ');
 
   return (
-    <header id="header" className={isPortfolio ? 'header--home' : 'header--sub'}>
+    <header id="header" ref={headerRef} className={headerClass}>
       <div className="site-shell site-shell--header">
-        <div className="header__inner site-shell__inner">
-        <p className="header__logo">
-          {isPortfolio ? (
-            <button
-              type="button"
-              className="header__logo-btn"
-              aria-label="Kaisa Home"
-              onClick={() => navigateToSection('home')}
-            >
-              <IconLogo width={100} height={42} />
-            </button>
-          ) : (
+        <div className="header__top header__inner site-shell__inner">
+          <p className="header__logo">
             <Link href="/" aria-label="Kaisa Home">
               <IconLogo width={100} height={42} />
             </Link>
-          )}
-        </p>
+          </p>
           <div className="header__actions">
-            <Menu />
+            <nav className="menu menu--desktop" aria-label={t('Main navigation')}>
+              <ul className="menu__list">{items}</ul>
+            </nav>
             <ThemeToggle />
+            <button
+              type="button"
+              className={open ? 'menu__toggle menu__toggle--open' : 'menu__toggle'}
+              aria-expanded={open}
+              aria-controls={navId}
+              aria-label={open ? t('Close menu') : t('Open menu')}
+              onClick={() => setOpen((v) => !v)}
+            >
+              <span className="menu__toggle-icon" aria-hidden="true">
+                <span />
+                <span />
+                <span />
+              </span>
+            </button>
           </div>
         </div>
+
+        <nav
+          id={navId}
+          className="header__nav"
+          aria-label={t('Mobile navigation')}
+          hidden={!open}
+        >
+          <div className="site-shell__inner header__nav-inner">
+            <ul className="menu__list menu__list--mobile">{items}</ul>
+          </div>
+        </nav>
       </div>
     </header>
   );

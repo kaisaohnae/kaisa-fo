@@ -6,7 +6,7 @@ const SECTION_IDS: Record<PortfolioSection, string> = {
   illustration: 'illustration',
 };
 
-export const PORTFOLIO_PATHS = ['/', '/works', '/works/', '/illustration', '/illustration/'];
+export const PORTFOLIO_PATHS = ['/works', '/works/', '/illustration', '/illustration/'];
 
 export function scrollToSection(section: PortfolioSection, behavior: ScrollBehavior = 'smooth') {
   const id = SECTION_IDS[section];

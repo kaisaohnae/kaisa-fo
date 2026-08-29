@@ -1,0 +1,147 @@
+---
+slug: nginx-02
+order: 2
+category: nginx
+categoryLabel: Nginx
+title: "Nginx에서 HTTPS·TLS 종단하기"
+summary: "인증서를 Nginx에 두고 443에서 TLS를 끝낸 뒤, 80 요청을 HTTPS로 보내고 앱에는 암호화가 끝났다는 헤더를 넘긴다."
+publishedAt: 2023-10-26
+tags: ["nginx"]
+---
+
+# Nginx에서 HTTPS·TLS 종단하기
+
+> 요약: 인증서를 Nginx에 두고 443에서 TLS를 끝낸 뒤, 80 요청을 HTTPS로 보내고 앱에는 암호화가 끝났다는 헤더를 넘긴다.
+
+---
+
+## 언제 앞단에서 TLS를 끊는가
+
+브라우저와 서버 사이 트래픽을 암호화할 때 TLS(전송 계층 보안)를 쓴다. HTTPS는 HTTP에 TLS를 얹은 것이다.
+
+인증서를 앱마다 넣지 않고 Nginx(또는 로드밸런서)에서 끝낸다. 앱은 내부 HTTP만 받으면 된다. 인증서 갱신·프로토콜 버전·보안 헤더를 한곳에서 바꾼다.
+
+클라우드에서 로드밸런서가 이미 TLS를 끝내면 Nginx는 HTTP만 받아도 된다. 이 글은 Nginx가 인증서를 직접 들고 있는 경우이다.
+
+---
+
+## 443에서 인증서를 연다
+
+Let’s Encrypt를 썼다면 경로가 아래와 같다. 상용 인증서도 `fullchain`과 비밀키 두 파일이라는 점은 같다.
+
+```nginx
+server {
+    listen 443 ssl;
+    http2 on;
+    server_name example.com;
+
+    ssl_certificate     /etc/letsencrypt/live/example.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem;
+
+    ssl_protocols TLSv1.2 TLSv1.3;
+
+    location / {
+        proxy_pass http://127.0.0.1:3000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto https;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+}
+```
+
+`ssl_certificate`는 사이트 인증서와 중간 인증서가 이어진 체인이다. 리프만 넣으면 일부 브라우저가 체인을 못 잇는다. `privkey`는 비밀키이다. 권한이 넓으면 키 유출과 같다.
+
+`X-Forwarded-Proto`를 `https`로 고정한다. 빠지거나 `http`로 남으면 앱이 `http://` 링크를 만들고, Secure 쿠키를 안 붙인다. 리다이렉트 루프가 나기도 한다.
+
+구버전 Nginx는 `listen 443 ssl http2;` 한 줄이다. 새 버전은 `listen 443 ssl;`과 `http2 on;`을 분리한다. `nginx -V`로 문법을 확인한다.
+
+---
+
+## 80은 443으로만 보낸다
+
+암호화되지 않은 80은 같은 경로를 HTTPS로 돌린다. `return 301`이 가장 짧다.
+
+```nginx
+server {
+    listen 80;
+    server_name example.com;
+    return 301 https://$host$request_uri;
+}
+```
+
+`$host$request_uri`는 호스트와 경로·쿼리를 유지한다. `https://example.com/`처럼 루트만 박으면 북마크 경로가 날아간다.
+
+인증서 발급이 HTTP-01(ACME, 자동 인증서 관리 환경의 HTTP 검증)이면 `/.well-known/acme-challenge/`는 리다이렉트하면 안 된다. 검증 파일은 평문으로 열려 있어야 한다.
+
+```nginx
+server {
+    listen 80;
+    server_name example.com;
+
+    location /.well-known/acme-challenge/ {
+        root /var/www/certbot;
+    }
+
+    location / {
+        return 301 https://$host$request_uri;
+    }
+}
+```
+
+발급이 끝난 뒤에도 이 location을 남겨 두면 갱신이 같은 경로로 통과한다.
+
+---
+
+## 갱신과 HSTS
+
+| 항목 | 하는 일 |
+|------|---------|
+| 갱신 | `certbot renew`가 성공한 뒤 deploy hook에서 `nginx -t && systemctl reload nginx` |
+| 프로토콜 | TLS 1.2와 1.3만 연다. 1.0·1.1은 끈다 |
+| HSTS | 안정적으로 HTTPS만 열린 뒤에 `Strict-Transport-Security`를 넣는다 |
+| 키 권한 | `privkey.pem`은 root(또는 nginx 사용자)만 읽게 둔다 |
+
+HSTS(HTTP 엄격 전송 보안)는 브라우저에게 “이 사이트는 앞으로 HTTPS만”이라고 기억하는 헤더이다. 한 번 나가면 HTTP로 되돌리기 어렵다. 인증서 오류가 남은 상태에서는 넣지 않는다.
+
+```nginx
+add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always;
+```
+
+`max-age`는 초 단위이다. 먼저 짧은 값으로 시험한 뒤 1년으로 늘린다. 서브도메인이 HTTP만 있으면 `includeSubDomains`를 빼다.
+
+www와 apex(루트 도메인) 중 하나만 정규 URL로 정한다. 인증서는 둘 다 커버하거나, 한쪽에서 다른 쪽으로 301한다. 정책이 섞이면 쿠키와 SEO(검색 엔진 최적화)가 갈린다.
+
+인증서가 브라우저에 실제로 쓰이는지 확인한다.
+
+```bash
+sudo nginx -t
+sudo systemctl reload nginx
+curl -I http://example.com/
+curl -IIv --http1.1 https://example.com/
+```
+
+80 응답은 `301`과 `Location: https://...`이어야 한다. 443은 인증서 주체(CN/SAN)가 요청 호스트와 같아야 한다. 불일치면 `server_name`과 인증서 발급 이름을 맞춘다.
+
+---
+
+## 흔한 실수
+
+- `fullchain` 대신 `cert.pem`만 넣는다. 모바일에서 체인 오류가 난다.
+- `X-Forwarded-Proto`를 `$scheme`으로 두었는데 내부가 HTTP라서 앱이 계속 `http`를 본다. 443 블록에서는 `https`로 명시한다.
+- 80 전체를 301하면서 ACME 경로까지 막는다. 갱신이 실패한다.
+- HSTS를 인증서 만료 직전 사이트에 바로 켠다. 만료 동안 브라우저가 HTTP 폴백을 거부한다.
+- reload만 하고 인증서 파일을 안 읽게 한다. 심볼릭 링크가 바뀌었으면 프로세스 사용자 권한으로 새 파일을 읽을 수 있는지 본다.
+
+---
+
+## 정리
+
+HTTPS는 인증서 경로 두 줄을 넣는 일이 아니다. 443에서 TLS를 끝내고, 80을 안전하게 돌리고, 앱에는 `https`로 끝났다고 알리고, 갱신 후 reload가 자동이어야 한 세트가 된다.
+
+---
+
+## 연습
+
+1. 스테이징 도메인에 위 80/443 블록을 넣고 `curl -I http://도메인`이 301로 `https://`를 가리키는지 확인한다.
+2. 앱이 그리는 로그인 링크가 `https://`인지 보고, `X-Forwarded-Proto`를 빼면 스킴이 어떻게 바뀌는지 비교한다.
+3. 인증서 만료일을 `openssl x509 -in fullchain.pem -noout -enddate`로 확인하고, renew hook에 `nginx -t`와 reload가 있는지 본다.

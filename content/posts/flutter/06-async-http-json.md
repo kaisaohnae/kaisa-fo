@@ -1,0 +1,230 @@
+---
+slug: flutter-06
+order: 6
+category: flutter
+categoryLabel: Flutter
+title: "비동기·HTTP·JSON으로 서버 연동"
+summary: "서버 연동은 호출 성공이 아니라 로딩·실패·JSON 계약을 UI가 흡수하는 일이다."
+publishedAt: 2025-10-06
+tags: ["flutter"]
+---
+
+# 비동기·HTTP·JSON으로 서버 연동
+
+> 요약: 서버 연동은 호출 성공이 아니라 로딩·실패·JSON 계약을 UI가 흡수하는 일이다.
+
+---
+
+## 1. 왜 / 언제
+
+목록 화면은 서버를 기다린다. 기다리는 동안에도 화면은 살아 있어야 한다. Dart의 `async`/`await`는 UI 스레드를 막지 않는다. `await` 지점에서 함수가 잠시 멈추고, 그동안 프레임은 그려진다.
+
+성공만 그리면 실무에서 깨진다. 네트워크는 실패한다. JSON 필드가 빠진다. 토큰이 만료된다. **로딩·성공·실패 세 상태**를 항상 화면에 대응한다.
+
+이 글은 `http` + `jsonDecode` + 모델 `fromJson`의 기본 계약이다. 복잡한 캐시·재시도는 클라이언트 래퍼나 쿼리 계층으로 나중에 올린다.
+
+---
+
+## 2. 핵심
+
+`Future`는 “나중에 값이 온다”는 약속이다. `async` 함수는 `Future`를 돌려준다. `await`는 그 약속이 끝날 때까지 다음 줄을 미룬다.
+
+HTTP는 부가 효과다. 위젯 `build` 안에서 호출하지 않는다. `build`는 여러 번 돈다. 호출은 `initState`, 버튼 콜백, 또는 상태 계층이 맡는다.
+
+JSON은 문자열이다. `jsonDecode` 결과는 `Map`/`List`/`num`/`String`/`bool`/`null`의 조합이다. 앱이 쓰는 타입으로 바꾸는 문이 `fromJson`이다. 서버 계약이 깨지면 여기서 실패해야 한다. 조용히 `null`을 심으면 화면이 틀린 데이터를 보여 준다.
+
+UI는 세 갈래다.
+
+| 상태 | 화면 |
+|------|------|
+| 로딩 | 스피너 또는 스켈레톤 |
+| 성공 | 데이터 위젯 |
+| 실패 | 메시지 + 재시도 |
+
+`FutureBuilder`는 간단한 화면에 맞다. 화면이 커지면 로딩/데이터/에러를 상태 계층에서 모델링한다.
+
+파싱이 매우 크면 `compute`로 Isolate를 검토한다. 일반 REST 한 건은 메인 isolate로 충분하다.
+
+---
+
+## 3. 예제
+
+### 의존성
+
+```yaml
+dependencies:
+  http: ^1.2.0
+```
+
+### 모델과 호출
+
+```dart
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:http/http.dart' as http;
+
+class User {
+  const User({required this.id, required this.name});
+
+  final String id;
+  final String name;
+
+  factory User.fromJson(Map<String, dynamic> json) {
+    final Object? id = json['id'];
+    final Object? name = json['name'];
+    if (id is! String || name is! String) {
+      throw const FormatException('User JSON 계약 오류');
+    }
+    return User(id: id, name: name);
+  }
+}
+
+Future<User> fetchUser({
+  required String baseUrl,
+  required String id,
+  required http.Client client,
+}) async {
+  final Uri url = Uri.parse('$baseUrl/users/$id');
+  final http.Response res = await client
+      .get(url)
+      .timeout(const Duration(seconds: 10));
+  if (res.statusCode != 200) {
+    throw HttpException('status ${res.statusCode}', uri: url);
+  }
+  final Object decoded = jsonDecode(res.body);
+  if (decoded is! Map<String, dynamic>) {
+    throw const FormatException('User JSON이 객체가 아니다');
+  }
+  return User.fromJson(decoded);
+}
+```
+
+`Client`를 인자로 받으면 테스트에서 가짜 응답을 꽂기 쉽다. 타임아웃은 기본값이 아니다. 명시한다.
+
+인증 헤더는 호출마다 적지 않는다. 래퍼가 붙인다. 토큰은 소스에 하드코딩하지 않는다.
+
+### FutureBuilder로 연결
+
+```dart
+class UserPage extends StatefulWidget {
+  const UserPage({
+    super.key,
+    required this.userId,
+    required this.client,
+  });
+
+  final String userId;
+  final http.Client client;
+
+  @override
+  State<UserPage> createState() => _UserPageState();
+}
+
+class _UserPageState extends State<UserPage> {
+  late Future<User> _future;
+
+  @override
+  void initState() {
+    super.initState();
+    _future = fetchUser(
+      baseUrl: 'https://api.example.com',
+      id: widget.userId,
+      client: widget.client,
+    );
+  }
+
+  void _retry() {
+    setState(() {
+      _future = fetchUser(
+        baseUrl: 'https://api.example.com',
+        id: widget.userId,
+        client: widget.client,
+      );
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<User>(
+      future: _future,
+      builder: (BuildContext context, AsyncSnapshot<User> snap) {
+        if (snap.connectionState != ConnectionState.done) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        if (snap.hasError) {
+          return Center(
+            child: TextButton(
+              onPressed: _retry,
+              child: const Text('다시 시도'),
+            ),
+          );
+        }
+        final User user = snap.data!;
+        return Text(user.name);
+      },
+    );
+  }
+}
+```
+
+`FutureBuilder`에 `fetchUser()`를 `build`마다 넘기지 않는다. 새 `Future`가 생기면 요청이 반복된다. `initState`에서 만든 필드를 넘긴다.
+
+재시도는 새 `Future`를 만들어 `setState`한다.
+
+### 화면을 떠난 뒤
+
+```dart
+Future<void> load() async {
+  try {
+    final User user = await fetchUser(
+      baseUrl: 'https://api.example.com',
+      id: widget.userId,
+      client: widget.client,
+    );
+    if (!mounted) {
+      return;
+    }
+    setState(() => _user = user);
+  } on HttpException catch (e) {
+    if (!mounted) {
+      return;
+    }
+    setState(() => _message = e.message);
+  }
+}
+```
+
+`await` 이후에는 위젯이 이미 제거됐을 수 있다. `mounted`를 본다.
+
+---
+
+## 4. 흔한 실수
+
+| 실수 | 결과 | 대안 |
+|------|------|------|
+| `build`에서 HTTP 호출 | 리빌드마다 요청 | `initState` / 상태 계층 |
+| 200만 성공으로 본다 | 빈 바디·에러 JSON 누락 | 상태 코드 + 파싱 계약 |
+| `as Map`만 하고 필드 미검증 | 런타임 타입 오류 | `fromJson`에서 타입 확인 |
+| 토큰을 코드에 박는다 | 유출 | 보안 저장소·백엔드 |
+| 실패 UI 없음 | 무한 스피너 | 에러 + 재시도 |
+| `FutureBuilder`에 새 Future | 깜빡임·중복 호출 | Future를 필드로 고정 |
+
+`json_serializable` / freezed는 팀 합의 후 도입한다. 코드젠이 계약을 없애 주지는 않는다. 서버 필드가 바뀌면 생성 코드도 갱신한다.
+
+목록은 다음 글의 `ListView.builder`와 맞춘다. 한 번에 받은 JSON 배열을 `Column` + `map`으로 펼치지 않는다.
+
+---
+
+## 정리
+
+네트워킹은 호출이 200을 돌려주는가가 아니다. **실패·로딩·파싱 계약을 UI가 흡수하는가**다. `async`/`await`로 기다리고, 모델에서 JSON을 검증하고, 세 상태를 그린다.
+
+---
+
+## 연습
+
+1. `User.fromJson`이 필드 타입이 다를 때 예외를 내게 한다.
+2. `fetchUser`에 타임아웃과 non-200 처리를 넣는다.
+3. `FutureBuilder`로 로딩·에러·이름을 그리고, 재시도 버튼을 붙인다.
+4. `build`가 아니라 `initState`에서 Future를 만들도록 고친다.

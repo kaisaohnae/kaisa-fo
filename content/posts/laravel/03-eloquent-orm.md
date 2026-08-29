@@ -1,0 +1,260 @@
+---
+slug: laravel-03
+order: 3
+category: laravel
+categoryLabel: Laravel
+title: "Eloquent ORM과 데이터베이스"
+summary: "Eloquent는 테이블 한 행을 PHP 객체로 다루는 ORM이고, 마이그레이션·관계·N+1을 같이 잡아야 데이터가 깨지지 않는다."
+publishedAt: 2024-03-25
+tags: ["laravel"]
+---
+
+# Eloquent ORM과 데이터베이스
+
+> 요약: Eloquent는 테이블 한 행을 PHP 객체로 다루는 ORM이고, 마이그레이션·관계·N+1을 같이 잡아야 데이터가 깨지지 않는다.
+
+---
+
+## 1. Eloquent란
+
+**Eloquent**는 Laravel의 ORM(Object-Relational Mapping)이다. `posts` 테이블의 한 줄을 `Post` 객체처럼 읽고 저장한다. SQL을 매번 짜지 않아도 되지만, 결국 DB에 쿼리가 나간다. “마법”이 아니라 **쿼리를 대신 만들어 주는 계층**으로 보는 편이 안전하다.
+
+스키마의 진실은 모델 PHP가 아니라 **마이그레이션**이다. 운영 DB를 손으로 고치면 팀원·CI·다음 배포가 서로 다른 테이블을 보게 된다.
+
+```bash
+php artisan make:model Post -m
+```
+
+```php
+Schema::create('posts', function (Blueprint $table) {
+    $table->id();
+    $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+    $table->string('title');
+    $table->string('slug')->unique();
+    $table->text('body');
+    $table->string('status')->default('draft');
+    $table->timestamp('published_at')->nullable();
+    $table->timestamps();
+    $table->softDeletes();
+    $table->index(['status', 'published_at']);
+});
+```
+
+```bash
+php artisan migrate
+php artisan migrate:rollback
+php artisan migrate:fresh --seed   # 로컬만
+```
+
+`migrate:fresh`는 테이블을 지우고 다시 만든다. 운영에서 실행하면 데이터가 사라진다. 팀과 CI는 마이그레이션 파일 리뷰를 필수화한다.
+
+---
+
+## 2. 모델
+
+```php
+class Post extends Model
+{
+    use SoftDeletes;
+
+    protected $fillable = ['title', 'slug', 'body', 'status', 'published_at'];
+
+    protected function casts(): array
+    {
+        return [
+            'published_at' => 'datetime',
+            'status' => PostStatus::class,
+        ];
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function tags(): BelongsToMany
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
+    public function publish(): void
+    {
+        $this->forceFill([
+            'status' => PostStatus::Published,
+            'published_at' => now(),
+        ])->save();
+    }
+}
+```
+
+`$fillable`은 **대량 할당**(요청 배열을 한 번에 넣는 것)이 허용된 컬럼이다. `$guarded = []`로 전면 개방하면 `is_admin` 같은 필드가 요청에 섞여 들어올 수 있다.
+
+상태 변경은 `$post->status = 'published'`보다 `publish()`처럼 메서드로 모은다. Accessor는 `Attribute::make`를 쓴다.
+
+```php
+protected function title(): Attribute
+{
+    return Attribute::make(
+        set: fn (string $value) => trim($value),
+    );
+}
+```
+
+---
+
+## 3. 관계
+
+| 관계 | 메서드 | 예 |
+|------|--------|-----|
+| 1:1 | `hasOne` / `belongsTo` | User–Profile |
+| 1:N | `hasMany` / `belongsTo` | User–Post |
+| N:N | `belongsToMany` | Post–Tag |
+| 다형 | `morphMany` / `morphTo` | 댓글이 글·사진에 붙을 때 |
+
+```php
+$post->user;
+$user->posts()->latest()->paginate(20);
+$post->tags()->sync([1, 2, 3]);
+```
+
+`sync`는 N:N 중간 테이블을 주어진 id 집합으로 맞춘다. 빼먹은 id는 끊긴다.
+
+---
+
+## 4. 쿼리
+
+```php
+Post::query()
+    ->where('status', PostStatus::Published)
+    ->where('published_at', '<=', now())
+    ->latest('published_at')
+    ->paginate(20);
+
+Post::query()
+    ->when($search, fn ($q, $search) => $q->where('title', 'like', "%{$search}%"))
+    ->get();
+```
+
+`when`은 검색어가 있을 때만 조건을 붙인다. if로 쿼리 변수를 분기하는 것보다 읽기 쉽다.
+
+```php
+User::withCount('posts')->get();
+Post::where('user_id', $id)->sum('views');
+```
+
+---
+
+## 5. N+1
+
+목록에서 `$post->user->name`을 찍으면, 글 20개에 사용자 조회가 20번 더 나간다. 이게 **N+1**이다. 관계 정의를 잘못해서가 아니라, **필요할 때 따로 조회(지연 로딩)** 하기 때문이다.
+
+```php
+// 나쁨
+$posts = Post::all();
+foreach ($posts as $post) {
+    echo $post->user->name;
+}
+
+// 좋음 — 미리 한 번에
+$posts = Post::with('user', 'tags')->paginate(20);
+```
+
+로컬에서 사고를 예외로 만들 수 있다.
+
+```php
+Model::preventLazyLoading(! app()->isProduction());
+```
+
+운영까지 끄면 장애가 난다. 로컬·테스트만 켜고, 터지는 지점을 `with`로 고친다.
+
+---
+
+## 6. 스코프와 트랜잭션
+
+반복되는 where는 **로컬 스코프**로 이름을 붙인다.
+
+```php
+public function scopePublished(Builder $query): void
+{
+    $query->where('status', PostStatus::Published)
+        ->where('published_at', '<=', now());
+}
+
+Post::published()->latest()->get();
+```
+
+글로벌 스코프는 “모든 쿼리에 조건이 붙는다”는 뜻이라 잊기 쉽다. `withoutGlobalScopes`를 빠뜨리면 관리자 화면에 글이 안 보인다.
+
+여러 쓰기가 한 유스케이스면 트랜잭션으로 묶는다. 커밋 전에 메일·HTTP를 넣지 않는다. 롤백돼도 메일은 이미 나갔을 수 있다.
+
+```php
+DB::transaction(function () use ($data) {
+    $order = Order::create(/* ... */);
+    $order->items()->createMany($data['items']);
+    $order->user->decrement('credits', $data['cost']);
+});
+```
+
+---
+
+## 7. Factory와 인덱스
+
+테스트·시드 데이터는 Factory로 만든다. 손으로 `insert`를 나열하면 스키마가 바뀔 때마다 테스트가 깨진다.
+
+```php
+public function definition(): array
+{
+    return [
+        'user_id' => User::factory(),
+        'title' => fake()->sentence(),
+        'slug' => fake()->unique()->slug(),
+        'body' => fake()->paragraphs(3, true),
+        'status' => PostStatus::Draft,
+    ];
+}
+
+public function published(): static
+{
+    return $this->state(fn () => [
+        'status' => PostStatus::Published,
+        'published_at' => now()->subDay(),
+    ]);
+}
+
+Post::factory()->count(50)->published()->create();
+```
+
+`where`/`orderBy`/`foreignId`에는 인덱스를 둔다. 대량 처리는 `chunkById`로 메모리를 지킨다.
+
+```php
+Post::query()->where('status', 'draft')->chunkById(200, function ($posts) {
+    //
+});
+```
+
+---
+
+## 8. Soft delete
+
+`delete()`는 `deleted_at`만 채운다. 기본 쿼리에서 빠진다. 진짜 삭제는 `forceDelete()`, 포함 조회는 `withTrashed()`다. 유니크 슬러그를 소프트 삭제 글과 다시 쓰려면 유니크 설계를 먼저 정한다.
+
+생성 시 슬러그 자동 생성은 Observer 또는 모델 `creating` 훅에 둔다.
+
+---
+
+## 9. 흔한 실수
+
+- `$guarded = []`로 모든 컬럼을 연다.
+- `Post::all()` 뒤 루프에서 관계를 읽는다 (N+1).
+- 운영에서 `migrate:fresh`를 친다.
+- 마이그레이션 없이 운영 DB만 고친다.
+- 긴 트랜잭션 안에서 메일·외부 API를 호출한다.
+
+---
+
+## 연습
+
+1. User 1:N Post, Post N:N Tag를 마이그레이션으로 만든다.
+2. `published` 스코프와 factory state를 구현한다.
+3. `preventLazyLoading`을 켜고 N+1을 `with`로 고친다.
+4. 주문 생성 시 트랜잭션으로 order와 items를 저장한다.

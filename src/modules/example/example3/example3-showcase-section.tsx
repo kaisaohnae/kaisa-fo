@@ -12,12 +12,12 @@ export default function Example3ShowcaseSection({
   children,
 }: Example3ShowcaseSectionProps) {
   return (
-    <section className="ex3-panel">
-      <div className="ex3-panel__head">
+    <section className="kaisa-panel">
+      <div className="kaisa-panel__head">
         <h2>{title}</h2>
         {description ? <p>{description}</p> : null}
       </div>
-      <div className="ex3-panel__body">{children}</div>
+      <div className="kaisa-panel__body">{children}</div>
     </section>
   );
 }

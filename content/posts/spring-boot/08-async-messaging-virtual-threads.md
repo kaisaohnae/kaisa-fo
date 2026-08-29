@@ -1,0 +1,190 @@
+---
+slug: spring-boot-08
+order: 8
+category: spring-boot
+categoryLabel: Spring Boot
+title: "비동기·메시징·Virtual Threads"
+summary: "Virtual Threads와 이벤트·메시지 큐를 용도에 맞게 고르고, 커밋 이후 발행과 Outbox로 유실을 줄인다."
+publishedAt: 2026-03-24
+tags: ["spring-boot"]
+---
+
+# 비동기·메시징·Virtual Threads
+
+> 요약: Virtual Threads와 이벤트·메시지 큐를 용도에 맞게 고르고, 커밋 이후 발행과 Outbox로 유실을 줄인다.
+
+---
+
+## 1. 왜 전부 리액티브가 아닌가
+
+요청-응답 CRUD는 동기 MVC로 충분한 경우가 많다. 팀 숙련도와 블로킹 라이브러리(JPA, JDBC)를 보고 고른다.
+
+| 요구 | 선택 |
+|------|------|
+| 단순 REST + JDBC | MVC + Virtual Threads |
+| 응답은 바로, 후처리는 나중 | 이벤트 또는 큐 |
+| 높은 동시 블로킹 I/O | Virtual Threads |
+| CPU 집약 | 플랫폼 스레드 풀 제한 |
+| 서비스 간 재시도·재생 | Kafka / RabbitMQ / SQS |
+
+---
+
+## 2. Virtual Threads
+
+한 줄 정의: Java 21의 **Virtual Thread**는 OS 스레드에 1:1로 묶이지 않는 가벼운 스레드다. 블로킹 I/O 대기 중에도 캐리어 스레드를 오래 점유하지 않는다. Boot 3.2+에서 Tomcat 요청에 붙는다.
+
+```yaml
+spring:
+  threads:
+    virtual:
+      enabled: true
+```
+
+CPU 바운드에는 효과가 작다. Java 21에서 오래 잡는 `synchronized`는 캐리어 **pinning**이 난다. 스레드 로컬을 크게 쓰는 라이브러리는 확인한다. 가상 스레드를 켜도 **Hikari 풀 크기**가 DB 동시 접속의 천장이다.
+
+---
+
+## 3. `@Async`
+
+같은 JVM 안에서 “조금 나중에” 실행할 때만 쓴다. 재시도·DLQ·순서 보장이 없고, 프로세스가 죽으면 작업이 사라진다.
+
+```java
+@Configuration
+@EnableAsync
+public class AsyncConfig {
+
+    @Bean
+    TaskExecutor taskExecutor() {
+        return task -> Thread.startVirtualThread(task);
+    }
+}
+```
+
+```java
+@Service
+public class MailService {
+    @Async
+    public void sendWelcome(String email) {
+        // SMTP
+    }
+}
+```
+
+중요한 후처리는 브로커로 넘긴다.
+
+---
+
+## 4. 애플리케이션 이벤트
+
+같은 앱에서 결합을 낮출 때 쓴다. **`@TransactionalEventListener(AFTER_COMMIT)`** 이 핵심이다. 커밋 전에 메일을 보내면 롤백된 주문에 환영 메일이 간다.
+
+```java
+public record OrderCreatedEvent(Long orderId, String email) {}
+
+@Service
+public class OrderService {
+    private final ApplicationEventPublisher publisher;
+    private final OrderRepository repository;
+
+    public OrderService(ApplicationEventPublisher publisher, OrderRepository repository) {
+        this.publisher = publisher;
+        this.repository = repository;
+    }
+
+    @Transactional
+    public OrderResponse create(CreateOrderRequest request) {
+        Order order = repository.save(Order.create(request));
+        publisher.publishEvent(new OrderCreatedEvent(order.getId(), order.getEmail()));
+        return OrderResponse.from(order);
+    }
+}
+
+@Component
+public class OrderCreatedListener {
+    private final MailService mailService;
+
+    public OrderCreatedListener(MailService mailService) {
+        this.mailService = mailService;
+    }
+
+    @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
+    public void on(OrderCreatedEvent event) {
+        mailService.sendWelcome(event.email());
+    }
+}
+```
+
+기본 이벤트는 발행 스레드에서 돈다. 완전 분리하려면 `@Async` 또는 큐다. AFTER_COMMIT 리스너 실패는 주문 트랜잭션을 되돌리지 않으므로, 실패를 로그·재시도 없이 삼키지 않는다.
+
+---
+
+## 5. Kafka와 Outbox
+
+Kafka는 **이벤트 로그**—재생·파티션 순서·다중 소비자에 강하다. 메일·썸네일·리포트처럼 “일감 하나”를 경쟁 소비자가 나눠 가지면 RabbitMQ(또는 SQS)가 더 단순하다. 교환기·라우팅 키로 구독 대상을 나누는 작업 큐에 맞다.
+
+```yaml
+spring:
+  kafka:
+    bootstrap-servers: ${KAFKA_BROKERS}
+    consumer:
+      group-id: demo-service
+      auto-offset-reset: earliest
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+```
+
+```java
+kafkaTemplate.send("order.created", event.orderId().toString(), event);
+
+@KafkaListener(topics = "order.created", groupId = "mail-service")
+public void consume(OrderCreatedEvent event) {
+    mailService.sendWelcome(event.email());
+}
+```
+
+소비자는 멱등해야 한다. 스키마는 호환 규칙을 정하고, 실패는 재시도 후 **DLT(Dead Letter Topic)** 로 보낸다. 파티션 키가 순서 보장 범위다.
+
+**Outbox**: DB 커밋 후 Kafka 전송이 실패하면 상태가 갈라진다. 같은 트랜잭션에 비즈니스 행과 `outbox` 행을 쓰고, 별도 퍼블리셔(또는 Debezium CDC)가 브로커로 보낸 뒤 처리 완료를 표시한다.
+
+```sql
+CREATE TABLE outbox (
+    id           BIGSERIAL PRIMARY KEY,
+    aggregate_id BIGINT NOT NULL,
+    event_type   VARCHAR(100) NOT NULL,
+    payload      JSONB NOT NULL,
+    created_at   TIMESTAMPTZ NOT NULL,
+    published_at TIMESTAMPTZ
+);
+```
+
+`published_at IS NULL`인 행만 폴링한다. 전송 성공과 마킹을 한 작업으로 두고, 중복 발행에 대비해 소비자는 멱등이어야 한다.
+
+---
+
+## 6. WebFlux를 보는 시점
+
+동시 연결이 매우 많고 다운스트림이 모두 non-blocking이거나, SSE/WebSocket이 핵심이면 검토한다. JDBC/JPA 중심이고 블로킹 라이브러리가 많으면 MVC + Virtual Threads가 보통 낫다.
+
+HTTP 클라이언트는 connect/read timeout을 명시한다. 가상 스레드여도 무한 대기는 큐와 풀을 채운다. 카프카 리스너 처리 시간과 큐 적체를 메트릭으로 본다.
+
+---
+
+## 7. 흔한 실수
+
+| 실수 | 대안 |
+|------|------|
+| `@Async`로 결제 확정 | 브로커 + 멱등 소비자 |
+| 커밋 전 메일 발송 | `AFTER_COMMIT` 또는 Outbox |
+| Virtual Threads만 켜기 | 풀·타임아웃 함께 |
+| 비멱등 consume | 키 테이블·조건부 갱신 |
+| DB 커밋과 produce를 따로 | Outbox |
+
+---
+
+## 연습
+
+1. Virtual Threads를 켜고, 대기 있는 API의 처리량을 비교한다.
+2. `OrderCreatedEvent` + `AFTER_COMMIT`으로 메일(로그)을 보낸다.
+3. (선택) Kafka Testcontainers로 produce/consume IT를 작성한다.
+4. Outbox 테이블을 스케치한다.

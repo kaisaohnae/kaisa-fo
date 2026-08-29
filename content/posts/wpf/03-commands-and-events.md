@@ -1,0 +1,181 @@
+---
+slug: wpf-03
+order: 3
+category: wpf
+categoryLabel: WPF
+title: "이벤트 대신 ICommand로 액션 연결하기"
+summary: "버튼 클릭을 코드비하인드가 아니라 ViewModel의 ICommand로 연결하고, CanExecute로 활성 상태를 맞추는 방법을 정리한다."
+publishedAt: 2024-06-24
+tags: ["wpf"]
+---
+
+# 이벤트 대신 ICommand로 액션 연결하기
+
+> 요약: 버튼 클릭을 코드비하인드가 아니라 ViewModel의 ICommand로 연결하고, CanExecute로 활성 상태를 맞추는 방법을 정리한다.
+
+---
+
+## 1. 왜 Command인가
+
+`Button.Click`을 `.xaml.cs`에 두면 저장·검증이 View에 붙는다. 창을 띄우지 않고 로직을 시험하기 어렵다.
+
+`ICommand`는 **버튼이 실행할 일을 ViewModel에 맡기는 계약**이다. XAML은 `Command="{Binding SaveCommand}"`만 안다. 실행 가능 여부는 `CanExecute`가 버튼 `IsEnabled`와 연결된다.
+
+언제 이벤트가 남나: 마우스 좌표, 드래그, 패스워드 박스처럼 바인딩이 약한 접착. 저장·검색·삭제 같은 도메인 동작은 명령이다.
+
+---
+
+## 2. 핵심 개념
+
+| 구성 | 한 줄 |
+|------|--------|
+| `ICommand.Execute` | 클릭 시 할 일 |
+| `ICommand.CanExecute` | 지금 실행 가능한지. false면 버튼 비활성 |
+| `CanExecuteChanged` | 가능 여부가 바뀌었다고 UI에 알린다 |
+| `CommandParameter` | 목록 행 등 추가 인자를 명령에 넘긴다 |
+| `[RelayCommand]` | CommunityToolkit.Mvvm이 위 구현을 생성한다 |
+
+`ICommand`는 WPF 네임스페이스 `System.Windows.Input`에 있다. ViewModel 프로젝트가 WPF를 참조하기 싫으면 툴킷의 `IRelayCommand`를 쓴다. 단일 프로젝트면 `ICommand`로 충분하다.
+
+---
+
+## 3. 동작하는 예: 저장 명령
+
+`ViewModels/MainViewModel.cs`:
+
+```csharp
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+
+namespace MyApp.ViewModels;
+
+public partial class MainViewModel : ObservableObject
+{
+    [ObservableProperty]
+    [NotifyCanExecuteChangedFor(nameof(SaveCommand))]
+    private string title = "";
+
+    [ObservableProperty]
+    private string status = "대기";
+
+    [RelayCommand(CanExecute = nameof(CanSave))]
+    private void Save()
+    {
+        Status = $"저장됨: {Title.Trim()}";
+    }
+
+    private bool CanSave() => Title.Trim().Length > 0;
+
+    [RelayCommand]
+    private void Clear()
+    {
+        Title = "";
+        Status = "대기";
+    }
+}
+```
+
+- `[RelayCommand]` on `Save` → `SaveCommand` 속성 생성
+- `CanExecute = nameof(CanSave)` → 비어 있으면 저장 버튼 비활성
+- `[NotifyCanExecuteChangedFor(nameof(SaveCommand))]` → `Title`이 바뀔 때 `CanExecute`를 다시 묻는다
+
+XAML:
+
+```xml
+<StackPanel Margin="16">
+  <TextBox Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" />
+  <Button Content="저장" Command="{Binding SaveCommand}" Margin="0,8,0,0" />
+  <Button Content="지우기" Command="{Binding ClearCommand}" />
+  <TextBlock Text="{Binding Status}" Margin="0,8,0,0" />
+</StackPanel>
+```
+
+비동기:
+
+```csharp
+[RelayCommand]
+private async Task SaveAsync(CancellationToken cancellationToken)
+{
+    Status = "저장 중";
+    await Task.Delay(400, cancellationToken);
+    Status = "저장됨";
+}
+```
+
+생성 이름은 `SaveCommand`다 (`SaveAsyncCommand`가 아니다). UI 스레드를 막지 않으려면 `async` 명령을 쓴다. `Task.Delay` 자리는 실제 I/O다.
+
+---
+
+## 4. 파라미터와 목록
+
+행 삭제:
+
+```xml
+<Button Content="삭제"
+        Command="{Binding DataContext.RemoveCommand, RelativeSource={RelativeSource AncestorType=ListBox}}"
+        CommandParameter="{Binding}" />
+```
+
+ViewModel:
+
+```csharp
+[RelayCommand]
+private void Remove(UserItem item) => Users.Remove(item);
+```
+
+`CommandParameter="{Binding}"`은 그 행의 `UserItem`이다. 행 템플릿의 DataContext가 항목이라, 부모 ViewModel 명령은 `RelativeSource`로 올라간다.
+
+코드비하인드 최소 연결이 필요하면 `EventToCommand`(툴킷 Behaviors)를 검토한다. 신규는 가능하면 `Command` 속성만 쓴다.
+
+툴킷 없이 직접 구현하는 최소형:
+
+```csharp
+public sealed class RelayCommand : ICommand
+{
+    private readonly Action _execute;
+    private readonly Func<bool>? _canExecute;
+
+    public RelayCommand(Action execute, Func<bool>? canExecute = null)
+    {
+        _execute = execute;
+        _canExecute = canExecute;
+    }
+
+    public bool CanExecute(object? parameter) => _canExecute?.Invoke() ?? true;
+    public void Execute(object? parameter) => _execute();
+    public event EventHandler? CanExecuteChanged;
+
+    public void RaiseCanExecuteChanged() =>
+        CanExecuteChanged?.Invoke(this, EventArgs.Empty);
+}
+```
+
+직접 구현이면 `Title` setter에서 `SaveCommand.RaiseCanExecuteChanged()`를 호출해야 버튼이 살아난다. 빼먹기 쉽다. 그래서 툴킷을 기본선으로 둔다.
+
+---
+
+## 5. 주의 / 흔한 실수
+
+- **`Click`과 `Command`를 동시에.** 두 번 실행되거나 한쪽이 무시된다. 하나만 둔다.
+- **`CanExecute`를 바꿨는데 `CanExecuteChanged`를 안 올림.** 버튼이 영원히 비활성이다. `[NotifyCanExecuteChangedFor]` 또는 `NotifyCanExecuteChanged()`.
+- **`async void` 이벤트 핸들러에 저장.** 예외가 삼켜진다. `[RelayCommand] Task`를 쓴다.
+- **명령에서 `MessageBox`.** View 의존. 5편 대화상자 서비스.
+- **`RelayCommand`를 프로퍼티 get마다 `new`.** 바인딩이 매번 새 객체다. 필드에 한 번 만들거나 툴킷 생성 명령을 쓴다.
+
+---
+
+## 정리
+
+WPF 액션의 기본은 이벤트 남발이 아니라 **테스트 가능한 Command**다.
+
+- 클릭 → `{Binding XxxCommand}`
+- 활성 → `CanExecute` + 속성 변경 시 재평가
+- 행 인자 → `CommandParameter`
+
+---
+
+## 연습
+
+1. `Title`이 비어 있으면 저장 버튼이 비활성인지, 한 글자 입력 후 활성화되는지 확인한다.
+2. `ClearCommand`로 제목과 상태가 초기화되는지 확인한다.
+3. `Save`를 `async Task`로 바꾸고 저장 중 `Status`가 `저장 중`으로 보이는지 확인한다.

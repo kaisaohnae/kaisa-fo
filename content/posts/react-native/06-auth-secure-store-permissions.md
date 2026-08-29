@@ -1,0 +1,224 @@
+---
+slug: react-native-06
+order: 6
+category: react-native
+categoryLabel: React Native
+title: "인증·보안 저장소·디바이스 권한"
+summary: "로그인 토큰은 SecureStore에 두고, 카메라·앨범·알림 권한은 필요할 때만 요청한다."
+publishedAt: 2025-08-19
+tags: ["react-native"]
+---
+
+# 인증·보안 저장소·디바이스 권한
+
+> 요약: 로그인 토큰은 SecureStore에 두고, 카메라·앨범·알림 권한은 필요할 때만 요청한다.
+
+---
+
+## 1. 왜 지금 권한과 저장소를 나누나
+
+웹은 쿠키·httpOnly로 세션을 숨길 여지가 있다. 앱은 토큰을 기기에 둬야 자동 로그인이 된다. 일반 저장소에 넣으면 백업·루팅·로그에 노출되기 쉽다.
+
+**SecureStore**는 운영체제 보안 저장소에 작은 비밀 값을 넣는 Expo 모듈이다. iOS는 Keychain, Android는 Keystore 계열이다. access token처럼 짧은 비밀에 쓴다.
+
+권한(카메라, 앨범, 알림)은 앱 시작 시 한꺼번에 묻지 않는다. **쓰는 화면에서** 이유를 말한 뒤 시스템 다이얼로그를 띄운다.
+
+---
+
+## 2. 핵심 개념
+
+| 금지 | 권장 |
+|------|------|
+| AsyncStorage에 access token | SecureStore |
+| 소스에 API 시크릿 | 백엔드만 |
+| 로그에 토큰·개인정보 | 마스킹 |
+| 실행 직후 모든 권한 | 필요 시점 요청 |
+
+세션은 Provider 한 곳이 소유한다. 시작 시 SecureStore에서 토큰을 읽고 `/me`로 복구한다. 실패하면 지운다.
+
+생체 인증은 **로컬 잠금**이다. 서버 로그인을 대체하지 않는다. 지문 성공이 곧 API 인증은 아니다.
+
+웹 타깃이면 SecureStore가 없다. `Platform` 분기 또는 쿠키 세션이 필요하다.
+
+권한 거부 후에는 설정 앱으로 보내는 UI가 필요하다. 시스템 다이얼로그는 한 번 거절되면 다시 안 뜨는 경우가 많다.
+
+---
+
+## 3. 예제
+
+```bash
+npx expo install expo-secure-store
+```
+
+```tsx
+import * as SecureStore from 'expo-secure-store';
+
+const TOKEN_KEY = 'access_token';
+
+export async function saveToken(token: string) {
+  await SecureStore.setItemAsync(TOKEN_KEY, token);
+}
+
+export async function loadToken() {
+  return SecureStore.getItemAsync(TOKEN_KEY);
+}
+
+export async function clearToken() {
+  await SecureStore.deleteItemAsync(TOKEN_KEY);
+}
+```
+
+큰 JSON을 SecureStore에 넣지 않는다. 토큰 문자열만 둔다.
+
+```tsx
+type AuthState = {
+  user: User | null;
+  token: string | null;
+  isLoading: boolean;
+  signIn: (email: string, password: string) => Promise<void>;
+  signOut: () => Promise<void>;
+};
+
+export function AuthProvider({ children }: { children: React.ReactNode }) {
+  const [token, setToken] = useState<string | null>(null);
+  const [user, setUser] = useState<User | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    (async () => {
+      const t = await loadToken();
+      if (t) {
+        setToken(t);
+        try {
+          setUser(await api<User>('/me', { token: t }));
+        } catch {
+          await clearToken();
+          setToken(null);
+        }
+      }
+      setIsLoading(false);
+    })();
+  }, []);
+
+  const signIn = async (email: string, password: string) => {
+    const res = await api<{ token: string; user: User }>('/auth/login', {
+      method: 'POST',
+      body: JSON.stringify({ email, password }),
+    });
+    await saveToken(res.token);
+    setToken(res.token);
+    setUser(res.user);
+  };
+
+  const signOut = async () => {
+    await clearToken();
+    queryClient.clear();
+    setToken(null);
+    setUser(null);
+  };
+
+  return (
+    <AuthContext.Provider value={{ user, token, isLoading, signIn, signOut }}>
+      {children}
+    </AuthContext.Provider>
+  );
+}
+```
+
+`isLoading` 동안 라우트를 바꾸지 않는다. 로그인 화면이 깜빡인다. `expo-splash-screen`으로 네이티브 스플래시를 유지할 수 있다.
+
+소셜 로그인은 인가 코드를 **서버에 넘겨** 토큰을 받는다. 클라이언트에 장기 시크릿을 두지 않는다.
+
+```bash
+npx expo install expo-auth-session expo-web-browser expo-crypto
+```
+
+생체 잠금(선택):
+
+```bash
+npx expo install expo-local-authentication
+```
+
+```tsx
+const ok = await LocalAuthentication.authenticateAsync({
+  promptMessage: '잠금 해제',
+});
+if (ok.success) {
+  // 앱 잠금만 해제. 서버 세션과는 별개
+}
+```
+
+앨범은 쓰는 순간에 요청한다.
+
+```bash
+npx expo install expo-image-picker
+```
+
+```tsx
+const perm = await ImagePicker.requestMediaLibraryPermissionsAsync();
+if (!perm.granted) {
+  // 왜 필요한지 안내 후 Linking.openSettings()
+  return;
+}
+
+const result = await ImagePicker.launchImageLibraryAsync({
+  mediaTypes: ['images'],
+  quality: 0.8,
+});
+```
+
+흐름: 사전 설명 → 시스템 다이얼로그 → 거부 시 설정 이동.
+
+`app.json`에 용도 문구가 없으면 스토어에서 거절된다.
+
+```json
+{
+  "expo": {
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "프로필 사진을 올리려면 사진첩이 필요합니다."
+        }
+      ]
+    ],
+    "ios": {
+      "infoPlist": {
+        "NSCameraUsageDescription": "게시글에 사진을 찍기 위해 카메라가 필요합니다."
+      }
+    }
+  }
+}
+```
+
+푸시 토큰은 실기기에서 테스트한다. 에뮬레이터 제약이 있다. 탭 시 딥링크는 라우터와 맞춘다.
+
+---
+
+## 4. 흔한 실수
+
+| 실수 | 대안 |
+|------|------|
+| AsyncStorage에 토큰 | SecureStore |
+| 시작 시 카메라·알림 한꺼번에 | 해당 버튼/화면에서 |
+| 권한 거부 후 아무 안내 없음 | 설정 이동 CTA |
+| 생체를 서버 로그인으로 착각 | 로컬 잠금만 |
+| 로그아웃 후 Query 캐시 잔류 | `queryClient.clear()` |
+| usage description 없이 플러그인 | `app.json` 문구 필수 |
+
+---
+
+## 5. 정리
+
+인증은 **토큰 위치 + 세션 복구 + 권한 시점**이다. UI보다 이 세 가지가 먼저다.
+
+- 비밀은 SecureStore. 장바구니는 AsyncStorage도 된다.
+- 스플래시가 끝날 때까지 가드를 보류한다.
+- 권한 문구는 코드와 `app.json`에 같이 있다.
+
+## 연습
+
+1. SecureStore로 로그인·자동 로그인·로그아웃을 구현한다.
+2. `AuthProvider`와 라우터 가드를 연결한다.
+3. 이미지 피커 거절 시 설정 안내를 만든다.
+4. (선택) 포그라운드 복귀 시 생체 잠금을 붙인다.

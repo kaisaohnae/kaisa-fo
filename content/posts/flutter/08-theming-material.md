@@ -1,0 +1,191 @@
+---
+slug: flutter-08
+order: 8
+category: flutter
+categoryLabel: Flutter
+title: "ThemeData로 머티리얼 디자인 토큰"
+summary: "색과 글자 크기는 위젯마다 박지 말고 ThemeData 한곳으로 모은다."
+publishedAt: 2026-04-15
+tags: ["flutter"]
+---
+
+# ThemeData로 머티리얼 디자인 토큰
+
+> 요약: 색과 글자 크기는 위젯마다 박지 말고 ThemeData 한곳으로 모은다.
+
+---
+
+## 1. 왜 / 언제
+
+버튼마다 hex를 적으면 다크모드와 리브랜드가 화면 수만큼의 수정이 된다. 테마는 장식이 아니다. **앱이 공유하는 색·글자·모양 계약**이다.
+
+머티리얼은 그 계약을 `ThemeData`로 내려 준다. 위젯 트리 아래는 `Theme.of(context)`로 읽는다. 새 화면은 토큰만 쓰면 된다.
+
+이 글을 쓰는 시점은 화면을 여러 장 만들기 시작한 때다. 첫 버튼 색을 고치기 전에 루트 테마를 고정한다.
+
+---
+
+## 2. 핵심
+
+`MaterialApp`이 테마를 트리에 심는다. `theme`은 라이트, `darkTheme`은 다크다. `themeMode`가 어느 쪽을 쓸지 고른다.
+
+`ColorScheme`이 색의 역할이다. primary, surface, onSurface처럼 **역할 이름**으로 부른다. “이 버튼은 #0B6E4F”가 아니라 “이 버튼은 primary”다.
+
+`TextTheme`이 글자 단계다. 제목·본문·캡션 크기를 위젯마다 숫자로 두지 않는다. 시스템 글자 확대에 대비해 overflow를 설계한다.
+
+컴포넌트 테마(`AppBarTheme`, `FilledButtonTheme` 등)는 위젯 종류의 기본 모양이다. 한 화면만 예외가 필요하면 그 서브트리에서 `Theme`으로 덮는다. 예외를 기본값으로 올리지 않는다.
+
+Cupertino는 iOS 느낌을 낼 때 쓴다. 한 앱에서 Material 내비게이션과 Cupertino 내비게이션을 섞으면 제스처·앱바가 흔들린다. **주 디자인 언어를 하나** 고른다.
+
+최근 Flutter는 Material 3가 기본인 경우가 많다. `ColorScheme.fromSeed`로 시드 색 하나에서 역할 색을 만든다.
+
+---
+
+## 3. 예제
+
+### 루트 테마
+
+```dart
+class App extends StatelessWidget {
+  const App({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    const Color seed = Color(0xFF0B6E4F);
+    return MaterialApp(
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(seedColor: seed),
+        useMaterial3: true,
+      ),
+      darkTheme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: seed,
+          brightness: Brightness.dark,
+        ),
+        useMaterial3: true,
+      ),
+      themeMode: ThemeMode.system,
+      home: const HomePage(),
+    );
+  }
+}
+```
+
+시드만 공유하면 라이트·다크가 같은 브랜드를 유지한다. 시스템 설정을 따르려면 `ThemeMode.system`이다.
+
+### 토큰으로 그리기
+
+```dart
+class StatusCard extends StatelessWidget {
+  const StatusCard({super.key, required this.label});
+
+  final String label;
+
+  @override
+  Widget build(BuildContext context) {
+    final ColorScheme colors = Theme.of(context).colorScheme;
+    final TextTheme texts = Theme.of(context).textTheme;
+
+    return Card(
+      color: colors.surfaceContainerHighest,
+      child: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Text(
+          label,
+          style: texts.titleMedium?.copyWith(color: colors.onSurface),
+        ),
+      ),
+    );
+  }
+}
+```
+
+hex가 없다. 다크모드로 바뀌면 `ColorScheme`이 바뀌고 이 카드도 따라간다.
+
+### 타이포와 컴포넌트
+
+```dart
+ThemeData _buildTheme(Brightness brightness) {
+  final ColorScheme scheme = ColorScheme.fromSeed(
+    seedColor: const Color(0xFF0B6E4F),
+    brightness: brightness,
+  );
+  return ThemeData(
+    colorScheme: scheme,
+    useMaterial3: true,
+    textTheme: const TextTheme(
+      titleLarge: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
+      bodyMedium: TextStyle(fontSize: 16, height: 1.4),
+    ),
+    appBarTheme: AppBarTheme(
+      backgroundColor: scheme.surface,
+      foregroundColor: scheme.onSurface,
+      elevation: 0,
+    ),
+    filledButtonTheme: FilledButtonThemeData(
+      style: FilledButton.styleFrom(
+        minimumSize: const Size.fromHeight(48),
+      ),
+    ),
+  );
+}
+```
+
+버튼 최소 높이는 터치 영역이다. 화면마다 `height: 48`을 반복하지 않는다.
+
+한 화면만 강조색을 바꾸려면 그 아래만 덮는다.
+
+```dart
+Theme(
+  data: Theme.of(context).copyWith(
+    colorScheme: Theme.of(context).colorScheme.copyWith(
+      primary: const Color(0xFFB45309),
+    ),
+  ),
+  child: const DangerActions(),
+)
+```
+
+### 접근성
+
+글자 배율이 커져도 한 줄 제목이 깨지지 않게 `overflow`와 `maxLines`를 둔다. 대비는 `onPrimary` / `onSurface` 쌍을 쓰면 시드에서 만든 역할 색이 맞춰 준다. 임의의 회색을 surface 위에 올리지 않는다.
+
+```dart
+Text(
+  title,
+  maxLines: 2,
+  overflow: TextOverflow.ellipsis,
+  style: Theme.of(context).textTheme.titleLarge,
+)
+```
+
+---
+
+## 4. 흔한 실수
+
+| 실수 | 결과 | 대안 |
+|------|------|------|
+| 위젯마다 hex | 다크모드·리브랜드 실패 | `colorScheme` |
+| `Colors.black`을 본문에 | 다크에서 안 보임 | `onSurface` |
+| 화면마다 `TextStyle(fontSize: 14)` | 단계가 무너짐 | `textTheme` |
+| Material/Cupertino 혼용 | 내비게이션 패턴 붕괴 | 주 언어 하나 |
+| 예외 스타일을 루트에 올림 | 전역이 오염된다 | 로컬 `Theme` |
+
+`Theme.of(context)`는 `MaterialApp` 아래에서만 안전하다. 테스트나 미리보기에서 앱 없이 위젯을 올리면 테마가 없을 수 있다. 그때는 `MaterialApp`으로 감싼다.
+
+색을 애니메이션할 때도 토큰을 읽은 뒤 보간한다. 하드코딩 두 색을 보간하면 테마와 어긋난다.
+
+---
+
+## 정리
+
+디자인은 화면 장식이 아니다. **ColorScheme + TextTheme 계약**이다. 위젯은 역할 이름만 쓰고, 값은 루트 `ThemeData`가 들고 있다.
+
+---
+
+## 연습
+
+1. `ColorScheme.fromSeed`로 라이트·다크 테마를 루트에 둔다.
+2. 카드와 제목에서 hex를 제거하고 `Theme.of`로 바꾼다.
+3. `FilledButtonTheme`으로 최소 높이를 통일한다.
+4. 시스템 글자 크기를 키운 뒤 제목 overflow를 확인한다.

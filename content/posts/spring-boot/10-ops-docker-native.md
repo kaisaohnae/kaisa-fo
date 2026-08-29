@@ -1,0 +1,214 @@
+---
+slug: spring-boot-10
+order: 10
+category: spring-boot
+categoryLabel: Spring Boot
+title: "운영 배포 — Docker, 설정, Native Image, 프로덕션 체크리스트"
+summary: "환경변수와 컨테이너로 배포하고, 헬스 프로브·그레이스풀 종료·Native Image를 운영 기본선에 맞춘다."
+publishedAt: 2026-07-27
+tags: ["spring-boot"]
+---
+
+# 운영 배포 — Docker, 설정, Native Image, 프로덕션 체크리스트
+
+> 요약: 환경변수와 컨테이너로 배포하고, 헬스 프로브·그레이스풀 종료·Native Image를 운영 기본선에 맞춘다.
+
+---
+
+## 1. 왜 설정과 프로세스를 나누는가
+
+앱은 코드와 설정을 분리하고, 로그는 stdout으로 보내며, 종료 신호를 받으면 요청을 비운 뒤 죽는다. Boot에서는 프로파일·환경변수와 **graceful shutdown**이 그 기본선이다.
+
+한 줄 정의: graceful shutdown은 새 요청을 끊고, 진행 중 요청이 끝날 때까지 기다린 다음 프로세스를 종료하는 것이다.
+
+```yaml
+server:
+  shutdown: graceful
+
+spring:
+  lifecycle:
+    timeout-per-shutdown-phase: 30s
+```
+
+로드밸런서가 인스턴스를 빼는 시간보다 `timeout-per-shutdown-phase`가 짧으면 요청이 잘린다.
+
+---
+
+## 2. 시크릿
+
+`application-prod.yml`에 DB 비밀번호를 커밋하거나 이미지에 굽지 않는다. `SPRING_PROFILES_ACTIVE=prod`, 값은 환경변수·K8s Secret·Secrets Manager·Vault다. 필수 시크릿이 없으면 **기동 실패**가 기본값으로 떠서 잘못된 DB에 붙는 것보다 낫다.
+
+```yaml
+spring:
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
+```
+
+---
+
+## 3. Dockerfile
+
+Java 21 런타임, non-root, 컨테이너 메모리의 일부만 힙으로 쓴다.
+
+```dockerfile
+FROM eclipse-temurin:21-jdk-alpine AS build
+WORKDIR /workspace
+COPY . .
+RUN ./mvnw -q -DskipTests package
+
+FROM eclipse-temurin:21-jre-alpine
+WORKDIR /app
+RUN adduser -D spring
+USER spring
+COPY --from=build /workspace/target/demo-*.jar app.jar
+EXPOSE 8080
+ENTRYPOINT ["java","-XX:MaxRAMPercentage=75.0","-jar","/app/app.jar"]
+```
+
+의존성이 안 바뀌면 레이어를 재사용하도록 **Layered JAR**를 쓴다.
+
+```bash
+java -Djarmode=layertools -jar app.jar extract
+```
+
+Dockerfile에서 `dependencies` → `spring-boot-loader` → `application` 순으로 COPY한다. distroless/chiseled 이미지는 공격면을 줄인다. 빌드에 `.mvn`·wrapper가 없으면 CI의 `./mvnw`가 실패한다.
+
+---
+
+## 4. Compose (로컬)
+
+DB가 healthy일 때까지 앱을 기다린다.
+
+```yaml
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_PROFILES_ACTIVE: local
+      DB_URL: jdbc:postgresql://db:5432/demo
+      DB_USER: demo
+      DB_PASSWORD: demo
+    depends_on:
+      db:
+        condition: service_healthy
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: demo
+      POSTGRES_USER: demo
+      POSTGRES_PASSWORD: demo
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U demo"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+```
+
+---
+
+## 5. Kubernetes 프로브
+
+**liveness**는 프로세스가 죽었으면 재시작하고, **readiness**는 준비가 안 됐으면 트래픽을 빼는 검사다. 둘을 같은 URL로 묶으면, 의존성 장애 때 재시작 루프가 난다. Actuator probes를 켜고 관리 포트(예: 8081)를 가리킨다.
+
+```yaml
+livenessProbe:
+  httpGet:
+    path: /actuator/health/liveness
+    port: 8081
+readinessProbe:
+  httpGet:
+    path: /actuator/health/readiness
+    port: 8081
+resources:
+  requests:
+    cpu: "250m"
+    memory: "512Mi"
+  limits:
+    memory: "768Mi"
+```
+
+메모리 limit 없이 JVM만 올리면 노드 OOMKill이 난다. CPU limit은 스로틀이 커질 수 있어 request와 함께 본다.
+
+---
+
+## 6. CI/CD
+
+1. 단위 + Testcontainers IT
+2. 포맷·정적 분석
+3. 의존성 취약점(Trivy 등)
+4. 이미지 빌드·스캔
+5. 스테이징 스모크
+6. 카나리 또는 블루그린
+
+`main` 직접 푸시보다 PR 필수 체크가 안전하다. Flyway는 배포 파이프라인에서 한 방향으로만 적용한다.
+
+---
+
+## 7. GraalVM Native Image
+
+한 줄 정의: 미리 AOT 컴파일한 **네이티브 실행 파일**이다. 기동이 빠르고 RSS가 낮다. Boot 3에서 정식이다.
+
+```bash
+./mvnw -Pnative native:compile
+```
+
+빌드 시간이 길고, 리플렉션·프록시 힌트가 필요할 수 있다. 서버리스·스케일-to-zero에 잘 맞는다. 상시 트래픽 큰 서비스는 JVM + 컨테이너 메모리 튜닝으로도 충분한 경우가 많다. 라이브러리가 네이티브를 지원하는지 먼저 본다.
+
+---
+
+## 8. 로그·시간대
+
+액세스/감사 로그를 애플리케이션 로그와 나누고 PII를 마스킹한다. 서버 시각은 UTC, 표시만 로컬이다.
+
+---
+
+## 9. 프로덕션 체크리스트
+
+### 보안
+
+- [ ] 패치된 JRE 베이스 이미지
+- [ ] Actuator·Swagger 최소 노출 + 인증
+- [ ] 시크릿 미커밋
+- [ ] HTTPS, 명시적 CORS origin
+- [ ] 의존성 스캔
+
+### 신뢰성
+
+- [ ] graceful shutdown과 LB drain 시간 일치
+- [ ] Flyway 자동화
+- [ ] 타임아웃·재시도·서킷 브레이커
+- [ ] liveness / readiness 분리
+- [ ] DB 백업·복구 훈련
+
+### 관측·성능
+
+- [ ] 5xx·p99·풀 대기 알람
+- [ ] 트레이스 샘플링, 로그 `traceId`
+- [ ] 부하 테스트 결과
+- [ ] 풀 크기 × 레플리카 ≤ DB 한도
+
+---
+
+## 10. 흔한 실수
+
+| 실수 | 대안 |
+|------|------|
+| 이미지에 비밀번호 | 런타임 시크릿 |
+| liveness = readiness | 프로브 분리 |
+| root 유저 | `USER spring` |
+| heap이 컨테이너 limit보다 큼 | `MaxRAMPercentage` |
+| 종료 타임아웃 < drain | 둘을 맞춤 |
+
+---
+
+## 연습
+
+1. 샘플 API를 멀티스테이지 이미지로 만든다.
+2. Compose로 app + Postgres를 띄운다.
+3. `/actuator/health`가 UP인지 확인한다.
+4. 위 체크리스트를 통과/미통과로 표시한다.
+5. (선택) Native 기동 시간을 JVM jar와 비교한다.

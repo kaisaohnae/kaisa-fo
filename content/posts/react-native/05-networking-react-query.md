@@ -1,0 +1,230 @@
+---
+slug: react-native-05
+order: 5
+category: react-native
+categoryLabel: React Native
+title: "네트워킹 — Fetch, React Query, 에러 처리"
+summary: "서버 데이터는 fetch 래퍼와 React Query로 가져와 로딩·에러·재시도를 표준화한다."
+publishedAt: 2025-06-12
+tags: ["react-native"]
+---
+
+# 네트워킹 — Fetch, React Query, 에러 처리
+
+> 요약: 서버 데이터는 fetch 래퍼와 React Query로 가져와 로딩·에러·재시도를 표준화한다.
+
+---
+
+## 1. 왜 React Query인가
+
+게시글 목록·프로필은 **서버가 원본**이다. 모달 열림·토글은 **클라이언트가 원본**이다.
+
+서버 상태를 `useState` + `useEffect`로 따라가면 캐시, 재시도, 화면 복귀 시 갱신을 직접 짜게 된다. **TanStack Query**(React Query)가 그 층을 표준화한다.
+
+앱에는 `fetch` 한 곳이 있으면 된다. 상태 코드, JSON, 토큰 헤더를 화면마다 반복하지 않는다.
+
+---
+
+## 2. 핵심 개념
+
+| 종류 | 예 | 도구 |
+|------|----|------|
+| 서버 상태 | 목록, 프로필 | `useQuery` / `useMutation` |
+| 클라이언트 상태 | 모달, 마법사 단계 | `useState` / Zustand |
+
+`queryKey`가 캐시 주소다. 같은 키면 같은 데이터다. mutation이 성공하면 관련 키를 `invalidate`한다.
+
+Expo 환경변수는 `EXPO_PUBLIC_*`만 클라이언트에 노출된다. API 베이스 URL은 공개돼도 된다. 비밀키는 넣지 않는다.
+
+RN은 브라우저 탭 포커스가 없다. 앱이 다시 `active`가 될 때 Query에 알려 주면 목록이 신선해진다.
+
+401은 토큰 갱신 또는 로그아웃이다. 토큰 저장은 다음 글의 SecureStore다.
+
+---
+
+## 3. 예제
+
+```tsx
+// lib/api.ts
+const API_URL = process.env.EXPO_PUBLIC_API_URL;
+
+export class ApiError extends Error {
+  constructor(
+    public status: number,
+    message: string,
+    public body?: unknown,
+  ) {
+    super(message);
+  }
+}
+
+export async function api<T>(
+  path: string,
+  options: RequestInit & { token?: string } = {},
+): Promise<T> {
+  const { token, headers, ...rest } = options;
+
+  const res = await fetch(`${API_URL}${path}`, {
+    ...rest,
+    headers: {
+      'Content-Type': 'application/json',
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
+      ...headers,
+    },
+  });
+
+  if (!res.ok) {
+    const body = await res.json().catch(() => undefined);
+    throw new ApiError(res.status, 'Request failed', body);
+  }
+
+  if (res.status === 204) return undefined as T;
+  return res.json() as Promise<T>;
+}
+```
+
+```env
+EXPO_PUBLIC_API_URL=https://api.example.com
+```
+
+```bash
+npx expo install @tanstack/react-query
+```
+
+루트에 Provider를 둔다.
+
+```tsx
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: { staleTime: 30_000, retry: 1 },
+  },
+});
+
+export default function RootLayout() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      {/* Stack */}
+    </QueryClientProvider>
+  );
+}
+```
+
+조회와 생성:
+
+```tsx
+function usePosts() {
+  return useQuery({
+    queryKey: ['posts'],
+    queryFn: () => api<Post[]>('/posts'),
+  });
+}
+
+function useCreatePost(token: string) {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: (input: CreatePostInput) =>
+      api<Post>('/posts', {
+        method: 'POST',
+        body: JSON.stringify(input),
+        token,
+      }),
+    onSuccess: () => qc.invalidateQueries({ queryKey: ['posts'] }),
+  });
+}
+```
+
+화면은 상태별로 UI를 나눈다.
+
+```tsx
+const { data, isPending, isError, error, refetch } = usePosts();
+
+if (isPending) return <ActivityIndicator />;
+if (isError) return <ErrorView message={error.message} onRetry={refetch} />;
+return <PostList data={data} />;
+```
+
+무한 스크롤:
+
+```tsx
+const {
+  data,
+  fetchNextPage,
+  hasNextPage,
+  isFetchingNextPage,
+} = useInfiniteQuery({
+  queryKey: ['posts', 'infinite'],
+  initialPageParam: 1,
+  queryFn: ({ pageParam }) => api<PostPage>(`/posts?page=${pageParam}`),
+  getNextPageParam: (last) => last.nextPage ?? undefined,
+});
+
+const items = data?.pages.flatMap((p) => p.items) ?? [];
+```
+
+`FlatList`의 `onEndReached`에서 `hasNextPage`일 때만 `fetchNextPage`를 호출한다.
+
+앱 포커스:
+
+```tsx
+import { focusManager } from '@tanstack/react-query';
+import { AppState } from 'react-native';
+
+focusManager.setEventListener((handleFocus) => {
+  const sub = AppState.addEventListener('change', (state) => {
+    handleFocus(state === 'active');
+  });
+  return () => sub.remove();
+});
+```
+
+토큰이 있을 때만 프로필을 가져온다.
+
+```tsx
+useQuery({
+  queryKey: ['me'],
+  queryFn: () => api('/me', { token }),
+  enabled: !!token,
+});
+```
+
+| 상태 | UI |
+|------|----|
+| 최초 pending | 스켈레톤/스피너 |
+| error | 메시지 + 재시도 |
+| empty | 빈 화면 CTA |
+| 백그라운드 fetching | 리스트 유지 + 약한 인디케이터 |
+| mutation pending | 버튼 비활성 |
+
+에러를 `alert()`만으로 끝내지 않는다. 화면 폴백을 둔다.
+
+---
+
+## 4. 흔한 실수
+
+| 실수 | 대안 |
+|------|------|
+| 화면마다 `fetch` 복사 | `api()` 한 곳 |
+| 서버 데이터를 전역 Zustand에 복제 | Query 캐시가 원본 |
+| `queryKey`를 매번 다른 객체로 | 안정적 배열 `['posts', id]` |
+| 생성 후 목록이 안 바뀜 | `invalidateQueries` |
+| 비밀키를 `EXPO_PUBLIC_` | 서버만 보유 |
+| 401을 일반 에러 메시지로만 | 세션 정리 또는 갱신 |
+
+---
+
+## 5. 정리
+
+네트워크 층은 **얇은 `api()` + Query 훅**이면 된다. 화면은 pending/error/empty만 그린다.
+
+- 서버 상태와 UI 상태를 섞지 않는다.
+- 토큰은 헤더로만. 저장 위치는 SecureStore.
+- 무한 스크롤은 `useInfiniteQuery` + `onEndReached`.
+
+## 연습
+
+1. `api()`와 `ApiError`를 만든다.
+2. 게시글 목록 `useQuery`에 로딩·에러 UI를 붙인다.
+3. 생성 `useMutation` 후 목록을 invalidate한다.
+4. `useInfiniteQuery`와 FlatList를 연결한다.

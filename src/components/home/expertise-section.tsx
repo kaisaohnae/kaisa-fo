@@ -1,7 +1,6 @@
 'use client';
 
 import {useEffect, useRef, type ReactNode} from 'react';
-import {useLocale, useT} from '@/i18n/locale-context';
 
 const IconDesign = () => (
   <svg viewBox="0 0 64 64" fill="none" aria-hidden="true">
@@ -38,43 +37,38 @@ const IconPlan = () => (
 const EXPERTISE: {
   num: string;
   title: string;
-  subtitleKey: string;
-  descKey: string;
+  titleKo: string;
+  desc: string;
   tags: string[];
   icon: ReactNode;
 }[] = [
   {
     num: '01',
     title: 'Design',
-    subtitleKey: 'Design subtitle',
-    descKey:
-      'Centered on user experience — UI/UX, style guides, and visual direction. Beyond looking good, I build interfaces that feel good to use.',
+    titleKo: '디자인',
+    desc: '사용자 경험을 중심으로 UI/UX, 스타일 가이드, 비주얼 디렉션까지. 보기 좋은 것을 넘어, 쓰기 좋은 인터페이스를 만듭니다.',
     tags: ['UI / UX', 'Style Guide', 'Visual Direction', 'Responsive'],
-    icon: <IconDesign />
+    icon: <IconDesign />,
   },
   {
     num: '02',
     title: 'Develop',
-    subtitleKey: 'Develop subtitle',
-    descKey:
-      'Frontend, backend, infra, mobile, HMI. Spring, React, Android, iOS, React Native, Vue, C#, Next.js, OCPP, WebSocket — I build the service myself.',
+    titleKo: '개발',
+    desc: '프론트엔드, 백엔드, 인프라, 모바일, HMI. Spring, React, Android, IOS, React Native, Vue, C#, Next.js, OCPP, WebSocket — 서비스를 직접 구현합니다.',
     tags: ['Frontend', 'Backend', 'Mobile', 'DevOps', 'OCPP', 'WebSocket', 'HMI · C#'],
-    icon: <IconDevelop />
+    icon: <IconDevelop />,
   },
   {
     num: '03',
     title: 'Plan',
-    subtitleKey: 'Plan subtitle',
-    descKey:
-      'From requirements to architecture and project leadership — a product planner connecting tech and business.',
+    titleKo: '기획',
+    desc: '요구사항 분석부터 아키텍처 설계, 프로젝트 리딩까지. 기술과 비즈니스 사이를 연결하는 프로덕트 플래너입니다.',
     tags: ['Product Strategy', 'PM', 'Architecture', 'Tech Lead'],
-    icon: <IconPlan />
-  }
+    icon: <IconPlan />,
+  },
 ];
 
 export default function ExpertiseSection() {
-  const t = useT();
-  const locale = useLocale();
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -99,32 +93,37 @@ export default function ExpertiseSection() {
     <section ref={sectionRef} id="expertise" className="expertise">
       <div className="site-shell">
         <div className="section-header site-shell__inner">
-          <span className="section-header__label">{t('What I Do')}</span>
+          <span className="section-header__label">What I Do</span>
           <h2 className="section-header__title">
-            {t('Plan · Design · Develop')}
+            기획 · 디자인 · 개발
             <br />
-            <em>{t('In one flow')}</em>
+            <em>하나의 흐름으로</em>
           </h2>
-          <p className="section-header__desc">{t('I finish products end to end through one person’s lens.')}</p>
+          <p className="section-header__desc">
+            처음부터 끝까지 한 사람의 시선으로 프로덕트를 완성합니다.
+          </p>
         </div>
 
         <div className="expertise__grid site-shell__inner">
-          {EXPERTISE.map((item, idx) => (
-            <article key={item.num} className={`expertise__card reveal reveal--${idx + 1}`}>
-              <div className="expertise__icon">{item.icon}</div>
-              <span className="expertise__num">{item.num}</span>
-              <div className="expertise__head">
-                <h3 className="expertise__title">{item.title}</h3>
-                {locale !== 'en' ? <span className="expertise__title-ko">{t(item.subtitleKey)}</span> : null}
-              </div>
-              <p className="expertise__desc">{t(item.descKey)}</p>
-              <ul className="expertise__tags">
-                {item.tags.map(tag => (
-                  <li key={tag}>{tag}</li>
-                ))}
-              </ul>
-            </article>
-          ))}
+        {EXPERTISE.map((item, idx) => (
+          <article
+            key={item.num}
+            className={`expertise__card reveal reveal--${idx + 1}`}
+          >
+            <div className="expertise__icon">{item.icon}</div>
+            <span className="expertise__num">{item.num}</span>
+            <div className="expertise__head">
+              <h3 className="expertise__title">{item.title}</h3>
+              <span className="expertise__title-ko">{item.titleKo}</span>
+            </div>
+            <p className="expertise__desc">{item.desc}</p>
+            <ul className="expertise__tags">
+              {item.tags.map((tag) => (
+                <li key={tag}>{tag}</li>
+              ))}
+            </ul>
+          </article>
+        ))}
         </div>
       </div>
     </section>

@@ -1,0 +1,211 @@
+---
+slug: react-native-02
+order: 2
+category: react-native
+categoryLabel: React Native
+title: "컴포넌트·스타일·레이아웃 — Flex와 StyleSheet"
+summary: "View·Text·StyleSheet와 Flexbox로 화면을 배치하고, 웹 CSS와 다른 점을 기준으로 레이아웃을 익힌다."
+publishedAt: 2023-12-06
+tags: ["react-native"]
+---
+
+# 컴포넌트·스타일·레이아웃 — Flex와 StyleSheet
+
+> 요약: View·Text·StyleSheet와 Flexbox로 화면을 배치하고, 웹 CSS와 다른 점을 기준으로 레이아웃을 익힌다.
+
+---
+
+## 1. 왜 StyleSheet인가
+
+웹은 HTML + CSS다. React Native는 **컴포넌트 + 스타일 객체**다. 선택자, 캐스케이드, 클래스 조합이 없다.
+
+그래서 레이아웃은 Flexbox가 전부라고 봐도 된다. 그리드는 기본이 아니다. `display: block`도 없다. 모든 `View`가 이미 flex 컨테이너다.
+
+이 차이를 먼저 고정해야 카드, 헤더, 하단 버튼이 기대한 자리에 간다.
+
+---
+
+## 2. 핵심 개념
+
+| 컴포넌트 | 역할 | 웹 대응 |
+|----------|------|---------|
+| `View` | 컨테이너 | `div` |
+| `Text` | 텍스트. **필수** | `span` / `p` |
+| `Image` | 이미지 | `img` |
+| `Pressable` | 터치 | `button` |
+| `ScrollView` | 짧은 스크롤 | overflow 스크롤 |
+| `TextInput` | 입력 | `input` |
+| `FlatList` | 긴 리스트 | 가상화 리스트 |
+
+문자열은 반드시 `Text` 안에 둔다. `View` 직하 텍스트는 에러다.
+
+웹 CSS와 다른 점:
+
+- 단위는 **dp**(밀도 독립 픽셀). `px` 문자열을 쓰지 않는다. 숫자만 넣는다.
+- 기본 `flexDirection`은 **`column`**. 웹의 `row`가 아니다.
+- 스타일 상속은 거의 없다. `Text`가 부모 `Text`를 일부 물려받는 정도다.
+- 배열로 합친다: `style={[styles.card, compact && styles.compact]}`.
+
+화면 가장자리(노치, 홈 인디케이터)는 `SafeAreaView`로 피한다. `react-native-safe-area-context`가 사실상 필수다.
+
+---
+
+## 3. 예제
+
+버튼은 `Button`보다 `Pressable`을 쓴다. 스타일 여지가 크다.
+
+```tsx
+import { View, Text, Pressable, StyleSheet } from 'react-native';
+
+export function CounterButton({
+  onPress,
+  label,
+}: {
+  onPress: () => void;
+  label: string;
+}) {
+  return (
+    <Pressable
+      onPress={onPress}
+      style={({ pressed }) => [styles.btn, pressed && styles.pressed]}
+      accessibilityRole="button"
+      accessibilityLabel={label}
+    >
+      <Text style={styles.label}>{label}</Text>
+    </Pressable>
+  );
+}
+
+const styles = StyleSheet.create({
+  btn: {
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    borderRadius: 12,
+    backgroundColor: '#38bdf8',
+  },
+  pressed: { opacity: 0.8 },
+  label: { fontSize: 16, fontWeight: '600', color: '#0f172a' },
+});
+```
+
+가로 배치는 명시적으로 `row`를 켠다.
+
+```tsx
+const layout = StyleSheet.create({
+  row: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    gap: 8,
+  },
+  grow: { flex: 1 },
+  screen: { flex: 1 },
+});
+```
+
+- `justifyContent`: 주축
+- `alignItems`: 교차축
+- `flex: 1`: 부모가 높이를 가질 때 남은 공간
+
+이미지는 크기를 정해야 한다. 원격은 width/height가 없으면 안 보인다.
+
+```tsx
+import { Image } from 'expo-image';
+
+<Image
+  source="https://example.com/pic.jpg"
+  style={{ width: '100%', height: 200 }}
+  contentFit="cover"
+  transition={200}
+/>
+```
+
+로컬은 `require`다. 캐시·성능은 `expo-image`가 `Image`보다 낫다.
+
+```bash
+npx expo install expo-image
+```
+
+폼이 키보드에 가리면 `KeyboardAvoidingView`를 쓴다. iOS만 `padding`이 잘 맞는 경우가 많다.
+
+```tsx
+import { KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
+<SafeAreaView style={{ flex: 1 }}>
+  <KeyboardAvoidingView
+    style={{ flex: 1 }}
+    behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+  >
+    <ScrollView
+      contentContainerStyle={{ padding: 16 }}
+      keyboardShouldPersistTaps="handled"
+    >
+      {/* TextInput */}
+    </ScrollView>
+  </KeyboardAvoidingView>
+</SafeAreaView>
+```
+
+그림자는 플랫폼이 다르다.
+
+```tsx
+import { Platform, StyleSheet } from 'react-native';
+
+const shadow = StyleSheet.create({
+  box: Platform.select({
+    ios: {
+      shadowColor: '#000',
+      shadowOpacity: 0.15,
+      shadowRadius: 8,
+      shadowOffset: { width: 0, height: 4 },
+    },
+    android: { elevation: 4 },
+    default: {},
+  }),
+});
+```
+
+색과 간격은 토큰으로 모은다. 다크 모드·리브랜드가 쉬워진다.
+
+```tsx
+export const colors = {
+  bg: '#0f172a',
+  text: '#f8fafc',
+  primary: '#38bdf8',
+} as const;
+
+export const spacing = { sm: 8, md: 16, lg: 24 } as const;
+```
+
+터치 영역은 대략 44pt. NativeWind(Tailwind 문법)는 팀 합의 후다. 기본 학습은 StyleSheet이다.
+
+---
+
+## 4. 흔한 실수
+
+| 실수 | 대안 |
+|------|------|
+| `flexDirection`을 웹처럼 row로 가정 | 기본은 column. row는 명시 |
+| `ScrollView` + `map`으로 긴 목록 | `FlatList`. 다음 글 |
+| 원격 `Image`에 크기 없음 | width/height 또는 `expo-image` |
+| 루트에 `flex: 1` 없이 자식만 flex | 부모 높이부터 채운다 |
+| 노치를 `paddingTop: 40`으로 땜질 | `SafeAreaView` |
+| CSS처럼 자식이 폰트 상속 | 각 `Text`에 스타일을 준다 |
+
+---
+
+## 5. 정리
+
+RN 레이아웃은 CSS를 옮긴 것이 아니다. **숫자 단위 + column Flex + StyleSheet 배열**이 기본 문법이다.
+
+- `View`/`Text`/`Pressable`만으로 대부분의 화면을 만든다.
+- 화면 가득은 조상부터 `flex: 1`.
+- 플랫폼 차이는 `Platform.select`. 색은 토큰.
+
+## 연습
+
+1. 이미지·제목·가격·버튼이 있는 카드를 Flex로 만든다.
+2. `SafeAreaView`로 헤더 / 본문 / 하단 CTA를 나눈다.
+3. iOS·Android 그림자를 `Platform.select`로 맞춘다.
+4. `expo-image`로 원격 이미지를 표시한다.

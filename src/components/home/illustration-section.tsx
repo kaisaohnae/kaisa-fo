@@ -2,10 +2,8 @@
 
 import {useEffect, useRef} from 'react';
 import illustrationList from '@/data/illustration-list';
-import {useT} from '@/i18n/locale-context';
 
 export default function IllustrationSection() {
-  const t = useT();
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -30,9 +28,9 @@ export default function IllustrationSection() {
     <section id="illustration" ref={sectionRef} className="illustration-section">
       <div className="site-shell">
         <header className="page-hero site-shell__inner">
-          <span className="page-hero__label">{t('Gallery')}</span>
-          <h2 className="page-hero__title">{t('Illustration')}</h2>
-          <p className="page-hero__desc">{t('Drawings I made myself.')}</p>
+          <span className="page-hero__label">Gallery</span>
+          <h2 className="page-hero__title">Illustration</h2>
+          <p className="page-hero__desc">직접 그린 그림입니다</p>
         </header>
 
         <ul className="illustration-grid site-shell__inner">

@@ -1,0 +1,202 @@
+---
+slug: laravel-06
+order: 6
+category: laravel
+categoryLabel: Laravel
+title: "테스트 — PHPUnit, Pest, Feature 테스트"
+summary: "Pest는 PHPUnit 위에 읽기 쉬운 문법을 얹은 도구이고, Feature 테스트로 API와 권한을 먼저 고정한다."
+publishedAt: 2025-07-25
+tags: ["laravel"]
+---
+
+# 테스트 — PHPUnit, Pest, Feature 테스트
+
+> 요약: Pest는 PHPUnit 위에 읽기 쉬운 문법을 얹은 도구이고, Feature 테스트로 API와 권한을 먼저 고정한다.
+
+---
+
+## 1. 무엇을 테스트하나
+
+| 종류 | 용도 |
+|------|------|
+| **Unit** | 프레임워크를 거의 안 타는 순수 로직 |
+| **Feature** | HTTP + DB + 인증처럼 유스케이스 한 줄 |
+| Dusk | 실제 브라우저. 핵심 경로만 |
+
+Laravel에서 가성비가 좋은 층은 Feature다. “로그인하지 않으면 401”, “남의 글은 403”, “검증 실패는 422”처럼 **밖에서 관찰되는 행동**을 잠근다. 복잡한 요금 계산만 Unit으로 뺀다.
+
+```bash
+php artisan make:test PostApiTest
+php artisan make:test PostServiceTest --unit
+php artisan test
+```
+
+---
+
+## 2. Pest
+
+**Pest**는 PHPUnit 위에서 `it('...')` 문법으로 테스트를 쓰는 도구다. 러너는 PHPUnit이고, 단언(assert)도 같다. Laravel 신규 프로젝트에서 Pest를 기본으로 고르는 팀이 많다. PHPUnit 클래스 스타일과 섞어도 동작한다. 팀에서 하나만 정하면 된다.
+
+```bash
+composer require pestphp/pest pestphp/pest-plugin-laravel --dev
+php artisan pest:install
+./vendor/bin/pest
+```
+
+```php
+use App\Models\User;
+use App\Models\Post;
+use function Pest\Laravel\actingAs;
+use function Pest\Laravel\getJson;
+use function Pest\Laravel\putJson;
+
+it('lists published posts only', function () {
+    Post::factory()->published()->count(3)->create();
+    Post::factory()->count(2)->create();
+
+    getJson('/api/posts')
+        ->assertOk()
+        ->assertJsonCount(3, 'data');
+});
+
+it('forbids updating another users post', function () {
+    $author = User::factory()->create();
+    $other = User::factory()->create();
+    $post = Post::factory()->for($author)->create();
+
+    actingAs($other)
+        ->putJson("/api/posts/{$post->id}", ['title' => 'Hack'])
+        ->assertForbidden();
+});
+```
+
+테스트 이름은 구현이 아니라 **비즈니스 문장**이 좋다. `it('calls update on repository')`보다 `it('forbids updating another users post')`가 실패 로그에서 의미가 있다.
+
+---
+
+## 3. HTTP 단언
+
+```php
+$response->assertOk();
+$response->assertCreated();
+$response->assertNoContent();
+$response->assertUnauthorized();
+$response->assertForbidden();
+$response->assertUnprocessable();
+$response->assertJsonPath('data.email', 'a@b.com');
+$response->assertJsonStructure(['data' => [['id', 'title']]]);
+$response->assertJsonValidationErrors(['email']);
+```
+
+상태 코드만 보고 본문을 안 보면, 200이면서 빈 `data`인 회귀를 놓친다. 계약에 있는 키는 `assertJsonPath`로 한두 개만이라도 고정한다.
+
+---
+
+## 4. DB와 Factory
+
+```php
+uses(RefreshDatabase::class);
+```
+
+**RefreshDatabase**는 테스트마다 마이그레이션으로 DB를 깨끗한 상태로 돌린다. 테스트가 서로를 더럽히지 않게 하는 기본값이다. 느리면 `DatabaseTransactions`나 `php artisan test --parallel`을 검토한다.
+
+데이터는 Factory로 만든다. 테스트 안에 `User::create(['email' => 'a@b.com', ...])`를 나열하면 컬럼이 늘 때마다 전부 고친다. 3편의 `published()` state가 여기 쓰인다.
+
+운영 DB를 테스트가 건드리면 안 된다. `phpunit.xml`의 `APP_ENV=testing`과 별도 SQLite/테스트 DB를 확인한다.
+
+---
+
+## 5. 인증 헬퍼
+
+세션 가드와 Sanctum 가드를 헷갈리면 “앱에서는 되는데 테스트만 401”이 난다.
+
+```php
+actingAs($user);
+actingAs($user, 'sanctum');
+```
+
+토큰을 실제로 붙이려면:
+
+```php
+$token = $user->createToken('test')->plainTextToken;
+
+$this->withToken($token)->getJson('/api/me')->assertOk();
+```
+
+---
+
+## 6. 시간·이벤트·큐·외부 HTTP
+
+시간은 `now()`에 의존하면 CI에서 가끔 실패한다. Carbon으로 고정한다.
+
+```php
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Event;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Queue;
+
+it('sets published_at when publishing', function () {
+    Carbon::setTestNow('2026-01-01 12:00:00');
+    // ...
+});
+
+Event::fake([PostPublished::class]);
+Queue::fake();
+Notification::fake();
+
+Event::assertDispatched(PostPublished::class);
+Queue::assertPushed(SendWelcomeEmail::class);
+Notification::assertSentTo($user, WelcomeNotification::class);
+
+Http::fake([
+    'pay.example.com/*' => Http::response(['ok' => true], 200),
+]);
+```
+
+메일·결제 네트워크를 테스트가 치면 느리고 flaky하다. `Http::fake()` / `Queue::fake()`가 기본이다. 큐 워커까지 진짜로 돌리는 테스트는 소수만 둔다.
+
+---
+
+## 7. 인가는 네 줄이면 회귀를 막는다
+
+한 리소스에 아래만 있어도 보안 구멍이 다시 열리기 어렵다.
+
+- guest → 401
+- 다른 사용자 → 403
+- 소유자 → 200
+- 관리자 → 200 (역할이 있다면)
+
+미들웨어 `auth`만 있고 Policy 테스트가 없으면, 인증된 아무나 통과하는 코드를 머지해도 초록불이 유지된다.
+
+---
+
+## 8. 테스트 환경
+
+`phpunit.xml` 또는 `Pest.php`에서:
+
+- `APP_ENV=testing`
+- SQLite `:memory:` 또는 전용 DB
+- `MAIL_MAILER=array`
+- `QUEUE_CONNECTION=sync` (또는 테스트에서 fake)
+
+`.env.testing`을 두는 팀도 있다. 로컬 `.env`의 Redis·실메일 설정이 테스트에 새어 들면 안 된다.
+
+---
+
+## 9. 흔한 실수
+
+- private 메서드를 리플렉션으로 테스트한다. 공개 행동만 본다.
+- 한 `it`에 생성·수정·삭제·권한을 다 넣는다. 실패 지점이 안 보인다.
+- `sleep`이나 실제 시계에 의존한다.
+- Factory 없이 하드코딩 insert를 반복한다.
+- 외부 결제 URL을 테스트가 호출한다.
+
+---
+
+## 연습
+
+1. 게시글 생성 성공(201)과 검증 실패(422) Feature 테스트를 작성한다.
+2. 타인 수정 403을 고정한다.
+3. `Http::fake`로 결제 클라이언트를 고립한다.
+4. `Queue::fake`로 환영 메일 Job이 쌓이는지 확인한다.

@@ -1,0 +1,155 @@
+---
+slug: nginx-01
+order: 1
+category: nginx
+categoryLabel: Nginx
+title: "Nginx 리버스 프록시 기초"
+summary: "브라우저와 앱 서버 사이에 Nginx를 두고, 정적 파일은 직접 주고 API는 내부 포트로 넘기는 최소 구성을 만든다."
+publishedAt: 2023-02-07
+tags: ["nginx"]
+---
+
+# Nginx 리버스 프록시 기초
+
+> 요약: 브라우저와 앱 서버 사이에 Nginx를 두고, 정적 파일은 직접 주고 API는 내부 포트로 넘기는 최소 구성을 만든다.
+
+---
+
+## 언제 Nginx를 앞에 두는가
+
+브라우저가 Node·Java·PHP-FPM 같은 앱 서버에 직접 붙지 않게 할 때 Nginx를 앞단에 둔다. 바깥에는 80/443만 열고, 앱은 `127.0.0.1:3000`처럼 내부 포트만 연다.
+
+리버스 프록시는 “뒤에서 오는 요청을 대신 받아 앱에 넘기는” 역할이다. 포워드 프록시(클라이언트가 밖으로 나갈 때 거치는 프록시)와 반대 방향이다.
+
+이 구성에서 Nginx가 맡는 일은 세 가지이다. 호스트 이름과 포트를 한곳에서 받는다. CSS·이미지 같은 정적 파일은 앱을 거치지 않는다. 타임아웃과 헤더를 앞단에서 고정한다.
+
+---
+
+## 요청이 앱으로 가는 최소 블록
+
+`server`는 가상 호스트이다. `listen`과 `server_name`이 맞으면 그 블록이 요청을 받는다. `location /`는 나머지 경로를 앱으로 넘긴다.
+
+```nginx
+server {
+    listen 80;
+    server_name example.com;
+
+    location / {
+        proxy_pass http://127.0.0.1:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+```
+
+`proxy_pass`만 넣고 헤더를 안 바꾸면 앱은 자기 자신을 `127.0.0.1`로 알게 된다. 리다이렉트 URL과 쿠키 도메인이 틀린다.
+
+| 헤더 | 앱이 알게 되는 값 |
+|------|-------------------|
+| `Host` | 브라우저가 요청한 호스트. 가상호스트·절대 URL 생성 |
+| `X-Real-IP` | 클라이언트 IP 한 개 |
+| `X-Forwarded-For` | 프록시를 거친 IP 목록. 맨 앞이 원 IP인 경우가 많다 |
+| `X-Forwarded-Proto` | `http` 또는 `https`. 앱이 링크 스킴을 맞출 때 쓴다 |
+
+앱이 이 헤더를 신뢰하는지는 프레임워크 설정을 확인한다. 아무 호스트나 넘기면 호스트 헤더 공격에 열린다. `server_name`을 실제 도메인으로 제한한다.
+
+---
+
+## 정적 파일과 앱을 나눈다
+
+`/assets/`는 디스크에서 바로 주고, 나머지는 앱으로 보낸다. 앱이 이미지 요청마다 깨어날 필요가 없다.
+
+```nginx
+server {
+    listen 80;
+    server_name example.com;
+    root /var/www/app;
+
+    location /assets/ {
+        alias /var/www/app/assets/;
+        expires 7d;
+        access_log off;
+    }
+
+    location / {
+        proxy_pass http://127.0.0.1:3000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
+```
+
+`alias`는 location 경로를 파일 경로로 바꾼다. `root`는 location을 root 아래에 이어 붙인다. `/assets/app.css`를 `alias /var/www/app/assets/`에 매면 파일은 `/var/www/app/assets/app.css`이다. `root`와 `alias`를 같은 location에 섞지 않는다.
+
+location은 더 구체적인 쪽이 이긴다. `^~ /assets/`처럼 접두 우선을 주면 정규식 location에 빼앗기지 않는다. 의도치 않게 정적 요청이 앱으로 들어가면 이 우선순위를 의심한다.
+
+| 접두 | 의미 |
+|------|------|
+| `=` | 경로가 정확히 같을 때만 |
+| `^~` | 이 접두가 이긴다. 정규식보다 앞선다 |
+| 접두 문자열 | 가장 긴 접두가 후보 |
+| `~` / `~*` | 정규식. `~*`는 대소문자 무시 |
+
+앱 포트가 여러 개이면 `upstream`에 이름을 붙인다. `proxy_pass`가 주소를 반복하지 않는다.
+
+```nginx
+upstream app {
+    server 127.0.0.1:3000;
+}
+
+server {
+    listen 80;
+    server_name example.com;
+
+    location / {
+        proxy_pass http://app;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+}
+```
+
+`proxy_pass http://app`처럼 변수·이름이 들어가면 URI를 그대로 넘긴다. location 경로를 잘라 붙이는 치환이 일어나지 않는다.
+
+---
+
+## 적용 전에 문법부터 본다
+
+```bash
+sudo nginx -t
+sudo systemctl reload nginx
+curl -I http://127.0.0.1/
+```
+
+`-t`는 설정 파일 문법과 경로를 검사한다. 실패하면 reload하지 않는다. 잘못된 설정으로 reload하면 사이트가 통째로 죽을 수 있다.
+
+`curl -I`로 상태 코드와 `Server` 헤더를 본다. 앱이 아니라 Nginx가 응답하는지가 첫 확인이다. `502`면 업스트림(앱)이 꺼졌거나 포트가 틀린다. `404`면 location이 파일을 못 찾는다.
+
+---
+
+## 흔한 실수
+
+- `proxy_pass` 뒤에 경로를 붙인다. `proxy_pass http://127.0.0.1:3000/;`처럼 슬래시가 있으면 location 치환 규칙이 달라진다. 앱 루트로 통째로 넘기면 슬래시 없이 호스트만 둔다.
+- `Host`를 넘기지 않아 앱이 내부 호스트로 리다이렉트한다.
+- `alias` 끝에 `/`가 없어 파일 경로가 이어 붙는다. location과 alias의 슬래시를 짝맞춘다.
+- `nginx -t` 없이 reload한다. 문법 오류가 운영 프로세스에 들어간다.
+- `server_name`을 `_`만 두고 여러 사이트가 한 블록으로 들어온다. 도메인을 명시한다.
+
+---
+
+## 정리
+
+Nginx 첫 목표는 튜닝이 아니다. 바깥 요청을 받아 Host와 Forwarded 헤더를 채우고, 정적과 동적을 갈라 앱에 넘기는 일이다. 이 세 줄이 맞으면 TLS(전송 계층 보안)와 타임아웃은 그다음에 얹으면 된다.
+
+---
+
+## 연습
+
+1. 로컬에서 앱을 3000 포트로 띄우고, 위 `server` 블록으로 80 포트에서 같은 페이지가 열리는지 `curl -I`로 확인한다.
+2. `Host` 헤더를 주석 처리한 뒤 앱이 만드는 리다이렉트 Location이 어떻게 바뀌는지 비교한다.
+3. `/assets/test.css` 파일을 디스크에 두고, 그 경로가 앱 로그에 안 찍히고 Nginx가 200을 주는지 확인한다.

@@ -1,0 +1,158 @@
+---
+slug: react-native-09
+order: 9
+category: react-native
+categoryLabel: React Native
+title: "테스트·디버깅·성능"
+summary: "테스트·디버깅·성능 점검을 체크리스트로 두고, 각 항목이 필요한 이유를 한 줄로 적는다."
+publishedAt: 2026-07-16
+tags: ["react-native"]
+---
+
+# 테스트·디버깅·성능
+
+> 요약: 테스트·디버깅·성능 점검을 체크리스트로 두고, 각 항목이 필요한 이유를 한 줄로 적는다.
+
+---
+
+## 1. 왜 측정과 테스트가 먼저인가
+
+버벅임은 느낌으로 고치면 잘못된 곳을 `memo`하게 된다. 크래시는 스토어 리뷰로 드러난다. 로그인·결제처럼 돈과 세션이 걸린 흐름은 자동화하지 않으면 회귀한다.
+
+RN은 단위 테스트(Jest)와 사용자 관점 컴포넌트 테스트(Testing Library), 기기 E2E(Maestro 등)를 나눈다. 전부 같은 비중일 필요는 없다. **핵심 폼과 리스트**부터 둔다.
+
+---
+
+## 2. 핵심 개념
+
+| 종류 | 도구 | 왜 |
+|------|------|----|
+| 단위 | Jest + Testing Library | 포맷터·훅·검증 로직이 깨져도 화면을 안 켠다 |
+| 컴포넌트 | `@testing-library/react-native` | 사용자가 보는 라벨·버튼 기준으로 회귀를 잡는다 |
+| E2E | Maestro / Detox | 로그인→홈처럼 OS와 네이티브가 섞인 길을 확인한다 |
+
+쿼리는 접근성 역할/라벨이 먼저다. `testID`는 최후다. 접근성 라벨이 테스트와 스크린 리더를 동시에 받쳐 준다.
+
+Query 테스트는 `retry: false`인 전용 `QueryClient`로 감싼다. SecureStore와 `fetch`는 mock한다. 실제 키체인을 치면 CI가 실패한다.
+
+성능은 JS FPS / UI FPS를 본 다음 리스트 가상화, 이미지 크기, 리렌더 순으로 간다.
+
+---
+
+## 3. 예제
+
+```bash
+npx expo install jest-expo @testing-library/react-native --dev
+```
+
+```tsx
+import { render, screen, userEvent } from '@testing-library/react-native';
+import { LoginForm } from '../LoginForm';
+
+test('validates email', async () => {
+  const user = userEvent.setup();
+  const onSubmit = jest.fn();
+
+  render(<LoginForm onSubmit={onSubmit} />);
+
+  await user.type(screen.getByPlaceholderText('email'), 'not-an-email');
+  await user.type(screen.getByPlaceholderText('password'), 'password123');
+  await user.press(screen.getByText('로그인'));
+
+  expect(screen.getByText(/이메일/i)).toBeTruthy();
+  expect(onSubmit).not.toHaveBeenCalled();
+});
+```
+
+```tsx
+<Pressable accessibilityRole="button" accessibilityLabel="장바구니 담기" />
+```
+
+```tsx
+jest.mock('expo-secure-store', () => ({
+  getItemAsync: jest.fn(),
+  setItemAsync: jest.fn(),
+  deleteItemAsync: jest.fn(),
+}));
+```
+
+Maestro 스케치:
+
+```yaml
+appId: com.example.myapp
+---
+- launchApp
+- tapOn: '로그인'
+- inputText: 'user@example.com'
+- tapOn: '제출'
+- assertVisible: '홈'
+```
+
+디버깅은 React Native DevTools가 기본이다. `console.log` 남발 대신 개발 전용 API 로거. 크래시는 Sentry. minified 스택이면 소스맵이 있는 빌드 프로파일을 쓴다.
+
+셀렉터로 구독 범위를 줄인다.
+
+```tsx
+const count = useCart((s) => s.items[id] ?? 0);
+```
+
+```bash
+npx expo export --dump-sourcemap
+npx expo install @sentry/react-native
+```
+
+---
+
+## 4. 흔한 실수
+
+| 실수 | 왜 문제인가 |
+|------|-------------|
+| 구현 디테일에 묶인 testID만 | 라벨이 바뀌면 사용자는 못 누르는데 테스트는 통과한다 |
+| 의심부터 `React.memo` | 병목이 리스트·이미지인데 렌더만 감싼다 |
+| `ScrollView` + map을 성능 이슈로 안 봄 | 아이템 수에 비례해 JS/네이티브 뷰가 늘어 스크롤이 끊긴다 |
+| 프로덕션에 토큰 로그 | 리뷰·인시던트 때 비밀이 유출된다 |
+| E2E만 있고 단위 테스트 없음 | 실패 위치가 기기·네트워크·UI 중 어디인지 안 갈린다 |
+
+---
+
+## 5. 정리 — 체크리스트
+
+각 항목은 **한 줄 이유**다. 통과/미통과만 표시한다.
+
+### 테스트
+
+- [ ] LoginForm 성공/실패 테스트 — 인증 진입점이 깨지면 앱 전체가 막힌다
+- [ ] 쿼리를 역할·라벨로 작성 — 스크린 리더와 테스트가 같은 이름을 쓴다
+- [ ] SecureStore·fetch mock — CI가 실기기 키체인에 의존하지 않는다
+- [ ] QueryClient `retry: false` — 실패한 테스트가 재시도로 느려지지 않는다
+- [ ] 핵심 플로우 E2E 하나 — 로그인→홈은 단위 테스트가 못 대신한다
+
+### 디버깅·관측
+
+- [ ] RN DevTools로 재현 — 추측 로그보다 컴포넌트 트리가 빠르다
+- [ ] 개발만 네트워크 로그 — 프로덕션 로그에 헤더·바디가 남으면 사고다
+- [ ] Sentry + 릴리즈 매핑 — 스토어 빌드 크래시를 버전과 연결해야 고친다
+- [ ] 브레드크럼에 화면·API 실패 — 크래시 직전 사용자 길을 복원한다
+- [ ] PII 스크러빙 — 이메일·토큰이 이슈 트래커에 쌓이면 규정 문제가 된다
+
+### 성능
+
+- [ ] 먼저 FPS를 본다 — 최적화 대상이 JS인지 UI 스레드인지 갈린다
+- [ ] FlatList/FlashList — 긴 목록을 한 번에 마운트하지 않는다
+- [ ] `keyExtractor`에 안정 id — index 키는 삽입 시 행을 잘못 재사용한다
+- [ ] 행 `memo` — 부모 리렌더가 보이는 행까지 흔들지 않게 한다
+- [ ] `expo-image` + 크기 — 원본 해상도 디코드가 스크롤을 끊는다
+- [ ] Reanimated는 UI 스레드 — `setState` 애니메이션은 JS를 막는다
+- [ ] barrel `index.ts` 과다 금지 — 쓰지도 않는 모듈이 기동 번들에 들어간다
+- [ ] 스플래시에 필수 데이터만 — 기동 때 전부 fetch하면 첫 화면이 늦다
+- [ ] `useCallback`/`memo`는 측정 후 — 모든 콜백을 감싸면 읽기만 어려워진다
+
+Hermes는 Expo 기본에 가깝다. 끄지 않는다.
+
+## 연습
+
+1. LoginForm 단위 테스트 2개(성공/실패)를 작성한다.
+2. SecureStore·fetch를 mock한 Auth 훅 테스트를 만든다.
+3. 리스트 행을 `memo`하고 스크롤을 비교한다.
+4. (선택) Maestro로 로그인→홈을 자동화한다.
+5. 위 체크리스트를 통과/미통과로 표시한다.

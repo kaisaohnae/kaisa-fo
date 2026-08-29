@@ -1,0 +1,178 @@
+---
+slug: react-native-01
+order: 1
+category: react-native
+categoryLabel: React Native
+title: "React Native와 Expo로 시작하기"
+summary: "Expo와 TypeScript로 React Native 프로젝트를 만들고, 첫 화면이 뜨기까지의 기본 지도를 잡는다."
+publishedAt: 2023-05-30
+tags: ["react-native"]
+---
+
+# React Native와 Expo로 시작하기
+
+> 요약: Expo와 TypeScript로 React Native 프로젝트를 만들고, 첫 화면이 뜨기까지의 기본 지도를 잡는다.
+
+---
+
+## 1. 왜 Expo로 시작하나
+
+React Native는 JavaScript/TypeScript로 **iOS·Android 네이티브 UI**를 만드는 프레임워크다. 웹의 DOM 대신 네이티브 뷰를 그린다. 컴포넌트·훅·상태 모델은 React와 같다.
+
+**Expo**는 그 위에 올라가는 개발·빌드·배포 툴체인이다. 네이티브 프로젝트를 직접 만지지 않고도 앱을 만들고, 나중에 스토어 빌드까지 이어갈 수 있다.
+
+지금은 Expo가 “토이 전용”이 아니다. 학습과 프로덕션 모두 **Expo + TypeScript**를 기본선으로 둔다.
+
+| 구분 | React (웹) | React Native |
+|------|------------|--------------|
+| 렌더 | HTML/CSS | 네이티브 뷰 |
+| 스타일 | CSS | StyleSheet + Flex |
+| 라우팅 | react-router 등 | Expo Router |
+| 번들 | Vite/Webpack | Metro |
+
+---
+
+## 2. 핵심 개념
+
+**Managed Expo**가 기본이다. 네이티브 폴더(`ios/`, `android/`)를 직접 관리하지 않는다. 커스텀 네이티브가 필요하면 config plugin과 prebuild로 확장한다.
+
+| 항목 | Expo | Bare CLI |
+|------|------|----------|
+| 시작 | 빠르다 | 느리다 |
+| 스토어 빌드 | EAS Build | Xcode/Gradle 직접 |
+| JS 핫픽스 | EAS Update | 직접 구성 |
+| 네이티브 모듈 | config plugin | 수동 연동 |
+
+**EAS**(Expo Application Services)는 Expo의 클라우드 빌드·제출·업데이트 서비스다. 지금은 “나중에 쓴다” 정도만 기억하면 된다. 배포 문에서 다룬다.
+
+New Architecture는 최근 Expo SDK에서 기본/권장이다.
+
+- **Fabric**: 새 렌더러
+- **TurboModules**: 네이티브 모듈 호출
+- **JSI**: JS와 네이티브의 저수준 연결
+
+브릿지 병목이 줄었다는 점만 알면 시작에는 충분하다.
+
+---
+
+## 3. 예제
+
+환경: Node.js LTS(20+), Git, Android Studio 또는 Xcode(macOS). 실기기는 **Expo Go** 앱으로 바로 실행할 수 있다.
+
+```bash
+npx create-expo-app@latest my-app --template tabs
+cd my-app
+npx expo start
+```
+
+TypeScript + Expo Router 템플릿을 고른다. `tabs`가 그 조합이다.
+
+```
+app/                 # 파일 기반 라우팅
+├── _layout.tsx
+├── index.tsx
+├── (tabs)/
+└── +not-found.tsx
+components/
+hooks/
+assets/
+app.json
+```
+
+`app.json`의 핵심만 맞춘다.
+
+```json
+{
+  "expo": {
+    "name": "MyApp",
+    "slug": "my-app",
+    "scheme": "myapp",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "platforms": ["ios", "android"]
+  }
+}
+```
+
+첫 화면은 `View`와 `Text`다. 웹의 `div`/`span`에 가깝다. `className`은 기본이 아니다.
+
+```tsx
+// app/index.tsx
+import { Text, View, StyleSheet } from 'react-native';
+
+export default function HomeScreen() {
+  return (
+    <View style={styles.container}>
+      <Text style={styles.title}>Hello, React Native</Text>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#0f172a',
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: '700',
+    color: '#f8fafc',
+  },
+});
+```
+
+개발 루프:
+
+```bash
+npx expo start
+# a: Android / i: iOS / w: web
+# r: reload
+```
+
+저장하면 Fast Refresh가 반영한다. 실기기는 같은 Wi-Fi, 안 되면 tunnel 모드를 쓴다.
+
+TypeScript는 props·API·라우트 파라미터에 타입을 거는 용도다.
+
+```tsx
+type User = {
+  id: string;
+  name: string;
+};
+
+function greet(user: User): string {
+  return `Hi, ${user.name}`;
+}
+```
+
+---
+
+## 4. 흔한 실수
+
+| 실수 | 대안 |
+|------|------|
+| Bare CLI부터 시작 | 먼저 Expo. 막힐 때만 prebuild |
+| 웹처럼 `div`/`span` | `View`/`Text`. 문자열은 반드시 `Text` 안 |
+| CSS 파일·className | `StyleSheet`. NativeWind는 팀 합의 후 |
+| `ios/`/`android/`를 바로 커밋 | managed를 유지. 필요 시 CNG/prebuild |
+| 시크릿을 `app.json`에 넣기 | `EXPO_PUBLIC_*`만 클라이언트. 비밀은 서버 |
+
+웹 CSS 감각을 그대로 가져오면 레이아웃이 깨진다. Flex 기본 방향이 **세로(`column`)** 인 점부터 다시 익힌다. 다음 글에서 다룬다.
+
+---
+
+## 5. 정리
+
+React Native 시작은 네이티브 프로젝트 생성이 아니다. **Expo + TypeScript + Expo Router**로 실행 루프를 고정하는 일이다.
+
+- Expo는 RN 툴체인이다. 나중에 EAS로 빌드·OTA를 붙인다.
+- 화면은 네이티브 뷰다. HTML/CSS가 아니다.
+- New Architecture는 켜 두고, 세부 API는 필요할 때 본다.
+
+## 연습
+
+1. Expo 프로젝트를 만들고 에뮬레이터 또는 실기기에서 실행한다.
+2. 홈 화면에 앱 이름과 버전 텍스트를 표시한다.
+3. `app.json`의 `name`, `scheme`을 바꾸고 반영을 확인한다.
+4. `User` 타입과 그 값을 그리는 작은 컴포넌트를 만든다.

@@ -1,0 +1,274 @@
+---
+slug: spring-boot-04
+order: 4
+category: spring-boot
+categoryLabel: Spring Boot
+title: "Spring Data JPA와 영속성 계층"
+summary: "JPA 엔티티와 트랜잭션 경계를 명확히 하고, N+1·OSIV·스키마 마이그레이션 함정을 피한다."
+publishedAt: 2024-12-04
+tags: ["spring-boot"]
+---
+
+# Spring Data JPA와 영속성 계층
+
+> 요약: JPA 엔티티와 트랜잭션 경계를 명확히 하고, N+1·OSIV·스키마 마이그레이션 함정을 피한다.
+
+---
+
+## 1. 왜 JPA인가
+
+**JPA(Jakarta Persistence API)** 는 객체를 테이블에 매핑하는 표준이다. Hibernate가 구현체고, Spring Data JPA는 리포지토리 인터페이스로 반복 쿼리를 줄인다.
+
+| 계층 | 책임 |
+|------|------|
+| Entity | 상태와 불변식 |
+| Repository | 영속성 추상화 |
+| Service (`@Transactional`) | 유스케이스 단위 트랜잭션 |
+| Controller | HTTP만 |
+
+컨트롤러에 `save`를 두거나, 리포지토리에 비즈니스 분기를 넣지 않는다.
+
+---
+
+## 2. 엔티티
+
+기본 생성자는 JPA용으로 `protected`, 변경은 setter 대신 도메인 메서드로 둔다.
+
+```java
+@Entity
+@Table(name = "users")
+@EntityListeners(AuditingEntityListener.class)
+public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false, unique = true, length = 100)
+    private String email;
+
+    @Column(nullable = false, length = 50)
+    private String name;
+
+    @CreatedDate
+    @Column(nullable = false, updatable = false)
+    private Instant createdAt;
+
+    @LastModifiedDate
+    private Instant updatedAt;
+
+    protected User() {}
+
+    public static User create(String email, String name) {
+        User user = new User();
+        user.email = email;
+        user.name = name;
+        return user;
+    }
+
+    public void rename(String name) {
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("name required");
+        }
+        this.name = name;
+    }
+}
+```
+
+`@EnableJpaAuditing`을 켜야 `@CreatedDate`가 동작한다. `equals`/`hashCode`를 전 필드 Lombok으로 만들면 영속 전후 동등성이 깨지기 쉽다. 식별자 기준으로 신중히 구현한다.
+
+공통 시각 필드는 `@MappedSuperclass`로 빼고, 소프트 삭제는 `deletedAt` 또는 Hibernate `@SoftDelete`로 명시한다.
+
+---
+
+## 3. 리포지토리
+
+파생 메서드 → JPQL `@Query` → `Specification` / QueryDSL 순으로 복잡도를 올린다.
+
+```java
+public interface UserRepository extends JpaRepository<User, Long> {
+    Optional<User> findByEmail(String email);
+    boolean existsByEmail(String email);
+
+    @Query("select u from User u where u.name like %:keyword%")
+    List<User> searchByName(@Param("keyword") String keyword);
+
+    @Modifying(clearAutomatically = true, flushAutomatically = true)
+    @Query("update User u set u.name = :name where u.id = :id")
+    int rename(@Param("id") Long id, @Param("name") String name);
+}
+```
+
+벌크 `@Modifying`은 영속성 컨텍스트를 건너뛴다. `clearAutomatically` 없이 같은 트랜잭션에서 엔티티를 다시 쓰면 DB와 객체가 어긋난다.
+
+---
+
+## 4. 트랜잭션
+
+한 줄 정의: 트랜잭션은 **한 유스케이스가 전부 성공하거나 전부 롤백**되는 경계다. 클래스를 `readOnly = true`로 두고 쓰기 메서드만 `@Transactional`을 연다.
+
+```java
+@Service
+@Transactional(readOnly = true)
+public class UserService {
+
+    private final UserRepository userRepository;
+
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    public UserResponse get(Long id) {
+        return userRepository.findById(id)
+                .map(UserMapper::toResponse)
+                .orElseThrow(() -> new UserNotFoundException(id));
+    }
+
+    @Transactional
+    public UserResponse create(CreateUserRequest request) {
+        if (userRepository.existsByEmail(request.email())) {
+            throw new DuplicateEmailException(request.email());
+        }
+        User saved = userRepository.save(User.create(request.email(), request.name()));
+        return UserMapper.toResponse(saved);
+    }
+}
+```
+
+전파·격리 수준은 기본값으로 대부분 충분하다. 긴 트랜잭션 안에서 외부 HTTP를 호출하면 커넥션을 붙잡은 채 대기한다.
+
+---
+
+## 5. 연관과 지연 로딩
+
+연관은 **LAZY**가 기본 전략이다. `EAGER`는 목록 조회마다 조인이 붙는 사고의 주범이다.
+
+```java
+@ManyToOne(fetch = FetchType.LAZY, optional = false)
+@JoinColumn(name = "user_id")
+private User user;
+
+@OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
+private List<OrderLine> lines = new ArrayList<>();
+
+public void addLine(OrderLine line) {
+    lines.add(line);
+    line.setOrder(this);
+}
+```
+
+양방향은 편의 메서드로 양쪽을 맞춘다.
+
+---
+
+## 6. N+1과 OSIV
+
+**N+1**: 목록 1번 조회 후 연관에 접근할 때마다 쿼리가 N번 더 나간다.
+
+```java
+@Query("select o from Order o join fetch o.user where o.id = :id")
+Optional<Order> findWithUser(@Param("id") Long id);
+
+@EntityGraph(attributePaths = {"lines"})
+Optional<Order> findWithLinesById(Long id);
+
+@Query("""
+        select new com.example.demo.order.OrderSummary(o.id, u.email, o.totalAmount)
+        from Order o join o.user u
+        where o.status = :status
+        """)
+List<OrderSummary> findSummaries(OrderStatus status);
+```
+
+읽기 전용 화면에 DTO 프로젝션이 가장 싸다. fetch join은 컬렉션을 두 개 이상 동시에 끌어오면 카테시안 곱이 난다.
+
+**OSIV(Open Session In View)** 는 뷰 렌더까지 영속성 컨텍스트를 열어 두는 설정이다. Boot 기본은 `true`이고, 운영은 `false`를 권장한다. 컨트롤러에서 지연 로딩이 터지면 쿼리를 고친다.
+
+```yaml
+spring:
+  jpa:
+    open-in-view: false
+```
+
+---
+
+## 7. Flyway와 낙관적 락
+
+`ddl-auto: update`는 로컬 실험용이다. 운영 스키마의 진실은 **Flyway/Liquibase 마이그레이션 파일**이다.
+
+```yaml
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    enabled: true
+```
+
+```
+db/migration/
+  V1__create_users.sql
+```
+
+```sql
+CREATE TABLE users (
+    id BIGSERIAL PRIMARY KEY,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    name VARCHAR(50) NOT NULL,
+    created_at TIMESTAMPTZ NOT NULL,
+    updated_at TIMESTAMPTZ
+);
+```
+
+동시 수정 충돌은 `@Version` 낙관적 락으로 잡는다. 실패 시 `OptimisticLockException` → 409 또는 재조회 후 재시도.
+
+```java
+@Version
+private Long version;
+```
+
+---
+
+## 8. 로컬에서 SQL 보기
+
+```yaml
+spring:
+  datasource:
+    hikari:
+      maximum-pool-size: 10
+      connection-timeout: 3000
+  jpa:
+    properties:
+      hibernate:
+        jdbc.batch_size: 50
+        order_inserts: true
+        order_updates: true
+
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.orm.jdbc.bind: TRACE
+```
+
+`show-sql=true`만으로는 바인딩 파라미터가 안 보인다. Hibernate 6 로거는 `orm.jdbc.bind`다.
+
+---
+
+## 9. 흔한 실수
+
+| 실수 | 대안 |
+|------|------|
+| 전역 `EAGER` | LAZY + 필요한 조회만 fetch/DTO |
+| OSIV에 의존 | `open-in-view: false` + 명시 조회 |
+| `ddl-auto: update` 운영 | Flyway + `validate` |
+| 트랜잭션 안에서 외부 API | 커밋 후 이벤트/아웃박스 |
+| 벌크 업데이트 후 엔티티 재사용 | clear/flush 또는 재조회 |
+
+---
+
+## 연습
+
+1. `User` 1:N `Post` 엔티티와 리포지토리를 만든다.
+2. 목록 + 작성자 이메일을 fetch join 또는 DTO로 N+1 없이 조회한다.
+3. Flyway로 테이블을 만들고 `ddl-auto: validate`로 맞춘다.
+4. `open-in-view: false`에서 지연 로딩 예외가 안 나는지 확인한다.

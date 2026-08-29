@@ -3,7 +3,6 @@
 import {useEffect, useRef} from 'react';
 import WorkGrid from '@/components/works/work-grid';
 import worksList from '@/data/works-list';
-import {useT} from '@/i18n/locale-context';
 
 const WORKS_TAGS = [
   'OCPP 1.6',
@@ -25,11 +24,10 @@ const WORKS_TAGS = [
   'Vue',
   'Spring Boot',
   'Java',
-  'WPF'
+  'WPF',
 ] as const;
 
 export default function WorksSection() {
-  const t = useT();
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -54,11 +52,13 @@ export default function WorksSection() {
     <section id="works" ref={sectionRef} className="works-section">
       <div className="site-shell">
         <header className="page-hero site-shell__inner">
-          <span className="page-hero__label">{t('Portfolio')}</span>
-          <h2 className="page-hero__title">{t('Works')}</h2>
-          <p className="page-hero__desc">{t('A record of projects since 2005.')}</p>
-          <ul className="page-hero__tags" aria-label={t('Key skills and domains')}>
-            {WORKS_TAGS.map(tag => (
+          <span className="page-hero__label">Portfolio</span>
+          <h2 className="page-hero__title">Works</h2>
+          <p className="page-hero__desc">
+            2005년부터 현재까지, 함께해 온 프로젝트 기록입니다.
+          </p>
+          <ul className="page-hero__tags" aria-label="주요 기술·영역">
+            {WORKS_TAGS.map((tag) => (
               <li key={tag} className="page-hero__tag">
                 <span className="page-hero__tag-hash" aria-hidden="true">
                   #

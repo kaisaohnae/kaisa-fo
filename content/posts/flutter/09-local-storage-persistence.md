@@ -1,0 +1,214 @@
+---
+slug: flutter-09
+order: 9
+category: flutter
+categoryLabel: Flutter
+title: "로컬 저장·설정 영속화"
+summary: "기기에 남길 데이터는 민감도와 수명에 따라 prefs, 보안 저장소, DB로 나눈다."
+publishedAt: 2026-07-06
+tags: ["flutter"]
+---
+
+# 로컬 저장·설정 영속화
+
+> 요약: 기기에 남길 데이터는 민감도와 수명에 따라 prefs, 보안 저장소, DB로 나눈다.
+
+---
+
+## 1. 왜 / 언제
+
+앱을 껐다 켜도 온보딩을 다시 보면 설정이 영속화되지 않은 것이다. 반대로 액세스 토큰을 일반 설정 파일에 두면 백업·루팅·공유 스토리지에서 새어 나간다.
+
+로컬 저장은 패키지 이름이 먼저가 아니다. **민감도·수명·오프라인 요구**를 나눈 다음 저장소를 고른다.
+
+서버가 진실의 원천인 데이터는 캐시다. 기기 전용 플래그는 로컬이 원천이다. 이 구분을 제품에서 합의하지 않으면 멀티 기기에서 설정이 싸운다.
+
+---
+
+## 2. 핵심
+
+| 데이터 | 후보 | 이유 |
+|--------|------|------|
+| 온보딩 완료, 테마 모드 | `shared_preferences` | 작은 키-값, 비밀 아님 |
+| 액세스·리프레시 토큰 | secure storage | 키체인/키스토어 |
+| 검색·오프라인 큐·관계 | SQLite / drift | 쿼리와 마이그레이션 |
+| 이미지·파일 캐시 | 캐시 디렉터리 | 만료·용량 제한 |
+
+일반 prefs는 XML/plist에 가깝다. 암호화가 목적이 아니다. 토큰·개인식별값을 두지 않는다.
+
+키 이름은 도메인처럼 짓는다. `done`, `flag1`은 충돌한다. `onboarding.done`, `settings.themeMode`처럼 읽히게 한다. 마이그레이션 계획이 없으면 키가 늘어나며 죽은 값이 남는다.
+
+SQLite는 스키마 버전이 앱 버전과 함께 간다. 컬럼을 추가하면 마이그레이션을 적는다. 파일을 지우고 다시 만드는 방식은 사용자 데이터를 날린다.
+
+로컬은 유실된다. 기기 변경, 앱 삭제, OS 저장소 정리다. “절대 없어지면 안 되는 값”은 서버에 둔다.
+
+읽기·쓰기는 비동기다. `build`에서 `await`하지 않는다. 로드는 `initState` 또는 앱 기동 시퀀스에서 하고, 결과는 상태에 넣는다.
+
+---
+
+## 3. 예제
+
+### shared_preferences
+
+```yaml
+dependencies:
+  shared_preferences: ^2.3.0
+```
+
+```dart
+class SettingsStore {
+  SettingsStore(this._prefs);
+
+  static const String themeKey = 'settings.themeMode';
+
+  final SharedPreferences _prefs;
+
+  static Future<SettingsStore> open() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    return SettingsStore(prefs);
+  }
+
+  ThemeMode themeMode() {
+    final String? raw = _prefs.getString(themeKey);
+    return switch (raw) {
+      'dark' => ThemeMode.dark,
+      'light' => ThemeMode.light,
+      _ => ThemeMode.system,
+    };
+  }
+
+  Future<void> setThemeMode(ThemeMode mode) async {
+    final String raw = switch (mode) {
+      ThemeMode.dark => 'dark',
+      ThemeMode.light => 'light',
+      ThemeMode.system => 'system',
+    };
+    await _prefs.setString(themeKey, raw);
+  }
+}
+```
+
+불리언 플래그도 같다.
+
+```dart
+const String onboardingKey = 'onboarding.done';
+
+Future<void> completeOnboarding(SharedPreferences prefs) async {
+  await prefs.setBool(onboardingKey, true);
+}
+
+bool isOnboardingDone(SharedPreferences prefs) {
+  return prefs.getBool(onboardingKey) ?? false;
+}
+```
+
+없는 키는 `null`이다. `?? false`로 기본값을 명시한다. “없음”과 `false`를 구분해야 하면 별도 키 또는 버전을 둔다.
+
+### 비밀은 보안 저장소
+
+```yaml
+dependencies:
+  flutter_secure_storage: ^9.2.0
+```
+
+```dart
+class TokenStore {
+  TokenStore(this._storage);
+
+  static const String accessKey = 'auth.accessToken';
+
+  final FlutterSecureStorage _storage;
+
+  Future<void> saveAccessToken(String token) async {
+    await _storage.write(key: accessKey, value: token);
+  }
+
+  Future<String?> readAccessToken() {
+    return _storage.read(key: accessKey);
+  }
+
+  Future<void> clear() async {
+    await _storage.delete(key: accessKey);
+  }
+}
+```
+
+로그아웃은 메모리뿐 아니라 저장소도 지운다. prefs에 토큰을 미러링하지 않는다.
+
+### 기동 시 로드
+
+```dart
+class AppScope extends StatefulWidget {
+  const AppScope({super.key, required this.child});
+
+  final Widget child;
+
+  @override
+  State<AppScope> createState() => _AppScopeState();
+}
+
+class _AppScopeState extends State<AppScope> {
+  late final Future<SettingsStore> _settings;
+
+  @override
+  void initState() {
+    super.initState();
+    _settings = SettingsStore.open();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<SettingsStore>(
+      future: _settings,
+      builder: (BuildContext context, AsyncSnapshot<SettingsStore> snap) {
+        if (!snap.hasData) {
+          return const MaterialApp(
+            home: Scaffold(
+              body: Center(child: CircularProgressIndicator()),
+            ),
+          );
+        }
+        return MyApp(settings: snap.data!);
+      },
+    );
+  }
+}
+```
+
+설정이 준비되기 전에 본문을 그리지 않는다. 테마가 깜빡이며 바뀌는 것을 줄인다.
+
+### SQLite가 맞을 때
+
+오프라인 초안, 전문 검색, 관계(글-댓글)가 있으면 키-값으로 직렬화하지 않는다. drift 또는 sqflite로 테이블을 둔다. 스키마 버전을 올리고, 마이그레이션에 `ALTER TABLE`을 적는다. 릴리스 노트에 마이그레이션을 포함한다.
+
+---
+
+## 4. 흔한 실수
+
+| 실수 | 결과 | 대안 |
+|------|------|------|
+| prefs에 토큰 | 유출·백업 노출 | secure storage |
+| 키 이름 `flag` | 충돌·폐기 불가 | 도메인.키 + 버전 |
+| `build`에서 getInstance | 리빌드마다 비동기 깜빡임 | 기동 시 한 번 |
+| JSON 문자열을 prefs에 대형 목록 | 파싱·용량 한계 | SQLite |
+| 마이그레이션 없이 컬럼 추가 | 업데이트 후 크래시 | 스키마 버전 |
+| 로컬만 진실 | 기기 변경 시 데이터 상실 | 서버 원천 여부 합의 |
+
+멀티 프로세스(위젯·백그라운드)에서 prefs 타이밍이 어긋날 수 있다. 단순 설정은 괜찮다. 카운터처럼 자주 쓰는 값은 충돌을 가정한다.
+
+캐시 디렉터리 파일은 언제든 지워질 수 있다. 사용자 문서처럼 다루지 않는다.
+
+---
+
+## 정리
+
+영속화는 패키지 선택이 아니다. **민감도·수명·오프라인 요구**를 표로 나눈 다음 prefs, 보안 저장소, DB를 고른다. 비밀은 일반 설정에 두지 않는다.
+
+---
+
+## 연습
+
+1. 테마 모드를 prefs에 저장하고 재실행 뒤 복원한다.
+2. 온보딩 플래그 키를 `onboarding.done`으로 고정한다.
+3. 토큰 저장을 secure storage로 옮기고 로그아웃 때 삭제한다.
+4. 앱이 지워지면 사라져도 되는 값과 서버에 있어야 하는 값을 표로 나눈다.

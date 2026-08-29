@@ -1,0 +1,154 @@
+---
+slug: html-css-04
+order: 4
+category: html-css
+categoryLabel: HTML/CSS
+title: "CSS Grid로 행과 열 동시에 잡기"
+summary: "행과 열을 함께 정해야 할 때 Grid로 페이지 골격과 카드 목록을 만들고, fr·영역 이름으로 칸을 나눈다."
+publishedAt: 2024-07-31
+tags: ["html-css"]
+---
+
+# CSS Grid로 행과 열 동시에 잡기
+
+> 요약: 행과 열을 함께 정해야 할 때 Grid로 페이지 골격과 카드 목록을 만들고, fr·영역 이름으로 칸을 나눈다.
+
+---
+
+## 언제 Grid를 쓰는가
+
+행과 열을 동시에 제어할 때 Grid를 쓴다. 대시보드, 갤러리, 헤더·사이드·본문이 있는 페이지 골격이 해당한다.
+
+한 줄 정렬만 필요하면 Flexbox면 된다. 카드 바깥 칸은 Grid, 카드 안 제목·버튼 정렬은 Flex로 나누면 역할이 섞이지 않는다.
+
+---
+
+## 트랙이 칸의 크기이다
+
+부모에 `display: grid`를 주면 자식이 칸에 들어간다. `grid-template-columns`가 열, `grid-template-rows`가 행이다. 이 선을 트랙이라고 한다.
+
+```css
+.page {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100dvh;
+  gap: 1rem;
+}
+```
+
+왼쪽 열은 240px로 고정이다. 오른쪽 열은 `1fr`이라서 남은 가로를 모두 가져간다. 행은 헤더·푸터 높이만큼 `auto`, 본문 행은 남은 세로를 가져간다.
+
+| 단위 | 하는 일 |
+|------|---------|
+| `fr` | 남은 공간을 비율로 나눈다. `1fr 2fr`이면 1:2 |
+| `minmax(0, 1fr)` | fr 칸이 내용 때문에 넘치지 않게 하한을 0으로 둔다 |
+| `auto` | 내용 높이나 너비에 맞춘다 |
+| `repeat(auto-fit, minmax(16rem, 1fr))` | 폭에 따라 열 개수를 늘린다 |
+
+`minmax(0, 1fr)`을 쓰는 이유는 Flex의 `min-width: 0`과 같다. 그리드 칸의 최소 크기가 내용 너비면 가로 스크롤이 생긴다.
+
+---
+
+## 반응형 카드 그리드
+
+열 개수를 미디어 쿼리로 일일이 바꾸지 않아도 된다. 칸의 최소 너비만 정하면 브라우저가 열 수를 맞춘다.
+
+```html
+<ul class="cards">
+  <li>카드 1</li>
+  <li>카드 2</li>
+  <li>카드 3</li>
+</ul>
+```
+
+```css
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 1rem;
+}
+```
+
+`auto-fit`은 빈 열을 접는다. `auto-fill`은 빈 열을 남겨 둔다. 카드가 적을 때 칸이 늘어나길 원하면 `auto-fit`이다.
+
+---
+
+## 이름 있는 영역으로 배치
+
+칸 좌표 대신 영역 이름을 붙이면 미디어 쿼리에서 재배치하기 쉽다.
+
+```html
+<div class="layout">
+  <header class="header">헤더</header>
+  <nav class="nav">내비</nav>
+  <main class="main">본문</main>
+  <footer class="footer">푸터</footer>
+</div>
+```
+
+```css
+.layout {
+  display: grid;
+  grid-template-columns: 12rem 1fr;
+  grid-template-areas:
+    "header header"
+    "nav    main"
+    "footer footer";
+  min-height: 100dvh;
+}
+
+.header { grid-area: header; }
+.nav    { grid-area: nav; }
+.main   { grid-area: main; }
+.footer { grid-area: footer; }
+
+@media (max-width: 640px) {
+  .layout {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "main"
+      "nav"
+      "footer";
+  }
+}
+```
+
+좁은 화면에서 내비를 본문 아래로 내리는 변경이 문자열 한 덩어리로 끝난다. `grid-column: 1 / 3` 같은 숫자 좌표보다 읽기 쉽다.
+
+---
+
+## Flex와 나누는 기준
+
+| | Flex | Grid |
+|--|------|------|
+| 차원 | 한 방향 | 행과 열 |
+| 강점 | 주축 여백 나누기, 아이템 늘리기 | 트랙 크기, 영역, 겹침 |
+| 함께 쓰는 예 | 카드 안 헤더와 버튼 | 카드가 올라가는 바깥 칸 |
+
+페이지 골격은 Grid, 컴포넌트 내부 한 줄은 Flex이다. 둘 다 `gap`으로 간격을 준다.
+
+---
+
+## 흔한 실수
+
+- 한 줄 툴바를 Grid로 짠다. Flex가 짧다.
+- `1fr` 칸에서 긴 코드 블록이 페이지를 밀어 낸다. 그 열을 `minmax(0, 1fr)`로 바꾼다.
+- `auto-fit`과 `auto-fill`을 구분하지 않는다. 카드가 적을 때 칸이 커지길 원하면 `auto-fit`이다.
+- 자식 순서만 바꾸고 영역 이름을 안 쓴다. 반응형 재배치는 `grid-template-areas`가 덜 깨진다.
+- Grid와 Flex에 아이템 `margin`을 섞는다. 부모 `gap`으로 통일한다.
+
+---
+
+## 정리
+
+Grid는 행과 열의 선을 먼저 긋는 도구이다. 페이지 뼈대는 트랙과 영역 이름으로 두고, 칸 안의 정렬은 Flex에 맡긴다. `fr`과 `minmax(0, 1fr)`만 익혀도 넘침의 상당수는 줄어든다.
+
+---
+
+## 연습
+
+1. 헤더·사이드바·본문·푸터를 `grid-template-areas`로 만들고, 640px 이하에서 사이드바를 본문 아래로 옮긴다.
+2. 카드 목록을 `repeat(auto-fit, minmax(16rem, 1fr))`로 두고 창 폭을 줄여 열 수가 바뀌는지 확인한다.
+3. `1fr` 열 안에 긴 URL을 넣고, `minmax(0, 1fr)` 전후에 가로 스크롤이 생기는지 비교한다.

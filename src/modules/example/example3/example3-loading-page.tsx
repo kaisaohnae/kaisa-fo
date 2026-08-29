@@ -1,7 +1,7 @@
 'use client';
 
 import {useRef, useState} from 'react';
-import {Ex3Button, Ex3Loading, Ex3Spinner, type Ex3LoadingTone, type Ex3SpinnerVariant} from './kit';
+import {KaisaButton, KaisaLoading, KaisaSpinner, type KaisaLoadingTone, type KaisaSpinnerVariant} from './kit';
 import Example3ShowcaseSection from './example3-showcase-section';
 import Example3ShowcaseShell from './example3-showcase-shell';
 import Example3StateCard from './example3-state-card';
@@ -17,7 +17,7 @@ const SPINNER_VARIANTS = [
   {id: 'diamond', label: 'Diamond'},
 ] as const;
 
-const OVERLAY_OPTIONS: Array<{id: Ex3LoadingTone; label: string}> = [
+const OVERLAY_OPTIONS: Array<{id: KaisaLoadingTone; label: string}> = [
   {id: 'light', label: 'Light'},
   {id: 'dark', label: 'Dark'},
   {id: 'blur', label: 'Blur'},
@@ -25,13 +25,13 @@ const OVERLAY_OPTIONS: Array<{id: Ex3LoadingTone; label: string}> = [
 
 export default function Example3LoadingPage() {
   const [loading, setLoading] = useState<{
-    variant: Ex3SpinnerVariant;
-    overlay: Ex3LoadingTone;
+    variant: KaisaSpinnerVariant;
+    overlay: KaisaLoadingTone;
     message: string;
   } | null>(null);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const run = (variant: Ex3SpinnerVariant, overlay: Ex3LoadingTone, message: string) => {
+  const run = (variant: KaisaSpinnerVariant, overlay: KaisaLoadingTone, message: string) => {
     if (timerRef.current) clearTimeout(timerRef.current);
     setLoading({variant, overlay, message});
     timerRef.current = setTimeout(() => {
@@ -43,65 +43,65 @@ export default function Example3LoadingPage() {
   return (
     <Example3ShowcaseShell title="Loading" description="8 spinner types · local overlay">
       <Example3ShowcaseSection title="Inline Spinner" description="shapes that are not the default kit">
-        <div className="ex3-inline-spinners">
+        <div className="kaisa-inline-spinners">
           {SPINNER_VARIANTS.map((item) => (
-            <div key={item.id} className="ex3-spinner-item">
-              <Ex3Spinner variant={item.id} uiSize="md" />
+            <div key={item.id} className="kaisa-spinner-item">
+              <KaisaSpinner variant={item.id} uiSize="md" />
               <span>{item.label}</span>
             </div>
           ))}
         </div>
-        <p className="ex3-code-hint">{'<Ex3Spinner variant="dots" uiSize="md" />'}</p>
+        <p className="kaisa-code-hint">{'<KaisaSpinner variant="dots" uiSize="md" />'}</p>
       </Example3ShowcaseSection>
 
       <Example3ShowcaseSection title="Spinner Size">
-        <div className="ex3-inline-spinners">
-          <div className="ex3-spinner-item">
-            <Ex3Spinner uiSize="sm" />
+        <div className="kaisa-inline-spinners">
+          <div className="kaisa-spinner-item">
+            <KaisaSpinner uiSize="sm" />
             <span>Small</span>
           </div>
-          <div className="ex3-spinner-item">
-            <Ex3Spinner uiSize="md" />
+          <div className="kaisa-spinner-item">
+            <KaisaSpinner uiSize="md" />
             <span>Medium</span>
           </div>
-          <div className="ex3-spinner-item">
-            <Ex3Spinner uiSize="lg" />
+          <div className="kaisa-spinner-item">
+            <KaisaSpinner uiSize="lg" />
             <span>Large</span>
           </div>
         </div>
       </Example3ShowcaseSection>
 
       <Example3ShowcaseSection title="Local Overlay">
-        <div className="ex3-state-grid">
+        <div className="kaisa-state-grid">
           {SPINNER_VARIANTS.map((item) => (
             <Example3StateCard key={item.id} label={item.label}>
-              <Ex3Button onClick={() => run(item.id, 'blur', `${item.label} loading...`)}>
+              <KaisaButton onClick={() => run(item.id, 'blur', `${item.label} loading...`)}>
                 Run {item.label}
-              </Ex3Button>
+              </KaisaButton>
             </Example3StateCard>
           ))}
         </div>
       </Example3ShowcaseSection>
 
       <Example3ShowcaseSection title="Overlay tone">
-        <div className="ex3-state-grid">
+        <div className="kaisa-state-grid">
           {OVERLAY_OPTIONS.map((item) => (
             <Example3StateCard key={item.id} label={item.label}>
-              <Ex3Button variant="secondary" onClick={() => run('ring', item.id, `${item.label} overlay`)}>
+              <KaisaButton variant="secondary" onClick={() => run('ring', item.id, `${item.label} overlay`)}>
                 {item.label} overlay
-              </Ex3Button>
+              </KaisaButton>
             </Example3StateCard>
           ))}
           <Example3StateCard label="No message">
-            <Ex3Button variant="ghost" onClick={() => run('dots', 'dark', '')}>
+            <KaisaButton variant="ghost" onClick={() => run('dots', 'dark', '')}>
               Spinner only
-            </Ex3Button>
+            </KaisaButton>
           </Example3StateCard>
         </div>
-        <p className="ex3-note">status: {loading ? 'on' : 'off'}</p>
+        <p className="kaisa-note">status: {loading ? 'on' : 'off'}</p>
       </Example3ShowcaseSection>
 
-      <Ex3Loading
+      <KaisaLoading
         open={loading !== null}
         variant={loading?.variant}
         overlay={loading?.overlay}

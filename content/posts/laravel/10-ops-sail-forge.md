@@ -1,0 +1,187 @@
+---
+slug: laravel-10
+order: 10
+category: laravel
+categoryLabel: Laravel
+title: "운영 배포 — Sail, Forge/Vapor, 프로덕션 체크리스트"
+summary: "Sail로 로컬을 맞추고 Forge나 컨테이너로 배포하며, 워커·스케줄·시크릿을 배포의 일부로 둔다."
+publishedAt: 2026-08-11
+tags: ["laravel"]
+---
+
+# 운영 배포 — Sail, Forge/Vapor, 프로덕션 체크리스트
+
+> 요약: Sail로 로컬을 맞추고 Forge나 컨테이너로 배포하며, 워커·스케줄·시크릿을 배포의 일부로 둔다.
+
+---
+
+## 1. 환경부터 가른다
+
+| ENV | DEBUG | 목적 |
+|-----|-------|------|
+| local | true | 개발 |
+| staging | false 권장 | 배포 리허설 |
+| production | **false** | 실제 사용자 |
+
+```env
+APP_ENV=production
+APP_DEBUG=false
+APP_URL=https://example.com
+LOG_CHANNEL=stack
+LOG_LEVEL=info
+```
+
+`APP_DEBUG=true`인 운영은 스택 트레이스와 환경 값이 그대로 보인다. `.env`는 서버나 시크릿 매니저에만 둔다. 이미지 레이어에 키를 구우면 레지스트리만 읽어도 유출된다.
+
+---
+
+## 2. 배포가 하는 일
+
+코드만 올리는 것으로 끝나지 않는다. 의존성, 마이그레이션, 설정 캐시, 프론트 빌드, **워커·스케줄러**가 한 세트다.
+
+```bash
+composer install --no-dev --optimize-autoloader
+php artisan migrate --force
+php artisan config:cache
+php artisan route:cache
+php artisan view:cache
+php artisan event:cache
+php artisan storage:link
+npm ci && npm run build
+```
+
+`--force`는 운영에서 마이그레이션 확인 프롬프트를 건너뛴다. CI/배포 스크립트에서만 쓰고, 로컬 습관으로 두지 않는다.
+
+무중단이면 심링크 릴리즈(Envoyer 스타일)나 `artisan down`을 검토한다. Horizon을 쓰면 배포 후 `horizon:terminate`로 워커가 새 코드를 물게 한다. 웹만 재시작하고 워커가 옛 코드를 붙잡고 있으면 Job이 옛날 버그로 돈다.
+
+큐 워커, Horizon, `schedule:run`, Reverb는 웹 PHP-FPM과 **별도 프로세스**다. 웹 컨테이너만 올리면 메일이 안 가고 cron도 안 돈다.
+
+---
+
+## 3. Sail은 로컬용
+
+**Sail**은 Laravel 공식 Docker Compose다. PHP·MySQL·Redis 버전을 팀에서 맞춘다. `./vendor/bin/sail`이 `php`/`composer`를 컨테이너 안에서 실행한다.
+
+```bash
+php artisan sail:install
+./vendor/bin/sail up -d
+./vendor/bin/sail artisan migrate
+./vendor/bin/sail npm run dev
+```
+
+운영에 Sail 이미지를 그대로 올리지 않는 편이 일반적이다. 개발 도구·볼륨 마운트·루트에 가까운 관례가 남아 있다. 운영은 PHP-FPM + Nginx/Caddy Dockerfile을 따로 둔다.
+
+---
+
+## 4. 운영 이미지 스케치
+
+```dockerfile
+FROM serversideup/php:8.3-fpm-nginx AS base
+
+WORKDIR /var/www/html
+COPY --chown=www-data:www-data . .
+RUN composer install --no-dev --optimize-autoloader \
+ && php artisan storage:link \
+ && npm ci && npm run build \
+ && php artisan view:cache
+```
+
+권장:
+
+- non-root 유저
+- 헬스체크 `GET /up` (Laravel 11+ `bootstrap/app.php`의 `health`)
+- 웹 / 큐 / 스케줄러를 프로세스 또는 Deployment로 분리
+- `storage`와 `bootstrap/cache`는 쓰기 가능, 코드는 읽기 전용에 가깝게
+
+Kubernetes면 웹·워커·스케줄을 레플리카로 나눈다. 스케줄은 `onOneServer` 또는 단일 cron Job만 돌린다. 세 파드가 모두 `schedule:run`을 치면 일일 리포트가 세 번 나간다.
+
+---
+
+## 5. Forge, Vapor, 그 외
+
+**Laravel Forge**는 VPS에 Nginx, SSL, 배포 스크립트, 데몬(워커)을 깔아 주는 서비스다. 전통 서버 운영에 잘 맞는다.
+
+**Laravel Vapor**는 AWS Lambda 위에 Laravel을 올리는 서버리스다. 로컬 디스크가 잠깐이고, 롱런 워커 모델이 서버와 다르다. 큐·세션·파일은 AWS 서비스에 맞춰 다시 설계한다.
+
+공식 Laravel Cloud나 Railway·Render·Fly.io 같은 PaaS도 있다. 공통은 “웹만 띄우면 끝”이 아니라는 점이다.
+
+| 옵션 | 특징 |
+|------|------|
+| Forge | VPS, 데몬, SSL, 익숙한 PHP-FPM |
+| Vapor | 서버리스 스케일, 제약 이해 필요 |
+| 직접 VPS | Supervisor + Nginx를 직접 |
+| PaaS | 설정은 적고, 워커 add-on을 빼먹기 쉽다 |
+
+---
+
+## 6. Supervisor와 cron
+
+```ini
+[program:laravel-worker]
+process_name=%(program_name)s_%(process_num)02d
+command=php /home/app/artisan queue:work redis --sleep=1 --tries=3 --max-time=3600
+autostart=true
+autorestart=true
+numprocs=2
+user=www-data
+redirect_stderr=true
+stdout_logfile=/home/app/storage/logs/worker.log
+```
+
+`--max-time`으로 워커를 주기적으로 죽여 메모리 누수를 끊는다. Horizon이면 `artisan horizon`을 Supervisor가 관리한다.
+
+```cron
+* * * * * www-data cd /home/app && php artisan schedule:run >> /dev/null 2>&1
+```
+
+cron이 루트 홈에서 돌면 `.env`를 못 읽어 스케줄만 조용히 실패한다. `cd` 경로가 앱 루트인지 확인한다.
+
+---
+
+## 7. 파일과 로그
+
+컨테이너가 재시작되면 로컬 `storage/app`는 사라질 수 있다. 업로드는 **S3 호환 오브젝트 스토리지**, `FILESYSTEM_DISK=s3`가 기본에 가깝다. 공개 파일은 CDN, 백업은 DB 스냅샷과 버킷 버전을 같이 본다.
+
+```env
+LOG_CHANNEL=stack
+LOG_STACK=single,stderr
+```
+
+컨테이너는 stdout/stderr로 보내는 편이 수집기가 먹기 쉽다. 예외는 Sentry·Flare 같은 서비스로 보내고, Telescope는 운영 URL에 열어 두지 않는다.
+
+`/up`은 프로세스 생존만 본다. DB·Redis까지 보려면 커스텀 헬스 체크를 추가한다. 앱은 떴는데 Redis가 죽으면 큐·세션이 같이 죽는다.
+
+---
+
+## 8. 보안·운영 체크리스트
+
+- [ ] `APP_DEBUG=false`, HTTPS, HSTS
+- [ ] `APP_KEY` 유출 시 재발급하면 기존 암호화 값이 안 읽힌다는 점을 안다
+- [ ] `composer audit`, `.env`·프라이빗 버킷 권한
+- [ ] 로그인·민감 API throttle
+- [ ] CSRF / CORS / Sanctum 도메인이 스테이징과 같은 실수 없이 맞다
+- [ ] Filament·관리자 경로에 추가 보호
+- [ ] 업로드 MIME·크기 제한
+- [ ] 워커·스케줄·Horizon이 배포 후 새 코드로 재기동된다
+
+---
+
+## 9. 흔한 실수
+
+- Sail Compose를 운영에 그대로 올린다.
+- 웹만 배포하고 `queue:work` / cron을 안 켠다.
+- 이미지에 `.env`를 COPY한다.
+- `config:cache` 없이 매 요청 `env()` — 또는 반대로 로컬에서 route cache를 켠 채 개발한다.
+- `storage:link`를 빼 업로드 URL이 404가 난다.
+
+---
+
+## 연습
+
+1. Sail로 app + MySQL + Redis를 띄운다.
+2. migrate·캐시·`npm run build`를 배포 스크립트로 적는다.
+3. 워커 또는 Horizon을 켜고 Job이 소비되는지 본다.
+4. `APP_DEBUG=false`, `/up`, 로그(또는 Sentry)를 스테이징에서 확인한다.
+5. 위 체크리스트를 통과/미통과로 표시한다.
+
+Laravel은 CRUD 생성기를 넘어 검증·인가·큐·캐시·배포가 한 줄로 이어진다. 입력은 Form Request, 출력은 Resource, 권한은 Policy, 느린 일은 afterCommit Job, 워커와 스케줄은 배포의 일부다.

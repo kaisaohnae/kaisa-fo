@@ -1,20 +1,11 @@
+import type {Metadata} from 'next';
 import PortfolioPage from '@/components/home/portfolio-page';
-import JsonLd from '@/components/seo/json-ld';
-import {buildPageMetadata, pageJsonLd} from '@/lib/seo';
 
-export const metadata = buildPageMetadata({
+export const metadata: Metadata = {
   title: 'Works',
-  description: 'Selected web and product work by Kaisa.',
-  path: '/works/',
-});
+  description: '2005년부터 현재까지, 함께해 온 프로젝트 기록입니다.',
+};
 
 export default function Page() {
-  return (
-    <>
-      <JsonLd
-        data={pageJsonLd('Works', 'Selected web and product work by Kaisa.', '/works/')}
-      />
-      <PortfolioPage initialSection="works" />
-    </>
-  );
+  return <PortfolioPage />;
 }

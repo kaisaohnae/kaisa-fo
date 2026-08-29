@@ -1,0 +1,215 @@
+---
+slug: laravel-09
+order: 9
+category: laravel
+categoryLabel: Laravel
+title: "Blade·Livewire·Inertia와 API 프론트 전략"
+summary: "Blade·Livewire·Inertia·순수 API 중 제품에 맞는 프론트를 고르고, 한 앱 안에서도 경계를 나누면 된다."
+publishedAt: 2026-06-24
+tags: ["laravel"]
+---
+
+# Blade·Livewire·Inertia와 API 프론트 전략
+
+> 요약: Blade·Livewire·Inertia·순수 API 중 제품에 맞는 프론트를 고르고, 한 앱 안에서도 경계를 나누면 된다.
+
+---
+
+## 1. “전부 React”가 기본값은 아니다
+
+프론트 선택은 팀 취향보다 **누가 화면을 소유하는지**에 가깝다. Laravel이 HTML을 그리면 검증·인가·라우트가 한곳에 남는다. 별도 SPA면 그 계약을 API로 문서화해야 한다.
+
+| 상황 | 추천 |
+|------|------|
+| 관리자·내부툴·폼이 많음 | Filament 또는 Blade/Livewire |
+| 멀티페이지, SEO | **Blade** (+ 필요한 곳만 JS) |
+| SPA UX인데 Laravel 라우트·검증을 유지 | **Inertia** (Vue/React/Svelte) |
+| 모바일 앱과 웹이 따로 | Sanctum API + 별도 프론트 |
+| 위젯·부분 갱신 | Livewire 또는 Echo 방송 |
+
+한 제품에 마케팅은 Blade, 앱은 Inertia, 어드민은 Filament여도 된다. 경계를 URL이나 레이아웃으로 명확히 한다.
+
+---
+
+## 2. Blade
+
+**Blade**는 Laravel 서버가 HTML을 조립하는 템플릿이다. `{{ $var }}`는 이스케이프되어 XSS를 줄인다. `{!! $html !!}`는 신뢰한 HTML만 넣는다. 사용자 입력을 그대로 `{!! !!}`에 넣으면 스크립트가 실행된다.
+
+```blade
+<x-app-layout>
+    <x-slot:title>{{ $post->title }}</x-slot:title>
+
+    <article>
+        <h1>{{ $post->title }}</h1>
+        <p>{{ $post->user->name }} · {{ $post->published_at?->diffForHumans() }}</p>
+        <div>{!! $post->rendered_body !!}</div>
+    </article>
+
+    @can('update', $post)
+        <a href="{{ route('posts.edit', $post) }}">수정</a>
+    @endcan
+</x-app-layout>
+```
+
+컴포넌트는 반복 UI를 태그처럼 재사용한다. 폼은 `@csrf`, PUT/PATCH는 `@method('PUT')`이 필요하다. 빼먹으면 419가 난다.
+
+```bash
+php artisan make:component Alert
+```
+
+```blade
+<x-alert type="success" :message="session('status')" />
+```
+
+링크는 `route('posts.edit', $post)`를 쓴다. 경로 하드코딩은 2편과 같은 실수다.
+
+---
+
+## 3. Vite
+
+자산 파이프라인의 기본은 **Vite**다. Mix는 레거시다.
+
+```blade
+@vite(['resources/css/app.css', 'resources/js/app.js'])
+```
+
+```bash
+npm install
+npm run dev
+npm run build
+```
+
+운영에서 `npm run build`를 빼면 CSS가 없거나 `@vite`가 개발 서버를 찾다 실패한다. 배포 스크립트에 포함한다.
+
+---
+
+## 4. Livewire
+
+**Livewire**는 PHP 컴포넌트 상태로 화면을 부분 갱신한다. 검색 박스처럼 AJAX를 직접 짜기 싫은 CRUD·필터·위자드에 맞다. 오프라인 앱이나 캔버스급 인터랙션에는 맞지 않다.
+
+```bash
+composer require livewire/livewire
+php artisan make:livewire PostSearch
+```
+
+```php
+class PostSearch extends Component
+{
+    public string $q = '';
+
+    public function render()
+    {
+        return view('livewire.post-search', [
+            'posts' => Post::query()
+                ->when($this->q, fn ($q) => $q->where('title', 'like', "%{$this->q}%"))
+                ->latest()
+                ->paginate(10),
+        ]);
+    }
+}
+```
+
+```blade
+<div>
+    <input wire:model.live.debounce.300ms="q" />
+    @foreach ($posts as $post)
+        <div wire:key="post-{{ $post->id }}">{{ $post->title }}</div>
+    @endforeach
+    {{ $posts->links() }}
+</div>
+```
+
+루프에 `wire:key`가 없으면 잘못된 행이 갱신된다. `wire:model.live`는 타이핑마다 서버 왕복이므로 debounce를 둔다. 권한 없는 프로퍼티를 public으로 열어 두면 클라이언트가 값을 조작할 수 있다. 민감한 결정은 서버 메서드에서 Policy로 다시 본다.
+
+Livewire 3의 islands·Volt는 팀 스타일에 맞게 선택한다. 필수는 아니다.
+
+---
+
+## 5. Inertia
+
+**Inertia**는 서버가 JSON 대신 **페이지 컴포넌트 이름 + props**를 내려 주고, 프론트가 그 페이지를 그리는 방식이다. REST API를 하나 더 운영하는 SPA가 아니다. 라우팅·세션·Form Request 검증은 Laravel이 유지한다.
+
+```bash
+php artisan breeze:install vue
+```
+
+```php
+return Inertia::render('Posts/Show', [
+    'post' => new PostResource($post),
+]);
+```
+
+폼은 Inertia 헬퍼가 검증 에러를 공유 props로 돌려준다. API Resource를 props에 쓰면 JSON API와 필드 이름을 맞출 수 있다.
+
+```js
+import { useForm } from '@inertiajs/vue3'
+
+const form = useForm({ title: '', body: '' })
+form.post('/posts')
+```
+
+모바일 앱이 같은 백엔드를 쓰면 Inertia만으로는 부족하다. 그때는 4~5편의 API + Sanctum을 따로 연다.
+
+---
+
+## 6. 순수 API + SPA
+
+Next.js·Nuxt 등 프론트가 완전히 분리되면:
+
+- Form Request
+- API Resource
+- Sanctum (쿠키 또는 토큰)
+- OpenAPI (scribe / scramble)
+
+CORS, 쿠키 도메인, `/api/v1` 버전을 계약으로 적는다. Inertia와 순수 API를 한 컨트롤러에서 섞으면 응답 형태가 흔들린다. 진입점을 나눈다.
+
+---
+
+## 7. 실시간과 어드민
+
+**Reverb**는 Laravel 공식 WebSocket 서버다. Echo가 브라우저에서 채널을 구독한다. 알림 벨, 대시보드 숫자 갱신에 쓴다. 채팅 전체를 Reverb만으로 만들기 전에 규모를 본다.
+
+```bash
+composer require laravel/reverb
+php artisan reverb:install
+```
+
+```php
+broadcast(new OrderStatusUpdated($order))->toOthers();
+```
+
+**Filament**는 관리자 CRUD·필터·권한을 리소스 기반으로 빨리 만든다. 고객용 UI와 관리자 UI를 한 Blade 트리에 섞지 않을 때 생산성이 크다. 패널 가드와 Policy를 고객 가드와 분리한다.
+
+```bash
+composer require filament/filament
+php artisan filament:install --panels
+```
+
+---
+
+## 8. 조합 예
+
+1. 마케팅 사이트: Blade + Vite
+2. SaaS 본편: Inertia + Fortify/Breeze + Policy
+3. 내부 어드민: Filament
+4. 모바일: Sanctum API
+5. 일부 위젯: Livewire 또는 Echo
+
+---
+
+## 9. 흔한 실수
+
+- 사용자 HTML을 `{!! !!}`에 넣는다.
+- Livewire public 프로퍼티로 가격·역할을 받는다.
+- Inertia와 JSON API를 한 액션에서 분기하다 계약이 갈라진다.
+- `npm run build` 없이 배포한다.
+- 어드민을 고객 `web` 가드에 그대로 연다.
+
+---
+
+## 연습
+
+1. Blade 컴포넌트로 플래시 알림을 만든다.
+2. Livewire 검색 리스트 **또는** Inertia 상세 페이지 하나를 연결한다.
+3. 상세 데이터는 `PostResource` 형태로 내려 준다.
+4. (선택) Reverb로 알림 이벤트 하나를 방송한다.

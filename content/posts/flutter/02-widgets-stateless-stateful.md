@@ -1,0 +1,183 @@
+---
+slug: flutter-02
+order: 2
+category: flutter
+categoryLabel: Flutter
+title: "Stateless와 Stateful 위젯"
+summary: "화면은 위젯 트리이고, 기억할 값이 있으면 Stateful, 없으면 Stateless다."
+publishedAt: 2023-09-27
+tags: ["flutter"]
+---
+
+# Stateless와 Stateful 위젯
+
+> 요약: 화면은 위젯 트리이고, 기억할 값이 있으면 Stateful, 없으면 Stateless다.
+
+---
+
+## 1. 왜 / 언제
+
+새 화면을 만들 때 먼저 고르는 것은 레이아웃이 아니다. **이 위젯이 스스로 기억할 값이 있는가**다.
+
+탭 횟수, 입력 중인 글자, 애니메이션 진행도처럼 시간이 지나며 바뀌는 값이 있으면 Stateful이다. 제목 텍스트처럼 부모가 준 값만 보여 주면 Stateless다.
+
+선택이 어긋나면 두 가지가 생긴다. 상태가 없는 화면을 Stateful로 만들거나, 전역 스토어에 버튼 하나 로딩을 올려 트리를 통째로 다시 그린다.
+
+---
+
+## 2. 핵심
+
+화면에 보이는 모든 것은 위젯이다. 위젯은 다른 위젯을 자식으로 담는다. 이렇게 이어진 구조를 **위젯 트리**라고 한다.
+
+위젯은 도면에 가깝다. “이렇게 그려라”는 설명이다. Flutter는 이 설명을 자주 다시 만든다. 부모가 다시 그려지면 자식 위젯 객체도 새로 생길 수 있다.
+
+실제 살아 있는 자리는 따로 있다.
+
+| 층 | 역할 |
+|----|------|
+| Widget | UI 설명. 값처럼 자주 재생성된다. |
+| Element | 트리에 꽂힌 자리. 위젯과 State를 연결한다. |
+| RenderObject | 크기·위치·그리기. |
+
+처음에는 위젯 트리만 이해해도 충분하다. 다만 **변하는 값을 위젯 필드에 두면 리빌드 때 날아간다**는 점만 기억한다. 그 값은 `State` 객체가 들고 있다.
+
+`StatelessWidget`은 `build`만 있다. 입력이 바뀌면 부모가 새 위젯을 내려 주고, 그때 다시 그린다.
+
+`StatefulWidget`은 위젯과 `State`가 한 쌍이다. 위젯은 설정값(생성자 파라미터)을 받는다. `State`가 가변 값을 들고 `setState`로 자기 `build`를 다시 돌린다.
+
+키(`Key`)는 같은 타입 위젯이 여러 개일 때 자리를 구분하는 이름표다. 리스트에서 본격적으로 다룬다. 커스텀 위젯에는 `super.key`를 받는다.
+
+---
+
+## 3. 예제
+
+### Stateless — 주어진 값만 그린다
+
+```dart
+class TitleText extends StatelessWidget {
+  const TitleText({super.key, required this.text});
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(text);
+  }
+}
+```
+
+`text`는 이 위젯이 만들지 않는다. 부모가 준다. 부모가 다른 `text`를 넘기면 새 `TitleText`가 만들어지고 `build`가 다시 돈다.
+
+### Stateful — 이 위젯이 값을 기억한다
+
+```dart
+class Counter extends StatefulWidget {
+  const Counter({super.key, this.step = 1});
+
+  final int step;
+
+  @override
+  State<Counter> createState() => _CounterState();
+}
+
+class _CounterState extends State<Counter> {
+  int count = 0;
+
+  void _increment() {
+    setState(() {
+      count += widget.step;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: _increment,
+      child: Text('$count'),
+    );
+  }
+}
+```
+
+`widget.step`은 부모 설정값이다. `count`는 State가 기억한다. `setState`는 “값이 바뀌었으니 이 State의 `build`를 다시 돌려라”는 신호다. 앱 전체가 아니라 **그 State 아래 서브트리**가 다시 그려진다.
+
+범위를 작게 유지한다. 화면 루트에서 `setState`하면 불필요한 위젯까지 다시 돈다.
+
+### 생명주기
+
+| 메서드 | 언제 | 하는 일 |
+|--------|------|---------|
+| `initState` | State가 처음 붙을 때 한 번 | 컨트롤러 생성, 첫 구독 |
+| `didChangeDependencies` | 의존 InheritedWidget이 바뀔 때 | `of(context)` 이후 후속 작업 |
+| `didUpdateWidget` | 부모 파라미터가 바뀔 때 | 옛 `widget`과 새 `widget` 비교 |
+| `dispose` | State가 떨어질 때 | 컨트롤러·타이머·구독 해제 |
+
+```dart
+class TickerBox extends StatefulWidget {
+  const TickerBox({super.key});
+
+  @override
+  State<TickerBox> createState() => _TickerBoxState();
+}
+
+class _TickerBoxState extends State<TickerBox>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 1),
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FadeTransition(
+      opacity: _controller,
+      child: const Text('fade'),
+    );
+  }
+}
+```
+
+컨트롤러를 `dispose`하지 않으면 화면을 떠나도 애니메이션이 남는다.
+
+---
+
+## 4. 흔한 실수
+
+| 실수 | 이유 | 대안 |
+|------|------|------|
+| 모든 화면을 Stateful로 만든다 | 리빌드 범위가 커진다 | 상태가 있는 잎만 Stateful |
+| `build` 안에서 컨트롤러를 생성한다 | 리빌드마다 새 객체가 생긴다 | `initState`에서 만들고 `dispose` |
+| `setState` 없이 필드를 바꾼다 | 화면이 안 바뀐다 | 값 변경은 `setState` 안에서 |
+| unmounted 뒤 `setState` | 비동기 콜백에서 예외 | `if (!mounted) return;` |
+| 로그인·장바구니를 State에 둔다 | 화면이 바뀌면 값이 사라진다 | 공유 상태는 별도 계층 |
+
+`const`를 붙일 수 있는 위젯은 붙인다. 부모가 다시 그려져도 입력이 같으면 그 서브트리는 재사용할 수 있다.
+
+전역 상태는 이 글의 주제가 아니다. 이 위젯이 기억할 값만 Stateful로 둔다.
+
+---
+
+## 정리
+
+상태가 없으면 Stateless다. **이 위젯이 기억할 값이 있으면 Stateful**이다. 위젯은 도면이고, 기억은 `State`가 맡는다. 전역 값은 화면 State가 아니라 별도 계층으로 뺀다.
+
+---
+
+## 연습
+
+1. 제목만 받는 `TitleText`를 Stateless로 만든다.
+2. 같은 화면에 카운터를 Stateful로 두고 `setState` 범위를 카운터만으로 좁힌다.
+3. `AnimationController`를 `initState`에서 만들고 `dispose`에서 해제한다.
+4. 비동기 지연 뒤 `setState`하기 전에 `mounted`를 검사한다.

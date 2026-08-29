@@ -1,0 +1,226 @@
+---
+slug: nextjs-09
+order: 9
+category: nextjs
+categoryLabel: Next.js
+title: "이미지·폰트·성능 최적화"
+summary: "next/image와 next/font로 이미지·폰트를 다루고, 번들과 로딩 UI로 체감 속도를 맞춘다."
+publishedAt: 2026-05-20
+tags: ["nextjs"]
+---
+
+# 이미지·폰트·성능 최적화
+
+> 요약: next/image와 next/font로 이미지·폰트를 다루고, 번들과 로딩 UI로 체감 속도를 맞춘다.
+
+---
+
+## 1. 왜 이 주제가 필요한가
+
+느린 사이트는 기능이 같아도 이탈이 많다. 측정 지표는 **Core Web Vitals**다.
+
+- **LCP(Largest Contentful Paint, 가장 큰 콘텐츠가 보이기까지 시간)**
+- **CLS(Cumulative Layout Shift, 레이아웃이 밀리는 정도)**
+- **INP(Interaction to Next Paint, 클릭 후 반응이 보이기까지 시간)**
+
+이미지가 원본 4K로 내려오거나, 웹폰트가 늦게 적용되며 글자가 튀면 LCP·CLS가 나빠진다. Client 번들이 크면 INP도 나빠진다.
+
+Next는 이미지 최적화와 폰트 내장을 기본 도구로 제공한다. 켜지 않으면 `<img>`·구글 CSS 링크와 같다.
+
+---
+
+## 2. 한 줄 규칙
+
+히어로처럼 LCP 후보인 이미지만 `priority`다. 나머지는 기본 lazy.
+
+폰트는 `next/font`로 빌드에 넣는다. 런타임에 fonts.googleapis.com을 치지 않는다.
+
+---
+
+## 3. 예제
+
+### next/image
+
+```tsx
+import Image from 'next/image';
+
+export function Hero() {
+  return (
+    <Image
+      src="/hero.jpg"
+      alt="제품 히어로"
+      width={1200}
+      height={630}
+      priority
+    />
+  );
+}
+```
+
+`width`와 `height`(또는 `fill` + 부모 크기)가 있어야 공간이 먼저 잡혀 CLS가 줄어든다. `alt`는 내용이 있는 이미지에 실제 설명을 쓴다. 장식 이미지면 빈 문자열.
+
+이점: 리사이즈, lazy, WebP/AVIF 같은 포맷. 서버가 있는 호스팅에서 기본 로더가 동작한다.
+
+정적 내보내기(`output: 'export'`)에는 이미지 최적화 서버가 없다.
+
+```ts
+// next.config.ts
+import type {NextConfig} from 'next';
+
+const nextConfig: NextConfig = {
+  output: 'export',
+  images: {
+    unoptimized: true,
+  },
+};
+
+export default nextConfig;
+```
+
+`unoptimized: true`면 `<img>`에 가깝게 원본을 그대로 보낸다. 빌드 전에 적절한 해상도로 잘라 두는 편이 낫다.
+
+원격 이미지는 도메인을 허용해야 한다.
+
+```ts
+const nextConfig: NextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.example.com',
+        pathname: '/media/**',
+      },
+    ],
+  },
+};
+```
+
+허용하지 않은 호스트는 런타임 에러다. 오픈 프록시가 되지 않게 경로까지 좁힌다.
+
+### next/font
+
+```tsx
+// app/layout.tsx
+import type {ReactNode} from 'react';
+import {Geist, Geist_Mono} from 'next/font/google';
+import './globals.css';
+
+const sans = Geist({
+  subsets: ['latin'],
+  variable: '--font-sans',
+  display: 'swap',
+});
+
+const mono = Geist_Mono({
+  subsets: ['latin'],
+  variable: '--font-mono',
+  display: 'swap',
+});
+
+export default function RootLayout({children}: {children: ReactNode}) {
+  return (
+    <html lang="ko" className={`${sans.variable} ${mono.variable}`}>
+      <body>{children}</body>
+    </html>
+  );
+}
+```
+
+```css
+/* app/globals.css */
+body {
+  font-family: var(--font-sans), system-ui, sans-serif;
+}
+```
+
+빌드 시 폰트 파일을 받아 자체 호스트한다. 레이아웃 시프트와 외부 CSS 요청이 줄어든다. 한글은 `subsets`와 실제 쓰는 폰트 파일을 확인한다. 가변 폰트 하나가 여러 두께를 커버하면 요청 수가 줄어든다.
+
+로컬 파일은 `next/font/local`이다.
+
+```ts
+import localFont from 'next/font/local';
+
+const pretendard = localFont({
+  src: './fonts/PretendardVariable.woff2',
+  variable: '--font-sans',
+  display: 'swap',
+});
+```
+
+### 번들
+
+- 차트·에디터는 그 페이지의 Client 파일에서만 import
+- `dynamic(..., {ssr: false})`는 브라우저 전용일 때만
+- `components/index.ts`에서 모든 UI를 re-export하면 안 쓰는 코드까지 묶일 수 있다. 쓰는 파일에서 직접 import한다
+
+```bash
+npm run build
+```
+
+라우트별 First Load JS를 본다. 한 페이지가 유독 크면 그 페이지의 Client 경계를 의심한다.
+
+### 스트리밍과 loading
+
+```tsx
+// app/posts/page.tsx
+import {Suspense} from 'react';
+import {PostList} from './post-list';
+import {PostStats} from './post-stats';
+
+export default function PostsPage() {
+  return (
+    <main>
+      <h1>글</h1>
+      <Suspense fallback={<p>목록 로딩</p>}>
+        <PostList />
+      </Suspense>
+      <Suspense fallback={<p>통계 로딩</p>}>
+        <PostStats />
+      </Suspense>
+    </main>
+  );
+}
+```
+
+느린 구간만 기다린다. 셸(헤더·제목)은 먼저 나간다. `loading.tsx`는 해당 세그먼트 전체에 대한 같은 패턴이다.
+
+개인화 데이터가 아니면 서버에서 미리 읽어 HTML에 넣는 편이 LCP에 유리하다. 전부 Client fetch로 미루지 않는다.
+
+### 측정
+
+같은 URL로 전후를 비교한다.
+
+- Lighthouse / PageSpeed Insights
+- 필드 데이터: LCP, CLS, INP
+- 개발자 도구 네트워크 + 저속 쓰로틀
+
+실험실 점수만 보지 않는다. 실제 폰·3G에서 히어로가 언제 보이는지 본다.
+
+---
+
+## 4. 흔한 실수
+
+| 실수 | 결과 | 대안 |
+|------|------|------|
+| 모든 이미지에 `priority` | 대역 낭비, LCP 경쟁 | 뷰포트 안 히어로만 |
+| 크기 없이 `fill`만 | CLS | 부모에 비율·크기 |
+| `<img>` + 구글 폰트 링크 | 레이아웃 점프, 외부 요청 | `next/image` + `next/font` |
+| export인데 기본 이미지 로더 | 빌드/런타임 실패 | `images.unoptimized` |
+| 루트 레이아웃에 차트 라이브러리 | 전 페이지 번들 증가 | 해당 페이지 Client만 |
+| `ssr: false`를 기본값처럼 사용 | 첫 HTML이 비어 있다 | 정말 브라우저 전용일 때만 |
+
+---
+
+## 정리
+
+성능은 도구를 켜는 문제다. 이미지 크기·우선순위, 폰트 자체 호스트, Client 번들 범위.
+
+측정은 같은 URL로 한다. 정적 내보내기면 이미지 서버가 없다는 전제로 파일을 미리 줄인다.
+
+---
+
+## 연습
+
+1. 홈 히어로에 `next/image`와 `priority`를 넣고, 목록 썸네일에는 `priority`를 뺀다.
+2. 루트 레이아웃의 본문 폰트를 `next/font`로 옮기고, `<link href="fonts.googleapis.com">`을 제거한다.
+3. `output: 'export'`면 `unoptimized`가 필요한지 빌드로 확인하고, 히어로 파일 용량을 직접 제한한다.
