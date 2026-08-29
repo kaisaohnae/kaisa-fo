@@ -4,33 +4,31 @@ order: 7
 category: laravel
 categoryLabel: Laravel
 title: "큐·Job·이벤트·스케줄링"
-summary: "무거운 작업을 큐로 분리하고, 이벤트/리스너·스케줄러·실패 처리까지 운영 가능하게 구성한다."
-publishedAt: 2026-08-26
+summary: "메일·이미지처럼 느린 일은 Job 큐로 넘기고, 이벤트와 스케줄러로 후처리와 매일 할 일을 운영한다."
+publishedAt: 2026-01-07
 tags: ["laravel"]
 ---
 
 # 큐·Job·이벤트·스케줄링
 
-> 요약: 무거운 작업을 큐로 분리하고, 이벤트/리스너·스케줄러·실패 처리까지 운영 가능하게 구성한다.
+> 요약: 메일·이미지처럼 느린 일은 Job 큐로 넘기고, 이벤트와 스케줄러로 후처리와 매일 할 일을 운영한다.
 
 ---
 
----
+## 1. 왜 요청 안에서 메일을 보내지 않나
 
-## 1. 왜 큐인가
+HTTP 요청은 짧게 끝나야 한다. 아래는 요청 스레드에 두지 않는다.
 
-요청 안에서 하지 말 것:
-
-- 메일/SMS
+- 메일·SMS
 - 이미지 리사이즈
-- 외부 API 연쇄 호출
+- 외부 API를 여러 번 호출
 - 대량 CSV 내보내기
 
-요청은 빠르게 끝내고, **Job으로 비동기** 처리한다.
+**큐(queue)** 는 “나중에 할 일”을 저장하는 대기열이다. **Job**은 그 대기열에 넣는 작업 한 건이다. 사용자는 201을 바로 받고, 워커 프로세스가 메일을 보낸다.
 
 ```env
 QUEUE_CONNECTION=database
-# 운영 권장: redis
+# 운영은 redis를 흔히 쓴다
 ```
 
 ```bash
@@ -40,9 +38,11 @@ php artisan migrate
 php artisan queue:work
 ```
 
+`queue:work`가 안 떠 있으면 Job은 테이블에만 쌓이고 아무 일도 안 일어난다. 로컬에서 “메일이 안 간다”의 원인 1위가 이것이다.
+
 ---
 
-## 2. Job 만들기
+## 2. Job
 
 ```bash
 php artisan make:job SendWelcomeEmail
@@ -53,12 +53,12 @@ class SendWelcomeEmail implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    public int $tries = 3;
+    public int $backoff = 10;
+
     public function __construct(
         public User $user,
     ) {}
-
-    public int $tries = 3;
-    public int $backoff = 10; // seconds
 
     public function handle(Mailer $mailer): void
     {
@@ -75,19 +75,23 @@ class SendWelcomeEmail implements ShouldQueue
 }
 ```
 
+`ShouldQueue`가 있어야 비동기다. 없으면 `dispatch`해도 그 자리에서 `handle`이 돈다.
+
 ```php
 SendWelcomeEmail::dispatch($user);
 SendWelcomeEmail::dispatch($user)->delay(now()->addMinutes(5));
 SendWelcomeEmail::dispatch($user)->onQueue('mail');
 ```
 
-모델은 `SerializesModels`로 id만 큐에 저장된다. 처리 시점에 다시 조회.
+`SerializesModels`는 모델 전체 대신 id를 큐에 넣는다. 워커가 실행할 때 다시 조회한다. 그래서 트랜잭션이 끝나기 전에 디스패치하면 **아직 없는 행**을 워커가 읽는다.
 
 ---
 
-## 3. ShouldBeUnique / 멱등성
+## 3. 멱등성과 중복
 
-같은 사용자 환영 메일 중복 방지:
+큐는 최소 한 번이 아니라 **적어도 한 번, 가끔 두 번**이라고 가정한다. 네트워크 타임아웃 후 재시도가 겹칠 수 있다.
+
+같은 환영 메일이 두 번 나가지 않게:
 
 ```php
 class SendWelcomeEmail implements ShouldQueue, ShouldBeUnique
@@ -99,12 +103,13 @@ class SendWelcomeEmail implements ShouldQueue, ShouldBeUnique
 }
 ```
 
-결제·웹훅 처리는 **idempotency key** 테이블과 함께 설계한다.  
-큐 재시도 = 최소 두 번 실행될 수 있다고 가정.
+결제·웹훅은 unique만으로 부족하다. 처리한 id를 테이블에 남기는 **idempotency key**와 함께 설계한다.
 
 ---
 
-## 4. 이벤트 & 리스너
+## 4. 이벤트와 리스너
+
+**이벤트**는 “주문이 접수됐다”처럼 도메인에서 일어난 일의 이름이다. 주문 서비스가 메일·재고·통계를 직접 알 필요가 없다. 리스너가 각자 구독한다.
 
 ```bash
 php artisan make:event OrderPlaced
@@ -112,37 +117,33 @@ php artisan make:listener SendOrderConfirmation --event=OrderPlaced
 ```
 
 ```php
-event(new OrderPlaced($order));
-// 또는
 OrderPlaced::dispatch($order);
 ```
 
-리스너를 `ShouldQueue`로 구현하면 이벤트 발행은 가볍고 후처리는 비동기.
-
-도메인 사건 이름(`OrderPlaced`)으로 결합도를 낮추면 서비스가 비대해지는 것을 막을 수 있다.
+리스너에 `ShouldQueue`를 붙이면 발행은 가볍고 후처리는 워커가 한다. 서비스 클래스가 비대해지는 것을 막는 것이 목적이다. 이벤트를 남발하면 흐름이 안 보인다. **여러 관심사가 한 유스케이스에 붙을 때**만 쓴다.
 
 ---
 
-## 5. 트랜잭션 이후 디스패치
+## 5. 커밋 후에 디스패치
 
 ```php
 DB::transaction(function () use ($data) {
-    $order = Order::create(...);
+    $order = Order::create(/* ... */);
     DB::afterCommit(fn () => OrderPlaced::dispatch($order));
 });
 ```
 
-또는 Job/이벤트에 `AfterCommit` 구현:
+또는 Job에 `ShouldDispatchAfterCommit`을 붙인다. 커밋 전 디스패치 → 롤백됐는데 메일은 나가고, 워커는 없는 주문을 찾는 레이스가 난다.
 
 ```php
 class SendWelcomeEmail implements ShouldQueue, ShouldDispatchAfterCommit
 ```
 
-커밋 전 디스패치 → 워커가 아직 없는 row를 읽는 레이스가 난다.
-
 ---
 
-## 6. Horizon (Redis 큐 운영)
+## 6. Horizon
+
+**Horizon**은 Redis 큐를 위한 대시보드이자 프로세스 관리자다. 큐별 워커 수, 대기 시간, 실패 Job을 UI로 본다. `QUEUE_CONNECTION=database`면 Horizon의 본래 가치가 없다. Redis일 때 쓴다.
 
 ```bash
 composer require laravel/horizon
@@ -150,21 +151,15 @@ php artisan horizon:install
 php artisan horizon
 ```
 
-- 큐별 프로세스 수
-- 대기 시간 모니터링
-- 실패 Job UI
-- 밸런싱 전략
-
-운영에서 `queue:work`를 직접 감독하기보다 Supervisor + Horizon 조합이 흔하다.
+운영에서는 `queue:work`를 SSH에 띄워 두지 않는다. Supervisor(또는 컨테이너)가 Horizon/워커를 재시작한다.
 
 ---
 
-## 7. 실패 처리
+## 7. 실패와 스케줄
 
 ```bash
 php artisan queue:failed
 php artisan queue:retry all
-php artisan queue:flush
 ```
 
 ```php
@@ -174,13 +169,9 @@ public function retryUntil(): DateTime
 }
 ```
 
-알림: 실패 시 Slack/이메일. Horizon 알림 또는 `failed()` 훅.
+실패를 삼키고 `failed()`도 없으면 사용자는 “메일이 안 온다”만 본다. Slack/메일 알림 또는 Horizon 알림을 붙인다. `$timeout`을 안 주면 워커가 한 Job에 영원히 묶일 수 있다.
 
----
-
-## 8. 스케줄링
-
-`routes/console.php` (Laravel 11+):
+스케줄은 Laravel 11+에서 `routes/console.php`에 둔다. 서버 cron은 **1분마다 `schedule:run` 한 줄**만 있으면 된다.
 
 ```php
 use Illuminate\Support\Facades\Schedule;
@@ -190,17 +181,15 @@ Schedule::job(new PruneOldTokens)->hourly();
 Schedule::call(fn () => Cache::forget('homepage'))->everyFiveMinutes();
 ```
 
-서버 cron은 한 줄만:
-
 ```cron
 * * * * * cd /path && php artisan schedule:run >> /dev/null 2>&1
 ```
 
-`withoutOverlapping()`, `onOneServer()`, `runInBackground()`를 상황에 맞게.
+겹쳐 돌면 안 되는 작업은 `withoutOverlapping()`을, 여러 서버면 `onOneServer()`를 쓴다.
 
 ---
 
-## 9. 메일·알림
+## 8. 메일·알림
 
 ```bash
 php artisan make:mail WelcomeMail --markdown=mail.welcome
@@ -211,24 +200,23 @@ php artisan make:notification InvoicePaid
 $user->notify(new InvoicePaid($invoice));
 ```
 
-채널: mail, database, broadcast, slack.  
-로컬은 Mailpit/Log 드라이버.
+채널은 mail, database, slack 등이다. 로컬은 Mailpit 또는 `log` 드라이버로 실제 발송을 끈다.
 
 ---
 
-## 10. 실무 팁
+## 9. 흔한 실수
 
-- 큐 payload에 큰 파일/HTML 넣지 않기
-- 타임아웃(`$timeout`) 명시
-- 우선순위 큐 분리 (`mail`, `default`, `high`)
-- 로컬: `queue:listen` / Sail
-- 테스트: `Queue::fake()` + 핵심 경로 1~2개는 실제 sync로도
+- 워커를 안 켜 두고 Job이 “먹통”이라고 한다.
+- 트랜잭션 안에서 바로 `dispatch`한다.
+- 큐 payload에 HTML·파일 전체를 넣는다. id만 넣고 워커가 읽는다.
+- `$tries` / `$timeout`이 없어 무한 재시도·무한 점유.
+- 메일·결제 Job을 우선순위 없이 `default` 한 줄에 넣는다. `mail` / `high`로 나눈다.
 
 ---
 
 ## 연습
 
-1. 회원가입 후 `SendWelcomeEmail` Job을 afterCommit으로 보낸다.
-2. `OrderPlaced` 이벤트 + 큐 리스너를 만든다.
-3. 실패를 강제하고 `queue:failed`를 확인한다.
-4. 매일 자정에 임시 파일 정리 스케줄을 등록한다.
+1. 회원가입 후 `SendWelcomeEmail`을 afterCommit으로 보낸다.
+2. `OrderPlaced` 이벤트와 큐 리스너를 만든다.
+3. Job을 실패시키고 `queue:failed`를 확인한다.
+4. 매일 자정 임시 파일 정리 스케줄을 등록한다.

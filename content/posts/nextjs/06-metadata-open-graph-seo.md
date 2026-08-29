@@ -4,109 +4,225 @@ order: 6
 category: nextjs
 categoryLabel: Next.js
 title: "Metadata·Open Graph·SEO 기본기"
-summary: "metadata API와 generateMetadata로 title·description·canonical·OG를 페이지마다 맞춘다."
-publishedAt: 2026-08-26
+summary: "metadata API로 페이지마다 제목·설명·정규 URL·공유 미리보기를 맞춘다."
+publishedAt: 2025-07-09
 tags: ["nextjs"]
 ---
 
 # Metadata·Open Graph·SEO 기본기
 
-> 요약: metadata API와 generateMetadata로 title·description·canonical·OG를 페이지마다 맞춘다.
+> 요약: metadata API로 페이지마다 제목·설명·정규 URL·공유 미리보기를 맞춘다.
 
 ---
 
-## 1. 정적 metadata
+## 1. 왜 이 주제가 필요한가
+
+검색 결과 제목과 SNS 카드는 HTML `<head>`에서 온다. React로 화면을 그려도, 크롤러가 그 값을 못 읽으면 링크는 빈 카드가 된다.
+
+App Router는 `next/head` 대신 **metadata API**를 쓴다. 서버가 페이지를 렌더할 때 제목·설명·OG를 같이 넣는다.
+
+**SEO(검색 결과에 잘 잡히게 하는 작업)** 의 최소선은 고유한 title, 정확한 canonical, 본문이 있는 HTML이다.
+
+---
+
+## 2. 한 줄 규칙
+
+루트에 기본 title 템플릿을 두고, 글 상세는 `generateMetadata`로 그 글의 값을 넣는다.
+
+화면에 보이는 URL과 canonical·sitemap·OG `url`이 같아야 한다. 쿼리스트링 상세(`/view?slug=`)는 이 세 곳이 어긋나기 쉽다.
+
+---
+
+## 3. 예제
+
+### 정적 metadata
 
 ```tsx
-// app/layout.tsx 또는 page.tsx
-export const metadata = {
+// app/layout.tsx
+import type {Metadata} from 'next';
+import type {ReactNode} from 'react';
+
+export const metadata: Metadata = {
+  metadataBase: new URL('https://blog.example.com'),
   title: {
     default: 'Kaisa Blog',
     template: '%s · Kaisa Blog',
   },
-  description: '기술 블로그',
+  description: '웹 기술 노트',
 };
+
+export default function RootLayout({children}: {children: ReactNode}) {
+  return (
+    <html lang="ko">
+      <body>{children}</body>
+    </html>
+  );
+}
 ```
 
-하위 페이지 `title: 'Posts'` → `Posts · Kaisa Blog`.
+하위 페이지가 `title: '글 목록'`이면 탭 제목은 `글 목록 · Kaisa Blog`가 된다.
 
----
-
-## 2. 동적 generateMetadata
+`metadataBase`는 OG 이미지처럼 상대 경로를 절대 URL로 만들 때 기준이 된다. `NEXT_PUBLIC_SITE_URL`과 같은 값을 쓰는 편이 안전하다.
 
 ```tsx
-export async function generateMetadata({
-  params,
-}: {
+// app/posts/page.tsx
+import type {Metadata} from 'next';
+
+export const metadata: Metadata = {
+  title: '글 목록',
+  description: '발행한 글 목록',
+};
+
+export default function PostsPage() {
+  return <h1>글 목록</h1>;
+}
+```
+
+### 동적 generateMetadata
+
+```tsx
+// app/posts/[slug]/page.tsx
+import type {Metadata} from 'next';
+import {notFound} from 'next/navigation';
+import {getPost} from '@/lib/posts';
+
+type Props = {
   params: Promise<{slug: string}>;
-}): Promise<Metadata> {
+};
+
+export async function generateMetadata({params}: Props): Promise<Metadata> {
   const {slug} = await params;
   const post = getPost(slug);
   if (!post) return {};
+
+  const url = `https://blog.example.com/posts/${slug}/`;
+
   return {
     title: post.title,
     description: post.excerpt,
-    alternates: {canonical: `https://blog.example.com/posts/${slug}/`},
+    alternates: {canonical: url},
     openGraph: {
       title: post.title,
       description: post.excerpt,
       type: 'article',
-      url: `https://blog.example.com/posts/${slug}/`,
+      url,
+      images: post.ogImage ? [{url: post.ogImage}] : undefined,
     },
+  };
+}
+
+export default async function PostPage({params}: Props) {
+  const {slug} = await params;
+  const post = getPost(slug);
+  if (!post) notFound();
+  return (
+    <article>
+      <h1>{post.title}</h1>
+    </article>
+  );
+}
+```
+
+**OG(Open Graph, 링크를 붙일 때 보이는 제목·이미지 규격)** 는 `openGraph` 필드다. 카카오·슬랙·페이스북이 이 값을 읽는다.
+
+`trailingSlash: true`면 canonical에도 끝 `/`를 붙인다.
+
+### sitemap과 robots
+
+```ts
+// app/sitemap.ts
+import type {MetadataRoute} from 'next';
+import {getAllSlugs} from '@/lib/posts';
+
+const SITE = 'https://blog.example.com';
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const posts = getAllSlugs().map((slug) => ({
+    url: `${SITE}/posts/${slug}/`,
+    lastModified: new Date(),
+    changeFrequency: 'weekly' as const,
+    priority: 0.8,
+  }));
+
+  return [
+    {url: `${SITE}/`, lastModified: new Date(), priority: 1},
+    {url: `${SITE}/posts/`, lastModified: new Date(), priority: 0.9},
+    ...posts,
+  ];
+}
+```
+
+```ts
+// app/robots.ts
+import type {MetadataRoute} from 'next';
+
+export default function robots(): MetadataRoute.Robots {
+  return {
+    rules: {userAgent: '*', allow: '/', disallow: ['/manager/', '/login/']},
+    sitemap: 'https://blog.example.com/sitemap.xml',
   };
 }
 ```
 
-목록·홈과 **실제 글 URL이 동일**해야 한다.  
-쿼리 스트링 상세(`/view?slug=`)는 메타·sitemap과 어긋나기 쉽다.
-
----
-
-## 3. 같이 챙길 것
-
-| 항목 | 역할 |
-|------|------|
-| `robots.txt` | 크롤 허용/차단 |
-| `sitemap.xml` | URL 목록 |
-| JSON-LD | Article / Breadcrumb |
-| OG image | 공유 미리보기 CTR |
-| `lang` | `<html lang="ko">` |
+로그인·관리자·내부 검색 결과는 색인에서 뺀다.
 
 ```ts
-// app/sitemap.ts
-export default function sitemap() {
-  return getAllSlugs().map((slug) => ({
-    url: `https://blog.example.com/posts/${slug}/`,
-    lastModified: new Date(),
-  }));
-}
+export const metadata: Metadata = {
+  robots: {index: false, follow: false},
+};
 ```
+
+### JSON-LD
+
+검색 결과가 글 카드로 나오길 바치면 구조화 데이터를 본문에 넣는다.
+
+```tsx
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: post.title,
+  datePublished: post.publishedAt,
+  url: `https://blog.example.com/posts/${post.slug}/`,
+};
+
+return (
+  <article>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{__html: JSON.stringify(jsonLd)}}
+    />
+    <h1>{post.title}</h1>
+  </article>
+);
+```
+
+값은 화면에 보이는 제목·날짜와 같아야 한다.
 
 ---
 
-## 4. noindex가 맞는 곳
+## 4. 흔한 실수
 
-- 로그인·회원가입
-- 관리자
-- 검색 결과 중복·내부 도구
-
-```ts
-robots: {index: false, follow: false}
-```
+| 실수 | 결과 | 대안 |
+|------|------|------|
+| 모든 페이지가 같은 title | 검색에서 구분 안 됨 | 템플릿 + 페이지별 title |
+| canonical이 www / 슬래시와 불일치 | 중복 문서로 잡힘 | `metadataBase`와 실제 URL 통일 |
+| 본문은 CSR, 메타만 정적 | 미리보기는 되는데 본문이 비어 있다 | 서버에서 본문 HTML |
+| `/view?slug=` 상세 | sitemap·OG와 주소가 다름 | `/posts/[slug]` 경로 |
+| 로그인 페이지를 sitemap에 넣음 | 불필요한 색인 | `noindex` + disallow |
+| OG 이미지 상대 경로만 | 카드 이미지 깨짐 | `metadataBase` 또는 절대 URL |
 
 ---
 
-## 5. 실수
+## 정리
 
-- 모든 페이지 동일 title
-- canonical이 www/non-www와 불일치
-- 본문은 CSR인데 메타만 정적
-- trailing slash 불일치로 중복 URL
+SEO 기본은 페이지마다 다른 title·description, 하나의 canonical, 본문이 있는 HTML이다.
+
+목록·상세·sitemap·OG가 같은 URL 규칙을 쓰면 된다. 인증이 필요한 화면은 색인하지 않는다.
 
 ---
 
 ## 연습
 
-1. 글 상세에 `generateMetadata` + canonical을 붙인다.
-2. sitemap에 글 URL만 넣고 인증 페이지는 제외/noindex 한다.
-3. 카톡·슬랙에 URL을 붙여 OG 미리보기를 확인한다.
+1. 글 상세에 `generateMetadata`와 canonical을 붙인다. `trailingSlash`와 일치하는지 확인한다.
+2. sitemap에는 공개 글만 넣고, `/login`·`/manager`는 `robots`와 `noindex`로 막는다.
+3. 카카오톡이나 슬랙에 글 URL을 붙여 OG 제목·이미지가 나오는지 확인한다.

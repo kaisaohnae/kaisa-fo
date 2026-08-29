@@ -4,75 +4,174 @@ order: 1
 category: wpf
 categoryLabel: WPF
 title: "WPF와 XAML·MVVM 시작하기"
-summary: "WPF 프로젝트 구조, XAML, DataContext, MVVM 분리를 기준으로 데스크톱 앱 기본선을 정리한다."
-publishedAt: 2026-08-26
+summary: "XAML로 화면을 그리고, DataContext로 ViewModel을 붙여 화면과 로직을 나눈다."
+publishedAt: 2023-06-28
 tags: ["wpf"]
 ---
 
 # WPF와 XAML·MVVM 시작하기
 
-> 요약: WPF 프로젝트 구조, XAML, DataContext, MVVM 분리를 기준으로 데스크톱 앱 기본선을 정리한다.
+> 요약: XAML로 화면을 그리고, DataContext로 ViewModel을 붙여 화면과 로직을 나눈다.
 
 ---
 
-## 1. 왜 WPF인가
+## 1. 언제 WPF인가
 
-WPF는 .NET 기반 Windows 데스크톱 UI 프레임워크다. 
-XAML 선언형 UI + C# 로직 분리, 데이터 바인딩이 강점이다.
+WPF(Windows Presentation Foundation)는 .NET으로 Windows 데스크톱 UI를 만드는 프레임워크다. 화면은 XAML(마크업)로 선언하고, 동작은 C#으로 둔다.
 
-| 항목 | 특징 |
+WinForms는 코드에서 컨트롤을 직접 만지는 비중이 크다. WPF는 **데이터 바인딩**이 기본이라, 화면과 상태를 분리하기 쉽다. 대상이 Windows이고 .NET을 쓰는 내부 도구·클라이언트라면 WPF가 맞다. 웹·크로스플랫폼은 다른 스택을 고른다.
+
+| 항목 | 역할 |
 |------|------|
-| UI 선언 | XAML |
-| 로직 | C# |
-| 패턴 | MVVM |
-| 렌더링 | DirectX 기반 |
+| XAML | 컨트롤 트리와 바인딩을 선언한다 |
+| C# | 계산·명령·서비스 호출 |
+| MVVM | View / ViewModel / Model 세 층 |
+| DataContext | 이 화면이 바라보는 데이터 소스 |
+
+실무 기본선: **.NET 8/9 + WPF + MVVM + CommunityToolkit.Mvvm**.
 
 ---
 
-## 2. 기본 구조
+## 2. 핵심 개념
+
+MVVM(Model-View-ViewModel)은 화면 코드와 비즈니스 상태를 나누는 패턴이다.
+
+| 층 | 한 줄 |
+|----|--------|
+| View | `.xaml`. 컨트롤과 `{Binding}`. 가능하면 코드비하인드에 로직을 두지 않는다 |
+| ViewModel | 화면이 보여줄 값과 명령. UI 타입(`Button`, `Window`)을 참조하지 않는다 |
+| Model | 엔티티·DTO. UI를 모른다 |
+| DataContext | View가 바인딩할 객체. 보통 ViewModel 인스턴스 |
+
+코드비하인드(`MainWindow.xaml.cs`)의 `Click` 핸들러에 저장 로직을 넣으면 테스트가 창을 띄워야 한다. 명령은 ViewModel의 `ICommand`로 올린다. 3편에서 다룬다.
+
+---
+
+## 3. 생성
+
+```bash
+dotnet new wpf -n MyApp -f net9.0
+cd MyApp
+dotnet add package CommunityToolkit.Mvvm
+dotnet run
+```
+
+폴더 감각:
 
 ```
 App.xaml
-MainWindow.xaml
-MainWindow.xaml.cs
-ViewModels/
+App.xaml.cs
+Views/MainWindow.xaml
+Views/MainWindow.xaml.cs
+ViewModels/MainViewModel.cs
 Models/
 Services/
 ```
 
-- View: XAML
-- ViewModel: 상태/명령
-- Model: 도메인 데이터
+템플릿 기본은 `MainWindow`가 프로젝트 루트에 있다. 규모가 생기면 `Views/`로 옮기고 `App.xaml`의 `StartupUri`를 맞춘다.
 
 ---
 
-## 3. 첫 MVVM 연결
+## 4. 동작하는 예: 제목 바인딩
+
+`ViewModels/MainViewModel.cs`:
 
 ```csharp
-public class MainViewModel {
-    public string Title { get; } = "Hello WPF";
+using CommunityToolkit.Mvvm.ComponentModel;
+
+namespace MyApp.ViewModels;
+
+public partial class MainViewModel : ObservableObject
+{
+    [ObservableProperty]
+    private string title = "Hello WPF";
 }
 ```
 
+`ObservableObject` + `[ObservableProperty]`는 속성 변경 시 UI에 “이 값이 바뀌었다”고 알리는 코드를 생성한다. 직접 `INotifyPropertyChanged`(속성 변경 알림)를 적어도 된다. 툴킷이 반복을 줄인다.
+
+`Views/MainWindow.xaml`:
+
 ```xml
-<Window ...>
+<Window x:Class="MyApp.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:MyApp.ViewModels"
+        Title="MyApp" Height="240" Width="400">
   <Window.DataContext>
-    <local:MainViewModel />
+    <vm:MainViewModel />
   </Window.DataContext>
-  <TextBlock Text="{Binding Title}" />
+  <StackPanel Margin="16">
+    <TextBlock Text="{Binding Title}" FontSize="20" />
+    <TextBox Text="{Binding Title, UpdateSourceTrigger=PropertyChanged}" Margin="0,8,0,0" />
+  </StackPanel>
 </Window>
 ```
 
+`TextBox`를 바꾸면 `Title`이 바뀌고 `TextBlock`이 따라간다. DataContext가 ViewModel이므로 `{Binding Title}`은 `MainViewModel.Title`이다.
+
+`Views/MainWindow.xaml.cs`는 생성자 `InitializeComponent()`만 둔다.
+
+```csharp
+using System.Windows;
+
+namespace MyApp.Views;
+
+public partial class MainWindow : Window
+{
+    public MainWindow()
+    {
+        InitializeComponent();
+    }
+}
+```
+
+`App.xaml`:
+
+```xml
+<Application x:Class="MyApp.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="Views/MainWindow.xaml">
+</Application>
+```
+
+XAML에서 ViewModel을 `new`하는 방식은 작은 앱에 충분하다. DI 컨테이너로 주입하는 방식은 서비스가 늘 때 검토한다.
+
 ---
 
-## 4. 실무 팁
+## 5. 코드비하인드와 경계
 
-- 코드비하인드 이벤트를 최소화
-- ViewModel 테스트 가능 구조로 유지
-- 리소스/스타일은 App 또는 사전(Dictionary)로 분리
+허용에 가까운 것: 포커스 이동, 패스워드 박스처럼 바인딩이 약한 컨트롤 접착.
+
+피한다: 파일 저장, 메시지 박스 직접 호출, HTTP. 저장은 ViewModel 명령, 대화상자는 서비스(5편).
+
+리소스·스타일은 창마다 복사하지 않고 `App.xaml` 또는 ResourceDictionary로 뺀다. 4편.
+
+---
+
+## 6. 주의 / 흔한 실수
+
+- **DataContext를 안 넣고 `{Binding Title}`.** 출력은 비고, 출력창에 바인딩 오류가 난다. Visual Studio 출력 창을 본다.
+- **ViewModel에서 `MessageBox.Show`.** View가 테스트에 딸려 온다. 인터페이스로 감싼다.
+- **코드비하인드에서 컨트롤 이름으로 값을 읽기.** `txtName.Text`는 MVVM이 아니다. 바인딩한다.
+- **`partial class` 이름·네임스페이스가 XAML `x:Class`와 다름.** 빌드가 실패한다.
+- **.NET Framework 전용 WPF 템플릿으로 신규 시작.** 신규는 SDK 스타일 + `net8.0-windows` / `net9.0-windows`다.
 
 ---
 
 ## 정리
 
-WPF 시작은 컨트롤 암기가 아니라 **XAML + 바인딩 + MVVM 경계**를 먼저 고정하는 일이다.
+WPF 시작은 컨트롤 암기가 아니다. **XAML + DataContext + ViewModel** 경계를 먼저 고정한다.
+
+- 화면 → XAML
+- 이 화면의 데이터 소스 → DataContext = ViewModel
+- 로직 → ViewModel (창 타입 없이)
+
+---
+
+## 연습
+
+1. `dotnet new wpf` 후 위 ViewModel을 붙여 TextBox와 TextBlock이 같은 `Title`을 쓰는지 확인한다.
+2. `Subtitle` 속성을 추가하고 두 번째 `TextBlock`에 바인딩한다.
+3. `StartupUri`를 `Views/MainWindow.xaml`로 옮긴 뒤 앱이 켜지는지 확인한다.

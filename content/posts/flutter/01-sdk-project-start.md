@@ -4,67 +4,175 @@ order: 1
 category: flutter
 categoryLabel: Flutter
 title: "Flutter SDK와 프로젝트 시작하기"
-summary: "Flutter SDK 설치, 디바이스/에뮬레이터, 프로젝트 구조와 첫 실행까지 실무 기본선을 정리한다."
-publishedAt: 2026-08-26
+summary: "Flutter SDK를 설치하고 프로젝트 구조를 이해한 뒤, 실제 기기에서 첫 앱을 실행한다."
+publishedAt: 2023-06-15
 tags: ["flutter"]
 ---
 
 # Flutter SDK와 프로젝트 시작하기
 
-> 요약: Flutter SDK 설치, 디바이스/에뮬레이터, 프로젝트 구조와 첫 실행까지 실무 기본선을 정리한다.
+> 요약: Flutter SDK를 설치하고 프로젝트 구조를 이해한 뒤, 실제 기기에서 첫 앱을 실행한다.
 
 ---
 
-## 1. 왜 Flutter인가
+## 1. 왜 / 언제
 
-한 코드베이스로 **iOS·Android·웹·데스크톱**을 겨냥할 수 있다. UI는 위젯 트리, 언어는 Dart다.
+한 코드베이스로 iOS·Android·웹·데스크톱 UI를 만든다. 언어는 Dart다. 화면은 위젯을 겹겹이 조합한 **위젯 트리**다.
 
-실무 기본 조합: **안정 채널 SDK + VS Code 또는 Android Studio + 실제 기기 한 대**.
+위젯은 “이렇게 그려라”는 설명이다. 버튼, 여백, 앱 전체까지 모두 위젯이다. 트리는 루트에서 잎으로 내려가며 그려진다.
+
+실무 기본 조합은 **안정 채널 SDK + VS Code 또는 Android Studio + 실제 기기 한 대**다. 에뮬레이터만 쓰면 터치·성능 감각이 어긋난다.
+
+이 글은 위젯 API를 외우기 전에, **doctor가 통과하는 환경**과 **재현 가능한 `flutter create`** 를 고정한다.
 
 ---
 
-## 2. 설치 확인
+## 2. 핵심
+
+설치가 끝났는지는 IDE가 아니라 `flutter doctor`가 판단한다. 빨간 항목은 배포 전에 없앤다.
+
+| 대상 | 필요한 것 |
+|------|-----------|
+| Android | cmdline-tools, 라이선스, 에뮬레이터 또는 USB 디버깅 |
+| iOS | macOS + Xcode + CocoaPods |
+| 웹 | Chrome (선택) |
+
+프로젝트 루트의 `pubspec.yaml`이 의존성·에셋·버전 계약이다. `lib/main.dart`가 진입점이다. `main()`에서 `runApp`으로 루트 위젯을 올린다.
+
+기능 단위 폴더를 일찍 나눈다. 화면·도메인·데이터가 한 파일에 쌓이면 위젯 트리를 읽기 어려워진다.
+
+---
+
+## 3. 예제
+
+### 설치 확인
 
 ```bash
 flutter doctor
 flutter devices
 ```
 
-- Android: cmdline-tools, 라이선스, 에뮬레이터 또는 USB 디버깅
-- iOS: Xcode (macOS)
-- `doctor`의 빨간 항목은 배포 전에 없앤다
+`doctor`는 체크리스트다. 라이선스 미동의, cmdline-tools 누락, 연결된 기기 없음이 흔하다.
 
----
+```bash
+flutter doctor --android-licenses
+```
 
-## 3. 생성·실행
+### 생성·실행
 
 ```bash
 flutter create my_app
 cd my_app
+flutter pub get
 flutter run
 ```
 
-`lib/main.dart`가 진입점이다.
+기기가 여러 대면 `-d`로 고른다.
 
----
+```bash
+flutter devices
+flutter run -d chrome
+flutter run -d windows
+```
 
-## 4. 디렉터리
+### 진입점
+
+```dart
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const MaterialApp(
+      home: Scaffold(
+        body: Center(
+          child: Text('Hello, Flutter'),
+        ),
+      ),
+    );
+  }
+}
+```
+
+`runApp`이 루트 위젯을 붙인다. 그 아래 `MaterialApp` → `Scaffold` → `Center` → `Text`가 위젯 트리다. `const` 생성자는 변하지 않는 서브트리를 재사용한다.
+
+### 디렉터리
 
 ```
 lib/
 ├── main.dart
 ├── app.dart
 └── features/
+    └── home/
 android/   ios/   web/
 pubspec.yaml
 test/
 ```
 
-- 기능 단위 폴더를 일찍 나눈다
-- 에셋은 `pubspec.yaml`에 등록해야 번들에 포함된다
+에셋은 파일만 두면 번들에 안 들어간다. `pubspec.yaml`에 등록한다.
+
+```yaml
+name: my_app
+description: A Flutter starter.
+publish_to: "none"
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.5.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+```
+
+버전 `1.0.0+1`에서 `+1`은 빌드 번호다. 스토어 제출 때 올린다.
+
+---
+
+## 4. 흔한 실수
+
+| 실수 | 결과 | 대안 |
+|------|------|------|
+| `doctor`를 건너뛴다 | 기기·라이선스 오류가 첫 `run`에서 터진다 | 생성 전에 doctor 통과 |
+| 에셋을 yaml에 안 적는다 | 런타임에 이미지를 못 찾는다 | `flutter:` 아래 `assets` 등록 |
+| 모든 UI를 `main.dart`에 쌓는다 | 트리를 추적할 수 없다 | `features/`로 화면 분리 |
+| 베타 채널로 시작한다 | 플러그인·문서와 어긋난다 | 안정 채널 |
+| 에뮬레이터만 쓴다 | 제스처·성능이 실제와 다르다 | 실기기 한 대 |
+
+채널 확인:
+
+```bash
+flutter channel
+flutter channel stable
+flutter upgrade
+```
+
+Hot reload는 상태 있는 화면을 유지한 채 UI만 고친다. 플러그인·엔트리 변경은 Hot restart 또는 재실행이 필요하다.
 
 ---
 
 ## 정리
 
-Flutter 시작은 위젯 암기가 아니라 **doctor가 통과하는 환경 + 재현 가능한 `flutter create`** 다.
+Flutter 시작은 위젯 암기가 아니다. **doctor가 통과하는 환경**과 **`lib/main.dart`에서 시작하는 위젯 트리**를 재현 가능하게 만드는 일이다.
+
+다음 글에서 Stateless와 Stateful의 차이를 같은 트리 관점으로 본다.
+
+---
+
+## 연습
+
+1. `flutter doctor`를 실행하고 빨간 항목을 없앤다.
+2. `flutter create` 후 실기기에서 `flutter run`으로 Hello 화면을 띄운다.
+3. `assets/images/`를 만들고 `pubspec.yaml`에 등록한 뒤 이미지를 화면에 넣는다.
+4. `MyApp`을 `lib/app.dart`로 옮기고 `main.dart`는 `runApp`만 남긴다.

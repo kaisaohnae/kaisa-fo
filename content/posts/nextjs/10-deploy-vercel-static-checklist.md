@@ -4,97 +4,158 @@ order: 10
 category: nextjs
 categoryLabel: Next.js
 title: "배포 — Vercel·정적 호스팅·체크리스트"
-summary: "Vercel·GitHub Pages 등 배포 선택과 환경변수·캐시·도메인·롤백을 점검 목록으로 정리한다."
-publishedAt: 2026-08-26
+summary: "서버가 있는 배포와 HTML만 올리는 배포를 고르고, 환경변수·SEO·롤백을 체크리스트로 통과시킨다."
+publishedAt: 2026-08-15
 tags: ["nextjs"]
 ---
 
 # 배포 — Vercel·정적 호스팅·체크리스트
 
-> 요약: Vercel·GitHub Pages 등 배포 선택과 환경변수·캐시·도메인·롤백을 점검 목록으로 정리한다.
+> 요약: 서버가 있는 배포와 HTML만 올리는 배포를 고르고, 환경변수·SEO·롤백을 체크리스트로 통과시킨다.
 
 ---
 
-## 1. 호스팅 선택
+## 1. 왜 이 주제가 필요한가
 
-| 대상 | 적합 |
-|------|------|
-| Vercel / 유사 PaaS | SSR·Action·ISR·미들웨어 풀활용 |
-| GitHub Pages / S3+CDN | `output: 'export'` 정적 사이트 |
-| Node 서버 / Docker | 커스텀 런타임·사내 인프라 |
+Next.js는 어디에 올리느냐가 아키텍처다. Vercel처럼 서버가 있으면 Server Action·미들웨어·ISR을 쓸 수 있다. GitHub Pages처럼 파일만 받으면 `output: 'export'`로 HTML을 구워야 한다.
 
-기능이 필요하면 호스팅을 먼저 고치고,  
-정적만 필요하면 export로 단순화한다.
+기능을 나중에 넣고 호스팅을 바꾸면 데이터 페칭·인증을 다시 짠다. 배포 형태를 먼저 고르고, 아래 목록으로 빠뜨린 항목을 막는다.
 
 ---
 
-## 2. 환경변수
+## 2. 한 줄 규칙
+
+서버가 필요한 기능이 하나라도 있으면 PaaS/Node에 올린다. 공개 문서만이면 정적 내보내기로 단순화한다.
+
+시크릿은 `NEXT_PUBLIC_`을 붙이지 않는다. 사이트 URL은 환경변수 한곳으로 모은다.
+
+---
+
+## 3. 예제
+
+### 호스팅 선택
+
+| 대상 | 맞을 때 | 이유 |
+|------|---------|------|
+| Vercel / 유사 PaaS | SSR, Action, ISR, 미들웨어 | Node/엣지 런타임이 있다 |
+| GitHub Pages / S3+CDN | 블로그·문서 정적 사이트 | HTML·JS만 올리면 된다 |
+| Node / Docker | 사내 인프라, 커스텀 런타임 | 프로세스와 포트 제어가 필요할 때 |
+
+혼합도 가능하다. 공개 `/posts`는 정적 HTML, `/manager`만 서버 앱. 다만 두 배포 파이프라인을 유지할 비용이 있다.
+
+### 환경변수
 
 ```env
+# .env.production 예시. 저장소에 시크릿을 커밋하지 않는다.
 NEXT_PUBLIC_SITE_URL=https://blog.example.com
 NEXT_PUBLIC_API_URL=https://api.example.com
+DATABASE_URL=postgresql://...
 ```
 
-- `NEXT_PUBLIC_*` → 클라이언트 노출
-- 시크릿 → 서버 전용, 저장소 커밋 금지
-- 프리뷰/프로덕션 URL 분리
+| 접두사 | 노출 | 용도 |
+|--------|------|------|
+| `NEXT_PUBLIC_*` | 브라우저 번들 | 사이트 URL, 공개 API 주소 |
+| 접두사 없음 | 서버만 | DB URL, 메일 키, 세션 시크릿 |
 
----
+프리뷰와 프로덕션 URL을 나눈다. OG·sitemap이 프리뷰 도메인을 가리키면 검색·공유가 꼬인다.
 
-## 3. 정적 export 배포 흐름
+```ts
+// lib/site.ts
+export function getSiteUrl(): string {
+  const url = process.env.NEXT_PUBLIC_SITE_URL;
+  if (!url) throw new Error('NEXT_PUBLIC_SITE_URL이 없다');
+  return url.replace(/\/$/, '');
+}
+```
+
+빌드 때 없으면 실패하게 두면 잘못된 배포가 나가지 않는다.
+
+### 정적 내보내기 흐름
 
 ```bash
 npm run build
-# out/ 업로드
+# out/ 을 S3, GitHub Pages, Nginx 루트에 업로드
 ```
 
-- `trailingSlash`와 서버/CDN 설정 일치
-- SPA 폴백보다 **실제 경로별 HTML**이 SEO에 유리
-- 커스텀 도메인 + HTTPS
+```ts
+// next.config.ts
+import type {NextConfig} from 'next';
+
+const nextConfig: NextConfig = {
+  output: 'export',
+  trailingSlash: true,
+  images: {unoptimized: true},
+};
+
+export default nextConfig;
+```
+
+- `trailingSlash`와 CDN/Nginx 디렉터리 인덱스 규칙을 맞춘다. `/posts/hello`와 `/posts/hello/`가 둘 다 200이면 중복이다.
+- SPA처럼 `/* → index.html`만 두면 상세 HTML이 없다. SEO에는 **경로별 HTML**이 맞다.
+- 커스텀 도메인 + HTTPS. `metadataBase`와 인증서를 같은 호스트로.
+
+### Vercel형 흐름
+
+Git 연동 후 프리뷰 URL로 각 PR을 본다. 프로덕션은 메인 브랜치.
+
+서버 기능(Action, `revalidateTag`, 미들웨어)이 살아 있는지 프리뷰에서 폼·로그인까지 눌러 본다. 빌드만 통과한 배포는 반쪽이다.
 
 ---
 
 ## 4. 프로덕션 체크리스트
 
+각 항목은 빼면 검색이 빠지거나, 키가 새거나, 장애 때 되돌리지 못한다.
+
 ### SEO
 
-- [ ] 글 URL이 정적 HTML
-- [ ] sitemap / robots
-- [ ] canonical·OG
-- [ ] 관리자·로그인 noindex
+- [ ] 공개 글 URL이 빌드된 HTML에 제목·본문을 담는다 — 크롤러는 JS 실행 전에 본문을 찾는다
+- [ ] `sitemap.xml`과 `robots.txt`가 실제 공개 URL과 같다 — 빠진 주소는 색인이 늦다
+- [ ] canonical·OG `url`이 `NEXT_PUBLIC_SITE_URL` + trailing slash 규칙과 같다 — 중복 문서로 잡히지 않게
+- [ ] `/login`, `/manager`는 `noindex`(그리고 robots disallow) — 인증 화면이 검색에 나오지 않게
+- [ ] `<html lang="ko">` — 언어가 맞아야 검색·스크린 리더가 올바르다
 
 ### 신뢰성
 
-- [ ] 환경변수 누락 시 빌드 실패 또는 명확한 에러
-- [ ] 404/500 페이지
-- [ ] 롤백 방법 (이전 배포 재활성화)
+- [ ] 필수 환경변수가 없으면 빌드 또는 기동이 실패한다 — 빈 URL로 sitemap이 나가지 않게
+- [ ] `not-found` / `error` 페이지가 있다 — 없는 글과 서버 실패를 사용자가 구분한다
+- [ ] 이전 배포로 롤백하는 방법을 적었다 — Vercel이면 이전 Promotion, 정적이면 이전 `out/` 재업로드
+- [ ] 시크릿이 Git에 없다 — `.env*`는 gitignore, 플랫폼 환경변수만 사용
+- [ ] 관리자 API는 서버에서 세션을 다시 본다 — UI 숨김만으로는 부족하다
 
 ### 성능
 
-- [ ] 이미지·폰트 전략
-- [ ] 번들 이상치 없음
-- [ ] 캐시 헤더/CDN
+- [ ] 히어로는 `next/image`(또는 export면 리사이즈된 정적 파일) — LCP 후보 용량을 제한
+- [ ] 본문 폰트는 `next/font` — 외부 폰트 CSS로 CLS가 나지 않게
+- [ ] `next build`에서 이상하게 큰 라우트가 없다 — Client 경계를 다시 본다
+- [ ] CDN/캐시 헤더가 정적 자산에 있다 — HTML은 짧게, hashed JS/CSS는 길게
+
+### 정적 내보내기만
+
+- [ ] Route Handler·미들웨어·ISR에 의존하지 않는다 — 런타임 서버가 없다
+- [ ] `images.unoptimized` 또는 커스텀 로더 — 최적화 서버가 없다
+- [ ] `generateStaticParams`가 공개 slug를 모두 반환한다 — 빠진 글은 `out/`에 파일이 없다
 
 ---
 
 ## 5. CI 스케치
 
-1. lint / typecheck / test
-2. `next build`
-3. artifact 배포 또는 Vercel 연동
-4. 스모크: `/`, `/posts/`, 대표 글 URL
+1. lint / typecheck / test — 타입·깨진 링크를 배포 전에 막는다
+2. `next build` — 정적/동적 라우트 표를 로그에서 확인한다
+3. artifact 업로드 또는 Vercel 연동 — 산출물이 곧 롤백 단위다
+4. 스모크: `/`, `/posts/`, 대표 글 URL, (서버형이면) 로그인 실패 리다이렉트
 
 ---
 
 ## 정리
 
-Next.js 배포는 “어디서 돌릴지”가 아키텍처다.  
-공개 문서·블로그는 정적 HTML, 동적 이슈·관리자는 API — 역할을 나누면 SEO와 운영을 동시에 가져가기 쉽다.
+배포는 “이 앱이 서버를 필요로 하는가”에 대한 답이다. 그 답이 페칭·인증·이미지를 가른다.
+
+공개 문서는 정적 HTML, 동적 관리자는 서버 또는 별도 API. 체크리스트를 통과/미통과로 남기면 다음 배포에서 같은 구멍을 반복하지 않는다.
 
 ---
 
 ## 연습
 
-1. 현재 프로젝트가 Vercel형인지 export형인지 한 줄로 적는다.
-2. `NEXT_PUBLIC_SITE_URL`이 sitemap·OG에 쓰이는지 확인한다.
-3. 위 체크리스트를 통과/미통과로 표시한다.
+1. 현재 프로젝트가 Vercel형인지 `export`형인지 한 줄로 적고, 그 이유에 쓰는 기능(Action, 미들웨어 등)을 적는다.
+2. `NEXT_PUBLIC_SITE_URL`이 sitemap·canonical·OG에만 쓰이는지 검색한다. 하드코딩 도메인을 제거한다.
+3. 위 체크리스트를 통과/미통과로 표시하고, 미통과 항목의 수정 이슈를 연다.

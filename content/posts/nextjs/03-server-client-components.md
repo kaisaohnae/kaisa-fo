@@ -4,99 +4,196 @@ order: 3
 category: nextjs
 categoryLabel: Next.js
 title: "Server Component와 Client Component"
-summary: "기본은 서버 컴포넌트로 두고, 상호작용이 필요할 때만 Client Component로 경계를 나눈다."
-publishedAt: 2026-08-26
+summary: "기본은 서버 컴포넌트로 두고, 클릭·입력처럼 브라우저가 필요한 부분만 Client로 나눈다."
+publishedAt: 2024-04-15
 tags: ["nextjs"]
 ---
 
 # Server Component와 Client Component
 
-> 요약: 기본은 서버 컴포넌트로 두고, 상호작용이 필요할 때만 Client Component로 경계를 나눈다.
+> 요약: 기본은 서버 컴포넌트로 두고, 클릭·입력처럼 브라우저가 필요한 부분만 Client로 나눈다.
 
 ---
 
-## 1. 기본값 = Server
+## 1. 왜 이 주제가 필요한가
 
-`app/` 아래 컴포넌트는 기본적으로 **Server Component**다.
+App Router의 컴포넌트는 기본이 **RSC(React Server Component, 서버에서만 실행되는 컴포넌트)** 다.
 
-할 수 있는 것:
+서버에서 돌면 DB·파일·비밀키에 바로 접근할 수 있다. 그 코드는 브라우저 번들에 안 실려서 JS가 줄어든다.
 
-- DB·파일시스템·시크릿 접근
-- `async/await`로 데이터 로드
-- 번들에 안 실려 클라이언트 JS 감소
-
-할 수 없는 것:
-
-- `useState` / `useEffect`
-- 브라우저 API
-- 이벤트 핸들러 (`onClick` 등)
+모든 파일을 `'use client'`로 열면 이 이점이 사라진다. 반대로 서버 파일에 `onClick`을 붙이면 빌드가 실패한다. 경계를 아는 것이 App Router의 핵심이다.
 
 ---
 
-## 2. Client가 필요할 때
+## 2. 한 줄 규칙
 
-파일 상단:
+데이터와 마크업은 서버에 둔다. `useState`·이벤트·브라우저 API가 필요한 잎만 Client로 만든다.
+
+페이지 전체가 Client일 필요는 없다. Client가 Server를 import하면 그 트리도 클라이언트가 된다. 반대로 Server는 Client를 자식으로 둘 수 있다.
+
+---
+
+## 3. 예제
+
+### 서버가 할 수 있는 것 / 없는 것
+
+| | Server Component | Client Component |
+|--|------------------|------------------|
+| 기본 | `app/` 파일, 지시어 없음 | 파일 상단 `'use client'` |
+| 데이터 | `async/await`, DB, `fs` | `fetch`·훅. 시크릿·`fs` 금지 |
+| 상태 | 불가 | `useState` / `useEffect` |
+| 이벤트 | 불가 | `onClick` 등 |
+| 번들 | 클라이언트 JS에 안 실림 | 실림 |
+
+### Client는 잎에 가깝게
 
 ```tsx
+// app/posts/_components/counter.tsx
 'use client';
 
 import {useState} from 'react';
 
 export function Counter() {
   const [n, setN] = useState(0);
-  return <button onClick={() => setN(n + 1)}>{n}</button>;
-}
-```
-
-규칙: **잎(leaf)에 가깝게** Client를 둔다.  
-페이지 전체를 `'use client'`로 열면 서버의 이점이 사라진다.
-
----
-
-## 3. 경계 패턴
-
-```tsx
-// app/posts/page.tsx (Server)
-import {PostFilters} from './post-filters'; // client
-import {getPosts} from '@/lib/posts';
-
-export default async function PostsPage() {
-  const posts = await getPosts();
   return (
-    <>
-      <PostFilters />
-      <PostList posts={posts} />
-    </>
+    <button type="button" onClick={() => setN((v) => v + 1)}>
+      {n}
+    </button>
   );
 }
 ```
 
-서버가 데이터를 가져와 직렬화 가능한 props로 Client에 넘긴다.  
-함수·클래스 인스턴스는 props로 넘기지 말 것.
+`'use client'`는 그 파일과, 그 파일이 import하는 모듈을 클라이언트 경계로 만든다. 지시어는 파일 최상단, import보다 위다.
+
+### 서버 페이지가 Client를 조합한다
+
+```tsx
+// lib/posts.ts — 서버 전용
+export type Post = {slug: string; title: string};
+
+export async function getPosts(): Promise<Post[]> {
+  return [
+    {slug: 'hello', title: '첫 글'},
+    {slug: 'world', title: '둘째 글'},
+  ];
+}
+```
+
+```tsx
+// app/posts/_components/post-filters.tsx
+'use client';
+
+import {useState} from 'react';
+
+type Props = {
+  titles: string[];
+};
+
+export function PostFilters({titles}: Props) {
+  const [q, setQ] = useState('');
+  const filtered = titles.filter((t) => t.includes(q));
+
+  return (
+    <div>
+      <input
+        value={q}
+        onChange={(e) => setQ(e.target.value)}
+        placeholder="제목 검색"
+      />
+      <ul>
+        {filtered.map((t) => (
+          <li key={t}>{t}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+```
+
+```tsx
+// app/posts/page.tsx — Server Component
+import {getPosts} from '@/lib/posts';
+import {PostFilters} from './_components/post-filters';
+import {Counter} from './_components/counter';
+
+export default async function PostsPage() {
+  const posts = await getPosts();
+  const titles = posts.map((p) => p.title);
+
+  return (
+    <main>
+      <h1>글 목록</h1>
+      <PostFilters titles={titles} />
+      <Counter />
+    </main>
+  );
+}
+```
+
+서버가 데이터를 가져와 **직렬화 가능한 props**(문자열, 숫자, 평범한 객체·배열)만 Client에 넘긴다.
+
+넘기면 안 되는 것: 함수, Class 인스턴스, `Date`를 제외한 특수 객체. 함수를 props로 넘기면 직렬화 에러가 난다.
+
+### 공유 모듈이 경계를 오염시킨다
+
+Client 파일이 `lib/format.ts`를 import하면, 그 모듈은 클라이언트 번들에 들어간다. 그 `lib/format.ts`가 `fs`를 import하면 브라우저 빌드가 실패한다.
+
+서버 전용 코드는 `server-only` 패키지로 표시할 수 있다.
+
+```ts
+import 'server-only';
+
+export function loadSecret() {
+  return process.env.API_SECRET;
+}
+```
+
+Client가 이 파일을 import하면 빌드 단계에서 막힌다.
+
+### 큰 라이브러리
+
+차트·에디터처럼 무거운 패키지는 그 UI를 쓰는 Client 파일에서만 import한다. 루트 레이아웃에 두면 모든 페이지 번들이 커진다.
+
+브라우저 전용 라이브러리는 동적 import로 나눈다.
+
+```tsx
+'use client';
+
+import dynamic from 'next/dynamic';
+
+const Chart = dynamic(() => import('./chart'), {
+  ssr: false,
+  loading: () => <p>차트 로딩</p>,
+});
+```
+
+`ssr: false`는 정말 브라우저에서만 돌아야 할 때만 쓴다. 남용하면 첫 HTML이 비어 검색·미리보기에 불리하다.
 
 ---
 
 ## 4. 흔한 실수
 
-| 실수 | 대안 |
-|------|------|
-| 페이지 전체 client | 인터랙션만 분리 |
-| Server에서 `window` | Client로 이동 |
-| Client에서 `fs` | Server/lib에서 읽고 props |
-| 큰 차트 라이브러리를 레이아웃에 | 동적 import / 해당 페이지만 |
+| 실수 | 결과 | 대안 |
+|------|------|------|
+| `page.tsx` 전체에 `'use client'` | 서버 페칭·시크릿 불가 | 버튼·폼만 분리 |
+| Server에서 `window` / `document` | 빌드·렌더 에러 | Client로 이동 |
+| Client에서 `fs` / DB 클라이언트 | 번들 실패 또는 시크릿 유출 | 서버에서 읽고 props |
+| 이벤트 핸들러를 Server에서 작성 | 컴파일 에러 | Client 자식에 위임 |
+| Client가 Server 컴포넌트를 import | 그 파일도 클라이언트화 | Server가 Client를 자식으로 둔다 |
+| 훅이 있는 유틸을 서버가 import | 경계가 무너진다 | 훅 파일에 `'use client'` |
 
 ---
 
-## 5. 구성 팁
+## 정리
 
-- 폼·테마 토글·검색창 → Client
-- 본문·메타·목록 데이터 → Server
-- 공유 훅이 client면 그걸 import한 트리도 client화됨에 주의
+기본은 Server다. Client는 상호작용이 있는 잎이다.
+
+서버가 데이터를 가져오고, 직렬화 가능한 값만 Client에 넘긴다. 페이지를 Client로 여는 것은 최후의 수단이다.
 
 ---
 
 ## 연습
 
-1. 서버 페이지 + 클라이언트 검색 입력 조합을 만든다.
-2. 불필요하게 `'use client'`인 파일을 찾아 서버로 되돌린다.
-3. Client bundle에 큰 의존성이 들어가는지 빌드 분석으로 확인한다.
+1. 서버 페이지에서 글 목록을 읽고, Client 검색 입력으로 제목을 거른다.
+2. `'use client'`가 붙은 파일을 찾아, 상태·이벤트가 없는 파일은 지시어를 제거한다.
+3. `npm run build` 출력에서 큰 Client 번들이 들어간 라우트를 확인하고, 무거운 import를 해당 페이지로 옮긴다.

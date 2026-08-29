@@ -4,39 +4,26 @@ order: 9
 category: spring-boot
 categoryLabel: Spring Boot
 title: "캐시·Resilience·성능 최적화"
-summary: "캐시, 재시도, 서킷브레이커, 타임아웃으로 장애를 격리하고, 병목을 체계적으로 줄인다."
-publishedAt: 2026-08-26
+summary: "측정 뒤에 캐시·재시도·서킷 브레이커·타임아웃을 넣고, 쿼리와 페이로드 병목을 줄인다."
+publishedAt: 2026-05-01
 tags: ["spring-boot"]
 ---
 
 # 캐시·Resilience·성능 최적화
 
-> 요약: 캐시, 재시도, 서킷브레이커, 타임아웃으로 장애를 격리하고, 병목을 체계적으로 줄인다.
+> 요약: 측정 뒤에 캐시·재시도·서킷 브레이커·타임아웃을 넣고, 쿼리와 페이로드 병목을 줄인다.
 
 ---
 
----
+## 1. 왜 측정이 먼저인가
 
-## 1. 성능 작업의 순서
-
-1. **측정** (메트릭/트레이스/프로파일) — 감으로 최적화하지 않기
-2. 알고리즘/쿼리/N+1 제거
-3. 커넥션 풀·스레드·타임아웃 조정
-4. 캐시
-5. 스케일 아웃
-
-가장 싼 최적화는 “안 하는 일”을 줄이는 것이다 (불필요 호출, 과다 로그, 큰 페이로드).
+감으로 캐시를 켜면 잘못된 키·TTL이 더 큰 장애가 된다. 순서는 측정 → 쿼리/N+1 → 풀·타임아웃 → 캐시 → 스케일 아웃이다. 가장 싼 최적화는 **안 하는 일**을 줄이는 것이다.
 
 ---
 
 ## 2. Spring Cache
 
-```xml
-<dependency>
-  <groupId>org.springframework.boot</groupId>
-  <artifactId>spring-boot-starter-cache</artifactId>
-</dependency>
-```
+한 줄 정의: 같은 입력의 비싼 조회 결과를 **이름 붙은 저장소**에 잠시 두는 것이다. `@EnableCaching` + `@Cacheable` / `@CacheEvict`가 선언적 API다.
 
 ```java
 @Configuration
@@ -51,47 +38,55 @@ public class CacheConfig {
 
 ```java
 @Cacheable(cacheNames = "products", key = "#id")
-public ProductResponse get(Long id) { ... }
+public ProductResponse get(Long id) { }
 
 @CacheEvict(cacheNames = "products", key = "#id")
-public void update(Long id, UpdateProductRequest request) { ... }
+public void update(Long id, UpdateProductRequest request) { }
 ```
 
-로컬 캐시(`ConcurrentMap`)는 단일 인스턴스용.  
-다중 인스턴스는 **Redis** 등 분산 캐시:
+`ConcurrentMap`은 프로세스 하나용이고 TTL이 없다. 단일 인스턴스에서 TTL이 필요하면 Caffeine이 기본선이다. 인스턴스가 여러 개면 Redis(`spring-boot-starter-data-redis`)다.
 
-```xml
-<dependency>
-  <groupId>org.springframework.boot</groupId>
-  <artifactId>spring-boot-starter-data-redis</artifactId>
-</dependency>
+```yaml
+spring:
+  cache:
+    type: caffeine
+    caffeine:
+      spec: maximumSize=10_000,expireAfterWrite=5m
 ```
 
-주의:
-
-- 캐시 키 설계 (사용자별 데이터 섞임 금지)
-- TTL / 무효화 전략
-- stampede (캐시 만료 순간 동시 재계산) — lock/singleflight 또는 soft expire
-- 개인정보·권한 데이터 캐시 시 보안
+캐시 키가 사용자와 무관하면 권한 데이터가 섞인다. TTL과 무효화를 같이 정한다. **캐시 스탬피드**는 만료 순간 요청이 한꺼번에 원본을 두드리는 현상이다. 락·singleflight 또는 소프트 만료로 줄인다. `@Cacheable` 메서드가 self-invocation(같은 클래스 내부 호출)이면 프록시를 안 타서 캐시가 비어 있다.
 
 ---
 
-## 3. Resilience4j — 실패에 대비
+## 3. Resilience4j
 
-의존성 예:
+한 줄 정의: 원격 호출이 실패·지연할 때 **재시도·차단·격리**로 내 스레드와 의존성을 보호하는 라이브러리다. 아티팩트는 `resilience4j-spring-boot3`다.
 
-```xml
-<dependency>
-  <groupId>io.github.resilience4j</groupId>
-  <artifactId>resilience4j-spring-boot3</artifactId>
-</dependency>
+외부 호출에는 타임아웃이 필수다. 타임아웃 없는 클라이언트는 가상 스레드든 플랫폼 스레드든 풀을 고갈시킨다.
+
+```java
+JdkClientHttpRequestFactory factory = new JdkClientHttpRequestFactory();
+factory.setReadTimeout(Duration.ofSeconds(3));
+RestClient client = RestClient.builder()
+        .requestFactory(factory)
+        .baseUrl(props.baseUrl())
+        .build();
 ```
 
-### 타임아웃
-
-외부 호출에는 **반드시** 타임아웃.
-
 ### Retry
+
+멱등하지 않은 POST에 무분별한 재시도는 결제를 두 번 만든다. 네트워크·408·429·5xx만, 그리고 Idempotency-Key가 있을 때만 재시도한다.
+
+```yaml
+resilience4j:
+  retry:
+    instances:
+      payment:
+        maxAttempts: 3
+        waitDuration: 200ms
+        retryExceptions:
+          - java.io.IOException
+```
 
 ```java
 @Retry(name = "payment", fallbackMethod = "payFallback")
@@ -100,10 +95,9 @@ public PaymentResult pay(PaymentRequest request) {
 }
 ```
 
-멱등하지 않은 POST에 무분별한 재시도는 위험.  
-Idempotency-Key 또는 “안전한 재시도 조건(네트워크/408/429/5xx)”만 재시도.
-
 ### Circuit Breaker
+
+한 줄 정의: 실패율이 임계를 넘으면 **호출을 잠시 끊고**(open) 연쇄 실패를 막은 뒤, 시험 호출(half-open)로 닫는다.
 
 ```yaml
 resilience4j:
@@ -115,13 +109,9 @@ resilience4j:
         waitDurationInOpenState: 10s
 ```
 
-실패율이 높으면 빠르게 실패(open) → 회복 시도(half-open) → 정상(close).
+### Bulkhead / RateLimiter / Fallback
 
-### Bulkhead / RateLimiter
-
-동시 실행 수·호출 속도를 제한해 장애 전파를 막는다.
-
-### Fallback
+Bulkhead는 동시 실행 수를 나눠 한 의존성이 스레드를 다 먹지 못하게 한다. Fallback은 비즈니스적으로 안전할 때만 쓴다. 가짜 성공은 재고·결제에서 금지다.
 
 ```java
 private PaymentResult payFallback(PaymentRequest request, Throwable t) {
@@ -129,93 +119,75 @@ private PaymentResult payFallback(PaymentRequest request, Throwable t) {
 }
 ```
 
-폴백이 비즈니스적으로 안전한지 검토 (가짜 성공 금지).
-
 ---
 
-## 4. HTTP 클라이언트 타임아웃
+## 4. DB와 페이로드
 
-```java
-JdkClientHttpRequestFactory factory = new JdkClientHttpRequestFactory();
-factory.setReadTimeout(Duration.ofSeconds(3));
+- `WHERE` / `JOIN` / `ORDER BY`에 인덱스, `EXPLAIN ANALYZE`로 확인
+- 목록은 엔티티 그래프 대신 DTO 프로젝션
+- 페이지 크기 상한, 장시간 트랜잭션 금지
 
-RestClient client = RestClient.builder()
-        .requestFactory(factory)
-        .baseUrl(props.baseUrl())
-        .build();
+```yaml
+spring:
+  datasource:
+    hikari:
+      maximum-pool-size: 10
+      connection-timeout: 3000
 ```
 
-타임아웃 없는 클라이언트는 스레드/가상스레드·커넥션을 잡아먹는다.
+Hikari `maximum-pool-size`는 인스턴스 수 × 풀이 DB `max_connections`를 넘지 않게 둔다. 풀을 키우기 전에 슬로우 쿼리와 트랜잭션 길이를 본다.
 
----
-
-## 5. DB 성능 체크리스트
-
-- 인덱스: `WHERE`/`JOIN`/`ORDER BY` 컬럼
-- `EXPLAIN ANALYZE`로 실행 계획 확인
-- 필요 컬럼만 조회 (DTO 프로젝션)
-- 배치 사이즈, 페이지 크기 상한
-- 장시간 트랜잭션 금지 (락·커넥션 점유)
-- Hikari `maximum-pool-size` = (코어 수 기반 공식) × 인스턴스 수와 DB max_connections 균형
-
----
-
-## 6. 페이로드·직렬화
-
-- 불필요 필드 제거 (`@JsonIgnore`, 전용 DTO)
-- 대용량 목록은 커서/키셋 페이지네이션
-- gzip (리버스 프록시)
-- 이미지/파일은 오브젝트 스토리지 + CDN
-
-오프셋 페이지네이션(`page=100000`)은 깊게 갈수록 느리다. 피드성 API는 **키셋 페이지네이션**이 유리하다.
+오프셋 `page=100000`은 깊게 갈수록 느리다. 피드성 API는 **키셋 페이지네이션**—이미 본 마지막 id보다 작은 행만 가져오기—이 맞다.
 
 ```java
 List<Post> findByIdLessThanOrderByIdDesc(Long cursor, Pageable pageable);
 ```
 
----
-
-## 7. JVM·런타임
-
-- 컨테이너: 메모리 한도에 맞는 heap (`-XX:+UseContainerSupport` 기본)
-- GC 로그/메트릭 관찰
-- Native Image(GraalVM)는 기동·메모리에 유리, 빌드 복잡·제한 존재 (운영 배포 문서 참고)
+큰 JSON은 전용 DTO와 `@JsonIgnore`로 줄이고, 파일은 오브젝트 스토리지 + CDN으로 뺀다.
 
 ---
 
-## 8. 동시성 이슈
+## 5. 동시성과 멱등
 
-- 재고 차감 등: 낙관적 락 / 비관적 락 / DB 제약 / 단일화 큐
-- 분산 환경 락: Redis lock은 신중히 (오용 많음)
-- 멱등 테이블로 “한 번만 처리”
+재고 차감은 낙관적 락·DB 제약·단일 큐 중 하나를 고른다. Redis 분산 락은 만료·펜싱 토큰 없이 쓰기 쉽다.
 
 ```java
 @Entity
-@Table(name = "idempotency_keys", uniqueConstraints = @UniqueConstraint(columnNames = "key_value"))
-public class IdempotencyKey { ... }
+@Table(name = "idempotency_keys",
+        uniqueConstraints = @UniqueConstraint(columnNames = "key_value"))
+public class IdempotencyKey {
+    @Id
+    private String keyValue;
+    private String responseHash;
+}
 ```
+
+컨테이너 메모리 한도에 heap을 맞춘다(`MaxRAMPercentage`). Native Image는 기동·RSS에 유리하지만 빌드와 리플렉션 제약이 있다.
 
 ---
 
-## 9. 부하 테스트
+## 6. 부하 테스트
 
-도구: k6, Gatling, JMeter
+k6·Gatling·JMeter로 **같은 시나리오**를 최적화 전후에 돌린다. RPS, p50/p95/p99, 에러율, CPU·힙·GC, DB 커넥션·slow query, 외부 의존성 지연을 같이 본다.
 
-볼 것:
+---
 
-- RPS, p50/p95/p99
-- 에러율
-- CPU, heap, GC
-- DB CPU, 커넥션, slow query
-- 외부 의존성 지연
+## 7. 흔한 실수
 
-최적화 전후를 **같은 시나리오**로 비교한다.
+| 실수 | 대안 |
+|------|------|
+| 캐시만 넣고 evict 없음 | 갱신 경로에 `@CacheEvict` |
+| 같은 클래스 내부에서 `@Cacheable` 호출 | 별도 Bean으로 분리 |
+| 사용자별 데이터를 공용 키 | 키에 주체 포함 |
+| 비멱등 POST 재시도 | 키·안전한 상태 코드만 |
+| 서킷 없이 재시도만 | 실패 폭풍 → 브레이커 |
+| 타임아웃 0에 가까운 무한 대기 | connect/read 명시 |
 
 ---
 
 ## 연습
 
-1. `@Cacheable`로 상품 조회 캐시를 넣고, 업데이트 시 evict한다.
-2. 외부 호출에 Resilience4j CircuitBreaker + Retry를 적용한다.
-3. RestClient read timeout을 3초로 설정한다.
-4. 느린 목록 API를 키셋 페이지네이션으로 바꾼다.
+1. 상품 조회에 `@Cacheable`, 수정에 evict를 붙인다.
+2. 외부 호출에 CircuitBreaker + Retry를 적용한다.
+3. RestClient read timeout을 3초로 둔다.
+4. 느린 목록을 키셋 페이지네이션으로 바꾼다.

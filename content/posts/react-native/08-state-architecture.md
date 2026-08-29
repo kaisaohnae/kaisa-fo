@@ -4,36 +4,57 @@ order: 8
 category: react-native
 categoryLabel: React Native
 title: "상태 관리·아키텍처·모듈화"
-summary: "전역 상태를 최소화하고, Feature 단위 구조와 Zustand/Context 선택 기준을 익힌다."
-publishedAt: 2026-08-26
+summary: "전역 상태를 최소화하고, 기능 단위 폴더와 Context·Zustand 선택 기준을 정리한다."
+publishedAt: 2026-02-09
 tags: ["react-native"]
 ---
 
 # 상태 관리·아키텍처·모듈화
 
-> 요약: 전역 상태를 최소화하고, Feature 단위 구조와 Zustand/Context 선택 기준을 익힌다.
+> 요약: 전역 상태를 최소화하고, 기능 단위 폴더와 Context·Zustand 선택 기준을 정리한다.
 
 ---
 
+## 1. 왜 전역을 늦게 쓰나
+
+앱이 커지면 “일단 Redux”로 가기 쉽다. RN 신규 프로젝트에서 가장 흔한 실수다. 대부분은 로컬 상태와 서버 캐시면 된다.
+
+전역은 **멀리 떨어진 화면이 같은 클라이언트 값을 써야 할 때**만 연다. 장바구니, 테마, 세션이 그 예다. 게시글 목록은 Query에 두고 복제하지 않는다.
+
+폴더를 기능 단위로 나누면 화면 파일이 얇아진다. 라우트는 조립만 한다.
+
 ---
 
-## 1. 상태 배치 우선순위
+## 2. 핵심 개념
+
+상태 배치 순서:
 
 1. 로컬 `useState`
-2. URL/라우트 파라미터 (공유 가능·북마크 가능한 UI)
+2. 라우트 파라미터 (공유·복원 가능한 UI)
 3. React Query (서버 상태)
-4. Context (드문 저빈도 전역: theme, auth 세션)
-5. Zustand/Jotai 등 (클라이언트 전역이 명확할 때)
-6. Redux Toolkit (이미 팀 표준이거나 매우 복잡한 클라이언트 워크플로)
+4. Context (드물고 천천히 바뀌는 값: theme, auth)
+5. Zustand (클라이언트 전역이 명확할 때)
+6. Redux Toolkit (팀 표준이거나 복잡한 클라이언트 워크플로)
 
-**모든 것을 Redux에 넣지 않는다.** RN 신입 프로젝트가 가장 많이 하는 실수다.
+Context는 value가 바뀔 때마다 구독 컴포넌트가 다시 그린다. 스크롤 위치, 매 키입력은 넣지 않는다.
+
+Zustand는 셀렉터로 필요한 조각만 구독한다. persist는 AsyncStorage로 충분하다. **토큰은 persist 금지.** SecureStore + Auth 흐름이다.
+
+에러 경계는 라우트 단위로 나눈다. 한 화면 크래시가 앱 전체 흰 화면이 되지 않게 한다.
+
+환경은 `app.config.ts`와 EAS 프로파일로 나눈다. 번들 ID와 API URL을 섞지 않는다.
 
 ---
 
-## 2. Context — 언제 OK
+## 3. 예제
+
+테마처럼 저빈도 값:
 
 ```tsx
-const ThemeContext = createContext<{ mode: 'light' | 'dark'; toggle: () => void } | null>(null);
+const ThemeContext = createContext<{
+  mode: 'light' | 'dark';
+  toggle: () => void;
+} | null>(null);
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [mode, setMode] = useState<'light' | 'dark'>('light');
@@ -45,15 +66,10 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 }
 ```
 
-주의: value가 자주 바뀌면 구독 컴포넌트가 전부 리렌더.  
-고빈도 상태(스크롤 위치, 매 키입력)는 Context에 두지 말 것.
-
----
-
-## 3. Zustand — 가벼운 전역
+장바구니처럼 여러 화면이 같은 클라이언트 데이터:
 
 ```bash
-npx expo install zustand
+npx expo install zustand @react-native-async-storage/async-storage
 ```
 
 ```tsx
@@ -83,21 +99,15 @@ export const useCart = create<CartState>()(
 );
 ```
 
-민감 토큰은 AsyncStorage persist 금지 → SecureStore + Auth 흐름.
-
-셀렉터로 리렌더 최소화:
-
 ```tsx
 const count = useCart((s) => s.items[id] ?? 0);
 ```
 
----
-
-## 4. 폴더 구조 제안 (Feature-first)
+기능 단위 폴더:
 
 ```
 src/
-├── app/                 # expo-router 엔트리 (또는 루트 app/)
+├── app/                 # expo-router (또는 루트 app/)
 ├── features/
 │   ├── auth/
 │   │   ├── api.ts
@@ -106,25 +116,14 @@ src/
 │   │   └── components/
 │   ├── posts/
 │   └── cart/
-├── components/          # 디자인 시스템급 공용 UI
-├── lib/                 # api client, storage
-├── constants/
-└── types/
+├── components/          # 공용 UI
+├── lib/                 # api, storage
+└── constants/
 ```
 
-화면 파일은 얇게, 비즈니스는 `features/*`로.
-
----
-
-## 5. 컴포넌트 설계 원칙
-
-- Presentational vs Container를 과도히 나누기보다 **훅으로 로직 분리**
-- props drilling 3단 넘어가면 합성·훅·작은 store 검토
-- 날짜/가격 포맷은 `lib/format.ts`로 일원화
-- 매직 넘버·카피 문자열 상수화 (i18n 대비)
+화면은 훅만 호출한다.
 
 ```tsx
-// features/posts/hooks.ts
 export function usePost(id: string) {
   return useQuery({
     queryKey: ['posts', id],
@@ -133,9 +132,7 @@ export function usePost(id: string) {
 }
 ```
 
----
-
-## 6. 에러 경계
+날짜·가격 포맷은 `lib/format.ts` 한곳. props가 세 단을 넘으면 합성이나 작은 store를 검토한다. Presentational/Container를 기계적으로 나누기보다 훅으로 로직을 뺀다.
 
 ```tsx
 import { ErrorBoundary } from 'react-error-boundary';
@@ -144,13 +141,6 @@ import { ErrorBoundary } from 'react-error-boundary';
   <App />
 </ErrorBoundary>
 ```
-
-치명 렌더 크래시가 흰 화면으로 끝나지 않게.  
-라우트 단위로 경계를 나누면 전체가 죽지 않는다.
-
----
-
-## 7. 환경·설정
 
 ```ts
 // app.config.ts
@@ -167,27 +157,34 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
 });
 ```
 
-dev / staging / prod 번들 ID·API URL을 분리한다 (EAS profile).
+품질 기본선: TypeScript `strict`, ESLint, `@/` import. 팀이면 lint-staged.
 
 ---
 
-## 8. 품질 도구
+## 4. 흔한 실수
 
-```bash
-npx expo install eslint prettier
-# 또는 expo lint
-```
-
-- TypeScript `strict`
-- ESLint + import order
-- absolute import (`@/`)
-- Husky + lint-staged (팀)
+| 실수 | 대안 |
+|------|------|
+| 모든 값을 Redux/Zustand | 로컬 → Query → 전역 순 |
+| 서버 목록을 스토어에 복제 | Query가 원본 |
+| Context에 고빈도 값 | 셀렉터 있는 store 또는 로컬 |
+| 토큰을 AsyncStorage persist | SecureStore |
+| 화면 파일에 API+UI 혼재 | `features/*/hooks.ts` |
+| 루트만 ErrorBoundary | 라우트 단위로 나눈다 |
 
 ---
+
+## 5. 정리
+
+아키텍처는 라이브러리 선택이 아니다. **상태의 원본을 어디에 둘지**를 먼저 정하는 일이다.
+
+- 전역은 최소. Feature 폴더가 경계다.
+- Context는 테마·세션. Zustand는 장바구니류.
+- dev/staging/prod는 설정과 번들 ID로 분리한다.
 
 ## 연습
 
-1. Feature 폴더로 `posts` 모듈을 재배치한다.
-2. Zustand로 장바구니(또는 최근 검색어)를 persist한다.
+1. `posts`를 Feature 폴더로 옮긴다.
+2. Zustand로 장바구니 또는 최근 검색어를 persist한다.
 3. Theme Context로 라이트/다크를 토글한다.
 4. 라우트 단위 ErrorBoundary를 추가한다.

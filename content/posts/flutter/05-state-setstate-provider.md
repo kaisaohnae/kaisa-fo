@@ -4,59 +4,193 @@ order: 5
 category: flutter
 categoryLabel: Flutter
 title: "setState부터 Provider·Riverpod까지 상태 관리"
-summary: "로컬 setState와 앱 전역 상태의 경계를 나누고, Provider/Riverpod를 고르는 기준을 정리한다."
-publishedAt: 2026-08-26
+summary: "값이 누구의 기억인지 먼저 나누고, 로컬은 setState, 공유는 Provider로 올린다."
+publishedAt: 2025-04-08
 tags: ["flutter"]
 ---
 
 # setState부터 Provider·Riverpod까지 상태 관리
 
-> 요약: 로컬 setState와 앱 전역 상태의 경계를 나누고, Provider/Riverpod를 고르는 기준을 정리한다.
+> 요약: 값이 누구의 기억인지 먼저 나누고, 로컬은 setState, 공유는 Provider로 올린다.
 
 ---
 
-## 1. 먼저 로컬
+## 1. 왜 / 언제
 
-폼 입력, 토글, 애니메이션 진행도는 **위젯 근처 `setState`** 가 가장 싸다.
+상태 관리 패키지를 고르기 전에 질문 하나다. **이 값은 누구의 기억인가.**
 
-전역 스토어에 모든 키 입력을 넣으면 리빌드와 복잡도가 는다.
+입력 중인 글자, 토글, 버튼 로딩은 그 위젯 근처면 된다. `setState`가 가장 싸다. 로그인 세션, 장바구니, 테마 설정은 화면이 바뀌어도 남아야 한다. 그때 공유 계층이 필요하다.
 
----
+모든 키 입력을 전역 스토어에 넣으면 리빌드가 늘고 코드가 길어진다. 반대로 세션을 화면 `State`에 두면 라우트가 바뀌는 순간 로그아웃과 같아진다.
 
-## 2. 언제 전역인가
-
-| 상태 | 위치 |
-|------|------|
-| 로그인 세션 | 앱 스코프 |
-| 장바구니·설정 | 공유 레이어 |
-| 서버 목록 캐시 | 저장소/쿼리 계층 검토 |
-| 버튼 로딩 | 화면 로컬 |
+패키지는 그 다음이다. 팀을 하나로 고정한다. 한 앱에 Provider·Riverpod·Bloc을 섞지 않는다.
 
 ---
 
-## 3. 패키지 감각
+## 2. 핵심
 
-- **Provider**: 이해하기 쉽고 생태계가 큼
-- **Riverpod**: 컴파일 안전·테스트·스코프에 강점
-- **Bloc**: 이벤트/상태 파이프라인을 팀이 원할 때
+Flutter에서 화면이 바뀌는 기본 장치는 `setState`다. 값이 바뀌었다고 표시하면 그 `State`의 `build`가 다시 돈다. 위젯 트리는 위에서 아래로 다시 설명된다. `const` 자식과 분리한 위젯은 입력이 같으면 넘어갈 수 있다.
 
-하나를 팀 표준으로 고정한다. 한 앱에 세 종류를 섞지 않는다.
+위젯은 자주 다시 만들어진다. 공유 값을 위젯 필드에 두면 사라진다. 트리 위쪽에 값을 두고 아래가 읽게 하는 장치가 `InheritedWidget`이다. Provider는 그 패턴을 쓰기 쉽게 포장한 것이다.
+
+| 상태 | 위치 | 이유 |
+|------|------|------|
+| 폼 입력, 토글, 로컬 로딩 | 위젯 `setState` | 화면과 수명이 같다 |
+| 로그인 세션 | 앱 스코프 | 라우트가 바뀌어도 유지 |
+| 장바구니·설정 | 공유 레이어 | 여러 화면이 읽는다 |
+| 서버 목록 캐시 | 저장소/쿼리 계층 | UI 상태가 아니다 |
+
+읽기 범위가 곧 리빌드 범위다. `watch`는 값이 바뀔 때 그 위젯을 다시 그린다. 큰 화면 루트에서 세션을 `watch`하면 타이핑마다 전체가 흔들릴 수 있다. 필요한 잎만 구독한다.
+
+| 패키지 | 언제 |
+|--------|------|
+| Provider | 개념이 단순하고 생태계가 클 때 |
+| Riverpod | 컴파일 안전·테스트·스코프가 필요할 때 |
+| Bloc | 이벤트/상태 파이프라인을 팀이 원할 때 |
+
+하나를 팀 표준으로 둔다.
+
+---
+
+## 3. 예제
+
+### 로컬 setState
 
 ```dart
-// 개념: 읽기
-final user = context.watch<Auth>();
+class LikeButton extends StatefulWidget {
+  const LikeButton({super.key});
+
+  @override
+  State<LikeButton> createState() => _LikeButtonState();
+}
+
+class _LikeButtonState extends State<LikeButton> {
+  bool liked = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      onPressed: () => setState(() => liked = !liked),
+      icon: Icon(liked ? Icons.favorite : Icons.favorite_border),
+    );
+  }
+}
 ```
+
+좋아요 토글은 이 버튼의 기억이다. 앱 스토어에 올리지 않는다.
+
+### Provider로 세션 공유
+
+```yaml
+dependencies:
+  provider: ^6.1.0
+```
+
+```dart
+class Auth extends ChangeNotifier {
+  Auth();
+
+  String? userId;
+
+  bool get signedIn => userId != null;
+
+  void signIn(String id) {
+    userId = id;
+    notifyListeners();
+  }
+
+  void signOut() {
+    userId = null;
+    notifyListeners();
+  }
+}
+```
+
+루트에 올린다.
+
+```dart
+class App extends StatelessWidget {
+  const App({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider<Auth>(
+      create: (_) => Auth(),
+      child: const MaterialApp(
+        home: HomePage(),
+      ),
+    );
+  }
+}
+```
+
+읽는 쪽은 범위를 나눈다.
+
+```dart
+class HomeHeader extends StatelessWidget {
+  const HomeHeader({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final bool signedIn = context.watch<Auth>().signedIn;
+    return Text(signedIn ? '로그인됨' : '게스트');
+  }
+}
+
+class SignInButton extends StatelessWidget {
+  const SignInButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return TextButton(
+      onPressed: () => context.read<Auth>().signIn('user-1'),
+      child: const Text('로그인'),
+    );
+  }
+}
+```
+
+`watch`는 구독이다. `read`는 한 번 읽고 액션만 호출한다. 버튼은 `read`가 맞다. 헤더처럼 값에 따라 그려져야 하는 곳만 `watch`한다.
+
+`select`로 필드 하나만 구독하면 리빌드가 더 줄어든다.
+
+```dart
+final String? userId = context.select<Auth, String?>((Auth a) => a.userId);
+```
+
+### 위젯 분리
+
+큰 `build` 하나에 `watch`를 여러 개 두지 않는다. 구독하는 위젯을 작게 쪼갠다. 카운터·헤더·리스트를 각각 Stateless로 빼면 상위 `setState`가 전체를 흔들지 않는다.
 
 ---
 
-## 4. 리빌드
+## 4. 흔한 실수
 
-- `watch` 범위를 좁힌다
-- 큰 트리는 위젯 분리
-- `const` 생성자로 불필요 리빌드 감소
+| 실수 | 결과 | 대안 |
+|------|------|------|
+| 모든 입력을 전역에 둔다 | 리빌드·복잡도 증가 | 로컬은 `setState` |
+| 화면 루트에서 `watch` | 타이핑마다 전체 재빌드 | 잎 위젯만 구독 |
+| `watch`로 액션 호출 | 빌드 중 부수 효과 | 콜백에서 `read` |
+| Provider를 `build`마다 생성 | 상태가 리셋된다 | 루트 `create` 한 번 |
+| 패키지를 화면마다 다르게 | 팀 온보딩 실패 | 표준 하나 |
+
+`notifyListeners`는 값이 실제로 바뀔 때만 호출한다. 같은 값으로 반복 알리면 구독 위젯이 불필요하게 다시 돈다.
+
+비동기 뒤에 `notifyListeners`를 호출할 때도 객체가 아직 쓰이는지 본다. `ChangeNotifier`를 `dispose`한 뒤 알리면 예외가 난다.
+
+전역이 필요해 보여도 먼저 위젯을 한 단계 올린다. 부모 `State`로 충분하면 Provider를 열지 않는다.
 
 ---
 
 ## 정리
 
-상태 관리 프레임워크보다 **“이 값이 누구의 기억인가”** 를 먼저 정한다.
+상태 관리 프레임워크보다 **“이 값이 누구의 기억인가”** 를 먼저 정한다. 로컬은 `setState`, 공유는 Provider(또는 팀 표준)다. 구독 범위가 곧 리빌드 범위다.
+
+---
+
+## 연습
+
+1. 토글 버튼을 `setState`만으로 만든다. Provider에 올리지 않는다.
+2. `Auth`를 `ChangeNotifier`로 두고 두 화면이 로그인 여부를 공유하게 한다.
+3. 헤더는 `watch`, 버튼은 `read`로 나눈다.
+4. 루트 `watch`를 잎 위젯으로 옮겨 리빌드 범위를 줄인다.

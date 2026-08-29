@@ -4,32 +4,31 @@ order: 1
 category: laravel
 categoryLabel: Laravel
 title: "Laravel 11+와 PHP 시작하기"
-summary: "Laravel 11/12 + PHP 8.2/8.3 기준으로 프로젝트를 세팅하고, 슬림해진 구조와 최신 관례를 이해한다."
-publishedAt: 2026-08-26
+summary: "Laravel 11부터는 Kernel 대신 bootstrap/app.php가 앱의 중심이고, PHP 8.2 이상으로 프로젝트를 세팅한다."
+publishedAt: 2023-02-27
 tags: ["laravel"]
 ---
 
 # Laravel 11+와 PHP 시작하기
 
-> 요약: Laravel 11/12 + PHP 8.2/8.3 기준으로 프로젝트를 세팅하고, 슬림해진 구조와 최신 관례를 이해한다.
+> 요약: Laravel 11부터는 Kernel 대신 bootstrap/app.php가 앱의 중심이고, PHP 8.2 이상으로 프로젝트를 세팅한다.
 
 ---
 
----
+## 1. Laravel이란, 왜 11+인가
 
-## 1. 왜 지금 Laravel인가
+**Laravel**은 PHP로 웹 앱과 API를 만드는 프레임워크다. 라우팅·DB·인증·큐처럼 반복되는 뼈대를 대신 제공해서, 도메인 코드에 시간을 쓰게 한다.
 
-Laravel은 PHP 웹 앱의 사실상 표준에 가깝다. 최근 버전은 **골격은 얇게, 기능은 패키지로** 가는 방향이다.
+11부터는 **골격은 얇게, 기능은 필요할 때 패키지로** 가는 방향이다. 예전처럼 Kernel과 설정 파일이 잔뜩 깔려 있지 않다.
 
-| 항목 | Laravel 8~9 | Laravel 11+ |
-|------|-------------|-------------|
-| 기본 구조 | `Http/Kernel`, 다수 설정 파일 | **슬림 스켈레톤**, `bootstrap/app.php` 중심 |
-| PHP | 8.0+ | **8.2+** (8.3 권장) |
-| 라우트 | `RouteServiceProvider` | `bootstrap/app.php`에서 설정 |
-| 미들웨어 | Kernel 등록 | `bootstrap/app.php` / 자동 발견 |
-| 테스트 | PHPUnit 기본 | **Pest** 옵션이 매우 흔함 |
+| 항목 | Laravel 8~10 | Laravel 11+ |
+|------|--------------|-------------|
+| 앱 구성 | `Http/Kernel`, `RouteServiceProvider` | **`bootstrap/app.php`** |
+| PHP | 8.0~8.1도 가능 | **8.2+** (8.3 권장) |
+| 미들웨어 | Kernel에 배열 등록 | `withMiddleware` / 별칭 |
+| 테스트 | PHPUnit 기본 | **Pest**를 쓰는 팀이 많음 |
 
-실무 기본선: **PHP 8.3 + Laravel 11/12 + Composer 2**.
+실무 기본선은 **PHP 8.3 + Laravel 11/12 + Composer 2**다.
 
 ---
 
@@ -46,48 +45,38 @@ php artisan key:generate
 php artisan serve
 ```
 
-요구 사항: PHP, Composer, DB(SQLite/MySQL/PostgreSQL), Node(프론트 빌드 시).
+필요한 것: PHP 8.2+, Composer, DB(SQLite/MySQL/PostgreSQL). 프론트를 빌드하면 Node도 필요하다.
 
-로컬 올인원:
+로컬을 Docker로 맞출 때는 **Sail**(공식 Docker 구성)을 쓴다. 운영 이미지로 그대로 쓰지 않는 편이 안전하다.
 
 ```bash
-# Laravel Sail (Docker)
 php artisan sail:install
 ./vendor/bin/sail up -d
 ```
 
 ---
 
-## 3. Laravel 11+ 디렉터리 감각
+## 3. 슬림 스켈레톤
 
 ```
 app/
 ├── Http/Controllers/
 ├── Models/
-├── Providers/          # 거의 AppServiceProvider만
-└── ...
+└── Providers/          # 보통 AppServiceProvider만
 bootstrap/
-├── app.php             # ★ 앱 구성의 중심
+├── app.php             # 앱 구성의 중심
 └── providers.php
-config/                 # 필요한 것만 publish
-database/
-├── migrations/
-├── seeders/
-└── factories/
+config/                 # 바꿀 것만 publish
+database/migrations/
 routes/
 ├── web.php
 ├── console.php
-└── api.php             # 설치 방식에 따라 추가
-resources/
-├── views/
-├── css/
-└── js/
+└── api.php             # install:api 등으로 추가
+resources/views/
 tests/
-├── Feature/
-└── Unit/
 ```
 
-`bootstrap/app.php` 예시 개념:
+`app/Http/Kernel.php`를 찾아 헤매는 것은 Laravel 10 습관이다. 11+에서는 없다.
 
 ```php
 return Application::configure(basePath: dirname(__DIR__))
@@ -105,6 +94,8 @@ return Application::configure(basePath: dirname(__DIR__))
     })->create();
 ```
 
+`health: '/up'`은 로드밸런서·오케스트레이터가 “살아 있는지” 묻는 경로다. 앱 로직을 넣지 않는다.
+
 ---
 
 ## 4. `.env`와 설정
@@ -116,29 +107,30 @@ APP_DEBUG=true
 APP_URL=http://localhost
 
 DB_CONNECTION=sqlite
-# 또는 mysql/pgsql
 
 CACHE_STORE=database
 QUEUE_CONNECTION=database
 SESSION_DRIVER=database
 ```
 
-규칙:
+규칙이 세 가지다.
 
-- 시크릿은 `.env`만, **커밋 금지**
-- 코드에서는 `config('app.name')` / `env()`는 **config 파일 안에서만**
-- 환경별: `APP_ENV=production`이면 `APP_DEBUG=false` 필수
+- 비밀번호·키는 `.env`에만 두고 **커밋하지 않는다**.
+- 앱 코드에서는 `config('app.name')`을 쓴다. `env()`는 **config 파일 안에서만**.
+- 운영은 `APP_ENV=production`이면 `APP_DEBUG=false`가 필수다. 디버그가 켜지면 스택과 환경 값이 그대로 보인다.
+
+`config:cache`를 켠 뒤에는 `env()`가 코드에서 빈 값을 돌려주는 경우가 많다. 그래서 코드에 `env()`를 두면 운영에서만 깨진다.
 
 ```bash
-php artisan config:cache   # 운영
-php artisan config:clear   # 로컬 변경 후
+php artisan config:cache   # 운영 배포
+php artisan config:clear   # 로컬에서 .env를 바꾼 뒤
 ```
 
 ---
 
-## 5. PHP 8.2+에서 특히 쓸 만한 문법
+## 5. PHP 8.2+에서 바로 쓰는 문법
 
-### readonly / constructor property promotion
+Laravel의 Form Request·캐스트와 잘 맞는다.
 
 ```php
 class CreateUserData
@@ -148,34 +140,28 @@ class CreateUserData
         public readonly string $name,
     ) {}
 }
-```
 
-### Enum
-
-```php
 enum OrderStatus: string
 {
     case Pending = 'pending';
     case Paid = 'paid';
     case Cancelled = 'cancelled';
 }
-```
 
-### Named arguments, match, nullsafe
-
-```php
-$statusLabel = match ($order->status) {
+$label = match ($order->status) {
     OrderStatus::Pending => '대기',
     OrderStatus::Paid => '결제완료',
     OrderStatus::Cancelled => '취소',
 };
 ```
 
-Laravel의 **Form Request, DTO, Enum cast**와 잘 맞는다.
+상태 값을 문자열 `'paid'`로 흩뿌리면 오타가 컴파일에 안 잡힌다. Enum이면 잘못된 값이 타입에서 걸린다.
 
 ---
 
-## 6. Artisan — 매일 쓰는 명령
+## 6. Artisan
+
+**Artisan**은 Laravel 명령줄 도구다. 모델·마이그레이션·컨트롤러를 손으로 복사하지 않는다.
 
 ```bash
 php artisan list
@@ -186,7 +172,7 @@ php artisan route:list
 php artisan tinker
 ```
 
-`tinker`로 Eloquent/컨테이너를 바로 실험하는 습관이 학습 속도를 올린다.
+`tinker`는 컨테이너와 Eloquent(DB를 객체로 다루는 계층, 3편)를 REPL에서 만져 보는 도구다. 쿼리를 추측하기 전에 한 번 실행해 보면 학습이 빨라진다.
 
 ---
 
@@ -203,40 +189,41 @@ Route::get('/api/hello', function () {
 
 ```bash
 curl http://127.0.0.1:8000/api/hello
+php artisan route:list
 ```
+
+웹 세션이 필요 없는 JSON API만 만들면 `php artisan install:api`로 `routes/api.php`를 추가한다.
 
 ---
 
-## 8. 패키지 생태계
+## 8. 패키지는 필요할 때만
 
 | 목적 | 대표 |
 |------|------|
-| 인증 UI | Breeze / Fortify / Jetstream |
-| API 토큰 | Sanctum |
-| 권한 | Policy / Gate (내장), Spatie Permission |
+| 인증 UI | Breeze / Fortify |
+| API·SPA 인증 | Sanctum (토큰 또는 쿠키) |
+| 권한 | Policy (내장), Spatie Permission |
 | 관리자 | Filament |
 | 프론트 | Blade, Livewire, Inertia |
-| 큐 모니터링 | Horizon |
-| 고성능 | Octane |
+| 큐 감시 | Horizon (Redis 큐 대시보드) |
 
-처음부터 다 깔지 말고, API면 Sanctum, SPA면 Breeze+Inertia 식으로 고른다.
+처음부터 Jetstream·Octane·Horizon을 다 깔지 않는다. API면 Sanctum, 폼 많은 내부툴이면 Blade 또는 Filament처럼 **제품에 맞는 한 줄**만 고른다.
 
 ---
 
-## 9. 최신 기법 체크리스트
+## 9. 흔한 실수
 
-- [ ] PHP 8.3 + Laravel 11/12
-- [ ] `.env` / `config()` 규약 준수
-- [ ] `bootstrap/app.php` 구조 이해
-- [ ] Enum·readonly로 도메인 명확화
-- [ ] Sail 또는 통일된 로컬 환경
-- [ ] `/up` 헬스 엔드포인트 인지
+- Laravel 10 문서만 보고 `Http/Kernel.php`를 찾는다. 11+는 `bootstrap/app.php`다.
+- 컨트롤러에서 `env('APP_URL')`을 직접 읽는다. 설정 캐시 후 빈 값이 된다.
+- `.env`를 깃에 올린다. `APP_KEY`가 새면 세션·암호화 데이터가 위험해진다.
+- `APP_DEBUG=true`인 채 배포한다.
+- PHP 8.1로 11을 설치하려고 한다. 최소 8.2다.
 
 ---
 
 ## 연습
 
-1. Laravel 프로젝트를 만들고 `/up`과 커스텀 JSON 라우트를 확인한다.
-2. `.env`에서 SQLite ↔ MySQL/Postgres 중 하나로 DB를 연결한다.
-3. `OrderStatus` Enum을 만들어 `tinker`에서 출력해 본다.
-4. `php artisan route:list`로 등록된 라우트를 확인한다.
+1. 프로젝트를 만들고 `/up`과 JSON 라우트가 응답하는지 확인한다.
+2. `.env`에서 SQLite 또는 MySQL/Postgres 중 하나로 DB를 연결한다.
+3. `OrderStatus` Enum을 만들어 `tinker`에서 출력한다.
+4. `php artisan route:list`로 등록된 경로를 확인한다.

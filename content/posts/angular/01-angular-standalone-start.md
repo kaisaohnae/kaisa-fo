@@ -4,45 +4,115 @@ order: 1
 category: angular
 categoryLabel: Angular
 title: "Angular 스탠드얼론으로 프로젝트 시작하기"
-summary: "NgModule 없이 standalone 컴포넌트·라우팅 기준으로 Angular 프로젝트를 세팅하고 기본 구조를 정리한다."
-publishedAt: 2026-08-26
+summary: "NgModule 없이 standalone 컴포넌트와 app.config로 Angular 앱을 띄우고, 폴더·부트스트랩 기본선을 정리한다."
+publishedAt: 2023-07-14
 tags: ["angular"]
 ---
 
 # Angular 스탠드얼론으로 프로젝트 시작하기
 
-> 요약: NgModule 없이 standalone 컴포넌트·라우팅 기준으로 Angular 프로젝트를 세팅하고 기본 구조를 정리한다.
+> 요약: NgModule 없이 standalone 컴포넌트와 app.config로 Angular 앱을 띄우고, 폴더·부트스트랩 기본선을 정리한다.
 
 ---
 
-## 1. 왜 지금 Angular인가
+## 1. 언제 Angular인가
 
-Angular는 **프레임워크가 라우팅·DI·폼·빌드를 한 세트로** 제공하는 쪽에 가깝다.
+Angular는 라우팅·DI(의존성 주입)·폼·빌드를 **한 프레임워크**로 제공하는 쪽에 가깝다. 팀 규칙과 폴더 구조가 처음부터 정해져 있으면 규모가 커져도 같은 모양이 유지된다.
 
-신규 기본선은 **standalone API**다. NgModule은 레거시·라이브러리 경계에서 만날 수 있다.
+신규 기본선은 **standalone API**다. NgModule은 옛 앱·일부 라이브러리에서만 만난다.
 
-| 항목 | 예전 | 지금 |
-|------|------|------|
-| 부트스트랩 | `NgModule` | `bootstrapApplication` |
-| 컴포넌트 | `declarations` | `standalone: true` |
-| 의존성 | `imports` in module | 컴포넌트 `imports` |
+| 항목 | NgModule 시대 | 지금 |
+|------|---------------|------|
+| 앱 시작 | `AppModule` + `bootstrapModule` | `bootstrapApplication` |
+| 컴포넌트 등록 | 모듈 `declarations` | 컴포넌트 `standalone: true` + `imports` |
+| 전역 설정 | 모듈 `providers` | `app.config.ts`의 `providers` |
+
+standalone 컴포넌트는 **자기 파일에서 필요한 것을 `imports`로 가져오는 화면 조각**이다. 모듈 파일이 없어도 템플릿에 `RouterLink` 등을 쓸 수 있다.
 
 ---
 
-## 2. 생성
+## 2. 핵심 구조
+
+```
+src/
+├── main.ts              앱을 부트스트랩한다
+├── app/
+│   ├── app.config.ts    라우터·HTTP 등 제공자
+│   ├── app.routes.ts    URL 표
+│   ├── app.ts           루트 컴포넌트
+│   └── home/
+│       └── home.ts
+└── index.html
+```
+
+| 파일 | 역할 |
+|------|------|
+| `main.ts` | `bootstrapApplication(App, appConfig)` |
+| `app.config.ts` | `ApplicationConfig`. 앱 전역 서비스 등록 |
+| `app.routes.ts` | `Routes` 배열 |
+| 기능 폴더 | 화면 하나 = 폴더 하나. 공유 UI는 `shared/` |
+
+최신 CLI는 파일명이 `app.ts`인 경우가 많다. 구 템플릿은 `app.component.ts`다. 역할은 같다.
+
+---
+
+## 3. 생성
 
 ```bash
 npm install -g @angular/cli
-ng new my-app --standalone
+ng new my-app --defaults
 cd my-app
 ng serve
 ```
 
-권장: TypeScript strict, 라우팅 포함.
+최근 CLI는 standalone가 기본이다. `--standalone` 플래그는 버전에 따라 불필요하거나 폐기됐다. `ng new --help`로 확인한다.
+
+권장: TypeScript strict, 라우팅 포함. CSS는 팀 취향이다.
 
 ---
 
-## 3. 최소 컴포넌트
+## 4. 동작하는 예: 부트스트랩과 홈
+
+`src/main.ts`:
+
+```ts
+import { bootstrapApplication } from '@angular/platform-browser';
+import { appConfig } from './app/app.config';
+import { App } from './app/app';
+
+bootstrapApplication(App, appConfig).catch((err) => console.error(err));
+```
+
+`src/app/app.config.ts`:
+
+```ts
+import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
+import { provideRouter } from '@angular/router';
+import { routes } from './app.routes';
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideZoneChangeDetection({ eventCoalescing: true }),
+    provideRouter(routes),
+  ],
+};
+```
+
+CLI 버전에 따라 `provideBrowserGlobalErrorListeners` 등이 더 있을 수 있다. 생성 결과에서 라우터만 확인하면 된다.
+
+`src/app/app.routes.ts`:
+
+```ts
+import { Routes } from '@angular/router';
+import { Home } from './home/home';
+
+export const routes: Routes = [
+  { path: '', component: Home },
+  { path: '**', redirectTo: '' },
+];
+```
+
+`src/app/home/home.ts`:
 
 ```ts
 import { Component } from '@angular/core';
@@ -50,32 +120,76 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-home',
   standalone: true,
-  template: `<h1>{{ title }}</h1>`,
+  template: `
+    <section>
+      <h1>{{ title }}</h1>
+      <p>standalone 홈이다.</p>
+    </section>
+  `,
 })
-export class HomeComponent {
-  title = 'Home';
+export class Home {
+  title = '홈';
 }
 ```
 
-`ng new` 최신 템플릿은 이미 standalone가 기본인 경우가 많다. 버전 노트를 확인한다.
+`src/app/app.ts`:
+
+```ts
+import { Component } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  imports: [RouterOutlet],
+  template: `
+    <header>
+      <strong>MyApp</strong>
+    </header>
+    <router-outlet />
+  `,
+})
+export class App {}
+```
+
+루트는 셸이다. 본문은 `router-outlet`이 채운다. `Home`을 쓰려면 라우트에 등록한다. 루트 `imports`에 넣을 필요는 없다.
+
+`standalone: true`는 Angular 19+에서 기본값이라 생략할 수 있다. 이 시리즈는 의도를 드러내기 위해 적는다.
 
 ---
 
-## 4. 디렉터리 감각
+## 5. NgModule을 언제 보는가
 
-```
-src/app/
-├── app.config.ts
-├── app.routes.ts
-├── app.ts          # 루트
-└── home/
-    └── home.ts
-```
+- 옛 튜토리얼의 `NgModule` / `declarations`
+- 아직 모듈만 제공하는 서드파티
+- 점진 이관 중인 대형 코드베이스
 
-기능별로 폴더를 나누고, 공유 UI는 `shared/`로 모은다.
+신규 화면은 standalone로 만든다. 라이브러리가 모듈만 주면 그 모듈을 컴포넌트 `imports`에 넣는다. 앱 전체를 다시 `AppModule`로 묶지 않는다.
+
+---
+
+## 6. 주의 / 흔한 실수
+
+- **`declarations`를 standalone 컴포넌트에 찾기.** 그 배열은 NgModule 전용이다. 자식은 `imports`에 넣는다.
+- **루트에 모든 페이지를 `imports`.** 라우트 `component` / `loadComponent`로 연결한다.
+- **`main.ts`에서 `platformBrowserDynamic().bootstrapModule(AppModule)`.** Vue의 `new Vue`와 같이 옛 진입점이다.
+- **기능 폴더 없이 `app/`에 파일만 쌓기.** 화면이 늘면 import 순환이 생긴다.
+- **시크릿을 `environment.ts` 프론트 파일에 넣기.** 브라우저 번들에 포함된다.
 
 ---
 
 ## 정리
 
-Angular 시작은 모듈 미로가 아니라 **standalone 컴포넌트 + `app.config.ts`** 한 줄로 고정한다.
+Angular 시작은 모듈 미로가 아니다. **standalone 컴포넌트 + `bootstrapApplication` + `app.config.ts`** 세 점을 고정한다.
+
+- 화면 → `@Component({ standalone: true, imports: [...] })`
+- 전역 도구 → `providers` in `app.config.ts`
+- URL → `app.routes.ts`
+
+---
+
+## 연습
+
+1. `ng new`로 앱을 만들고 `Home`에 이름 문자열을 바인딩해 브라우저에서 확인한다.
+2. `about.ts` standalone 컴포넌트를 추가하고 `path: 'about'` 라우트를 연결한다.
+3. `app.config.ts`의 `providers` 목록을 읽고, 라우터가 어디서 등록되는지 한 줄로 적는다.

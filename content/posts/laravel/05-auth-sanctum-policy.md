@@ -4,91 +4,93 @@ order: 5
 category: laravel
 categoryLabel: Laravel
 title: "인증·인가 — Sanctum, Policy, Gate"
-summary: "세션/토큰 인증을 상황에 맞게 고르고, Policy 기반 인가로 리소스 권한을 명확히 한다."
-publishedAt: 2026-08-26
+summary: "Sanctum으로 누구인지 확인하고, Policy로 그 사용자가 이 글이나 주문을 만져도 되는지 가른다."
+publishedAt: 2025-01-27
 tags: ["laravel"]
 ---
 
 # 인증·인가 — Sanctum, Policy, Gate
 
-> 요약: 세션/토큰 인증을 상황에 맞게 고르고, Policy 기반 인가로 리소스 권한을 명확히 한다.
+> 요약: Sanctum으로 누구인지 확인하고, Policy로 그 사용자가 이 글이나 주문을 만져도 되는지 가른다.
 
 ---
 
----
+## 1. 인증과 인가
 
-## 1. 인증 vs 인가
+- **인증(Authentication)**: 이 요청이 누구인가. 로그인·토큰.
+- **인가(Authorization)**: 그 사람이 이 글을 수정해도 되는가.
 
-- **인증(Authentication)**: 누구인가
-- **인가(Authorization)**: 무엇을 할 수 있는가
-
-Laravel은 인증 스캐폴딩 + Gate/Policy 인가가 강점이다.
+둘을 한 `if`에 섞으면 “로그인만 되면 남의 주문을 본다”는 구멍이 생긴다. Laravel은 인증 스캐폴딩과 **Policy**(모델 단위 권한 클래스)로 이 층을 나눈다.
 
 ---
 
-## 2. 무엇을 설치할까
+## 2. 무엇을 고를까
 
 | 상황 | 추천 |
 |------|------|
-| Blade 모노리스 | Breeze (Blade) / Fortify |
-| SPA (Vue/React) + 같은 도메인 | Breeze + Sanctum (쿠키) |
-| 모바일/외부 API | Sanctum Personal Access Token |
-| 풀옵션 팀 기능 | Jetstream |
-| 관리자 패널 | Filament (별도 가드) |
+| Blade 폼 사이트 | Breeze (Blade) / Fortify |
+| 같은 도메인 SPA (Vue/React) | Breeze + **Sanctum 쿠키** |
+| 모바일·외부 클라이언트 | Sanctum **Personal Access Token** |
+| 팀 초대·2FA까지 한 번에 | Jetstream |
+| 관리자 화면 | Filament (가드를 따로) |
 
-일반적인 API: **Sanctum**이 가장 무난하다. Passport는 OAuth2 풀스펙이 필요할 때.
+**Sanctum**은 Laravel의 가벼운 API/SPA 인증이다. 모바일에는 Bearer 토큰, 같은 사이트의 SPA에는 HttpOnly 쿠키 세션을 준다. **Passport**는 OAuth2 풀스펙(인가 코드, 서드파티 앱)이 필요할 때다. 대부분의 자사 API는 Sanctum이면 충분하다.
 
 ```bash
-composer require laravel/sanctum
-php artisan install:api   # Laravel 버전에 따라
-# 또는 breeze
+php artisan install:api
+# 또는
 composer require laravel/breeze --dev
 php artisan breeze:install
 ```
 
 ---
 
-## 3. 세션 기반 (웹)
+## 3. 세션 로그인 (웹)
+
+폼 로그인은 세션 쿠키다. 성공 후 `regenerate`를 빼면 **세션 고정**(남의 세션 id를 심어 로그인하게 하는 공격)에 취약하다.
 
 ```php
 public function store(LoginRequest $request)
 {
     if (! Auth::attempt($request->only('email', 'password'), $request->boolean('remember'))) {
         throw ValidationException::withMessages([
-            'email' => '자격 증명이 올바르지 않습니다.',
+            'email' => '이메일 또는 비밀번호가 올바르지 않습니다.',
         ]);
     }
+
     $request->session()->regenerate();
+
     return redirect()->intended('/dashboard');
 }
 ```
 
-로그아웃 시 `invalidate` + `regenerateToken`으로 세션 고정 공격 완화.
-
-비밀번호:
+로그아웃은 `invalidate`와 `regenerateToken`을 함께 쓴다. 비밀번호 규칙은 `Password::defaults()`를 `AppServiceProvider`에서 한곳으로 강화한다.
 
 ```php
 'password' => ['required', 'confirmed', Password::defaults()],
 ```
 
-`AppServiceProvider`에서 `Password::defaults()` 정책을 강화한다.
+로그인 POST에는 throttle을 건다. 2편에서 본 `throttle:10,1`이 여기 해당한다.
 
 ---
 
 ## 4. Sanctum 토큰 API
 
+모바일 앱은 보통 로그인 응답의 토큰을 `Authorization: Bearer ...`로 보낸다.
+
 ```php
-// 로그인
 $user = User::where('email', $request->email)->first();
 
 if (! $user || ! Hash::check($request->password, $user->password)) {
-    throw ValidationException::withMessages(['email' => 'Invalid credentials']);
+    throw ValidationException::withMessages(['email' => '자격 증명이 올바르지 않습니다.']);
 }
 
 $token = $user->createToken('mobile', ['posts:read', 'posts:write'])->plainTextToken;
 
 return ['token' => $token];
 ```
+
+평문 비밀번호를 직접 비교하지 않는다. 저장은 `Hash` 파사드(bcrypt/argon2)만 쓴다.
 
 ```php
 Route::middleware('auth:sanctum')->group(function () {
@@ -97,36 +99,35 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 ```
 
-클라이언트: `Authorization: Bearer {token}`
-
-토큰 abilities:
+토큰 **ability**(이 토큰이 할 수 있는 동작의 이름)로 쓰기 권한을 좁힐 수 있다. 로그아웃은 현재 토큰만 지우면 된다.
 
 ```php
-if ($request->user()->tokenCan('posts:write')) { ... }
-```
+if ($request->user()->tokenCan('posts:write')) {
+    //
+}
 
-로그아웃/철회:
-
-```php
 $request->user()->currentAccessToken()->delete();
 ```
 
+토큰을 localStorage에 두면 XSS 한 번에 유출된다. 모바일 네이티브 저장소나, 웹이면 쿠키 세션을 먼저 검토한다.
+
 ---
 
-## 5. SPA 인증 (쿠키 + CSRF)
+## 5. SPA 쿠키 + CSRF
 
-Sanctum SPA 방식:
+같은 부모 도메인의 SPA는 토큰 대신 쿠키 세션이 단순한 경우가 많다.
 
-1. 프론트와 API가 공유 가능한 도메인/서브도메인
-2. `/sanctum/csrf-cookie` 선호출
-3. 로그인 후 쿠키 세션으로 `auth:sanctum`
+1. 프론트와 API가 공유할 도메인/서브도메인을 정한다.
+2. `/sanctum/csrf-cookie`를 먼저 호출한다.
+3. 로그인 후 `auth:sanctum`이 쿠키 세션을 본다.
 
-CORS·`SANCTUM_STATEFUL_DOMAINS`·`SESSION_DOMAIN` 설정이 핵심이다.  
-토큰을 localStorage에 두는 방식보다 **HttpOnly 쿠키 세션**이 XSS에 유리한 경우가 많다.
+핵심 설정은 CORS, `SANCTUM_STATEFUL_DOMAINS`, `SESSION_DOMAIN`이다. 여기가 어긋나면 “로그인은 되는데 다음 요청이 401”이 난다. HttpOnly 쿠키는 JS가 읽지 못해, XSS에 토큰을 내주는 면에서는 Bearer보다 유리한 경우가 많다.
 
 ---
 
 ## 6. Gate와 Policy
+
+**Gate**는 `publish-post`처럼 이름 있는 작은 권한 검사다. **Policy**는 `Post` 모델의 view/update/delete를 한 클래스에 모은다. 리소스 CRUD는 Policy가 기본이다.
 
 ```bash
 php artisan make:policy PostPolicy --model=Post
@@ -135,11 +136,6 @@ php artisan make:policy PostPolicy --model=Post
 ```php
 class PostPolicy
 {
-    public function viewAny(User $user): bool
-    {
-        return true;
-    }
-
     public function view(?User $user, Post $post): bool
     {
         return $post->isPublished() || $user?->id === $post->user_id;
@@ -157,60 +153,48 @@ class PostPolicy
 }
 ```
 
-컨트롤러:
+컨트롤러·라우트·Blade·Form Request `authorize()`가 같은 Policy를 보게 한다. 한곳만 검사하면 다른 진입점이 뚫린다.
 
 ```php
 $this->authorize('update', $post);
-// 또는
 Gate::authorize('update', $post);
+
+Route::put('/posts/{post}', /* ... */)->middleware('can:update,post');
 ```
-
-라우트:
-
-```php
-Route::put('/posts/{post}', ...)->middleware('can:update,post');
-```
-
-Blade:
 
 ```blade
 @can('update', $post)
-    <a href="...">수정</a>
+    <a href="{{ route('posts.edit', $post) }}">수정</a>
 @endcan
 ```
 
-Form Request `authorize()`와 Policy를 맞춰 두면 구멍이 줄어든다.
+URL의 `{id}`만 믿고 수정하면 **IDOR**(다른 사람 자원 id를 추측해 만지는 것)가 된다. 바인딩된 `$post`에 대해 반드시 Policy를 탄다.
 
 ---
 
-## 7. 역할·권한 패키지
+## 7. 역할이 늘어날 때
 
-복잡하면 Spatie Laravel Permission:
+`if ($user->role === 'admin')`가 컨트롤러에 흩어지면 나중에 고통스럽다. 역할·퍼미션이 많아지면 Spatie Laravel Permission을 검토하고, **판단은 Policy 안**에서만 하게 둔다.
 
-- `role`: admin, editor
-- `permission`: posts.publish
-- 팀/가드 단위 분리 가능
-
-처음부터 역할만 문자열로 `if ($user->role === 'admin')` 난립하면 나중에 고통스럽다.  
-Policy 안에서 role/permission을 읽게 중앙화하자.
+- role: admin, editor
+- permission: posts.publish
 
 ---
 
-## 8. 보안 체크리스트
+## 8. 흔한 실수
 
-- [ ] `APP_DEBUG=false` (운영)
-- [ ] HTTPS, Secure/HttpOnly/SameSite 쿠키
-- [ ] 로그인 throttle
-- [ ] 비밀번호 해시(bcrypt/argon2) — 직접 해시 금지, `Hash` 파사드
-- [ ] Mass assignment / IDOR: Policy로 소유권 검사
-- [ ] 이메일 인증·비밀번호 재설정 토큰 만료
-- [ ] 관리자 경로 추가 보호
+- 인증만 하고 소유권 Policy를 생략한다 (IDOR).
+- SPA 토큰을 localStorage에 두고 XSS에 노출한다.
+- 로그인 후 `session()->regenerate()`를 빼먹는다.
+- 비밀번호를 `md5`로 직접 해시한다. `Hash`만 쓴다.
+- 운영에서 `APP_DEBUG=true`로 스택을 보여 준다.
+- Form Request `authorize`는 true, 컨트롤러 Policy는 따로 — 구멍이 생긴다.
 
 ---
 
 ## 연습
 
-1. Sanctum으로 로그인/토큰 발급/보호 API를 만든다.
-2. `PostPolicy`로 본인 글만 수정·삭제 가능하게 한다.
-3. 로그인 라우트에 `throttle`을 건다.
-4. `/me` Resource 응답을 구현한다.
+1. Sanctum으로 로그인·토큰 발급·보호된 `/me`를 만든다.
+2. `PostPolicy`로 본인 글만 수정·삭제되게 한다.
+3. 로그인 라우트에 throttle을 건다.
+4. 다른 사용자로 수정 API를 쳐 403인지 확인한다.

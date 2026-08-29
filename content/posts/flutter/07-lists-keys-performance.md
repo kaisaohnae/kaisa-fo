@@ -4,61 +4,204 @@ order: 7
 category: flutter
 categoryLabel: Flutter
 title: "리스트·키·성능의 기본"
-summary: "ListView.builder, key, 이미지 캐시, 불필요 리빌드를 줄여 스크롤 성능을 지키는 방법을 정리한다."
-publishedAt: 2026-08-26
+summary: "긴 목록은 빌더로 그리고, 키로 아이템 정체성을 지키면 스크롤이 버틴다."
+publishedAt: 2026-01-26
 tags: ["flutter"]
 ---
 
 # 리스트·키·성능의 기본
 
-> 요약: ListView.builder, key, 이미지 캐시, 불필요 리빌드를 줄여 스크롤 성능을 지키는 방법을 정리한다.
+> 요약: 긴 목록은 빌더로 그리고, 키로 아이템 정체성을 지키면 스크롤이 버틴다.
 
 ---
 
-## 1. 빌더 리스트
+## 1. 왜 / 언제
 
-아이템이 많으면 `Column` + map이 아니라 **`ListView.builder`**.
+피드·검색 결과·채팅처럼 아이템이 많으면 `Column` + `map`은 한 번에 모든 자식을 만든다. 스크롤이 버벅이고 메모리만 는다.
+
+`ListView.builder`는 화면에 보이는 근처만 위젯으로 만든다. 이것이 기본이다.
+
+같은 타입 행이 재배열되면 또 다른 문제가 생긴다. 입력 중이던 글자가 다른 행으로 옮겨 간다. 원인은 레이아웃이 아니다. Flutter가 **누가 같은 위젯인지**를 자리로만 맞춰서다. 그때 키가 필요하다.
+
+---
+
+## 2. 핵심
+
+키는 위젯의 이름표다.
+
+Flutter는 리빌드할 때 이전 트리와 새 트리를 맞춘다. 기본 규칙은 타입과 위치다. 같은 자리의 `ListTile`은 같은 것으로 본다. 목록이 섞이면 3번 자리의 State가 새 3번 아이템에 붙는다.
+
+키를 주면 타입+키로 맞춘다. 서버 id처럼 **안 바뀌는 값**을 `ValueKey`로 붙인다. 인덱스를 키로 쓰면 재배열과 함께 키가 바뀌므로 의미가 없다.
+
+| 키 | 언제 |
+|----|------|
+| `ValueKey(id)` | 리스트 아이템, 폼 필드. 값이 안정적이어야 한다. |
+| `ObjectKey(obj)` | 동일 인스턴스로 구분할 때. |
+| `UniqueKey()` | 매번 새 위젯으로 강제해 상태를 리셋할 때. |
+| `GlobalKey` | 다른 서브트리에서 State에 접근할 때. 남용하면 비싸다. |
+
+빌더 리스트는 `itemBuilder`가 index마다 위젯을 돌려준다. 화면에 안 보이면 만들지 않는다. 타일은 가볍게 둔다. 무거운 차트·큰 이미지를 행 안에 중첩하지 않는다.
+
+상위 `setState`가 리스트 전체를 다시 돌리지 않게 행을 Stateless로 분리한다. 변하지 않는 서브트리는 `const`다.
+
+네트워크 이미지는 크기와 캐시를 지정한다. 원본 해상도를 스크롤에 그대로 넣지 않는다.
+
+---
+
+## 3. 예제
+
+### 빌더 + 안정적 키
+
+```dart
+class Post {
+  const Post({required this.id, required this.title});
+
+  final String id;
+  final String title;
+}
+
+class PostList extends StatelessWidget {
+  const PostList({super.key, required this.items});
+
+  final List<Post> items;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: items.length,
+      itemBuilder: (BuildContext context, int index) {
+        final Post item = items[index];
+        return PostTile(
+          key: ValueKey<String>(item.id),
+          post: item,
+        );
+      },
+    );
+  }
+}
+
+class PostTile extends StatelessWidget {
+  const PostTile({super.key, required this.post});
+
+  final Post post;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: Text(post.title),
+    );
+  }
+}
+```
+
+`key`는 리스트의 직접 자식에 둔다. `ListTile` 안쪽이 아니라 `PostTile`에 붙인다. Flutter가 맞추는 대상은 부모 `children`의 그 자리다.
+
+아이템이 매우 많으면 `ListView.separated`로 구분선을 빌더에 맡긴다. `Column`에 `Divider`를 미리 다 만들지 않는다.
+
+### 키가 없을 때 깨지는 입력
+
+```dart
+class NamedField extends StatefulWidget {
+  const NamedField({super.key, required this.label});
+
+  final String label;
+
+  @override
+  State<NamedField> createState() => _NamedFieldState();
+}
+
+class _NamedFieldState extends State<NamedField> {
+  final TextEditingController controller = TextEditingController();
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      controller: controller,
+      decoration: InputDecoration(labelText: widget.label),
+    );
+  }
+}
+```
+
+이 필드를 리스트에서 순서를 바꾸면, 키가 없을 때 컨트롤러가 잘못된 행에 남는다. 각 행에 `ValueKey(label)` 또는 항목 id를 준다.
+
+### 스크롤 성능
+
+```dart
+class AvatarTile extends StatelessWidget {
+  const AvatarTile({super.key, required this.url, required this.title});
+
+  final String url;
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: Image.network(
+        url,
+        width: 40,
+        height: 40,
+        fit: BoxFit.cover,
+        cacheWidth: 80,
+      ),
+      title: Text(title, maxLines: 1, overflow: TextOverflow.ellipsis),
+    );
+  }
+}
+```
+
+`cacheWidth`는 디코드 크기를 제한한다. 디스플레이 픽셀을 고려해 논리 크기의 2배 정도가 흔하다.
+
+고정 높이 행이면 `itemExtent`를 준다. 스크롤 오프셋 계산이 싸진다.
 
 ```dart
 ListView.builder(
+  itemExtent: 56,
   itemCount: items.length,
-  itemBuilder: (context, index) {
-    final item = items[index];
-    return ListTile(
-      key: ValueKey(item.id),
-      title: Text(item.title),
+  itemBuilder: (BuildContext context, int index) {
+    return PostTile(
+      key: ValueKey<String>(items[index].id),
+      post: items[index],
     );
   },
-)
+);
 ```
 
-화면에 보이는 만큼만 빌드한다.
+`RepaintBoundary`는 측정 후에 쓴다. 추측으로 모든 행에 씌우지 않는다. DevTools Performance와 rebuild 하이라이트로 먼저 본다.
 
 ---
 
-## 2. Key
+## 4. 흔한 실수
 
-같은 타입 위젯이 재배열되면 Flutter는 key로 정체성을 맞춘다.  
-폼·애니메이션·리스트 아이템에 **안정적 id 키**를 준다.
+| 실수 | 결과 | 대안 |
+|------|------|------|
+| `Column` + `map`으로 긴 목록 | 한 번에 전부 빌드 | `ListView.builder` |
+| `key: ValueKey(index)` | 재배열 때 상태 꼬임 | 안정적 id |
+| 행을 화면 State 안에 인라인 | 상위 setState가 전부 리빌드 | 타일 Stateless 분리 |
+| 원본 이미지를 행에 그대로 | 스크롤 드롭 | 크기·캐시 지정 |
+| `shrinkWrap` 기본값화 | 가상화 포기 | 부모가 유한 높이 |
 
----
+`GlobalKey`로 행을 식별하지 않는다. 리스트 길이만큼 전역 키가 생기면 비용이 크다. `ValueKey`면 충분하다.
 
-## 3. 스크롤 성능
-
-- 무거운 위젯을 타일 안에 중첩하지 않기
-- 네트워크 이미지는 캐시 패키지·사이즈 지정
-- `RepaintBoundary`는 측정 후
-- DevTools Performance / rebuild 하이라이트
-
----
-
-## 4. const와 분리
-
-변하지 않는 서브트리는 `const` 위젯으로 분리한다.  
-상위 `setState`가 리스트 전체를 흔들지 않게 타일을 Stateless로 둔다.
+`Sliver`는 커스텀 스크롤(헤더 고정, 그리드 혼합)이 필요할 때 쓴다. 일반 목록은 `ListView.builder`로 시작한다.
 
 ---
 
 ## 정리
 
-리스트 성능은 마법이 아니라 **빌더 + 키 + 작은 타일**의 합이다.
+리스트 성능은 마법이 아니다. **빌더 + 키 + 작은 타일**의 합이다. 키는 자리 대신 정체성을 알려 주는 이름표다.
+
+---
+
+## 연습
+
+1. 200개 항목을 `Column`과 `ListView.builder`로 각각 그려 스크롤을 비교한다.
+2. 입력 필드 리스트를 재배열하고, id 키 전후에 텍스트가 따라오는지 확인한다.
+3. 타일을 Stateless로 분리하고 `const` 생성자를 붙인다.
+4. 네트워크 이미지에 `width`/`height`/`cacheWidth`를 지정한다.

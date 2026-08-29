@@ -4,65 +4,217 @@ order: 4
 category: flutter
 categoryLabel: Flutter
 title: "Navigator와 라우트로 화면 전환"
-summary: "Navigator 2.0 감각, go_router, 인자 전달, 딥링크까지 Flutter 화면 전환의 실무 기본을 정리한다."
-publishedAt: 2026-08-26
+summary: "화면 전환은 함수 호출이 아니라 내비게이터 스택(또는 URL)의 상태다."
+publishedAt: 2025-01-06
 tags: ["flutter"]
 ---
 
 # Navigator와 라우트로 화면 전환
 
-> 요약: Navigator 2.0 감각, go_router, 인자 전달, 딥링크까지 Flutter 화면 전환의 실무 기본을 정리한다.
+> 요약: 화면 전환은 함수 호출이 아니라 내비게이터 스택(또는 URL)의 상태다.
 
 ---
 
-## 1. 기본 스택
+## 1. 왜 / 언제
+
+버튼을 누르면 상세 화면이 열린다. 뒤로 가면 목록이 그대로 있다. 이 동작의 실체는 함수 호출이 아니다. **화면 스택에 페이지를 올리고 내리는 일**이다.
+
+작은 앱은 `Navigator.push`로 충분하다. 웹 URL, 딥링크, 로그인 게이트, 탭마다 독립 스택이 필요하면 선언형 라우터를 쓴다. 실무에서는 `go_router`가 기본 후보다.
+
+화면이 늘기 전에 경로를 한곳으로 모은다. 위젯 여기저기에 `push`가 흩어지면 뒤로 가기·인증 분기·웹 주소를 맞출 수 없다.
+
+---
+
+## 2. 핵심
+
+`Navigator`는 위젯 트리 안의 스택이다. `push`는 위에 페이지를 올린다. `pop`은 맨 위를 제거한다. 아래 화면의 `State`는 보통 살아 있다. 그래서 목록 스크롤이 상세에서 돌아와도 유지된다.
+
+선언형 라우팅은 경로 문자열이 곧 상태다. `/posts/42`이면 그 화면이 맞다. 브라우저 주소, 알림 딥링크, 위젯에서 연 화면이 같은 규칙을 탄다.
+
+인자는 세 갈래다.
+
+| 방식 | 용도 | 주의 |
+|------|------|------|
+| path (`:id`) | 화면을 가리키는 id | 웹·딥링크에 강하다 |
+| query | 필터·페이지 번호 | 문자열이다 |
+| `extra` | 객체 통째 전달 | 웹 새로고침에 약하다 |
+
+모달(다이얼로그·바텀시트)은 라우트와 역할을 섞지 않는다. 짧은 확인은 다이얼로그다. 주소가 있어야 하는 화면은 라우트다.
+
+탭 앱은 탭마다 스택이 따로 필요할 수 있다. `go_router`의 `StatefulShellRoute`가 그 패턴이다. 한 전역 스택에 탭 화면을 모두 `push`하면 탭 전환이 뒤로 가기가 된다.
+
+`BuildContext`는 트리의 자리다. 위젯이 떨어진 뒤(`unmounted`) `push`하면 실패한다. 비동기 작업 다음에는 `context.mounted`를 본다.
+
+---
+
+## 3. 예제
+
+### 명령형 push
 
 ```dart
-Navigator.of(context).push(
-  MaterialPageRoute(builder: (_) => const DetailPage()),
+class ListPage extends StatelessWidget {
+  const ListPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('글 목록')),
+      body: ListTile(
+        title: const Text('첫 글'),
+        onTap: () {
+          Navigator.of(context).push(
+            MaterialPageRoute<void>(
+              builder: (_) => const DetailPage(id: '1'),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class DetailPage extends StatelessWidget {
+  const DetailPage({super.key, required this.id});
+
+  final String id;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('글 $id')),
+      body: Center(
+        child: TextButton(
+          onPressed: () => Navigator.of(context).pop(),
+          child: const Text('닫기'),
+        ),
+      ),
+    );
+  }
+}
+```
+
+`pop`에 값을 넘기면 이전화면이 결과를 받는다. 선택 화면·필터 시트에 쓴다.
+
+```dart
+final String? result = await Navigator.of(context).push<String>(
+  MaterialPageRoute(
+    builder: (_) => const PickPage(),
+  ),
 );
 ```
 
-작은 앱은 이것으로 충분하다. 웹 URL·딥링크가 필요하면 선언형 라우터를 검토한다.
+### go_router
 
----
-
-## 2. go_router (권장 방향)
+```yaml
+dependencies:
+  go_router: ^14.0.0
+```
 
 ```dart
-final router = GoRouter(
+final GoRouter router = GoRouter(
   routes: [
-    GoRoute(path: '/', builder: (_, __) => const HomePage()),
+    GoRoute(
+      path: '/',
+      builder: (BuildContext context, GoRouterState state) {
+        return const HomePage();
+      },
+    ),
     GoRoute(
       path: '/posts/:id',
-      builder: (_, state) => PostPage(id: state.pathParameters['id']!),
+      builder: (BuildContext context, GoRouterState state) {
+        final String id = state.pathParameters['id']!;
+        return PostPage(id: id);
+      },
     ),
+  ],
+);
+
+class App extends StatelessWidget {
+  const App({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp.router(
+      routerConfig: router,
+    );
+  }
+}
+```
+
+이동:
+
+```dart
+context.go('/posts/42');
+context.push('/posts/42');
+context.pop();
+```
+
+`go`는 스택을 그 경로에 맞게 맞춘다. `push`는 위에 한 장을 더 올린다. 목록→상세는 보통 `push`다. 로그인 후 홈으로 되돌릴 때는 `go`가 맞다.
+
+인증 게이트는 리다이렉트로 한곳에 둔다. 각 화면에서 토큰을 검사하지 않는다. `auth`는 세션을 들고 있는 객체다.
+
+```dart
+final GoRouter router = GoRouter(
+  refreshListenable: auth,
+  redirect: (BuildContext context, GoRouterState state) {
+    final bool signedIn = auth.isSignedIn;
+    final bool loggingIn = state.matchedLocation == '/login';
+    if (!signedIn && !loggingIn) {
+      return '/login';
+    }
+    if (signedIn && loggingIn) {
+      return '/';
+    }
+    return null;
+  },
+  routes: [
+    GoRoute(path: '/login', builder: (_, __) => const LoginPage()),
+    GoRoute(path: '/', builder: (_, __) => const HomePage()),
   ],
 );
 ```
 
-- 경로가 곧 상태
-- 리다이렉트로 인증 게이트
-- 웹·모바일 URL을 맞추기 쉽다
-
 ---
 
-## 3. 전달·복귀
+## 4. 흔한 실수
 
-- path/query 파라미터
-- `extra` 객체 (웹 새로고침에 약할 수 있음)
-- `pop`으로 결과 반환
+| 실수 | 결과 | 대안 |
+|------|------|------|
+| 비동기 후 바로 `push` | unmounted context | `if (!context.mounted) return;` |
+| 큰 객체를 `extra`만으로 전달 | 웹 새로고침 시 유실 | id는 path, 객체는 화면에서 로드 |
+| 다이얼로그를 라우트처럼 쌓기 | 뒤로 가기 스택이 꼬인다 | 모달과 페이지를 분리 |
+| 화면마다 경로 문자열 하드코딩 | 오타·리팩터 비용 | 경로 상수를 한 파일에 |
+| 탭마다 `push`만 사용 | 탭이 히스토리가 된다 | 중첩 내비 / `StatefulShellRoute` |
 
----
+```dart
+Future<void> openDetail(BuildContext context, String id) async {
+  await preload(id);
+  if (!context.mounted) {
+    return;
+  }
+  await Navigator.of(context).push(
+    MaterialPageRoute<void>(
+      builder: (_) => DetailPage(id: id),
+    ),
+  );
+}
+```
 
-## 4. 주의
+`MaterialApp`과 `MaterialApp.router`를 섞지 않는다. 라우터를 쓰면 `home`/`routes`가 아니라 `routerConfig`다.
 
-- `BuildContext`가 unmounted인 뒤 `push` 하지 않기
-- 모달은 라우트와 역할을 섞지 않기
-- 탭 앱은 `StatefulShellRoute` 등 중첩 내비 검토
+리다이렉트의 `signedIn`은 예시의 세션 플래그다. 실제 앱에서는 보안 저장소나 `Auth` 객체를 읽는다. `GoRouter` 생성 시점에 `context`가 아직 준비되지 않을 수 있으면 `refreshListenable`으로 세션 변경을 다시 평가한다.
 
 ---
 
 ## 정리
 
-화면 전환은 함수 호출이 아니라 **스택(또는 URL)의 상태**다. 앱이 커지면 라우터를 한곳으로 모은다.
+화면 전환은 위젯 함수 호출이 아니다. **스택 또는 URL의 상태**다. 작은 앱은 `Navigator`로 시작하고, 경로가 제품의 일부가 되면 라우터를 한곳으로 모은다.
+
+---
+
+## 연습
+
+1. 목록에서 상세로 `push`하고 `pop`으로 돌아오는 두 화면을 만든다.
+2. `pop`으로 선택한 id를 목록에 돌려 준다.
+3. 같은 흐름을 `go_router`의 `/posts/:id`로 옮긴다.
+4. 비동기 로드 뒤 `context.mounted`를 검사하고 이동한다.

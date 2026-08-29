@@ -4,61 +4,247 @@ order: 5
 category: wpf
 categoryLabel: WPF
 title: "화면 전환과 다이얼로그 패턴"
-summary: "Frame/Page, UserControl 전환, 대화상자 서비스 추상화로 WPF에서 화면 흐름을 깔끔하게 만드는 방법을 정리한다."
-publishedAt: 2026-08-26
+summary: "ContentControl과 DataTemplate로 ViewModel을 갈아 끼워 화면을 전환하고, 대화상자는 서비스로 추상화하는 방법을 정리한다."
+publishedAt: 2025-01-17
 tags: ["wpf"]
 ---
 
 # 화면 전환과 다이얼로그 패턴
 
-> 요약: Frame/Page, UserControl 전환, 대화상자 서비스 추상화로 WPF에서 화면 흐름을 깔끔하게 만드는 방법을 정리한다.
+> 요약: ContentControl과 DataTemplate로 ViewModel을 갈아 끼워 화면을 전환하고, 대화상자는 서비스로 추상화하는 방법을 정리한다.
 
 ---
 
-## 1. 전환 방식 선택
+## 1. 언제 어떤 전환인가
 
-| 방식 | 적합 |
-|------|------|
-| Window 다중 | 독립 툴 창 |
-| Frame + Page | 마법사/내비게이션 |
-| UserControl 교체 | 단일 메인 셸 |
+WPF에는 웹 라우터가 없다. 화면 흐름을 초기에 고른다.
 
-작은 앱은 UserControl 교체 패턴이 단순하다.
+| 방식 | 맞는 경우 |
+|------|-----------|
+| Window를 여러 개 | 독립 도구 창, 팝업 편집기 |
+| `Frame` + `Page` | 마법사, 뒤로 가기 스택이 필요할 때 |
+| `UserControl` + `ContentControl` | 단일 메인 셸. 메뉴만 바뀌는 업무 앱 |
 
----
+작은·중간 앱은 **현재 ViewModel을 바꾸고 ContentControl이 View를 고르는 방식**이 단순하다. ViewModel이 UI 타입을 몰라도 된다.
 
-## 2. ViewModel 기반 전환
-
-현재 ViewModel을 바꿔 ContentControl에 템플릿 매핑하는 방식이 흔하다.
-
-```xml
-<ContentControl Content="{Binding CurrentViewModel}" />
-```
-
-DataTemplate으로 ViewModel → View 연결.
+대화상자(`MessageBox`, 파일 선택)를 ViewModel에서 직접 호출하면 테스트가 실제 창을 연다. **인터페이스 뒤**로 숨긴다.
 
 ---
 
-## 3. 다이얼로그 추상화
+## 2. 핵심 개념
 
-MessageBox를 ViewModel에서 직접 호출하지 말고 서비스로 감싼다.
+| 개념 | 한 줄 |
+|------|--------|
+| `CurrentViewModel` | 셸이 지금 보여줄 화면 상태 |
+| `ContentControl` | `Content`에 넣은 객체를 화면에 표시한다 |
+| DataTemplate | 그 객체의 타입 → 어떤 View XAML인지 매핑 |
+| `IDialogService` | 확인/알림을 ViewModel이 UI API 없이 요청하는 창구 |
+| `IFileDialogService` | 열기/저장 경로. 마찬가지로 추상화 |
+
+`Frame.Navigate(typeof(Page))`는 View 타입을 코드가 알게 된다. MVVM과 섞이면 책임이 흐려진다. 셸+DataTemplate을 기본선으로 둔다.
+
+---
+
+## 3. 동작하는 예: 셸 전환
+
+`ViewModels/HomeViewModel.cs`:
 
 ```csharp
-public interface IDialogService {
-    bool Confirm(string message);
+using CommunityToolkit.Mvvm.ComponentModel;
+
+namespace MyApp.ViewModels;
+
+public partial class HomeViewModel : ObservableObject
+{
+    public string Message { get; } = "홈";
 }
 ```
 
-테스트에서는 mock 구현으로 대체 가능하다.
+`ViewModels/SettingsViewModel.cs`:
+
+```csharp
+using CommunityToolkit.Mvvm.ComponentModel;
+
+namespace MyApp.ViewModels;
+
+public partial class SettingsViewModel : ObservableObject
+{
+    [ObservableProperty]
+    private bool darkTheme;
+}
+```
+
+`ViewModels/MainViewModel.cs`:
+
+```csharp
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+
+namespace MyApp.ViewModels;
+
+public partial class MainViewModel : ObservableObject
+{
+    [ObservableProperty]
+    private ObservableObject currentViewModel = null!;
+
+    public MainViewModel()
+    {
+        CurrentViewModel = new HomeViewModel();
+    }
+
+    [RelayCommand]
+    private void GoHome() => CurrentViewModel = new HomeViewModel();
+
+    [RelayCommand]
+    private void GoSettings() => CurrentViewModel = new SettingsViewModel();
+}
+```
+
+실제 앱은 인스턴스를 캐시할지, 매번 `new`할지 팀에서 정한다. 마법사는 단계마다 새로 만들고, 설정은 유지하는 편이 흔하다.
+
+`Views/HomeView.xaml` (UserControl):
+
+```xml
+<UserControl x:Class="MyApp.Views.HomeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextBlock Text="{Binding Message}" FontSize="20" Margin="16" />
+</UserControl>
+```
+
+`Views/MainWindow.xaml`:
+
+```xml
+<Window x:Class="MyApp.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:MyApp.ViewModels"
+        xmlns:views="clr-namespace:MyApp.Views"
+        Title="MyApp" Height="400" Width="640">
+  <Window.Resources>
+    <DataTemplate DataType="{x:Type vm:HomeViewModel}">
+      <views:HomeView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:SettingsViewModel}">
+      <views:SettingsView />
+    </DataTemplate>
+  </Window.Resources>
+  <DockPanel>
+    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="8">
+      <Button Content="홈" Command="{Binding GoHomeCommand}" />
+      <Button Content="설정" Command="{Binding GoSettingsCommand}" />
+    </StackPanel>
+    <ContentControl Content="{Binding CurrentViewModel}" />
+  </DockPanel>
+</Window>
+```
+
+`DataType` 템플릿은 `Content` 객체의 CLR 타입으로 View를 고른다. 셸은 `if (vm is Home)` 분기를 하지 않는다.
+
+`SettingsView.xaml`에는 `{Binding DarkTheme}` 체크박스를 두면 된다.
 
 ---
 
-## 4. 파일/폴더 선택
+## 4. 다이얼로그 서비스
 
-OpenFileDialog, SaveFileDialog도 서비스 계층으로 감싸면 ViewModel 순수성이 높아진다.
+`Services/IDialogService.cs`:
+
+```csharp
+namespace MyApp.Services;
+
+public interface IDialogService
+{
+    bool Confirm(string message, string caption = "확인");
+    void Inform(string message, string caption = "알림");
+}
+```
+
+`Services/WpfDialogService.cs`:
+
+```csharp
+using System.Windows;
+
+namespace MyApp.Services;
+
+public sealed class WpfDialogService : IDialogService
+{
+    public bool Confirm(string message, string caption = "확인")
+        => MessageBox.Show(message, caption, MessageBoxButton.YesNo, MessageBoxImage.Question)
+           == MessageBoxResult.Yes;
+
+    public void Inform(string message, string caption = "알림")
+        => MessageBox.Show(message, caption, MessageBoxButton.OK, MessageBoxImage.Information);
+}
+```
+
+ViewModel:
+
+```csharp
+public sealed class MainViewModel : ObservableObject
+{
+    private readonly IDialogService _dialogs;
+
+    public MainViewModel(IDialogService dialogs)
+    {
+        _dialogs = dialogs;
+    }
+
+    [RelayCommand]
+    private void Delete()
+    {
+        if (!_dialogs.Confirm("삭제할까?")) return;
+        // 삭제 로직
+    }
+}
+```
+
+생성자 주입이면 XAML `new MainViewModel`은 못 쓴다. `App` 또는 창 코드에서:
+
+```csharp
+public MainWindow()
+{
+    InitializeComponent();
+    DataContext = new MainViewModel(new WpfDialogService());
+}
+```
+
+테스트는 `IDialogService`를 `Confirm`이 항상 true인 가짜로 바꾼다.
+
+파일 선택:
+
+```csharp
+public interface IFileDialogService
+{
+    string? OpenFile(string filter);
+}
+```
+
+`OpenFileDialog`는 이 구현 클래스 안에만 둔다. ViewModel은 경로 문자열만 받는다.
+
+---
+
+## 5. 주의 / 흔한 실수
+
+- **ViewModel에서 `new SettingsView()`.** View 타입이 VM에 들어간다. DataTemplate만 View를 안다.
+- **`MessageBox.Show`를 명령 한가운데.** CI·단위 테스트가 멈춘다.
+- **Frame+Page와 ContentControl을 한 셸에 혼용.** 뒤로 가기 스택이 두 개가 된다. 하나를 고른다.
+- **전환마다 무거운 ViewModel을 무조건 `new`.** 입력 중이던 설정이 날아간다. 유지가 필요하면 필드로 들고 있는다.
+- **커스텀 다이얼로그 Window의 DataContext를 안 넘김.** 바인딩이 비고, 확인 결과를 닫힌 창에서 읽지 못한다. 결과를 서비스 반환값으로 받는다.
 
 ---
 
 ## 정리
 
-WPF 전환 구조는 초기에 결정하면 이득이 크다. **CurrentViewModel + DialogService** 조합이 실무에서 단순하고 강하다.
+전환 구조는 초기에 정할수록 싸다. **CurrentViewModel + DataTemplate + DialogService**가 실무에서 단순하다.
+
+- 화면 전환 → 셸 ViewModel의 현재 VM 교체
+- View 선택 → `DataTemplate DataType`
+- 알림·파일 → 인터페이스, WPF 구현은 한곳
+
+---
+
+## 연습
+
+1. 홈/설정 버튼으로 `ContentControl` 내용이 바뀌는지 확인한다.
+2. 설정에서 `DarkTheme`를 켠 뒤 홈에 갔다 와도 값이 남게, `SettingsViewModel`을 필드로 재사용한다.
+3. 삭제 명령에 `IDialogService.Confirm`을 넣고, 취소를 누르면 목록이 그대로인지 확인한다.

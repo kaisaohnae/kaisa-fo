@@ -4,62 +4,67 @@ order: 5
 category: angular
 categoryLabel: Angular
 title: "Angular 앱 실무 체크리스트"
-summary: "구조, 성능, 테스트, 빌드·배포까지 Angular 앱을 내보내기 전에 볼 실무 체크리스트를 모은다."
-publishedAt: 2026-08-26
+summary: "standalone 구조·성능·보안·테스트·배포까지, Angular 앱을 내보내기 전에 항목마다 이유를 붙여 확인하는 실무 체크리스트다."
+publishedAt: 2025-05-19
 tags: ["angular"]
 ---
 
 # Angular 앱 실무 체크리스트
 
-> 요약: 구조, 성능, 테스트, 빌드·배포까지 Angular 앱을 내보내기 전에 볼 실무 체크리스트를 모은다.
+> 요약: standalone 구조·성능·보안·테스트·배포까지, Angular 앱을 내보내기 전에 항목마다 이유를 붙여 확인하는 실무 체크리스트다.
 
 ---
 
 ## 1. 구조·품질
 
-- [ ] standalone + TypeScript strict
-- [ ] 기능 폴더 단위, 순환 의존 없음
-- [ ] ESLint (`angular-eslint`)
-- [ ] 환경 설정(`fileReplacements` 또는 빌드 타임 env)에 시크릿 금지
+- [ ] standalone + TypeScript strict를 기본선으로 둔다 — NgModule과 혼용하면 같은 기능이 두 등록 경로로 갈라진다.
+- [ ] 기능 폴더 단위로 나누고 순환 import를 없앤다 — `home`이 `post`를, `post`가 `home`을 참조하면 빌드·테스트가 깨지기 쉽다.
+- [ ] `angular-eslint`를 CI에서 돌린다 — 템플릿의 시그널 미호출·잘못된 `track`은 리뷰만으로 빠진다.
+- [ ] 환경 파일·빌드 타임 env에 시크릿을 넣지 않는다 — `environment.prod.ts`도 브라우저 번들에 들어간다.
+- [ ] 공유 UI는 `shared/`, 전역 서비스는 `providedIn: 'root'`로 경계를 지킨다 — 페이지가 HTTP·인증을 직접 들고 있으면 재사용이 끊긴다.
 
 ---
 
 ## 2. 성능
 
-- [ ] 라우트 `loadComponent` / `loadChildren`
-- [ ] `track` / `trackBy`로 리스트 안정화
-- [ ] OnPush 또는 시그널로 불필요 CD 감소
-- [ ] `ng build` 번들 예산(budgets) 확인
-- [ ] 이미지: NgOptimizedImage 검토
+- [ ] 라우트는 `loadComponent` / `loadChildren`으로 나눈다 — 첫 페인트에 설정 화면 JS가 따라오면 초기 비용이 커진다.
+- [ ] `@for`에 `track`으로 안정 id를 둔다 — 인덱스만 쓰면 행이 지워질 때 입력 상태가 다른 행으로 옮는다.
+- [ ] OnPush 또는 시그널로 불필요한 변경 감지를 줄인다 — 기본 Zone 감지는 이벤트마다 큰 트리를 검사한다.
+- [ ] `ng build` 번들 budgets를 확인하고 예산을 넘기면 머지를 막는다 — 개발 `ng serve` 속도는 배포 크기와 무관하다.
+- [ ] 이미지에 `NgOptimizedImage`(`ngSrc`)를 검토한다 — 큰 PNG를 그대로 넣으면 LCP가 길어진다.
+- [ ] 템플릿에서 `users.filter()`처럼 매 감지마다 새 배열을 만들지 않는다 — `computed`로 파생 목록을 둔다.
 
 ---
 
 ## 3. 데이터·보안
 
-- [ ] HttpClient 에러·재시도 정책
-- [ ] interceptor로 인증 헤더 일관 처리
-- [ ] XSS: DomSanitizer 오남용 금지
-- [ ] CSRF/쿠키 정책은 백엔드와 합의
+- [ ] `HttpClient` 에러를 시그널·메시지로 접고 구독 누수를 막는다 — 컴포넌트가 `subscribe`만 하면 라우트 이탈 후에도 콜백이 산다.
+- [ ] interceptor로 Authorization 헤더를 한곳에서 붙인다 — 화면마다 헤더를 넣으면 누락된 호출이 생긴다.
+- [ ] `bypassSecurityTrustHtml` / `[innerHTML]`에 사용자 입력을 넣지 않는다 — Angular 살균을 우회하면 XSS가 된다.
+- [ ] CSRF·쿠키 SameSite는 백엔드와 합의한다 — SPA만으로 쿠키 정책을 끝낼 수 없다.
+- [ ] 가드는 최소 정보만 본다 — 가드 안에서 무거운 목록 API를 기다리면 화면 전환이 느려진다.
 
 ---
 
 ## 4. 테스트·품질
 
-- [ ] 핵심 서비스 단위 테스트
-- [ ] 주요 화면 컴포넌트 테스트 또는 e2e 소수
-- [ ] `ng test` / CI에서 깨지면 머지 금지
+- [ ] 인증·요금 계산처럼 핵심 서비스에 단위 테스트를 둔다 — UI만 눈으로 보면 회귀가 늦다.
+- [ ] 로그인·결제 등 소수 화면에 컴포넌트 테스트 또는 e2e를 둔다 — 전부 e2e는 느리고 깨지기 쉽다.
+- [ ] `ng test`가 CI에서 실패하면 머지하지 않는다 — 로컬에서만 통과하는 테스트는 테스트가 아니다.
+- [ ] `TestBed`에서 서비스를 `useValue` / `useStub`으로 갈아끼운다 — 실제 HTTP를 타면 테스트가 네트워크에 종속된다.
 
 ---
 
 ## 5. 배포
 
-- [ ] `ng build --configuration production`
-- [ ] 베이스 href / 자산 경로
-- [ ] SPA 폴백 (Nginx `try_files` → `index.html`)
-- [ ] 소스맵 공개 범위
+- [ ] `ng build --configuration production` 산출물을 올린다 — development 구성은 소스맵·미최적화 번들이다.
+- [ ] `<base href>`와 자산 경로가 실제 공개 URL과 같다 — 서브폴더 배포인데 `/`면 런타임 JS가 404다.
+- [ ] 서버에 SPA 폴백을 둔다 (`try_files $uri /index.html`) — `/posts/1` 새로고침이 서버 파일로 해석되면 404다.
+- [ ] 소스맵 공개 범위를 정한다 — 전체 맵은 원본 TypeScript가 그대로 내려간다.
+- [ ] 프로덕션에서 `enableProdMode`에 해당하는 최적화가 켜졌는지 빌드 로그로 확인한다 — 개발 모드 경고가 사용자에게 보이면 구성이 잘못됐다.
 
 ---
 
 ## 정리
 
-Angular는 기능이 많아서가 아니라 **체크리스트를 통과하는 기본선**을 지키면 팀 규모에서 이득이 난다.
+Angular는 기능이 많아서가 아니라 **체크리스트를 통과하는 기본선**을 지킬 때 팀 규모에서 이득이 난다. 항목을 건너뛸 때는 티켓에 이유를 남긴다.

@@ -4,33 +4,35 @@ order: 6
 category: spring-boot
 categoryLabel: Spring Boot
 title: "테스트 — JUnit 5, MockMvc, Testcontainers"
-summary: "단위·슬라이스·통합 테스트를 균형 있게 구성하고, Testcontainers로 실제에 가까운 DB/미들웨어 검증을 한다."
-publishedAt: 2026-08-26
+summary: "단위·슬라이스·통합 테스트 비중을 나누고, Testcontainers로 실제 DB에 가까운 검증을 한다."
+publishedAt: 2025-10-20
 tags: ["spring-boot"]
 ---
 
 # 테스트 — JUnit 5, MockMvc, Testcontainers
 
-> 요약: 단위·슬라이스·통합 테스트를 균형 있게 구성하고, Testcontainers로 실제에 가까운 DB/미들웨어 검증을 한다.
+> 요약: 단위·슬라이스·통합 테스트 비중을 나누고, Testcontainers로 실제 DB에 가까운 검증을 한다.
 
 ---
 
----
+## 1. 왜 피라미드를 나누는가
 
-## 1. 테스트 피라미드 (Spring 관점)
+모든 케이스를 `@SpringBootTest`로 올리면 CI가 느리고 실패 지점이 흐려진다. 빠른 테스트로 규칙을 지키고, 조립은 소수 통합으로 확인한다.
 
-| 종류 | 도구 | 속도 | 목적 |
-|------|------|------|------|
-| 단위 | JUnit + Mockito | 매우 빠름 | 도메인/서비스 로직 |
-| 슬라이스 | `@WebMvcTest`, `@DataJpaTest` | 빠름 | 계층 경계 |
-| 통합 | `@SpringBootTest` + Testcontainers | 느림 | 실제 조립 검증 |
-| E2E | RestAssured / 브라우저 | 가장 느림 | 핵심 시나리오만 |
+| 종류 | 도구 | 목적 |
+|------|------|------|
+| 단위 | JUnit + Mockito | 도메인·서비스 규칙 |
+| 슬라이스 | `@WebMvcTest`, `@DataJpaTest` | 계층 경계 |
+| 통합 | `@SpringBootTest` + Testcontainers | 실제 조립 |
+| E2E | RestAssured 등 | 핵심 시나리오만 |
 
-모든 것을 `@SpringBootTest`로 올리면 CI가 느려지고 실패 원인 추적이 어렵다.
+**슬라이스 테스트**는 웹 또는 JPA처럼 **한 계층만** 띄우는 테스트다.
 
 ---
 
 ## 2. 단위 테스트
+
+Spring 컨텍스트 없이 생성자로 목을 넣는다.
 
 ```java
 class OrderServiceTest {
@@ -46,11 +48,13 @@ class OrderServiceTest {
 }
 ```
 
-순수 도메인/서비스는 Spring 컨텍스트 없이 테스트하는 것이 최선이다.
+필드 `@Autowired` 서비스는 이런 테스트가 불편해진다.
 
 ---
 
-## 3. `@WebMvcTest` — 컨트롤러 슬라이스
+## 3. `@WebMvcTest`
+
+컨트롤러·검증·예외 핸들러만 올린다. 서비스는 목이다. Boot 3.4+는 `@MockitoBean`(`@MockBean` 후속)을 쓴다.
 
 ```java
 @WebMvcTest(UserController.class)
@@ -58,7 +62,7 @@ class OrderServiceTest {
 class UserControllerTest {
 
     @Autowired MockMvc mockMvc;
-    @MockitoBean UserService userService; // Boot 3.4+ (이전: @MockBean)
+    @MockitoBean UserService userService;
 
     @Test
     void createUser() throws Exception {
@@ -76,36 +80,13 @@ class UserControllerTest {
 }
 ```
 
-Security가 켜져 있으면 `@AutoConfigureMockMvc(addFilters = false)` 또는 `@WithMockUser`를 사용한다.
+Security가 켜져 있으면 `@WithMockUser` 또는 `@AutoConfigureMockMvc(addFilters = false)`를 명시한다. 필터를 끄면 인가 버그를 놓친다.
 
 ---
 
-## 4. `@DataJpaTest` — 영속성 슬라이스
+## 4. `@DataJpaTest`와 Testcontainers
 
-```java
-@DataJpaTest
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@Import(TestcontainersConfig.class)
-class UserRepositoryTest {
-
-    @Autowired UserRepository userRepository;
-
-    @Test
-    void findByEmail() {
-        userRepository.save(User.create("a@b.com", "Ann"));
-
-        assertThat(userRepository.findByEmail("a@b.com")).isPresent();
-    }
-}
-```
-
-H2로 대체하면 운영 DB(PostgreSQL)와 方言 차이가 난다. **중요한 쿼리는 Testcontainers + 실제 DB**가 안전하다.
-
----
-
-## 5. Testcontainers (최신 표준)
-
-의존성:
+한 줄 정의: **Testcontainers**는 테스트 동안 Docker로 PostgreSQL 같은 실제 미들웨어를 띄운다. H2는 방언이 달라 운영에서만 깨지는 쿼리가 나온다.
 
 ```xml
 <dependency>
@@ -116,11 +97,6 @@ H2로 대체하면 운영 DB(PostgreSQL)와 方言 차이가 난다. **중요한
 <dependency>
   <groupId>org.testcontainers</groupId>
   <artifactId>postgresql</artifactId>
-  <scope>test</scope>
-</dependency>
-<dependency>
-  <groupId>org.testcontainers</groupId>
-  <artifactId>junit-jupiter</artifactId>
   <scope>test</scope>
 </dependency>
 ```
@@ -137,6 +113,32 @@ public class TestcontainersConfig {
 }
 ```
 
+`@ServiceConnection`(Boot 3.1+)이 datasource URL을 붙인다. `@DynamicPropertySource`보다 짧다.
+
+```java
+@DataJpaTest
+@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@Import(TestcontainersConfig.class)
+class UserRepositoryTest {
+
+    @Autowired UserRepository userRepository;
+
+    @Test
+    void findByEmail() {
+        userRepository.save(User.create("a@b.com", "Ann"));
+        assertThat(userRepository.findByEmail("a@b.com")).isPresent();
+    }
+}
+```
+
+`Replace.ANY`(기본)면 H2로 바뀌어 컨테이너를 띄운 의미가 없다.
+
+---
+
+## 5. `@SpringBootTest`
+
+전체 컨텍스트가 필요할 때만 쓴다. HTTP까지 보려면 `RANDOM_PORT` + `TestRestTemplate` 또는 MockMvc(`@AutoConfigureMockMvc`)다. Boot 3.4+에는 `RestTestClient`도 있다.
+
 ```java
 @SpringBootTest
 @Import(TestcontainersConfig.class)
@@ -152,33 +154,13 @@ class UserServiceIT {
 }
 ```
 
-`@ServiceConnection`(Boot 3.1+)이 datasource URL을 자동 연결한다. 수동 `@DynamicPropertySource`보다 간결하다.
-
-Kafka, Redis, LocalStack도 동일 패턴으로 붙일 수 있다.
+Kafka·Redis도 같은 `@ServiceConnection` 패턴이다.
 
 ---
 
-## 6. `@SpringBootTest` + MockMvc / TestRestTemplate / RestTestClient
+## 6. 데이터·시간·외부 의존성
 
-```java
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-class ApiIT {
-
-    @Autowired MockMvc mockMvc; // @AutoConfigureMockMvc 필요
-    // 또는
-    @Autowired TestRestTemplate restTemplate;
-}
-```
-
-Boot 3.4+에서는 `RestTestClient`도 선택지로 떠올랐다. 팀 표준에 맞춘다.
-
----
-
-## 7. 테스트 데이터
-
-- 테스트마다 독립: `@Transactional` 롤백 또는 컨테이너 재사용 + 클리닝
-- Fixture 빌더 / 팩토리 메서드
-- `@Sql("/test-data.sql")`는 간단할 때만
+테스트마다 독립이어야 한다. `@Transactional` 롤백, 또는 컨테이너 재사용 + 테이블 정리. `@Sql`은 데이터가 단순할 때만 쓴다.
 
 ```java
 static User user(String email) {
@@ -186,27 +168,19 @@ static User user(String email) {
 }
 ```
 
----
-
-## 8. AssertJ & 가독성
+AssertJ 체인이 JUnit `assertEquals`보다 실패 메시지가 읽기 쉽다.
 
 ```java
 assertThat(result)
-    .extracting(UserResponse::email, UserResponse::name)
-    .containsExactly("a@b.com", "Ann");
+        .extracting(UserResponse::email, UserResponse::name)
+        .containsExactly("a@b.com", "Ann");
 ```
-
-JUnit `assertEquals`보다 AssertJ 체인이 실패 메시지가 좋다.
-
----
-
-## 9. 비동기·시간·외부 API
 
 | 대상 | 기법 |
 |------|------|
-| 시간 | `Clock` Bean 주입 후 고정 |
+| 시간 | `Clock` Bean을 고정 |
 | 외부 HTTP | WireMock / MockWebServer |
-| 메시지 | Testcontainers Kafka / Embedded |
+| 메시지 | Testcontainers Kafka |
 | 파일 | `@TempDir` |
 
 ```java
@@ -219,18 +193,27 @@ Clock fixedClock() {
 
 ---
 
-## 10. CI에서 안정적으로
+## 7. CI
 
-- Docker 사용 가능 러너 필요 (Testcontainers)
-- 컨테이너 재사용: `testcontainers.reuse.enable=true` (로컬)
-- 병렬 테스트 시 포트/리소스 충돌 주의
-- flaky 테스트는 재시도로 숨기지 말고 원인 제거
+러너에 Docker가 있어야 Testcontainers가 돈다. 로컬 재사용은 `testcontainers.reuse.enable=true`. 실패한 테스트를 재시도로 통과시키지 않는다.
+
+---
+
+## 8. 흔한 실수
+
+| 실수 | 대안 |
+|------|------|
+| 전부 `@SpringBootTest` | 단위·슬라이스 먼저 |
+| `@DataJpaTest` + H2로 복잡한 SQL | Testcontainers + `Replace.NONE` |
+| Security 필터를 항상 끔 | 인가 케이스는 `@WithMockUser` |
+| `now()` 직접 호출 | `Clock` 주입 |
+| flaky를 `@RepeatedTest`로 숨김 | 원인 제거 |
 
 ---
 
 ## 연습
 
-1. 서비스 단위 테스트 2개 작성 (성공/실패).
-2. `@WebMvcTest`로 validation 400 응답을 검증한다.
-3. Testcontainers PostgreSQL로 리포지토리/서비스 IT를 작성한다.
-4. `@ServiceConnection`으로 datasource 자동 연결을 확인해 본다.
+1. 서비스 단위 테스트 2개(성공/실패)를 작성한다.
+2. `@WebMvcTest`로 validation 400을 검증한다.
+3. Testcontainers PostgreSQL로 리포지토리 IT를 작성한다.
+4. `@ServiceConnection`으로 datasource가 붙는지 확인한다.

@@ -4,18 +4,38 @@ order: 7
 category: nextjs
 categoryLabel: Next.js
 title: "Route Handler와 Server Actions"
-summary: "앱 내 API(Route Handler)와 폼용 Server Actions의 역할·제약·정적 export와의 관계를 정리한다."
-publishedAt: 2026-08-26
+summary: "앱 밖 API는 Route Handler로, 같은 앱의 폼 저장은 Server Action으로 나누고, 정적 호스팅 제약을 확인한다."
+publishedAt: 2026-01-14
 tags: ["nextjs"]
 ---
 
 # Route Handler와 Server Actions
 
-> 요약: 앱 내 API(Route Handler)와 폼용 Server Actions의 역할·제약·정적 export와의 관계를 정리한다.
+> 요약: 앱 밖 API는 Route Handler로, 같은 앱의 폼 저장은 Server Action으로 나누고, 정적 호스팅 제약을 확인한다.
 
 ---
 
-## 1. Route Handler
+## 1. 왜 이 주제가 필요한가
+
+브라우저만으로는 메일을 보내거나 DB에 쓰지 못한다. 그 작업은 서버가 한다.
+
+App Router에는 길이 두 개다. **Route Handler**는 `app/api/.../route.ts`에 HTTP 메서드를 여는 방식이다. **Server Action**은 함수를 서버에서 실행하고, 폼의 `action`에 바로 연결한다.
+
+둘 다 Node 서버가 있는 배포에서 의미가 있다. `output: 'export'`면 이 런타임이 없다.
+
+---
+
+## 2. 한 줄 규칙
+
+외부 시스템·웹훅·다른 클라이언트가 치는 엔드포인트는 Route Handler다. 같은 Next 앱의 폼·뮤테이션은 Server Action이다.
+
+입력은 반드시 검증한다. 시크릿은 서버 파일에만 둔다.
+
+---
+
+## 3. 예제
+
+### Route Handler
 
 ```ts
 // app/api/hello/route.ts
@@ -26,89 +46,173 @@ export async function GET() {
 }
 
 export async function POST(request: Request) {
-  const body = await request.json();
-  return NextResponse.json({received: body});
+  const body = (await request.json()) as {message?: string};
+  const message = body.message?.trim() ?? '';
+  if (!message) {
+    return NextResponse.json({error: 'message가 필요하다'}, {status: 400});
+  }
+  return NextResponse.json({received: message});
 }
 ```
 
-용도: 웹훅, 외부 클라이언트 API, 서버 전용 프록시.
+`GET` / `POST` / `PUT` / `PATCH` / `DELETE`를 함수 이름으로 export한다. URL은 폴더 경로다. 위 파일은 `/api/hello`.
 
-`output: 'export'`에서는 **지원이 제한**된다. 정적 호스팅이면 백엔드를 별도(Cafe24 API 등)로 두는 편이 흔하다.
+용도: 결제 웹훅, 모바일 앱이 치는 API, 브라우저 CORS를 피해 서버에서 외부 API를 대신 호출하는 프록시.
 
----
+Next.js 15부터 GET Handler도 기본적으로 캐시하지 않는다. 캐시가 필요하면 응답 헤더나 Route Segment Config를 명시한다.
 
-## 2. Server Actions
+```ts
+export const dynamic = 'force-dynamic';
+```
 
-```tsx
+정적 내보내기에서는 이 파일이 빌드 산출물에 서버로 남지 않거나 지원이 제한된다. 정적 호스팅이면 백엔드를 별도 서버(Cafe24, 클라우드 함수 등)로 둔다.
+
+### Server Actions
+
+```ts
 // app/contact/actions.ts
 'use server';
 
+import {z} from 'zod';
+
+const schema = z.object({
+  email: z.string().email(),
+  body: z.string().min(1).max(2000),
+});
+
 export async function sendMessage(formData: FormData) {
-  const email = String(formData.get('email') || '');
-  // DB / 메일 발송
-  return {ok: true};
+  const parsed = schema.safeParse({
+    email: formData.get('email'),
+    body: formData.get('body'),
+  });
+  if (!parsed.success) {
+    return {ok: false as const, error: '입력 형식이 맞지 않는다'};
+  }
+
+  // 메일 발송·DB 저장은 여기
+  return {ok: true as const};
 }
 ```
 
+`'use server'`는 이 파일의 export 함수가 서버에서만 실행된다는 표시다. 클라이언트는 네트워크 호출로 이 함수를 부른다. 함수 본문은 브라우저에 안 실리는 것이 정상이다.
+
 ```tsx
+// app/contact/page.tsx
 import {sendMessage} from './actions';
 
-export default function ContactForm() {
+export default function ContactPage() {
   return (
     <form action={sendMessage}>
-      <input name="email" type="email" required />
+      <label>
+        이메일
+        <input name="email" type="email" required />
+      </label>
+      <label>
+        내용
+        <textarea name="body" required />
+      </label>
       <button type="submit">보내기</button>
     </form>
   );
 }
 ```
 
-폼·뮤테이션에 적합. 네트워크 왕복을 줄이고 progressive enhancement에 가깝다.
+폼은 Server Component에 둬도 된다. `action`에 서버 함수를 넘긴다. JS가 꺼져 있어도 폼 submit은 HTML 기본 동작으로 진행되는 쪽에 가깝다.
 
----
+진행 상태·에러 메시지를 화면에 바로 쓰려면 Client에서 `useActionState`를 쓴다.
 
-## 3. 언제 무엇을
+```tsx
+'use client';
 
-| 상황 | 선택 |
-|------|------|
-| 외부 앱이 호출 | Route Handler / 별도 API |
-| 같은 Next 앱 폼 | Server Action |
-| 순수 정적 사이트 | 외부 API + 클라이언트 또는 빌드 타임만 |
+import {useActionState} from 'react';
+import {sendMessage} from './actions';
 
----
+export function ContactForm() {
+  const [state, formAction, pending] = useActionState(sendMessage, null);
 
-## 4. 보안
-
-- Action·Handler 모두 **입력 검증**
-- 쿠키·세션 확인
-- CSRF: Server Actions는 프레임워크 보호가 있으나 팀 정책 확인
-- 시크릿은 서버에만
-
-```ts
-import {z} from 'zod';
-const schema = z.object({email: z.string().email()});
-```
-
----
-
-## 5. 재검증
-
-```ts
-'use server';
-import {revalidatePath} from 'next/cache';
-
-export async function updatePost(id: string) {
-  // ...
-  revalidatePath(`/posts/${id}`);
+  return (
+    <form action={formAction}>
+      <input name="email" type="email" required />
+      <textarea name="body" required />
+      <button type="submit" disabled={pending}>
+        {pending ? '보내는 중' : '보내기'}
+      </button>
+      {state && !state.ok ? <p>{state.error}</p> : null}
+    </form>
+  );
 }
 ```
 
-정적 export 환경에서는 런타임 재검증이 어렵다. 배포 파이프라인으로 다시 빌드한다.
+이 패턴을 쓰려면 Action이 이전 state를 첫 인자로 받도록 시그니처를 맞춘다.
+
+```ts
+'use server';
+
+type State = {ok: true} | {ok: false; error: string} | null;
+
+export async function sendMessage(_prev: State, formData: FormData): Promise<State> {
+  // 검증·저장
+  return {ok: true};
+}
+```
+
+### 무엇을 고를지
+
+| 상황 | 선택 |
+|------|------|
+| 외부 앱·웹훅이 HTTP로 호출 | Route Handler 또는 별도 API |
+| 같은 Next 앱의 폼·버튼 | Server Action |
+| 순수 정적 사이트 | 외부 API + Client, 또는 빌드 타임만 |
+
+### 저장 후 화면 갱신
+
+```ts
+'use server';
+
+import {revalidatePath} from 'next/cache';
+import {redirect} from 'next/navigation';
+
+export async function updatePost(id: string, formData: FormData) {
+  const title = String(formData.get('title') ?? '');
+  // DB 업데이트
+  revalidatePath(`/posts/${id}`);
+  redirect(`/posts/${id}/`);
+}
+```
+
+`revalidatePath`는 그 주소의 캐시된 HTML을 버린다. 정적 내보내기에서는 런타임 재검증이 없다. 배포 파이프라인에서 다시 빌드한다.
+
+### 보안
+
+- Action·Handler 모두 스키마로 입력 검증
+- 쿠키 세션이 있으면 핸들러·액션 안에서 다시 확인
+- **CSRF(Cross-Site Request Forgery, 다른 사이트가 사용자를 대신해 요청을 보내는 공격)** : Server Actions는 Origin 검사를 한다. 팀 정책과 SameSite 쿠키를 확인한다
+- `NEXT_PUBLIC_`이 붙은 값은 브라우저에 노출된다. API 키는 붙이지 않는다
+
+---
+
+## 4. 흔한 실수
+
+| 실수 | 결과 | 대안 |
+|------|------|------|
+| export 배포에 `route.ts`를 의존 | 런타임 404 | 별도 백엔드 또는 서버 호스팅 |
+| Action에서 `formData.get`만 신뢰 | 잘못된·악의적 입력 | zod 등으로 검증 |
+| 시크릿을 Client 컴포넌트에 둠 | 키 유출 | `'use server'` / Route Handler |
+| GET Handler로 데이터를 변경 | 캐시·크롤러가 부작용 | 변경은 POST + Action/Handler |
+| 모든 API를 `/api`에 넣고 폼도 fetch | 중복 계층 | 앱 내부 뮤테이션은 Action |
+
+---
+
+## 정리
+
+Route Handler는 HTTP 엔드포인트다. Server Action은 앱 내부 서버 함수다.
+
+서버가 있는 호스팅에서만 둘 다 살아 있다. 정적 사이트면 쓰기 작업을 외부 API로 빼고, Next는 HTML을 굽는 쪽에 둔다.
 
 ---
 
 ## 연습
 
-1. `POST /api/echo` Route Handler를 만든다 (Node 런타임 호스팅에서).
-2. 간단한 Server Action 폼을 만든다.
-3. 현재 배포가 export면 “Next API 없이” 설계도를 그린다.
+1. Node 런타임 호스팅에서 `POST /api/echo` Route Handler를 만들고 JSON을 그대로 돌려준다.
+2. 이메일 필드가 있는 Server Action 폼을 만들고, 실패 시 메시지를 보여 준다.
+3. 현재 배포가 export면 Next API 없이 연락 폼이 어디로 POST되는지 한 장으로 그린다.

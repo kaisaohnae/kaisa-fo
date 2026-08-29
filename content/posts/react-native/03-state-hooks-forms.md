@@ -4,66 +4,86 @@ order: 3
 category: react-native
 categoryLabel: React Native
 title: "상태·훅·폼 — 사용자 입력과 데이터 흐름"
-summary: "`useState`/`useEffect`/`useRef`와 폼 패턴, 파생 상태 함정을 이해하고 실무적인 입력 UX를 만든다."
-publishedAt: 2026-08-26
+summary: "화면 상태는 훅에 두고, 폼 입력은 검증과 키보드 UX까지 한 흐름으로 만든다."
+publishedAt: 2024-03-13
 tags: ["react-native"]
 ---
 
 # 상태·훅·폼 — 사용자 입력과 데이터 흐름
 
-> 요약: `useState`/`useEffect`/`useRef`와 폼 패턴, 파생 상태 함정을 이해하고 실무적인 입력 UX를 만든다.
+> 요약: 화면 상태는 훅에 두고, 폼 입력은 검증과 키보드 UX까지 한 흐름으로 만든다.
 
 ---
 
+## 1. 왜 상태를 나누나
+
+입력은 로컬 상태다. 게시글 목록은 서버 상태다. 둘을 `useState` 하나로 섞으면 로딩·동기화 버그가 난다.
+
+웹과 같은 React 훅을 쓴다. 차이는 **키보드, 자동완성, 포커스 이동**이 폼 UX의 중심이라는 점이다.
+
+필드가 두세 개면 `useState`로 충분하다. 필드가 늘고 검증이 생기면 `react-hook-form` + zod가 기본선이다.
+
 ---
 
-## 1. 상태는 어디에 두나
+## 2. 핵심 개념
 
 | 범위 | 수단 |
 |------|------|
-| 한 컴포넌트 UI | `useState` |
-| 부모→자식 공유 | props 내리기 / 합성 |
-| 화면 멀리 공유 | Context, Zustand 등 |
-| 서버 데이터 | TanStack Query 등 |
-| 폼 다수 필드 | `react-hook-form` |
+| 한 화면 UI | `useState` |
+| 부모→자식 | props |
+| 멀리 공유 | Context, Zustand |
+| 서버 데이터 | React Query (다음 글) |
+| 다필드 폼 | `react-hook-form` |
 
-서버에서 온 데이터를 `useState`+`useEffect`로 수동 동기화하는 패턴은 최신 실무에서 지양한다.
-
----
-
-## 2. useState / 파생 값
+계산으로 나오는 값은 state로 두지 않는다.
 
 ```tsx
 const [count, setCount] = useState(0);
-const doubled = count * 2; // state로 두지 말 것
+const doubled = count * 2;
 ```
 
-객체 업데이트:
+객체는 이전 값을 펼친다.
 
 ```tsx
 setUser((prev) => ({ ...prev, name }));
 ```
 
+`useRef`는 DOM이 아니라 **컴포넌트 인스턴스**다. `TextInput`에 포커스를 옮길 때 쓴다. 렌더와 무관한 이전 값 보관에도 쓴다.
+
+`useEffect`는 구독과 정리용이다. 마운트마다 `fetch` + `setState`로 서버를 따라가는 패턴은 지양한다.
+
 ---
 
-## 3. TextInput 패턴
+## 3. 예제
+
+로그인 필드 두 개:
 
 ```tsx
 import { useState } from 'react';
-import { TextInput, Text, View } from 'react-native';
+import { TextInput, Text, View, Pressable, ActivityIndicator } from 'react-native';
 
-export function LoginForm({ onSubmit }: { onSubmit: (email: string, password: string) => void }) {
+export function LoginForm({
+  onSubmit,
+}: {
+  onSubmit: (email: string, password: string) => Promise<void>;
+}) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!email.includes('@')) {
       setError('이메일 형식을 확인하세요');
       return;
     }
     setError(null);
-    onSubmit(email.trim(), password);
+    setLoading(true);
+    try {
+      await onSubmit(email.trim(), password);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -75,7 +95,7 @@ export function LoginForm({ onSubmit }: { onSubmit: (email: string, password: st
         autoCapitalize="none"
         keyboardType="email-address"
         textContentType="emailAddress"
-        style={inputStyle}
+        returnKeyType="next"
       />
       <TextInput
         value={password}
@@ -83,56 +103,33 @@ export function LoginForm({ onSubmit }: { onSubmit: (email: string, password: st
         placeholder="password"
         secureTextEntry
         textContentType="password"
-        style={inputStyle}
+        returnKeyType="done"
+        onSubmitEditing={handleSubmit}
       />
       {error ? <Text style={{ color: 'tomato' }}>{error}</Text> : null}
-      <Pressable onPress={handleSubmit}>{/* ... */}</Pressable>
+      <Pressable onPress={handleSubmit} disabled={loading}>
+        {loading ? <ActivityIndicator /> : <Text>로그인</Text>}
+      </Pressable>
     </View>
   );
 }
 ```
 
-iOS/Android 자동완성·비밀번호 매니저 대응에 `textContentType` / `autoComplete`가 도움이 된다.
+`textContentType` / `autoComplete`는 비밀번호 매니저 대응에 도움이 된다.
 
----
-
-## 4. useRef — DOM 대신 인스턴스
+다음 필드로 포커스:
 
 ```tsx
-const inputRef = useRef<TextInput>(null);
+const passwordRef = useRef<TextInput>(null);
 
-<TextInput ref={inputRef} />
-// 다음 필드로
-inputRef.current?.focus();
+<TextInput
+  returnKeyType="next"
+  onSubmitEditing={() => passwordRef.current?.focus()}
+/>
+<TextInput ref={passwordRef} secureTextEntry />
 ```
 
-렌더와 무관한 타임스탬프·이전 값 보관에도 사용.
-
----
-
-## 5. useEffect — 구독과 정리
-
-```tsx
-useEffect(() => {
-  const sub = AppState.addEventListener('change', onChange);
-  return () => sub.remove();
-}, []);
-```
-
-안티패턴:
-
-```tsx
-// 서버 fetch를 매번 이렇게만 구성하지 말 것
-useEffect(() => {
-  fetch('/api').then(...).then(setData);
-}, []);
-```
-
-→ React Query / SWR이 캐시·재시도·포커스 리패치를 대신한다 .
-
----
-
-## 6. react-hook-form + zod (권장)
+검증이 커지면 스키마를 한곳으로 모은다.
 
 ```bash
 npx expo install react-hook-form zod @hookform/resolvers
@@ -165,34 +162,22 @@ export function SignupForm() {
           <TextInput value={value} onBlur={onBlur} onChangeText={onChange} />
         )}
       />
-      {errors.email && <Text>{errors.email.message}</Text>}
+      {errors.email ? <Text>{errors.email.message}</Text> : null}
       <Pressable onPress={handleSubmit((data) => console.log(data))} />
     </>
   );
 }
 ```
 
-검증 스키마를 서버와 공유하면 풀스택 계약이 단단해진다.
-
----
-
-## 7. 키보드·UX
+키보드 UX 체크:
 
 - `returnKeyType="next" | "done"`
-- `onSubmitEditing`으로 다음 필드 focus
+- `onSubmitEditing`으로 다음 포커스
 - `Keyboard.dismiss()`
-- `keyboardShouldPersistTaps="handled"` on ScrollView
-- 로딩 중 버튼 비활성 + 스피너
+- `ScrollView`에 `keyboardShouldPersistTaps="handled"`
+- 제출 중 버튼 비활성
 
-```tsx
-import { ActivityIndicator } from 'react-native';
-
-{loading ? <ActivityIndicator /> : <Text>로그인</Text>}
-```
-
----
-
-## 8. 커스텀 훅
+반복 UI 로직만 훅으로 뺀다.
 
 ```tsx
 function useToggle(initial = false) {
@@ -202,13 +187,41 @@ function useToggle(initial = false) {
 }
 ```
 
-UI 로직이 반복되면 훅으로 추출. 다만 성급한 추상화는 피한다.
+---
+
+## 4. 흔한 실수
+
+| 실수 | 대안 |
+|------|------|
+| 서버 목록을 `useEffect` + `setState` | React Query |
+| 파생 값을 또 `useState` | 렌더 중 계산 |
+| `onChange` (웹) | `onChangeText` |
+| 로딩 중에도 제출 가능 | `disabled` + 스피너 |
+| 모든 필드를 전역 스토어 | 폼은 로컬. 제출 결과만 공유 |
+| `useEffect`로 입력값을 다른 state에 복사 | 한 곳만 진실로 둔다 |
+
+구독은 정리 함수를 같이 둔다.
+
+```tsx
+useEffect(() => {
+  const sub = AppState.addEventListener('change', onChange);
+  return () => sub.remove();
+}, []);
+```
 
 ---
 
+## 5. 정리
+
+상태는 **누가 소유하는가**가 먼저다. 입력은 화면, 서버 데이터는 Query, 세션만 전역에 가깝게 둔다.
+
+- 작은 폼: `useState` + 에러 메시지.
+- 큰 폼: `react-hook-form` + zod.
+- 키보드는 `returnKeyType`, 포커스, AvoidingView가 한 세트다.
+
 ## 연습
 
-1. 로그인 폼(이메일·비밀번호·에러·로딩)을 만든다.
+1. 이메일·비밀번호·에러·로딩이 있는 로그인 폼을 만든다.
 2. zod + react-hook-form으로 회원가입 검증을 붙인다.
 3. `useRef`로 비밀번호 필드 자동 포커스를 구현한다.
-4. `useToggle` 커스텀 훅으로 비밀번호 표시/숨김을 만든다.
+4. `useToggle`로 비밀번호 표시/숨김을 만든다.

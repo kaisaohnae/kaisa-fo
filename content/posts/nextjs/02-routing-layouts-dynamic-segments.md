@@ -4,44 +4,80 @@ order: 2
 category: nextjs
 categoryLabel: Next.js
 title: "라우팅·레이아웃·동적 세그먼트"
-summary: "파일 기반 라우팅, 동적·캐치올 세그먼트, 중첩 레이아웃으로 URL과 UI 구조를 설계한다."
-publishedAt: 2026-08-26
+summary: "폴더가 URL이 되는 규칙을 익히고, 동적 주소와 중첩 레이아웃으로 화면 구조를 잡는다."
+publishedAt: 2024-01-08
 tags: ["nextjs"]
 ---
 
 # 라우팅·레이아웃·동적 세그먼트
 
-> 요약: 파일 기반 라우팅, 동적·캐치올 세그먼트, 중첩 레이아웃으로 URL과 UI 구조를 설계한다.
+> 요약: 폴더가 URL이 되는 규칙을 익히고, 동적 주소와 중첩 레이아웃으로 화면 구조를 잡는다.
 
 ---
 
-## 1. 기본 규칙
+## 1. 왜 이 주제가 필요한가
+
+웹 앱은 URL이 곧 정보 구조다. `/posts/hello`가 글이고 `/about`이 소개라면, 폴더를 그렇게 나누면 된다.
+
+App Router는 설정 파일에 라우트를 나열하지 않는다. `app/` 아래 폴더 이름이 경로가 된다. 레이아웃은 부모 폴더에서 자식으로 중첩된다.
+
+주소와 UI 껍질을 같이 설계하면 페이지마다 헤더를 복사하지 않아도 된다.
+
+---
+
+## 2. 한 줄 규칙
+
+`page.tsx`가 있는 폴더만 공개 URL이다. 대괄호 폴더(`[slug]`)는 값이 바뀌는 구간이다.
+
+레이아웃은 하위 이동 시 리마운트되지 않는다. 공통 셸은 `layout.tsx`에 둔다.
+
+---
+
+## 3. 예제
+
+### 파일과 URL
 
 | 파일 | URL |
 |------|-----|
 | `app/page.tsx` | `/` |
 | `app/posts/page.tsx` | `/posts` |
-| `app/posts/[slug]/page.tsx` | `/posts/:slug` |
-| `app/docs/[...slug]/page.tsx` | `/docs/*` |
+| `app/posts/[slug]/page.tsx` | `/posts/hello` |
+| `app/docs/[...slug]/page.tsx` | `/docs/a`, `/docs/a/b` |
+| `app/shop/[[...slug]]/page.tsx` | `/shop`와 `/shop/a` 모두 |
 
-폴더 이름 = 경로. `page.tsx`가 있어야 그 경로가 공개된다.
+`[slug]`는 한 칸. `[...slug]`는 나머지 칸 전부(캐치올). `[[...slug]]`는 그 칸이 없어도 된다(선택 캐치올).
 
----
+### 동적 세그먼트
 
-## 2. 동적 세그먼트
+Next.js 15부터 `params`는 Promise다. 서버 페이지에서 `await`로 읽는다.
 
 ```tsx
 // app/posts/[slug]/page.tsx
-type Props = {params: Promise<{slug: string}>};
+import {notFound} from 'next/navigation';
+
+type Props = {
+  params: Promise<{slug: string}>;
+};
+
+const POSTS: Record<string, string> = {
+  hello: '첫 글',
+  world: '둘째 글',
+};
 
 export default async function PostPage({params}: Props) {
   const {slug} = await params;
-  return <h1>{slug}</h1>;
+  const title = POSTS[slug];
+  if (!title) notFound();
+  return (
+    <article>
+      <h1>{title}</h1>
+      <p>slug: {slug}</p>
+    </article>
+  );
 }
 ```
 
-Next.js 15+에서는 **`params`가 Promise**일 수 있다. `await params`로 읽는다.  
-정적 HTML을 만들 때는 `generateStaticParams`와 함께 쓴다 — SEO와 충돌하지 않는다.
+빌드 때 HTML을 미리 만들려면 `generateStaticParams`를 같이 쓴다. 정적 사이트 생성(SSG, 빌드 시 HTML을 고정하는 방식)과 충돌하지 않는다. `await params`는 Next API일 뿐, 페이지를 클라이언트 렌더로 바꾸지 않는다.
 
 ```tsx
 export function generateStaticParams() {
@@ -49,58 +85,109 @@ export function generateStaticParams() {
 }
 ```
 
----
-
-## 3. 중첩 레이아웃
+### 중첩 레이아웃
 
 ```tsx
 // app/posts/layout.tsx
-export default function PostsLayout({children}: {children: React.ReactNode}) {
+import type {ReactNode} from 'react';
+import Link from 'next/link';
+
+export default function PostsLayout({children}: {children: ReactNode}) {
   return (
     <div>
-      <aside>카테고리</aside>
+      <aside>
+        <nav>
+          <Link href="/posts/hello/">hello</Link>
+          <Link href="/posts/world/">world</Link>
+        </nav>
+      </aside>
       <section>{children}</section>
     </div>
   );
 }
 ```
 
-레이아웃은 하위 이동 시 **리마운트되지 않는다**. 상태·스크롤 유지에 유리하다.
+`/posts/hello`에서 `/posts/world`로 이동해도 이 레이아웃은 다시 마운트되지 않는다. 사이드바 스크롤·필터 상태를 유지하기 쉽다.
 
-Route Group `(site)` / `(manager)`로 URL 없이 레이아웃만 나눌 수 있다.
+루트 `layout.tsx`는 `<html>`/`<body>`를 가진다. 하위 레이아웃은 그 안의 껍질만 추가한다.
+
+### 라우트 그룹
+
+폴더 이름을 `(marketing)`처럼 괄호로 감싸면 URL에 안 들어간다. 레이아웃만 나누고 싶을 때 쓴다.
 
 ```
-app/(site)/page.tsx      → /
-app/(manager)/manager/page.tsx → /manager
+app/(site)/page.tsx              → /
+app/(site)/about/page.tsx        → /about
+app/(manager)/manager/page.tsx   → /manager
 ```
 
----
+`(site)`와 `(manager)`에 서로 다른 `layout.tsx`를 둘 수 있다. 주소는 폴더 이름에서 괄호 그룹을 뺀 나머지다.
 
-## 4. Link와 이동
+### Link와 이동
 
 ```tsx
 import Link from 'next/link';
 
-<Link href="/posts/hello/">글 보기</Link>
+export function PostLink() {
+  return <Link href="/posts/hello/">글 보기</Link>;
+}
 ```
 
-`trailingSlash: true`면 링크도 `/posts/hello/`처럼 맞춘다.
+내부 이동은 `<a>` 대신 `next/link`의 `Link`를 쓴다. 미리 코드를 받아 전환이 빠르다.
 
-소프트 내비: `useRouter().push('/posts/')` (Client Component).
+`trailingSlash: true`면 `href`도 `/posts/hello/`처럼 맞춘다. 슬래시가 어긋나면 같은 페이지가 두 URL로 열린다.
+
+버튼을 눌러 이동할 때는 Client Component에서 라우터를 쓴다.
+
+```tsx
+'use client';
+
+import {useRouter} from 'next/navigation';
+
+export function GoPostsButton() {
+  const router = useRouter();
+  return (
+    <button type="button" onClick={() => router.push('/posts/')}>
+      목록
+    </button>
+  );
+}
+```
+
+`next/navigation`이다. Pages Router의 `next/router`가 아니다.
+
+### 병렬·인터셉트
+
+`@folder` 슬롯은 한 레이아웃에 여러 `page`를 나란히 넣을 때 쓴다. 대시보드 다중 패널이 전형적인 경우다.
+
+`(.)photo` 같은 인터셉트 라우트는 목록 위에 모달을 얹고, 새로고침하면 전용 페이지로 열 때 쓴다.
+
+입문 앱은 동적 세그먼트와 중첩 레이아웃만으로 충분한 경우가 많다. 필요할 때 문서에서 추가한다.
 
 ---
 
-## 5. 병렬·인터셉트 (필요할 때)
+## 4. 흔한 실수
 
-- `@folder` 병렬 슬롯: 대시보드 다중 패널
-- `(.)photo` 인터셉트: 모달 오버레이 UX
+| 실수 | 결과 | 대안 |
+|------|------|------|
+| `params.slug`를 동기로 읽는다 | Next 15에서 타입·런타임 경고 | `const {slug} = await params` |
+| 레이아웃에서 `{children}`을 뺀다 | 하위 페이지가 안 보인다 | 레이아웃은 껍질만, 본문은 children |
+| 라우트 그룹을 URL에 기대한다 | `(site)`가 주소에 없다 | 괄호는 URL에서 빠진다 |
+| `<a href="/posts">`만 쓴다 | 풀 새로고침 | 내부는 `Link` |
+| trailing slash 혼용 | 중복 URL, 깨진 링크 | 설정과 `href`를 일치 |
 
-입문 앱은 동적 세그먼트 + 레이아웃만으로 충분한 경우가 많다.
+---
+
+## 정리
+
+라우팅은 폴더 이름이고, 공개 여부는 `page.tsx`다. 바뀌는 칸은 `[slug]`, 공통 셸은 `layout.tsx`다.
+
+URL을 먼저 그리고 폴더를 만든다. 레이아웃은 “이 구간에서 무엇이 유지돼야 하는가”로 나눈다.
 
 ---
 
 ## 연습
 
-1. `/posts/[slug]`와 `generateStaticParams` 2개를 만든다.
-2. `(marketing)` / `(app)` 그룹으로 레이아웃을 나눈다.
-3. 모든 내부 링크에 trailing slash 정책을 맞춘다.
+1. `/posts/[slug]` 페이지와 `generateStaticParams` 두 개(`hello`, `world`)를 만든다.
+2. `(marketing)` / `(app)` 그룹으로 공개 사이트와 로그인 후 화면의 레이아웃을 나눈다.
+3. 내부 링크를 모두 `Link`로 바꾸고, `trailingSlash` 정책과 `href`를 맞춘다.

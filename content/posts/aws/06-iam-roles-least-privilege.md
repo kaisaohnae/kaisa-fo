@@ -4,64 +4,147 @@ order: 6
 category: aws
 categoryLabel: AWS
 title: "IAM 역할과 최소 권한 설계"
-summary: "사용자·역할·정책을 구분하고, 인스턴스/서비스가 맡는 권한을 최소 권한으로 설계하는 방법을 정리한다."
-publishedAt: 2026-08-26
+summary: "사람·워크로드에 임시 역할만 맡기고, 정책의 Action과 Resource를 좁혀 최소 권한을 설계하는 방법을 정리한다."
+publishedAt: 2025-09-06
 tags: ["aws"]
 ---
 
 # IAM 역할과 최소 권한 설계
 
-> 요약: 사용자·역할·정책을 구분하고, 인스턴스/서비스가 맡는 권한을 최소 권한으로 설계하는 방법을 정리한다.
+> 요약: 사람·워크로드에 임시 역할만 맡기고, 정책의 Action과 Resource를 좁혀 최소 권한을 설계하는 방법을 정리한다.
 
 ---
 
-## 1. 핵심 용어
+## 1. 언제 역할을 쓰는가
+
+IAM은 계정 안의 출입문이다. 사용자에게 장기 키를 나눠 주는 방식은 유출과 회수가 어렵다. **역할(Role)** 을 맡으면 STS가 짧은 자격을 준다. STS는 Security Token Service다.
+
+역할을 쓰는 경우:
+
+- EC2, ECS 태스크, Lambda가 S3·RDS 시크릿에 접근할 때
+- GitHub Actions 등 CI가 배포할 때 (OIDC로 Assume)
+- 사람이 프로덕션에 들어갈 때 (SSO 또는 역할 전환 + MFA)
+
+장기 액세스 키가 남는 경우:
+
+- 로컬 실험용 IAM 사용자 키. 범위 최소, 회전, 저장소 금지
+- 레거시 도구가 역할 Assume을 못할 때. 마이그레이션 대상으로 표시
+
+루트 키는 해당 없다. 발급하지 않는다.
+
+---
+
+## 2. 핵심 개념
 
 | 용어 | 의미 |
 |------|------|
-| User | 사람(또는 장기 자격) |
-| Role | 맡길 수 있는 임시 권한 세트 |
-| Policy | Allow/Deny 문서 |
+| User | 사람 또는 장기 자격 |
+| Role | 신뢰 정책 + 권한 정책. 맡는 대상이 정해져 있다 |
+| Policy | Allow/Deny 문서. 관리형 또는 고객 관리형 |
+| Trust policy | 누가 이 역할을 맡을 수 있는지 |
+| Permissions boundary | 역할이 넘을 수 없는 상한 |
 | STS | 임시 자격 발급 |
 
-장기 액세스 키보다 **역할 Assume**이 기본선이다.
+정책의 핵심은 네 칸이다. Effect, Action, Resource, Condition. 최소 권한은 **Action과 Resource를 좁히는 일**이다.
+
+관리형 `AdministratorAccess`는 학습용 계정에서도 짧게만 쓴다. `AmazonS3FullAccess`도 모든 버킷이다. 앱에는 과하다.
+
+신뢰 정책이 느슨하면 아무 계정의 역할이 우리 역할을 맡는다. `Principal`을 구체 ARN으로 둔다. `sts:ExternalId`나 OIDC `sub` 조건을 CI에 건다.
 
 ---
 
-## 2. 누가 역할을 맡나
+## 3. 최소 예제 — 앱이 한 버킷만 읽기
 
-- EC2 / ECS Task / Lambda → 실행 역할
-- CI (GitHub Actions 등) → OIDC로 역할 Assume
-- 사람 → SSO 또는 역할 전환
+EC2/ECS 역할에 붙이는 권한 정책이다. 버킷 이름은 플레이스홀더다.
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "ReadAppAssets",
+      "Effect": "Allow",
+      "Action": ["s3:GetObject"],
+      "Resource": "arn:aws:s3:::app-assets-prod/*"
+    },
+    {
+      "Sid": "ListPrefix",
+      "Effect": "Allow",
+      "Action": ["s3:ListBucket"],
+      "Resource": "arn:aws:s3:::app-assets-prod",
+      "Condition": {
+        "StringLike": {
+          "s3:prefix": ["public/*"]
+        }
+      }
+    }
+  ]
+}
+```
+
+`s3:*`와 `Resource: "*"`를 같이 주지 않는다. `iam:PassRole`은 넘겨 줄 수 있는 역할을 좁힌다. 넓으면 권한 상승이다.
+
+사람용 역할 전환은 MFA 조건을 단다.
 
 ```json
 {
   "Effect": "Allow",
-  "Action": ["s3:GetObject"],
-  "Resource": "arn:aws:s3:::my-app-assets/*"
+  "Action": "sts:AssumeRole",
+  "Resource": "arn:aws:iam::YOUR_ACCOUNT_ID:role/prod-readonly",
+  "Condition": {
+    "Bool": { "aws:MultiFactorAuthPresent": "true" }
+  }
 }
 ```
 
-`Resource`와 `Action`을 좁히는 것이 최소 권한의 전부다.
+확인:
+
+```bash
+aws sts get-caller-identity
+aws iam simulate-principal-policy \
+  --policy-source-arn arn:aws:iam::YOUR_ACCOUNT_ID:role/app-api-role \
+  --action-names s3:GetObject \
+  --resource-arns arn:aws:s3:::app-assets-prod/public/logo.png
+```
+
+시뮬레이터가 만능은 아니다. 스테이징에서 실제 Deny를 한 번 본다.
 
 ---
 
-## 3. 실무 팁
+## 4. 운영 시 주의
 
-- 관리형 정책은 시작용. 나중에 고객 관리형으로 축소
-- `*` 리소스 + `iam:*` 조합은 사고 대기
-- Condition(`aws:RequestedRegion`, IP, MFA)으로 한 겹 더
-- Access Analyzer·IAM Access Advisor로 안 쓰는 권한 제거
+**키.** 저장소에 `AKIA…`가 커밋되면 즉시 비활성화한다. 프론트엔드·모바일 바이너리에 키를 넣지 않는다. 브라우저가 S3에 쓰려면 서명 URL 또는 Cognito 같은 임시 자격이다.
+
+**와일드카드.** `Resource: "*"` + `iam:*`, `sts:*`, `s3:*` 조합은 사고 대기. 리전 제한 `aws:RequestedRegion`을 Condition으로 한 겹 더 둘 수 있다.
+
+**분석.** IAM Access Analyzer, Access Advisor로 안 쓰는 권한을 줄인다. 처음엔 관리형으로 시작하고, 트래픽이 안정되면 고객 관리형으로 축소한다.
+
+**계정 분리.** 가능하면 개발/스테이징/프로덕션 계정을 나눈다. 같은 계정이면 태그 조건과 권한 경계로 환경을 섞지 않는다.
+
+**감사.** CloudTrail로 `AssumeRole`, `CreateAccessKey`를 본다. 콘솔 로그인은 MFA가 있는지 주기적으로 확인한다.
+
+**시크릿.** IAM은 권한이 아니라 비밀번호 저장소가 아니다. DB 암호는 Secrets Manager, 회전에 역할을 묶는다.
+
+인라인 정책은 역할이 늘면 복붙이 된다. 고객 관리형 정책을 재사용하는 편이 감사에 낫다. 한 역할에 정책 10개를 쌓기보다 문서를 합친다. 제한 개수도 있다.
+
+**흔한 실수.** `AdministratorAccess`를 Lambda에 달기, `s3:*`를 `*` 리소스에 주기, GitHub PAT와 AWS 키를 같은 `.env`에 커밋하기. 발견 즉시 키를 폐기한다.
 
 ---
 
-## 4. 분리
+## 5. 정리
 
-- 개발/스테이징/프로덕션 계정 분리(가능하면)
-- 같은 계정이면 태그·권한 경계(Permissions Boundary)
+IAM은 기능이 아니라 **경계**다. “일단 Admin”을 없애는 순간부터 운영이 안정된다. 워크로드는 역할, 사람은 SSO, 정책은 Action·Resource를 좁힌다.
 
----
+### 체크리스트
 
-## 정리
+- [ ] 워크로드에 인스턴스/태스크 역할을 붙인다. 박스 안 액세스 키는 유출 지점이다.
+- [ ] 정책 Resource를 버킷·ARN 단위로 좁힌다. `*`는 설명이 필요한 예외다.
+- [ ] CI는 OIDC 역할 Assume을 쓴다. 저장소 시크릿의 장기 키는 회전이 어렵다.
+- [ ] 관리자 역할에 MFA 조건을 단다. 비밀번호만으로 승격되지 않게 한다.
+- [ ] Access Advisor로 90일 미사용 권한을 줄인다. 권한은 시간이 지나면 늘어만 간다.
 
-IAM은 기능이 아니라 **경계**다. “일단 Admin”을 없애는 순간부터 운영이 안정된다.
+### 연습
+
+1. 위 S3 `GetObject` 정책을 역할에 달고, 다른 버킷 GET이 거절되는지 확인한다.
+2. `get-caller-identity`로 지금 자격의 ARN이 역할인지 사용자인지 구분한다.
+3. 관리형 `AmazonS3FullAccess`와 고객 관리형 한 버킷 정책을 비교해 Action 개수를 세어 본다.

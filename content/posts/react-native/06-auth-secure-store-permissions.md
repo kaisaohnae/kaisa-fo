@@ -4,31 +4,47 @@ order: 6
 category: react-native
 categoryLabel: React Native
 title: "인증·보안 저장소·디바이스 권한"
-summary: "토큰 안전 저장, 세션 복구, 생체인증·앱 권한(카메라/앨범/알림)의 현대적 패턴을 익힌다."
-publishedAt: 2026-08-26
+summary: "로그인 토큰은 SecureStore에 두고, 카메라·앨범·알림 권한은 필요할 때만 요청한다."
+publishedAt: 2025-08-19
 tags: ["react-native"]
 ---
 
 # 인증·보안 저장소·디바이스 권한
 
-> 요약: 토큰 안전 저장, 세션 복구, 생체인증·앱 권한(카메라/앨범/알림)의 현대적 패턴을 익힌다.
+> 요약: 로그인 토큰은 SecureStore에 두고, 카메라·앨범·알림 권한은 필요할 때만 요청한다.
 
 ---
 
+## 1. 왜 지금 권한과 저장소를 나누나
+
+웹은 쿠키·httpOnly로 세션을 숨길 여지가 있다. 앱은 토큰을 기기에 둬야 자동 로그인이 된다. 일반 저장소에 넣으면 백업·루팅·로그에 노출되기 쉽다.
+
+**SecureStore**는 운영체제 보안 저장소에 작은 비밀 값을 넣는 Expo 모듈이다. iOS는 Keychain, Android는 Keystore 계열이다. access token처럼 짧은 비밀에 쓴다.
+
+권한(카메라, 앨범, 알림)은 앱 시작 시 한꺼번에 묻지 않는다. **쓰는 화면에서** 이유를 말한 뒤 시스템 다이얼로그를 띄운다.
+
 ---
 
-## 1. 하지 말 것 / 할 것
+## 2. 핵심 개념
 
 | 금지 | 권장 |
 |------|------|
-| AsyncStorage에 access token 평문 (민감) | **SecureStore** / Keychain |
-| 소스에 API 시크릿 | 백엔드만 보유 |
-| 로그에 토큰·PII | 마스킹 |
-| 모든 권한 앱 시작 시 요청 | **필요 시점(just-in-time)** 요청 |
+| AsyncStorage에 access token | SecureStore |
+| 소스에 API 시크릿 | 백엔드만 |
+| 로그에 토큰·개인정보 | 마스킹 |
+| 실행 직후 모든 권한 | 필요 시점 요청 |
+
+세션은 Provider 한 곳이 소유한다. 시작 시 SecureStore에서 토큰을 읽고 `/me`로 복구한다. 실패하면 지운다.
+
+생체 인증은 **로컬 잠금**이다. 서버 로그인을 대체하지 않는다. 지문 성공이 곧 API 인증은 아니다.
+
+웹 타깃이면 SecureStore가 없다. `Platform` 분기 또는 쿠키 세션이 필요하다.
+
+권한 거부 후에는 설정 앱으로 보내는 UI가 필요하다. 시스템 다이얼로그는 한 번 거절되면 다시 안 뜨는 경우가 많다.
 
 ---
 
-## 2. Expo SecureStore
+## 3. 예제
 
 ```bash
 npx expo install expo-secure-store
@@ -52,12 +68,7 @@ export async function clearToken() {
 }
 ```
 
-큰 JSON blob·리프레시 로직은 설계를 단순하게.  
-웹 타깃이 있으면 SecureStore 미지원 → Platform 분기 또는 쿠키 세션.
-
----
-
-## 3. Auth Provider 패턴
+큰 JSON을 SecureStore에 넣지 않는다. 토큰 문자열만 둔다.
 
 ```tsx
 type AuthState = {
@@ -67,8 +78,6 @@ type AuthState = {
   signIn: (email: string, password: string) => Promise<void>;
   signOut: () => Promise<void>;
 };
-
-const AuthContext = createContext<AuthState | null>(null);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [token, setToken] = useState<string | null>(null);
@@ -84,6 +93,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           setUser(await api<User>('/me', { token: t }));
         } catch {
           await clearToken();
+          setToken(null);
         }
       }
       setIsLoading(false);
@@ -102,6 +112,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const signOut = async () => {
     await clearToken();
+    queryClient.clear();
     setToken(null);
     setUser(null);
   };
@@ -112,63 +123,41 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     </AuthContext.Provider>
   );
 }
-
-export function useAuth() {
-  const ctx = useContext(AuthContext);
-  if (!ctx) throw new Error('AuthProvider missing');
-  return ctx;
-}
 ```
 
-스플래시: `isLoading` 동안 라우트 가드를 보류해 깜빡임을 줄인다.  
-`expo-splash-screen`으로 네이티브 스플래시를 유지할 수 있다.
+`isLoading` 동안 라우트를 바꾸지 않는다. 로그인 화면이 깜빡인다. `expo-splash-screen`으로 네이티브 스플래시를 유지할 수 있다.
 
----
-
-## 4. OAuth / 소셜 로그인
+소셜 로그인은 인가 코드를 **서버에 넘겨** 토큰을 받는다. 클라이언트에 장기 시크릿을 두지 않는다.
 
 ```bash
 npx expo install expo-auth-session expo-web-browser expo-crypto
 ```
 
-AuthSession + 백엔드 교환 코드 방식이 안전하다.  
-클라이언트에서 곧장 장기 시크릿을 쓰지 말고, **인가 코드를 서버에 전달**해 토큰을 받는다.
-
----
-
-## 5. 생체 인증 (선택)
+생체 잠금(선택):
 
 ```bash
 npx expo install expo-local-authentication
 ```
 
 ```tsx
-import * as LocalAuthentication from 'expo-local-authentication';
-
 const ok = await LocalAuthentication.authenticateAsync({
   promptMessage: '잠금 해제',
 });
 if (ok.success) {
-  // 앱 잠금 해제 / 민감 화면
+  // 앱 잠금만 해제. 서버 세션과는 별개
 }
 ```
 
-생체정보는 로컬 잠금용. 서버 로그인 대체로 착각하지 말 것.
-
----
-
-## 6. 권한 — 카메라·미디어·알림
+앨범은 쓰는 순간에 요청한다.
 
 ```bash
-npx expo install expo-image-picker expo-camera expo-notifications
+npx expo install expo-image-picker
 ```
 
 ```tsx
-import * as ImagePicker from 'expo-image-picker';
-
 const perm = await ImagePicker.requestMediaLibraryPermissionsAsync();
 if (!perm.granted) {
-  // 설정 앱으로 유도하는 UI
+  // 왜 필요한지 안내 후 Linking.openSettings()
   return;
 }
 
@@ -178,13 +167,9 @@ const result = await ImagePicker.launchImageLibraryAsync({
 });
 ```
 
-권한 거부 시:
+흐름: 사전 설명 → 시스템 다이얼로그 → 거부 시 설정 이동.
 
-1. 왜 필요한지 설명 (pre-prompt)
-2. 시스템 다이얼로그
-3. 거부되면 설정 이동 안내 (`Linking.openSettings()`)
-
-`app.json` / config plugins에 용도 설명 문자열(usage description) 필수.
+`app.json`에 용도 문구가 없으면 스토어에서 거절된다.
 
 ```json
 {
@@ -193,7 +178,7 @@ const result = await ImagePicker.launchImageLibraryAsync({
       [
         "expo-image-picker",
         {
-          "photosPermission": "프로필 사진을 업로드하려면 사진첩 접근이 필요합니다."
+          "photosPermission": "프로필 사진을 올리려면 사진첩이 필요합니다."
         }
       ]
     ],
@@ -206,46 +191,34 @@ const result = await ImagePicker.launchImageLibraryAsync({
 }
 ```
 
----
-
-## 7. 푸시 알림 (개요)
-
-```tsx
-import * as Notifications from 'expo-notifications';
-import Constants from 'expo-constants';
-
-const { status } = await Notifications.requestPermissionsAsync();
-const token = (
-  await Notifications.getExpoPushTokenAsync({
-    projectId: Constants.expoConfig?.extra?.eas?.projectId,
-  })
-).data;
-// token을 서버에 등록
-```
-
-실기기에서 테스트. 에뮬레이터 제약이 있다.  
-알림 탭 → 딥링크 라우팅은 딥링크·배포 설정과 연결한다.
+푸시 토큰은 실기기에서 테스트한다. 에뮬레이터 제약이 있다. 탭 시 딥링크는 라우터와 맞춘다.
 
 ---
 
-## 8. 보안 체크리스트
+## 4. 흔한 실수
 
-- [ ] 토큰 SecureStore
-- [ ] HTTPS만
-- [ ] 인증서 핀닝은 고보안 앱에서 검토
-- [ ] jailbreak/root 탐지는 필요 시(과도한 신뢰 금지)
-- [ ] 스크린샷 방지 등은 OS별 한계 이해
-- [ ] 로그아웃아웃 시 쿼리 캐시 clear
-
-```tsx
-queryClient.clear();
-```
+| 실수 | 대안 |
+|------|------|
+| AsyncStorage에 토큰 | SecureStore |
+| 시작 시 카메라·알림 한꺼번에 | 해당 버튼/화면에서 |
+| 권한 거부 후 아무 안내 없음 | 설정 이동 CTA |
+| 생체를 서버 로그인으로 착각 | 로컬 잠금만 |
+| 로그아웃 후 Query 캐시 잔류 | `queryClient.clear()` |
+| usage description 없이 플러그인 | `app.json` 문구 필수 |
 
 ---
+
+## 5. 정리
+
+인증은 **토큰 위치 + 세션 복구 + 권한 시점**이다. UI보다 이 세 가지가 먼저다.
+
+- 비밀은 SecureStore. 장바구니는 AsyncStorage도 된다.
+- 스플래시가 끝날 때까지 가드를 보류한다.
+- 권한 문구는 코드와 `app.json`에 같이 있다.
 
 ## 연습
 
-1. SecureStore 기반 로그인/자동 로그인/로그아웃을 구현한다.
-2. `AuthProvider` + Router 가드를 연결한다.
-3. 이미지 피커 권한 플로우(거절 안내 포함)를 만든다.
-4. (선택) 앱 포그라운드 복귀 시 생체 잠금을 추가한다.
+1. SecureStore로 로그인·자동 로그인·로그아웃을 구현한다.
+2. `AuthProvider`와 라우터 가드를 연결한다.
+3. 이미지 피커 거절 시 설정 안내를 만든다.
+4. (선택) 포그라운드 복귀 시 생체 잠금을 붙인다.

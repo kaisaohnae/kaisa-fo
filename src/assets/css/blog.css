@@ -18,6 +18,8 @@
   flex-direction: column;
   width: 100%;
 }
+.markdown-body [type="checkbox"],
+.markdown-body [type="radio"] {width:20px; height:20px; border: 1px solid #bbb; margin-right:5px;}
 
 .site-shell {width: 100%; padding-inline: var(--layout-gutter); box-sizing: border-box;}
 .site-shell > .site-shell__inner {

@@ -4,68 +4,164 @@ order: 4
 category: wpf
 categoryLabel: WPF
 title: "스타일·리소스·테마 관리"
-summary: "ResourceDictionary, StaticResource/DynamicResource, 공통 스타일 분리로 WPF UI를 일관되게 운영하는 방법을 정리한다."
-publishedAt: 2026-08-26
+summary: "ResourceDictionary에 색과 스타일을 모아 StaticResource/DynamicResource로 참조하고, 파일 분리로 테마를 운영하는 방법을 정리한다."
+publishedAt: 2024-10-28
 tags: ["wpf"]
 ---
 
 # 스타일·리소스·테마 관리
 
-> 요약: ResourceDictionary, StaticResource/DynamicResource, 공통 스타일 분리로 WPF UI를 일관되게 운영하는 방법을 정리한다.
+> 요약: ResourceDictionary에 색과 스타일을 모아 StaticResource/DynamicResource로 참조하고, 파일 분리로 테마를 운영하는 방법을 정리한다.
 
 ---
 
-## 1. 리소스 계층
+## 1. 왜 리소스인가
 
-WPF 스타일·브러시·템플릿은 리소스로 관리한다.
+창마다 `Background="#0B6E4F"`를 복사하면 브랜드 색을 바꿀 때 누락이 생긴다. WPF는 **키로 찾는 리소스 사전**에 브러시·스타일·템플릿을 둔다. 화면은 키만 참조한다.
 
-| 위치 | 범위 |
+언제 사전을 나누는가.
+
+| 상황 | 위치 |
 |------|------|
-| Control.Resources | 해당 컨트롤 |
-| Window.Resources | 창 범위 |
-| App.xaml | 앱 전역 |
-| 별도 Dictionary | 모듈/테마 분리 |
+| 이 버튼만 | 컨트롤 `Resources` |
+| 이 창만 | `Window.Resources` |
+| 앱 전역 색·기본 버튼 | `App.xaml` 또는 병합 사전 |
+| 라이트/다크 전환 | 테마별 `ResourceDictionary` + `DynamicResource` |
 
 ---
 
-## 2. Static vs Dynamic
+## 2. 핵심 개념
 
-- `StaticResource`: 로드 시점 해석 (일반적으로 빠름)
-- `DynamicResource`: 런타임 변경 반영 (테마 전환)
+| 개념 | 한 줄 |
+|------|--------|
+| `x:Key` | 사전에서 리소스를 찾는 이름 |
+| `StaticResource` | 로드 시 한 번 해석. 일반 색·스타일 |
+| `DynamicResource` | 런타임에 키가 바뀌면 다시 적용. 테마 전환 |
+| `Style` | 같은 타입에 Setter로 속성을 묶는다 |
+| `TargetType` | 키 없이 그 타입 전체에 암시 스타일 |
+| `MergedDictionaries` | 여러 `.xaml` 사전을 한곳으로 합친다 |
 
-```xml
-<SolidColorBrush x:Key="PrimaryBrush" Color="#0B6E4F" />
-<Button Background="{StaticResource PrimaryBrush}" />
-```
-
----
-
-## 3. 공통 스타일
-
-```xml
-<Style TargetType="Button">
-  <Setter Property="Padding" Value="12,6" />
-  <Setter Property="Margin" Value="4" />
-</Style>
-```
-
-화면마다 버튼 속성을 반복하기보다 스타일로 합의한다.
+`StaticResource`가 더 싸다. 실행 중 색을 갈아끼울 때만 `DynamicResource`를 쓴다. 없는 키는 로드 시 예외(`Static`) 또는 빈 값(`Dynamic`)으로 나타난다.
 
 ---
 
-## 4. 테마 분리
+## 3. 동작하는 예: 색과 버튼 스타일
+
+`Resources/Colors.xaml`:
 
 ```xml
-<ResourceDictionary.MergedDictionaries>
-  <ResourceDictionary Source="Resources/Colors.xaml" />
-  <ResourceDictionary Source="Resources/Controls.xaml" />
-</ResourceDictionary.MergedDictionaries>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Color x:Key="PrimaryColor">#0B6E4F</Color>
+  <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource PrimaryColor}" />
+  <SolidColorBrush x:Key="SurfaceBrush" Color="#F4F7F6" />
+  <SolidColorBrush x:Key="TextBrush" Color="#1A1A1A" />
+</ResourceDictionary>
 ```
 
-색/타입/컨트롤 스타일을 파일별로 분리하면 규모가 커져도 관리가 쉽다.
+`Resources/Controls.xaml`:
+
+```xml
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <Style TargetType="Button">
+    <Setter Property="Padding" Value="12,6" />
+    <Setter Property="Margin" Value="4,0,0,0" />
+    <Setter Property="Background" Value="{StaticResource PrimaryBrush}" />
+    <Setter Property="Foreground" Value="White" />
+    <Setter Property="BorderThickness" Value="0" />
+  </Style>
+  <Style x:Key="GhostButton" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Foreground" Value="{StaticResource PrimaryBrush}" />
+  </Style>
+</ResourceDictionary>
+```
+
+`BasedOn`으로 기본 버튼에서 일부만 덮는다. `GhostButton`은 키가 있으므로 명시적으로 적용한다.
+
+`App.xaml`:
+
+```xml
+<Application x:Class="MyApp.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="Views/MainWindow.xaml">
+  <Application.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Resources/Colors.xaml" />
+        <ResourceDictionary Source="Resources/Controls.xaml" />
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </Application.Resources>
+</Application>
+```
+
+병합 순서가 중요하다. `Controls.xaml`이 `PrimaryBrush`를 쓰므로 **색 사전을 먼저** 넣는다.
+
+창에서:
+
+```xml
+<Grid Background="{StaticResource SurfaceBrush}">
+  <StackPanel Margin="16">
+    <TextBlock Text="제목" Foreground="{StaticResource TextBrush}" />
+    <Button Content="저장" />
+    <Button Content="취소" Style="{StaticResource GhostButton}" />
+  </StackPanel>
+</Grid>
+```
+
+첫 `Button`은 `TargetType="Button"` 암시 스타일이 적용된다. 둘째는 `GhostButton` 키를 지정한다.
+
+---
+
+## 4. 테마 전환
+
+다크 사전 `Resources/Colors.Dark.xaml`에 같은 **키 이름**으로 다른 `Color`를 둔다. 런타임에 `MergedDictionaries`의 해당 항목을 교체한다.
+
+```csharp
+var appDict = Application.Current.Resources.MergedDictionaries;
+var old = appDict.First(d => d.Source?.OriginalString.Contains("Colors") == true);
+appDict.Remove(old);
+appDict.Insert(0, new ResourceDictionary
+{
+    Source = new Uri("Resources/Colors.Dark.xaml", UriKind.Relative),
+});
+```
+
+브러시 참조는 `DynamicResource`여야 교체가 화면에 반영된다.
+
+```xml
+<TextBlock Foreground="{DynamicResource TextBrush}" />
+```
+
+키 이름을 테마마다 다르게 만들면 화면 XAML을 다 고쳐야 한다. **같은 키, 다른 값**이 테마의 규칙이다.
+
+---
+
+## 5. 주의 / 흔한 실수
+
+- **병합 순서 반대로.** 스타일이 색보다 먼저면 `StaticResource PrimaryBrush`를 못 찾는다.
+- **암시 스타일(`TargetType`만)을 서드파티 컨트롤에 광역 적용.** 라이브러리 버튼까지 브랜드 색이 덮인다. 앱 컨트롤만 키 스타일로 제한하는 편이 안전하다.
+- **테마는 `StaticResource`로 색을 고정.** 사전을 갈아도 이미 해석된 값이 남는다. 전환 대상은 `DynamicResource`.
+- **`Style` 안에서 같은 사전의 키를 `DynamicResource`로 순환 참조.** 로드가 실패한다.
+- **창 `Resources`에 앱과 같은 키를 다시 정의.** 가까운 사전이 이긴다. 의도가 아니면 중복 키를 만들지 않는다.
 
 ---
 
 ## 정리
 
-WPF UI 품질은 개별 창 수정이 아니라 **리소스 사전을 중심으로 한 시스템화**에서 나온다.
+WPF UI 일관성은 창을 하나씩 고치는 일이 아니라 **리소스 사전을 시스템으로 두는 일**이다.
+
+- 색·간격 → `Colors.xaml` 키
+- 컨트롤 기본 모습 → `Style` + `MergedDictionaries`
+- 테마 → 같은 키 + `DynamicResource` + 사전 교체
+
+---
+
+## 연습
+
+1. `PrimaryBrush` 색을 바꾸고 저장·암시 스타일 버튼이 같이 바뀌는지 확인한다.
+2. `GhostButton`만 테두리를 추가해 기본 버튼과 구분되게 한다.
+3. `Colors.Dark.xaml`을 만들고 `TextBrush`를 밝은 색으로 둔 뒤, 버튼을 눌러 사전을 교체해 본다 (`DynamicResource` 필요).
