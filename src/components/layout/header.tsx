@@ -33,15 +33,16 @@ export default function Header() {
   }, [pathname]);
 
   useEffect(() => {
-    if (!isWorks) return;
-
     const onScroll = () => {
-      document.body.classList.toggle('scrolled', window.scrollY > 60);
+      document.body.classList.toggle('scrolled', window.scrollY > 8);
     };
     window.addEventListener('scroll', onScroll, {passive: true});
     onScroll();
-    return () => window.removeEventListener('scroll', onScroll);
-  }, [isWorks]);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      document.body.classList.remove('scrolled');
+    };
+  }, []);
 
   useEffect(() => {
     if (!open) return;
