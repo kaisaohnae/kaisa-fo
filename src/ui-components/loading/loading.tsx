@@ -8,7 +8,6 @@ import {joinClasses} from '../lib/control-utils';
 export default function UiLoading() {
   const loading = useLoadingStore(useCallback((state) => state.loading, []));
   const variant = useLoadingStore(useCallback((state) => state.variant, []));
-  const message = useLoadingStore(useCallback((state) => state.message, []));
   const overlay = useLoadingStore(useCallback((state) => state.overlay, []));
 
   if (!loading) {
@@ -23,10 +22,7 @@ export default function UiLoading() {
       aria-live="polite"
       aria-busy="true"
     >
-      <div className="ui-loading-overlay__panel">
-        <UiSpinner variant={variant} uiSize="lg" />
-        {message ? <p className="ui-loading-overlay__message">{message}</p> : null}
-      </div>
+      <UiSpinner variant={variant} uiSize="lg" />
     </div>
   );
 }

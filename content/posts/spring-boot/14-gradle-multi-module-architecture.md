@@ -1,0 +1,456 @@
+---
+slug: spring-boot-14
+order: 14
+category: spring-boot
+categoryLabel: Spring Boot
+title: "Gradle 빌드와 멀티모듈 아키텍처 설계"
+summary: "Gradle 빌드 생명주기, Kotlin DSL(build.gradle.kts), 의존성 스코프 차이(implementation vs api), 플러그인 작성, 멀티모듈 프로젝트 설계 패턴(계층형, MSA/공통 도메인형, 헥사고날)을 다룬다."
+publishedAt: 2024-02-10
+tags: ["spring-boot"]
+---
+
+# Gradle 빌드와 멀티모듈 아키텍처 설계
+
+> 요약: Gradle 빌드 생명주기, Kotlin DSL(build.gradle.kts), 의존성 스코프 차이(implementation vs api), 플러그인 작성, 멀티모듈 프로젝트 설계 패턴(계층형, MSA/공통 도메인형, 헥사고날)을 다룬다.
+
+---
+
+## 1. Gradle이란 무엇이며 왜 Maven보다 많이 쓰일까?
+
+**Gradle**은 현대 JVM 생태계에서 가장 널리 사용되는 빌드 자동화 도구(Build Automation Tool)다. 소스 코드를 컴파일하고, 테스트를 실행하며, 의존성을 다운로드하고, 최종적으로 배포 가능한 실행 파일(Jar, War)을 패키징하는 전 과정을 관리한다.
+
+### Maven vs Gradle 핵심 비교
+
+| 비교 항목 | Apache Maven | Gradle |
+|-----------|--------------|--------|
+| **설정 언어** | XML (`pom.xml`) — 정적이고 장황함 | Kotlin DSL (`build.gradle.kts`) 또는 Groovy — 동적이며 간결함 |
+| **빌드 속도** | 기본적으로 전체 빌드 위주 | **증분 빌드(Incremental Build), 빌드 캐시, 데몬 프로세스**로 최대 10배 이상 빠름 |
+| **멀티모듈 유연성** | 상속 기반 구조로 커스텀 확장이 어려움 | 의존성 그래프 기반, 서브모듈별 자유로운 설정 및 플러그인 주입 가능 |
+| **타입 안정성** | 스키마 기반 유효성 검사 | **Kotlin DSL 사용 시 IDE 자동완성, 컴파일 타임 에러 검증, 리팩토링 지원** |
+
+Spring Boot 3.x부터는 공식 문서 및 스타터(start.spring.io)에서 **Gradle + Kotlin DSL**을 기본 권장선으로 채택하고 있다.
+
+---
+
+## 2. Gradle의 3단계 빌드 생명주기 (Build Lifecycle)
+
+Gradle의 빌드가 실행될 때 내부적으로는 항상 다음 **3단계(Initialization ➔ Configuration ➔ Execution)** 를 거친다. 이 생명주기를 이해하지 못하면 빌드 스크립트 작성 시 실행 순서가 꼬이는 실수를 하게 된다.
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│ 1. Initialization (초기화 단계)                               │
+│   - settings.gradle(.kts) 파일을 읽음                         │
+│   - 어떤 프로젝트/서브모듈들이 빌드에 참여하는지 결정             │
+└──────────────────────────────┬──────────────────────────────┘
+                               │
+                               ▼
+┌─────────────────────────────────────────────────────────────┐
+│ 2. Configuration (구성/설정 단계)                            │
+│   - 참여하는 모든 프로젝트의 build.gradle(.kts) 스크립트를 실행   │
+│   - Task 객체를 메모리에 생성하고, Task 간의 의존 그래프(DAG) 구성 │
+│   - ※ 주의: Task 내부의 doFirst/doLast 밖 코드는 이때 무조건 실행됨│
+└──────────────────────────────┬──────────────────────────────┘
+                               │
+                               ▼
+┌─────────────────────────────────────────────────────────────┐
+│ 3. Execution (실행 단계)                                     │
+│   - 명령어로 지정한 Task들을 의존성 순서대로 실제 실행            │
+│   - doFirst / doLast 액션 블록에 정의된 실제 빌드 로직 수행      │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### 흔히 하는 실수: Configuration과 Execution 혼동
+
+```kotlin
+// [잘못된 예시: Configuration 시점에 실행되어 버림]
+tasks.register("deployServer") {
+    // 이 코드는 deployServer Task를 실행하지 않아도,
+    // gradle build 나 gradle test 만 돌려도 Configuration 단계에서 무조건 실행됨!
+    println("🚨 서버에 배포 패킷을 전송합니다!") 
+}
+
+// [올바른 예시: Execution 시점에만 실행되도록 액션 블록 작성]
+tasks.register("deployServer") {
+    doLast {
+        // 실제 'gradle deployServer'를 호출했을 때만 실행 단계에서 동작함
+        println("✅ 서버에 배포 패킷을 전송합니다!")
+    }
+}
+```
+
+---
+
+## 3. 의존성 스코프(Configuration) 이해하기
+
+Gradle에서 라이브러리를 가져올 때 선언하는 키워드들은 라이브러리가 **컴파일 시점에 필요한지, 런타임에 필요한지, 그리고 하위 모듈로 전파되는지**를 결정한다.
+
+```
+                    ┌── compileOnly (컴파일 때만 필요, Jar 배포 시 제외 e.g. Lombok)
+                    │
+                    ├── runtimeOnly (실행 때만 필요 e.g. DB JDBC Driver)
+의존성 스코프 종류 ───┼── implementation (내부 구현용, 외부 모듈로 전파 차단 ➔ 컴파일 속도 향상)
+                    │
+                    └── api (외부 모듈로 의존성 전파 ➔ 공통 인터페이스 모듈용)
+```
+
+### `implementation` vs `api`의 결정적 차이
+
+멀티모듈을 설계할 때 가장 중요한 개념이다.
+
+```
+[Module A] ──(의존)──▶ [Module B] ──(의존)──▶ [Module C (e.g. Gson)]
+```
+
+- **`Module B`가 `api(project(":Module-C"))`를 사용한 경우**:
+  - `Module A`에서도 `Module C`(Gson)의 클래스를 직접 import해서 쓸 수 있다.
+  - **단점**: `Module C`의 코드가 1줄이라도 바뀌면 `Module B`뿐만 아니라 `Module A`까지 연쇄적으로 재컴파일되어 빌드 시간이 길어진다.
+- **`Module B`가 `implementation(project(":Module-C"))`를 사용한 경우**:
+  - `Module B` 내부에서만 `Module C`를 쓰고, `Module A`에는 `Module C`가 노출되지 않는다 (`Module A`에서 Gson import 불가).
+  - **장점**: `Module C`의 내부 구현이 바뀌어도 `Module A`는 재컴파일되지 않으므로 **빌드 속도가 비약적으로 향상**된다. 캡슐화가 잘 지켜진다.
+
+> **실무 원칙**: 기본적으로 무조건 **`implementation`** 을 사용하고, 해당 라이브러리의 타입을 외부에 반환 타입이나 파라미터로 공개해야 하는 공통 API 모듈에서만 제한적으로 **`api`** 를 사용한다.
+
+---
+
+## 4. 모던 Gradle: Version Catalog (`libs.versions.toml`)
+
+과거에는 여러 모듈의 라이브러리 버전을 맞추기 위해 `ext` 블록이나 `buildSrc`를 썼지만, Gradle 7.4+부터는 표준화된 **Version Catalog (`libs.versions.toml`)** 방식을 사용한다.
+
+`gradle/libs.versions.toml` 파일에 버전과 라이브러리를 중앙 집중 관리한다.
+
+### `gradle/libs.versions.toml`
+```toml
+[versions]
+springBoot = "3.4.1"
+springDependencyManagement = "1.1.7"
+jjwt = "0.12.6"
+querydsl = "5.1.0"
+
+[libraries]
+spring-boot-starter-web = { module = "org.springframework.boot:spring-boot-starter-web" }
+spring-boot-starter-data-jpa = { module = "org.springframework.boot:spring-boot-starter-data-jpa" }
+spring-boot-starter-validation = { module = "org.springframework.boot:spring-boot-starter-validation" }
+jjwt-api = { module = "io.jsonwebtoken:jjwt-api", version.ref = "jjwt" }
+jjwt-impl = { module = "io.jsonwebtoken:jjwt-impl", version.ref = "jjwt" }
+jjwt-jackson = { module = "io.jsonwebtoken:jjwt-jackson", version.ref = "jjwt" }
+
+[bundles]
+jwt = ["jjwt-api", "jjwt-impl", "jjwt-jackson"]
+
+[plugins]
+spring-boot = { id = "org.springframework.boot", version.ref = "springBoot" }
+spring-dependency-management = { id = "io.spring.dependency-management", version.ref = "springDependencyManagement" }
+```
+
+### `build.gradle.kts`에서 사용
+```kotlin
+dependencies {
+    implementation(libs.spring.boot.starter.web)
+    implementation(libs.spring.boot.starter.data.jpa)
+    
+    // 번들(bundle)로 묶어서 한 줄로 주입
+    implementation(libs.bundles.jwt)
+}
+```
+IDE 자동완성이 지원되며, 버전 충돌을 원천 차단할 수 있다.
+
+---
+
+## 5. 실무 프로젝트 설계 패턴 3가지 (멀티모듈 아키텍처)
+
+실무에서 서비스가 커지면 단일 모듈(Monolith Module)의 한계에 부딪힌다. 
+도메인과 계층을 분리하는 대표적인 **Gradle 멀티모듈 설계 패턴 3가지**를 살펴본다.
+
+---
+
+### 패턴 1: 계층형 멀티모듈 구조 (Layered Multi-Module)
+
+가장 직관적이고 중소규모 프로젝트에서 널리 쓰이는 표준 구조다.
+
+```
+my-project/
+├── settings.gradle.kts
+├── build.gradle.kts
+├── core/                # 공통 유틸, 공통 DTO, Enum, 에러 코드
+├── domain/              # JPA 엔티티, 리포지토리, 도메인 비즈니스 로직
+├── api/                 # 사용자용 REST API 서버 (실행 가능한 Spring Boot Jar)
+└── batch/               # 주기적인 대용량 정산/통계 배치 애플리케이션
+```
+
+```
+[api (실행 모듈)] ──▶ [domain (DB/엔티티)] ──▶ [core (공통)]
+[batch (실행 모듈)] ─┘
+```
+
+#### 루트 `settings.gradle.kts`
+```kotlin
+rootProject.name = "my-project"
+
+include("core")
+include("domain")
+include("api")
+include("batch")
+```
+
+#### 루트 `build.gradle.kts` (공통 컨벤션 주입)
+```kotlin
+plugins {
+    java
+    alias(libs.plugins.spring.boot) apply false
+    alias(libs.plugins.spring.dependency.management) apply false
+}
+
+allprojects {
+    group = "com.example"
+    version = "1.0.0"
+
+    repositories {
+        mavenCentral()
+    }
+}
+
+subprojects {
+    apply(plugin = "java")
+    apply(plugin = "org.springframework.boot")
+    apply(plugin = "io.spring.dependency-management")
+
+    java {
+        toolchain {
+            languageVersion.set(JavaLanguageVersion.of(21))
+        }
+    }
+
+    dependencies {
+        // 모든 서브모듈에 공통으로 들어갈 Lombok, 테스트 라이브러리
+        compileOnly("org.projectlombok:lombok")
+        annotationProcessor("org.projectlombok:lombok")
+        testImplementation("org.springframework.boot:spring-boot-starter-test")
+    }
+
+    tasks.withType<Test> {
+        useJUnitPlatform()
+    }
+}
+```
+
+#### `domain/build.gradle.kts` (라이브러리 모듈)
+`domain` 모듈은 스스로 실행되는 애플리케이션이 아니라 클래스 라이브러리다. 실행 가능한 `bootJar` 생성을 끄고 일반 `jar`를 켜야 한다.
+
+```kotlin
+// 실행 모듈이 아니므로 bootJar 비활성화
+tasks.bootJar { enabled = false }
+tasks.jar { enabled = true }
+
+dependencies {
+    implementation(project(":core"))
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    runtimeOnly("com.mysql:mysql-connector-j")
+}
+```
+
+#### `api/build.gradle.kts` (실행 모듈)
+```kotlin
+tasks.bootJar { enabled = true }
+tasks.jar { enabled = false }
+
+dependencies {
+    implementation(project(":domain")) // domain을 참조하면 core까지 함께 사용 가능
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-validation")
+    implementation("org.springframework.boot:spring-boot-starter-security")
+}
+```
+
+---
+
+### 패턴 2: MSA / 독립 도메인형 멀티모듈 구조 (Microservice-Ready Multi-Module)
+
+서비스가 방대해져 회원, 주문, 결제, 정산 등의 도메인이 독자적으로 커질 때 적용하는 구조다. 향후 모놀리스에서 독립적인 MSA 서비스로 쉽게 쪼갤 수 있도록 설계한다.
+
+```
+commerce-system/
+├── common/                      # 전역 공통 모듈
+│   ├── common-logging/
+│   └── common-security/
+├── domain/                      # 순수 도메인 모듈 (DB/Entity 캡슐화)
+│   ├── member-domain/
+│   ├── order-domain/
+│   └── payment-domain/
+├── clients/                     # 외부 통신 Feign/RestClient 어댑터
+│   └── pg-client/               # PG사 결제 연동 클라이언트
+└── apps/                        # 독립 배포 가능한 Spring Boot 서버들
+    ├── user-api/                # 고객 앱용 API 서버
+    ├── admin-api/               # 관리자 CMS 백오피스 서버
+    └── payment-worker/          # 결제 승인/대사 큐 컨슈머 서버
+```
+
+```
+[user-api] ──▶ [order-domain] ──▶ [member-domain]
+     │                 │
+     ▼                 ▼
+[common-security]  [pg-client]
+```
+
+#### `settings.gradle.kts` 계층형 네이밍
+```kotlin
+rootProject.name = "commerce-system"
+
+// 폴더 깊이에 맞게 모듈 포함
+include("common:common-logging")
+include("common:common-security")
+
+include("domain:member-domain")
+include("domain:order-domain")
+include("domain:payment-domain")
+
+include("clients:pg-client")
+
+include("apps:user-api")
+include("apps:admin-api")
+include("apps:payment-worker")
+```
+
+#### `apps/user-api/build.gradle.kts`
+```kotlin
+dependencies {
+    implementation(project(":common:common-security"))
+    implementation(project(":common:common-logging"))
+    
+    // 필요한 도메인만 선별적으로 조립
+    implementation(project(":domain:member-domain"))
+    implementation(project(":domain:order-domain"))
+    implementation(project(":clients:pg-client"))
+
+    implementation("org.springframework.boot:spring-boot-starter-web")
+}
+```
+
+**특징과 장점:**
+- `admin-api`는 `order-domain`과 `member-domain`만 필요하고 `pg-client`는 몰라도 된다. 필요한 모듈만 주입받아 빌드 용량을 줄이고 의존성을 격리한다.
+- 나중에 주문 트래픽이 폭증하면 `apps:order-api`를 만들어 `order-domain`만 들고 독립 배포 서버로 분리하기가 매우 쉽다.
+
+---
+
+### 패턴 3: 헥사고날 아키텍처 멀티모듈 구조 (Hexagonal / Ports and Adapters)
+
+DDD(도메인 주도 설계)와 헥사고날 아키텍처를 완벽하게 물리적 모듈로 강제하는 구조다. **도메인 코드가 프레임워크(Spring, JPA)에 오염되는 것을 극도로 방지**하고자 할 때 쓴다.
+
+```
+order-service/
+├── order-domain/                # 순수한 자바 도메인 (Spring/JPA 의존성 0%)
+│   ├── model/ (Order, OrderLine)
+│   └── port/ (OrderRepositoryPort, PaymentPort)
+├── order-application/           # 유스케이스 서비스 (비즈니스 흐름 조율)
+│   └── service/ (CreateOrderUseCase, OrderService)
+├── order-infrastructure/        # 어댑터 구현체 (JPA, Redis, 외부 HTTP 클라이언트)
+│   ├── persistence/ (OrderJpaRepository, OrderRepositoryAdapter)
+│   └── external/ (TossPaymentAdapter)
+└── order-bootstrap/             # 실행 진입점 (Spring Boot Main, Controller, 설정)
+    ├── controller/ (OrderApiController)
+    └── OrderApplication.java
+```
+
+```
+[order-bootstrap (Web/Main)]
+        │ (참조)
+        ▼
+[order-application (UseCase)] ──▶ [order-domain (순수 POJO Core)]
+        ▲                                     ▲
+        │ (참조)                              │ (Port 인터페이스 구현)
+[order-infrastructure (JPA/Redis/HTTP Adapter)]
+```
+
+#### `order-domain/build.gradle.kts` (순수 자바 모듈)
+```kotlin
+// 스프링 부트 플러그인도, JPA도 전혀 넣지 않음!
+plugins {
+    `java-library`
+}
+
+dependencies {
+    // 오직 순수 자바 유틸 및 테스팅 도구만 허용
+    testImplementation("org.junit.jupiter:junit-jupiter:5.10.2")
+    testImplementation("org.assertj:assertj-core:3.25.3")
+}
+```
+
+#### `order-infrastructure/build.gradle.kts` (기술 구현체)
+```kotlin
+tasks.bootJar { enabled = false }
+tasks.jar { enabled = true }
+
+dependencies {
+    implementation(project(":order-domain"))
+    
+    // JPA, QueryDSL, Redis 등 기술 스택 의존성 몰아넣기
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("org.springframework.boot:spring-boot-starter-data-redis")
+    runtimeOnly("com.mysql:mysql-connector-j")
+}
+```
+
+#### `order-bootstrap/build.gradle.kts` (최종 조립자)
+```kotlin
+tasks.bootJar { enabled = true }
+
+dependencies {
+    implementation(project(":order-domain"))
+    implementation(project(":order-application"))
+    implementation(project(":order-infrastructure"))
+
+    implementation("org.springframework.boot:spring-boot-starter-web")
+}
+```
+
+**특징과 장점:**
+- 데이터베이스를 MySQL에서 MongoDB로 바꾸거나 JPA에서 R2DBC로 교체해도 `order-domain` 코드는 **단 1글자도 수정되지 않는다**.
+- 프레임워크가 없는 순수 자바 단위 테스트(Unit Test)를 작성할 수 있어 테스트 실행 속도가 0.1초 단위로 끝난다.
+
+---
+
+## 6. 멀티모듈 빌드 속도를 3배 빠르게 만드는 실무 최적화 팁
+
+### 1) `gradle.properties` 튜닝
+프로젝트 루트의 `gradle.properties`에 아래 옵션들을 활성화한다.
+
+```properties
+# 데몬 프로세스 재사용으로 JVM 웜업 시간 단축
+org.gradle.daemon=true
+
+# 독립적인 모듈들을 병렬로 동시 빌드 (코어 수 활용)
+org.gradle.parallel=true
+
+# 이전 빌드 결과물을 캐싱하여 변경이 없는 작업 스킵
+org.gradle.caching=true
+
+# 빌드 시 JVM 힙 메모리 넉넉히 할당
+org.gradle.jvmargs=-Xmx4g -XX:+UseParallelGC -XX:MaxMetaspaceSize=512m
+
+# 설정 단계 캐싱 (Gradle 8+)
+org.gradle.configuration-cache=true
+```
+
+### 2) 빌드 캐시와 증분 빌드 확인하기
+빌드 실행 시 Task 옆에 표시되는 라벨의 의미를 알고 있어야 한다:
+- `> Task :core:compileJava UP-TO-DATE`: 소스 코드가 바뀌지 않아 컴파일을 스킵함.
+- `> Task :core:compileJava FROM-CACHE`: 로컬 또는 원격 빌드 캐시에서 결과물을 바로 꺼내옴.
+- `> Task :core:compileJava`: 실제로 재컴파일을 수행함.
+
+---
+
+## 7. 흔한 실수와 트러블슈팅
+
+| 문제 상황 | 원인 | 해결책 |
+|-----------|------|--------|
+| **`No main class specified` 에러** | 도메인이나 공통 라이브러리 서브모듈에 `bootJar`가 켜져 있어 main 메서드를 찾으려고 함 | 서브모듈의 `build.gradle.kts`에 `tasks.bootJar { enabled = false }`, `tasks.jar { enabled = true }` 설정 |
+| **순환 참조 (`Circular dependency`)** | `Module A`가 `Module B`를 참조하고, `Module B`가 `Module A`를 참조함 | 공통 인터페이스나 DTO를 제3의 `core` 모듈로 추출하여 단방향 흐름 유지 |
+| **버전 충돌 (`NoSuchMethodError`)** | 서브모듈마다 라이브러리 버전이 제각각 선언됨 | `libs.versions.toml` (Version Catalog)을 통해 버전을 단일 지점에서 통제 |
+| **불필요한 전체 재컴파일** | 하위 모듈 의존성을 `api`로 무분별하게 선언 | 기본적으로 `implementation`을 사용하여 변경 전파 격리 |
+
+---
+
+## 연습
+
+1. `settings.gradle.kts`를 작성하여 `core`, `domain`, `api` 3개 모듈을 갖는 계층형 멀티모듈 프로젝트를 구성해 본다.
+2. `domain` 모듈에서 `bootJar`를 비활성화하고 순수 `jar`로 빌드되도록 설정한 뒤, `api` 모듈에서 이를 주입받아 Spring Boot 애플리케이션을 기동해 본다.
+3. `gradle/libs.versions.toml` 파일을 생성하여 Spring Boot 및 QueryDSL 버전을 정의하고 멀티모듈 전체에서 중앙 집중식으로 참조해 본다.

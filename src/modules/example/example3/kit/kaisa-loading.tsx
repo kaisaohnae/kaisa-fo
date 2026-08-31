@@ -12,20 +12,12 @@ export type KaisaLoadingProps = {
   overlay?: KaisaLoadingTone;
 };
 
-export function KaisaLoading({
-  open,
-  variant = 'ring',
-  message,
-  overlay = 'blur',
-}: KaisaLoadingProps) {
+export function KaisaLoading({open, variant = 'ring'}: KaisaLoadingProps) {
   if (!open || typeof document === 'undefined') return null;
 
   return createPortal(
-    <div className={`kaisa-loading kaisa-loading--${overlay}`} role="status" aria-live="polite">
-      <div className="kaisa-loading__card">
-        <KaisaSpinner variant={variant} uiSize="lg" />
-        {message ? <p>{message}</p> : null}
-      </div>
+    <div className="kaisa-loading" role="status" aria-live="polite">
+      <KaisaSpinner variant={variant} uiSize="lg" />
     </div>,
     document.body,
   );

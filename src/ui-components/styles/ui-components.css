@@ -841,41 +841,38 @@
 }
 
 #loading.ui-loading-overlay.ui-loading-overlay--light {
-  background: rgba(255, 255, 255, 0.72);
+  background: transparent;
 }
 
 #loading.ui-loading-overlay.ui-loading-overlay--dark {
-  background: rgba(26, 26, 24, 0.48);
+  background: transparent;
 }
 
 #loading.ui-loading-overlay.ui-loading-overlay--blur {
-  background: rgba(247, 247, 245, 0.55);
-  backdrop-filter: blur(4px);
+  background: transparent;
 }
 
 .ui-loading-overlay--light {
-  background: rgba(255, 255, 255, 0.72);
+  background: transparent;
 }
 
 .ui-loading-overlay--dark {
-  background: rgba(26, 26, 24, 0.48);
+  background: transparent;
 }
 
 .ui-loading-overlay--blur {
-  background: rgba(247, 247, 245, 0.55);
-  backdrop-filter: blur(4px);
+  background: transparent;
 }
 
 .ui-loading-overlay__panel {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
-  min-width: 160px;
-  padding: 24px 28px;
-  border-radius: 16px;
-  background: #ffffff;
-  box-shadow: 0 16px 40px rgba(26, 26, 24, 0.12);
+  justify-content: center;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
 }
 
 .ui-loading-overlay--dark .ui-loading-overlay__panel {
