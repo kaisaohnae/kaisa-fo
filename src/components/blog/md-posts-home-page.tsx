@@ -5,7 +5,7 @@ import {useSearchParams} from 'next/navigation';
 import {Suspense, useMemo} from 'react';
 import BlogPagination from '@/components/blog/blog-pagination';
 import BlogSearchBar from '@/components/blog/blog-search-bar';
-import type {BlogPost} from '@/data/blog-posts';
+import type {BlogPostSummary} from '@/data/blog-posts';
 
 const PAGE_SIZE = 10;
 
@@ -24,7 +24,7 @@ export function buildPostsListHref(params: {
   return qs ? `/posts/?${qs}` : '/posts/';
 }
 
-function PostCard({post}: {post: BlogPost}) {
+function PostCard({post}: {post: BlogPostSummary}) {
   return (
     <Link href={`/posts/${post.slug}/`} className="blog-card">
       <div className="blog-card__meta">
@@ -40,7 +40,7 @@ function MdPostsHomeContent({
   posts,
   categories,
 }: {
-  posts: BlogPost[];
+  posts: BlogPostSummary[];
   categories: Category[];
 }) {
   const searchParams = useSearchParams();
@@ -63,9 +63,8 @@ function MdPostsHomeContent({
         const inTitle = p.title.toLowerCase().includes(q);
         const inExcerpt = p.excerpt.toLowerCase().includes(q);
         const inTags = p.tags.some((tag) => tag.toLowerCase().includes(q));
-        const inContent = p.content.toLowerCase().includes(q);
         const inCategory = p.categoryLabel.toLowerCase().includes(q);
-        return inTitle || inExcerpt || inTags || inContent || inCategory;
+        return inTitle || inExcerpt || inTags || inCategory;
       });
     }
 
@@ -163,7 +162,7 @@ export default function MdPostsHomePage({
   posts,
   categories,
 }: {
-  posts: BlogPost[];
+  posts: BlogPostSummary[];
   categories: Category[];
 }) {
   return (

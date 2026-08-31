@@ -1,11 +1,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-export type BlogPost = {
+export type BlogPostSummary = {
   slug: string;
   title: string;
   excerpt: string;
-  content: string;
   publishedAt: string;
   category: string;
   categoryLabel: string;
@@ -13,6 +12,10 @@ export type BlogPost = {
   readingMinutes: number;
   order: number;
   filePath: string;
+};
+
+export type BlogPost = BlogPostSummary & {
+  content: string;
 };
 
 const POSTS_ROOT = path.join(process.cwd(), 'content', 'posts');
@@ -125,6 +128,7 @@ function loadAllPosts(): BlogPost[] {
 }
 
 let cache: BlogPost[] | null = null;
+let summaryCache: BlogPostSummary[] | null = null;
 
 export function getAllBlogPosts(): BlogPost[] {
   // Dev: always re-read so new/edited markdown shows up without restart.
@@ -133,6 +137,17 @@ export function getAllBlogPosts(): BlogPost[] {
   }
   if (!cache) cache = loadAllPosts();
   return cache;
+}
+
+/** 목록, 카테고리, 검색 화면을 위한 경량 메타데이터 (무거운 content 본문 제외) */
+export function getAllBlogPostSummaries(): BlogPostSummary[] {
+  if (process.env.NODE_ENV === 'development') {
+    return loadAllPosts().map(({content: _, ...summary}) => summary);
+  }
+  if (!summaryCache) {
+    summaryCache = getAllBlogPosts().map(({content: _, ...summary}) => summary);
+  }
+  return summaryCache;
 }
 
 export function getBlogPost(slug: string): BlogPost | undefined {
@@ -167,7 +182,7 @@ export function getBlogPostsByCategory(category: string): BlogPost[] {
 
 export function getBlogCategories(): {id: string; label: string; count: number}[] {
   const map = new Map<string, {id: string; label: string; count: number}>();
-  for (const post of getAllBlogPosts()) {
+  for (const post of getAllBlogPostSummaries()) {
     const current = map.get(post.category);
     if (current) {
       current.count += 1;

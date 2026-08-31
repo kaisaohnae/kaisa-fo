@@ -1,6 +1,6 @@
 import MdPostsHomePage from '@/components/blog/md-posts-home-page';
 import JsonLd from '@/components/seo/json-ld';
-import {getAllBlogPosts, getBlogCategories} from '@/data/blog-posts';
+import {getAllBlogPostSummaries, getBlogCategories} from '@/data/blog-posts';
 import {buildPageMetadata, homeJsonLd} from '@/lib/seo';
 import {SITE_NAME} from '@/config/site';
 
@@ -14,7 +14,7 @@ export default function Page() {
   return (
     <>
       <JsonLd data={homeJsonLd()} />
-      <MdPostsHomePage posts={getAllBlogPosts()} categories={getBlogCategories()} />
+      <MdPostsHomePage posts={getAllBlogPostSummaries()} categories={getBlogCategories()} />
     </>
   );
 }

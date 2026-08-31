@@ -1,6 +1,6 @@
 import type {MetadataRoute} from 'next';
 import {absoluteUrl} from '@/config/site';
-import {getAllBlogPosts} from '@/data/blog-posts';
+import {getAllBlogPostSummaries} from '@/data/blog-posts';
 
 export const dynamic = 'force-static';
 
@@ -29,7 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
           : 0.4,
   }));
 
-  const posts: MetadataRoute.Sitemap = getAllBlogPosts().map(post => ({
+  const posts: MetadataRoute.Sitemap = getAllBlogPostSummaries().map(post => ({
     url: absoluteUrl(`/posts/${post.slug}/`),
     lastModified: new Date(post.publishedAt),
     changeFrequency: 'weekly',
