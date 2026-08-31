@@ -1,0 +1,257 @@
+---
+slug: nextjs-11
+order: 11
+category: nextjs
+categoryLabel: Next.js
+title: "Next.js 배포 전략 비교 — Vercel, Docker, 정적 내보내기, AWS 인프라"
+summary: "Vercel 서버리스, Standalone Docker 컨테이너, Static Export(S3/CloudFront), OpenNext(AWS Lambda) 등 Next.js의 4가지 주요 배포 방식별 아키텍처와 장단점을 비교하고 최적의 선택 가이드를 제시한다."
+publishedAt: 2026-08-20
+tags: ["nextjs"]
+---
+
+# Next.js 배포 전략 비교 — Vercel, Docker, 정적 내보내기, AWS 인프라
+
+> 요약: Vercel 서버리스, Standalone Docker 컨테이너, Static Export(S3/CloudFront), OpenNext(AWS Lambda) 등 Next.js의 4가지 주요 배포 방식별 아키텍처와 장단점을 비교하고 최적의 선택 가이드를 제시한다.
+
+---
+
+## 1. Next.js 배포가 다른 프론트엔드와 다른 이유
+
+전통적인 React SPA(Vite, CRA)는 빌드 결과물이 `index.html`, `bundle.js`, CSS 파일뿐이므로 단순한 정적 파일 스토리지(S3, Nginx, GitHub Pages)에 올리면 끝났다.
+
+하지만 **Next.js(App Router)** 는 프론트엔드 프레임워크이면서 동시에 **Node.js 서버 런타임**을 내장하고 있다:
+
+- **서버 컴포넌트(RSC)**: 서버에서 React 트리를 렌더링하여 클라이언트에 스트리밍
+- **서버 액션(Server Actions)** & **라우트 핸들러(Route Handlers)**: 백엔드 API 및 Form Mutation 처리
+- **미들웨어(Middleware)**: 요청 라우팅, 인증 쿠키 검증, 리다이렉트
+- **ISR(Incremental Static Regeneration)**: 캐시 무효화 및 백그라운드 페이지 재생성
+- **Image Optimization (`next/image`)**: 클라이언트 해상도에 맞춘 실시간 이미지 리사이징/WebP 변환
+
+이러한 기능들을 실제로 어떻게 운영할 것인가에 따라 **배포 방식과 인프라 아키텍처가 완전히 달라진다**.
+
+---
+
+## 2. Next.js의 4가지 핵심 배포 방식 비교
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ 1. Vercel / Netlify (PaaS Serverless)                                       │
+│    - Next.js 개발사가 만든 공식 매니지드 플랫폼, 무설정 배포                       │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ 2. Self-Hosted Docker (Standalone Mode / K8s / EC2)                         │
+│    - output: 'standalone'으로 경량 Node.js 컨테이너를 직접 호스팅                 │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ 3. Static Export (S3 + CloudFront / GitHub Pages / Nginx)                   │
+│    - output: 'export'로 순수 HTML/JS/CSS만 빌드하여 서버 없이 호스팅              │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ 4. AWS Serverless (OpenNext / SST / AWS Amplify)                            │
+│    - AWS Lambda, CloudFront, S3로 Next.js 서버리스 인프라 구축                    │
+└─────────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## 3. 방식 1: Vercel (공식 서버리스 PaaS)
+
+Next.js의 제작사인 Vercel에서 제공하는 올인원 호스팅 서비스다. Git 저장소를 연결하고 Push하면 빌드, CDN 배포, 도메인 연결, SSL 발급, Preview 환경까지 자동으로 구성된다.
+
+```
+[User Request] ──▶ [Vercel Global Edge Network (CDN)]
+                           │
+       ┌───────────────────┴───────────────────┐
+       ▼                                       ▼
+[Edge Middleware]                      [Serverless Function]
+(인증 / 라우팅)                       (RSC / Server Action / ISR)
+```
+
+### 장점
+1. **Zero Configuration**: 설정 파일이나 Dockerfile 없이 Next.js의 모든 기능(App Router, Server Action, ISR, 이미지 최적화, OTel)이 100% 완벽하게 동작한다.
+2. **Preview 배포**: 모든 PR(Pull Request)마다 고유한 독립 URL이 생성되어 팀원 간 QA와 디자인 리뷰가 매우 편하다.
+3. **글로벌 엣지 인프라**: 전 세계 CDN과 엣지 함수(Edge Functions)가 기본 연동되어 초기 응답 지연(TTFB)이 가장 짧다.
+4. **강력한 관측성**: 웹 바이탈(Core Web Vitals), 실시간 로그, 분석 도구가 대시보드에 내장되어 있다.
+
+### 단점 및 한계
+1. **비용 문제 (Bandwidth / Image Optimization 폭탄)**: 트래픽이 커질수록 대역폭(Bandwidth)과 이미지 최적화 호출당 과금 비용이 급격히 증가한다(기업 엔터프라이즈 플랜은 비용이 상당함).
+2. **Cold Start (서버리스 지연)**: 오랫동안 요청이 없던 페이지는 서버리스 함수가 처음 뜰 때 수백 ms~수 초의 콜드 스타트 지연이 발생할 수 있다.
+3. **사내망/VPC 연동 한계**: 온프레미스 DB나 내부 사내망(AWS VPC)에 위치한 DB/마이크로서비스에 직접 접근하려면 고정 IP 프록시를 두어야 하므로 구성이 복잡해진다.
+4. **실행 시간 제한**: 서버리스 함수당 최대 실행 시간(기본 15초~60초)이 제한되어 있어 장시간 실행되는 배치 작업이나 무거운 데이터 처리가 불가능하다.
+
+---
+
+## 4. 방식 2: Self-Hosted Standalone Docker (컨테이너 자체 호스팅)
+
+사내 인프라(Kubernetes, AWS ECS/EC2, 온프레미스 서버)에 Next.js를 직접 배포할 때 사용하는 **표준 실무 방식**이다.
+
+Next.js의 `output: 'standalone'` 기능을 활성화하면, 빌드 시 수백 MB에 달하는 전체 `node_modules` 중 **프로덕션 실행에 꼭 필요한 최소 파일만 선별하여 `.next/standalone` 폴더에 복사**해 준다.
+
+### 1) `next.config.ts` 설정
+```typescript
+import type { NextConfig } from 'next';
+
+const nextConfig: NextConfig = {
+  output: 'standalone', // Standalone 빌드 활성화
+};
+
+export default nextConfig;
+```
+
+### 2) 경량 멀티 스테이지 `Dockerfile`
+```dockerfile
+# 1단계: 의존성 설치
+FROM node:20-alpine AS deps
+RUN apk add --no-cache libc6-compat
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm ci
+
+# 2단계: 소스 빌드
+FROM node:20-alpine AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
+ENV NEXT_TELEMETRY_DISABLED=1
+ENV NODE_ENV=production
+RUN npm run build
+
+# 3단계: 초경량 실행 런타임 (최종 이미지 약 120MB)
+FROM node:20-alpine AS runner
+WORKDIR /app
+ENV NODE_ENV=production
+ENV PORT=3000
+ENV HOSTNAME="0.0.0.0"
+
+RUN addgroup --system --gid 1001 nodejs
+RUN adduser --system --uid 1001 nextjs
+
+# 정적 에셋 및 standalone 빌드 결과물 복사
+COPY --from=builder /app/public ./public
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+
+USER nextjs
+EXPOSE 3000
+
+CMD ["node", "server.js"]
+```
+
+### 장점
+1. **비용 예측 가능성**: 서버 인스턴스(EC2, 물리 서버) 단위로 비용이 청구되므로 대규모 트래픽 발생 시에도 대역폭 폭탄 요금이 없다.
+2. **사내망/VPC 자유로운 연결**: VPC 내부의 PostgreSQL, Redis, Kafka, gRPC 백엔드와 초고속 내부 통신이 가능하다.
+3. **Cold Start 없음**: Node.js 상시 구동 프로세스(`node server.js`)이므로 콜드 스타트 없이 항상 일정한 빠른 응답 속도를 유지한다.
+4. **실행 환경의 완전한 통제권**: 메모리, CPU, 프로세스 클러스터링(PM2), 모니터링 에이전트(Datadog, Prometheus)를 원하는 대로 설치하고 커스텀할 수 있다.
+
+### 단점 및 한계
+1. **인프라 운영 비용 (DevOps 리소스)**: 로드밸런서(ALB), SSL 인증서 갱신, 무중단 배포(Rolling/Blue-Green), 오토스케일링을 직접 구축하고 관리해야 한다.
+2. **멀티 인스턴스 시 ISR 캐시 동기화 필요**: 컨테이너가 3대로 오토스케일링되면, 1번 서버에서 갱신된 ISR 캐시 파일이 2, 3번 서버에는 반영되지 않는다. 이를 해결하려면 공유 스토리지(Redis / S3 Cache Handler)를 별도로 붙여야 한다.
+3. **이미지 최적화 부하**: `next/image` 리사이징 연산이 Node.js CPU를 직접 소모하므로 트래픽이 많을 때는 이미지 최적화 전용 CDN이나 별도 서비스를 두는 것이 안전하다.
+
+---
+
+## 5. 방식 3: Static Export (정적 내보내기 / S3 + CloudFront)
+
+Next.js를 순수한 정적 HTML/CSS/JS 파일들로 추출하여 웹 서버(Nginx)나 클라우드 스토리지(AWS S3 + CloudFront, GitHub Pages, Cloudflare Pages)에 올리는 방식이다.
+
+### 1) `next.config.ts` 설정
+```typescript
+import type { NextConfig } from 'next';
+
+const nextConfig: NextConfig = {
+  output: 'export', // 빌드 시 'out' 폴더에 정적 파일 생성
+  images: {
+    unoptimized: true, // Node 서버가 없으므로 실시간 이미지 리사이징 끔
+  },
+};
+
+export default nextConfig;
+```
+
+### 2) 빌드 명령어 실행
+```bash
+npm run build
+# 빌드가 완료되면 프로젝트 루트의 /out 디렉토리에 index.html, posts.html 등이 생성됨
+```
+
+### 장점
+1. **압도적인 저비용 & 가성비**: AWS S3 + CloudFront나 Cloudflare Pages를 이용하면 월 수백만 뷰 사이트도 커피 몇 잔 가격(거의 0원)으로 운영 가능하다.
+2. **무한한 트래픽 확장성(Scalability)**: 글로벌 CDN 엣지에서 정적 캐시 파일만 응답하므로 서버 다운(Server Crash) 개념이 아예 없다.
+3. **최고 수준의 보안**: 백엔드 Node.js 서버 런타임 자체가 존재하지 않으므로 서버 침투나 RCE(원격 코드 실행) 취약점 위험이 0%다.
+
+### 단점 및 제약 (🚫 사용할 수 없는 기능들)
+| 기능 | 사용 가능 여부 | 설명 |
+|------|----------------|------|
+| **Server Components (RSC) 실시간 요청** | ❌ 불가 | 빌드 시점에만 렌더링되며, 런타임 요청 시 동적 서버 렌더링 불가 |
+| **Server Actions (`'use server'`)** | ❌ 불가 | 서버가 없으므로 프론트에서 직접 Spring Boot/NestJS API 호출 필요 |
+| **API Route Handlers (`route.ts`)** | ❌ 불가 | 정적 JSON 파일로 구워지는 경우 외에 동적 엔드포인트 불가 |
+| **Next.js Middleware (`middleware.ts`)** | ❌ 불가 | 요청을 가로챌 Node.js 계층이 없음 (CloudFront Functions로 대체 필요) |
+| **ISR (`revalidate`)** | ❌ 불가 | 콘텐츠가 바뀌면 전체 CI/CD 파이프라인을 다시 돌려 전체 재빌드 필요 |
+| **`next/image` 실시간 최적화** | ❌ 불가 | 원본 이미지를 그대로 서빙하거나 빌드 타임 최적화 도구 사용 필요 |
+
+---
+
+## 6. 방식 4: AWS Serverless (OpenNext / SST / SST v3)
+
+Vercel의 종속성과 고비용을 피하면서도 서버리스의 장점을 내 AWS 계정(AWS Lambda, CloudFront, S3)으로 그대로 가져오기 위한 오픈소스 프레임워크 기반 배포 방식이다.
+
+```
+[User Request] ──▶ [AWS CloudFront (CDN)]
+                           │
+       ┌───────────────────┼───────────────────┐
+       ▼                   ▼                   ▼
+[S3 Bucket]        [Lambda Edge]       [AWS Lambda (Server)]
+(정적 HTML/JS/CSS) (미들웨어 / 라우팅)   (RSC / Server Action / ISR)
+                                               │
+                                               ▼
+                                      [DynamoDB / S3]
+                                      (ISR 캐시 저장소)
+```
+
+### 장점
+1. **내 AWS 계정 안에서 동작**: 회사 AWS 계정의 IAM, VPC, 보안 정책을 그대로 준수할 수 있다.
+2. **비용 절감**: Vercel의 비싼 대역폭 요금 대신 AWS의 순수 인프라 원가(AWS Lambda + CloudFront)만 지불하므로 트래픽이 많을 때 수백만 원 단위의 비용이 절감된다.
+3. **자동 분할 아키텍처**: OpenNext는 Next.js 빌드 산출물을 정적 파일(S3), 미들웨어(Lambda@Edge), 서버 로직(Lambda)으로 자동 분리하여 배포해 준다.
+
+### 단점 및 한계
+1. **Next.js 신규 기능 지원 시차**: Next.js 새 버전이 출시되었을 때 OpenNext 오픈소스 커뮤니티가 이를 지원하기까지 약간의 딜레이가 발생할 수 있다.
+2. **초기 인프라 구축 난이도**: Terraform이나 SST, AWS CDK 등 IaC(Infrastructure as Code) 지식이 요구된다.
+
+---
+
+## 7. 배포 방식 한눈에 비교하기
+
+| 비교 항목 | Vercel | Docker Standalone | Static Export | OpenNext (AWS) |
+|-----------|--------|-------------------|---------------|----------------|
+| **인프라 형태** | 매니지드 서버리스 | 컨테이너 (ECS/K8s/EC2) | 스토리지 + CDN | AWS 서버리스 |
+| **초기 설정 난이도** | ⭐️ (매우 쉬움) | ⭐️⭐️⭐️ (중간) | ⭐️ (매우 쉬움) | ⭐️⭐️⭐️⭐️ (높음) |
+| **운영 및 유지보수** | 없음 (완전 위임) | 높음 (DevOps 필요) | 거의 없음 | 중간 |
+| **Next.js 전체 기능 지원** | 100% (완벽) | 95% (ISR 캐시 공유 필요) | 30% (정적 기능만) | 90%~95% |
+| **대규모 트래픽 비용** | 💸 매우 비쌈 | 💰 경제적 (서버 단위) | 🎁 초저렴 (거의 0원) | 💰 경제적 (AWS 원가) |
+| **VPC / 사내망 DB 연동** | ⚠️ 어려움 | ✅ 매우 쉬움 | 해당 없음 | ✅ VPC Lambda로 가능 |
+| **Cold Start 지연** | 있음 (수백 ms) | ❌ 없음 (항상 On) | ❌ 없음 (CDN 즉시 응답) | 있음 (수백 ms) |
+
+---
+
+## 8. 최적의 배포 방식 선택 가이드
+
+```
+Q1. 블로그, 회사 소개, 단순 문서 사이트인가요? (동적 서버 기능 불필요)
+ └── YES ──▶ [Static Export (S3 + CloudFront / GitHub Pages)]
+
+Q2. 빠른 런칭, 프로토타입, 디자이너/기획자와의 Preview 리뷰가 최우선인가요?
+ └── YES ──▶ [Vercel]
+
+Q3. 이미 Spring Boot/NestJS 등 사내 백엔드 인프라가 Kubernetes/ECS에 구축되어 있나요?
+ └── YES ──▶ [Docker Standalone 컨테이너 배포]
+
+Q4. 트래픽이 매우 크고, AWS 인프라 환경에서 서버리스로 비용을 극대화하여 절감하고 싶은가요?
+ └── YES ──▶ [OpenNext / SST 기반 AWS Lambda 배포]
+```
+
+---
+
+## 9. 실무 체크리스트
+
+- [ ] **환경변수 분리**: 브라우저에 노출되어도 되는 값만 `NEXT_PUBLIC_` 접두사를 붙였는가?
+- [ ] **빌드 산출물 최적화**: Docker 배포 시 `next.config.ts`에 `output: 'standalone'`을 명시했는가?
+- [ ] **Static Export 제약 확인**: `output: 'export'` 사용 시 `images.unoptimized: true`와 dynamic route 핸들러 제약을 확인했는가?
+- [ ] **캐시 헤더 점검**: `public/` 정적 파일 및 `_next/static/` 파일에 `Cache-Control: public, max-age=31536000, immutable` 헤더가 설정되어 있는가?
+- [ ] **Graceful Shutdown**: Docker 컨테이너 종료 시 진행 중인 요청을 안전하게 처리하도록 SIGTERM 핸들링이 설정되어 있는가?
