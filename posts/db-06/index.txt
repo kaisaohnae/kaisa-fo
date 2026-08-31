@@ -1,0 +1,340 @@
+1:"$Sreact.fragment"
+2:I[79520,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],""]
+3:I[83661,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default"]
+4:I[39756,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default"]
+5:I[37457,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default"]
+6:I[22016,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/2yl2c4ss1jgbl.js","/_next/static/chunks/1ogvimk0-k2zc.js","/_next/static/chunks/370b3yrg4tur3.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],""]
+7:I[22067,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default"]
+8:I[78481,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default"]
+9:I[2105,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default"]
+a:I[69033,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/2yl2c4ss1jgbl.js","/_next/static/chunks/1ogvimk0-k2zc.js","/_next/static/chunks/370b3yrg4tur3.js"],"LocaleProvider"]
+b:I[45872,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/2yl2c4ss1jgbl.js","/_next/static/chunks/1ogvimk0-k2zc.js","/_next/static/chunks/370b3yrg4tur3.js"],"default"]
+c:I[20683,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/2yl2c4ss1jgbl.js","/_next/static/chunks/1ogvimk0-k2zc.js","/_next/static/chunks/370b3yrg4tur3.js"],"default"]
+d:I[86979,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/2yl2c4ss1jgbl.js","/_next/static/chunks/1ogvimk0-k2zc.js","/_next/static/chunks/370b3yrg4tur3.js","/_next/static/chunks/0hs6l77ykwsoc.js"],"default"]
+17:I[68027,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default",1]
+:HL["/_next/static/chunks/0ditdb5-g6x-v.css","style"]
+:HL["/_next/static/chunks/0h6pid50w8_n4.css","style"]
+:HL["/_next/static/chunks/3siqlqjr1v4fe.css","style"]
+:HL["/_next/static/media/0c795a286deabae8-s.p.3vm0tq4e-zz_5.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/5c285b27cdda1fe8-s.p.2_mbdogr7ni8i.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/chunks/3j-1lpdn3an_-.css","style"]
+0:{"P":null,"c":["","posts","db-06",""],"q":"","i":false,"f":[[["",{"children":["(site)",{"children":["posts",{"children":[["slug","db-06","d",null],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0ditdb5-g6x-v.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0h6pid50w8_n4.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/3siqlqjr1v4fe.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/0qufxx6nl15ij.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1uymn__-_z4ug.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ko","className":"syne_53f86cd1-module__kiT3Eq__variable dm_sans_fd62f040-module__0jgVUW__variable","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","script",null,{"async":true,"src":"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2641553863829571","crossOrigin":"anonymous"}]}],["$","body",null,{"children":[["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var t=null;document.cookie.split(';').forEach(function(c){var p=c.trim().split('=');if(p[0]==='kaisa-theme')t=decodeURIComponent(p[1]||'');});document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();"}}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var KEY='kaisa-locale';var loc=null;try{loc=sessionStorage.getItem(KEY);}catch(e){}function fromNav(){var list=[navigator.language].concat(navigator.languages||[]);for(var i=0;i<list.length;i++){var l=String(list[i]||'').toLowerCase();if(l.indexOf('ko')===0)return 'ko';if(l.indexOf('zh')===0)return 'zh';if(l.indexOf('hi')===0)return 'hi';if(l.indexOf('en')===0)return 'en';}return null;}if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc=fromNav();if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc='ko';document.documentElement.lang=loc;}catch(e){document.documentElement.lang='ko';}})();"}}],[["$","$L2",null,{"src":"https://www.googletagmanager.com/gtag/js?id=G-2281QQ6XP4","strategy":"afterInteractive"}],["$","$L2",null,{"id":"google-analytics","strategy":"afterInteractive","children":"\n          window.dataLayer = window.dataLayer || [];\n          function gtag(){dataLayer.push(arguments);}\n          gtag('js', new Date());\n          gtag('config', 'G-2281QQ6XP4');\n        "}]],["$","$L3",null,{}],["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}],["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","$L7",null,{}],["$","$L8",null,{}],["$","$L9",null,{}]]}]]}]]}],{"children":[["$","$1","c",{"children":[[["$","script","script-0",{"src":"/_next/static/chunks/2yl2c4ss1jgbl.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1ogvimk0-k2zc.js","async":true,"nonce":"$undefined"}],["$","script","script-2",{"src":"/_next/static/chunks/370b3yrg4tur3.js","async":true,"nonce":"$undefined"}]],["$","$La",null,{"children":["$","div",null,{"className":"site-layout","children":[["$","$Lb",null,{}],["$","$Lc",null,{"children":["$","$L4",null,{"parallelRouterKey":"children","error":"$d","errorStyles":[],"errorScripts":[["$","script","script-0",{"src":"/_next/static/chunks/0hs6l77ykwsoc.js","async":true}]],"template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],"$Le","$Lf","$L10"]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],"$L11"]}]}]]}],{"children":["$L12",{"children":["$L13",{"children":["$L14",{},null,false,null]},null,false,"$@15"]},null,false,"$@15"]},null,false,null]},null,false,null],"$L16",false]],"m":"$undefined","G":["$17",["$L18","$L19","$L1a"]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"f0ttEB6bRzrc7swQ_WCjE"}
+1b:I[44604,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/2yl2c4ss1jgbl.js","/_next/static/chunks/1ogvimk0-k2zc.js","/_next/static/chunks/370b3yrg4tur3.js"],"default"]
+1d:I[97367,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"OutletBoundary"]
+1e:"$Sreact.suspense"
+21:I[97367,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"ViewportBoundary"]
+23:I[97367,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"MetadataBoundary"]
+e:["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}]
+f:["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}]
+10:["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]
+11:["$","$L1b",null,{}]
+12:["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]
+13:["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]
+14:["$","$1","c",{"children":["$L1c",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3j-1lpdn3an_-.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/2_h6is8-aperz.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/3qcoeqbx1mias.js","async":true,"nonce":"$undefined"}]],["$","$L1d",null,{"children":["$","$1e",null,{"name":"Next.MetadataOutlet","children":"$@1f"}]}]]}]
+20:[]
+15:"$W20"
+16:["$","$1","h",{"children":[null,["$","$L21",null,{"children":"$L22"}],["$","div",null,{"hidden":true,"children":["$","$L23",null,{"children":["$","$1e",null,{"name":"Next.Metadata","children":"$L24"}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}]
+18:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0ditdb5-g6x-v.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
+19:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0h6pid50w8_n4.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
+1a:["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/3siqlqjr1v4fe.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
+25:I[55489,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/2yl2c4ss1jgbl.js","/_next/static/chunks/1ogvimk0-k2zc.js","/_next/static/chunks/370b3yrg4tur3.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],"default"]
+26:T3809,# InfluxDB: 시계열 데이터베이스의 개념과 실무 활용
+
+> 요약: IoT 센서 데이터, 서버 모니터링 메트릭, 실시간 로그 수집에 특화된 Time-Series DB인 InfluxDB의 데이터 모델(Line Protocol, Tag vs Field)과 쿼리, Spring Boot 연동을 다룬다.
+
+---
+
+## 1. 시계열 데이터(Time-Series Data)와 TSDB란?
+
+**시계열 데이터(Time-Series Data)** 는 **시간의 흐름에 따라 순차적으로 기록되는 데이터 포인트의 연속**을 의미한다.
+
+- **대표적인 예시**:
+  - 서버 및 인프라 메트릭: CPU 사용률, 메모리 점유율, 초당 네트워크 I/O
+  - IoT / 스마트 팩토리: 공장 설비 온도, 센서 진동값, 전력 소비량, 전기차 배터리 잔량
+  - 금융 / 핀테크: 초/밀리초 단위 주식 호가 및 거래량
+  - 애플리케이션 로그 / 이벤트: 초당 API 요청 수, 응답 레이턴시
+
+### 왜 RDB(MySQL, PostgreSQL)로 시계열 데이터를 처리하기 어려울까?
+
+일반 RDB는 레코드의 빈번한 **수정(UPDATE)** 과 복잡한 **테이블 간 조인(JOIN)** 에 최적화되어 있다. 하지만 시계열 데이터는 다음과 같은 극단적인 특징을 갖는다:
+
+1. **압도적인 쓰기(Write-Heavy) 트래픽**: 초당 수만~수십만 건의 센서/메트릭 데이터가 끊임없이 쏟아진다.
+2. **수정(UPDATE)과 삭제(DELETE)가 거의 없음**: 과거의 센서 기록은 한 번 기록되면 수정되지 않는 불변(Append-Only) 데이터다.
+3. **시간 범위 기반의 집계(Aggregation) 쿼리 중심**: 개별 레코드 1건을 조회하기보다 "최근 1시간 동안의 5분 단위 평균 온도", "최근 24시간 동안의 95백분위 레이턴시" 등을 조회한다.
+4. **수명 주기(Data Retention) 관리 필요**: 1년 전의 초 단위 상세 메트릭은 필요 없고 일 단위 평균만 남기거나 일정 기간 후 자동 삭제되어야 한다.
+
+이러한 시계열 데이터 처리에 특화된 오픈소스 데이터베이스가 바로 **TSDB(Time Series Database)** 이며, 그중 가장 널리 쓰이는 대표주자가 **InfluxDB**다.
+
+---
+
+## 2. InfluxDB 핵심 데이터 모델 (Tag vs Field)
+
+InfluxDB의 데이터 구조는 RDB와 용어가 다르므로 반드시 그 차이를 이해해야 한다.
+
+| InfluxDB 용어 | RDB 비유 | 설명 | 인덱싱 여부 |
+|---------------|----------|------|-------------|
+| **Bucket (Database)** | Database | 데이터가 저장되는 최상위 논리적 단위 (보관 주기 Retention Policy 포함) | - |
+| **Measurement** | Table | 데이터를 묶는 카테고리/주제 (e.g., `cpu_metrics`, `sensor_temperature`) | - |
+| **Tag (Tag Key & Value)** | Indexed Column | 검색 및 필터링(`WHERE`), 그룹화(`GROUP BY`)에 쓰이는 메타데이터 (String만 가능) | **인덱스 생성됨 (빠른 검색)** |
+| **Field (Field Key & Value)** | Data Column | 실제 측정값 (숫자, 실수, 정수, 불리언, 문자열). | **인덱스 생성 안 됨 (집계 대상)** |
+| **Timestamp** | Primary Key (시간) | 해당 데이터가 측정된 시점 (나노초~초 단위) | **기본 인덱싱** |
+
+```
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Measurement: cpu_usage                                                      │
+├───────────────────┬───────────────────────────────────┬─────────────────────┤
+│ Tags (인덱싱됨)   │ Fields (실제 측정값)              │ Timestamp (시간)    │
+├───────────────────┼───────────────────────────────────┼─────────────────────┤
+│ host = "server-01"│ usage_user = 45.2 (float)         │ 2026-08-28T09:00:00Z│
+│ region = "kr-east"│ usage_system = 12.1 (float)       │                     │
+│ env = "prod"      │ idle = 42.7 (float)               │                     │
+└───────────────────┴───────────────────────────────────┴─────────────────────┘
+```
+
+### ⚠️ 실무 치명적 실수: Tag vs Field 구분 기준 (Series Cardinality)
+- **Tag로 넣어야 할 것**: 값의 가짓수가 제한적이고 검색/필터링 조건으로 자주 쓰이는 것 (서버 호스트명, 리전명, 디바이스 ID, 고객 ID 등)
+- **Field로 넣어야 할 것**: 연속적으로 계속 변하는 실제 측정값 (온도, 전압, CPU%, 메모리 바이트)이나 **유니크한 값이 무한히 생성되는 값(UUID, 요청마다 다른 고유 트랜잭션 ID 등)**
+
+> **주의 (High Cardinality 폭탄)**: 고유한 값이 무한히 생성되는 UUID나 나노초 단위의 랜덤 문자열을 Tag로 지정하면, InfluxDB가 내부적으로 생성하는 시계열 인덱스(Series)가 기하급수적으로 폭증하여 **메모리(RAM) 부족으로 서버가 다운(OOM)** 된다.
+
+---
+
+## 3. 라인 프로토콜 (Line Protocol) — InfluxDB 전용 데이터 포맷
+
+InfluxDB에 데이터를 입력(Ingest)할 때는 JSON 대신 초경량 텍스트 포맷인 **Line Protocol**을 사용한다. JSON 파싱 오버헤드가 없어 초당 수십만 건을 가볍게 밀어 넣을 수 있다.
+
+```text
+<measurement>[,<tag_key>=<tag_value>...] <field_key>=<field_value>[,<field_key>=<field_value>...] [timestamp]
+```
+
+### 작성 예시
+```text
+# 쉼표(,)와 공백( )의 위치가 매우 중요함
+cpu_metrics,host=web-server-01,region=ap-northeast-2 usage_user=24.5,usage_system=5.2,idle=70.3 1724835600000000000
+
+factory_sensor,factory_id=f01,line=A,sensor_id=temp_04 temperature=36.8,humidity=55.2 1724835601000000000
+```
+
+1. `cpu_metrics`: Measurement 이름
+2. `,host=web-server-01,region=ap-northeast-2`: 쉼표로 연결된 Tag 세트 (인덱싱 대상)
+3. ` ` (공백 1칸): Tag와 Field를 구분하는 필수 구분자
+4. `usage_user=24.5,usage_system=5.2`: 쉼표로 연결된 Field 세트 (측정값)
+5. ` ` (공백 1칸): Field와 타임스탬프를 구분하는 필수 구분자
+6. `1724835600000000000`: 나노초 단위 Unix Timestamp (생략 시 InfluxDB 서버 수신 시각으로 자동 기록)
+
+---
+
+## 4. 데이터 쿼리하기 (Flux & InfluxQL)
+
+InfluxDB는 버전에 따라 2가지 쿼리 언어를 지원한다.
+- **InfluxQL**: SQL과 유사한 전통적인 문법 (InfluxDB 1.x / 3.x 지원)
+- **Flux**: 함수형 파이프라인(`|>`) 기반의 고기능 쿼리 스크립트 언어 (InfluxDB 2.x 중심)
+
+### 1) SQL 형태 (InfluxQL / InfluxDB 3.x IOx)
+```sql
+-- 최근 1시간 동안 server-01의 5분 단위 평균 CPU 사용률 조회
+SELECT mean("usage_user") AS "avg_cpu"
+FROM "cpu_metrics"
+WHERE "host" = 'web-server-01' AND time > now() - 1h
+GROUP BY time(5m) fill(linear);
+```
+
+### 2) 파이프라인 형태 (Flux)
+```flux
+// 최근 1시간 데이터를 가져와 5분 단위로 평균을 내고 반올림
+from(bucket: "iot-monitoring")
+  |> range(start: -1h)
+  |> filter(fn: (r) => r._measurement == "cpu_metrics")
+  |> filter(fn: (r) => r.host == "web-server-01")
+  |> filter(fn: (r) => r._field == "usage_user")
+  |> aggregateWindow(every: 5m, fn: mean, createEmpty: false)
+  |> yield(name: "mean_cpu")
+```
+
+---
+
+## 5. 실무 예제: Spring Boot와 InfluxDB 2.x 연동하기
+
+IoT 센서에서 실시간으로 수집되는 온습도 데이터를 InfluxDB에 저장하고 조회하는 실무 Spring Boot 코드를 작성해 본다.
+
+### 1) `build.gradle` 의존성 추가
+```kotlin
+dependencies {
+    // InfluxDB 2.x 공식 자바 클라이언트
+    implementation("com.influxdb:influxdb-client-java:6.12.0")
+    implementation("org.springframework.boot:spring-boot-starter-web")
+}
+```
+
+### 2) `application.yml` 설정
+```yaml
+influxdb:
+  url: http://localhost:8086
+  token: your-auth-token-here
+  org: my-company
+  bucket: sensor-data
+```
+
+### 3) InfluxDB 클라이언트 Bean 설정
+```java
+@Configuration
+public class InfluxConfig {
+
+    @Value("${influxdb.url}")
+    private String url;
+
+    @Value("${influxdb.token}")
+    private String token;
+
+    @Value("${influxdb.org}")
+    private String org;
+
+    @Bean
+    public InfluxDBClient influxDBClient() {
+        return InfluxDBClientFactory.create(url, token.toCharArray(), org);
+    }
+}
+```
+
+### 4) POJO 엔티티 매핑 어노테이션
+```java
+@Measurement(name = "environmental_sensor")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class SensorMeasurement {
+
+    // Tag (인덱싱 대상)
+    @Column(tag = true)
+    private String factoryId;
+
+    @Column(tag = true)
+    private String sensorId;
+
+    // Field (측정값)
+    @Column
+    private Double temperature;
+
+    @Column
+    private Double humidity;
+
+    // Timestamp
+    @Column(timestamp = true)
+    private Instant timestamp;
+}
+```
+
+### 5) 데이터 쓰기(Write) 및 집계 조회(Query) 서비스
+```java
+@Service
+@RequiredArgsConstructor
+@Slf4j
+public class SensorService {
+
+    private final InfluxDBClient influxDBClient;
+
+    @Value("${influxdb.bucket}")
+    private String bucket;
+
+    @Value("${influxdb.org}")
+    private String org;
+
+    // 1. 센서 데이터 단건/배치 비동기 쓰기
+    public void recordSensorData(String factoryId, String sensorId, double temp, double humidity) {
+        SensorMeasurement measurement = new SensorMeasurement(
+                factoryId,
+                sensorId,
+                temp,
+                humidity,
+                Instant.now()
+        );
+
+        // Point/POJO 기반 비동기 Non-blocking 배치 쓰기 지원
+        WriteApiBlocking writeApi = influxDBClient.getWriteApiBlocking();
+        writeApi.writeMeasurement(bucket, org, WritePrecision.NS, measurement);
+        log.info("센서 데이터 저장 완료: {}", measurement);
+    }
+
+    // 2. 최근 1시간 동안의 5분 단위 평균 온도 조회
+    public List<Double> getRecentAverageTemperature(String sensorId) {
+        String fluxQuery = String.format(
+                "from(bucket: \"%s\") " +
+                "|> range(start: -1h) " +
+                "|> filter(fn: (r) => r._measurement == \"environmental_sensor\") " +
+                "|> filter(fn: (r) => r.sensorId == \"%s\") " +
+                "|> filter(fn: (r) => r._field == \"temperature\") " +
+                "|> aggregateWindow(every: 5m, fn: mean, createEmpty: false)",
+                bucket, sensorId
+        );
+
+        QueryApi queryApi = influxDBClient.getQueryApi();
+        List<FluxTable> tables = queryApi.query(fluxQuery, org);
+
+        List<Double> result = new ArrayList<>();
+        for (FluxTable table : tables) {
+            for (FluxRecord record : table.getRecords()) {
+                Object value = record.getValue();
+                if (value instanceof Number num) {
+                    result.add(num.doubleValue());
+                }
+            }
+        }
+        return result;
+    }
+}
+```
+
+---
+
+## 6. 데이터 보관 주기(Retention Policy)와 다운샘플링(Downsampling)
+
+시계열 데이터는 시간이 지날수록 데이터량이 천문학적으로 불어난다. 이를 효율적으로 관리하기 위해 2가지 전략을 반드시 설정해야 한다.
+
+### 1) 보관 주기 (Retention Policy / TTL)
+Bucket 생성 시 데이터의 자동 폐기 시한을 지정한다.
+- 예: `raw-metrics` 버킷은 7일 후 자동 삭제 (`retention: 7d`)
+
+### 2) 다운샘플링 (Downsampling Task)
+7일이 지나 초 단위 원본 데이터는 삭제되더라도, 1년 뒤 통계를 위해 **"1시간 단위 평균값"** 은 장기 보관하고 싶을 때 사용한다.
+
+InfluxDB의 **Task(스케줄러)** 기능을 이용해 백그라운드에서 주기적으로 원본 데이터를 집계하여 장기 보관용 버킷(`long-term-metrics`, retention: 1년)으로 복사해 둔다.
+
+```flux
+// 1시간마다 실행되어 1시간 평균을 장기 보관 버킷으로 전송하는 Task
+option task = {name: "downsample_hourly_temp", every: 1h}
+
+from(bucket: "sensor-data")
+  |> range(start: -task.every)
+  |> filter(fn: (r) => r._measurement == "environmental_sensor")
+  |> filter(fn: (r) => r._field == "temperature")
+  |> aggregateWindow(every: 1h, fn: mean)
+  |> to(bucket: "sensor-data-aggregated-1y", org: "my-company")
+```
+
+---
+
+## 7. TSDB 선택 가이드 (InfluxDB vs Prometheus vs TimescaleDB)
+
+| 비교 항목 | InfluxDB | Prometheus | TimescaleDB |
+|-----------|----------|------------|-------------|
+| **기반 아키텍처** | 독자적인 시계열 스토리지 엔진 (TSM / IOx Apache Arrow) | 자체 로컬 시계열 파일 스토리지 | **PostgreSQL 기반 확장 익스텐션** |
+| **수집 방식** | **Push 방식** (클라이언트/앱이 전송) | **Pull 방식** (서버가 메트릭을 스크랩) | Push 방식 (일반 SQL INSERT) |
+| **장점** | IoT, 센서, 범용 이벤트 로그 등 다양한 도메인에 유연 | 쿠버네티스/마이크로서비스 메트릭 모니터링 표준 | **기존 PostgreSQL의 SQL, JOIN, 트랜잭션 그대로 사용 가능** |
+| **단점** | 오픈소스 클러스터링(분산 환경) 제약 | 메트릭 외 범용 이벤트 데이터 저장에 부적합 | 대규모 쓰기 성능이 순수 TSDB보다 다소 낮음 |
+
+---
+
+## 8. 실무 체크리스트
+
+- [ ] **Tag 카디널리티 검증**: UUID나 무작위 문자열처럼 무한히 증가하는 값을 Tag로 지정하지 않았는가?
+- [ ] **라인 프로토콜 공백 체크**: 태그와 필드 사이, 필드와 타임스탬프 사이의 공백 구분을 정확히 지켰는가?
+- [ ] **배치 쓰기(Batch Write) 활용**: 단건 쿼리 호출 대신 버퍼를 둔 비동기 배치 쓰기로 네트워크 I/O를 절약하고 있는가?
+- [ ] **Retention Policy 설정**: 버킷 생성 시 무기한 보관 대신 도메인에 맞는 적절한 보관 주기(7일, 30일 등)를 지정했는가?
+- [ ] **장기 데이터 다운샘플링**: 중요한 지표에 대해 Task를 통한 다운샘플링 파이프라인을 구축했는가?1c:[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"InfluxDB: 시계열 데이터베이스의 개념과 실무 활용\",\"description\":\"IoT 센서 데이터, 서버 모니터링 메트릭, 실시간 로그 수집에 특화된 Time-Series DB인 InfluxDB의 데이터 모델(Line Protocol, Tag vs Field)과 쿼리, Spring Boot 연동을 다룬다.\",\"datePublished\":\"2026-08-28\",\"url\":\"https://kaisa.co.kr/posts/db-06/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"db\",\"keywords\":\"db\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"InfluxDB: 시계열 데이터베이스의 개념과 실무 활용\",\"item\":\"https://kaisa.co.kr/posts/db-06/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L6",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2026-08-28"}]}],["$","h1",null,{"className":"blog-post__title","children":"InfluxDB: 시계열 데이터베이스의 개념과 실무 활용"}],["$","$L25",null,{"content":"$26"}],"$L27","$L28"]}]}]}]]
+29:I[44398,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/2yl2c4ss1jgbl.js","/_next/static/chunks/1ogvimk0-k2zc.js","/_next/static/chunks/370b3yrg4tur3.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],"default"]
+27:["$","$L29",null,{"pathKey":"db-06"}]
+28:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L6",null,{"href":"/posts/db-05/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"SQLite: 파일 하나로 충분한 임베디드 SQL"}]]}],null]}],["$","$L6",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
+22:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+2a:I[27201,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"IconMark"]
+1f:null
+24:[["$","title","0",{"children":"InfluxDB: 시계열 데이터베이스의 개념과 실무 활용 · Kaisa"}],["$","meta","1",{"name":"description","content":"IoT 센서 데이터, 서버 모니터링 메트릭, 실시간 로그 수집에 특화된 Time-Series DB인 InfluxDB의 데이터 모델(Line Protocol, Tag vs Field)과 쿼리, Spring Boot 연동을 다룬다."}],["$","meta","2",{"name":"application-name","content":"Kaisa"}],["$","meta","3",{"name":"robots","content":"index, follow"}],["$","meta","4",{"name":"naver-site-verification","content":"4bc13b857695ff44988c260cb26124eedbcda90e"}],["$","link","5",{"rel":"canonical","href":"https://kaisa.co.kr/posts/db-06/"}],["$","meta","6",{"property":"og:title","content":"InfluxDB: 시계열 데이터베이스의 개념과 실무 활용 · Kaisa"}],["$","meta","7",{"property":"og:description","content":"IoT 센서 데이터, 서버 모니터링 메트릭, 실시간 로그 수집에 특화된 Time-Series DB인 InfluxDB의 데이터 모델(Line Protocol, Tag vs Field)과 쿼리, Spring Boot 연동을 다룬다."}],["$","meta","8",{"property":"og:url","content":"https://kaisa.co.kr/posts/db-06/"}],["$","meta","9",{"property":"og:site_name","content":"Kaisa"}],["$","meta","10",{"property":"og:locale","content":"ko_KR"}],["$","meta","11",{"property":"og:type","content":"article"}],["$","meta","12",{"name":"twitter:card","content":"summary"}],["$","meta","13",{"name":"twitter:title","content":"InfluxDB: 시계열 데이터베이스의 개념과 실무 활용 · Kaisa"}],["$","meta","14",{"name":"twitter:description","content":"IoT 센서 데이터, 서버 모니터링 메트릭, 실시간 로그 수집에 특화된 Time-Series DB인 InfluxDB의 데이터 모델(Line Protocol, Tag vs Field)과 쿼리, Spring Boot 연동을 다룬다."}],["$","link","15",{"rel":"shortcut icon","href":"/img/common/favicon.ico"}],["$","link","16",{"rel":"icon","href":"/img/common/favicon.ico"}],["$","link","17",{"rel":"apple-touch-icon","href":"/img/common/favicon.ico"}],["$","$L2a","18",{}]]
