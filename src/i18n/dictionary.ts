@@ -11,6 +11,16 @@ export const dictionary: Record<string, LocaleEntry> = {
     "zh": "文章",
     "hi": "पोस्ट"
   },
+  "Chat": {
+    "ko": "채팅",
+    "zh": "聊天",
+    "hi": "चैट"
+  },
+  "Live Chat": {
+    "ko": "실시간 채팅",
+    "zh": "实时聊天",
+    "hi": "लाइव चैट"
+  },
   "Board": {
     "ko": "게시판",
     "zh": "留言板",

@@ -2,6 +2,7 @@ import type {Locale} from './types';
 
 export const LOCALE_STORAGE_KEY = 'kaisa-locale';
 export const COUNTRY_STORAGE_KEY = 'kaisa-country';
+export const IP_STORAGE_KEY = 'kaisa-ip';
 
 /** Default for first paint / unknown — posts are Korean. */
 export const DEFAULT_LOCALE: Locale = 'ko';
@@ -54,18 +55,24 @@ export function localeFromNavigator(
   return null;
 }
 
-export async function fetchCountryCode(): Promise<string | null> {
+export async function fetchCountryAndIp(): Promise<{country: string | null; ip: string | null}> {
   try {
     const res = await fetch('https://api.country.is/', {
       signal: AbortSignal.timeout(4000),
     });
-    if (!res.ok) return null;
-    const data = (await res.json()) as {country?: string};
+    if (!res.ok) return {country: null, ip: null};
+    const data = (await res.json()) as {country?: string; ip?: string};
     const country = typeof data.country === 'string' ? data.country.trim().toUpperCase() : '';
-    return country || null;
+    const ip = typeof data.ip === 'string' ? data.ip.trim() : '';
+    return {country: country || null, ip: ip || null};
   } catch {
-    return null;
+    return {country: null, ip: null};
   }
+}
+
+export async function fetchCountryCode(): Promise<string | null> {
+  const {country} = await fetchCountryAndIp();
+  return country;
 }
 
 function readSession(key: string): string | null {
@@ -89,7 +96,11 @@ export function peekStoredLocale(): Locale | null {
   return isLocale(cached) ? cached : null;
 }
 
-export function persistLocale(locale: Locale, country: string | null): void {
+export function peekStoredIp(): string | null {
+  return readSession(IP_STORAGE_KEY);
+}
+
+export function persistLocale(locale: Locale, country: string | null, ip?: string | null): void {
   writeSession(LOCALE_STORAGE_KEY, locale);
   if (country) writeSession(COUNTRY_STORAGE_KEY, country);
   else {
@@ -99,6 +110,7 @@ export function persistLocale(locale: Locale, country: string | null): void {
       // ignore
     }
   }
+  if (ip) writeSession(IP_STORAGE_KEY, ip);
 }
 
 /**
@@ -106,23 +118,24 @@ export function persistLocale(locale: Locale, country: string | null): void {
  * 2) navigator.language
  * 3) IP country (fallback)
  */
-export async function resolveLocale(): Promise<{locale: Locale; country: string | null}> {
+export async function resolveLocale(): Promise<{locale: Locale; country: string | null; ip?: string | null}> {
   const cachedLocale = readSession(LOCALE_STORAGE_KEY);
   const cachedCountry = readSession(COUNTRY_STORAGE_KEY);
+  const cachedIp = readSession(IP_STORAGE_KEY);
 
   if (isLocale(cachedLocale)) {
-    return {locale: cachedLocale, country: cachedCountry};
+    return {locale: cachedLocale, country: cachedCountry, ip: cachedIp};
   }
 
   const fromNav = localeFromNavigator();
+  const {country, ip} = await fetchCountryAndIp();
+
   if (fromNav) {
-    const country = await fetchCountryCode();
-    persistLocale(fromNav, country);
-    return {locale: fromNav, country};
+    persistLocale(fromNav, country, ip);
+    return {locale: fromNav, country, ip};
   }
 
-  const country = await fetchCountryCode();
   const locale = countryToLocale(country);
-  persistLocale(locale, country);
-  return {locale, country};
+  persistLocale(locale, country, ip);
+  return {locale, country, ip};
 }

@@ -14,6 +14,11 @@ const NAV = [
     match: (path: string) => path === '/' || path.startsWith('/posts'),
   },
   // {
+  //   href: '/chat/',
+  //   labelKey: 'Chat',
+  //   match: (path: string) => path.startsWith('/chat'),
+  // },
+  // {
   //   href: '/board/',
   //   labelKey: 'Board',
   //   match: (path: string) => path.startsWith('/board'),
@@ -63,22 +68,23 @@ export default function Header() {
     return () => document.removeEventListener('pointerdown', onPointerDown);
   }, [open]);
 
-  const items = NAV.map((item) => {
-    const isActive = item.match(pathname);
+  const renderNavItems = () =>
+    NAV.map((item) => {
+      const isActive = item.match(pathname);
 
-    return (
-      <li key={item.href} className={isActive ? 'menu__item menu__item--active' : 'menu__item'}>
-        <Link
-          href={item.href}
-          className="menu__link"
-          aria-current={isActive ? 'page' : undefined}
-          onClick={() => setOpen(false)}
-        >
-          {t(item.labelKey)}
-        </Link>
-      </li>
-    );
-  });
+      return (
+        <li key={item.href} className={isActive ? 'menu__item menu__item--active' : 'menu__item'}>
+          <Link
+            href={item.href}
+            className="menu__link"
+            aria-current={isActive ? 'page' : undefined}
+            onClick={() => setOpen(false)}
+          >
+            {t(item.labelKey)}
+          </Link>
+        </li>
+      );
+    });
 
   const headerClass = [isWorks ? 'header--home' : 'header--sub', open ? 'header--nav-open' : '']
     .filter(Boolean)
@@ -95,7 +101,7 @@ export default function Header() {
           </p>
           <div className="header__actions">
             <nav className="menu menu--desktop" aria-label={t('Main navigation')}>
-              <ul className="menu__list">{items}</ul>
+              <ul className="menu__list">{renderNavItems()}</ul>
             </nav>
             <ThemeToggle />
             <button
@@ -122,7 +128,7 @@ export default function Header() {
           hidden={!open}
         >
           <div className="site-shell__inner header__nav-inner">
-            <ul className="menu__list menu__list--mobile">{items}</ul>
+            <ul className="menu__list menu__list--mobile">{renderNavItems()}</ul>
           </div>
         </nav>
       </div>
