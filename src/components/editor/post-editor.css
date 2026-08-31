@@ -1,0 +1,120 @@
+.post-editor {
+  min-height: min(65vh, 600px);
+  border: 1px solid var(--color-border, #e5e5e0);
+  border-radius: var(--kaisa-radius, 8px);
+  background: var(--color-bg, #fff);
+  overflow: hidden;
+}
+
+.post-editor--loading {
+  min-height: min(65vh, 600px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.post-editor .bytemd {
+  height: min(65vh, 600px);
+  border: 0;
+  border-radius: 0;
+  background: var(--color-bg, #fff);
+  color: var(--color-text, #1a1a18);
+}
+
+.post-editor .bytemd-toolbar {
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--color-border, #e5e5e0);
+  background: var(--color-bg-card, #f7f7f5);
+}
+
+.post-editor .bytemd-toolbar-icon:hover,
+.post-editor .bytemd-toolbar-icon-active {
+  background: rgba(255, 77, 0, 0.1);
+  color: var(--color-accent, #ff4d00);
+}
+
+.post-editor .bytemd-body {
+  height: calc(100% - 42px);
+}
+
+.post-editor .CodeMirror,
+.post-editor .bytemd-preview {
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+.post-editor .bytemd-preview {
+  padding: 18px 20px 28px;
+}
+
+.post-editor .bytemd-preview h2 {
+  font-size: 24px;
+  margin: 1.2em 0 0.6em;
+}
+
+.post-editor .bytemd-preview blockquote {
+  border-left: 3px solid var(--color-accent, #ff4d00);
+  color: var(--color-text-muted, #6f6a62);
+}
+
+.post-editor .bytemd-preview img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+[data-theme='dark'] .post-editor {
+  background: var(--color-bg-card);
+  border-color: var(--color-border);
+}
+
+[data-theme='dark'] .post-editor .bytemd {
+  background: var(--color-bg-card);
+  color: var(--color-text);
+}
+
+[data-theme='dark'] .post-editor .bytemd-toolbar {
+  background: var(--color-bg-elevated, #1c1c21);
+  border-bottom-color: var(--color-border);
+  color: var(--color-text);
+}
+
+[data-theme='dark'] .post-editor .bytemd-toolbar-icon {
+  color: var(--color-text);
+}
+
+[data-theme='dark'] .post-editor .CodeMirror {
+  background: #16161a;
+  color: #c9d1d9;
+}
+
+[data-theme='dark'] .post-editor .CodeMirror-gutters {
+  background: #16161a;
+  border-right-color: var(--color-border);
+}
+
+[data-theme='dark'] .post-editor .CodeMirror-cursor {
+  border-left-color: #c9d1d9;
+}
+
+[data-theme='dark'] .post-editor .CodeMirror-selected {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+[data-theme='dark'] .post-editor .bytemd-split .bytemd-editor {
+  border-right-color: var(--color-border);
+}
+
+[data-theme='dark'] .post-editor .bytemd-preview {
+  background: var(--color-bg);
+  color: var(--color-text);
+}
+
+[data-theme='dark'] .post-editor .bytemd-status {
+  background: var(--color-bg-elevated, #1c1c21);
+  border-top-color: var(--color-border);
+  color: var(--color-text-muted);
+}
+
+[data-theme='dark'] .post-editor .bytemd-preview blockquote {
+  color: var(--color-text-muted);
+}

@@ -6,6 +6,7 @@ import {Syne, DM_Sans} from 'next/font/google';
 import '@/assets/css/reset.css';
 import '@/assets/css/styles.css';
 import '@/assets/css/blog.css';
+import '@/assets/css/blog-board.css';
 import '@/ui-components/styles/ui-components.css';
 import '@/ui-kit/kit.css';
 import GoogleAnalytics from '@/components/layout/google-analytics';

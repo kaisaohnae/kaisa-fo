@@ -13,6 +13,11 @@ const NAV = [
     labelKey: 'Posts',
     match: (path: string) => path === '/' || path.startsWith('/posts'),
   },
+  // {
+  //   href: '/board/',
+  //   labelKey: 'Board',
+  //   match: (path: string) => path.startsWith('/board'),
+  // },
   {
     href: '/works/',
     labelKey: 'Works',
