@@ -1,28 +1,28 @@
 1:"$Sreact.fragment"
-2:I[79520,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],""]
-3:I[83661,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default"]
-4:I[39756,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default"]
-5:I[37457,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default"]
-6:I[22016,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/2rwbaf4ri2s44.js"],""]
-7:I[22067,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default"]
-8:I[78481,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default"]
-9:I[2105,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default"]
-a:I[69033,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/235_kxc74hr-9.js","/_next/static/chunks/1hr7-4fb6m83q.js"],"LocaleProvider"]
-b:I[45872,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/235_kxc74hr-9.js","/_next/static/chunks/1hr7-4fb6m83q.js"],"default"]
-c:I[20683,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/235_kxc74hr-9.js","/_next/static/chunks/1hr7-4fb6m83q.js"],"default"]
-d:I[86979,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/235_kxc74hr-9.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/0hs6l77ykwsoc.js"],"default"]
-13:I[68027,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default",1]
+2:I[79520,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],""]
+3:I[83661,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default"]
+4:I[39756,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default"]
+5:I[37457,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default"]
+6:I[22016,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/2rwbaf4ri2s44.js"],""]
+7:I[22067,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default"]
+8:I[78481,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default"]
+9:I[2105,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default"]
+a:I[69033,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/235_kxc74hr-9.js","/_next/static/chunks/1hr7-4fb6m83q.js"],"LocaleProvider"]
+b:I[45872,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/235_kxc74hr-9.js","/_next/static/chunks/1hr7-4fb6m83q.js"],"default"]
+c:I[20683,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/235_kxc74hr-9.js","/_next/static/chunks/1hr7-4fb6m83q.js"],"default"]
+d:I[86979,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/235_kxc74hr-9.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/0hs6l77ykwsoc.js"],"default"]
+13:I[68027,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default",1]
 :HL["/_next/static/chunks/3ortkzvy6360x.css","style"]
-:HL["/_next/static/chunks/0g93akm33ce_n.css","style"]
+:HL["/_next/static/chunks/0h6pid50w8_n4.css","style"]
 :HL["/_next/static/chunks/3siqlqjr1v4fe.css","style"]
 :HL["/_next/static/media/0c795a286deabae8-s.p.3vm0tq4e-zz_5.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/media/5c285b27cdda1fe8-s.p.2_mbdogr7ni8i.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-0:{"P":null,"c":["",""],"q":"","i":false,"f":[[["",{"children":["(site)",{"children":["__PAGE__",{}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3ortkzvy6360x.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0g93akm33ce_n.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/3siqlqjr1v4fe.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/3t-_5l233af4w.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1uymn__-_z4ug.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ko","className":"syne_53f86cd1-module__kiT3Eq__variable dm_sans_fd62f040-module__0jgVUW__variable","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","script",null,{"async":true,"src":"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2641553863829571","crossOrigin":"anonymous"}]}],["$","body",null,{"children":[["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var t=null;document.cookie.split(';').forEach(function(c){var p=c.trim().split('=');if(p[0]==='kaisa-theme')t=decodeURIComponent(p[1]||'');});document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();"}}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var KEY='kaisa-locale';var loc=null;try{loc=sessionStorage.getItem(KEY);}catch(e){}function fromNav(){var list=[navigator.language].concat(navigator.languages||[]);for(var i=0;i<list.length;i++){var l=String(list[i]||'').toLowerCase();if(l.indexOf('ko')===0)return 'ko';if(l.indexOf('zh')===0)return 'zh';if(l.indexOf('hi')===0)return 'hi';if(l.indexOf('en')===0)return 'en';}return null;}if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc=fromNav();if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc='ko';document.documentElement.lang=loc;}catch(e){document.documentElement.lang='ko';}})();"}}],[["$","$L2",null,{"src":"https://www.googletagmanager.com/gtag/js?id=G-2281QQ6XP4","strategy":"afterInteractive"}],["$","$L2",null,{"id":"google-analytics","strategy":"afterInteractive","children":"\n          window.dataLayer = window.dataLayer || [];\n          function gtag(){dataLayer.push(arguments);}\n          gtag('js', new Date());\n          gtag('config', 'G-2281QQ6XP4');\n        "}]],["$","$L3",null,{}],["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}],["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","$L7",null,{}],["$","$L8",null,{}],["$","$L9",null,{}]]}]]}]]}],{"children":[["$","$1","c",{"children":[[["$","script","script-0",{"src":"/_next/static/chunks/235_kxc74hr-9.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1hr7-4fb6m83q.js","async":true,"nonce":"$undefined"}]],["$","$La",null,{"children":["$","div",null,{"className":"site-layout","children":[["$","$Lb",null,{}],["$","$Lc",null,{"children":["$","$L4",null,{"parallelRouterKey":"children","error":"$d","errorStyles":[],"errorScripts":[["$","script","script-0",{"src":"/_next/static/chunks/0hs6l77ykwsoc.js","async":true}]],"template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.","$Le","주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}],"$Lf"]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],"$L10"]}]}]]}],{"children":["$L11",{},null,false,null]},null,false,null]},null,false,null],"$L12",false]],"m":"$undefined","G":["$13",["$L14","$L15","$L16"]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"fhC2c6bdb2aXNHl8GmIr0"}
-17:I[44604,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/235_kxc74hr-9.js","/_next/static/chunks/1hr7-4fb6m83q.js"],"default"]
-18:I[15539,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/235_kxc74hr-9.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/1yd9suit52yem.js"],"default"]
-76:I[97367,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"ViewportBoundary"]
-78:I[97367,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"MetadataBoundary"]
-79:"$Sreact.suspense"
+0:{"P":null,"c":["",""],"q":"","i":false,"f":[[["",{"children":["(site)",{"children":["__PAGE__",{}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3ortkzvy6360x.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0h6pid50w8_n4.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/3siqlqjr1v4fe.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/0qufxx6nl15ij.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1uymn__-_z4ug.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ko","className":"syne_53f86cd1-module__kiT3Eq__variable dm_sans_fd62f040-module__0jgVUW__variable","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","script",null,{"async":true,"src":"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2641553863829571","crossOrigin":"anonymous"}]}],["$","body",null,{"children":[["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var t=null;document.cookie.split(';').forEach(function(c){var p=c.trim().split('=');if(p[0]==='kaisa-theme')t=decodeURIComponent(p[1]||'');});document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();"}}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var KEY='kaisa-locale';var loc=null;try{loc=sessionStorage.getItem(KEY);}catch(e){}function fromNav(){var list=[navigator.language].concat(navigator.languages||[]);for(var i=0;i<list.length;i++){var l=String(list[i]||'').toLowerCase();if(l.indexOf('ko')===0)return 'ko';if(l.indexOf('zh')===0)return 'zh';if(l.indexOf('hi')===0)return 'hi';if(l.indexOf('en')===0)return 'en';}return null;}if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc=fromNav();if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc='ko';document.documentElement.lang=loc;}catch(e){document.documentElement.lang='ko';}})();"}}],[["$","$L2",null,{"src":"https://www.googletagmanager.com/gtag/js?id=G-2281QQ6XP4","strategy":"afterInteractive"}],["$","$L2",null,{"id":"google-analytics","strategy":"afterInteractive","children":"\n          window.dataLayer = window.dataLayer || [];\n          function gtag(){dataLayer.push(arguments);}\n          gtag('js', new Date());\n          gtag('config', 'G-2281QQ6XP4');\n        "}]],["$","$L3",null,{}],["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}],["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","$L7",null,{}],["$","$L8",null,{}],["$","$L9",null,{}]]}]]}]]}],{"children":[["$","$1","c",{"children":[[["$","script","script-0",{"src":"/_next/static/chunks/235_kxc74hr-9.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1hr7-4fb6m83q.js","async":true,"nonce":"$undefined"}]],["$","$La",null,{"children":["$","div",null,{"className":"site-layout","children":[["$","$Lb",null,{}],["$","$Lc",null,{"children":["$","$L4",null,{"parallelRouterKey":"children","error":"$d","errorStyles":[],"errorScripts":[["$","script","script-0",{"src":"/_next/static/chunks/0hs6l77ykwsoc.js","async":true}]],"template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.","$Le","주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}],"$Lf"]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],"$L10"]}]}]]}],{"children":["$L11",{},null,false,null]},null,false,null]},null,false,null],"$L12",false]],"m":"$undefined","G":["$13",["$L14","$L15","$L16"]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"eMStUu4a1lNzZxT0RaWzF"}
+17:I[44604,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/235_kxc74hr-9.js","/_next/static/chunks/1hr7-4fb6m83q.js"],"default"]
+18:I[15539,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/235_kxc74hr-9.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/1yd9suit52yem.js"],"default"]
+7a:I[97367,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"ViewportBoundary"]
+7c:I[97367,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"MetadataBoundary"]
+7d:"$Sreact.suspense"
 e:["$","br",null,{}]
 f:["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]
 10:["$","$L17",null,{}]
@@ -14054,7 +14054,1437 @@ resources:
 3. `/actuator/health`가 UP인지 확인한다.
 4. 위 체크리스트를 통과/미통과로 표시한다.
 5. (선택) Native 기동 시간을 JVM jar와 비교한다.
-69:T12d7,# Vue 3 Composition API로 시작하기
+69:T2d60,# Spring AOP — 횡단 관심사와 프록시 쉽게 이해하기
+
+> 요약: 공통 관심사(로깅, 트랜잭션 등)를 핵심 로직에서 분리하는 AOP의 원리와 실무 프록시 동작 방식을 친절하게 정리한다.
+
+---
+
+## 1. AOP란 무엇인가? (쉬운 비유로 시작하기)
+
+식당에서 주문을 받고 요리하는 상황을 떠올려 보자.
+
+- **주방장의 본업(핵심 로직)**: 주문받은 요리 맛있게 만들기 (주문 생성, 결제 승인, 회원 가입 등)
+- **공통 부가 작업(횡단 관심사)**:
+  - 주방에 들어갈 때 손 소독하기 (인증/권한 검사)
+  - 요리 시작 시간과 끝난 시간 기록하기 (성능 측정 / 로깅)
+  - 재료가 상했으면 작업 취소하고 폐기하기 (트랜잭션 롤백 / 예외 처리)
+
+만약 100가지 메뉴를 만들 때마다 주방장이 일일이 손 소독 코드를 넣고, 스톱워치를 켜고 끄는 코드를 모든 요리 메서드에 직접 적는다면 어떻게 될까?
+
+```java
+// AOP 없이 작성한 비즈니스 코드의 비극
+public void orderMenu(OrderRequest req) {
+    // 1. 공통 부가 작업: 권한 검사
+    authService.checkAdmin();
+    // 2. 공통 부가 작업: 시간 측정 시작
+    long start = System.currentTimeMillis();
+
+    try {
+        // === [진짜 하고 싶었던 핵심 비즈니스 로직 2줄] ===
+        Order order = orderRepository.save(new Order(req));
+        paymentGateway.pay(order);
+        // ============================================
+    } catch (Exception e) {
+        // 3. 공통 부가 작업: 에러 로깅 & 알림
+        slackNotifier.sendError(e);
+        throw e;
+    } finally {
+        // 4. 공통 부가 작업: 실행 시간 로깅
+        long end = System.currentTimeMillis();
+        log.info("orderMenu 실행 시간: {}ms", (end - start));
+    }
+}
+```
+
+진짜 중요한 **주문과 결제 로직은 2줄**뿐인데, 부가 작업 코드가 앞뒤를 덮어버린다. 게다가 이런 메서드가 100개라면 시간 측정 방식을 바꿀 때 100개 메서드를 전부 수정해야 한다.
+
+이 문제를 해결하기 위해 등장한 것이 바로 **AOP(Aspect-Oriented Programming, 관점 지향 프로그래밍)** 다. 부가 기능(횡단 관심사)을 한곳으로 쏙 뽑아내어 모듈화하고, 핵심 비즈니스 로직은 본연의 역할에만 집중하게 만든다.
+
+---
+
+## 2. AOP 핵심 용어 5분 만에 마스터하기
+
+용어가 다소 낯설지만, 일상적인 개념에 대입하면 아주 단순하다.
+
+| 용어 | 쉬운 설명 | 일상 비유 | 스프링 코드 예시 |
+|------|-----------|-----------|------------------|
+| **Aspect (관점/부가기능 팩)** | 부가 기능들을 모아놓은 모듈 클래스 | '보안/위생 관리 규정집' | `@Aspect @Component class LoggingAspect` |
+| **Advice (언제 + 무엇을 할지)** | 실제로 실행될 부가 기능 코드 | '요리 전 손 씻기', '요리 후 뒷정리' | `@Before`, `@After`, `@Around` 메서드 |
+| **Join Point (끼어들 수 있는 지점)** | 부가 기능을 끼워 넣을 수 있는 모든 위치 | 레시피의 각 단계 (재료 손질 전, 불 켜기 전 등) | 스프링에서는 **메서드 실행 시점** |
+| **Pointcut (어디에 끼워 넣을지)** | 수많은 메서드 중 실제로 적용할 타깃을 고르는 필터 | '불을 쓰는 모든 요리'만 선택 | `@annotation(MeasureTime)` |
+| **Target (대상 객체)** | 부가 기능을 적용받는 순수 비즈니스 객체 | 순수 요리 레시피 | `OrderService`, `MemberService` |
+| **Proxy (대리자/가짜 객체)** | 타깃 앞에서 부가 기능을 먼저 가로채 실행해 주는 비서 | 주방장 앞에 서서 스톱워치 재주는 보조 요리사 | 스프링이 자동 생성하는 CGLIB 프록시 객체 |
+
+---
+
+## 3. 스프링 AOP의 비밀: '프록시(Proxy)'란?
+
+스프링 AOP는 마법이 아니다. **대리인(Proxy) 객체**를 중간에 세워서 작동한다.
+
+우리가 `@Autowired OrderService orderService`로 주입받는 객체는 실제 `OrderService`가 아니라, 스프링이 감싸서 만든 **가짜 껍데기(Proxy 객체)** 다.
+
+```
+[클라이언트(Controller)] 
+       │ 
+       ▼ (1) orderService.order() 호출
+[OrderService 프록시 (가짜 객체)] 
+       │  ├─▶ [시간 측정 시작!] (Advice 실행)
+       │  ▼ (2) 진짜 메서드 실행 위임
+[OrderService 원본 (진짜 타깃 객체)] 
+       │  ├─▶ 핵심 주문 로직 실행
+       │  ▼ (3) 결과 반환
+[OrderService 프록시 (가짜 객체)] 
+       │  ├─▶ [시간 측정 종료 & 로그 출력!] (Advice 실행)
+       ▼ (4) 최종 반환
+[클라이언트(Controller)]
+```
+
+### 프록시 생성 방식 (CGLIB)
+Spring Boot는 기본적으로 **CGLIB**라는 바이트코드 조작 기술을 사용한다. 타깃 클래스를 상속받아 자식 클래스 프록시를 만들기 때문에, 인터페이스가 없어도 일반 클래스에 AOP를 바로 적용할 수 있다.
+
+---
+
+## 4. Advice 종류 5가지 한눈에 보기
+
+| Advice 어노테이션 | 실행 타이밍 | 주로 사용하는 곳 |
+|-------------------|-------------|------------------|
+| `@Before` | 타깃 메서드가 실행되기 **직전** | 권한 체크, 요청 파라미터 유효성 사전 검사 |
+| `@AfterReturning` | 타깃 메서드가 **정상적으로 끝난 직후** | 반환값 로깅, 성공 감사 로그 기록 |
+| `@AfterThrowing` | 타깃 메서드에서 **예외가 터졌을 때** | 에러 슬랙 알림, 예외 변환 |
+| `@After` | 성공/예외 상관없이 **메서드가 끝날 때** (finally) | 사용했던 리소스 정리 |
+| **`@Around`** | **메서드 실행 전 + 후 전체를 감쌈** | **실행 시간 측정, 트랜잭션, 캐싱, 재시도 로직 (가장 많이 씀)** |
+
+---
+
+## 5. 실전 예제: 내 손으로 직접 만드는 `@MeasureTime` (시간 측정 AOP)
+
+실무에서 가장 유용하게 쓰이는 **커스텀 어노테이션 기반 시간 측정 AOP**를 단계별로 만들어 보자.
+
+### Step 1. 커스텀 어노테이션 만들기
+메서드 위에 붙일 스티커 같은 어노테이션을 정의한다.
+
+```java
+package com.example.annotation;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+@Target(ElementType.METHOD) // 메서드에 붙이겠다고 선언
+@Retention(RetentionPolicy.RUNTIME) // 런타임까지 유지
+public @interface MeasureTime {
+    String value() default ""; // 작업 이름 (옵션)
+}
+```
+
+### Step 2. Aspect(부가기능 처리기) 만들기
+
+```java
+package com.example.aop;
+
+import com.example.annotation.MeasureTime;
+import lombok.extern.slf4j.Slf4j;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.springframework.stereotype.Component;
+
+@Slf4j
+@Aspect      // 1. AOP 설정 클래스임을 명시
+@Component   // 2. 스프링 빈으로 등록
+public class ExecutionTimeAspect {
+
+    // @MeasureTime 어노테이션이 붙은 메서드 전후(@Around)에 이 로직을 끼워넣음
+    @Around("@annotation(measureTime)")
+    public Object measureExecutionTime(ProceedingJoinPoint joinPoint, MeasureTime measureTime) throws Throwable {
+        String taskName = measureTime.value().isBlank() 
+                ? joinPoint.getSignature().toShortString() 
+                : measureTime.value();
+
+        long startTime = System.currentTimeMillis();
+        log.info("[시작] {}", taskName);
+
+        try {
+            // 진짜 타깃 메서드를 실행하는 핵심 코드!
+            Object result = joinPoint.proceed();
+            return result;
+        } finally {
+            long totalTime = System.currentTimeMillis() - startTime;
+            if (totalTime > 1000) {
+                log.warn("[경고: 느린 작업] {} 완료! 소요시간: {}ms", taskName, totalTime);
+            } else {
+                log.info("[완료] {} 완료! 소요시간: {}ms", taskName, totalTime);
+            }
+        }
+    }
+}
+```
+
+### Step 3. 서비스 코드에 스티커처럼 붙이기
+
+```java
+@Service
+@RequiredArgsConstructor
+public class OrderService {
+
+    private final OrderRepository orderRepository;
+
+    @MeasureTime("전체 주문 통계 집계")
+    public List<OrderSummary> calculateMonthlyReport(int year, int month) {
+        // 복잡하고 오래 걸리는 비즈니스 쿼리 실행...
+        return orderRepository.getMonthlyReport(year, month);
+    }
+}
+```
+
+비즈니스 코드는 시간 측정 관련 코드가 1줄도 없이 순수하게 유지된다.
+
+---
+
+## 6. 실무 주의사항: 내부 호출(Self-Invocation)의 덫
+
+AOP를 처음 쓸 때 가장 많이 겪는 미스터리한 버그가 바로 **같은 클래스 내부 호출 문제**다.
+
+### 왜 내부 호출은 AOP가 안 먹힐까?
+
+```java
+@Service
+public class OrderService {
+
+    public void createOrder() {
+        System.out.println("1. 주문 생성 로직");
+        
+        // 같은 클래스 안의 메서드를 호출함 (this.sendEmail())
+        this.sendEmail(); 
+    }
+
+    @MeasureTime("이메일 발송 시간 측정") // <- 동작하지 않음!
+    public void sendEmail() {
+        System.out.println("2. 이메일 발송 로직");
+    }
+}
+```
+
+**이유:**
+외부(`Controller`)에서 `createOrder()`를 호출할 때는 **프록시(대리인)** 를 거친다. 하지만 `createOrder()` 내부에서 `sendEmail()`을 부를 때는 프록시가 아니라 **자기 자신(`this`)의 원본 메서드를 직접 호출**해 버리기 때문에 AOP 부가기능이 완전히 무시된다.
+
+```
+[외부 호출] ──▶ [OrderService Proxy] ──▶ [OrderService 원본: createOrder()]
+                                                     │
+                                            (this.sendEmail 직접 호출)
+                                                     ▼
+                                          [OrderService 원본: sendEmail()] 
+                                          ※ Proxy를 거치지 않아 AOP 동작 안 함!
+```
+
+### 해결책: 가장 깔끔한 방법은 '클래스 분리'
+역할에 맞게 메일 발송 로직을 별도의 `NotificationService` 클래스로 분리하고 주입받아 호출하면 자연스럽게 프록시를 거치게 된다.
+
+```java
+@Service
+@RequiredArgsConstructor
+public class OrderService {
+    private final NotificationService notificationService; // 별도 빈 주입
+
+    public void createOrder() {
+        System.out.println("1. 주문 생성");
+        notificationService.sendEmail(); // 프록시를 통해 호출되므로 AOP 정상 작동!
+    }
+}
+```
+
+---
+
+## 7. 핵심 요약 및 팁
+
+1. **AOP는 횡단 관심사(로깅, 트랜잭션, 보안 등)를 깔끔하게 분리**해 주는 기술이다.
+2. 스프링은 **프록시(대리 객체)** 를 통해 타깃 메서드 앞뒤에 Advice를 끼워 넣는다.
+3. 실무에서는 복잡한 Pointcut 표현식보다 **커스텀 어노테이션(`@annotation`)** 을 만들어 필요한 곳에 명시적으로 붙이는 방식이 훨씬 안전하다.
+4. `private` 메서드나 같은 클래스 내부 호출(`this.method()`)은 프록시를 거치지 않으므로 AOP가 적용되지 않는다.
+
+---
+
+## 연습
+
+1. Controller 메서드 진입 시 요청 파라미터를 예쁘게 출력해 주는 `@RequestLog` AOP를 구현해 본다.
+2. 실행 중 예외가 발생하면 콘솔에 에러 메시지와 함께 실행 메서드명을 출력하는 `@AfterThrowing` Advice를 작성해 본다.
+6a:T3458,# Spring Boot 실무 디자인 패턴 — 자주 쓰는 핵심 패턴 7가지
+
+> 요약: 전략, 템플릿 콜백, 프록시, 어댑터, 옵저버 등 스프링 내부 원리와 실무 비즈니스 코드에 녹아 있는 디자인 패턴을 쉽게 풀어본다.
+
+---
+
+## 1. 디자인 패턴, 왜 알아야 할까?
+
+디자인 패턴은 과거의 뛰어난 개발자들이 수많은 삽질 끝에 발견한 **"자주 발생하는 소프트웨어 설계 문제의 모범 정답지(Best Practice)"** 다.
+
+특히 **Spring Framework는 디자인 패턴의 거대한 집약체**다.
+- 스프링이 왜 이렇게 만들어졌는지 내부 원리를 쉽게 이해할 수 있다.
+- 지저분한 `if-else` 분기와 강한 결합도를 없애고 깔끔하고 유지보수하기 쉬운 코드를 짤 수 있다.
+
+실무에서 가장 유용하게 쓰이는 7가지 핵심 패턴을 비유와 실제 코드로 살펴보자.
+
+---
+
+## 2. 싱글톤 패턴 (Singleton Pattern)
+
+### 쉽게 이해하기
+사무실에 100명의 직원이 있다고 해서 **프린터를 100대 살 필요는 없다**. 1대만 두고 모두가 공유해서 쓰는 것이 자원과 비용 면에서 효율적이다.
+
+### 스프링에서의 싱글톤
+스프링의 `@Service`, `@Repository`, `@Component` 등 모든 Bean은 기본적으로 **단 1개만 생성되어 모든 요청 스레드가 공유하는 싱글톤(Singleton)** 으로 관리된다.
+
+```java
+@Service
+public class UserService {
+    // 스프링 컨테이너가 애플리케이션 실행 시 딱 1개의 인스턴스만 생성하여 관리함
+    private final UserRepository userRepository;
+
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+}
+```
+
+### ⚠️ 실무 주의점: 상태를 가지면 안 된다 (Stateless)
+싱글톤 객체는 여러 사용자(스레드)가 동시에 사용한다. 따라서 **인스턴스 변수에 특정 사용자의 상태나 데이터를 저장하면 다른 사용자의 데이터와 섞이는 치명적인 동시성 버그가 발생**한다.
+
+```java
+// [절대 금지: 상태를 필드에 저장]
+@Service
+public class BadOrderService {
+    private String currentUsername; // 동시 요청 시 다른 사람의 이름으로 덮어씌워짐!
+
+    public void order(String username) {
+        this.currentUsername = username;
+        // ...
+    }
+}
+
+// [올바른 방법: 지역 변수나 파라미터 사용]
+@Service
+public class GoodOrderService {
+    public void order(String username) {
+        // 메서드 내부 로컬 변수로 안전하게 처리 (스레드별 독립 메모리 사용)
+    }
+}
+```
+
+---
+
+## 3. 전략 패턴 (Strategy Pattern)
+
+### 쉽게 이해하기
+우리가 네비게이션 앱을 쓸 때 목적지는 같지만 **길 찾기 전략**을 바꿀 수 있다:
+- '최소 시간 경로'
+- '무료 도로 우선'
+- '최단 거리 경로'
+
+상황에 따라 다른 알고리즘을 부품(전략)처럼 갈아 끼울 수 있도록 만드는 패턴이다.
+
+### 실무 예제: 다중 결제 수단 처리 (`if-else` 없애기)
+카카오페이, 토스페이, 네이버페이 등 결제 수단이 늘어날 때 `switch-case`나 `if-else`로 도배하는 대신 전략 패턴을 쓰면 코드가 매우 깔끔해진다.
+
+#### 1) 공통 전략 인터페이스 정의
+```java
+public interface PaymentStrategy {
+    String getPaymentCode(); // "KAKAO", "TOSS" 등
+    void pay(int amount);
+}
+```
+
+#### 2) 각 결제 수단별 전략 클래스 구현
+```java
+@Component
+public class KakaoPayStrategy implements PaymentStrategy {
+    @Override
+    public String getPaymentCode() { return "KAKAO"; }
+
+    @Override
+    public void pay(int amount) {
+        System.out.println("카카오페이로 " + amount + "원 결제 API 호출");
+    }
+}
+
+@Component
+public class TossPayStrategy implements PaymentStrategy {
+    @Override
+    public String getPaymentCode() { return "TOSS"; }
+
+    @Override
+    public void pay(int amount) {
+        System.out.println("토스페이로 " + amount + "원 결제 API 호출");
+    }
+}
+```
+
+#### 3) 스프링의 마법: 모든 전략을 Map/List로 한 번에 주입받기
+스프링은 동일한 인터페이스를 구현한 모든 빈을 `List`나 `Map`으로 한꺼번에 주입해 주는 기능을 기본 제공한다.
+
+```java
+@Service
+public class PaymentService {
+
+    private final Map<String, PaymentStrategy> strategyMap;
+
+    // 스프링이 모든 PaymentStrategy 빈들을 찾아서 리스트로 꽂아줌
+    public PaymentService(List<PaymentStrategy> strategies) {
+        this.strategyMap = strategies.stream()
+                .collect(Collectors.toMap(PaymentStrategy::getPaymentCode, s -> s));
+    }
+
+    public void processPayment(String paymentCode, int amount) {
+        PaymentStrategy strategy = strategyMap.get(paymentCode);
+        if (strategy == null) {
+            throw new IllegalArgumentException("지원하지 않는 결제 수단: " + paymentCode);
+        }
+        
+        // if-else 없이 런타임에 알맞은 전략 실행!
+        strategy.pay(amount);
+    }
+}
+```
+
+> **장점**: 나중에 `NaverPayStrategy`가 추가되어도 `PaymentService` 코드는 1줄도 수정할 필요가 없다(**개방-폐쇄 원칙, OCP 달성**).
+
+---
+
+## 4. 템플릿 콜백 패턴 (Template Callback Pattern)
+
+### 쉽게 이해하기
+라면 끓이기의 전체 흐름(물 끓이기 ➔ 라면/스프 넣기 ➔ 익히기)은 정해져 있지만, **'중간에 넣는 토핑(계란, 치즈, 떡)'만 사용자가 원하는 대로 자유롭게 바꾸는 방식**이다.
+
+### 스프링에서의 템플릿 콜백
+- 매번 반복되는 번거로운 작업(DB 연결 열기, 트랜잭션 시작, 예외 처리, 연결 닫기)은 **스프링 템플릿**이 알아서 해준다.
+- 개발자는 **진짜 하고 싶은 비즈니스 람다(콜백 함수)** 만 넘기면 된다.
+
+대표적인 예가 `TransactionTemplate`, `JdbcTemplate`, `RedisTemplate`이다.
+
+```java
+@Service
+@RequiredArgsConstructor
+public class CouponService {
+
+    private final TransactionTemplate transactionTemplate;
+    private final CouponRepository couponRepository;
+
+    public void issueCouponWithManualTransaction(Long couponId) {
+        // [템플릿]: 트랜잭션 시작, 커밋, 롤백, 자원 반납 처리 자동화
+        // [콜백(람다)]: 내가 수행할 핵심 쿠폰 발급 로직만 쏙 집어넣음
+        transactionTemplate.execute(status -> {
+            Coupon coupon = couponRepository.findById(couponId).orElseThrow();
+            coupon.decreaseStock();
+            return couponRepository.save(coupon);
+        });
+    }
+}
+```
+
+---
+
+## 5. 프록시 & 데코레이터 패턴 (Proxy & Decorator Pattern)
+
+### 쉽게 이해하기
+비서가 사장님(원본 객체)을 대신하여:
+- 사장님이 바쁠 때 약속을 조율하고(접근 제어 ➔ **프록시 패턴**)
+- 사장님이 말한 내용을 예쁜 보고서 양식으로 포장해 준다(부가 기능 덧붙이기 ➔ **데코레이터 패턴**)
+
+### 스프링에서의 활용: `@Transactional`
+우리가 서비스 메서드 위에 `@Transactional`을 달면, 스프링은 프록시(비서) 객체를 만든다.
+
+```
+[호출자(Controller)] 
+        │
+        ▼
+[Service 프록시 객체 (비서)] ───▶ (1) 트랜잭션 시작 (Begin Transaction)
+        │
+        ├────────────────────────▶ (2) 실제 Service 메서드 실행
+        │
+        ▼
+[Service 프록시 객체 (비서)] ───▶ (3) 성공 시 Commit / 예외 시 Rollback
+```
+
+비즈니스 코드에 `connection.setAutoCommit(false)` 같은 코드를 직접 쓰지 않아도 트랜잭션이 돌아가는 이유가 바로 이 프록시 패턴 덕분이다.
+
+---
+
+## 6. 어댑터 패턴 (Adapter Pattern)
+
+### 쉽게 이해하기
+해외여행 갈 때 110V 콘센트에 220V 플러그를 꽂으려면 **돼지코 변환기(어댑터)** 가 필요하다. 인터페이스 규격이 맞지 않는 두 객체를 이어주는 중간 다리 역할을 한다.
+
+### 실무 예제: 외부 SMS 알림 업체 연동
+
+우리 시스템은 `NotificationSender` 인터페이스를 표준으로 쓰는데, 외부 SMS 유료 라이브러리(`CoolSmsSdk`)의 메서드 이름과 파라미터가 완전히 다를 때 어댑터를 사용한다.
+
+```java
+// 1. 우리 시스템 표준 인터페이스
+public interface NotificationSender {
+    void sendNotification(String target, String message);
+}
+
+// 2. 외부 업체 라이브러리 (직접 수정 불가능한 클래스)
+public class ExternalSmsClient {
+    public void transmit(String phoneNumber, String bodyText, String authKey) {
+        // 타사 SMS 전송 로직
+    }
+}
+
+// 3. 둘을 연결해 주는 어댑터 클래스
+@Component
+public class SmsAdapter implements NotificationSender {
+
+    private final ExternalSmsClient externalClient = new ExternalSmsClient();
+
+    @Override
+    public void sendNotification(String target, String message) {
+        // 우리 시스템의 규격을 타사 규격으로 변환해서 호출
+        externalClient.transmit(target, message, "SECRET_KEY_123");
+    }
+}
+```
+
+나중에 SMS 업체를 다른 곳으로 바꾸더라도 비즈니스 로직은 손대지 않고 `Adapter` 클래스만 새로 만들면 된다.
+
+---
+
+## 7. 옵저버 / 이벤트 발행-구독 패턴 (Observer Pattern)
+
+### 쉽게 이해하기
+유튜브 채널을 **구독(Subscribe)** 해 두면, 크리에이터가 새 영상을 **발행(Publish)** 했을 때 구독자들에게 자동으로 알림이 가는 구조다.
+
+### 실무 예제: 회원 가입 후 메일 발송 + 쿠폰 지급
+회원 가입 메서드 안에서 이메일 전송, 슬랙 알림, 가입 축하 쿠폰 지급을 전부 직접 호출하면 코드가 복잡해지고, 메일 서버가 다운되었을 때 회원 가입까지 실패하게 된다.
+
+이를 **이벤트(옵저버) 패턴**으로 분리하면 결합도를 깔끔하게 끊을 수 있다.
+
+#### 1) 이벤트 DTO (Record)
+```java
+public record UserSignedUpEvent(Long userId, String email, String name) {}
+```
+
+#### 2) 이벤트 발행자 (Publisher)
+```java
+@Service
+@RequiredArgsConstructor
+public class UserService {
+
+    private final UserRepository userRepository;
+    private final ApplicationEventPublisher eventPublisher; // 스프링 기본 이벤트 발행기
+
+    @Transactional
+    public Long signUp(SignUpRequest request) {
+        User user = userRepository.save(new User(request));
+
+        // "회원 가입 완료됨!"이라는 이벤트만 세상에 알리고 끝냄
+        eventPublisher.publishEvent(new UserSignedUpEvent(user.getId(), user.getEmail(), user.getName()));
+        return user.getId();
+    }
+}
+```
+
+#### 3) 이벤트 구독자 (Listeners)
+```java
+@Component
+@Slf4j
+public class WelcomeNotificationListener {
+
+    // 회원가입 트랜잭션이 성공적으로 DB에 커밋된 직후에 비동기로 실행
+    @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
+    @Async
+    public void sendWelcomeEmail(UserSignedUpEvent event) {
+        log.info("{} 님에게 웰컴 메일 발송 완료", event.email());
+    }
+
+    @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
+    @Async
+    public void issueWelcomeCoupon(UserSignedUpEvent event) {
+        log.info("{} 님에게 가입 축하 10,000원 쿠폰 지급 완료", event.name());
+    }
+}
+```
+
+---
+
+## 8. 빌더 패턴 (Builder Pattern)
+
+### 쉽게 이해하기
+생성자에 파라미터가 7~8개씩 있으면 어떤 값이 나이이고 어떤 값이 전화번호인지 헷갈려서 인자 순서를 잘못 넣는 실수를 하기 쉽다. 빌더 패턴은 **각 파라미터에 이름을 붙여서 명확하고 안전하게 객체를 조립**할 수 있게 해준다.
+
+```java
+// [생성자의 위험성: 순서 헷갈림]
+new UserDto("홍길동", "010-1234-5678", "hong@test.com", 25, true);
+
+// [빌더 패턴: 가독성과 안전성 극대화]
+UserDto dto = UserDto.builder()
+        .name("홍길동")
+        .phone("010-1234-5678")
+        .email("hong@test.com")
+        .age(25)
+        .isVerified(true)
+        .build();
+```
+
+---
+
+## 9. 핵심 요약표
+
+| 디자인 패턴 | 일상 비유 | 스프링 & 실무 적용 사례 |
+|-------------|-----------|------------------------|
+| **싱글톤 (Singleton)** | 회사 공용 복합기 | Spring IoC Container Bean 기본 스코프 |
+| **전략 (Strategy)** | 네비게이션 경로 선택 | 다중 결제/알림 처리 (`Map<Code, Strategy>`) |
+| **템플릿 콜백 (Template Callback)** | 토핑만 바꾸는 라면 레시피 | `TransactionTemplate`, `JdbcTemplate` |
+| **프록시 (Proxy)** | 스케줄을 관리해 주는 비서 | `@Transactional`, `@Cacheable`, AOP |
+| **어댑터 (Adapter)** | 220V 돼지코 변환기 | 스프링 MVC `HandlerAdapter`, 서드파티 SDK 래핑 |
+| **옵저버 (Observer)** | 유튜브 채널 구독 알림 | `ApplicationEventPublisher`, `@EventListener` |
+| **빌더 (Builder)** | 레고 블록 조립 | Lombok `@Builder`, `RestClient.builder()` |
+
+---
+
+## 연습
+
+1. `DiscountPolicy` 인터페이스를 만들고, 정액 할인(`1000원 할인`)과 정률 할인(`10% 할인`) 전략을 구현한 뒤 주문 금액에 따라 전략을 적용해 본다.
+2. 회원 탈퇴 시 `UserDeletedEvent`를 발행하고, 탈퇴 감사 로그와 관련 파일 정리 작업을 이벤트 리스너로 분리해 본다.
+6b:T56f4,# JPA & Hibernate — 영속성 컨텍스트부터 실무 성능 최적화까지
+
+> 요약: 영속성 컨텍스트 생명주기, 변경 감지, N+1 문제 해결(Fetch Join vs EntityGraph vs BatchSize), 컬렉션 페이징 한계, 낙관적/비관적 락, OSIV 전략을 이해한다.
+
+---
+
+## 1. ORM의 본질과 패러다임의 불일치
+
+객체지향 언어는 **추상화, 캡슐화, 상속, 다형성**을 통해 유연한 도메인 모델을 만드는 것이 목표이고, 관계형 데이터베이스(RDB)는 **데이터의 정규화와 무결성, 집합 중심의 효율적인 조회**가 목표다. 이 둘 사이에는 태생적인 **패러다임의 불일치(Paradigm Mismatch)** 가 존재한다.
+
+| 관점 | 객체지향 (Java) | 관계형 데이터베이스 (RDB) |
+|------|-----------------|---------------------------|
+| **지향점** | 추상화, 캡슐화, 다형성, 객체 간 참조 | 데이터 무결성, 정규화, 테이블 간 외래키(FK) 조인 |
+| **연관관계** | **단방향 참조** (`order.getMember()`) | **양방향 조인** (`JOIN ON order.member_id = member.id`) |
+| **식별자** | 객체 동일성 (`==`, 메모리 주소) | 기본키 (Primary Key, 테이블 레코드 고유값) |
+| **데이터 탐색** | 객체 그래프 탐색 (`order.getDelivery().getAddress()`) | SQL 쿼리로 조회된 레코드셋에 국한 |
+| **상속** | 상속 관계 지원 (`extends`) | 슈퍼타입/서브타입 모델링 (테이블 단편화) |
+
+과거에는 이 차이를 메우기 위해 SQL 매퍼(MyBatis, JdbcTemplate)를 사용하며 개발자가 객체와 테이블 간의 매핑 코드를 일일이 작성했다. 
+
+**ORM(Object-Relational Mapping)** 은 이 패러다임 불일치를 프레임워크가 중간에서 해결해 주는 기술이다. 자바 진영의 표준 명세가 **JPA(Jakarta Persistence API)** 이며, 가장 널리 쓰이는 표준 구현체가 **Hibernate**다. Spring Boot 환경에서는 이를 한 번 더 편리하게 감싼 **Spring Data JPA**를 주로 사용한다.
+
+---
+
+## 2. 영속성 컨텍스트(Persistence Context)의 내부 메커니즘
+
+영속성 컨텍스트는 **"엔티티를 영구 저장하는 환경"** 이라는 뜻의 논리적인 개념이다. `EntityManager`를 통해 접근하며, 애플리케이션과 데이터베이스 사이에서 버퍼(Buffer) 및 캐시(Cache) 역할을 수행한다.
+
+스프링 프레임워크에서는 **트랜잭션(`@Transactional`)의 시작부터 종료까지** 영속성 컨텍스트의 생명주기가 유지된다.
+
+```
+[클라이언트 요청] ──▶ [@Transactional Service] 
+                              │
+                              ▼
+                 ┌─────────────────────────────┐
+                 │    영속성 컨텍스트 (EntityManager)    │
+                 │  ┌───────────────────────┐  │
+                 │  │ 1차 캐시 (엔티티 / 스냅샷)  │  │
+                 │  ├───────────────────────┤  │
+                 │  │ 쓰기 지연 SQL 저장소       │  │
+                 │  └───────────────────────┘  │
+                 └──────────────┬──────────────┘
+                                │ flush & commit
+                                ▼
+                         [Database (RDB)]
+```
+
+### 1) 1차 캐시와 동일성(Identity) 보장
+영속성 컨텍스트 내부에는 엔티티의 `@Id`(PK) 값을 Key로, 엔티티 인스턴스를 Value로 보관하는 **1차 캐시**가 존재한다.
+
+```java
+// 동일 트랜잭션 내부
+Member member1 = memberRepository.findById(1L).orElseThrow();
+Member member2 = memberRepository.findById(1L).orElseThrow();
+
+System.out.println(member1 == member2); // true (메모리 주소 일치)
+```
+
+1. `findById(1L)` 최초 호출 시 1차 캐시에 없으므로 DB `SELECT` 쿼리를 실행해 엔티티를 1차 캐시에 저장하고 반환한다.
+2. 두 번째 `findById(1L)` 호출 시 DB 쿼리를 전혀 날리지 않고 **1차 캐시에서 즉시 반환**한다.
+3. 동일 트랜잭션 내에서는 `==` 비교 시 **진정한 객체 동일성(Identity)** 이 보장된다.
+
+### 2) 쓰기 지연 (Transactional Write-Behind)
+`em.persist(entity)`나 `repository.save(entity)`를 호출한다고 해서 그 즉시 DB에 `INSERT` SQL이 나가지 않는다.
+
+```java
+@Transactional
+public void registerMembers() {
+    memberRepository.save(new Member("A"));
+    memberRepository.save(new Member("B"));
+    memberRepository.save(new Member("C"));
+    // 여기까지 DB에 INSERT 쿼리가 아직 1건도 나가지 않음!
+    // 쿼리는 영속성 컨텍스트의 '쓰기 지연 SQL 저장소'에 차곡차곡 쌓임
+    
+    // 트랜잭션이 끝나는 시점에 모아둔 3개의 INSERT 쿼리가 DB로 한 방에 전송(flush)됨
+}
+```
+
+> **주의 (IDENTITY 전략 예외)**: MySQL의 `AUTO_INCREMENT`처럼 `@GeneratedValue(strategy = GenerationType.IDENTITY)`를 쓰는 경우, PK 값을 DB에 넣기 전까지는 알 수 없다. 영속성 컨텍스트는 1차 캐시의 키로 PK가 필수이기 때문에, `IDENTITY` 전략에 한해서는 `save()` 호출 즉시 `INSERT` 쿼리가 실행되어 쓰기 지연이 발생하지 않는다.
+
+### 3) 변경 감지 (Dirty Checking)의 구체적 동작 원리
+JPA에는 엔티티를 수정하는 `update()`나 `modify()` 같은 API가 존재하지 않는다.
+
+```java
+@Transactional
+public void updateMember(Long id, String newName) {
+    Member member = memberRepository.findById(id).orElseThrow();
+    member.changeName(newName); 
+    // memberRepository.save(member); -> 호출 불필요 (안티패턴)
+}
+```
+
+**내부 비교 순서:**
+1. **스냅샷 생성**: 1차 캐시에 엔티티가 최초로 로드(조회 또는 영속화)될 때, 그 시점의 상태를 그대로 복제한 **스냅샷(Snapshot)** 을 만든다.
+2. **트랜잭션 커밋 시점 `flush()` 발생**: 트랜잭션이 커밋되기 직전 영속성 컨텍스트가 자동으로 `flush()`를 실행한다.
+3. **상태 비교**: 현재 엔티티의 필드 값과 최초 스냅샷을 1:1로 대조하여 변경된 부분을 찾는다.
+4. **UPDATE 쿼리 생성**: 변경 사항이 있으면 `UPDATE` SQL을 만들어 쓰기 지연 SQL 저장소에 넣고 DB로 전송한다.
+
+#### 변경 감지 시 생성되는 쿼리 특성
+기본적으로 Hibernate는 **엔티티의 모든 컬럼을 UPDATE 대상**으로 삼는다.
+- **장점**: SQL 구문이 고정되어 데이터베이스 엔진 차원에서 쿼리를 파싱하고 캐싱(PreparedStatement 재사용)하기 유리하다.
+- **예외 처리 (`@DynamicUpdate`)**: 테이블의 컬럼 수가 30~50개 이상으로 매우 많고 빈번하게 일부 컬럼만 수정된다면, 엔티티 클래스 위에 `@DynamicUpdate`를 선언하여 실제 변경된 컬럼만 동적으로 `UPDATE` 구문을 만들도록 설정할 수 있다.
+
+### 4) Flush(플러시)의 정확한 개념
+`flush()`는 **영속성 컨텍스트의 변경 내용을 데이터베이스에 동기화(전송)하는 작업**이다.
+
+- **플러시가 일어나는 시점**:
+  1. 트랜잭션 커밋 직전 (자동)
+  2. JPQL 쿼리 실행 직전 (데이터 정합성을 위해 자동 실행)
+  3. `em.flush()` 직접 호출 시
+- **핵심**: 플러시는 DB 트랜잭션을 커밋하는 것이 아니다. 변경된 SQL들을 DB로 보내놓기만 한 상태이므로, 예외가 발생하면 **언제든지 롤백이 가능**하다.
+
+---
+
+## 3. 엔티티 생명주기 4가지 상태
+
+```
+       [ 비영속 (New) ]  ──────── em.persist() ────────▶  [ 영속 (Managed) ]
+              │                                                │
+              │                                                ├─ em.detach() / em.close() ─▶ [ 준영속 (Detached) ]
+              │                                                │
+              └──────── em.remove() ─────────────────────────▶ [ 삭제 (Removed) ]
+```
+
+| 상태 | 설명 | 특징 |
+|------|------|------|
+| **비영속 (New/Transient)** | `new` 키워드로 생성된 순수 자바 객체 | 영속성 컨텍스트 및 DB와 아무 관계 없음 |
+| **영속 (Managed)** | 영속성 컨텍스트에 의해 관리되는 상태 | 1차 캐시 등록, 변경 감지, 지연 로딩 대상 |
+| **준영속 (Detached)** | 한때 영속 상태였으나 컨텍스트에서 분리된 상태 | 1차 캐시에서 제거됨, 변경 감지 미동작 |
+| **삭제 (Removed)** | 삭제 대상으로 마킹된 상태 | 트랜잭션 커밋 시 DB `DELETE` 쿼리 실행 |
+
+### 준영속 상태를 다룰 때 주의할 점
+`em.merge(detachedEntity)`를 사용하면 준영속 엔티티의 정보로 새로운 영속 엔티티를 반환하지만, **모든 필드를 덮어쓰기 때문에 값이 없는 필드는 `null`로 갱신되는 위험**이 있다.
+
+따라서 실무에서는 `merge()` 대신 **식별자로 엔티티를 조회한 뒤 변경 감지(Dirty Checking)를 통해 필요한 필드만 직접 수정**하는 것이 원칙이다.
+
+---
+
+## 4. 연관관계 매핑과 방향성
+
+### 1) 단방향 매핑 vs 양방향 매핑
+- **단방향 매핑**: 한쪽 엔티티만 상대방을 참조하는 구조 (`Order` $\rightarrow$ `Member`). 객체 관계가 단순하고 직관적이다.
+- **양방향 매핑**: 양쪽 엔티티가 서로를 참조하는 구조 (`Order` $\leftrightarrow$ `Member`). 조회 편의성은 높지만 복잡도가 크게 증가한다.
+
+> **실무 대원칙**: 기본적으로 모든 연관관계는 **단방향 매핑**으로 설계한다. 비즈니스 요구사항상 반대편에서의 객체 그래프 탐색이 꼭 필요한 경우에만 제한적으로 양방향 매핑을 추가한다.
+
+### 2) 연관관계의 주인(Owner)과 `mappedBy`
+테이블은 외래키(FK) 1개로 양쪽 조인이 가능하다. 하지만 객체는 참조 변수가 양쪽에 각각 존재한다. 둘 중 **"누가 외래키를 관리(등록/수정)할 것인가"** 를 정해야 하며, 그 주체가 **연관관계의 주인**이다.
+
+- **연관관계의 주인**: 외래키(FK) 컬럼이 존재하는 테이블의 엔티티 (`@JoinColumn` 사용)
+- **주인이 아닌 쪽**: 조회만 가능 (`mappedBy` 속성으로 주인의 필드명을 지정)
+
+```java
+// [외래키를 가진 연관관계의 주인]
+@Entity
+public class Order {
+    @Id @GeneratedValue
+    private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id") // orders 테이블의 member_id FK 컬럼 관리
+    private Member member;
+}
+
+// [조회만 가능한 주인이 아닌 쪽]
+@Entity
+public class Member {
+    @Id @GeneratedValue
+    private Long id;
+
+    @OneToMany(mappedBy = "member") // Order 클래스의 'member' 필드에 의해 매핑됨
+    private List<Order> orders = new ArrayList<>();
+}
+```
+
+### 3) 양방향 연관관계 편의 메서드 작성법
+양방향 매핑 시 순수 자바 객체 상태를 고려해 양쪽 모두에 값을 세팅해 주는 **편의 메서드(Convenience Method)** 를 작성해야 테스트 및 영속화 전후에 문제가 생기지 않는다.
+
+```java
+public void addOrderItem(OrderItem item) {
+    this.orderItems.add(item);
+    item.assignOrder(this); // 양쪽 참조를 한 번에 세팅
+}
+```
+
+---
+
+## 5. 지연 로딩(LAZY)과 N+1 문제 해결하기
+
+### 1) 즉시 로딩(EAGER)의 위험성
+`@ManyToOne(fetch = FetchType.EAGER)`로 설정하면 부모 엔티티를 조회할 때 연관된 엔티티를 무조건 함께 조회한다.
+- JPQL을 실행할 때 JPQL은 SQL로 그대로 번역되어 부모만 먼저 조회(`SELECT * FROM orders`)한 뒤, 뒤늦게 EAGER 설정을 보고 연관 엔티티를 개별 조회(`SELECT * FROM member WHERE id = ?`)하는 N+1 문제가 무조건 발생한다.
+- **실무 원칙**: 모든 연관관계는 반드시 **`FetchType.LAZY`** 로 선언한다.
+
+### 2) N+1 문제란?
+1번의 쿼리로 N건의 데이터를 조회했을 때, 지연 로딩된 연관 엔티티를 사용하는 과정에서 **추가 쿼리가 N번 더 발생하는 성능 저하 현상**이다.
+
+```java
+// orders 목록 10건 조회 (쿼리 1회)
+List<Order> orders = orderRepository.findAll();
+
+for (Order order : orders) {
+    // Member는 프록시 객체 상태 -> 실제 필드 접근 시마다 SELECT 쿼리 발생! (10회)
+    System.out.println(order.getMember().getName()); 
+}
+// 총 실행된 쿼리: 1 + 10 = 11회
+```
+
+### 3) N+1 해결 전략 3가지 비교
+
+```
+                      ┌── 1. Fetch Join (JPQL INNER JOIN으로 한 방에 로딩)
+                      │
+N+1 해결 3대 전략 ─────┼── 2. @EntityGraph (어노테이션 기반 LEFT JOIN 로딩)
+                      │
+                      └── 3. default_batch_fetch_size (IN 쿼리로 묶어서 로딩)
+```
+
+| 해결 방식 | 코드 형태 | 장점 | 단점 및 제약 |
+|-----------|-----------|------|--------------|
+| **Fetch Join** | `select o from Order o join fetch o.member` | 한 번의 SQL 조인으로 실제 엔티티를 모두 조회 | 둘 이상의 컬렉션(`List`)을 동시 페치 조인할 수 없음 (`MultipleBagFetchException`) |
+| **`@EntityGraph`** | `@EntityGraph(attributePaths = {"member"})` | JPQL 없이 Spring Data JPA 인터페이스에 어노테이션으로 적용 가능 | `LEFT OUTER JOIN`이 강제되어 조인 비용이 발생할 수 있음 |
+| **`BatchSize`** | `hibernate.default_batch_fetch_size: 100` | 설정 하나로 지연 로딩 시 `IN (?, ?, ...)` 쿼리로 묶어서 처리 | 쿼리가 1개로 줄어드는 것은 아니며 `1 + (N/size)`회 실행됨 |
+
+---
+
+## 6. 컬렉션 페치 조인과 페이징(Pagination)의 한계와 해법
+
+### 문제: 1:N 컬렉션 페치 조인 시 페이징 쿼리가 실패하는 이유
+
+```java
+// [심각한 성능 장애 유발 코드]
+@Query("select o from Order o join fetch o.orderItems")
+Page<Order> findAllWithItems(Pageable pageable);
+```
+
+1. 데이터베이스 관점에서 1:N 조인을 실행하면 부모 데이터(`Order`)가 자식 데이터(`OrderItem`) 개수만큼 **중복으로 뻥튀기(Row 확장)** 된다.
+2. 이 상태에서 DB의 `LIMIT / OFFSET` 페이징을 적용하면 1번 주문의 데이터가 잘려 나가는 등 데이터 왜곡이 발생한다.
+3. Hibernate는 데이터 정합성을 지키기 위해 **DB 레벨 페이징을 포기하고, DB의 모든 데이터를 애플리케이션 메모리로 퍼올린 뒤 메모리에서 직접 페이징(In-Memory Paging)** 을 수행한다.
+4. 로그에 `HHH000104: firstResult/maxResults specified with collection fetch; applying in-memory!` 경고가 찍히며, 데이터가 많을 경우 즉시 **OutOfMemoryError(OOM)** 가 발생하여 서버가 다운된다.
+
+### 실무 표준 해결 공식 (2단계 접근법)
+
+```
+[1단계]: ToOne 관계(Member, Delivery)만 페치 조인하여 DB 레벨 페이징 수행
+         ▼
+[2단계]: ToMany 컬렉션(OrderItems)은 default_batch_fetch_size를 통해 IN 쿼리로 최적화 조회
+```
+
+#### Step 1. ToOne 관계만 페치 조인하여 페이징 조회
+```java
+public interface OrderRepository extends JpaRepository<Order, Long> {
+
+    @Query(value = "select o from Order o join fetch o.member m join fetch o.delivery d",
+           countQuery = "select count(o) from Order o")
+    Page<Order> findAllOrdersWithPaging(Pageable pageable);
+}
+```
+`ToOne` 관계는 조인해도 데이터 Row 수가 늘어나지 않으므로 DB `LIMIT / OFFSET` 페이징이 정상 동작한다.
+
+#### Step 2. `application.yml`에 BatchSize 전역 설정
+```yaml
+spring:
+  jpa:
+    properties:
+      hibernate:
+        default_batch_fetch_size: 100 # 보통 100~500 권장
+```
+
+#### Step 3. DTO 변환 시 지연 로딩 호출
+```java
+@Transactional(readOnly = true)
+public Page<OrderResponse> getOrders(Pageable pageable) {
+    Page<Order> orderPage = orderRepository.findAllOrdersWithPaging(pageable);
+
+    // order.getOrderItems() 호출 시 100개 단위의 IN (?, ?, ...) 쿼리 1회로 최적화되어 조회됨
+    return orderPage.map(OrderResponse::from);
+}
+```
+
+---
+
+## 7. 동시성 제어: 낙관적 락 vs 비관적 락
+
+동시에 여러 트랜잭션이 동일한 엔티티를 수정하려 할 때 데이터 정합성을 보장하는 방법이다.
+
+### 1) 낙관적 락 (Optimistic Lock)
+- **개념**: "데이터 충돌이 대부분 발생하지 않을 것이다"라고 가정하고 DB 락 대신 애플리케이션 레벨에서 버전 관리로 충돌을 감지한다.
+- **적용**: 엔티티에 `@Version` 필드를 추가한다.
+
+```java
+@Entity
+public class Article {
+    @Id @GeneratedValue
+    private Long id;
+
+    private String title;
+
+    @Version
+    private Long version; // 수정 시마다 Hibernate가 자동으로 1씩 증가시킴
+}
+```
+
+```sql
+-- 내부 실행 쿼리
+UPDATE article 
+SET title = '수정된 제목', version = 2 
+WHERE id = 1 AND version = 1;
+```
+동시에 다른 트랜잭션이 먼저 수정하여 버전이 2로 올라갔다면, 조건에 맞는 레코드가 없어 업데이트 수가 0이 되고 `ObjectOptimisticLockingFailureException`이 발생한다.
+
+- **장점**: 별도의 DB 락을 잡지 않으므로 처리량(Throughput)이 높다.
+- **단점**: 충돌 발생 시 롤백 및 재시도(Retry) 로직을 개발자가 직접 작성해야 한다.
+- **추천**: 게시글 수정, 상품 설명 수정 등 동시 수정 충돌 가능성이 낮은 경우.
+
+### 2) 비관적 락 (Pessimistic Lock)
+- **개념**: "데이터 충돌이 반드시 일어날 것이다"라고 가정하고, 조회 시점에 DB의 배타적 락(`SELECT ... FOR UPDATE`)을 걸어 다른 트랜잭션의 접근을 대기시킨다.
+
+```java
+public interface ProductRepository extends JpaRepository<Product, Long> {
+
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    @Query("select p from Product p where p.id = :id")
+    Optional<Product> findByIdWithPessimisticLock(@Param("id") Long id);
+}
+```
+
+- **장점**: 트랜잭션이 끝날 때까지 다른 트랜잭션이 대기하므로 데이터 무결성이 완벽히 보장된다.
+- **단점**: 대기 시간으로 인해 동시 처리 성능이 떨어지고 데드락(Deadlock) 위험이 증가한다.
+- **추천**: 한정 수량 재고 차감, 포인트/계좌 출금 등 데이터 정합성이 최우선인 금융/결제 도메인.
+
+---
+
+## 8. OSIV (Open Session In View) 아키텍처 전략
+
+`spring.jpa.open-in-view` 설정은 애플리케이션의 커넥션 관리와 직결되는 매우 중요한 옵션이다.
+
+```yaml
+spring:
+  jpa:
+    open-in-view: false # 실무 API 서버 필수 권장
+```
+
+### OSIV 동작 비교
+
+| 구분 | OSIV ON (`true`, 기본값) | OSIV OFF (`false`, 권장) |
+|------|-------------------------|--------------------------|
+| **커넥션 유지 범위** | HTTP 요청 시작 $\rightarrow$ 응답 반환 끝까지 | `@Transactional` 서비스 메서드 실행 구간만 |
+| **지연 로딩 가능 위치** | Controller, View 템플릿 어디서나 가능 | **`@Transactional` 트랜잭션 내부에서만 가능** |
+| **장점** | DTO 변환 시 지연 로딩이 자유로워 개발 편의성 높음 | DB 커넥션을 필요한 순간에만 쓰고 즉시 반납하므로 커넥션 풀 고갈 방지 |
+| **단점 및 위험** | 외부 API 호출이나 무거운 작업 지연 시 DB 커넥션 풀이 마르는 장애 발생 | 트랜잭션 밖에서 지연 로딩 접근 시 `LazyInitializationException` 발생 |
+
+### OSIV OFF 환경에서의 아키텍처 패턴 (CQRS 쿼리 서비스 분리)
+`open-in-view: false`를 적용하면 트랜잭션 밖에서는 지연 로딩을 쓸 수 없다. 이를 위해 복잡한 화면/API 조회의 경우 **조회 전용 서비스(QueryService)** 를 분리하여 트랜잭션 안에서 DTO로 완벽히 변환하여 반환하도록 설계한다.
+
+```java
+// [조회 전용 서비스]
+@Service
+@RequiredArgsConstructor
+@Transactional(readOnly = true) // 읽기 전용 트랜잭션 안에서 안전하게 DTO 변환
+public class OrderQueryService {
+
+    private final OrderRepository orderRepository;
+
+    public List<OrderDto> getOrderDtos(Pageable pageable) {
+        return orderRepository.findAllOrdersWithPaging(pageable)
+                .map(OrderDto::from) // 트랜잭션 내부이므로 지연 로딩 호출 가능
+                .toList();
+    }
+}
+```
+
+---
+
+## 9. 실무 체크리스트 및 흔한 실수
+
+| 점검 항목 | 실수 유형 | 올바른 가이드 |
+|-----------|-----------|---------------|
+| **연관관계 매핑** | `@ManyToOne`에 즉시 로딩(`EAGER`) 방치 | 무조건 `fetch = FetchType.LAZY` 선언 |
+| **양방향 참조** | Lombok `@ToString`, `@EqualsAndHashCode` 무심코 사용 | 연관 엔티티 필드는 `@ToString.Exclude` 처리하여 무한 순환 참조 방지 |
+| **벌크 연산 후속 처리** | `@Modifying` 쿼리 실행 후 1차 캐시와 DB 데이터 불일치 | `@Modifying(clearAutomatically = true)`로 영속성 컨텍스트 초기화 |
+| **컬렉션 페이징** | `@OneToMany` 페치 조인 + `Pageable` 사용 | `ToOne`만 페치 조인 + `default_batch_fetch_size` 적용 |
+| **수정 방식** | `em.merge()`나 불필요한 `repository.save()` 호출 | 조회 후 엔티티 필드 변경 $\rightarrow$ 변경 감지(Dirty Checking) 활용 |
+| **커넥션 관리** | 트래픽이 많은 API 서버에서 `OSIV=true` 유지 | `OSIV=false`로 끄고 조회 전용 서비스 계층 구축 |
+
+---
+
+## 연습
+
+1. `Member`와 `Team` 엔티티를 작성하고, `FetchType.EAGER`와 `FetchType.LAZY` 상태에서 `teamRepository.findAll()` 실행 시 발생하는 SQL 로그의 차이를 확인한다.
+2. `default_batch_fetch_size: 100` 설정을 추가한 후, 1:N 관계의 엔티티 컬렉션을 순회할 때 단일 `IN` 쿼리로 묶여 나가는 동작을 검증한다.
+3. `spring.jpa.open-in-view: false` 환경에서 Controller에서 지연 로딩 호출 시 발생하는 `LazyInitializationException`을 재현하고, 트랜잭션 내부 DTO 변환 방식으로 해결한다.
+6c:T4d10,# Gradle 빌드와 멀티모듈 아키텍처 설계
+
+> 요약: Gradle 빌드 생명주기, Kotlin DSL(build.gradle.kts), 의존성 스코프 차이(implementation vs api), 플러그인 작성, 멀티모듈 프로젝트 설계 패턴(계층형, MSA/공통 도메인형, 헥사고날)을 다룬다.
+
+---
+
+## 1. Gradle이란 무엇이며 왜 Maven보다 많이 쓰일까?
+
+**Gradle**은 현대 JVM 생태계에서 가장 널리 사용되는 빌드 자동화 도구(Build Automation Tool)다. 소스 코드를 컴파일하고, 테스트를 실행하며, 의존성을 다운로드하고, 최종적으로 배포 가능한 실행 파일(Jar, War)을 패키징하는 전 과정을 관리한다.
+
+### Maven vs Gradle 핵심 비교
+
+| 비교 항목 | Apache Maven | Gradle |
+|-----------|--------------|--------|
+| **설정 언어** | XML (`pom.xml`) — 정적이고 장황함 | Kotlin DSL (`build.gradle.kts`) 또는 Groovy — 동적이며 간결함 |
+| **빌드 속도** | 기본적으로 전체 빌드 위주 | **증분 빌드(Incremental Build), 빌드 캐시, 데몬 프로세스**로 최대 10배 이상 빠름 |
+| **멀티모듈 유연성** | 상속 기반 구조로 커스텀 확장이 어려움 | 의존성 그래프 기반, 서브모듈별 자유로운 설정 및 플러그인 주입 가능 |
+| **타입 안정성** | 스키마 기반 유효성 검사 | **Kotlin DSL 사용 시 IDE 자동완성, 컴파일 타임 에러 검증, 리팩토링 지원** |
+
+Spring Boot 3.x부터는 공식 문서 및 스타터(start.spring.io)에서 **Gradle + Kotlin DSL**을 기본 권장선으로 채택하고 있다.
+
+---
+
+## 2. Gradle의 3단계 빌드 생명주기 (Build Lifecycle)
+
+Gradle의 빌드가 실행될 때 내부적으로는 항상 다음 **3단계(Initialization ➔ Configuration ➔ Execution)** 를 거친다. 이 생명주기를 이해하지 못하면 빌드 스크립트 작성 시 실행 순서가 꼬이는 실수를 하게 된다.
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│ 1. Initialization (초기화 단계)                               │
+│   - settings.gradle(.kts) 파일을 읽음                         │
+│   - 어떤 프로젝트/서브모듈들이 빌드에 참여하는지 결정             │
+└──────────────────────────────┬──────────────────────────────┘
+                               │
+                               ▼
+┌─────────────────────────────────────────────────────────────┐
+│ 2. Configuration (구성/설정 단계)                            │
+│   - 참여하는 모든 프로젝트의 build.gradle(.kts) 스크립트를 실행   │
+│   - Task 객체를 메모리에 생성하고, Task 간의 의존 그래프(DAG) 구성 │
+│   - ※ 주의: Task 내부의 doFirst/doLast 밖 코드는 이때 무조건 실행됨│
+└──────────────────────────────┬──────────────────────────────┘
+                               │
+                               ▼
+┌─────────────────────────────────────────────────────────────┐
+│ 3. Execution (실행 단계)                                     │
+│   - 명령어로 지정한 Task들을 의존성 순서대로 실제 실행            │
+│   - doFirst / doLast 액션 블록에 정의된 실제 빌드 로직 수행      │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### 흔히 하는 실수: Configuration과 Execution 혼동
+
+```kotlin
+// [잘못된 예시: Configuration 시점에 실행되어 버림]
+tasks.register("deployServer") {
+    // 이 코드는 deployServer Task를 실행하지 않아도,
+    // gradle build 나 gradle test 만 돌려도 Configuration 단계에서 무조건 실행됨!
+    println("🚨 서버에 배포 패킷을 전송합니다!") 
+}
+
+// [올바른 예시: Execution 시점에만 실행되도록 액션 블록 작성]
+tasks.register("deployServer") {
+    doLast {
+        // 실제 'gradle deployServer'를 호출했을 때만 실행 단계에서 동작함
+        println("✅ 서버에 배포 패킷을 전송합니다!")
+    }
+}
+```
+
+---
+
+## 3. 의존성 스코프(Configuration) 이해하기
+
+Gradle에서 라이브러리를 가져올 때 선언하는 키워드들은 라이브러리가 **컴파일 시점에 필요한지, 런타임에 필요한지, 그리고 하위 모듈로 전파되는지**를 결정한다.
+
+```
+                    ┌── compileOnly (컴파일 때만 필요, Jar 배포 시 제외 e.g. Lombok)
+                    │
+                    ├── runtimeOnly (실행 때만 필요 e.g. DB JDBC Driver)
+의존성 스코프 종류 ───┼── implementation (내부 구현용, 외부 모듈로 전파 차단 ➔ 컴파일 속도 향상)
+                    │
+                    └── api (외부 모듈로 의존성 전파 ➔ 공통 인터페이스 모듈용)
+```
+
+### `implementation` vs `api`의 결정적 차이
+
+멀티모듈을 설계할 때 가장 중요한 개념이다.
+
+```
+[Module A] ──(의존)──▶ [Module B] ──(의존)──▶ [Module C (e.g. Gson)]
+```
+
+- **`Module B`가 `api(project(":Module-C"))`를 사용한 경우**:
+  - `Module A`에서도 `Module C`(Gson)의 클래스를 직접 import해서 쓸 수 있다.
+  - **단점**: `Module C`의 코드가 1줄이라도 바뀌면 `Module B`뿐만 아니라 `Module A`까지 연쇄적으로 재컴파일되어 빌드 시간이 길어진다.
+- **`Module B`가 `implementation(project(":Module-C"))`를 사용한 경우**:
+  - `Module B` 내부에서만 `Module C`를 쓰고, `Module A`에는 `Module C`가 노출되지 않는다 (`Module A`에서 Gson import 불가).
+  - **장점**: `Module C`의 내부 구현이 바뀌어도 `Module A`는 재컴파일되지 않으므로 **빌드 속도가 비약적으로 향상**된다. 캡슐화가 잘 지켜진다.
+
+> **실무 원칙**: 기본적으로 무조건 **`implementation`** 을 사용하고, 해당 라이브러리의 타입을 외부에 반환 타입이나 파라미터로 공개해야 하는 공통 API 모듈에서만 제한적으로 **`api`** 를 사용한다.
+
+---
+
+## 4. 모던 Gradle: Version Catalog (`libs.versions.toml`)
+
+과거에는 여러 모듈의 라이브러리 버전을 맞추기 위해 `ext` 블록이나 `buildSrc`를 썼지만, Gradle 7.4+부터는 표준화된 **Version Catalog (`libs.versions.toml`)** 방식을 사용한다.
+
+`gradle/libs.versions.toml` 파일에 버전과 라이브러리를 중앙 집중 관리한다.
+
+### `gradle/libs.versions.toml`
+```toml
+[versions]
+springBoot = "3.4.1"
+springDependencyManagement = "1.1.7"
+jjwt = "0.12.6"
+querydsl = "5.1.0"
+
+[libraries]
+spring-boot-starter-web = { module = "org.springframework.boot:spring-boot-starter-web" }
+spring-boot-starter-data-jpa = { module = "org.springframework.boot:spring-boot-starter-data-jpa" }
+spring-boot-starter-validation = { module = "org.springframework.boot:spring-boot-starter-validation" }
+jjwt-api = { module = "io.jsonwebtoken:jjwt-api", version.ref = "jjwt" }
+jjwt-impl = { module = "io.jsonwebtoken:jjwt-impl", version.ref = "jjwt" }
+jjwt-jackson = { module = "io.jsonwebtoken:jjwt-jackson", version.ref = "jjwt" }
+
+[bundles]
+jwt = ["jjwt-api", "jjwt-impl", "jjwt-jackson"]
+
+[plugins]
+spring-boot = { id = "org.springframework.boot", version.ref = "springBoot" }
+spring-dependency-management = { id = "io.spring.dependency-management", version.ref = "springDependencyManagement" }
+```
+
+### `build.gradle.kts`에서 사용
+```kotlin
+dependencies {
+    implementation(libs.spring.boot.starter.web)
+    implementation(libs.spring.boot.starter.data.jpa)
+    
+    // 번들(bundle)로 묶어서 한 줄로 주입
+    implementation(libs.bundles.jwt)
+}
+```
+IDE 자동완성이 지원되며, 버전 충돌을 원천 차단할 수 있다.
+
+---
+
+## 5. 실무 프로젝트 설계 패턴 3가지 (멀티모듈 아키텍처)
+
+실무에서 서비스가 커지면 단일 모듈(Monolith Module)의 한계에 부딪힌다. 
+도메인과 계층을 분리하는 대표적인 **Gradle 멀티모듈 설계 패턴 3가지**를 살펴본다.
+
+---
+
+### 패턴 1: 계층형 멀티모듈 구조 (Layered Multi-Module)
+
+가장 직관적이고 중소규모 프로젝트에서 널리 쓰이는 표준 구조다.
+
+```
+my-project/
+├── settings.gradle.kts
+├── build.gradle.kts
+├── core/                # 공통 유틸, 공통 DTO, Enum, 에러 코드
+├── domain/              # JPA 엔티티, 리포지토리, 도메인 비즈니스 로직
+├── api/                 # 사용자용 REST API 서버 (실행 가능한 Spring Boot Jar)
+└── batch/               # 주기적인 대용량 정산/통계 배치 애플리케이션
+```
+
+```
+[api (실행 모듈)] ──▶ [domain (DB/엔티티)] ──▶ [core (공통)]
+[batch (실행 모듈)] ─┘
+```
+
+#### 루트 `settings.gradle.kts`
+```kotlin
+rootProject.name = "my-project"
+
+include("core")
+include("domain")
+include("api")
+include("batch")
+```
+
+#### 루트 `build.gradle.kts` (공통 컨벤션 주입)
+```kotlin
+plugins {
+    java
+    alias(libs.plugins.spring.boot) apply false
+    alias(libs.plugins.spring.dependency.management) apply false
+}
+
+allprojects {
+    group = "com.example"
+    version = "1.0.0"
+
+    repositories {
+        mavenCentral()
+    }
+}
+
+subprojects {
+    apply(plugin = "java")
+    apply(plugin = "org.springframework.boot")
+    apply(plugin = "io.spring.dependency-management")
+
+    java {
+        toolchain {
+            languageVersion.set(JavaLanguageVersion.of(21))
+        }
+    }
+
+    dependencies {
+        // 모든 서브모듈에 공통으로 들어갈 Lombok, 테스트 라이브러리
+        compileOnly("org.projectlombok:lombok")
+        annotationProcessor("org.projectlombok:lombok")
+        testImplementation("org.springframework.boot:spring-boot-starter-test")
+    }
+
+    tasks.withType<Test> {
+        useJUnitPlatform()
+    }
+}
+```
+
+#### `domain/build.gradle.kts` (라이브러리 모듈)
+`domain` 모듈은 스스로 실행되는 애플리케이션이 아니라 클래스 라이브러리다. 실행 가능한 `bootJar` 생성을 끄고 일반 `jar`를 켜야 한다.
+
+```kotlin
+// 실행 모듈이 아니므로 bootJar 비활성화
+tasks.bootJar { enabled = false }
+tasks.jar { enabled = true }
+
+dependencies {
+    implementation(project(":core"))
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    runtimeOnly("com.mysql:mysql-connector-j")
+}
+```
+
+#### `api/build.gradle.kts` (실행 모듈)
+```kotlin
+tasks.bootJar { enabled = true }
+tasks.jar { enabled = false }
+
+dependencies {
+    implementation(project(":domain")) // domain을 참조하면 core까지 함께 사용 가능
+    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-validation")
+    implementation("org.springframework.boot:spring-boot-starter-security")
+}
+```
+
+---
+
+### 패턴 2: MSA / 독립 도메인형 멀티모듈 구조 (Microservice-Ready Multi-Module)
+
+서비스가 방대해져 회원, 주문, 결제, 정산 등의 도메인이 독자적으로 커질 때 적용하는 구조다. 향후 모놀리스에서 독립적인 MSA 서비스로 쉽게 쪼갤 수 있도록 설계한다.
+
+```
+commerce-system/
+├── common/                      # 전역 공통 모듈
+│   ├── common-logging/
+│   └── common-security/
+├── domain/                      # 순수 도메인 모듈 (DB/Entity 캡슐화)
+│   ├── member-domain/
+│   ├── order-domain/
+│   └── payment-domain/
+├── clients/                     # 외부 통신 Feign/RestClient 어댑터
+│   └── pg-client/               # PG사 결제 연동 클라이언트
+└── apps/                        # 독립 배포 가능한 Spring Boot 서버들
+    ├── user-api/                # 고객 앱용 API 서버
+    ├── admin-api/               # 관리자 CMS 백오피스 서버
+    └── payment-worker/          # 결제 승인/대사 큐 컨슈머 서버
+```
+
+```
+[user-api] ──▶ [order-domain] ──▶ [member-domain]
+     │                 │
+     ▼                 ▼
+[common-security]  [pg-client]
+```
+
+#### `settings.gradle.kts` 계층형 네이밍
+```kotlin
+rootProject.name = "commerce-system"
+
+// 폴더 깊이에 맞게 모듈 포함
+include("common:common-logging")
+include("common:common-security")
+
+include("domain:member-domain")
+include("domain:order-domain")
+include("domain:payment-domain")
+
+include("clients:pg-client")
+
+include("apps:user-api")
+include("apps:admin-api")
+include("apps:payment-worker")
+```
+
+#### `apps/user-api/build.gradle.kts`
+```kotlin
+dependencies {
+    implementation(project(":common:common-security"))
+    implementation(project(":common:common-logging"))
+    
+    // 필요한 도메인만 선별적으로 조립
+    implementation(project(":domain:member-domain"))
+    implementation(project(":domain:order-domain"))
+    implementation(project(":clients:pg-client"))
+
+    implementation("org.springframework.boot:spring-boot-starter-web")
+}
+```
+
+**특징과 장점:**
+- `admin-api`는 `order-domain`과 `member-domain`만 필요하고 `pg-client`는 몰라도 된다. 필요한 모듈만 주입받아 빌드 용량을 줄이고 의존성을 격리한다.
+- 나중에 주문 트래픽이 폭증하면 `apps:order-api`를 만들어 `order-domain`만 들고 독립 배포 서버로 분리하기가 매우 쉽다.
+
+---
+
+### 패턴 3: 헥사고날 아키텍처 멀티모듈 구조 (Hexagonal / Ports and Adapters)
+
+DDD(도메인 주도 설계)와 헥사고날 아키텍처를 완벽하게 물리적 모듈로 강제하는 구조다. **도메인 코드가 프레임워크(Spring, JPA)에 오염되는 것을 극도로 방지**하고자 할 때 쓴다.
+
+```
+order-service/
+├── order-domain/                # 순수한 자바 도메인 (Spring/JPA 의존성 0%)
+│   ├── model/ (Order, OrderLine)
+│   └── port/ (OrderRepositoryPort, PaymentPort)
+├── order-application/           # 유스케이스 서비스 (비즈니스 흐름 조율)
+│   └── service/ (CreateOrderUseCase, OrderService)
+├── order-infrastructure/        # 어댑터 구현체 (JPA, Redis, 외부 HTTP 클라이언트)
+│   ├── persistence/ (OrderJpaRepository, OrderRepositoryAdapter)
+│   └── external/ (TossPaymentAdapter)
+└── order-bootstrap/             # 실행 진입점 (Spring Boot Main, Controller, 설정)
+    ├── controller/ (OrderApiController)
+    └── OrderApplication.java
+```
+
+```
+[order-bootstrap (Web/Main)]
+        │ (참조)
+        ▼
+[order-application (UseCase)] ──▶ [order-domain (순수 POJO Core)]
+        ▲                                     ▲
+        │ (참조)                              │ (Port 인터페이스 구현)
+[order-infrastructure (JPA/Redis/HTTP Adapter)]
+```
+
+#### `order-domain/build.gradle.kts` (순수 자바 모듈)
+```kotlin
+// 스프링 부트 플러그인도, JPA도 전혀 넣지 않음!
+plugins {
+    `java-library`
+}
+
+dependencies {
+    // 오직 순수 자바 유틸 및 테스팅 도구만 허용
+    testImplementation("org.junit.jupiter:junit-jupiter:5.10.2")
+    testImplementation("org.assertj:assertj-core:3.25.3")
+}
+```
+
+#### `order-infrastructure/build.gradle.kts` (기술 구현체)
+```kotlin
+tasks.bootJar { enabled = false }
+tasks.jar { enabled = true }
+
+dependencies {
+    implementation(project(":order-domain"))
+    
+    // JPA, QueryDSL, Redis 등 기술 스택 의존성 몰아넣기
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("org.springframework.boot:spring-boot-starter-data-redis")
+    runtimeOnly("com.mysql:mysql-connector-j")
+}
+```
+
+#### `order-bootstrap/build.gradle.kts` (최종 조립자)
+```kotlin
+tasks.bootJar { enabled = true }
+
+dependencies {
+    implementation(project(":order-domain"))
+    implementation(project(":order-application"))
+    implementation(project(":order-infrastructure"))
+
+    implementation("org.springframework.boot:spring-boot-starter-web")
+}
+```
+
+**특징과 장점:**
+- 데이터베이스를 MySQL에서 MongoDB로 바꾸거나 JPA에서 R2DBC로 교체해도 `order-domain` 코드는 **단 1글자도 수정되지 않는다**.
+- 프레임워크가 없는 순수 자바 단위 테스트(Unit Test)를 작성할 수 있어 테스트 실행 속도가 0.1초 단위로 끝난다.
+
+---
+
+## 6. 멀티모듈 빌드 속도를 3배 빠르게 만드는 실무 최적화 팁
+
+### 1) `gradle.properties` 튜닝
+프로젝트 루트의 `gradle.properties`에 아래 옵션들을 활성화한다.
+
+```properties
+# 데몬 프로세스 재사용으로 JVM 웜업 시간 단축
+org.gradle.daemon=true
+
+# 독립적인 모듈들을 병렬로 동시 빌드 (코어 수 활용)
+org.gradle.parallel=true
+
+# 이전 빌드 결과물을 캐싱하여 변경이 없는 작업 스킵
+org.gradle.caching=true
+
+# 빌드 시 JVM 힙 메모리 넉넉히 할당
+org.gradle.jvmargs=-Xmx4g -XX:+UseParallelGC -XX:MaxMetaspaceSize=512m
+
+# 설정 단계 캐싱 (Gradle 8+)
+org.gradle.configuration-cache=true
+```
+
+### 2) 빌드 캐시와 증분 빌드 확인하기
+빌드 실행 시 Task 옆에 표시되는 라벨의 의미를 알고 있어야 한다:
+- `> Task :core:compileJava UP-TO-DATE`: 소스 코드가 바뀌지 않아 컴파일을 스킵함.
+- `> Task :core:compileJava FROM-CACHE`: 로컬 또는 원격 빌드 캐시에서 결과물을 바로 꺼내옴.
+- `> Task :core:compileJava`: 실제로 재컴파일을 수행함.
+
+---
+
+## 7. 흔한 실수와 트러블슈팅
+
+| 문제 상황 | 원인 | 해결책 |
+|-----------|------|--------|
+| **`No main class specified` 에러** | 도메인이나 공통 라이브러리 서브모듈에 `bootJar`가 켜져 있어 main 메서드를 찾으려고 함 | 서브모듈의 `build.gradle.kts`에 `tasks.bootJar { enabled = false }`, `tasks.jar { enabled = true }` 설정 |
+| **순환 참조 (`Circular dependency`)** | `Module A`가 `Module B`를 참조하고, `Module B`가 `Module A`를 참조함 | 공통 인터페이스나 DTO를 제3의 `core` 모듈로 추출하여 단방향 흐름 유지 |
+| **버전 충돌 (`NoSuchMethodError`)** | 서브모듈마다 라이브러리 버전이 제각각 선언됨 | `libs.versions.toml` (Version Catalog)을 통해 버전을 단일 지점에서 통제 |
+| **불필요한 전체 재컴파일** | 하위 모듈 의존성을 `api`로 무분별하게 선언 | 기본적으로 `implementation`을 사용하여 변경 전파 격리 |
+
+---
+
+## 연습
+
+1. `settings.gradle.kts`를 작성하여 `core`, `domain`, `api` 3개 모듈을 갖는 계층형 멀티모듈 프로젝트를 구성해 본다.
+2. `domain` 모듈에서 `bootJar`를 비활성화하고 순수 `jar`로 빌드되도록 설정한 뒤, `api` 모듈에서 이를 주입받아 Spring Boot 애플리케이션을 기동해 본다.
+3. `gradle/libs.versions.toml` 파일을 생성하여 Spring Boot 및 QueryDSL 버전을 정의하고 멀티모듈 전체에서 중앙 집중식으로 참조해 본다.
+6d:T12d7,# Vue 3 Composition API로 시작하기
 
 > 요약: 한 파일에 화면·로직·스타일을 두고, script setup으로 Vue 3 컴포넌트를 시작한다.
 
@@ -14229,7 +15659,7 @@ Vue 3 시작은 버전 비교가 아니다. **SFC + `<script setup>` + `ref`** �
 1. `npm create vue@latest`로 프로젝트를 만들고 `Counter.vue`를 붙여 증가·초기화가 동작하는지 확인한다.
 2. `label` computed를 바꿔 10 이상이면 문구를 `많음`으로 표시한다.
 3. `HelloName.vue`를 만들어 입력한 이름을 `<p>`에 출력한다. 상태는 `ref('')` 하나로 둔다.
-6a:T15a1,# ref와 reactive로 반응형 상태 다루기
+6e:T15a1,# ref와 reactive로 반응형 상태 다루기
 
 > 요약: 값이 바뀌면 화면이 다시 그려지도록 ref로 상태를 두고, 계산 값과 감시 로직을 나눈다.
 
@@ -14423,7 +15853,7 @@ watchEffect(() => {
 1. `ref`로 `score`를 두고, `computed`로 60 이상이면 `통과` 아니면 `재시험`을 표시한다.
 2. `reactive` 주소 객체 `{ city, street }`를 만들고 `toRefs`로 템플릿에 나눠 바인딩한다.
 3. `watch`로 `score`가 100이 되면 `console.log('만점')`을 한 번 출력한다.
-6b:T17a0,# 컴포넌트 props·emits·슬롯
+6f:T17a0,# 컴포넌트 props·emits·슬롯
 
 > 요약: 부모는 props로 값을 내리고 자식은 이벤트로 알리며, 슬롯으로 자리를 열어 컴포넌트를 조립한다.
 
@@ -14648,7 +16078,7 @@ scoped 예:
 1. `AlertBanner.vue`에 `message: string` props와 `close` emit을 넣고, 부모가 닫으면 배너를 제거한다.
 2. `SearchInput.vue`에 `defineModel<string>()`을 연결해 부모 `query`와 양방향으로 맞춘다.
 3. 카드에 `#footer` named slot을 추가하고, 부모에서 수정 링크를 넣는다.
-6c:T181c,# Vue Router와 Pinia로 화면·상태 구성
+70:T181c,# Vue Router와 Pinia로 화면·상태 구성
 
 > 요약: URL과 화면을 라우터로 맞추고, 여러 화면이 공유하는 상태는 Pinia 스토어에 두는 SPA 구성 방법을 정리한다.
 
@@ -14866,7 +16296,7 @@ Router는 **주소와 화면**, Pinia는 **공유 클라이언트 상태**다. �
 1. `/about` 라우트를 lazy 컴포넌트로 추가하고 홈에서 `RouterLink`로 이동한다.
 2. `requiresAuth` 메타를 홈에도 걸고, 로그아웃 후 홈 진입이 로그인으로 리다이렉트되는지 확인한다.
 3. `useCounterStore`를 만들어 홈과 다른 페이지에서 같은 `count`가 보이는지 확인한다.
-6d:T1067,# Vue 앱 실무 체크리스트
+71:T1067,# Vue 앱 실무 체크리스트
 
 > 요약: 구조·성능·접근성·보안·배포까지, Vue 앱을 내보내기 전에 항목마다 이유를 붙여 확인하는 실무 체크리스트다.
 
@@ -14926,7 +16356,7 @@ Router는 **주소와 화면**, Pinia는 **공유 클라이언트 상태**다. �
 ## 정리
 
 Vue 배포 품질은 API 암기량이 아니다. **위 목록을 통과하는 앱을 반복해 만드는 힘**이다. 항목을 건너뛸 때는 티켓에 이유를 남긴다.
-6e:T15ea,# WPF와 XAML·MVVM 시작하기
+72:T15ea,# WPF와 XAML·MVVM 시작하기
 
 > 요약: XAML로 화면을 그리고, DataContext로 ViewModel을 붙여 화면과 로직을 나눈다.
 
@@ -15092,7 +16522,7 @@ WPF 시작은 컨트롤 암기가 아니다. **XAML + DataContext + ViewModel** 
 1. `dotnet new wpf` 후 위 ViewModel을 붙여 TextBox와 TextBlock이 같은 `Title`을 쓰는지 확인한다.
 2. `Subtitle` 속성을 추가하고 두 번째 `TextBlock`에 바인딩한다.
 3. `StartupUri`를 `Views/MainWindow.xaml`로 옮긴 뒤 앱이 켜지는지 확인한다.
-6f:T19d1,# 데이터 바인딩과 ObservableCollection
+73:T19d1,# 데이터 바인딩과 ObservableCollection
 
 > 요약: INotifyPropertyChanged와 ObservableCollection으로 값·목록 변경을 화면에 반영하고, DataTemplate로 행 UI를 분리하는 방법을 정리한다.
 
@@ -15276,7 +16706,7 @@ WPF 생산성은 컨트롤 종류가 아니라 **변경 통지 + 컬렉션 + 템
 1. 추가 버튼으로 이름이 목록에 붙는지, 선택 삭제로 빠지는지 확인한다.
 2. 행의 `CheckBox`를 토글해 `IsActive`가 유지되는지 확인한다.
 3. `Users`를 `List<UserItem>`으로 바꿔 `Add`한 뒤 화면이 안 바뀌는 것을 보고 다시 `ObservableCollection`으로 되돌린다.
-70:T168d,# 이벤트 대신 ICommand로 액션 연결하기
+74:T168d,# 이벤트 대신 ICommand로 액션 연결하기
 
 > 요약: 버튼 클릭을 코드비하인드가 아니라 ViewModel의 ICommand로 연결하고, CanExecute로 활성 상태를 맞추는 방법을 정리한다.
 
@@ -15446,7 +16876,7 @@ WPF 액션의 기본은 이벤트 남발이 아니라 **테스트 가능한 Comm
 1. `Title`이 비어 있으면 저장 버튼이 비활성인지, 한 글자 입력 후 활성화되는지 확인한다.
 2. `ClearCommand`로 제목과 상태가 초기화되는지 확인한다.
 3. `Save`를 `async Task`로 바꾸고 저장 중 `Status`가 `저장 중`으로 보이는지 확인한다.
-71:T1801,# 스타일·리소스·테마 관리
+75:T1801,# 스타일·리소스·테마 관리
 
 > 요약: ResourceDictionary에 색과 스타일을 모아 StaticResource/DynamicResource로 참조하고, 파일 분리로 테마를 운영하는 방법을 정리한다.
 
@@ -15602,7 +17032,7 @@ WPF UI 일관성은 창을 하나씩 고치는 일이 아니라 **리소스 사�
 1. `PrimaryBrush` 색을 바꾸고 저장·암시 스타일 버튼이 같이 바뀌는지 확인한다.
 2. `GhostButton`만 테두리를 추가해 기본 버튼과 구분되게 한다.
 3. `Colors.Dark.xaml`을 만들고 `TextBrush`를 밝은 색으로 둔 뒤, 버튼을 눌러 사전을 교체해 본다 (`DynamicResource` 필요).
-72:T1c3c,# 화면 전환과 다이얼로그 패턴
+76:T1c3c,# 화면 전환과 다이얼로그 패턴
 
 > 요약: ContentControl과 DataTemplate로 ViewModel을 갈아 끼워 화면을 전환하고, 대화상자는 서비스로 추상화하는 방법을 정리한다.
 
@@ -15841,7 +17271,7 @@ public interface IFileDialogService
 1. 홈/설정 버튼으로 `ContentControl` 내용이 바뀌는지 확인한다.
 2. 설정에서 `DarkTheme`를 켠 뒤 홈에 갔다 와도 값이 남게, `SettingsViewModel`을 필드로 재사용한다.
 3. 삭제 명령에 `IDialogService.Confirm`을 넣고, 취소를 누르면 목록이 그대로인지 확인한다.
-73:T11cd,# WPF 앱 실무 체크리스트
+77:T11cd,# WPF 앱 실무 체크리스트
 
 > 요약: MVVM 경계·성능·예외·배포·UX까지, WPF 앱을 내보내기 전에 항목마다 이유를 붙여 확인하는 실무 체크리스트다.
 
@@ -15908,15 +17338,15 @@ public interface IFileDialogService
 ## 정리
 
 WPF 품질은 컨트롤 개수가 아니라 **MVVM 규율과 배포 체크리스트를 끝까지 지키는 일**이다. 항목을 건너뛸 때는 티켓에 이유를 남긴다.
-11:["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@type\":\"WebSite\",\"name\":\"Kaisa\",\"description\":\"Development, design, and notes from Kaisa — articles on building products and tools.\",\"url\":\"https://kaisa.co.kr/\"}"}}],["$","$L18",null,{"posts":[{"slug":"angular-01","title":"Angular 스탠드얼론으로 프로젝트 시작하기","excerpt":"NgModule 없이 standalone 컴포넌트와 app.config로 Angular 앱을 띄우고, 폴더·부트스트랩 기본선을 정리한다.","content":"$19","publishedAt":"2023-07-14","category":"angular","categoryLabel":"Angular","tags":["angular"],"readingMinutes":5,"order":1,"filePath":"angular/01-angular-standalone-start.md"},{"slug":"angular-02","title":"컴포넌트·템플릿·데이터 바인딩","excerpt":"템플릿에 값을 넣고 클릭을 받으며, @if/@for와 input/output으로 화면과 클래스를 연결한다.","content":"$1a","publishedAt":"2024-01-17","category":"angular","categoryLabel":"Angular","tags":["angular"],"readingMinutes":5,"order":2,"filePath":"angular/02-components-templates-binding.md"},{"slug":"angular-03","title":"시그널·서비스·의존성 주입","excerpt":"signal로 화면 상태를 두고, providedIn 서비스와 inject로 공유 로직을 연결하는 Angular 상태·DI 패턴을 정리한다.","content":"$1b","publishedAt":"2024-06-13","category":"angular","categoryLabel":"Angular","tags":["angular"],"readingMinutes":6,"order":3,"filePath":"angular/03-signals-services-di.md"},{"slug":"angular-04","title":"라우팅과 리액티브 폼","excerpt":"provideRouter와 lazy loadComponent로 화면을 나누고, 가드·FormBuilder로 진입 조건과 입력 검증을 구성하는 방법을 정리한다.","content":"$1c","publishedAt":"2024-10-07","category":"angular","categoryLabel":"Angular","tags":["angular"],"readingMinutes":6,"order":4,"filePath":"angular/04-routing-forms.md"},{"slug":"angular-05","title":"Angular 앱 실무 체크리스트","excerpt":"standalone 구조·성능·보안·테스트·배포까지, Angular 앱을 내보내기 전에 항목마다 이유를 붙여 확인하는 실무 체크리스트다.","content":"$1d","publishedAt":"2025-05-19","category":"angular","categoryLabel":"Angular","tags":["angular"],"readingMinutes":3,"order":5,"filePath":"angular/05-angular-app-checklist.md"},{"slug":"aws-01","title":"AWS 계정·IAM·빌링 기초 잡기","excerpt":"루트 계정은 잠그고 IAM과 비용 알람부터 켜는, AWS를 안전하게 시작하기 위한 최소 세팅을 정리한다.","content":"$1e","publishedAt":"2023-05-08","category":"aws","categoryLabel":"AWS","tags":["aws"],"readingMinutes":5,"order":1,"filePath":"aws/01-account-iam-billing-basics.md"},{"slug":"aws-02","title":"VPC·서브넷·보안 그룹으로 네트워크 설계하기","excerpt":"가상 네트워크(VPC)에서 퍼블릭·프라이빗 서브넷과 보안 그룹으로 트래픽을 최소 허용하는 뼈대를 잡는다.","content":"$1f","publishedAt":"2023-08-07","category":"aws","categoryLabel":"AWS","tags":["aws"],"readingMinutes":5,"order":2,"filePath":"aws/02-vpc-subnets-security-groups.md"},{"slug":"aws-03","title":"EC2 인스턴스 기초와 운영 포인트","excerpt":"가상 서버(EC2)를 고르고 올리는 과정과, 키·스토리지·접속 경로를 안전하게 운영하는 기본을 정리한다.","content":"$20","publishedAt":"2024-02-28","category":"aws","categoryLabel":"AWS","tags":["aws"],"readingMinutes":5,"order":3,"filePath":"aws/03-ec2-instance-basics.md"},{"slug":"aws-04","title":"S3 버킷·접근 제어·수명주기","excerpt":"객체 스토리지(S3)를 퍼블릭 차단·최소 IAM·수명주기로 안전하게 쓰는 기본선을 정리한다.","content":"$21","publishedAt":"2024-08-14","category":"aws","categoryLabel":"AWS","tags":["aws"],"readingMinutes":5,"order":4,"filePath":"aws/04-s3-buckets-access.md"},{"slug":"aws-05","title":"RDS로 관리형 데이터베이스 운영하기","excerpt":"관리형 관계형 DB(RDS)를 프라이빗 서브넷·백업·멀티 AZ로 안전하게 올리는 기준을 정리한다.","content":"$22","publishedAt":"2025-06-21","category":"aws","categoryLabel":"AWS","tags":["aws"],"readingMinutes":5,"order":5,"filePath":"aws/05-rds-managed-database.md"},{"slug":"aws-06","title":"IAM 역할과 최소 권한 설계","excerpt":"사람·워크로드에 임시 역할만 맡기고, 정책의 Action과 Resource를 좁혀 최소 권한을 설계하는 방법을 정리한다.","content":"$23","publishedAt":"2025-09-06","category":"aws","categoryLabel":"AWS","tags":["aws"],"readingMinutes":4,"order":6,"filePath":"aws/06-iam-roles-least-privilege.md"},{"slug":"aws-07","title":"CloudWatch 로그·메트릭·알람","excerpt":"로그·메트릭·알람으로 장애와 비용을 같은 날 알아채는 관측 기본선을 만든다.","content":"$24","publishedAt":"2025-11-03","category":"aws","categoryLabel":"AWS","tags":["aws"],"readingMinutes":5,"order":7,"filePath":"aws/07-cloudwatch-logs-alarms.md"},{"slug":"aws-08","title":"ALB와 Auto Scaling으로 트래픽 받기","excerpt":"로드밸런서와 자동 수평 확장으로 HTTPS 트래픽을 프라이빗 앱 인스턴스에 나누는 구성을 정리한다.","content":"$25","publishedAt":"2026-02-27","category":"aws","categoryLabel":"AWS","tags":["aws"],"readingMinutes":5,"order":8,"filePath":"aws/08-alb-autoscaling.md"},{"slug":"aws-09","title":"AWS 배포·비용 실무 체크리스트","excerpt":"계정·네트워크·데이터·관측·비용까지, 프로덕션에 올리기 전에 통과할 AWS 실무 점검 목록을 모은다.","content":"$26","publishedAt":"2026-06-08","category":"aws","categoryLabel":"AWS","tags":["aws"],"readingMinutes":5,"order":9,"filePath":"aws/09-deploy-cost-checklist.md"},{"slug":"db-01","title":"PostgreSQL: 관계형 DB의 실무 기본선","excerpt":"관계·트랜잭션·JSON을 한 엔진에서 다루는 오픈소스 관계형 DB로, 웹과 API 백엔드의 기본선이 되는 이유를 정리한다.","content":"$27","publishedAt":"2023-04-05","category":"db","categoryLabel":"DB","tags":["db"],"readingMinutes":5,"order":1,"filePath":"db/01-postgresql.md"},{"slug":"db-02","title":"MySQL: 웹 서비스에서 가장 흔한 관계형 DB","excerpt":"웹에서 가장 흔히 만나는 관계형 DB로, InnoDB와 utf8mb4를 기준으로 인덱스·복제·백업을 정리한다.","content":"$28","publishedAt":"2023-12-20","category":"db","categoryLabel":"DB","tags":["db"],"readingMinutes":5,"order":2,"filePath":"db/02-mysql.md"},{"slug":"db-03","title":"MongoDB: 문서형 DB로 유연한 스키마 다루기","excerpt":"문서 단위로 읽고 쓰는 워크로드에 맞는 문서형 DB로, 임베드·인덱스·레플리카의 실무 경계를 정리한다.","content":"$29","publishedAt":"2024-07-04","category":"db","categoryLabel":"DB","tags":["db"],"readingMinutes":5,"order":3,"filePath":"db/03-mongodb.md"},{"slug":"db-04","title":"Redis: 인메모리 키-값으로 캐시·세션·큐","excerpt":"캐시·세션·카운터처럼 빠르고 만료가 자연스러운 계층에 쓰는 인메모리 저장소의 패턴과 운영 주의를 정리한다.","content":"$2a","publishedAt":"2024-09-04","category":"db","categoryLabel":"DB","tags":["db"],"readingMinutes":5,"order":4,"filePath":"db/04-redis.md"},{"slug":"db-05","title":"SQLite: 파일 하나로 충분한 임베디드 SQL","excerpt":"서버 없이 파일 하나로 SQL을 쓰는 임베디드 DB로, 언제 충분하고 어디서 한계가 나는지를 정리한다.","content":"$2b","publishedAt":"2025-04-29","category":"db","categoryLabel":"DB","tags":["db"],"readingMinutes":5,"order":5,"filePath":"db/05-sqlite.md"},{"slug":"flutter-01","title":"Flutter SDK와 프로젝트 시작하기","excerpt":"Flutter SDK를 설치하고 프로젝트 구조를 이해한 뒤, 실제 기기에서 첫 앱을 실행한다.","content":"$2c","publishedAt":"2023-06-15","category":"flutter","categoryLabel":"Flutter","tags":["flutter"],"readingMinutes":4,"order":1,"filePath":"flutter/01-sdk-project-start.md"},{"slug":"flutter-02","title":"Stateless와 Stateful 위젯","excerpt":"화면은 위젯 트리이고, 기억할 값이 있으면 Stateful, 없으면 Stateless다.","content":"$2d","publishedAt":"2023-09-27","category":"flutter","categoryLabel":"Flutter","tags":["flutter"],"readingMinutes":5,"order":2,"filePath":"flutter/02-widgets-stateless-stateful.md"},{"slug":"flutter-03","title":"Row·Column·제약으로 레이아웃 잡기","excerpt":"레이아웃은 위젯 이름이 아니라 부모가 내려 준 제약 상자에서 결정된다.","content":"$2e","publishedAt":"2024-04-04","category":"flutter","categoryLabel":"Flutter","tags":["flutter"],"readingMinutes":5,"order":3,"filePath":"flutter/03-layout-constraints.md"},{"slug":"flutter-04","title":"Navigator와 라우트로 화면 전환","excerpt":"화면 전환은 함수 호출이 아니라 내비게이터 스택(또는 URL)의 상태다.","content":"$2f","publishedAt":"2025-01-06","category":"flutter","categoryLabel":"Flutter","tags":["flutter"],"readingMinutes":5,"order":4,"filePath":"flutter/04-navigation-routes.md"},{"slug":"flutter-05","title":"setState부터 Provider·Riverpod까지 상태 관리","excerpt":"값이 누구의 기억인지 먼저 나누고, 로컬은 setState, 공유는 Provider로 올린다.","content":"$30","publishedAt":"2025-04-08","category":"flutter","categoryLabel":"Flutter","tags":["flutter"],"readingMinutes":5,"order":5,"filePath":"flutter/05-state-setstate-provider.md"},{"slug":"flutter-06","title":"비동기·HTTP·JSON으로 서버 연동","excerpt":"서버 연동은 호출 성공이 아니라 로딩·실패·JSON 계약을 UI가 흡수하는 일이다.","content":"$31","publishedAt":"2025-10-06","category":"flutter","categoryLabel":"Flutter","tags":["flutter"],"readingMinutes":6,"order":6,"filePath":"flutter/06-async-http-json.md"},{"slug":"flutter-07","title":"리스트·키·성능의 기본","excerpt":"긴 목록은 빌더로 그리고, 키로 아이템 정체성을 지키면 스크롤이 버틴다.","content":"$32","publishedAt":"2026-01-26","category":"flutter","categoryLabel":"Flutter","tags":["flutter"],"readingMinutes":5,"order":7,"filePath":"flutter/07-lists-keys-performance.md"},{"slug":"flutter-08","title":"ThemeData로 머티리얼 디자인 토큰","excerpt":"색과 글자 크기는 위젯마다 박지 말고 ThemeData 한곳으로 모은다.","content":"$33","publishedAt":"2026-04-15","category":"flutter","categoryLabel":"Flutter","tags":["flutter"],"readingMinutes":5,"order":8,"filePath":"flutter/08-theming-material.md"},{"slug":"flutter-09","title":"로컬 저장·설정 영속화","excerpt":"기기에 남길 데이터는 민감도와 수명에 따라 prefs, 보안 저장소, DB로 나눈다.","content":"$34","publishedAt":"2026-07-06","category":"flutter","categoryLabel":"Flutter","tags":["flutter"],"readingMinutes":5,"order":9,"filePath":"flutter/09-local-storage-persistence.md"},{"slug":"flutter-10","title":"Flutter 빌드·배포 실무 체크리스트","excerpt":"스토어 제출 전에 서명, 권한, 릴리스 빌드, 관측을 한 장으로 점검한다.","content":"$35","publishedAt":"2026-08-07","category":"flutter","categoryLabel":"Flutter","tags":["flutter"],"readingMinutes":5,"order":10,"filePath":"flutter/10-build-release-checklist.md"},{"slug":"html-css-01","title":"시맨틱 HTML로 문서 뼈대 잡기","excerpt":"header·main·nav 같은 시맨틱 태그로 페이지 뼈대를 잡고, 스크린 리더와 검색엔진이 읽을 수 있는 HTML을 작성한다.","content":"$36","publishedAt":"2023-01-24","category":"html-css","categoryLabel":"HTML/CSS","tags":["html-css"],"readingMinutes":3,"order":1,"filePath":"html-css/01-semantic-html-document.md"},{"slug":"html-css-02","title":"CSS 박스 모델과 display 기초","excerpt":"박스가 content·padding·border·margin으로 어떻게 커지는지와 display가 흐름을 어떻게 바꾸는지 구분해 레이아웃을 계산한다.","content":"$37","publishedAt":"2023-11-15","category":"html-css","categoryLabel":"HTML/CSS","tags":["html-css"],"readingMinutes":4,"order":2,"filePath":"html-css/02-css-box-model-display.md"},{"slug":"html-css-03","title":"Flexbox로 한 줄 레이아웃 잡기","excerpt":"한 줄 또는 한 열로 아이템을 나열할 때 Flexbox로 축·정렬·간격을 맞춰 내비·툴바·카드 액션을 배치한다.","content":"$38","publishedAt":"2024-05-01","category":"html-css","categoryLabel":"HTML/CSS","tags":["html-css"],"readingMinutes":4,"order":3,"filePath":"html-css/03-flexbox-layout.md"},{"slug":"html-css-04","title":"CSS Grid로 행과 열 동시에 잡기","excerpt":"행과 열을 함께 정해야 할 때 Grid로 페이지 골격과 카드 목록을 만들고, fr·영역 이름으로 칸을 나눈다.","content":"$39","publishedAt":"2024-07-31","category":"html-css","categoryLabel":"HTML/CSS","tags":["html-css"],"readingMinutes":4,"order":4,"filePath":"html-css/04-css-grid-layout.md"},{"slug":"html-css-05","title":"반응형 디자인과 미디어 쿼리","excerpt":"좁은 화면을 기본으로 두고, 레이아웃이 깨지는 폭에서만 미디어 쿼리와 clamp로 넓은 화면에 맞춘다.","content":"$3a","publishedAt":"2025-03-19","category":"html-css","categoryLabel":"HTML/CSS","tags":["html-css"],"readingMinutes":3,"order":5,"filePath":"html-css/05-responsive-media-queries.md"},{"slug":"html-css-06","title":"타이포·색·CSS 변수로 디자인 토큰 잡기","excerpt":"글자 크기·행간·색을 CSS 변수로 이름 붙여 두고, 컴포넌트는 그 이름만 참조하여 화면을 일관되게 만든다.","content":"$3b","publishedAt":"2025-09-15","category":"html-css","categoryLabel":"HTML/CSS","tags":["html-css"],"readingMinutes":4,"order":6,"filePath":"html-css/06-typography-color-variables.md"},{"slug":"html-css-07","title":"폼·포커스·접근성 기본","excerpt":"label 연결, 보이는 포커스, 네이티브 컨트롤로 키보드와 스크린 리더가 쓸 수 있는 폼을 만든다.","content":"$3c","publishedAt":"2025-12-06","category":"html-css","categoryLabel":"HTML/CSS","tags":["html-css"],"readingMinutes":4,"order":7,"filePath":"html-css/07-forms-accessibility.md"},{"slug":"html-css-08","title":"HTML/CSS 실무 체크리스트","excerpt":"페이지를 내보내기 전에 시맨틱·박스·레이아웃·반응형·토큰·포커스를 한 번씩 확인한다.","content":"$3d","publishedAt":"2026-02-16","category":"html-css","categoryLabel":"HTML/CSS","tags":["html-css"],"readingMinutes":3,"order":8,"filePath":"html-css/08-modern-css-checklist.md"},{"slug":"laravel-01","title":"Laravel 11+와 PHP 시작하기","excerpt":"Laravel 11부터는 Kernel 대신 bootstrap/app.php가 앱의 중심이고, PHP 8.2 이상으로 프로젝트를 세팅한다.","content":"$3e","publishedAt":"2023-02-27","category":"laravel","categoryLabel":"Laravel","tags":["laravel"],"readingMinutes":5,"order":1,"filePath":"laravel/01-laravel-11-modern-php.md"},{"slug":"laravel-02","title":"라우팅·미들웨어·컨트롤러 — 요청 생명주기","excerpt":"요청은 라우트와 미들웨어를 지나 컨트롤러에 도착하며, 인증·제한·응답을 어디에 둘지는 이 흐름에서 정한다.","content":"$3f","publishedAt":"2023-08-21","category":"laravel","categoryLabel":"Laravel","tags":["laravel"],"readingMinutes":6,"order":2,"filePath":"laravel/02-routing-middleware-controller.md"},{"slug":"laravel-03","title":"Eloquent ORM과 데이터베이스","excerpt":"Eloquent는 테이블 한 행을 PHP 객체로 다루는 ORM이고, 마이그레이션·관계·N+1을 같이 잡아야 데이터가 깨지지 않는다.","content":"$40","publishedAt":"2024-03-25","category":"laravel","categoryLabel":"Laravel","tags":["laravel"],"readingMinutes":6,"order":3,"filePath":"laravel/03-eloquent-orm.md"},{"slug":"laravel-04","title":"Validation, Form Request, API Resource","excerpt":"들어오는 값은 Form Request로 검증하고, 나가는 JSON은 API Resource로 정해 두면 컨트롤러가 얇아진다.","content":"$41","publishedAt":"2024-11-08","category":"laravel","categoryLabel":"Laravel","tags":["laravel"],"readingMinutes":6,"order":4,"filePath":"laravel/04-validation-form-request-resource.md"},{"slug":"laravel-05","title":"인증·인가 — Sanctum, Policy, Gate","excerpt":"Sanctum으로 누구인지 확인하고, Policy로 그 사용자가 이 글이나 주문을 만져도 되는지 가른다.","content":"$42","publishedAt":"2025-01-27","category":"laravel","categoryLabel":"Laravel","tags":["laravel"],"readingMinutes":5,"order":5,"filePath":"laravel/05-auth-sanctum-policy.md"},{"slug":"laravel-06","title":"테스트 — PHPUnit, Pest, Feature 테스트","excerpt":"Pest는 PHPUnit 위에 읽기 쉬운 문법을 얹은 도구이고, Feature 테스트로 API와 권한을 먼저 고정한다.","content":"$43","publishedAt":"2025-07-25","category":"laravel","categoryLabel":"Laravel","tags":["laravel"],"readingMinutes":5,"order":6,"filePath":"laravel/06-testing-pest.md"},{"slug":"laravel-07","title":"큐·Job·이벤트·스케줄링","excerpt":"메일·이미지처럼 느린 일은 Job 큐로 넘기고, 이벤트와 스케줄러로 후처리와 매일 할 일을 운영한다.","content":"$44","publishedAt":"2026-01-07","category":"laravel","categoryLabel":"Laravel","tags":["laravel"],"readingMinutes":5,"order":7,"filePath":"laravel/07-queue-job-events.md"},{"slug":"laravel-08","title":"캐시·Redis·성능 최적화","excerpt":"느린 쿼리를 먼저 고친 뒤 Redis 캐시를 쓰고, 무효화 지점을 정해 두지 않으면 캐시는 낡은 화면이 된다.","content":"$45","publishedAt":"2026-04-02","category":"laravel","categoryLabel":"Laravel","tags":["laravel"],"readingMinutes":4,"order":8,"filePath":"laravel/08-cache-redis-performance.md"},{"slug":"laravel-09","title":"Blade·Livewire·Inertia와 API 프론트 전략","excerpt":"Blade·Livewire·Inertia·순수 API 중 제품에 맞는 프론트를 고르고, 한 앱 안에서도 경계를 나누면 된다.","content":"$46","publishedAt":"2026-06-24","category":"laravel","categoryLabel":"Laravel","tags":["laravel"],"readingMinutes":5,"order":9,"filePath":"laravel/09-blade-livewire-inertia.md"},{"slug":"laravel-10","title":"운영 배포 — Sail, Forge/Vapor, 프로덕션 체크리스트","excerpt":"Sail로 로컬을 맞추고 Forge나 컨테이너로 배포하며, 워커·스케줄·시크릿을 배포의 일부로 둔다.","content":"$47","publishedAt":"2026-08-11","category":"laravel","categoryLabel":"Laravel","tags":["laravel"],"readingMinutes":5,"order":10,"filePath":"laravel/10-ops-sail-forge.md"},{"slug":"nextjs-01","title":"Next.js App Router로 프로젝트 시작하기","excerpt":"App Router와 TypeScript로 Next.js 프로젝트를 만들고, 폴더·페이지·레이아웃의 역할을 구분한다.","content":"$48","publishedAt":"2023-03-20","category":"nextjs","categoryLabel":"Next.js","tags":["nextjs"],"readingMinutes":4,"order":1,"filePath":"nextjs/01-app-router-getting-started.md"},{"slug":"nextjs-02","title":"라우팅·레이아웃·동적 세그먼트","excerpt":"폴더가 URL이 되는 규칙을 익히고, 동적 주소와 중첩 레이아웃으로 화면 구조를 잡는다.","content":"$49","publishedAt":"2024-01-08","category":"nextjs","categoryLabel":"Next.js","tags":["nextjs"],"readingMinutes":5,"order":2,"filePath":"nextjs/02-routing-layouts-dynamic-segments.md"},{"slug":"nextjs-03","title":"Server Component와 Client Component","excerpt":"기본은 서버 컴포넌트로 두고, 클릭·입력처럼 브라우저가 필요한 부분만 Client로 나눈다.","content":"$4a","publishedAt":"2024-04-15","category":"nextjs","categoryLabel":"Next.js","tags":["nextjs"],"readingMinutes":5,"order":3,"filePath":"nextjs/03-server-client-components.md"},{"slug":"nextjs-04","title":"데이터 페칭과 캐시 전략","excerpt":"서버 컴포넌트에서 데이터를 읽고, 캐시할지 매 요청 최신으로 둘지 옵션으로 명시한다.","content":"$4b","publishedAt":"2024-11-18","category":"nextjs","categoryLabel":"Next.js","tags":["nextjs"],"readingMinutes":5,"order":4,"filePath":"nextjs/04-data-fetching-caching.md"},{"slug":"nextjs-05","title":"SSG·generateStaticParams·정적 export","excerpt":"빌드할 때 HTML을 미리 만들고, 동적 주소는 generateStaticParams로 목록을 넘기며, 정적 내보내기 제약을 확인한다.","content":"$4c","publishedAt":"2025-02-07","category":"nextjs","categoryLabel":"Next.js","tags":["nextjs"],"readingMinutes":4,"order":5,"filePath":"nextjs/05-ssg-generate-static-params-export.md"},{"slug":"nextjs-06","title":"Metadata·Open Graph·SEO 기본기","excerpt":"metadata API로 페이지마다 제목·설명·정규 URL·공유 미리보기를 맞춘다.","content":"$4d","publishedAt":"2025-07-09","category":"nextjs","categoryLabel":"Next.js","tags":["nextjs"],"readingMinutes":5,"order":6,"filePath":"nextjs/06-metadata-open-graph-seo.md"},{"slug":"nextjs-07","title":"Route Handler와 Server Actions","excerpt":"앱 밖 API는 Route Handler로, 같은 앱의 폼 저장은 Server Action으로 나누고, 정적 호스팅 제약을 확인한다.","content":"$4e","publishedAt":"2026-01-14","category":"nextjs","categoryLabel":"Next.js","tags":["nextjs"],"readingMinutes":6,"order":7,"filePath":"nextjs/07-route-handlers-server-actions.md"},{"slug":"nextjs-08","title":"미들웨어와 인증 경계","excerpt":"요청이 페이지에 닿기 전에 경로를 가리고, 실제 권한은 서버 레이아웃에서 다시 확인한다.","content":"$4f","publishedAt":"2026-03-06","category":"nextjs","categoryLabel":"Next.js","tags":["nextjs"],"readingMinutes":5,"order":8,"filePath":"nextjs/08-middleware-auth-boundaries.md"},{"slug":"nextjs-09","title":"이미지·폰트·성능 최적화","excerpt":"next/image와 next/font로 이미지·폰트를 다루고, 번들과 로딩 UI로 체감 속도를 맞춘다.","content":"$50","publishedAt":"2026-05-20","category":"nextjs","categoryLabel":"Next.js","tags":["nextjs"],"readingMinutes":5,"order":9,"filePath":"nextjs/09-image-font-performance.md"},{"slug":"nextjs-10","title":"배포 — Vercel·정적 호스팅·체크리스트","excerpt":"서버가 있는 배포와 HTML만 올리는 배포를 고르고, 환경변수·SEO·롤백을 체크리스트로 통과시킨다.","content":"$51","publishedAt":"2026-08-15","category":"nextjs","categoryLabel":"Next.js","tags":["nextjs"],"readingMinutes":5,"order":10,"filePath":"nextjs/10-deploy-vercel-static-checklist.md"},{"slug":"nginx-01","title":"Nginx 리버스 프록시 기초","excerpt":"브라우저와 앱 서버 사이에 Nginx를 두고, 정적 파일은 직접 주고 API는 내부 포트로 넘기는 최소 구성을 만든다.","content":"$52","publishedAt":"2023-02-07","category":"nginx","categoryLabel":"Nginx","tags":["nginx"],"readingMinutes":4,"order":1,"filePath":"nginx/01-nginx-reverse-proxy-basics.md"},{"slug":"nginx-02","title":"Nginx에서 HTTPS·TLS 종단하기","excerpt":"인증서를 Nginx에 두고 443에서 TLS를 끝낸 뒤, 80 요청을 HTTPS로 보내고 앱에는 암호화가 끝났다는 헤더를 넘긴다.","content":"$53","publishedAt":"2023-10-26","category":"nginx","categoryLabel":"Nginx","tags":["nginx"],"readingMinutes":4,"order":2,"filePath":"nginx/02-nginx-tls-https.md"},{"slug":"nginx-03","title":"Nginx 운영·보안 체크리스트","excerpt":"배포 전에 타임아웃, 업로드 한도, 보안 헤더, 로그, 압축, 인증서 갱신이 앱 특성에 맞는지 확인한다.","content":"$54","publishedAt":"2024-07-18","category":"nginx","categoryLabel":"Nginx","tags":["nginx"],"readingMinutes":4,"order":3,"filePath":"nginx/03-nginx-ops-checklist.md"},{"slug":"react-native-01","title":"React Native와 Expo로 시작하기","excerpt":"Expo와 TypeScript로 React Native 프로젝트를 만들고, 첫 화면이 뜨기까지의 기본 지도를 잡는다.","content":"$55","publishedAt":"2023-05-30","category":"react-native","categoryLabel":"React Native","tags":["react-native"],"readingMinutes":4,"order":1,"filePath":"react-native/01-react-native-expo.md"},{"slug":"react-native-02","title":"컴포넌트·스타일·레이아웃 — Flex와 StyleSheet","excerpt":"View·Text·StyleSheet와 Flexbox로 화면을 배치하고, 웹 CSS와 다른 점을 기준으로 레이아웃을 익힌다.","content":"$56","publishedAt":"2023-12-06","category":"react-native","categoryLabel":"React Native","tags":["react-native"],"readingMinutes":5,"order":2,"filePath":"react-native/02-components-style-layout.md"},{"slug":"react-native-03","title":"상태·훅·폼 — 사용자 입력과 데이터 흐름","excerpt":"화면 상태는 훅에 두고, 폼 입력은 검증과 키보드 UX까지 한 흐름으로 만든다.","content":"$57","publishedAt":"2024-03-13","category":"react-native","categoryLabel":"React Native","tags":["react-native"],"readingMinutes":5,"order":3,"filePath":"react-native/03-state-hooks-forms.md"},{"slug":"react-native-04","title":"리스트·네비게이션 — FlatList와 Expo Router","excerpt":"긴 목록은 FlatList로 가상화하고, 화면 이동은 Expo Router의 파일 기반 라우팅으로 구성한다.","content":"$58","publishedAt":"2024-12-18","category":"react-native","categoryLabel":"React Native","tags":["react-native"],"readingMinutes":5,"order":4,"filePath":"react-native/04-lists-navigation-expo-router.md"},{"slug":"react-native-05","title":"네트워킹 — Fetch, React Query, 에러 처리","excerpt":"서버 데이터는 fetch 래퍼와 React Query로 가져와 로딩·에러·재시도를 표준화한다.","content":"$59","publishedAt":"2025-06-12","category":"react-native","categoryLabel":"React Native","tags":["react-native"],"readingMinutes":5,"order":5,"filePath":"react-native/05-networking-react-query.md"},{"slug":"react-native-06","title":"인증·보안 저장소·디바이스 권한","excerpt":"로그인 토큰은 SecureStore에 두고, 카메라·앨범·알림 권한은 필요할 때만 요청한다.","content":"$5a","publishedAt":"2025-08-19","category":"react-native","categoryLabel":"React Native","tags":["react-native"],"readingMinutes":5,"order":6,"filePath":"react-native/06-auth-secure-store-permissions.md"},{"slug":"react-native-07","title":"애니메이션·제스처·사용자 경험","excerpt":"Reanimated와 Gesture Handler로 터치 피드백을 만들고, 햅틱·접근성까지 맞춘다.","content":"$5b","publishedAt":"2025-11-17","category":"react-native","categoryLabel":"React Native","tags":["react-native"],"readingMinutes":5,"order":7,"filePath":"react-native/07-animation-gesture-ux.md"},{"slug":"react-native-08","title":"상태 관리·아키텍처·모듈화","excerpt":"전역 상태를 최소화하고, 기능 단위 폴더와 Context·Zustand 선택 기준을 정리한다.","content":"$5c","publishedAt":"2026-02-09","category":"react-native","categoryLabel":"React Native","tags":["react-native"],"readingMinutes":4,"order":8,"filePath":"react-native/08-state-architecture.md"},{"slug":"react-native-09","title":"테스트·디버깅·성능","excerpt":"테스트·디버깅·성능 점검을 체크리스트로 두고, 각 항목이 필요한 이유를 한 줄로 적는다.","content":"$5d","publishedAt":"2026-07-16","category":"react-native","categoryLabel":"React Native","tags":["react-native"],"readingMinutes":4,"order":9,"filePath":"react-native/09-testing-debug-performance.md"},{"slug":"react-native-10","title":"EAS 빌드·스토어 배포·OTA","excerpt":"EAS로 스토어 빌드와 OTA 업데이트를 나누고, 출시 전에 볼 점검 목록을 정리한다.","content":"$5e","publishedAt":"2026-08-19","category":"react-native","categoryLabel":"React Native","tags":["react-native"],"readingMinutes":5,"order":10,"filePath":"react-native/10-eas-build-store-ota.md"},{"slug":"spring-boot-01","title":"Spring Boot 3와 Java 21 시작하기","excerpt":"Java 21과 Spring Boot 3.x로 프로젝트를 세팅하고, 자동 구성·프로파일·record 같은 기본선을 잡는다.","content":"$5f","publishedAt":"2023-01-09","category":"spring-boot","categoryLabel":"Spring Boot","tags":["spring-boot"],"readingMinutes":5,"order":1,"filePath":"spring-boot/01-spring-boot-3-java-21.md"},{"slug":"spring-boot-02","title":"IoC, Bean, Configuration — 의존성 주입","excerpt":"IoC 컨테이너가 Bean을 조립하는 방식을 이해하고, 생성자 주입과 타입 세이프 설정으로 의존성을 구성한다.","content":"$60","publishedAt":"2023-10-13","category":"spring-boot","categoryLabel":"Spring Boot","tags":["spring-boot"],"readingMinutes":5,"order":2,"filePath":"spring-boot/02-ioc-bean-configuration.md"},{"slug":"spring-boot-03","title":"REST API 설계 — Validation, Problem Details, RestClient","excerpt":"검증·Problem Details·RestClient로 REST API의 계약과 에러 응답, 외부 호출을 일관되게 만든다.","content":"$61","publishedAt":"2024-05-13","category":"spring-boot","categoryLabel":"Spring Boot","tags":["spring-boot"],"readingMinutes":6,"order":3,"filePath":"spring-boot/03-rest-api-validation-problem-details.md"},{"slug":"spring-boot-04","title":"Spring Data JPA와 영속성 계층","excerpt":"JPA 엔티티와 트랜잭션 경계를 명확히 하고, N+1·OSIV·스키마 마이그레이션 함정을 피한다.","content":"$62","publishedAt":"2024-12-04","category":"spring-boot","categoryLabel":"Spring Boot","tags":["spring-boot"],"readingMinutes":7,"order":4,"filePath":"spring-boot/04-spring-data-jpa.md"},{"slug":"spring-boot-05","title":"Spring Security 6 — 인증·인가·OAuth2·JWT","excerpt":"SecurityFilterChain으로 API 인증·인가를 구성하고, JWT와 OAuth2 Resource Server를 구분해서 쓴다.","content":"$63","publishedAt":"2025-02-26","category":"spring-boot","categoryLabel":"Spring Boot","tags":["spring-boot"],"readingMinutes":7,"order":5,"filePath":"spring-boot/05-spring-security-6.md"},{"slug":"spring-boot-06","title":"테스트 — JUnit 5, MockMvc, Testcontainers","excerpt":"단위·슬라이스·통합 테스트 비중을 나누고, Testcontainers로 실제 DB에 가까운 검증을 한다.","content":"$64","publishedAt":"2025-10-20","category":"spring-boot","categoryLabel":"Spring Boot","tags":["spring-boot"],"readingMinutes":5,"order":6,"filePath":"spring-boot/06-testing-junit-testcontainers.md"},{"slug":"spring-boot-07","title":"Observability — Actuator, Micrometer, OpenTelemetry","excerpt":"Actuator와 OpenTelemetry로 헬스·메트릭·트레이스를 붙여, 느린 지점과 장애 지점을 관측한다.","content":"$65","publishedAt":"2025-12-19","category":"spring-boot","categoryLabel":"Spring Boot","tags":["spring-boot"],"readingMinutes":5,"order":7,"filePath":"spring-boot/07-observability-actuator-otel.md"},{"slug":"spring-boot-08","title":"비동기·메시징·Virtual Threads","excerpt":"Virtual Threads와 이벤트·메시지 큐를 용도에 맞게 고르고, 커밋 이후 발행과 Outbox로 유실을 줄인다.","content":"$66","publishedAt":"2026-03-24","category":"spring-boot","categoryLabel":"Spring Boot","tags":["spring-boot"],"readingMinutes":5,"order":8,"filePath":"spring-boot/08-async-messaging-virtual-threads.md"},{"slug":"spring-boot-09","title":"캐시·Resilience·성능 최적화","excerpt":"측정 뒤에 캐시·재시도·서킷 브레이커·타임아웃을 넣고, 쿼리와 페이로드 병목을 줄인다.","content":"$67","publishedAt":"2026-05-01","category":"spring-boot","categoryLabel":"Spring Boot","tags":["spring-boot"],"readingMinutes":5,"order":9,"filePath":"spring-boot/09-cache-resilience-performance.md"},{"slug":"spring-boot-10","title":"운영 배포 — Docker, 설정, Native Image, 프로덕션 체크리스트","excerpt":"환경변수와 컨테이너로 배포하고, 헬스 프로브·그레이스풀 종료·Native Image를 운영 기본선에 맞춘다.","content":"$68","publishedAt":"2026-07-27","category":"spring-boot","categoryLabel":"Spring Boot","tags":["spring-boot"],"readingMinutes":5,"order":10,"filePath":"spring-boot/10-ops-docker-native.md"},{"slug":"vue-01","title":"Vue 3 Composition API로 시작하기","excerpt":"한 파일에 화면·로직·스타일을 두고, script setup으로 Vue 3 컴포넌트를 시작한다.","content":"$69","publishedAt":"2023-04-25","category":"vue","categoryLabel":"Vue","tags":["vue"],"readingMinutes":4,"order":1,"filePath":"vue/01-vue3-composition-setup.md"},{"slug":"vue-02","title":"ref와 reactive로 반응형 상태 다루기","excerpt":"값이 바뀌면 화면이 다시 그려지도록 ref로 상태를 두고, 계산 값과 감시 로직을 나눈다.","content":"$6a","publishedAt":"2024-02-07","category":"vue","categoryLabel":"Vue","tags":["vue"],"readingMinutes":5,"order":2,"filePath":"vue/02-reactivity-ref-reactive.md"},{"slug":"vue-03","title":"컴포넌트 props·emits·슬롯","excerpt":"부모는 props로 값을 내리고 자식은 이벤트로 알리며, 슬롯으로 자리를 열어 컴포넌트를 조립한다.","content":"$6b","publishedAt":"2024-06-03","category":"vue","categoryLabel":"Vue","tags":["vue"],"readingMinutes":5,"order":3,"filePath":"vue/03-components-props-emits.md"},{"slug":"vue-04","title":"Vue Router와 Pinia로 화면·상태 구성","excerpt":"URL과 화면을 라우터로 맞추고, 여러 화면이 공유하는 상태는 Pinia 스토어에 두는 SPA 구성 방법을 정리한다.","content":"$6c","publishedAt":"2024-09-23","category":"vue","categoryLabel":"Vue","tags":["vue"],"readingMinutes":5,"order":4,"filePath":"vue/04-vue-router-pinia.md"},{"slug":"vue-05","title":"Vue 앱 실무 체크리스트","excerpt":"구조·성능·접근성·보안·배포까지, Vue 앱을 내보내기 전에 항목마다 이유를 붙여 확인하는 실무 체크리스트다.","content":"$6d","publishedAt":"2025-06-04","category":"vue","categoryLabel":"Vue","tags":["vue"],"readingMinutes":3,"order":5,"filePath":"vue/05-vue-app-checklist.md"},{"slug":"wpf-01","title":"WPF와 XAML·MVVM 시작하기","excerpt":"XAML로 화면을 그리고, DataContext로 ViewModel을 붙여 화면과 로직을 나눈다.","content":"$6e","publishedAt":"2023-06-28","category":"wpf","categoryLabel":"WPF","tags":["wpf"],"readingMinutes":5,"order":1,"filePath":"wpf/01-wpf-xaml-mvvm-start.md"},{"slug":"wpf-02","title":"데이터 바인딩과 ObservableCollection","excerpt":"INotifyPropertyChanged와 ObservableCollection으로 값·목록 변경을 화면에 반영하고, DataTemplate로 행 UI를 분리하는 방법을 정리한다.","content":"$6f","publishedAt":"2023-09-11","category":"wpf","categoryLabel":"WPF","tags":["wpf"],"readingMinutes":6,"order":2,"filePath":"wpf/02-data-binding-observable.md"},{"slug":"wpf-03","title":"이벤트 대신 ICommand로 액션 연결하기","excerpt":"버튼 클릭을 코드비하인드가 아니라 ViewModel의 ICommand로 연결하고, CanExecute로 활성 상태를 맞추는 방법을 정리한다.","content":"$70","publishedAt":"2024-06-24","category":"wpf","categoryLabel":"WPF","tags":["wpf"],"readingMinutes":5,"order":3,"filePath":"wpf/03-commands-and-events.md"},{"slug":"wpf-04","title":"스타일·리소스·테마 관리","excerpt":"ResourceDictionary에 색과 스타일을 모아 StaticResource/DynamicResource로 참조하고, 파일 분리로 테마를 운영하는 방법을 정리한다.","content":"$71","publishedAt":"2024-10-28","category":"wpf","categoryLabel":"WPF","tags":["wpf"],"readingMinutes":5,"order":4,"filePath":"wpf/04-styles-resources-themes.md"},{"slug":"wpf-05","title":"화면 전환과 다이얼로그 패턴","excerpt":"ContentControl과 DataTemplate로 ViewModel을 갈아 끼워 화면을 전환하고, 대화상자는 서비스로 추상화하는 방법을 정리한다.","content":"$72","publishedAt":"2025-01-17","category":"wpf","categoryLabel":"WPF","tags":["wpf"],"readingMinutes":6,"order":5,"filePath":"wpf/05-navigation-dialogs.md"},{"slug":"wpf-06","title":"WPF 앱 실무 체크리스트","excerpt":"MVVM 경계·성능·예외·배포·UX까지, WPF 앱을 내보내기 전에 항목마다 이유를 붙여 확인하는 실무 체크리스트다.","content":"$73","publishedAt":"2025-08-11","category":"wpf","categoryLabel":"WPF","tags":["wpf"],"readingMinutes":3,"order":6,"filePath":"wpf/06-wpf-app-checklist.md"}],"categories":[{"id":"angular","label":"Angular","count":5},{"id":"aws","label":"AWS","count":9},{"id":"db","label":"DB","count":5},{"id":"flutter","label":"Flutter","count":10},{"id":"html-css","label":"HTML/CSS","count":8},{"id":"laravel","label":"Laravel","count":10},{"id":"nextjs","label":"Next.js","count":10},{"id":"nginx","label":"Nginx","count":3},{"id":"react-native","label":"React Native","count":10},{"id":"spring-boot","label":"Spring Boot","count":10},{"id":"vue","label":"Vue","count":5},{"id":"wpf","label":"WPF","count":6}]}]],["$L74"],"$L75"]}]
-12:["$","$1","h",{"children":[null,["$","$L76",null,{"children":"$L77"}],["$","div",null,{"hidden":true,"children":["$","$L78",null,{"children":["$","$79",null,{"name":"Next.Metadata","children":"$L7a"}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}]
+11:["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@type\":\"WebSite\",\"name\":\"Kaisa\",\"description\":\"Development, design, and notes from Kaisa — articles on building products and tools.\",\"url\":\"https://kaisa.co.kr/\"}"}}],["$","$L18",null,{"posts":[{"slug":"angular-01","title":"Angular 스탠드얼론으로 프로젝트 시작하기","excerpt":"NgModule 없이 standalone 컴포넌트와 app.config로 Angular 앱을 띄우고, 폴더·부트스트랩 기본선을 정리한다.","content":"$19","publishedAt":"2023-07-14","category":"angular","categoryLabel":"Angular","tags":["angular"],"readingMinutes":5,"order":1,"filePath":"angular/01-angular-standalone-start.md"},{"slug":"angular-02","title":"컴포넌트·템플릿·데이터 바인딩","excerpt":"템플릿에 값을 넣고 클릭을 받으며, @if/@for와 input/output으로 화면과 클래스를 연결한다.","content":"$1a","publishedAt":"2024-01-17","category":"angular","categoryLabel":"Angular","tags":["angular"],"readingMinutes":5,"order":2,"filePath":"angular/02-components-templates-binding.md"},{"slug":"angular-03","title":"시그널·서비스·의존성 주입","excerpt":"signal로 화면 상태를 두고, providedIn 서비스와 inject로 공유 로직을 연결하는 Angular 상태·DI 패턴을 정리한다.","content":"$1b","publishedAt":"2024-06-13","category":"angular","categoryLabel":"Angular","tags":["angular"],"readingMinutes":6,"order":3,"filePath":"angular/03-signals-services-di.md"},{"slug":"angular-04","title":"라우팅과 리액티브 폼","excerpt":"provideRouter와 lazy loadComponent로 화면을 나누고, 가드·FormBuilder로 진입 조건과 입력 검증을 구성하는 방법을 정리한다.","content":"$1c","publishedAt":"2024-10-07","category":"angular","categoryLabel":"Angular","tags":["angular"],"readingMinutes":6,"order":4,"filePath":"angular/04-routing-forms.md"},{"slug":"angular-05","title":"Angular 앱 실무 체크리스트","excerpt":"standalone 구조·성능·보안·테스트·배포까지, Angular 앱을 내보내기 전에 항목마다 이유를 붙여 확인하는 실무 체크리스트다.","content":"$1d","publishedAt":"2025-05-19","category":"angular","categoryLabel":"Angular","tags":["angular"],"readingMinutes":3,"order":5,"filePath":"angular/05-angular-app-checklist.md"},{"slug":"aws-01","title":"AWS 계정·IAM·빌링 기초 잡기","excerpt":"루트 계정은 잠그고 IAM과 비용 알람부터 켜는, AWS를 안전하게 시작하기 위한 최소 세팅을 정리한다.","content":"$1e","publishedAt":"2023-05-08","category":"aws","categoryLabel":"AWS","tags":["aws"],"readingMinutes":5,"order":1,"filePath":"aws/01-account-iam-billing-basics.md"},{"slug":"aws-02","title":"VPC·서브넷·보안 그룹으로 네트워크 설계하기","excerpt":"가상 네트워크(VPC)에서 퍼블릭·프라이빗 서브넷과 보안 그룹으로 트래픽을 최소 허용하는 뼈대를 잡는다.","content":"$1f","publishedAt":"2023-08-07","category":"aws","categoryLabel":"AWS","tags":["aws"],"readingMinutes":5,"order":2,"filePath":"aws/02-vpc-subnets-security-groups.md"},{"slug":"aws-03","title":"EC2 인스턴스 기초와 운영 포인트","excerpt":"가상 서버(EC2)를 고르고 올리는 과정과, 키·스토리지·접속 경로를 안전하게 운영하는 기본을 정리한다.","content":"$20","publishedAt":"2024-02-28","category":"aws","categoryLabel":"AWS","tags":["aws"],"readingMinutes":5,"order":3,"filePath":"aws/03-ec2-instance-basics.md"},{"slug":"aws-04","title":"S3 버킷·접근 제어·수명주기","excerpt":"객체 스토리지(S3)를 퍼블릭 차단·최소 IAM·수명주기로 안전하게 쓰는 기본선을 정리한다.","content":"$21","publishedAt":"2024-08-14","category":"aws","categoryLabel":"AWS","tags":["aws"],"readingMinutes":5,"order":4,"filePath":"aws/04-s3-buckets-access.md"},{"slug":"aws-05","title":"RDS로 관리형 데이터베이스 운영하기","excerpt":"관리형 관계형 DB(RDS)를 프라이빗 서브넷·백업·멀티 AZ로 안전하게 올리는 기준을 정리한다.","content":"$22","publishedAt":"2025-06-21","category":"aws","categoryLabel":"AWS","tags":["aws"],"readingMinutes":5,"order":5,"filePath":"aws/05-rds-managed-database.md"},{"slug":"aws-06","title":"IAM 역할과 최소 권한 설계","excerpt":"사람·워크로드에 임시 역할만 맡기고, 정책의 Action과 Resource를 좁혀 최소 권한을 설계하는 방법을 정리한다.","content":"$23","publishedAt":"2025-09-06","category":"aws","categoryLabel":"AWS","tags":["aws"],"readingMinutes":4,"order":6,"filePath":"aws/06-iam-roles-least-privilege.md"},{"slug":"aws-07","title":"CloudWatch 로그·메트릭·알람","excerpt":"로그·메트릭·알람으로 장애와 비용을 같은 날 알아채는 관측 기본선을 만든다.","content":"$24","publishedAt":"2025-11-03","category":"aws","categoryLabel":"AWS","tags":["aws"],"readingMinutes":5,"order":7,"filePath":"aws/07-cloudwatch-logs-alarms.md"},{"slug":"aws-08","title":"ALB와 Auto Scaling으로 트래픽 받기","excerpt":"로드밸런서와 자동 수평 확장으로 HTTPS 트래픽을 프라이빗 앱 인스턴스에 나누는 구성을 정리한다.","content":"$25","publishedAt":"2026-02-27","category":"aws","categoryLabel":"AWS","tags":["aws"],"readingMinutes":5,"order":8,"filePath":"aws/08-alb-autoscaling.md"},{"slug":"aws-09","title":"AWS 배포·비용 실무 체크리스트","excerpt":"계정·네트워크·데이터·관측·비용까지, 프로덕션에 올리기 전에 통과할 AWS 실무 점검 목록을 모은다.","content":"$26","publishedAt":"2026-06-08","category":"aws","categoryLabel":"AWS","tags":["aws"],"readingMinutes":5,"order":9,"filePath":"aws/09-deploy-cost-checklist.md"},{"slug":"db-01","title":"PostgreSQL: 관계형 DB의 실무 기본선","excerpt":"관계·트랜잭션·JSON을 한 엔진에서 다루는 오픈소스 관계형 DB로, 웹과 API 백엔드의 기본선이 되는 이유를 정리한다.","content":"$27","publishedAt":"2023-04-05","category":"db","categoryLabel":"DB","tags":["db"],"readingMinutes":5,"order":1,"filePath":"db/01-postgresql.md"},{"slug":"db-02","title":"MySQL: 웹 서비스에서 가장 흔한 관계형 DB","excerpt":"웹에서 가장 흔히 만나는 관계형 DB로, InnoDB와 utf8mb4를 기준으로 인덱스·복제·백업을 정리한다.","content":"$28","publishedAt":"2023-12-20","category":"db","categoryLabel":"DB","tags":["db"],"readingMinutes":5,"order":2,"filePath":"db/02-mysql.md"},{"slug":"db-03","title":"MongoDB: 문서형 DB로 유연한 스키마 다루기","excerpt":"문서 단위로 읽고 쓰는 워크로드에 맞는 문서형 DB로, 임베드·인덱스·레플리카의 실무 경계를 정리한다.","content":"$29","publishedAt":"2024-07-04","category":"db","categoryLabel":"DB","tags":["db"],"readingMinutes":5,"order":3,"filePath":"db/03-mongodb.md"},{"slug":"db-04","title":"Redis: 인메모리 키-값으로 캐시·세션·큐","excerpt":"캐시·세션·카운터처럼 빠르고 만료가 자연스러운 계층에 쓰는 인메모리 저장소의 패턴과 운영 주의를 정리한다.","content":"$2a","publishedAt":"2024-09-04","category":"db","categoryLabel":"DB","tags":["db"],"readingMinutes":5,"order":4,"filePath":"db/04-redis.md"},{"slug":"db-05","title":"SQLite: 파일 하나로 충분한 임베디드 SQL","excerpt":"서버 없이 파일 하나로 SQL을 쓰는 임베디드 DB로, 언제 충분하고 어디서 한계가 나는지를 정리한다.","content":"$2b","publishedAt":"2025-04-29","category":"db","categoryLabel":"DB","tags":["db"],"readingMinutes":5,"order":5,"filePath":"db/05-sqlite.md"},{"slug":"flutter-01","title":"Flutter SDK와 프로젝트 시작하기","excerpt":"Flutter SDK를 설치하고 프로젝트 구조를 이해한 뒤, 실제 기기에서 첫 앱을 실행한다.","content":"$2c","publishedAt":"2023-06-15","category":"flutter","categoryLabel":"Flutter","tags":["flutter"],"readingMinutes":4,"order":1,"filePath":"flutter/01-sdk-project-start.md"},{"slug":"flutter-02","title":"Stateless와 Stateful 위젯","excerpt":"화면은 위젯 트리이고, 기억할 값이 있으면 Stateful, 없으면 Stateless다.","content":"$2d","publishedAt":"2023-09-27","category":"flutter","categoryLabel":"Flutter","tags":["flutter"],"readingMinutes":5,"order":2,"filePath":"flutter/02-widgets-stateless-stateful.md"},{"slug":"flutter-03","title":"Row·Column·제약으로 레이아웃 잡기","excerpt":"레이아웃은 위젯 이름이 아니라 부모가 내려 준 제약 상자에서 결정된다.","content":"$2e","publishedAt":"2024-04-04","category":"flutter","categoryLabel":"Flutter","tags":["flutter"],"readingMinutes":5,"order":3,"filePath":"flutter/03-layout-constraints.md"},{"slug":"flutter-04","title":"Navigator와 라우트로 화면 전환","excerpt":"화면 전환은 함수 호출이 아니라 내비게이터 스택(또는 URL)의 상태다.","content":"$2f","publishedAt":"2025-01-06","category":"flutter","categoryLabel":"Flutter","tags":["flutter"],"readingMinutes":5,"order":4,"filePath":"flutter/04-navigation-routes.md"},{"slug":"flutter-05","title":"setState부터 Provider·Riverpod까지 상태 관리","excerpt":"값이 누구의 기억인지 먼저 나누고, 로컬은 setState, 공유는 Provider로 올린다.","content":"$30","publishedAt":"2025-04-08","category":"flutter","categoryLabel":"Flutter","tags":["flutter"],"readingMinutes":5,"order":5,"filePath":"flutter/05-state-setstate-provider.md"},{"slug":"flutter-06","title":"비동기·HTTP·JSON으로 서버 연동","excerpt":"서버 연동은 호출 성공이 아니라 로딩·실패·JSON 계약을 UI가 흡수하는 일이다.","content":"$31","publishedAt":"2025-10-06","category":"flutter","categoryLabel":"Flutter","tags":["flutter"],"readingMinutes":6,"order":6,"filePath":"flutter/06-async-http-json.md"},{"slug":"flutter-07","title":"리스트·키·성능의 기본","excerpt":"긴 목록은 빌더로 그리고, 키로 아이템 정체성을 지키면 스크롤이 버틴다.","content":"$32","publishedAt":"2026-01-26","category":"flutter","categoryLabel":"Flutter","tags":["flutter"],"readingMinutes":5,"order":7,"filePath":"flutter/07-lists-keys-performance.md"},{"slug":"flutter-08","title":"ThemeData로 머티리얼 디자인 토큰","excerpt":"색과 글자 크기는 위젯마다 박지 말고 ThemeData 한곳으로 모은다.","content":"$33","publishedAt":"2026-04-15","category":"flutter","categoryLabel":"Flutter","tags":["flutter"],"readingMinutes":5,"order":8,"filePath":"flutter/08-theming-material.md"},{"slug":"flutter-09","title":"로컬 저장·설정 영속화","excerpt":"기기에 남길 데이터는 민감도와 수명에 따라 prefs, 보안 저장소, DB로 나눈다.","content":"$34","publishedAt":"2026-07-06","category":"flutter","categoryLabel":"Flutter","tags":["flutter"],"readingMinutes":5,"order":9,"filePath":"flutter/09-local-storage-persistence.md"},{"slug":"flutter-10","title":"Flutter 빌드·배포 실무 체크리스트","excerpt":"스토어 제출 전에 서명, 권한, 릴리스 빌드, 관측을 한 장으로 점검한다.","content":"$35","publishedAt":"2026-08-07","category":"flutter","categoryLabel":"Flutter","tags":["flutter"],"readingMinutes":5,"order":10,"filePath":"flutter/10-build-release-checklist.md"},{"slug":"html-css-01","title":"시맨틱 HTML로 문서 뼈대 잡기","excerpt":"header·main·nav 같은 시맨틱 태그로 페이지 뼈대를 잡고, 스크린 리더와 검색엔진이 읽을 수 있는 HTML을 작성한다.","content":"$36","publishedAt":"2023-01-24","category":"html-css","categoryLabel":"HTML/CSS","tags":["html-css"],"readingMinutes":3,"order":1,"filePath":"html-css/01-semantic-html-document.md"},{"slug":"html-css-02","title":"CSS 박스 모델과 display 기초","excerpt":"박스가 content·padding·border·margin으로 어떻게 커지는지와 display가 흐름을 어떻게 바꾸는지 구분해 레이아웃을 계산한다.","content":"$37","publishedAt":"2023-11-15","category":"html-css","categoryLabel":"HTML/CSS","tags":["html-css"],"readingMinutes":4,"order":2,"filePath":"html-css/02-css-box-model-display.md"},{"slug":"html-css-03","title":"Flexbox로 한 줄 레이아웃 잡기","excerpt":"한 줄 또는 한 열로 아이템을 나열할 때 Flexbox로 축·정렬·간격을 맞춰 내비·툴바·카드 액션을 배치한다.","content":"$38","publishedAt":"2024-05-01","category":"html-css","categoryLabel":"HTML/CSS","tags":["html-css"],"readingMinutes":4,"order":3,"filePath":"html-css/03-flexbox-layout.md"},{"slug":"html-css-04","title":"CSS Grid로 행과 열 동시에 잡기","excerpt":"행과 열을 함께 정해야 할 때 Grid로 페이지 골격과 카드 목록을 만들고, fr·영역 이름으로 칸을 나눈다.","content":"$39","publishedAt":"2024-07-31","category":"html-css","categoryLabel":"HTML/CSS","tags":["html-css"],"readingMinutes":4,"order":4,"filePath":"html-css/04-css-grid-layout.md"},{"slug":"html-css-05","title":"반응형 디자인과 미디어 쿼리","excerpt":"좁은 화면을 기본으로 두고, 레이아웃이 깨지는 폭에서만 미디어 쿼리와 clamp로 넓은 화면에 맞춘다.","content":"$3a","publishedAt":"2025-03-19","category":"html-css","categoryLabel":"HTML/CSS","tags":["html-css"],"readingMinutes":3,"order":5,"filePath":"html-css/05-responsive-media-queries.md"},{"slug":"html-css-06","title":"타이포·색·CSS 변수로 디자인 토큰 잡기","excerpt":"글자 크기·행간·색을 CSS 변수로 이름 붙여 두고, 컴포넌트는 그 이름만 참조하여 화면을 일관되게 만든다.","content":"$3b","publishedAt":"2025-09-15","category":"html-css","categoryLabel":"HTML/CSS","tags":["html-css"],"readingMinutes":4,"order":6,"filePath":"html-css/06-typography-color-variables.md"},{"slug":"html-css-07","title":"폼·포커스·접근성 기본","excerpt":"label 연결, 보이는 포커스, 네이티브 컨트롤로 키보드와 스크린 리더가 쓸 수 있는 폼을 만든다.","content":"$3c","publishedAt":"2025-12-06","category":"html-css","categoryLabel":"HTML/CSS","tags":["html-css"],"readingMinutes":4,"order":7,"filePath":"html-css/07-forms-accessibility.md"},{"slug":"html-css-08","title":"HTML/CSS 실무 체크리스트","excerpt":"페이지를 내보내기 전에 시맨틱·박스·레이아웃·반응형·토큰·포커스를 한 번씩 확인한다.","content":"$3d","publishedAt":"2026-02-16","category":"html-css","categoryLabel":"HTML/CSS","tags":["html-css"],"readingMinutes":3,"order":8,"filePath":"html-css/08-modern-css-checklist.md"},{"slug":"laravel-01","title":"Laravel 11+와 PHP 시작하기","excerpt":"Laravel 11부터는 Kernel 대신 bootstrap/app.php가 앱의 중심이고, PHP 8.2 이상으로 프로젝트를 세팅한다.","content":"$3e","publishedAt":"2023-02-27","category":"laravel","categoryLabel":"Laravel","tags":["laravel"],"readingMinutes":5,"order":1,"filePath":"laravel/01-laravel-11-modern-php.md"},{"slug":"laravel-02","title":"라우팅·미들웨어·컨트롤러 — 요청 생명주기","excerpt":"요청은 라우트와 미들웨어를 지나 컨트롤러에 도착하며, 인증·제한·응답을 어디에 둘지는 이 흐름에서 정한다.","content":"$3f","publishedAt":"2023-08-21","category":"laravel","categoryLabel":"Laravel","tags":["laravel"],"readingMinutes":6,"order":2,"filePath":"laravel/02-routing-middleware-controller.md"},{"slug":"laravel-03","title":"Eloquent ORM과 데이터베이스","excerpt":"Eloquent는 테이블 한 행을 PHP 객체로 다루는 ORM이고, 마이그레이션·관계·N+1을 같이 잡아야 데이터가 깨지지 않는다.","content":"$40","publishedAt":"2024-03-25","category":"laravel","categoryLabel":"Laravel","tags":["laravel"],"readingMinutes":6,"order":3,"filePath":"laravel/03-eloquent-orm.md"},{"slug":"laravel-04","title":"Validation, Form Request, API Resource","excerpt":"들어오는 값은 Form Request로 검증하고, 나가는 JSON은 API Resource로 정해 두면 컨트롤러가 얇아진다.","content":"$41","publishedAt":"2024-11-08","category":"laravel","categoryLabel":"Laravel","tags":["laravel"],"readingMinutes":6,"order":4,"filePath":"laravel/04-validation-form-request-resource.md"},{"slug":"laravel-05","title":"인증·인가 — Sanctum, Policy, Gate","excerpt":"Sanctum으로 누구인지 확인하고, Policy로 그 사용자가 이 글이나 주문을 만져도 되는지 가른다.","content":"$42","publishedAt":"2025-01-27","category":"laravel","categoryLabel":"Laravel","tags":["laravel"],"readingMinutes":5,"order":5,"filePath":"laravel/05-auth-sanctum-policy.md"},{"slug":"laravel-06","title":"테스트 — PHPUnit, Pest, Feature 테스트","excerpt":"Pest는 PHPUnit 위에 읽기 쉬운 문법을 얹은 도구이고, Feature 테스트로 API와 권한을 먼저 고정한다.","content":"$43","publishedAt":"2025-07-25","category":"laravel","categoryLabel":"Laravel","tags":["laravel"],"readingMinutes":5,"order":6,"filePath":"laravel/06-testing-pest.md"},{"slug":"laravel-07","title":"큐·Job·이벤트·스케줄링","excerpt":"메일·이미지처럼 느린 일은 Job 큐로 넘기고, 이벤트와 스케줄러로 후처리와 매일 할 일을 운영한다.","content":"$44","publishedAt":"2026-01-07","category":"laravel","categoryLabel":"Laravel","tags":["laravel"],"readingMinutes":5,"order":7,"filePath":"laravel/07-queue-job-events.md"},{"slug":"laravel-08","title":"캐시·Redis·성능 최적화","excerpt":"느린 쿼리를 먼저 고친 뒤 Redis 캐시를 쓰고, 무효화 지점을 정해 두지 않으면 캐시는 낡은 화면이 된다.","content":"$45","publishedAt":"2026-04-02","category":"laravel","categoryLabel":"Laravel","tags":["laravel"],"readingMinutes":4,"order":8,"filePath":"laravel/08-cache-redis-performance.md"},{"slug":"laravel-09","title":"Blade·Livewire·Inertia와 API 프론트 전략","excerpt":"Blade·Livewire·Inertia·순수 API 중 제품에 맞는 프론트를 고르고, 한 앱 안에서도 경계를 나누면 된다.","content":"$46","publishedAt":"2026-06-24","category":"laravel","categoryLabel":"Laravel","tags":["laravel"],"readingMinutes":5,"order":9,"filePath":"laravel/09-blade-livewire-inertia.md"},{"slug":"laravel-10","title":"운영 배포 — Sail, Forge/Vapor, 프로덕션 체크리스트","excerpt":"Sail로 로컬을 맞추고 Forge나 컨테이너로 배포하며, 워커·스케줄·시크릿을 배포의 일부로 둔다.","content":"$47","publishedAt":"2026-08-11","category":"laravel","categoryLabel":"Laravel","tags":["laravel"],"readingMinutes":5,"order":10,"filePath":"laravel/10-ops-sail-forge.md"},{"slug":"nextjs-01","title":"Next.js App Router로 프로젝트 시작하기","excerpt":"App Router와 TypeScript로 Next.js 프로젝트를 만들고, 폴더·페이지·레이아웃의 역할을 구분한다.","content":"$48","publishedAt":"2023-03-20","category":"nextjs","categoryLabel":"Next.js","tags":["nextjs"],"readingMinutes":4,"order":1,"filePath":"nextjs/01-app-router-getting-started.md"},{"slug":"nextjs-02","title":"라우팅·레이아웃·동적 세그먼트","excerpt":"폴더가 URL이 되는 규칙을 익히고, 동적 주소와 중첩 레이아웃으로 화면 구조를 잡는다.","content":"$49","publishedAt":"2024-01-08","category":"nextjs","categoryLabel":"Next.js","tags":["nextjs"],"readingMinutes":5,"order":2,"filePath":"nextjs/02-routing-layouts-dynamic-segments.md"},{"slug":"nextjs-03","title":"Server Component와 Client Component","excerpt":"기본은 서버 컴포넌트로 두고, 클릭·입력처럼 브라우저가 필요한 부분만 Client로 나눈다.","content":"$4a","publishedAt":"2024-04-15","category":"nextjs","categoryLabel":"Next.js","tags":["nextjs"],"readingMinutes":5,"order":3,"filePath":"nextjs/03-server-client-components.md"},{"slug":"nextjs-04","title":"데이터 페칭과 캐시 전략","excerpt":"서버 컴포넌트에서 데이터를 읽고, 캐시할지 매 요청 최신으로 둘지 옵션으로 명시한다.","content":"$4b","publishedAt":"2024-11-18","category":"nextjs","categoryLabel":"Next.js","tags":["nextjs"],"readingMinutes":5,"order":4,"filePath":"nextjs/04-data-fetching-caching.md"},{"slug":"nextjs-05","title":"SSG·generateStaticParams·정적 export","excerpt":"빌드할 때 HTML을 미리 만들고, 동적 주소는 generateStaticParams로 목록을 넘기며, 정적 내보내기 제약을 확인한다.","content":"$4c","publishedAt":"2025-02-07","category":"nextjs","categoryLabel":"Next.js","tags":["nextjs"],"readingMinutes":4,"order":5,"filePath":"nextjs/05-ssg-generate-static-params-export.md"},{"slug":"nextjs-06","title":"Metadata·Open Graph·SEO 기본기","excerpt":"metadata API로 페이지마다 제목·설명·정규 URL·공유 미리보기를 맞춘다.","content":"$4d","publishedAt":"2025-07-09","category":"nextjs","categoryLabel":"Next.js","tags":["nextjs"],"readingMinutes":5,"order":6,"filePath":"nextjs/06-metadata-open-graph-seo.md"},{"slug":"nextjs-07","title":"Route Handler와 Server Actions","excerpt":"앱 밖 API는 Route Handler로, 같은 앱의 폼 저장은 Server Action으로 나누고, 정적 호스팅 제약을 확인한다.","content":"$4e","publishedAt":"2026-01-14","category":"nextjs","categoryLabel":"Next.js","tags":["nextjs"],"readingMinutes":6,"order":7,"filePath":"nextjs/07-route-handlers-server-actions.md"},{"slug":"nextjs-08","title":"미들웨어와 인증 경계","excerpt":"요청이 페이지에 닿기 전에 경로를 가리고, 실제 권한은 서버 레이아웃에서 다시 확인한다.","content":"$4f","publishedAt":"2026-03-06","category":"nextjs","categoryLabel":"Next.js","tags":["nextjs"],"readingMinutes":5,"order":8,"filePath":"nextjs/08-middleware-auth-boundaries.md"},{"slug":"nextjs-09","title":"이미지·폰트·성능 최적화","excerpt":"next/image와 next/font로 이미지·폰트를 다루고, 번들과 로딩 UI로 체감 속도를 맞춘다.","content":"$50","publishedAt":"2026-05-20","category":"nextjs","categoryLabel":"Next.js","tags":["nextjs"],"readingMinutes":5,"order":9,"filePath":"nextjs/09-image-font-performance.md"},{"slug":"nextjs-10","title":"배포 — Vercel·정적 호스팅·체크리스트","excerpt":"서버가 있는 배포와 HTML만 올리는 배포를 고르고, 환경변수·SEO·롤백을 체크리스트로 통과시킨다.","content":"$51","publishedAt":"2026-08-15","category":"nextjs","categoryLabel":"Next.js","tags":["nextjs"],"readingMinutes":5,"order":10,"filePath":"nextjs/10-deploy-vercel-static-checklist.md"},{"slug":"nginx-01","title":"Nginx 리버스 프록시 기초","excerpt":"브라우저와 앱 서버 사이에 Nginx를 두고, 정적 파일은 직접 주고 API는 내부 포트로 넘기는 최소 구성을 만든다.","content":"$52","publishedAt":"2023-02-07","category":"nginx","categoryLabel":"Nginx","tags":["nginx"],"readingMinutes":4,"order":1,"filePath":"nginx/01-nginx-reverse-proxy-basics.md"},{"slug":"nginx-02","title":"Nginx에서 HTTPS·TLS 종단하기","excerpt":"인증서를 Nginx에 두고 443에서 TLS를 끝낸 뒤, 80 요청을 HTTPS로 보내고 앱에는 암호화가 끝났다는 헤더를 넘긴다.","content":"$53","publishedAt":"2023-10-26","category":"nginx","categoryLabel":"Nginx","tags":["nginx"],"readingMinutes":4,"order":2,"filePath":"nginx/02-nginx-tls-https.md"},{"slug":"nginx-03","title":"Nginx 운영·보안 체크리스트","excerpt":"배포 전에 타임아웃, 업로드 한도, 보안 헤더, 로그, 압축, 인증서 갱신이 앱 특성에 맞는지 확인한다.","content":"$54","publishedAt":"2024-07-18","category":"nginx","categoryLabel":"Nginx","tags":["nginx"],"readingMinutes":4,"order":3,"filePath":"nginx/03-nginx-ops-checklist.md"},{"slug":"react-native-01","title":"React Native와 Expo로 시작하기","excerpt":"Expo와 TypeScript로 React Native 프로젝트를 만들고, 첫 화면이 뜨기까지의 기본 지도를 잡는다.","content":"$55","publishedAt":"2023-05-30","category":"react-native","categoryLabel":"React Native","tags":["react-native"],"readingMinutes":4,"order":1,"filePath":"react-native/01-react-native-expo.md"},{"slug":"react-native-02","title":"컴포넌트·스타일·레이아웃 — Flex와 StyleSheet","excerpt":"View·Text·StyleSheet와 Flexbox로 화면을 배치하고, 웹 CSS와 다른 점을 기준으로 레이아웃을 익힌다.","content":"$56","publishedAt":"2023-12-06","category":"react-native","categoryLabel":"React Native","tags":["react-native"],"readingMinutes":5,"order":2,"filePath":"react-native/02-components-style-layout.md"},{"slug":"react-native-03","title":"상태·훅·폼 — 사용자 입력과 데이터 흐름","excerpt":"화면 상태는 훅에 두고, 폼 입력은 검증과 키보드 UX까지 한 흐름으로 만든다.","content":"$57","publishedAt":"2024-03-13","category":"react-native","categoryLabel":"React Native","tags":["react-native"],"readingMinutes":5,"order":3,"filePath":"react-native/03-state-hooks-forms.md"},{"slug":"react-native-04","title":"리스트·네비게이션 — FlatList와 Expo Router","excerpt":"긴 목록은 FlatList로 가상화하고, 화면 이동은 Expo Router의 파일 기반 라우팅으로 구성한다.","content":"$58","publishedAt":"2024-12-18","category":"react-native","categoryLabel":"React Native","tags":["react-native"],"readingMinutes":5,"order":4,"filePath":"react-native/04-lists-navigation-expo-router.md"},{"slug":"react-native-05","title":"네트워킹 — Fetch, React Query, 에러 처리","excerpt":"서버 데이터는 fetch 래퍼와 React Query로 가져와 로딩·에러·재시도를 표준화한다.","content":"$59","publishedAt":"2025-06-12","category":"react-native","categoryLabel":"React Native","tags":["react-native"],"readingMinutes":5,"order":5,"filePath":"react-native/05-networking-react-query.md"},{"slug":"react-native-06","title":"인증·보안 저장소·디바이스 권한","excerpt":"로그인 토큰은 SecureStore에 두고, 카메라·앨범·알림 권한은 필요할 때만 요청한다.","content":"$5a","publishedAt":"2025-08-19","category":"react-native","categoryLabel":"React Native","tags":["react-native"],"readingMinutes":5,"order":6,"filePath":"react-native/06-auth-secure-store-permissions.md"},{"slug":"react-native-07","title":"애니메이션·제스처·사용자 경험","excerpt":"Reanimated와 Gesture Handler로 터치 피드백을 만들고, 햅틱·접근성까지 맞춘다.","content":"$5b","publishedAt":"2025-11-17","category":"react-native","categoryLabel":"React Native","tags":["react-native"],"readingMinutes":5,"order":7,"filePath":"react-native/07-animation-gesture-ux.md"},{"slug":"react-native-08","title":"상태 관리·아키텍처·모듈화","excerpt":"전역 상태를 최소화하고, 기능 단위 폴더와 Context·Zustand 선택 기준을 정리한다.","content":"$5c","publishedAt":"2026-02-09","category":"react-native","categoryLabel":"React Native","tags":["react-native"],"readingMinutes":4,"order":8,"filePath":"react-native/08-state-architecture.md"},{"slug":"react-native-09","title":"테스트·디버깅·성능","excerpt":"테스트·디버깅·성능 점검을 체크리스트로 두고, 각 항목이 필요한 이유를 한 줄로 적는다.","content":"$5d","publishedAt":"2026-07-16","category":"react-native","categoryLabel":"React Native","tags":["react-native"],"readingMinutes":4,"order":9,"filePath":"react-native/09-testing-debug-performance.md"},{"slug":"react-native-10","title":"EAS 빌드·스토어 배포·OTA","excerpt":"EAS로 스토어 빌드와 OTA 업데이트를 나누고, 출시 전에 볼 점검 목록을 정리한다.","content":"$5e","publishedAt":"2026-08-19","category":"react-native","categoryLabel":"React Native","tags":["react-native"],"readingMinutes":5,"order":10,"filePath":"react-native/10-eas-build-store-ota.md"},{"slug":"spring-boot-01","title":"Spring Boot 3와 Java 21 시작하기","excerpt":"Java 21과 Spring Boot 3.x로 프로젝트를 세팅하고, 자동 구성·프로파일·record 같은 기본선을 잡는다.","content":"$5f","publishedAt":"2023-01-09","category":"spring-boot","categoryLabel":"Spring Boot","tags":["spring-boot"],"readingMinutes":5,"order":1,"filePath":"spring-boot/01-spring-boot-3-java-21.md"},{"slug":"spring-boot-02","title":"IoC, Bean, Configuration — 의존성 주입","excerpt":"IoC 컨테이너가 Bean을 조립하는 방식을 이해하고, 생성자 주입과 타입 세이프 설정으로 의존성을 구성한다.","content":"$60","publishedAt":"2023-10-13","category":"spring-boot","categoryLabel":"Spring Boot","tags":["spring-boot"],"readingMinutes":5,"order":2,"filePath":"spring-boot/02-ioc-bean-configuration.md"},{"slug":"spring-boot-03","title":"REST API 설계 — Validation, Problem Details, RestClient","excerpt":"검증·Problem Details·RestClient로 REST API의 계약과 에러 응답, 외부 호출을 일관되게 만든다.","content":"$61","publishedAt":"2024-05-13","category":"spring-boot","categoryLabel":"Spring Boot","tags":["spring-boot"],"readingMinutes":6,"order":3,"filePath":"spring-boot/03-rest-api-validation-problem-details.md"},{"slug":"spring-boot-04","title":"Spring Data JPA와 영속성 계층","excerpt":"JPA 엔티티와 트랜잭션 경계를 명확히 하고, N+1·OSIV·스키마 마이그레이션 함정을 피한다.","content":"$62","publishedAt":"2024-12-04","category":"spring-boot","categoryLabel":"Spring Boot","tags":["spring-boot"],"readingMinutes":7,"order":4,"filePath":"spring-boot/04-spring-data-jpa.md"},{"slug":"spring-boot-05","title":"Spring Security 6 — 인증·인가·OAuth2·JWT","excerpt":"SecurityFilterChain으로 API 인증·인가를 구성하고, JWT와 OAuth2 Resource Server를 구분해서 쓴다.","content":"$63","publishedAt":"2025-02-26","category":"spring-boot","categoryLabel":"Spring Boot","tags":["spring-boot"],"readingMinutes":7,"order":5,"filePath":"spring-boot/05-spring-security-6.md"},{"slug":"spring-boot-06","title":"테스트 — JUnit 5, MockMvc, Testcontainers","excerpt":"단위·슬라이스·통합 테스트 비중을 나누고, Testcontainers로 실제 DB에 가까운 검증을 한다.","content":"$64","publishedAt":"2025-10-20","category":"spring-boot","categoryLabel":"Spring Boot","tags":["spring-boot"],"readingMinutes":5,"order":6,"filePath":"spring-boot/06-testing-junit-testcontainers.md"},{"slug":"spring-boot-07","title":"Observability — Actuator, Micrometer, OpenTelemetry","excerpt":"Actuator와 OpenTelemetry로 헬스·메트릭·트레이스를 붙여, 느린 지점과 장애 지점을 관측한다.","content":"$65","publishedAt":"2025-12-19","category":"spring-boot","categoryLabel":"Spring Boot","tags":["spring-boot"],"readingMinutes":5,"order":7,"filePath":"spring-boot/07-observability-actuator-otel.md"},{"slug":"spring-boot-08","title":"비동기·메시징·Virtual Threads","excerpt":"Virtual Threads와 이벤트·메시지 큐를 용도에 맞게 고르고, 커밋 이후 발행과 Outbox로 유실을 줄인다.","content":"$66","publishedAt":"2026-03-24","category":"spring-boot","categoryLabel":"Spring Boot","tags":["spring-boot"],"readingMinutes":5,"order":8,"filePath":"spring-boot/08-async-messaging-virtual-threads.md"},{"slug":"spring-boot-09","title":"캐시·Resilience·성능 최적화","excerpt":"측정 뒤에 캐시·재시도·서킷 브레이커·타임아웃을 넣고, 쿼리와 페이로드 병목을 줄인다.","content":"$67","publishedAt":"2026-05-01","category":"spring-boot","categoryLabel":"Spring Boot","tags":["spring-boot"],"readingMinutes":5,"order":9,"filePath":"spring-boot/09-cache-resilience-performance.md"},{"slug":"spring-boot-10","title":"운영 배포 — Docker, 설정, Native Image, 프로덕션 체크리스트","excerpt":"환경변수와 컨테이너로 배포하고, 헬스 프로브·그레이스풀 종료·Native Image를 운영 기본선에 맞춘다.","content":"$68","publishedAt":"2026-07-27","category":"spring-boot","categoryLabel":"Spring Boot","tags":["spring-boot"],"readingMinutes":5,"order":10,"filePath":"spring-boot/10-ops-docker-native.md"},{"slug":"spring-boot-11","title":"Spring AOP — 횡단 관심사와 프록시 쉽게 이해하기","excerpt":"공통 관심사(로깅, 트랜잭션 등)를 핵심 로직에서 분리하는 AOP의 원리와 실무 프록시 동작 방식을 친절하게 정리한다.","content":"$69","publishedAt":"2024-01-15","category":"spring-boot","categoryLabel":"Spring Boot","tags":["spring-boot"],"readingMinutes":8,"order":11,"filePath":"spring-boot/11-aop-proxy-aspect.md"},{"slug":"spring-boot-12","title":"Spring Boot 실무 디자인 패턴 — 자주 쓰는 핵심 패턴 7가지","excerpt":"전략, 템플릿 콜백, 프록시, 어댑터, 옵저버 등 스프링 내부 원리와 실무 비즈니스 코드에 녹아 있는 디자인 패턴을 쉽게 풀어본다.","content":"$6a","publishedAt":"2024-01-22","category":"spring-boot","categoryLabel":"Spring Boot","tags":["spring-boot"],"readingMinutes":10,"order":12,"filePath":"spring-boot/12-design-patterns-in-spring.md"},{"slug":"spring-boot-13","title":"JPA & Hibernate — 영속성 컨텍스트부터 실무 성능 최적화까지","excerpt":"영속성 컨텍스트 생명주기, 변경 감지, N+1 문제 해결(Fetch Join vs EntityGraph vs BatchSize), 컬렉션 페이징 한계, 낙관적/비관적 락, OSIV 전략을 이해한다.","content":"$6b","publishedAt":"2024-02-01","category":"spring-boot","categoryLabel":"Spring Boot","tags":["spring-boot"],"readingMinutes":15,"order":13,"filePath":"spring-boot/13-jpa-hibernate-deep-dive.md"},{"slug":"spring-boot-14","title":"Gradle 빌드와 멀티모듈 아키텍처 설계","excerpt":"Gradle 빌드 생명주기, Kotlin DSL(build.gradle.kts), 의존성 스코프 차이(implementation vs api), 플러그인 작성, 멀티모듈 프로젝트 설계 패턴(계층형, MSA/공통 도메인형, 헥사고날)을 다룬다.","content":"$6c","publishedAt":"2024-02-10","category":"spring-boot","categoryLabel":"Spring Boot","tags":["spring-boot"],"readingMinutes":14,"order":14,"filePath":"spring-boot/14-gradle-multi-module-architecture.md"},{"slug":"vue-01","title":"Vue 3 Composition API로 시작하기","excerpt":"한 파일에 화면·로직·스타일을 두고, script setup으로 Vue 3 컴포넌트를 시작한다.","content":"$6d","publishedAt":"2023-04-25","category":"vue","categoryLabel":"Vue","tags":["vue"],"readingMinutes":4,"order":1,"filePath":"vue/01-vue3-composition-setup.md"},{"slug":"vue-02","title":"ref와 reactive로 반응형 상태 다루기","excerpt":"값이 바뀌면 화면이 다시 그려지도록 ref로 상태를 두고, 계산 값과 감시 로직을 나눈다.","content":"$6e","publishedAt":"2024-02-07","category":"vue","categoryLabel":"Vue","tags":["vue"],"readingMinutes":5,"order":2,"filePath":"vue/02-reactivity-ref-reactive.md"},{"slug":"vue-03","title":"컴포넌트 props·emits·슬롯","excerpt":"부모는 props로 값을 내리고 자식은 이벤트로 알리며, 슬롯으로 자리를 열어 컴포넌트를 조립한다.","content":"$6f","publishedAt":"2024-06-03","category":"vue","categoryLabel":"Vue","tags":["vue"],"readingMinutes":5,"order":3,"filePath":"vue/03-components-props-emits.md"},{"slug":"vue-04","title":"Vue Router와 Pinia로 화면·상태 구성","excerpt":"URL과 화면을 라우터로 맞추고, 여러 화면이 공유하는 상태는 Pinia 스토어에 두는 SPA 구성 방법을 정리한다.","content":"$70","publishedAt":"2024-09-23","category":"vue","categoryLabel":"Vue","tags":["vue"],"readingMinutes":5,"order":4,"filePath":"vue/04-vue-router-pinia.md"},{"slug":"vue-05","title":"Vue 앱 실무 체크리스트","excerpt":"구조·성능·접근성·보안·배포까지, Vue 앱을 내보내기 전에 항목마다 이유를 붙여 확인하는 실무 체크리스트다.","content":"$71","publishedAt":"2025-06-04","category":"vue","categoryLabel":"Vue","tags":["vue"],"readingMinutes":3,"order":5,"filePath":"vue/05-vue-app-checklist.md"},{"slug":"wpf-01","title":"WPF와 XAML·MVVM 시작하기","excerpt":"XAML로 화면을 그리고, DataContext로 ViewModel을 붙여 화면과 로직을 나눈다.","content":"$72","publishedAt":"2023-06-28","category":"wpf","categoryLabel":"WPF","tags":["wpf"],"readingMinutes":5,"order":1,"filePath":"wpf/01-wpf-xaml-mvvm-start.md"},{"slug":"wpf-02","title":"데이터 바인딩과 ObservableCollection","excerpt":"INotifyPropertyChanged와 ObservableCollection으로 값·목록 변경을 화면에 반영하고, DataTemplate로 행 UI를 분리하는 방법을 정리한다.","content":"$73","publishedAt":"2023-09-11","category":"wpf","categoryLabel":"WPF","tags":["wpf"],"readingMinutes":6,"order":2,"filePath":"wpf/02-data-binding-observable.md"},{"slug":"wpf-03","title":"이벤트 대신 ICommand로 액션 연결하기","excerpt":"버튼 클릭을 코드비하인드가 아니라 ViewModel의 ICommand로 연결하고, CanExecute로 활성 상태를 맞추는 방법을 정리한다.","content":"$74","publishedAt":"2024-06-24","category":"wpf","categoryLabel":"WPF","tags":["wpf"],"readingMinutes":5,"order":3,"filePath":"wpf/03-commands-and-events.md"},{"slug":"wpf-04","title":"스타일·리소스·테마 관리","excerpt":"ResourceDictionary에 색과 스타일을 모아 StaticResource/DynamicResource로 참조하고, 파일 분리로 테마를 운영하는 방법을 정리한다.","content":"$75","publishedAt":"2024-10-28","category":"wpf","categoryLabel":"WPF","tags":["wpf"],"readingMinutes":5,"order":4,"filePath":"wpf/04-styles-resources-themes.md"},{"slug":"wpf-05","title":"화면 전환과 다이얼로그 패턴","excerpt":"ContentControl과 DataTemplate로 ViewModel을 갈아 끼워 화면을 전환하고, 대화상자는 서비스로 추상화하는 방법을 정리한다.","content":"$76","publishedAt":"2025-01-17","category":"wpf","categoryLabel":"WPF","tags":["wpf"],"readingMinutes":6,"order":5,"filePath":"wpf/05-navigation-dialogs.md"},{"slug":"wpf-06","title":"WPF 앱 실무 체크리스트","excerpt":"MVVM 경계·성능·예외·배포·UX까지, WPF 앱을 내보내기 전에 항목마다 이유를 붙여 확인하는 실무 체크리스트다.","content":"$77","publishedAt":"2025-08-11","category":"wpf","categoryLabel":"WPF","tags":["wpf"],"readingMinutes":3,"order":6,"filePath":"wpf/06-wpf-app-checklist.md"}],"categories":[{"id":"angular","label":"Angular","count":5},{"id":"aws","label":"AWS","count":9},{"id":"db","label":"DB","count":5},{"id":"flutter","label":"Flutter","count":10},{"id":"html-css","label":"HTML/CSS","count":8},{"id":"laravel","label":"Laravel","count":10},{"id":"nextjs","label":"Next.js","count":10},{"id":"nginx","label":"Nginx","count":3},{"id":"react-native","label":"React Native","count":10},{"id":"spring-boot","label":"Spring Boot","count":14},{"id":"vue","label":"Vue","count":5},{"id":"wpf","label":"WPF","count":6}]}]],["$L78"],"$L79"]}]
+12:["$","$1","h",{"children":[null,["$","$L7a",null,{"children":"$L7b"}],["$","div",null,{"hidden":true,"children":["$","$L7c",null,{"children":["$","$7d",null,{"name":"Next.Metadata","children":"$L7e"}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}]
 14:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3ortkzvy6360x.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
-15:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0g93akm33ce_n.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
+15:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0h6pid50w8_n4.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
 16:["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/3siqlqjr1v4fe.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
-7b:I[97367,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"OutletBoundary"]
-74:["$","script","script-0",{"src":"/_next/static/chunks/1yd9suit52yem.js","async":true,"nonce":"$undefined"}]
-75:["$","$L7b",null,{"children":["$","$79",null,{"name":"Next.MetadataOutlet","children":"$@7c"}]}]
-77:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
-7d:I[27201,["/_next/static/chunks/3t-_5l233af4w.js","/_next/static/chunks/1uymn__-_z4ug.js"],"IconMark"]
-7a:[["$","title","0",{"children":"Kaisa"}],["$","meta","1",{"name":"description","content":"Development, design, and notes from Kaisa — articles on building products and tools."}],["$","meta","2",{"name":"application-name","content":"Kaisa"}],["$","meta","3",{"name":"robots","content":"index, follow"}],["$","meta","4",{"name":"naver-site-verification","content":"4bc13b857695ff44988c260cb26124eedbcda90e"}],["$","link","5",{"rel":"canonical","href":"https://kaisa.co.kr/"}],["$","meta","6",{"property":"og:title","content":"Kaisa"}],["$","meta","7",{"property":"og:description","content":"Development, design, and notes from Kaisa — articles on building products and tools."}],["$","meta","8",{"property":"og:url","content":"https://kaisa.co.kr/"}],["$","meta","9",{"property":"og:site_name","content":"Kaisa"}],["$","meta","10",{"property":"og:locale","content":"ko_KR"}],["$","meta","11",{"property":"og:type","content":"website"}],["$","meta","12",{"name":"twitter:card","content":"summary"}],["$","meta","13",{"name":"twitter:title","content":"Kaisa"}],["$","meta","14",{"name":"twitter:description","content":"Development, design, and notes from Kaisa — articles on building products and tools."}],["$","link","15",{"rel":"shortcut icon","href":"/img/common/favicon.ico"}],["$","link","16",{"rel":"icon","href":"/img/common/favicon.ico"}],["$","link","17",{"rel":"apple-touch-icon","href":"/img/common/favicon.ico"}],["$","$L7d","18",{}]]
-7c:null
+7f:I[97367,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"OutletBoundary"]
+78:["$","script","script-0",{"src":"/_next/static/chunks/1yd9suit52yem.js","async":true,"nonce":"$undefined"}]
+79:["$","$L7f",null,{"children":["$","$7d",null,{"name":"Next.MetadataOutlet","children":"$@80"}]}]
+7b:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+81:I[27201,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"IconMark"]
+7e:[["$","title","0",{"children":"Kaisa"}],["$","meta","1",{"name":"description","content":"Development, design, and notes from Kaisa — articles on building products and tools."}],["$","meta","2",{"name":"application-name","content":"Kaisa"}],["$","meta","3",{"name":"robots","content":"index, follow"}],["$","meta","4",{"name":"naver-site-verification","content":"4bc13b857695ff44988c260cb26124eedbcda90e"}],["$","link","5",{"rel":"canonical","href":"https://kaisa.co.kr/"}],["$","meta","6",{"property":"og:title","content":"Kaisa"}],["$","meta","7",{"property":"og:description","content":"Development, design, and notes from Kaisa — articles on building products and tools."}],["$","meta","8",{"property":"og:url","content":"https://kaisa.co.kr/"}],["$","meta","9",{"property":"og:site_name","content":"Kaisa"}],["$","meta","10",{"property":"og:locale","content":"ko_KR"}],["$","meta","11",{"property":"og:type","content":"website"}],["$","meta","12",{"name":"twitter:card","content":"summary"}],["$","meta","13",{"name":"twitter:title","content":"Kaisa"}],["$","meta","14",{"name":"twitter:description","content":"Development, design, and notes from Kaisa — articles on building products and tools."}],["$","link","15",{"rel":"shortcut icon","href":"/img/common/favicon.ico"}],["$","link","16",{"rel":"icon","href":"/img/common/favicon.ico"}],["$","link","17",{"rel":"apple-touch-icon","href":"/img/common/favicon.ico"}],["$","$L81","18",{}]]
+80:null

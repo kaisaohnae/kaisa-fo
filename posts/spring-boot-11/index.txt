@@ -1,0 +1,302 @@
+1:"$Sreact.fragment"
+2:I[79520,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],""]
+3:I[83661,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default"]
+4:I[39756,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default"]
+5:I[37457,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default"]
+6:I[22016,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/235_kxc74hr-9.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],""]
+7:I[22067,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default"]
+8:I[78481,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default"]
+9:I[2105,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default"]
+a:I[69033,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/235_kxc74hr-9.js","/_next/static/chunks/1hr7-4fb6m83q.js"],"LocaleProvider"]
+b:I[45872,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/235_kxc74hr-9.js","/_next/static/chunks/1hr7-4fb6m83q.js"],"default"]
+c:I[20683,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/235_kxc74hr-9.js","/_next/static/chunks/1hr7-4fb6m83q.js"],"default"]
+d:I[86979,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/235_kxc74hr-9.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/0hs6l77ykwsoc.js"],"default"]
+16:I[68027,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default",1]
+:HL["/_next/static/chunks/3ortkzvy6360x.css","style"]
+:HL["/_next/static/chunks/0h6pid50w8_n4.css","style"]
+:HL["/_next/static/chunks/3siqlqjr1v4fe.css","style"]
+:HL["/_next/static/media/0c795a286deabae8-s.p.3vm0tq4e-zz_5.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/5c285b27cdda1fe8-s.p.2_mbdogr7ni8i.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/chunks/3j-1lpdn3an_-.css","style"]
+0:{"P":null,"c":["","posts","spring-boot-11",""],"q":"","i":false,"f":[[["",{"children":["(site)",{"children":["posts",{"children":[["slug","spring-boot-11","d",null],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3ortkzvy6360x.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0h6pid50w8_n4.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/3siqlqjr1v4fe.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/0qufxx6nl15ij.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1uymn__-_z4ug.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ko","className":"syne_53f86cd1-module__kiT3Eq__variable dm_sans_fd62f040-module__0jgVUW__variable","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","script",null,{"async":true,"src":"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2641553863829571","crossOrigin":"anonymous"}]}],["$","body",null,{"children":[["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var t=null;document.cookie.split(';').forEach(function(c){var p=c.trim().split('=');if(p[0]==='kaisa-theme')t=decodeURIComponent(p[1]||'');});document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();"}}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var KEY='kaisa-locale';var loc=null;try{loc=sessionStorage.getItem(KEY);}catch(e){}function fromNav(){var list=[navigator.language].concat(navigator.languages||[]);for(var i=0;i<list.length;i++){var l=String(list[i]||'').toLowerCase();if(l.indexOf('ko')===0)return 'ko';if(l.indexOf('zh')===0)return 'zh';if(l.indexOf('hi')===0)return 'hi';if(l.indexOf('en')===0)return 'en';}return null;}if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc=fromNav();if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc='ko';document.documentElement.lang=loc;}catch(e){document.documentElement.lang='ko';}})();"}}],[["$","$L2",null,{"src":"https://www.googletagmanager.com/gtag/js?id=G-2281QQ6XP4","strategy":"afterInteractive"}],["$","$L2",null,{"id":"google-analytics","strategy":"afterInteractive","children":"\n          window.dataLayer = window.dataLayer || [];\n          function gtag(){dataLayer.push(arguments);}\n          gtag('js', new Date());\n          gtag('config', 'G-2281QQ6XP4');\n        "}]],["$","$L3",null,{}],["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}],["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","$L7",null,{}],["$","$L8",null,{}],["$","$L9",null,{}]]}]]}]]}],{"children":[["$","$1","c",{"children":[[["$","script","script-0",{"src":"/_next/static/chunks/235_kxc74hr-9.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1hr7-4fb6m83q.js","async":true,"nonce":"$undefined"}]],["$","$La",null,{"children":["$","div",null,{"className":"site-layout","children":[["$","$Lb",null,{}],["$","$Lc",null,{"children":["$","$L4",null,{"parallelRouterKey":"children","error":"$d","errorStyles":[],"errorScripts":[["$","script","script-0",{"src":"/_next/static/chunks/0hs6l77ykwsoc.js","async":true}]],"template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],"$Le","$Lf"]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],"$L10"]}]}]]}],{"children":["$L11",{"children":["$L12",{"children":["$L13",{},null,false,null]},null,false,"$@14"]},null,false,"$@14"]},null,false,null]},null,false,null],"$L15",false]],"m":"$undefined","G":["$16",["$L17","$L18","$L19"]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"eMStUu4a1lNzZxT0RaWzF"}
+1a:I[44604,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/235_kxc74hr-9.js","/_next/static/chunks/1hr7-4fb6m83q.js"],"default"]
+1c:I[97367,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"OutletBoundary"]
+1d:"$Sreact.suspense"
+20:I[97367,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"ViewportBoundary"]
+22:I[97367,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"MetadataBoundary"]
+e:["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}]
+f:["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]
+10:["$","$L1a",null,{}]
+11:["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]
+12:["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]
+13:["$","$1","c",{"children":["$L1b",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3j-1lpdn3an_-.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/2_h6is8-aperz.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/3qcoeqbx1mias.js","async":true,"nonce":"$undefined"}]],["$","$L1c",null,{"children":["$","$1d",null,{"name":"Next.MetadataOutlet","children":"$@1e"}]}]]}]
+1f:[]
+14:"$W1f"
+15:["$","$1","h",{"children":[null,["$","$L20",null,{"children":"$L21"}],["$","div",null,{"hidden":true,"children":["$","$L22",null,{"children":["$","$1d",null,{"name":"Next.Metadata","children":"$L23"}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}]
+17:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3ortkzvy6360x.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
+18:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0h6pid50w8_n4.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
+19:["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/3siqlqjr1v4fe.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
+24:I[55489,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/235_kxc74hr-9.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],"default"]
+25:T2d5f,# Spring AOP — 횡단 관심사와 프록시 쉽게 이해하기
+
+> 요약: 공통 관심사(로깅, 트랜잭션 등)를 핵심 로직에서 분리하는 AOP의 원리와 실무 프록시 동작 방식을 친절하게 정리한다.
+
+---
+
+## 1. AOP란 무엇인가? (쉬운 비유로 시작하기)
+
+식당에서 주문을 받고 요리하는 상황을 떠올려 보자.
+
+- **주방장의 본업(핵심 로직)**: 주문받은 요리 맛있게 만들기 (주문 생성, 결제 승인, 회원 가입 등)
+- **공통 부가 작업(횡단 관심사)**:
+  - 주방에 들어갈 때 손 소독하기 (인증/권한 검사)
+  - 요리 시작 시간과 끝난 시간 기록하기 (성능 측정 / 로깅)
+  - 재료가 상했으면 작업 취소하고 폐기하기 (트랜잭션 롤백 / 예외 처리)
+
+만약 100가지 메뉴를 만들 때마다 주방장이 일일이 손 소독 코드를 넣고, 스톱워치를 켜고 끄는 코드를 모든 요리 메서드에 직접 적는다면 어떻게 될까?
+
+```java
+// AOP 없이 작성한 비즈니스 코드의 비극
+public void orderMenu(OrderRequest req) {
+    // 1. 공통 부가 작업: 권한 검사
+    authService.checkAdmin();
+    // 2. 공통 부가 작업: 시간 측정 시작
+    long start = System.currentTimeMillis();
+
+    try {
+        // === [진짜 하고 싶었던 핵심 비즈니스 로직 2줄] ===
+        Order order = orderRepository.save(new Order(req));
+        paymentGateway.pay(order);
+        // ============================================
+    } catch (Exception e) {
+        // 3. 공통 부가 작업: 에러 로깅 & 알림
+        slackNotifier.sendError(e);
+        throw e;
+    } finally {
+        // 4. 공통 부가 작업: 실행 시간 로깅
+        long end = System.currentTimeMillis();
+        log.info("orderMenu 실행 시간: {}ms", (end - start));
+    }
+}
+```
+
+진짜 중요한 **주문과 결제 로직은 2줄**뿐인데, 부가 작업 코드가 앞뒤를 덮어버린다. 게다가 이런 메서드가 100개라면 시간 측정 방식을 바꿀 때 100개 메서드를 전부 수정해야 한다.
+
+이 문제를 해결하기 위해 등장한 것이 바로 **AOP(Aspect-Oriented Programming, 관점 지향 프로그래밍)** 다. 부가 기능(횡단 관심사)을 한곳으로 쏙 뽑아내어 모듈화하고, 핵심 비즈니스 로직은 본연의 역할에만 집중하게 만든다.
+
+---
+
+## 2. AOP 핵심 용어 5분 만에 마스터하기
+
+용어가 다소 낯설지만, 일상적인 개념에 대입하면 아주 단순하다.
+
+| 용어 | 쉬운 설명 | 일상 비유 | 스프링 코드 예시 |
+|------|-----------|-----------|------------------|
+| **Aspect (관점/부가기능 팩)** | 부가 기능들을 모아놓은 모듈 클래스 | '보안/위생 관리 규정집' | `@Aspect @Component class LoggingAspect` |
+| **Advice (언제 + 무엇을 할지)** | 실제로 실행될 부가 기능 코드 | '요리 전 손 씻기', '요리 후 뒷정리' | `@Before`, `@After`, `@Around` 메서드 |
+| **Join Point (끼어들 수 있는 지점)** | 부가 기능을 끼워 넣을 수 있는 모든 위치 | 레시피의 각 단계 (재료 손질 전, 불 켜기 전 등) | 스프링에서는 **메서드 실행 시점** |
+| **Pointcut (어디에 끼워 넣을지)** | 수많은 메서드 중 실제로 적용할 타깃을 고르는 필터 | '불을 쓰는 모든 요리'만 선택 | `@annotation(MeasureTime)` |
+| **Target (대상 객체)** | 부가 기능을 적용받는 순수 비즈니스 객체 | 순수 요리 레시피 | `OrderService`, `MemberService` |
+| **Proxy (대리자/가짜 객체)** | 타깃 앞에서 부가 기능을 먼저 가로채 실행해 주는 비서 | 주방장 앞에 서서 스톱워치 재주는 보조 요리사 | 스프링이 자동 생성하는 CGLIB 프록시 객체 |
+
+---
+
+## 3. 스프링 AOP의 비밀: '프록시(Proxy)'란?
+
+스프링 AOP는 마법이 아니다. **대리인(Proxy) 객체**를 중간에 세워서 작동한다.
+
+우리가 `@Autowired OrderService orderService`로 주입받는 객체는 실제 `OrderService`가 아니라, 스프링이 감싸서 만든 **가짜 껍데기(Proxy 객체)** 다.
+
+```
+[클라이언트(Controller)] 
+       │ 
+       ▼ (1) orderService.order() 호출
+[OrderService 프록시 (가짜 객체)] 
+       │  ├─▶ [시간 측정 시작!] (Advice 실행)
+       │  ▼ (2) 진짜 메서드 실행 위임
+[OrderService 원본 (진짜 타깃 객체)] 
+       │  ├─▶ 핵심 주문 로직 실행
+       │  ▼ (3) 결과 반환
+[OrderService 프록시 (가짜 객체)] 
+       │  ├─▶ [시간 측정 종료 & 로그 출력!] (Advice 실행)
+       ▼ (4) 최종 반환
+[클라이언트(Controller)]
+```
+
+### 프록시 생성 방식 (CGLIB)
+Spring Boot는 기본적으로 **CGLIB**라는 바이트코드 조작 기술을 사용한다. 타깃 클래스를 상속받아 자식 클래스 프록시를 만들기 때문에, 인터페이스가 없어도 일반 클래스에 AOP를 바로 적용할 수 있다.
+
+---
+
+## 4. Advice 종류 5가지 한눈에 보기
+
+| Advice 어노테이션 | 실행 타이밍 | 주로 사용하는 곳 |
+|-------------------|-------------|------------------|
+| `@Before` | 타깃 메서드가 실행되기 **직전** | 권한 체크, 요청 파라미터 유효성 사전 검사 |
+| `@AfterReturning` | 타깃 메서드가 **정상적으로 끝난 직후** | 반환값 로깅, 성공 감사 로그 기록 |
+| `@AfterThrowing` | 타깃 메서드에서 **예외가 터졌을 때** | 에러 슬랙 알림, 예외 변환 |
+| `@After` | 성공/예외 상관없이 **메서드가 끝날 때** (finally) | 사용했던 리소스 정리 |
+| **`@Around`** | **메서드 실행 전 + 후 전체를 감쌈** | **실행 시간 측정, 트랜잭션, 캐싱, 재시도 로직 (가장 많이 씀)** |
+
+---
+
+## 5. 실전 예제: 내 손으로 직접 만드는 `@MeasureTime` (시간 측정 AOP)
+
+실무에서 가장 유용하게 쓰이는 **커스텀 어노테이션 기반 시간 측정 AOP**를 단계별로 만들어 보자.
+
+### Step 1. 커스텀 어노테이션 만들기
+메서드 위에 붙일 스티커 같은 어노테이션을 정의한다.
+
+```java
+package com.example.annotation;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+@Target(ElementType.METHOD) // 메서드에 붙이겠다고 선언
+@Retention(RetentionPolicy.RUNTIME) // 런타임까지 유지
+public @interface MeasureTime {
+    String value() default ""; // 작업 이름 (옵션)
+}
+```
+
+### Step 2. Aspect(부가기능 처리기) 만들기
+
+```java
+package com.example.aop;
+
+import com.example.annotation.MeasureTime;
+import lombok.extern.slf4j.Slf4j;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.springframework.stereotype.Component;
+
+@Slf4j
+@Aspect      // 1. AOP 설정 클래스임을 명시
+@Component   // 2. 스프링 빈으로 등록
+public class ExecutionTimeAspect {
+
+    // @MeasureTime 어노테이션이 붙은 메서드 전후(@Around)에 이 로직을 끼워넣음
+    @Around("@annotation(measureTime)")
+    public Object measureExecutionTime(ProceedingJoinPoint joinPoint, MeasureTime measureTime) throws Throwable {
+        String taskName = measureTime.value().isBlank() 
+                ? joinPoint.getSignature().toShortString() 
+                : measureTime.value();
+
+        long startTime = System.currentTimeMillis();
+        log.info("[시작] {}", taskName);
+
+        try {
+            // 진짜 타깃 메서드를 실행하는 핵심 코드!
+            Object result = joinPoint.proceed();
+            return result;
+        } finally {
+            long totalTime = System.currentTimeMillis() - startTime;
+            if (totalTime > 1000) {
+                log.warn("[경고: 느린 작업] {} 완료! 소요시간: {}ms", taskName, totalTime);
+            } else {
+                log.info("[완료] {} 완료! 소요시간: {}ms", taskName, totalTime);
+            }
+        }
+    }
+}
+```
+
+### Step 3. 서비스 코드에 스티커처럼 붙이기
+
+```java
+@Service
+@RequiredArgsConstructor
+public class OrderService {
+
+    private final OrderRepository orderRepository;
+
+    @MeasureTime("전체 주문 통계 집계")
+    public List<OrderSummary> calculateMonthlyReport(int year, int month) {
+        // 복잡하고 오래 걸리는 비즈니스 쿼리 실행...
+        return orderRepository.getMonthlyReport(year, month);
+    }
+}
+```
+
+비즈니스 코드는 시간 측정 관련 코드가 1줄도 없이 순수하게 유지된다.
+
+---
+
+## 6. 실무 주의사항: 내부 호출(Self-Invocation)의 덫
+
+AOP를 처음 쓸 때 가장 많이 겪는 미스터리한 버그가 바로 **같은 클래스 내부 호출 문제**다.
+
+### 왜 내부 호출은 AOP가 안 먹힐까?
+
+```java
+@Service
+public class OrderService {
+
+    public void createOrder() {
+        System.out.println("1. 주문 생성 로직");
+        
+        // 같은 클래스 안의 메서드를 호출함 (this.sendEmail())
+        this.sendEmail(); 
+    }
+
+    @MeasureTime("이메일 발송 시간 측정") // <- 동작하지 않음!
+    public void sendEmail() {
+        System.out.println("2. 이메일 발송 로직");
+    }
+}
+```
+
+**이유:**
+외부(`Controller`)에서 `createOrder()`를 호출할 때는 **프록시(대리인)** 를 거친다. 하지만 `createOrder()` 내부에서 `sendEmail()`을 부를 때는 프록시가 아니라 **자기 자신(`this`)의 원본 메서드를 직접 호출**해 버리기 때문에 AOP 부가기능이 완전히 무시된다.
+
+```
+[외부 호출] ──▶ [OrderService Proxy] ──▶ [OrderService 원본: createOrder()]
+                                                     │
+                                            (this.sendEmail 직접 호출)
+                                                     ▼
+                                          [OrderService 원본: sendEmail()] 
+                                          ※ Proxy를 거치지 않아 AOP 동작 안 함!
+```
+
+### 해결책: 가장 깔끔한 방법은 '클래스 분리'
+역할에 맞게 메일 발송 로직을 별도의 `NotificationService` 클래스로 분리하고 주입받아 호출하면 자연스럽게 프록시를 거치게 된다.
+
+```java
+@Service
+@RequiredArgsConstructor
+public class OrderService {
+    private final NotificationService notificationService; // 별도 빈 주입
+
+    public void createOrder() {
+        System.out.println("1. 주문 생성");
+        notificationService.sendEmail(); // 프록시를 통해 호출되므로 AOP 정상 작동!
+    }
+}
+```
+
+---
+
+## 7. 핵심 요약 및 팁
+
+1. **AOP는 횡단 관심사(로깅, 트랜잭션, 보안 등)를 깔끔하게 분리**해 주는 기술이다.
+2. 스프링은 **프록시(대리 객체)** 를 통해 타깃 메서드 앞뒤에 Advice를 끼워 넣는다.
+3. 실무에서는 복잡한 Pointcut 표현식보다 **커스텀 어노테이션(`@annotation`)** 을 만들어 필요한 곳에 명시적으로 붙이는 방식이 훨씬 안전하다.
+4. `private` 메서드나 같은 클래스 내부 호출(`this.method()`)은 프록시를 거치지 않으므로 AOP가 적용되지 않는다.
+
+---
+
+## 연습
+
+1. Controller 메서드 진입 시 요청 파라미터를 예쁘게 출력해 주는 `@RequestLog` AOP를 구현해 본다.
+2. 실행 중 예외가 발생하면 콘솔에 에러 메시지와 함께 실행 메서드명을 출력하는 `@AfterThrowing` Advice를 작성해 본다.1b:[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"Spring AOP — 횡단 관심사와 프록시 쉽게 이해하기\",\"description\":\"공통 관심사(로깅, 트랜잭션 등)를 핵심 로직에서 분리하는 AOP의 원리와 실무 프록시 동작 방식을 친절하게 정리한다.\",\"datePublished\":\"2024-01-15\",\"url\":\"https://kaisa.co.kr/posts/spring-boot-11/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"spring-boot\",\"keywords\":\"spring-boot\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Spring AOP — 횡단 관심사와 프록시 쉽게 이해하기\",\"item\":\"https://kaisa.co.kr/posts/spring-boot-11/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L6",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2024-01-15"}]}],["$","h1",null,{"className":"blog-post__title","children":"Spring AOP — 횡단 관심사와 프록시 쉽게 이해하기"}],["$","$L24",null,{"content":"$25"}],"$L26","$L27"]}]}]}]]
+28:I[44398,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/235_kxc74hr-9.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],"default"]
+26:["$","$L28",null,{"pathKey":"spring-boot-11"}]
+27:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L6",null,{"href":"/posts/spring-boot-10/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"운영 배포 — Docker, 설정, Native Image, 프로덕션 체크리스트"}]]}],["$","$L6",null,{"href":"/posts/spring-boot-12/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Spring Boot 실무 디자인 패턴 — 자주 쓰는 핵심 패턴 7가지"}]]}]]}],["$","$L6",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
+21:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+29:I[27201,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"IconMark"]
+1e:null
+23:[["$","title","0",{"children":"Spring AOP — 횡단 관심사와 프록시 쉽게 이해하기 · Kaisa"}],["$","meta","1",{"name":"description","content":"공통 관심사(로깅, 트랜잭션 등)를 핵심 로직에서 분리하는 AOP의 원리와 실무 프록시 동작 방식을 친절하게 정리한다."}],["$","meta","2",{"name":"application-name","content":"Kaisa"}],["$","meta","3",{"name":"robots","content":"index, follow"}],["$","meta","4",{"name":"naver-site-verification","content":"4bc13b857695ff44988c260cb26124eedbcda90e"}],["$","link","5",{"rel":"canonical","href":"https://kaisa.co.kr/posts/spring-boot-11/"}],["$","meta","6",{"property":"og:title","content":"Spring AOP — 횡단 관심사와 프록시 쉽게 이해하기 · Kaisa"}],["$","meta","7",{"property":"og:description","content":"공통 관심사(로깅, 트랜잭션 등)를 핵심 로직에서 분리하는 AOP의 원리와 실무 프록시 동작 방식을 친절하게 정리한다."}],["$","meta","8",{"property":"og:url","content":"https://kaisa.co.kr/posts/spring-boot-11/"}],["$","meta","9",{"property":"og:site_name","content":"Kaisa"}],["$","meta","10",{"property":"og:locale","content":"ko_KR"}],["$","meta","11",{"property":"og:type","content":"article"}],["$","meta","12",{"name":"twitter:card","content":"summary"}],["$","meta","13",{"name":"twitter:title","content":"Spring AOP — 횡단 관심사와 프록시 쉽게 이해하기 · Kaisa"}],["$","meta","14",{"name":"twitter:description","content":"공통 관심사(로깅, 트랜잭션 등)를 핵심 로직에서 분리하는 AOP의 원리와 실무 프록시 동작 방식을 친절하게 정리한다."}],["$","link","15",{"rel":"shortcut icon","href":"/img/common/favicon.ico"}],["$","link","16",{"rel":"icon","href":"/img/common/favicon.ico"}],["$","link","17",{"rel":"apple-touch-icon","href":"/img/common/favicon.ico"}],["$","$L29","18",{}]]

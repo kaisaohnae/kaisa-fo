@@ -1,0 +1,438 @@
+1:"$Sreact.fragment"
+2:I[79520,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],""]
+3:I[83661,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default"]
+4:I[39756,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default"]
+5:I[37457,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default"]
+6:I[22016,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/235_kxc74hr-9.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],""]
+7:I[22067,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default"]
+8:I[78481,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default"]
+9:I[2105,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default"]
+a:I[69033,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/235_kxc74hr-9.js","/_next/static/chunks/1hr7-4fb6m83q.js"],"LocaleProvider"]
+b:I[45872,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/235_kxc74hr-9.js","/_next/static/chunks/1hr7-4fb6m83q.js"],"default"]
+c:I[20683,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/235_kxc74hr-9.js","/_next/static/chunks/1hr7-4fb6m83q.js"],"default"]
+d:I[86979,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/235_kxc74hr-9.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/0hs6l77ykwsoc.js"],"default"]
+16:I[68027,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default",1]
+:HL["/_next/static/chunks/3ortkzvy6360x.css","style"]
+:HL["/_next/static/chunks/0h6pid50w8_n4.css","style"]
+:HL["/_next/static/chunks/3siqlqjr1v4fe.css","style"]
+:HL["/_next/static/media/0c795a286deabae8-s.p.3vm0tq4e-zz_5.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/5c285b27cdda1fe8-s.p.2_mbdogr7ni8i.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/chunks/3j-1lpdn3an_-.css","style"]
+0:{"P":null,"c":["","posts","spring-boot-13",""],"q":"","i":false,"f":[[["",{"children":["(site)",{"children":["posts",{"children":[["slug","spring-boot-13","d",null],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3ortkzvy6360x.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0h6pid50w8_n4.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/3siqlqjr1v4fe.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/0qufxx6nl15ij.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1uymn__-_z4ug.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ko","className":"syne_53f86cd1-module__kiT3Eq__variable dm_sans_fd62f040-module__0jgVUW__variable","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","script",null,{"async":true,"src":"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2641553863829571","crossOrigin":"anonymous"}]}],["$","body",null,{"children":[["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var t=null;document.cookie.split(';').forEach(function(c){var p=c.trim().split('=');if(p[0]==='kaisa-theme')t=decodeURIComponent(p[1]||'');});document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();"}}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var KEY='kaisa-locale';var loc=null;try{loc=sessionStorage.getItem(KEY);}catch(e){}function fromNav(){var list=[navigator.language].concat(navigator.languages||[]);for(var i=0;i<list.length;i++){var l=String(list[i]||'').toLowerCase();if(l.indexOf('ko')===0)return 'ko';if(l.indexOf('zh')===0)return 'zh';if(l.indexOf('hi')===0)return 'hi';if(l.indexOf('en')===0)return 'en';}return null;}if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc=fromNav();if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc='ko';document.documentElement.lang=loc;}catch(e){document.documentElement.lang='ko';}})();"}}],[["$","$L2",null,{"src":"https://www.googletagmanager.com/gtag/js?id=G-2281QQ6XP4","strategy":"afterInteractive"}],["$","$L2",null,{"id":"google-analytics","strategy":"afterInteractive","children":"\n          window.dataLayer = window.dataLayer || [];\n          function gtag(){dataLayer.push(arguments);}\n          gtag('js', new Date());\n          gtag('config', 'G-2281QQ6XP4');\n        "}]],["$","$L3",null,{}],["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}],["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","$L7",null,{}],["$","$L8",null,{}],["$","$L9",null,{}]]}]]}]]}],{"children":[["$","$1","c",{"children":[[["$","script","script-0",{"src":"/_next/static/chunks/235_kxc74hr-9.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1hr7-4fb6m83q.js","async":true,"nonce":"$undefined"}]],["$","$La",null,{"children":["$","div",null,{"className":"site-layout","children":[["$","$Lb",null,{}],["$","$Lc",null,{"children":["$","$L4",null,{"parallelRouterKey":"children","error":"$d","errorStyles":[],"errorScripts":[["$","script","script-0",{"src":"/_next/static/chunks/0hs6l77ykwsoc.js","async":true}]],"template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],"$Le","$Lf"]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],"$L10"]}]}]]}],{"children":["$L11",{"children":["$L12",{"children":["$L13",{},null,false,null]},null,false,"$@14"]},null,false,"$@14"]},null,false,null]},null,false,null],"$L15",false]],"m":"$undefined","G":["$16",["$L17","$L18","$L19"]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"eMStUu4a1lNzZxT0RaWzF"}
+1a:I[44604,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/235_kxc74hr-9.js","/_next/static/chunks/1hr7-4fb6m83q.js"],"default"]
+1c:I[97367,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"OutletBoundary"]
+1d:"$Sreact.suspense"
+20:I[97367,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"ViewportBoundary"]
+22:I[97367,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"MetadataBoundary"]
+e:["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}]
+f:["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]
+10:["$","$L1a",null,{}]
+11:["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]
+12:["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]
+13:["$","$1","c",{"children":["$L1b",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3j-1lpdn3an_-.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/2_h6is8-aperz.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/3qcoeqbx1mias.js","async":true,"nonce":"$undefined"}]],["$","$L1c",null,{"children":["$","$1d",null,{"name":"Next.MetadataOutlet","children":"$@1e"}]}]]}]
+1f:[]
+14:"$W1f"
+15:["$","$1","h",{"children":[null,["$","$L20",null,{"children":"$L21"}],["$","div",null,{"hidden":true,"children":["$","$L22",null,{"children":["$","$1d",null,{"name":"Next.Metadata","children":"$L23"}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}]
+17:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3ortkzvy6360x.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
+18:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0h6pid50w8_n4.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
+19:["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/3siqlqjr1v4fe.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
+24:I[55489,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/235_kxc74hr-9.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],"default"]
+25:T56f3,# JPA & Hibernate — 영속성 컨텍스트부터 실무 성능 최적화까지
+
+> 요약: 영속성 컨텍스트 생명주기, 변경 감지, N+1 문제 해결(Fetch Join vs EntityGraph vs BatchSize), 컬렉션 페이징 한계, 낙관적/비관적 락, OSIV 전략을 이해한다.
+
+---
+
+## 1. ORM의 본질과 패러다임의 불일치
+
+객체지향 언어는 **추상화, 캡슐화, 상속, 다형성**을 통해 유연한 도메인 모델을 만드는 것이 목표이고, 관계형 데이터베이스(RDB)는 **데이터의 정규화와 무결성, 집합 중심의 효율적인 조회**가 목표다. 이 둘 사이에는 태생적인 **패러다임의 불일치(Paradigm Mismatch)** 가 존재한다.
+
+| 관점 | 객체지향 (Java) | 관계형 데이터베이스 (RDB) |
+|------|-----------------|---------------------------|
+| **지향점** | 추상화, 캡슐화, 다형성, 객체 간 참조 | 데이터 무결성, 정규화, 테이블 간 외래키(FK) 조인 |
+| **연관관계** | **단방향 참조** (`order.getMember()`) | **양방향 조인** (`JOIN ON order.member_id = member.id`) |
+| **식별자** | 객체 동일성 (`==`, 메모리 주소) | 기본키 (Primary Key, 테이블 레코드 고유값) |
+| **데이터 탐색** | 객체 그래프 탐색 (`order.getDelivery().getAddress()`) | SQL 쿼리로 조회된 레코드셋에 국한 |
+| **상속** | 상속 관계 지원 (`extends`) | 슈퍼타입/서브타입 모델링 (테이블 단편화) |
+
+과거에는 이 차이를 메우기 위해 SQL 매퍼(MyBatis, JdbcTemplate)를 사용하며 개발자가 객체와 테이블 간의 매핑 코드를 일일이 작성했다. 
+
+**ORM(Object-Relational Mapping)** 은 이 패러다임 불일치를 프레임워크가 중간에서 해결해 주는 기술이다. 자바 진영의 표준 명세가 **JPA(Jakarta Persistence API)** 이며, 가장 널리 쓰이는 표준 구현체가 **Hibernate**다. Spring Boot 환경에서는 이를 한 번 더 편리하게 감싼 **Spring Data JPA**를 주로 사용한다.
+
+---
+
+## 2. 영속성 컨텍스트(Persistence Context)의 내부 메커니즘
+
+영속성 컨텍스트는 **"엔티티를 영구 저장하는 환경"** 이라는 뜻의 논리적인 개념이다. `EntityManager`를 통해 접근하며, 애플리케이션과 데이터베이스 사이에서 버퍼(Buffer) 및 캐시(Cache) 역할을 수행한다.
+
+스프링 프레임워크에서는 **트랜잭션(`@Transactional`)의 시작부터 종료까지** 영속성 컨텍스트의 생명주기가 유지된다.
+
+```
+[클라이언트 요청] ──▶ [@Transactional Service] 
+                              │
+                              ▼
+                 ┌─────────────────────────────┐
+                 │    영속성 컨텍스트 (EntityManager)    │
+                 │  ┌───────────────────────┐  │
+                 │  │ 1차 캐시 (엔티티 / 스냅샷)  │  │
+                 │  ├───────────────────────┤  │
+                 │  │ 쓰기 지연 SQL 저장소       │  │
+                 │  └───────────────────────┘  │
+                 └──────────────┬──────────────┘
+                                │ flush & commit
+                                ▼
+                         [Database (RDB)]
+```
+
+### 1) 1차 캐시와 동일성(Identity) 보장
+영속성 컨텍스트 내부에는 엔티티의 `@Id`(PK) 값을 Key로, 엔티티 인스턴스를 Value로 보관하는 **1차 캐시**가 존재한다.
+
+```java
+// 동일 트랜잭션 내부
+Member member1 = memberRepository.findById(1L).orElseThrow();
+Member member2 = memberRepository.findById(1L).orElseThrow();
+
+System.out.println(member1 == member2); // true (메모리 주소 일치)
+```
+
+1. `findById(1L)` 최초 호출 시 1차 캐시에 없으므로 DB `SELECT` 쿼리를 실행해 엔티티를 1차 캐시에 저장하고 반환한다.
+2. 두 번째 `findById(1L)` 호출 시 DB 쿼리를 전혀 날리지 않고 **1차 캐시에서 즉시 반환**한다.
+3. 동일 트랜잭션 내에서는 `==` 비교 시 **진정한 객체 동일성(Identity)** 이 보장된다.
+
+### 2) 쓰기 지연 (Transactional Write-Behind)
+`em.persist(entity)`나 `repository.save(entity)`를 호출한다고 해서 그 즉시 DB에 `INSERT` SQL이 나가지 않는다.
+
+```java
+@Transactional
+public void registerMembers() {
+    memberRepository.save(new Member("A"));
+    memberRepository.save(new Member("B"));
+    memberRepository.save(new Member("C"));
+    // 여기까지 DB에 INSERT 쿼리가 아직 1건도 나가지 않음!
+    // 쿼리는 영속성 컨텍스트의 '쓰기 지연 SQL 저장소'에 차곡차곡 쌓임
+    
+    // 트랜잭션이 끝나는 시점에 모아둔 3개의 INSERT 쿼리가 DB로 한 방에 전송(flush)됨
+}
+```
+
+> **주의 (IDENTITY 전략 예외)**: MySQL의 `AUTO_INCREMENT`처럼 `@GeneratedValue(strategy = GenerationType.IDENTITY)`를 쓰는 경우, PK 값을 DB에 넣기 전까지는 알 수 없다. 영속성 컨텍스트는 1차 캐시의 키로 PK가 필수이기 때문에, `IDENTITY` 전략에 한해서는 `save()` 호출 즉시 `INSERT` 쿼리가 실행되어 쓰기 지연이 발생하지 않는다.
+
+### 3) 변경 감지 (Dirty Checking)의 구체적 동작 원리
+JPA에는 엔티티를 수정하는 `update()`나 `modify()` 같은 API가 존재하지 않는다.
+
+```java
+@Transactional
+public void updateMember(Long id, String newName) {
+    Member member = memberRepository.findById(id).orElseThrow();
+    member.changeName(newName); 
+    // memberRepository.save(member); -> 호출 불필요 (안티패턴)
+}
+```
+
+**내부 비교 순서:**
+1. **스냅샷 생성**: 1차 캐시에 엔티티가 최초로 로드(조회 또는 영속화)될 때, 그 시점의 상태를 그대로 복제한 **스냅샷(Snapshot)** 을 만든다.
+2. **트랜잭션 커밋 시점 `flush()` 발생**: 트랜잭션이 커밋되기 직전 영속성 컨텍스트가 자동으로 `flush()`를 실행한다.
+3. **상태 비교**: 현재 엔티티의 필드 값과 최초 스냅샷을 1:1로 대조하여 변경된 부분을 찾는다.
+4. **UPDATE 쿼리 생성**: 변경 사항이 있으면 `UPDATE` SQL을 만들어 쓰기 지연 SQL 저장소에 넣고 DB로 전송한다.
+
+#### 변경 감지 시 생성되는 쿼리 특성
+기본적으로 Hibernate는 **엔티티의 모든 컬럼을 UPDATE 대상**으로 삼는다.
+- **장점**: SQL 구문이 고정되어 데이터베이스 엔진 차원에서 쿼리를 파싱하고 캐싱(PreparedStatement 재사용)하기 유리하다.
+- **예외 처리 (`@DynamicUpdate`)**: 테이블의 컬럼 수가 30~50개 이상으로 매우 많고 빈번하게 일부 컬럼만 수정된다면, 엔티티 클래스 위에 `@DynamicUpdate`를 선언하여 실제 변경된 컬럼만 동적으로 `UPDATE` 구문을 만들도록 설정할 수 있다.
+
+### 4) Flush(플러시)의 정확한 개념
+`flush()`는 **영속성 컨텍스트의 변경 내용을 데이터베이스에 동기화(전송)하는 작업**이다.
+
+- **플러시가 일어나는 시점**:
+  1. 트랜잭션 커밋 직전 (자동)
+  2. JPQL 쿼리 실행 직전 (데이터 정합성을 위해 자동 실행)
+  3. `em.flush()` 직접 호출 시
+- **핵심**: 플러시는 DB 트랜잭션을 커밋하는 것이 아니다. 변경된 SQL들을 DB로 보내놓기만 한 상태이므로, 예외가 발생하면 **언제든지 롤백이 가능**하다.
+
+---
+
+## 3. 엔티티 생명주기 4가지 상태
+
+```
+       [ 비영속 (New) ]  ──────── em.persist() ────────▶  [ 영속 (Managed) ]
+              │                                                │
+              │                                                ├─ em.detach() / em.close() ─▶ [ 준영속 (Detached) ]
+              │                                                │
+              └──────── em.remove() ─────────────────────────▶ [ 삭제 (Removed) ]
+```
+
+| 상태 | 설명 | 특징 |
+|------|------|------|
+| **비영속 (New/Transient)** | `new` 키워드로 생성된 순수 자바 객체 | 영속성 컨텍스트 및 DB와 아무 관계 없음 |
+| **영속 (Managed)** | 영속성 컨텍스트에 의해 관리되는 상태 | 1차 캐시 등록, 변경 감지, 지연 로딩 대상 |
+| **준영속 (Detached)** | 한때 영속 상태였으나 컨텍스트에서 분리된 상태 | 1차 캐시에서 제거됨, 변경 감지 미동작 |
+| **삭제 (Removed)** | 삭제 대상으로 마킹된 상태 | 트랜잭션 커밋 시 DB `DELETE` 쿼리 실행 |
+
+### 준영속 상태를 다룰 때 주의할 점
+`em.merge(detachedEntity)`를 사용하면 준영속 엔티티의 정보로 새로운 영속 엔티티를 반환하지만, **모든 필드를 덮어쓰기 때문에 값이 없는 필드는 `null`로 갱신되는 위험**이 있다.
+
+따라서 실무에서는 `merge()` 대신 **식별자로 엔티티를 조회한 뒤 변경 감지(Dirty Checking)를 통해 필요한 필드만 직접 수정**하는 것이 원칙이다.
+
+---
+
+## 4. 연관관계 매핑과 방향성
+
+### 1) 단방향 매핑 vs 양방향 매핑
+- **단방향 매핑**: 한쪽 엔티티만 상대방을 참조하는 구조 (`Order` $\rightarrow$ `Member`). 객체 관계가 단순하고 직관적이다.
+- **양방향 매핑**: 양쪽 엔티티가 서로를 참조하는 구조 (`Order` $\leftrightarrow$ `Member`). 조회 편의성은 높지만 복잡도가 크게 증가한다.
+
+> **실무 대원칙**: 기본적으로 모든 연관관계는 **단방향 매핑**으로 설계한다. 비즈니스 요구사항상 반대편에서의 객체 그래프 탐색이 꼭 필요한 경우에만 제한적으로 양방향 매핑을 추가한다.
+
+### 2) 연관관계의 주인(Owner)과 `mappedBy`
+테이블은 외래키(FK) 1개로 양쪽 조인이 가능하다. 하지만 객체는 참조 변수가 양쪽에 각각 존재한다. 둘 중 **"누가 외래키를 관리(등록/수정)할 것인가"** 를 정해야 하며, 그 주체가 **연관관계의 주인**이다.
+
+- **연관관계의 주인**: 외래키(FK) 컬럼이 존재하는 테이블의 엔티티 (`@JoinColumn` 사용)
+- **주인이 아닌 쪽**: 조회만 가능 (`mappedBy` 속성으로 주인의 필드명을 지정)
+
+```java
+// [외래키를 가진 연관관계의 주인]
+@Entity
+public class Order {
+    @Id @GeneratedValue
+    private Long id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id") // orders 테이블의 member_id FK 컬럼 관리
+    private Member member;
+}
+
+// [조회만 가능한 주인이 아닌 쪽]
+@Entity
+public class Member {
+    @Id @GeneratedValue
+    private Long id;
+
+    @OneToMany(mappedBy = "member") // Order 클래스의 'member' 필드에 의해 매핑됨
+    private List<Order> orders = new ArrayList<>();
+}
+```
+
+### 3) 양방향 연관관계 편의 메서드 작성법
+양방향 매핑 시 순수 자바 객체 상태를 고려해 양쪽 모두에 값을 세팅해 주는 **편의 메서드(Convenience Method)** 를 작성해야 테스트 및 영속화 전후에 문제가 생기지 않는다.
+
+```java
+public void addOrderItem(OrderItem item) {
+    this.orderItems.add(item);
+    item.assignOrder(this); // 양쪽 참조를 한 번에 세팅
+}
+```
+
+---
+
+## 5. 지연 로딩(LAZY)과 N+1 문제 해결하기
+
+### 1) 즉시 로딩(EAGER)의 위험성
+`@ManyToOne(fetch = FetchType.EAGER)`로 설정하면 부모 엔티티를 조회할 때 연관된 엔티티를 무조건 함께 조회한다.
+- JPQL을 실행할 때 JPQL은 SQL로 그대로 번역되어 부모만 먼저 조회(`SELECT * FROM orders`)한 뒤, 뒤늦게 EAGER 설정을 보고 연관 엔티티를 개별 조회(`SELECT * FROM member WHERE id = ?`)하는 N+1 문제가 무조건 발생한다.
+- **실무 원칙**: 모든 연관관계는 반드시 **`FetchType.LAZY`** 로 선언한다.
+
+### 2) N+1 문제란?
+1번의 쿼리로 N건의 데이터를 조회했을 때, 지연 로딩된 연관 엔티티를 사용하는 과정에서 **추가 쿼리가 N번 더 발생하는 성능 저하 현상**이다.
+
+```java
+// orders 목록 10건 조회 (쿼리 1회)
+List<Order> orders = orderRepository.findAll();
+
+for (Order order : orders) {
+    // Member는 프록시 객체 상태 -> 실제 필드 접근 시마다 SELECT 쿼리 발생! (10회)
+    System.out.println(order.getMember().getName()); 
+}
+// 총 실행된 쿼리: 1 + 10 = 11회
+```
+
+### 3) N+1 해결 전략 3가지 비교
+
+```
+                      ┌── 1. Fetch Join (JPQL INNER JOIN으로 한 방에 로딩)
+                      │
+N+1 해결 3대 전략 ─────┼── 2. @EntityGraph (어노테이션 기반 LEFT JOIN 로딩)
+                      │
+                      └── 3. default_batch_fetch_size (IN 쿼리로 묶어서 로딩)
+```
+
+| 해결 방식 | 코드 형태 | 장점 | 단점 및 제약 |
+|-----------|-----------|------|--------------|
+| **Fetch Join** | `select o from Order o join fetch o.member` | 한 번의 SQL 조인으로 실제 엔티티를 모두 조회 | 둘 이상의 컬렉션(`List`)을 동시 페치 조인할 수 없음 (`MultipleBagFetchException`) |
+| **`@EntityGraph`** | `@EntityGraph(attributePaths = {"member"})` | JPQL 없이 Spring Data JPA 인터페이스에 어노테이션으로 적용 가능 | `LEFT OUTER JOIN`이 강제되어 조인 비용이 발생할 수 있음 |
+| **`BatchSize`** | `hibernate.default_batch_fetch_size: 100` | 설정 하나로 지연 로딩 시 `IN (?, ?, ...)` 쿼리로 묶어서 처리 | 쿼리가 1개로 줄어드는 것은 아니며 `1 + (N/size)`회 실행됨 |
+
+---
+
+## 6. 컬렉션 페치 조인과 페이징(Pagination)의 한계와 해법
+
+### 문제: 1:N 컬렉션 페치 조인 시 페이징 쿼리가 실패하는 이유
+
+```java
+// [심각한 성능 장애 유발 코드]
+@Query("select o from Order o join fetch o.orderItems")
+Page<Order> findAllWithItems(Pageable pageable);
+```
+
+1. 데이터베이스 관점에서 1:N 조인을 실행하면 부모 데이터(`Order`)가 자식 데이터(`OrderItem`) 개수만큼 **중복으로 뻥튀기(Row 확장)** 된다.
+2. 이 상태에서 DB의 `LIMIT / OFFSET` 페이징을 적용하면 1번 주문의 데이터가 잘려 나가는 등 데이터 왜곡이 발생한다.
+3. Hibernate는 데이터 정합성을 지키기 위해 **DB 레벨 페이징을 포기하고, DB의 모든 데이터를 애플리케이션 메모리로 퍼올린 뒤 메모리에서 직접 페이징(In-Memory Paging)** 을 수행한다.
+4. 로그에 `HHH000104: firstResult/maxResults specified with collection fetch; applying in-memory!` 경고가 찍히며, 데이터가 많을 경우 즉시 **OutOfMemoryError(OOM)** 가 발생하여 서버가 다운된다.
+
+### 실무 표준 해결 공식 (2단계 접근법)
+
+```
+[1단계]: ToOne 관계(Member, Delivery)만 페치 조인하여 DB 레벨 페이징 수행
+         ▼
+[2단계]: ToMany 컬렉션(OrderItems)은 default_batch_fetch_size를 통해 IN 쿼리로 최적화 조회
+```
+
+#### Step 1. ToOne 관계만 페치 조인하여 페이징 조회
+```java
+public interface OrderRepository extends JpaRepository<Order, Long> {
+
+    @Query(value = "select o from Order o join fetch o.member m join fetch o.delivery d",
+           countQuery = "select count(o) from Order o")
+    Page<Order> findAllOrdersWithPaging(Pageable pageable);
+}
+```
+`ToOne` 관계는 조인해도 데이터 Row 수가 늘어나지 않으므로 DB `LIMIT / OFFSET` 페이징이 정상 동작한다.
+
+#### Step 2. `application.yml`에 BatchSize 전역 설정
+```yaml
+spring:
+  jpa:
+    properties:
+      hibernate:
+        default_batch_fetch_size: 100 # 보통 100~500 권장
+```
+
+#### Step 3. DTO 변환 시 지연 로딩 호출
+```java
+@Transactional(readOnly = true)
+public Page<OrderResponse> getOrders(Pageable pageable) {
+    Page<Order> orderPage = orderRepository.findAllOrdersWithPaging(pageable);
+
+    // order.getOrderItems() 호출 시 100개 단위의 IN (?, ?, ...) 쿼리 1회로 최적화되어 조회됨
+    return orderPage.map(OrderResponse::from);
+}
+```
+
+---
+
+## 7. 동시성 제어: 낙관적 락 vs 비관적 락
+
+동시에 여러 트랜잭션이 동일한 엔티티를 수정하려 할 때 데이터 정합성을 보장하는 방법이다.
+
+### 1) 낙관적 락 (Optimistic Lock)
+- **개념**: "데이터 충돌이 대부분 발생하지 않을 것이다"라고 가정하고 DB 락 대신 애플리케이션 레벨에서 버전 관리로 충돌을 감지한다.
+- **적용**: 엔티티에 `@Version` 필드를 추가한다.
+
+```java
+@Entity
+public class Article {
+    @Id @GeneratedValue
+    private Long id;
+
+    private String title;
+
+    @Version
+    private Long version; // 수정 시마다 Hibernate가 자동으로 1씩 증가시킴
+}
+```
+
+```sql
+-- 내부 실행 쿼리
+UPDATE article 
+SET title = '수정된 제목', version = 2 
+WHERE id = 1 AND version = 1;
+```
+동시에 다른 트랜잭션이 먼저 수정하여 버전이 2로 올라갔다면, 조건에 맞는 레코드가 없어 업데이트 수가 0이 되고 `ObjectOptimisticLockingFailureException`이 발생한다.
+
+- **장점**: 별도의 DB 락을 잡지 않으므로 처리량(Throughput)이 높다.
+- **단점**: 충돌 발생 시 롤백 및 재시도(Retry) 로직을 개발자가 직접 작성해야 한다.
+- **추천**: 게시글 수정, 상품 설명 수정 등 동시 수정 충돌 가능성이 낮은 경우.
+
+### 2) 비관적 락 (Pessimistic Lock)
+- **개념**: "데이터 충돌이 반드시 일어날 것이다"라고 가정하고, 조회 시점에 DB의 배타적 락(`SELECT ... FOR UPDATE`)을 걸어 다른 트랜잭션의 접근을 대기시킨다.
+
+```java
+public interface ProductRepository extends JpaRepository<Product, Long> {
+
+    @Lock(LockModeType.PESSIMISTIC_WRITE)
+    @Query("select p from Product p where p.id = :id")
+    Optional<Product> findByIdWithPessimisticLock(@Param("id") Long id);
+}
+```
+
+- **장점**: 트랜잭션이 끝날 때까지 다른 트랜잭션이 대기하므로 데이터 무결성이 완벽히 보장된다.
+- **단점**: 대기 시간으로 인해 동시 처리 성능이 떨어지고 데드락(Deadlock) 위험이 증가한다.
+- **추천**: 한정 수량 재고 차감, 포인트/계좌 출금 등 데이터 정합성이 최우선인 금융/결제 도메인.
+
+---
+
+## 8. OSIV (Open Session In View) 아키텍처 전략
+
+`spring.jpa.open-in-view` 설정은 애플리케이션의 커넥션 관리와 직결되는 매우 중요한 옵션이다.
+
+```yaml
+spring:
+  jpa:
+    open-in-view: false # 실무 API 서버 필수 권장
+```
+
+### OSIV 동작 비교
+
+| 구분 | OSIV ON (`true`, 기본값) | OSIV OFF (`false`, 권장) |
+|------|-------------------------|--------------------------|
+| **커넥션 유지 범위** | HTTP 요청 시작 $\rightarrow$ 응답 반환 끝까지 | `@Transactional` 서비스 메서드 실행 구간만 |
+| **지연 로딩 가능 위치** | Controller, View 템플릿 어디서나 가능 | **`@Transactional` 트랜잭션 내부에서만 가능** |
+| **장점** | DTO 변환 시 지연 로딩이 자유로워 개발 편의성 높음 | DB 커넥션을 필요한 순간에만 쓰고 즉시 반납하므로 커넥션 풀 고갈 방지 |
+| **단점 및 위험** | 외부 API 호출이나 무거운 작업 지연 시 DB 커넥션 풀이 마르는 장애 발생 | 트랜잭션 밖에서 지연 로딩 접근 시 `LazyInitializationException` 발생 |
+
+### OSIV OFF 환경에서의 아키텍처 패턴 (CQRS 쿼리 서비스 분리)
+`open-in-view: false`를 적용하면 트랜잭션 밖에서는 지연 로딩을 쓸 수 없다. 이를 위해 복잡한 화면/API 조회의 경우 **조회 전용 서비스(QueryService)** 를 분리하여 트랜잭션 안에서 DTO로 완벽히 변환하여 반환하도록 설계한다.
+
+```java
+// [조회 전용 서비스]
+@Service
+@RequiredArgsConstructor
+@Transactional(readOnly = true) // 읽기 전용 트랜잭션 안에서 안전하게 DTO 변환
+public class OrderQueryService {
+
+    private final OrderRepository orderRepository;
+
+    public List<OrderDto> getOrderDtos(Pageable pageable) {
+        return orderRepository.findAllOrdersWithPaging(pageable)
+                .map(OrderDto::from) // 트랜잭션 내부이므로 지연 로딩 호출 가능
+                .toList();
+    }
+}
+```
+
+---
+
+## 9. 실무 체크리스트 및 흔한 실수
+
+| 점검 항목 | 실수 유형 | 올바른 가이드 |
+|-----------|-----------|---------------|
+| **연관관계 매핑** | `@ManyToOne`에 즉시 로딩(`EAGER`) 방치 | 무조건 `fetch = FetchType.LAZY` 선언 |
+| **양방향 참조** | Lombok `@ToString`, `@EqualsAndHashCode` 무심코 사용 | 연관 엔티티 필드는 `@ToString.Exclude` 처리하여 무한 순환 참조 방지 |
+| **벌크 연산 후속 처리** | `@Modifying` 쿼리 실행 후 1차 캐시와 DB 데이터 불일치 | `@Modifying(clearAutomatically = true)`로 영속성 컨텍스트 초기화 |
+| **컬렉션 페이징** | `@OneToMany` 페치 조인 + `Pageable` 사용 | `ToOne`만 페치 조인 + `default_batch_fetch_size` 적용 |
+| **수정 방식** | `em.merge()`나 불필요한 `repository.save()` 호출 | 조회 후 엔티티 필드 변경 $\rightarrow$ 변경 감지(Dirty Checking) 활용 |
+| **커넥션 관리** | 트래픽이 많은 API 서버에서 `OSIV=true` 유지 | `OSIV=false`로 끄고 조회 전용 서비스 계층 구축 |
+
+---
+
+## 연습
+
+1. `Member`와 `Team` 엔티티를 작성하고, `FetchType.EAGER`와 `FetchType.LAZY` 상태에서 `teamRepository.findAll()` 실행 시 발생하는 SQL 로그의 차이를 확인한다.
+2. `default_batch_fetch_size: 100` 설정을 추가한 후, 1:N 관계의 엔티티 컬렉션을 순회할 때 단일 `IN` 쿼리로 묶여 나가는 동작을 검증한다.
+3. `spring.jpa.open-in-view: false` 환경에서 Controller에서 지연 로딩 호출 시 발생하는 `LazyInitializationException`을 재현하고, 트랜잭션 내부 DTO 변환 방식으로 해결한다.1b:[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"JPA & Hibernate — 영속성 컨텍스트부터 실무 성능 최적화까지\",\"description\":\"영속성 컨텍스트 생명주기, 변경 감지, N+1 문제 해결(Fetch Join vs EntityGraph vs BatchSize), 컬렉션 페이징 한계, 낙관적/비관적 락, OSIV 전략을 이해한다.\",\"datePublished\":\"2024-02-01\",\"url\":\"https://kaisa.co.kr/posts/spring-boot-13/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"spring-boot\",\"keywords\":\"spring-boot\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"JPA & Hibernate — 영속성 컨텍스트부터 실무 성능 최적화까지\",\"item\":\"https://kaisa.co.kr/posts/spring-boot-13/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L6",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2024-02-01"}]}],["$","h1",null,{"className":"blog-post__title","children":"JPA & Hibernate — 영속성 컨텍스트부터 실무 성능 최적화까지"}],["$","$L24",null,{"content":"$25"}],"$L26","$L27"]}]}]}]]
+28:I[44398,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/235_kxc74hr-9.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],"default"]
+26:["$","$L28",null,{"pathKey":"spring-boot-13"}]
+27:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L6",null,{"href":"/posts/spring-boot-12/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Spring Boot 실무 디자인 패턴 — 자주 쓰는 핵심 패턴 7가지"}]]}],["$","$L6",null,{"href":"/posts/spring-boot-14/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Gradle 빌드와 멀티모듈 아키텍처 설계"}]]}]]}],["$","$L6",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
+21:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+29:I[27201,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"IconMark"]
+1e:null
+23:[["$","title","0",{"children":"JPA & Hibernate — 영속성 컨텍스트부터 실무 성능 최적화까지 · Kaisa"}],["$","meta","1",{"name":"description","content":"영속성 컨텍스트 생명주기, 변경 감지, N+1 문제 해결(Fetch Join vs EntityGraph vs BatchSize), 컬렉션 페이징 한계, 낙관적/비관적 락, OSIV 전략을 이해한다."}],["$","meta","2",{"name":"application-name","content":"Kaisa"}],["$","meta","3",{"name":"robots","content":"index, follow"}],["$","meta","4",{"name":"naver-site-verification","content":"4bc13b857695ff44988c260cb26124eedbcda90e"}],["$","link","5",{"rel":"canonical","href":"https://kaisa.co.kr/posts/spring-boot-13/"}],["$","meta","6",{"property":"og:title","content":"JPA & Hibernate — 영속성 컨텍스트부터 실무 성능 최적화까지 · Kaisa"}],["$","meta","7",{"property":"og:description","content":"영속성 컨텍스트 생명주기, 변경 감지, N+1 문제 해결(Fetch Join vs EntityGraph vs BatchSize), 컬렉션 페이징 한계, 낙관적/비관적 락, OSIV 전략을 이해한다."}],["$","meta","8",{"property":"og:url","content":"https://kaisa.co.kr/posts/spring-boot-13/"}],["$","meta","9",{"property":"og:site_name","content":"Kaisa"}],["$","meta","10",{"property":"og:locale","content":"ko_KR"}],["$","meta","11",{"property":"og:type","content":"article"}],["$","meta","12",{"name":"twitter:card","content":"summary"}],["$","meta","13",{"name":"twitter:title","content":"JPA & Hibernate — 영속성 컨텍스트부터 실무 성능 최적화까지 · Kaisa"}],["$","meta","14",{"name":"twitter:description","content":"영속성 컨텍스트 생명주기, 변경 감지, N+1 문제 해결(Fetch Join vs EntityGraph vs BatchSize), 컬렉션 페이징 한계, 낙관적/비관적 락, OSIV 전략을 이해한다."}],["$","link","15",{"rel":"shortcut icon","href":"/img/common/favicon.ico"}],["$","link","16",{"rel":"icon","href":"/img/common/favicon.ico"}],["$","link","17",{"rel":"apple-touch-icon","href":"/img/common/favicon.ico"}],["$","$L29","18",{}]]

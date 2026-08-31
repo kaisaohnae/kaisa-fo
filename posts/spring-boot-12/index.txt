@@ -1,0 +1,383 @@
+1:"$Sreact.fragment"
+2:I[79520,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],""]
+3:I[83661,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default"]
+4:I[39756,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default"]
+5:I[37457,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default"]
+6:I[22016,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/235_kxc74hr-9.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],""]
+7:I[22067,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default"]
+8:I[78481,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default"]
+9:I[2105,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default"]
+a:I[69033,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/235_kxc74hr-9.js","/_next/static/chunks/1hr7-4fb6m83q.js"],"LocaleProvider"]
+b:I[45872,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/235_kxc74hr-9.js","/_next/static/chunks/1hr7-4fb6m83q.js"],"default"]
+c:I[20683,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/235_kxc74hr-9.js","/_next/static/chunks/1hr7-4fb6m83q.js"],"default"]
+d:I[86979,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/235_kxc74hr-9.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/0hs6l77ykwsoc.js"],"default"]
+16:I[68027,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"default",1]
+:HL["/_next/static/chunks/3ortkzvy6360x.css","style"]
+:HL["/_next/static/chunks/0h6pid50w8_n4.css","style"]
+:HL["/_next/static/chunks/3siqlqjr1v4fe.css","style"]
+:HL["/_next/static/media/0c795a286deabae8-s.p.3vm0tq4e-zz_5.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/5c285b27cdda1fe8-s.p.2_mbdogr7ni8i.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/chunks/3j-1lpdn3an_-.css","style"]
+0:{"P":null,"c":["","posts","spring-boot-12",""],"q":"","i":false,"f":[[["",{"children":["(site)",{"children":["posts",{"children":[["slug","spring-boot-12","d",null],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3ortkzvy6360x.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0h6pid50w8_n4.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/3siqlqjr1v4fe.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/0qufxx6nl15ij.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1uymn__-_z4ug.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ko","className":"syne_53f86cd1-module__kiT3Eq__variable dm_sans_fd62f040-module__0jgVUW__variable","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","script",null,{"async":true,"src":"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2641553863829571","crossOrigin":"anonymous"}]}],["$","body",null,{"children":[["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var t=null;document.cookie.split(';').forEach(function(c){var p=c.trim().split('=');if(p[0]==='kaisa-theme')t=decodeURIComponent(p[1]||'');});document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();"}}],["$","script",null,{"dangerouslySetInnerHTML":{"__html":"(function(){try{var KEY='kaisa-locale';var loc=null;try{loc=sessionStorage.getItem(KEY);}catch(e){}function fromNav(){var list=[navigator.language].concat(navigator.languages||[]);for(var i=0;i<list.length;i++){var l=String(list[i]||'').toLowerCase();if(l.indexOf('ko')===0)return 'ko';if(l.indexOf('zh')===0)return 'zh';if(l.indexOf('hi')===0)return 'hi';if(l.indexOf('en')===0)return 'en';}return null;}if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc=fromNav();if(loc!=='en'&&loc!=='ko'&&loc!=='zh'&&loc!=='hi')loc='ko';document.documentElement.lang=loc;}catch(e){document.documentElement.lang='ko';}})();"}}],[["$","$L2",null,{"src":"https://www.googletagmanager.com/gtag/js?id=G-2281QQ6XP4","strategy":"afterInteractive"}],["$","$L2",null,{"id":"google-analytics","strategy":"afterInteractive","children":"\n          window.dataLayer = window.dataLayer || [];\n          function gtag(){dataLayer.push(arguments);}\n          gtag('js', new Date());\n          gtag('config', 'G-2281QQ6XP4');\n        "}]],["$","$L3",null,{}],["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}],["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","$L7",null,{}],["$","$L8",null,{}],["$","$L9",null,{}]]}]]}]]}],{"children":[["$","$1","c",{"children":[[["$","script","script-0",{"src":"/_next/static/chunks/235_kxc74hr-9.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1hr7-4fb6m83q.js","async":true,"nonce":"$undefined"}]],["$","$La",null,{"children":["$","div",null,{"className":"site-layout","children":[["$","$Lb",null,{}],["$","$Lc",null,{"children":["$","$L4",null,{"parallelRouterKey":"children","error":"$d","errorStyles":[],"errorScripts":[["$","script","script-0",{"src":"/_next/static/chunks/0hs6l77ykwsoc.js","async":true}]],"template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],"$Le","$Lf"]}]}],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],"$L10"]}]}]]}],{"children":["$L11",{"children":["$L12",{"children":["$L13",{},null,false,null]},null,false,"$@14"]},null,false,"$@14"]},null,false,null]},null,false,null],"$L15",false]],"m":"$undefined","G":["$16",["$L17","$L18","$L19"]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"eMStUu4a1lNzZxT0RaWzF"}
+1a:I[44604,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/235_kxc74hr-9.js","/_next/static/chunks/1hr7-4fb6m83q.js"],"default"]
+1c:I[97367,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"OutletBoundary"]
+1d:"$Sreact.suspense"
+20:I[97367,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"ViewportBoundary"]
+22:I[97367,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"MetadataBoundary"]
+e:["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}]
+f:["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]
+10:["$","$L1a",null,{}]
+11:["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]
+12:["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]
+13:["$","$1","c",{"children":["$L1b",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3j-1lpdn3an_-.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/2_h6is8-aperz.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/3qcoeqbx1mias.js","async":true,"nonce":"$undefined"}]],["$","$L1c",null,{"children":["$","$1d",null,{"name":"Next.MetadataOutlet","children":"$@1e"}]}]]}]
+1f:[]
+14:"$W1f"
+15:["$","$1","h",{"children":[null,["$","$L20",null,{"children":"$L21"}],["$","div",null,{"hidden":true,"children":["$","$L22",null,{"children":["$","$1d",null,{"name":"Next.Metadata","children":"$L23"}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}]
+17:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3ortkzvy6360x.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
+18:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0h6pid50w8_n4.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
+19:["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/3siqlqjr1v4fe.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
+24:I[55489,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/235_kxc74hr-9.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],"default"]
+25:T3457,# Spring Boot 실무 디자인 패턴 — 자주 쓰는 핵심 패턴 7가지
+
+> 요약: 전략, 템플릿 콜백, 프록시, 어댑터, 옵저버 등 스프링 내부 원리와 실무 비즈니스 코드에 녹아 있는 디자인 패턴을 쉽게 풀어본다.
+
+---
+
+## 1. 디자인 패턴, 왜 알아야 할까?
+
+디자인 패턴은 과거의 뛰어난 개발자들이 수많은 삽질 끝에 발견한 **"자주 발생하는 소프트웨어 설계 문제의 모범 정답지(Best Practice)"** 다.
+
+특히 **Spring Framework는 디자인 패턴의 거대한 집약체**다.
+- 스프링이 왜 이렇게 만들어졌는지 내부 원리를 쉽게 이해할 수 있다.
+- 지저분한 `if-else` 분기와 강한 결합도를 없애고 깔끔하고 유지보수하기 쉬운 코드를 짤 수 있다.
+
+실무에서 가장 유용하게 쓰이는 7가지 핵심 패턴을 비유와 실제 코드로 살펴보자.
+
+---
+
+## 2. 싱글톤 패턴 (Singleton Pattern)
+
+### 쉽게 이해하기
+사무실에 100명의 직원이 있다고 해서 **프린터를 100대 살 필요는 없다**. 1대만 두고 모두가 공유해서 쓰는 것이 자원과 비용 면에서 효율적이다.
+
+### 스프링에서의 싱글톤
+스프링의 `@Service`, `@Repository`, `@Component` 등 모든 Bean은 기본적으로 **단 1개만 생성되어 모든 요청 스레드가 공유하는 싱글톤(Singleton)** 으로 관리된다.
+
+```java
+@Service
+public class UserService {
+    // 스프링 컨테이너가 애플리케이션 실행 시 딱 1개의 인스턴스만 생성하여 관리함
+    private final UserRepository userRepository;
+
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+}
+```
+
+### ⚠️ 실무 주의점: 상태를 가지면 안 된다 (Stateless)
+싱글톤 객체는 여러 사용자(스레드)가 동시에 사용한다. 따라서 **인스턴스 변수에 특정 사용자의 상태나 데이터를 저장하면 다른 사용자의 데이터와 섞이는 치명적인 동시성 버그가 발생**한다.
+
+```java
+// [절대 금지: 상태를 필드에 저장]
+@Service
+public class BadOrderService {
+    private String currentUsername; // 동시 요청 시 다른 사람의 이름으로 덮어씌워짐!
+
+    public void order(String username) {
+        this.currentUsername = username;
+        // ...
+    }
+}
+
+// [올바른 방법: 지역 변수나 파라미터 사용]
+@Service
+public class GoodOrderService {
+    public void order(String username) {
+        // 메서드 내부 로컬 변수로 안전하게 처리 (스레드별 독립 메모리 사용)
+    }
+}
+```
+
+---
+
+## 3. 전략 패턴 (Strategy Pattern)
+
+### 쉽게 이해하기
+우리가 네비게이션 앱을 쓸 때 목적지는 같지만 **길 찾기 전략**을 바꿀 수 있다:
+- '최소 시간 경로'
+- '무료 도로 우선'
+- '최단 거리 경로'
+
+상황에 따라 다른 알고리즘을 부품(전략)처럼 갈아 끼울 수 있도록 만드는 패턴이다.
+
+### 실무 예제: 다중 결제 수단 처리 (`if-else` 없애기)
+카카오페이, 토스페이, 네이버페이 등 결제 수단이 늘어날 때 `switch-case`나 `if-else`로 도배하는 대신 전략 패턴을 쓰면 코드가 매우 깔끔해진다.
+
+#### 1) 공통 전략 인터페이스 정의
+```java
+public interface PaymentStrategy {
+    String getPaymentCode(); // "KAKAO", "TOSS" 등
+    void pay(int amount);
+}
+```
+
+#### 2) 각 결제 수단별 전략 클래스 구현
+```java
+@Component
+public class KakaoPayStrategy implements PaymentStrategy {
+    @Override
+    public String getPaymentCode() { return "KAKAO"; }
+
+    @Override
+    public void pay(int amount) {
+        System.out.println("카카오페이로 " + amount + "원 결제 API 호출");
+    }
+}
+
+@Component
+public class TossPayStrategy implements PaymentStrategy {
+    @Override
+    public String getPaymentCode() { return "TOSS"; }
+
+    @Override
+    public void pay(int amount) {
+        System.out.println("토스페이로 " + amount + "원 결제 API 호출");
+    }
+}
+```
+
+#### 3) 스프링의 마법: 모든 전략을 Map/List로 한 번에 주입받기
+스프링은 동일한 인터페이스를 구현한 모든 빈을 `List`나 `Map`으로 한꺼번에 주입해 주는 기능을 기본 제공한다.
+
+```java
+@Service
+public class PaymentService {
+
+    private final Map<String, PaymentStrategy> strategyMap;
+
+    // 스프링이 모든 PaymentStrategy 빈들을 찾아서 리스트로 꽂아줌
+    public PaymentService(List<PaymentStrategy> strategies) {
+        this.strategyMap = strategies.stream()
+                .collect(Collectors.toMap(PaymentStrategy::getPaymentCode, s -> s));
+    }
+
+    public void processPayment(String paymentCode, int amount) {
+        PaymentStrategy strategy = strategyMap.get(paymentCode);
+        if (strategy == null) {
+            throw new IllegalArgumentException("지원하지 않는 결제 수단: " + paymentCode);
+        }
+        
+        // if-else 없이 런타임에 알맞은 전략 실행!
+        strategy.pay(amount);
+    }
+}
+```
+
+> **장점**: 나중에 `NaverPayStrategy`가 추가되어도 `PaymentService` 코드는 1줄도 수정할 필요가 없다(**개방-폐쇄 원칙, OCP 달성**).
+
+---
+
+## 4. 템플릿 콜백 패턴 (Template Callback Pattern)
+
+### 쉽게 이해하기
+라면 끓이기의 전체 흐름(물 끓이기 ➔ 라면/스프 넣기 ➔ 익히기)은 정해져 있지만, **'중간에 넣는 토핑(계란, 치즈, 떡)'만 사용자가 원하는 대로 자유롭게 바꾸는 방식**이다.
+
+### 스프링에서의 템플릿 콜백
+- 매번 반복되는 번거로운 작업(DB 연결 열기, 트랜잭션 시작, 예외 처리, 연결 닫기)은 **스프링 템플릿**이 알아서 해준다.
+- 개발자는 **진짜 하고 싶은 비즈니스 람다(콜백 함수)** 만 넘기면 된다.
+
+대표적인 예가 `TransactionTemplate`, `JdbcTemplate`, `RedisTemplate`이다.
+
+```java
+@Service
+@RequiredArgsConstructor
+public class CouponService {
+
+    private final TransactionTemplate transactionTemplate;
+    private final CouponRepository couponRepository;
+
+    public void issueCouponWithManualTransaction(Long couponId) {
+        // [템플릿]: 트랜잭션 시작, 커밋, 롤백, 자원 반납 처리 자동화
+        // [콜백(람다)]: 내가 수행할 핵심 쿠폰 발급 로직만 쏙 집어넣음
+        transactionTemplate.execute(status -> {
+            Coupon coupon = couponRepository.findById(couponId).orElseThrow();
+            coupon.decreaseStock();
+            return couponRepository.save(coupon);
+        });
+    }
+}
+```
+
+---
+
+## 5. 프록시 & 데코레이터 패턴 (Proxy & Decorator Pattern)
+
+### 쉽게 이해하기
+비서가 사장님(원본 객체)을 대신하여:
+- 사장님이 바쁠 때 약속을 조율하고(접근 제어 ➔ **프록시 패턴**)
+- 사장님이 말한 내용을 예쁜 보고서 양식으로 포장해 준다(부가 기능 덧붙이기 ➔ **데코레이터 패턴**)
+
+### 스프링에서의 활용: `@Transactional`
+우리가 서비스 메서드 위에 `@Transactional`을 달면, 스프링은 프록시(비서) 객체를 만든다.
+
+```
+[호출자(Controller)] 
+        │
+        ▼
+[Service 프록시 객체 (비서)] ───▶ (1) 트랜잭션 시작 (Begin Transaction)
+        │
+        ├────────────────────────▶ (2) 실제 Service 메서드 실행
+        │
+        ▼
+[Service 프록시 객체 (비서)] ───▶ (3) 성공 시 Commit / 예외 시 Rollback
+```
+
+비즈니스 코드에 `connection.setAutoCommit(false)` 같은 코드를 직접 쓰지 않아도 트랜잭션이 돌아가는 이유가 바로 이 프록시 패턴 덕분이다.
+
+---
+
+## 6. 어댑터 패턴 (Adapter Pattern)
+
+### 쉽게 이해하기
+해외여행 갈 때 110V 콘센트에 220V 플러그를 꽂으려면 **돼지코 변환기(어댑터)** 가 필요하다. 인터페이스 규격이 맞지 않는 두 객체를 이어주는 중간 다리 역할을 한다.
+
+### 실무 예제: 외부 SMS 알림 업체 연동
+
+우리 시스템은 `NotificationSender` 인터페이스를 표준으로 쓰는데, 외부 SMS 유료 라이브러리(`CoolSmsSdk`)의 메서드 이름과 파라미터가 완전히 다를 때 어댑터를 사용한다.
+
+```java
+// 1. 우리 시스템 표준 인터페이스
+public interface NotificationSender {
+    void sendNotification(String target, String message);
+}
+
+// 2. 외부 업체 라이브러리 (직접 수정 불가능한 클래스)
+public class ExternalSmsClient {
+    public void transmit(String phoneNumber, String bodyText, String authKey) {
+        // 타사 SMS 전송 로직
+    }
+}
+
+// 3. 둘을 연결해 주는 어댑터 클래스
+@Component
+public class SmsAdapter implements NotificationSender {
+
+    private final ExternalSmsClient externalClient = new ExternalSmsClient();
+
+    @Override
+    public void sendNotification(String target, String message) {
+        // 우리 시스템의 규격을 타사 규격으로 변환해서 호출
+        externalClient.transmit(target, message, "SECRET_KEY_123");
+    }
+}
+```
+
+나중에 SMS 업체를 다른 곳으로 바꾸더라도 비즈니스 로직은 손대지 않고 `Adapter` 클래스만 새로 만들면 된다.
+
+---
+
+## 7. 옵저버 / 이벤트 발행-구독 패턴 (Observer Pattern)
+
+### 쉽게 이해하기
+유튜브 채널을 **구독(Subscribe)** 해 두면, 크리에이터가 새 영상을 **발행(Publish)** 했을 때 구독자들에게 자동으로 알림이 가는 구조다.
+
+### 실무 예제: 회원 가입 후 메일 발송 + 쿠폰 지급
+회원 가입 메서드 안에서 이메일 전송, 슬랙 알림, 가입 축하 쿠폰 지급을 전부 직접 호출하면 코드가 복잡해지고, 메일 서버가 다운되었을 때 회원 가입까지 실패하게 된다.
+
+이를 **이벤트(옵저버) 패턴**으로 분리하면 결합도를 깔끔하게 끊을 수 있다.
+
+#### 1) 이벤트 DTO (Record)
+```java
+public record UserSignedUpEvent(Long userId, String email, String name) {}
+```
+
+#### 2) 이벤트 발행자 (Publisher)
+```java
+@Service
+@RequiredArgsConstructor
+public class UserService {
+
+    private final UserRepository userRepository;
+    private final ApplicationEventPublisher eventPublisher; // 스프링 기본 이벤트 발행기
+
+    @Transactional
+    public Long signUp(SignUpRequest request) {
+        User user = userRepository.save(new User(request));
+
+        // "회원 가입 완료됨!"이라는 이벤트만 세상에 알리고 끝냄
+        eventPublisher.publishEvent(new UserSignedUpEvent(user.getId(), user.getEmail(), user.getName()));
+        return user.getId();
+    }
+}
+```
+
+#### 3) 이벤트 구독자 (Listeners)
+```java
+@Component
+@Slf4j
+public class WelcomeNotificationListener {
+
+    // 회원가입 트랜잭션이 성공적으로 DB에 커밋된 직후에 비동기로 실행
+    @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
+    @Async
+    public void sendWelcomeEmail(UserSignedUpEvent event) {
+        log.info("{} 님에게 웰컴 메일 발송 완료", event.email());
+    }
+
+    @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
+    @Async
+    public void issueWelcomeCoupon(UserSignedUpEvent event) {
+        log.info("{} 님에게 가입 축하 10,000원 쿠폰 지급 완료", event.name());
+    }
+}
+```
+
+---
+
+## 8. 빌더 패턴 (Builder Pattern)
+
+### 쉽게 이해하기
+생성자에 파라미터가 7~8개씩 있으면 어떤 값이 나이이고 어떤 값이 전화번호인지 헷갈려서 인자 순서를 잘못 넣는 실수를 하기 쉽다. 빌더 패턴은 **각 파라미터에 이름을 붙여서 명확하고 안전하게 객체를 조립**할 수 있게 해준다.
+
+```java
+// [생성자의 위험성: 순서 헷갈림]
+new UserDto("홍길동", "010-1234-5678", "hong@test.com", 25, true);
+
+// [빌더 패턴: 가독성과 안전성 극대화]
+UserDto dto = UserDto.builder()
+        .name("홍길동")
+        .phone("010-1234-5678")
+        .email("hong@test.com")
+        .age(25)
+        .isVerified(true)
+        .build();
+```
+
+---
+
+## 9. 핵심 요약표
+
+| 디자인 패턴 | 일상 비유 | 스프링 & 실무 적용 사례 |
+|-------------|-----------|------------------------|
+| **싱글톤 (Singleton)** | 회사 공용 복합기 | Spring IoC Container Bean 기본 스코프 |
+| **전략 (Strategy)** | 네비게이션 경로 선택 | 다중 결제/알림 처리 (`Map<Code, Strategy>`) |
+| **템플릿 콜백 (Template Callback)** | 토핑만 바꾸는 라면 레시피 | `TransactionTemplate`, `JdbcTemplate` |
+| **프록시 (Proxy)** | 스케줄을 관리해 주는 비서 | `@Transactional`, `@Cacheable`, AOP |
+| **어댑터 (Adapter)** | 220V 돼지코 변환기 | 스프링 MVC `HandlerAdapter`, 서드파티 SDK 래핑 |
+| **옵저버 (Observer)** | 유튜브 채널 구독 알림 | `ApplicationEventPublisher`, `@EventListener` |
+| **빌더 (Builder)** | 레고 블록 조립 | Lombok `@Builder`, `RestClient.builder()` |
+
+---
+
+## 연습
+
+1. `DiscountPolicy` 인터페이스를 만들고, 정액 할인(`1000원 할인`)과 정률 할인(`10% 할인`) 전략을 구현한 뒤 주문 금액에 따라 전략을 적용해 본다.
+2. 회원 탈퇴 시 `UserDeletedEvent`를 발행하고, 탈퇴 감사 로그와 관련 파일 정리 작업을 이벤트 리스너로 분리해 본다.1b:[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"Spring Boot 실무 디자인 패턴 — 자주 쓰는 핵심 패턴 7가지\",\"description\":\"전략, 템플릿 콜백, 프록시, 어댑터, 옵저버 등 스프링 내부 원리와 실무 비즈니스 코드에 녹아 있는 디자인 패턴을 쉽게 풀어본다.\",\"datePublished\":\"2024-01-22\",\"url\":\"https://kaisa.co.kr/posts/spring-boot-12/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"spring-boot\",\"keywords\":\"spring-boot\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Spring Boot 실무 디자인 패턴 — 자주 쓰는 핵심 패턴 7가지\",\"item\":\"https://kaisa.co.kr/posts/spring-boot-12/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L6",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2024-01-22"}]}],["$","h1",null,{"className":"blog-post__title","children":"Spring Boot 실무 디자인 패턴 — 자주 쓰는 핵심 패턴 7가지"}],["$","$L24",null,{"content":"$25"}],"$L26","$L27"]}]}]}]]
+28:I[44398,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js","/_next/static/chunks/235_kxc74hr-9.js","/_next/static/chunks/1hr7-4fb6m83q.js","/_next/static/chunks/2_h6is8-aperz.js","/_next/static/chunks/3qcoeqbx1mias.js"],"default"]
+26:["$","$L28",null,{"pathKey":"spring-boot-12"}]
+27:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L6",null,{"href":"/posts/spring-boot-11/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Spring AOP — 횡단 관심사와 프록시 쉽게 이해하기"}]]}],["$","$L6",null,{"href":"/posts/spring-boot-13/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"JPA & Hibernate — 영속성 컨텍스트부터 실무 성능 최적화까지"}]]}]]}],["$","$L6",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
+21:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+29:I[27201,["/_next/static/chunks/0qufxx6nl15ij.js","/_next/static/chunks/1uymn__-_z4ug.js"],"IconMark"]
+1e:null
+23:[["$","title","0",{"children":"Spring Boot 실무 디자인 패턴 — 자주 쓰는 핵심 패턴 7가지 · Kaisa"}],["$","meta","1",{"name":"description","content":"전략, 템플릿 콜백, 프록시, 어댑터, 옵저버 등 스프링 내부 원리와 실무 비즈니스 코드에 녹아 있는 디자인 패턴을 쉽게 풀어본다."}],["$","meta","2",{"name":"application-name","content":"Kaisa"}],["$","meta","3",{"name":"robots","content":"index, follow"}],["$","meta","4",{"name":"naver-site-verification","content":"4bc13b857695ff44988c260cb26124eedbcda90e"}],["$","link","5",{"rel":"canonical","href":"https://kaisa.co.kr/posts/spring-boot-12/"}],["$","meta","6",{"property":"og:title","content":"Spring Boot 실무 디자인 패턴 — 자주 쓰는 핵심 패턴 7가지 · Kaisa"}],["$","meta","7",{"property":"og:description","content":"전략, 템플릿 콜백, 프록시, 어댑터, 옵저버 등 스프링 내부 원리와 실무 비즈니스 코드에 녹아 있는 디자인 패턴을 쉽게 풀어본다."}],["$","meta","8",{"property":"og:url","content":"https://kaisa.co.kr/posts/spring-boot-12/"}],["$","meta","9",{"property":"og:site_name","content":"Kaisa"}],["$","meta","10",{"property":"og:locale","content":"ko_KR"}],["$","meta","11",{"property":"og:type","content":"article"}],["$","meta","12",{"name":"twitter:card","content":"summary"}],["$","meta","13",{"name":"twitter:title","content":"Spring Boot 실무 디자인 패턴 — 자주 쓰는 핵심 패턴 7가지 · Kaisa"}],["$","meta","14",{"name":"twitter:description","content":"전략, 템플릿 콜백, 프록시, 어댑터, 옵저버 등 스프링 내부 원리와 실무 비즈니스 코드에 녹아 있는 디자인 패턴을 쉽게 풀어본다."}],["$","link","15",{"rel":"shortcut icon","href":"/img/common/favicon.ico"}],["$","link","16",{"rel":"icon","href":"/img/common/favicon.ico"}],["$","link","17",{"rel":"apple-touch-icon","href":"/img/common/favicon.ico"}],["$","$L29","18",{}]]
