@@ -15,6 +15,7 @@ import type {ChatMessage, ChatRoomData, ChatUserInfo} from '@/types/chat';
 import {KaisaButton, KaisaInput} from '@/ui-kit';
 
 const SAVED_GUEST_NICK_KEY = 'kaisa_chat_guest_nickname';
+const CHAT_ACTIVE_SESSION_KEY = 'kaisa_chat_active_session';
 
 function generateDefaultGuestNick() {
   const rand = Math.floor(1000 + Math.random() * 9000);
@@ -82,17 +83,24 @@ export default function ChatRoomPage() {
     }
   }, []);
 
-  // 2. 닉네임 기본값 (회원은 고정 회원명, 비회원은 손님_XXXX)
+  // 2. 닉네임 기본값 및 새로고침 시 자동 세션 유지 복원
   useEffect(() => {
     if (!hydrated) return;
+    const activeSession = sessionStorage.getItem(CHAT_ACTIVE_SESSION_KEY);
+
     if (isMember && member?.memberName) {
       setInputNick(member.memberName);
+      if (activeSession === member.memberName) {
+        setNickname(member.memberName);
+        setIsJoined(true);
+      }
     } else {
       const saved = localStorage.getItem(SAVED_GUEST_NICK_KEY);
-      if (saved) {
-        setInputNick(saved);
-      } else {
-        setInputNick(generateDefaultGuestNick());
+      const defaultNick = saved || generateDefaultGuestNick();
+      setInputNick(defaultNick);
+      if (activeSession) {
+        setNickname(activeSession);
+        setIsJoined(true);
       }
     }
   }, [hydrated, isMember, member]);
@@ -120,6 +128,7 @@ export default function ChatRoomPage() {
       await joinChatRoom({roomNo: 1, nickname: finalNick, ip: currentIp || undefined});
       setNickname(finalNick);
       setIsJoined(true);
+      sessionStorage.setItem(CHAT_ACTIVE_SESSION_KEY, finalNick);
       if (!isMember) {
         localStorage.setItem(SAVED_GUEST_NICK_KEY, finalNick);
       }
@@ -137,12 +146,14 @@ export default function ChatRoomPage() {
     } catch {
       /* ignore */
     }
+    sessionStorage.removeItem(CHAT_ACTIVE_SESSION_KEY);
     setIsJoined(false);
   }, [clientIp, isJoined]);
 
-  // 브라우저 닫거나 이탈 시 퇴장 처리
+  // 브라우저 탭 완전 종료 시 퇴장 처리 (새로고침 시에는 sessionStorage가 유지되어 자동 복원됨)
   useEffect(() => {
     const onBeforeUnload = () => {
+      // 새로고침이나 탭 닫힘 시 백엔드 접속 정리
       if (isJoined) {
         const currentIp = clientIpRef.current || clientIp;
         leaveChatRoom(1, currentIp || undefined);
@@ -151,10 +162,6 @@ export default function ChatRoomPage() {
     window.addEventListener('beforeunload', onBeforeUnload);
     return () => {
       window.removeEventListener('beforeunload', onBeforeUnload);
-      if (isJoined) {
-        const currentIp = clientIpRef.current || clientIp;
-        leaveChatRoom(1, currentIp || undefined);
-      }
     };
   }, [clientIp, isJoined]);
 
@@ -273,7 +280,6 @@ export default function ChatRoomPage() {
           <section className="blog-hero" style={{marginBottom: '28px'}}>
             <p className="blog-hero__eyebrow">{t('Chat')}</p>
             <h1 className="blog-hero__title">{t('Live Chat')}</h1>
-            <p className="blog-hero__desc">대화 내용은 저장되지 않는 휘발성 채팅방</p>
           </section>
 
           {!isJoined ? (
@@ -283,7 +289,6 @@ export default function ChatRoomPage() {
               <p className="chat-login-card__desc">실시간 대화에 참여할 닉네임 정보를 확인해 주세요.</p>
 
               <div className="chat-login-card__badge-row">
-                {!isMember && <span className="chat-badge chat-badge--guest">비회원 손님</span>}
                 {roomData?.maskedClientIp && (
                   <span className="chat-login-card__ip-info">IP: {roomData.maskedClientIp}</span>
                 )}
@@ -315,38 +320,6 @@ export default function ChatRoomPage() {
           ) : (
             /* 실시간 채팅창 */
             <div className="chat-card">
-              {/* 상단 룸 바 */}
-              <div className="chat-card__header">
-                <div className="chat-card__title-group">
-                  <h3 className="chat-card__room-name">{roomData?.room.roomName || '실시간 채팅방'}</h3>
-                </div>
-
-                <div className="chat-card__user-info">
-                  <button
-                    type="button"
-                    className="chat-leave-icon-btn"
-                    onClick={handleLeave}
-                    aria-label="나가기"
-                    title="나가기"
-                  >
-                    <svg
-                      width="18"
-                      height="18"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
-                      <polyline points="16 17 21 12 16 7" />
-                      <line x1="21" y1="12" x2="9" y2="12" />
-                    </svg>
-                  </button>
-                </div>
-              </div>
-
               {/* 본문: 대화창 + 접속자 목록 */}
               <div className="chat-card__body">
                 {/* 메시지 영역 */}
@@ -370,13 +343,14 @@ export default function ChatRoomPage() {
                         <div key={m.id} className={`chat-msg ${isMine ? 'chat-msg--mine' : 'chat-msg--other'}`}>
                           <div className="chat-msg__meta">
                             {!isMine && (
-                              m.isMember ? (
-                                <span className="chat-badge chat-badge--member">회원</span>
-                              ) : (
-                                <span className="chat-badge chat-badge--guest">손님</span>
-                              )
+                              <span
+                                className={`chat-msg__sender ${
+                                  m.isMember ? 'chat-msg__sender--member' : ''
+                                }`}
+                              >
+                                {m.nickname}
+                              </span>
                             )}
-                            {!isMine && <span className="chat-msg__sender">{m.nickname}</span>}
                             {!isMine && m.maskedIp && <span>({m.maskedIp})</span>}
                             <span>{formatTime(m.timestamp)}</span>
                           </div>
@@ -395,12 +369,11 @@ export default function ChatRoomPage() {
                     {activeUsers.map((u, idx) => (
                       <li key={idx} className="chat-sidebar__item">
                         <div className="chat-sidebar__item-name">
-                          {u.isMember ? (
-                            <span className="chat-badge chat-badge--member">회원</span>
-                          ) : (
-                            <span className="chat-badge chat-badge--guest">손님</span>
-                          )}
-                          <span className="chat-sidebar__name">
+                          <span
+                            className={`chat-sidebar__name ${
+                              u.isMember ? 'chat-sidebar__name--member' : ''
+                            }`}
+                          >
                             {u.nickname} {u.nickname === nickname && '(나)'}
                           </span>
                         </div>
@@ -421,9 +394,49 @@ export default function ChatRoomPage() {
                   uiSize="md"
                   autoFocus
                 />
-                <KaisaButton type="submit" variant="primary" uiSize="md" disabled={sending || !inputText.trim()}>
-                  전송
-                </KaisaButton>
+                <button
+                  type="submit"
+                  className="chat-send-icon-btn"
+                  disabled={sending || !inputText.trim()}
+                  aria-label="전송"
+                  title="전송"
+                >
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <line x1="22" y1="2" x2="11" y2="13" />
+                    <polygon points="22 2 15 22 11 13 2 9 22 2" />
+                  </svg>
+                </button>
+                <button
+                  type="button"
+                  className="chat-leave-icon-btn"
+                  onClick={handleLeave}
+                  aria-label="나가기"
+                  title="나가기"
+                >
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                    <polyline points="16 17 21 12 16 7" />
+                    <line x1="21" y1="12" x2="9" y2="12" />
+                  </svg>
+                </button>
               </form>
             </div>
           )}
