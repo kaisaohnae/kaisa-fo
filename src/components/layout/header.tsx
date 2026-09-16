@@ -13,6 +13,11 @@ const NAV = [
     labelKey: 'Posts',
     match: (path: string) => path === '/' || path.startsWith('/posts'),
   },
+  {
+    href: 'https://tool.kaisa.co.kr',
+    labelKey: 'Tools',
+    match: (_path: string) => false,
+  },
   // {
   //   href: '/chat/',
   //   labelKey: 'Chat',

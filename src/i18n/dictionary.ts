@@ -6,6 +6,11 @@ export const dictionary: Record<string, LocaleEntry> = {
     "zh": "登录",
     "hi": "लॉगिन"
   },
+  "Tools": {
+    "ko": "툴",
+    "zh": "工具",
+    "hi": "टूल"
+  },
   "Posts": {
     "ko": "포스트",
     "zh": "文章",
