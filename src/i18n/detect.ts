@@ -1,3 +1,4 @@
+import {getLocaleCookie, setLocaleCookie} from './locale-cookie';
 import type {Locale} from './types';
 
 export const LOCALE_STORAGE_KEY = 'kaisa-locale';
@@ -92,6 +93,8 @@ function writeSession(key: string, value: string): void {
 }
 
 export function peekStoredLocale(): Locale | null {
+  const shared = getLocaleCookie();
+  if (shared) return shared;
   const cached = readSession(LOCALE_STORAGE_KEY);
   return isLocale(cached) ? cached : null;
 }
@@ -101,6 +104,7 @@ export function peekStoredIp(): string | null {
 }
 
 export function persistLocale(locale: Locale, country: string | null, ip?: string | null): void {
+  setLocaleCookie(locale);
   writeSession(LOCALE_STORAGE_KEY, locale);
   if (country) writeSession(COUNTRY_STORAGE_KEY, country);
   else {
@@ -119,23 +123,19 @@ export function persistLocale(locale: Locale, country: string | null, ip?: strin
  * 3) IP country (fallback)
  */
 export async function resolveLocale(): Promise<{locale: Locale; country: string | null; ip?: string | null}> {
-  const cachedLocale = readSession(LOCALE_STORAGE_KEY);
+  const cachedLocale = peekStoredLocale();
   const cachedCountry = readSession(COUNTRY_STORAGE_KEY);
   const cachedIp = readSession(IP_STORAGE_KEY);
+  const initial = cachedLocale ?? localeFromNavigator();
+  if (initial) persistLocale(initial, cachedCountry, cachedIp);
+  if (cachedLocale && cachedCountry) return {locale: cachedLocale, country: cachedCountry, ip: cachedIp};
 
-  if (isLocale(cachedLocale)) {
-    return {locale: cachedLocale, country: cachedCountry, ip: cachedIp};
-  }
-
-  const fromNav = localeFromNavigator();
   const {country, ip} = await fetchCountryAndIp();
-
-  if (fromNav) {
-    persistLocale(fromNav, country, ip);
-    return {locale: fromNav, country, ip};
+  const latest = getLocaleCookie() ?? peekStoredLocale();
+  if (latest && latest !== initial) {
+    return {locale: latest, country: readSession(COUNTRY_STORAGE_KEY), ip: readSession(IP_STORAGE_KEY)};
   }
-
-  const locale = countryToLocale(country);
+  const locale = latest ?? initial ?? countryToLocale(country);
   persistLocale(locale, country, ip);
   return {locale, country, ip};
 }

@@ -1,6 +1,7 @@
 'use client';
 
 import {useEffect, useRef} from 'react';
+import Image from 'next/image';
 import {getVisibleExampleLinks, WINDOWS_APP_DOWNLOADS} from '@/modules/example';
 import HeroBrowserIcons from '@/components/home/hero-browser-icons';
 import HeroKoreaMap from '@/components/home/hero-korea-map';
@@ -85,6 +86,20 @@ export default function HeroSection() {
                         </svg>
                       </span>
                     </a>
+                  ))}
+                </div>
+                <div className="hero__app-previews">
+                  {WINDOWS_APP_DOWNLOADS.map(app => (
+                    <Image
+                      key={app.id}
+                      className="hero__app-image"
+                      unoptimized
+                      src={`/img/app/${app.tone}.png`}
+                      alt={`${app.label} 실행 화면`}
+                      width={956}
+                      height={678}
+                      sizes="90px"
+                    />
                   ))}
                 </div>
               </div>

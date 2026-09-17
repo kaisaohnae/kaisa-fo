@@ -1601,3 +1601,23 @@ body.page-home.scrolled #header.header--home {
     --header-height: 64px;
   }
 }
+
+.hero__app-previews {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 8px;
+  margin-top: 4px;
+  max-width: 100%;
+}
+.hero__app-image {
+  display: block;
+  width: 90px;
+  max-width: calc((100vw - 56px) / 2);
+  height: auto;
+}
+
+.hero__app-preview:focus-visible {
+  outline: 2px solid var(--app-preview-accent);
+  outline-offset: 3px;
+}
