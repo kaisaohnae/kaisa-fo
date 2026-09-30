@@ -20,7 +20,7 @@ export const toolDictionary: Record<string, Partial<Record<'ko' | 'zh' | 'hi', s
   "Post reply": {"ko":"답글 등록","zh":"提交回复","hi":"जवाब भेजें"},
   "Works": { ko: "작업" },
   "Games": { ko: "게임" },
-  "Tools": { ko: "툴" },
+  "Tools": { ko: "도구" },
   "Blog": { ko: "블로그" },
   "Posts": { ko: "포스트" },
   "Photo": {

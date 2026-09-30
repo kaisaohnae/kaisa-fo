@@ -152,7 +152,7 @@ export default function QrCodeTool() {
             setInput(e.target.value);
             setMessage(null);
           }}
-          placeholder="https://tool.kaisa.co.kr/ or text"
+          placeholder="https://kaisa.co.kr/ or text"
           spellCheck={false}
           rows={5}
         />

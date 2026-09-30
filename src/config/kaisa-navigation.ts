@@ -26,7 +26,7 @@ export function activeKaisaNav(_site: KaisaSite, pathname: string) {
 
 export const KAISA_NAV_LABELS = {
   en: {posts: 'POST', tool: 'TOOL', works: 'WORK'},
-  ko: {posts: '포스트', tool: '툴', works: '작업'},
+  ko: {posts: '포스트', tool: '도구', works: '작업'},
   zh: {posts: '文章', tool: '工具', works: '作品'},
   hi: {posts: 'पोस्ट', tool: 'टूल', works: 'कार्य'}
 } as const;

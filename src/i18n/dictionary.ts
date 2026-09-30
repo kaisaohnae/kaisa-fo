@@ -9,7 +9,7 @@ export const dictionary: Record<string, LocaleEntry> = {
     "hi": "लॉगिन"
   },
   "Tools": {
-    "ko": "툴",
+    "ko": "도구",
     "zh": "工具",
     "hi": "टूल"
   },
