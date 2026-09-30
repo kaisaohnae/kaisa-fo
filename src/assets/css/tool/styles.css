@@ -2132,3 +2132,64 @@ html[data-theme='dark'] .tool-category-nav__link.tool-category-nav__link--photo 
   font-weight: 400;
   background: #666;
 }
+
+/* Tool usage guide — one accordion under each tool (content stays in the static HTML) */
+.tool-guide {
+  margin-top: 48px;
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text);
+  line-height: 1.75;
+}
+.tool-guide__summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 2px;
+  cursor: pointer;
+  list-style: none;
+}
+.tool-guide__summary::-webkit-details-marker { display: none; }
+.tool-guide__summary::after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  margin-left: auto;
+  flex-shrink: 0;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg) translateY(-2px);
+  transition: transform 0.2s ease;
+  opacity: 0.6;
+}
+.tool-guide[open] > .tool-guide__summary::after { transform: rotate(-135deg) translateY(-2px); }
+.tool-guide__summary:hover .tool-guide__title { color: var(--color-accent); }
+.tool-guide__summary:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+.tool-guide__title {
+  font-family: var(--font-display), sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+}
+.tool-guide__summary-meta { font-size: 0.85rem; color: var(--color-text-muted); }
+.tool-guide__body { padding: 0 2px 24px; }
+.tool-guide__intro { color: var(--color-text-muted); }
+.tool-guide__heading { font-size: 1rem; font-weight: 700; margin: 22px 0 8px; }
+.tool-guide__steps, .tool-guide__tips, .tool-guide__related { padding-left: 1.3em; color: var(--color-text-muted); }
+.tool-guide__steps { list-style: decimal; }
+.tool-guide__tips, .tool-guide__related { list-style: disc; }
+.tool-guide__steps li, .tool-guide__tips li, .tool-guide__related li { margin: 4px 0; }
+.tool-guide__faq { display: grid; gap: 14px; }
+.tool-guide__faq dt { font-weight: 600; }
+.tool-guide__faq dd { margin: 2px 0 0; color: var(--color-text-muted); }
+.tool-guide__related a, .tool-guide__share a { color: var(--color-accent); text-decoration: underline; text-underline-offset: 2px; }
+.tool-guide__share {
+  margin-top: 24px;
+  padding: 14px 16px;
+  border-radius: 10px;
+  background: var(--color-bg-elevated);
+  color: var(--color-text);
+}
+@media (max-width: 640px) {
+  .tool-guide__summary { flex-wrap: wrap; row-gap: 2px; }
+  .tool-guide__summary-meta { order: 3; width: 100%; }
+}

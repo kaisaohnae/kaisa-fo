@@ -104,7 +104,7 @@ export default function ToolRequestSection({toolKey}: {toolKey: string}) {
   };
 
   return (
-    <section className="comment-box" aria-label={t('Comments')}>
+    <section id="tool-comments" className="comment-box" aria-label={t('Comments')}>
       <div className="comment-box__head">
         <h2>{t('Comments')}</h2>
         <span className="comment-box__count">{list.length}</span>

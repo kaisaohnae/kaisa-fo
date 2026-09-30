@@ -7,6 +7,7 @@ import {filterAcceptedFiles, formatBytes} from '@/modules/shared/file';
 import {pathToToolKey} from '@/modules/shared/tool-key';
 import {useT} from '@/i18n/locale-context';
 import ToolRequestSection from '@/components/tool/tool-request-section';
+import ToolGuide from '@/components/tool/tool-guide';
 import {toolJsonLd} from '@/lib/seo';
 
 interface FileDropzoneProps {
@@ -171,6 +172,7 @@ export function ToolPageShell({title, description, children}: {title: string; de
       <h1 className="tool-page__title">{t(title)}</h1>
       <p className="tool-page__desc">{t(description)}</p>
       <div className="tool-panel">{children}</div>
+      <ToolGuide href={normalized} />
       {toolKey ? <ToolRequestSection toolKey={toolKey} /> : null}
     </article>
   );
