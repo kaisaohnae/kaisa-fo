@@ -1,0 +1,207 @@
+1:"$Sreact.fragment"
+2:I[479520,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],""]
+3:I[883661,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"default"]
+4:I[339756,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"default"]
+5:I[837457,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"default"]
+6:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],""]
+7:I[722067,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"default"]
+8:I[778481,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"default"]
+9:I[902105,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"default"]
+14:I[168027,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"default",1]
+:HL["/_next/static/chunks/34-r72pc7x98u.css","style"]
+:HL["/_next/static/chunks/3xau-2enavhj9.css","style"]
+:HL["/_next/static/chunks/0souqbpzq6xbb.css","style"]
+:HL["/_next/static/chunks/1xra_60l-k8t4.css","style"]
+:HL["/_next/static/media/0c795a286deabae8-s.p.3vm0tq4e-zz_5.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/5c285b27cdda1fe8-s.p.2_mbdogr7ni8i.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/chunks/0br7e7j26qkj3.css","style"]
+:HL["/_next/static/chunks/21i9-auhncr4a.css","style"]
+:HL["/_next/static/chunks/0z_31kp4nojhg.css","style"]
+0:{"P":null,"c":["","posts","ocpp-09",""],"q":"","i":false,"f":[[["",{"children":["(site)",{"children":["posts",{"children":[["slug","ocpp-09","d",null],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/34-r72pc7x98u.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/3hb4n4ylf5-a0.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1ntn7efqc-iiw.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ko","className":"syne_53f86cd1-module__kiT3Eq__variable dm_sans_fd62f040-module__0jgVUW__variable","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","$L2",null,{"id":"kaisa-google-adsense","strategy":"afterInteractive","src":"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2641553863829571","crossOrigin":"anonymous"}]}],["$","body",null,{"children":[["$","script",null,{"id":"kaisa-init-1","dangerouslySetInnerHTML":{"__html":"(function(){try{var t=null;document.cookie.split(';').forEach(function(c){var p=c.trim().split('=');if(p[0]==='kaisa-shared-theme')t=decodeURIComponent(p[1]||'');});document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();"}}],["$","script",null,{"id":"kaisa-locale-init","dangerouslySetInnerHTML":{"__html":"(function(){try{\nvar key='kaisa-shared-locale',entry=document.cookie.split(';').map(function(c){return c.trim();}).find(function(c){return c.indexOf(key+'=')===0;});\nvar l=entry?entry.slice(key.length+1):null;\nfunction valid(v){return /^(ko|en|zh|hi)$/.test(v||'');}\nif(!valid(l)){try{l=sessionStorage.getItem('kaisa-locale');}catch(e){}}\nif(!valid(l)){var a=[navigator.language].concat(navigator.languages||[]);l=null;for(var i=0;i<a.length;i++){var m=/^(ko|en|zh|hi)/i.exec(a[i]||'');if(m){l=m[1].toLowerCase();break;}}}\nvar determined=valid(l);if(!determined)l='ko';\nif(determined&&(!entry||entry.slice(key.length+1)!==l)){var h=location.hostname,d=h==='kaisa.co.kr'||h.endsWith('.kaisa.co.kr')?'; domain=kaisa.co.kr':'';document.cookie=key+'='+l+'; max-age=2592000; path=/; samesite=lax'+d;}\ndocument.documentElement.lang=l;\n}catch(e){document.documentElement.lang='ko';}})();"}}],[["$","$L2",null,{"src":"https://www.googletagmanager.com/gtag/js?id=G-2281QQ6XP4","strategy":"afterInteractive"}],["$","$L2",null,{"id":"google-analytics","strategy":"afterInteractive","children":"\n          window.dataLayer = window.dataLayer || [];\n          function gtag(){dataLayer.push(arguments);}\n          gtag('js', new Date());\n          gtag('config', 'G-2281QQ6XP4');\n        "}]],["$","$L3",null,{}],["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}],["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]]}]}],[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0z_31kp4nojhg.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","$L7",null,{}],["$","$L8",null,{}],["$","$L9",null,{}]]}]]}]]}],{"children":[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3xau-2enavhj9.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0souqbpzq6xbb.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/1xra_60l-k8t4.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],"$La","$Lb","$Lc","$Ld"],"$Le"]}],{"children":["$Lf",{"children":["$L10",{"children":["$L11",{},null,false,null]},null,false,"$@12"]},null,false,"$@12"]},null,false,null]},null,false,null],"$L13",false]],"m":"$undefined","G":["$14",["$L15"]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"72soPwz3-0MGC1qZMTNqb"}
+16:I[669033,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js"],"LocaleProvider"]
+17:I[545872,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js"],"default"]
+18:I[320683,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js"],"default"]
+19:I[86979,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/2nllraa9qqjuh.js"],"default"]
+1a:I[44604,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js"],"default"]
+1c:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
+1d:"$Sreact.suspense"
+20:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"ViewportBoundary"]
+22:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"MetadataBoundary"]
+a:["$","script","script-0",{"src":"/_next/static/chunks/2t60f4_2tjmro.js","async":true,"nonce":"$undefined"}]
+b:["$","script","script-1",{"src":"/_next/static/chunks/1i1l5t--me2mi.js","async":true,"nonce":"$undefined"}]
+c:["$","script","script-2",{"src":"/_next/static/chunks/2-06zdxz3h-nd.js","async":true,"nonce":"$undefined"}]
+d:["$","script","script-3",{"src":"/_next/static/chunks/3ha5i75rsjlst.js","async":true,"nonce":"$undefined"}]
+e:["$","$L16",null,{"children":["$","div",null,{"className":"site-layout","children":[["$","$L17",null,{}],["$","$L18",null,{"children":["$","$L4",null,{"parallelRouterKey":"children","error":"$19","errorStyles":[],"errorScripts":[["$","script","script-0",{"src":"/_next/static/chunks/2nllraa9qqjuh.js","async":true}]],"template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}],["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]]}]}],[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0z_31kp4nojhg.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],["$","$L1a",null,{}]]}]}]
+f:["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]
+10:["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]
+11:["$","$1","c",{"children":["$L1b",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/26shoze10o-dc.js","async":true,"nonce":"$undefined"}]],["$","$L1c",null,{"children":["$","$1d",null,{"name":"Next.MetadataOutlet","children":"$@1e"}]}]]}]
+1f:[]
+12:"$W1f"
+13:["$","$1","h",{"children":[null,["$","$L20",null,{"children":"$L21"}],["$","div",null,{"hidden":true,"children":["$","$L22",null,{"children":["$","$1d",null,{"name":"Next.Metadata","children":"$L23"}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}]
+15:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/34-r72pc7x98u.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
+24:T4da4,<h1>OCPP 버전별 세션 관리 화면이 필요한 이유 — 관제·원격 명령·시험을 한 콘솔에</h1>
+<blockquote>
+<p>요약: 1.6과 2.0.1 서버를 동시에 운영하며 만든 세션 관리 콘솔의 설계를 정리한다. 왜 버전별 화면이 필요한지, 페이지는 공유하고 설정만 바꾸는 구조, 응답 정규화, 액션 카탈로그를 세 층으로 나눈 방법, 브라우저를 가상 충전기로 쓰는 시험 도구까지.</p>
+</blockquote>
+<hr>
+<h2>들어가며</h2>
+<p>OCPP 서버를 만들고 나면 곧바로 이런 질문이 쏟아진다. &quot;이 충전기 지금 붙어 있어요?&quot;, &quot;어느 서버에 붙어 있어요?&quot;, &quot;원격으로 리셋 좀 해 주세요&quot;, &quot;부팅이 Pending에서 안 넘어가요&quot;, &quot;이 인증서 설치됐어요?&quot; 로그 검색과 curl로 답하다 보면 개발자가 관제 요원이 된다.</p>
+<p>그래서 <strong>버전별 세션 관리 콘솔</strong>을 만들었다. 운영자가 쓰는 관제 화면이면서, 개발자가 쓰는 시험 도구이고, 인증 시험(OCTT)과 PnC 테스트의 조종석이기도 하다.</p>
+<h2>1. 왜 &quot;버전별&quot; 화면인가</h2>
+<p>처음엔 한 화면에서 모든 충전기를 보여 주려 했다. 곧 네 가지 이유로 나눴다.</p>
+<ol>
+<li><strong>백엔드가 다르다.</strong> 1.6(보안 프로파일 2/3), 1.6(프로파일 1), 2.0.1 서버가 따로 있고, 세션 레지스트리도 서버마다 따로다. 1.6은 같은 버전 안에서도 프로파일별로 대상이 둘이라 <code>?profile=1|2</code>로 고른다.</li>
+<li><strong>명령 세트가 다르다.</strong> 1.6은 RemoteStart/StopTransaction, ChangeConfiguration, GetDiagnostics를 쓴다. 2.0.1은 RequestStart/StopTransaction, SetVariables, SetVariableMonitoring, CustomerInformation, 디스플레이 메시지, CostUpdated, 펌웨어 게시, 네트워크 프로파일을 쓴다. 같은 버튼에 버전 분기를 넣으면 폼이 엉망이 된다. 우리 카탈로그 기준으로 1.6이 30개, 2.0.1이 41개 액션이다.</li>
+<li><strong>보이는 상태가 다르다.</strong> 2.0.1은 부팅 등록 상태(Accepted/Pending)가 중요한 운영 정보이고, 1.6은 커넥터별 상태 코드가 중심이다.</li>
+<li><strong>식별 모델이 다르다.</strong> 현장 1.6 충전기 일부는 <strong>커넥터마다 별도 OCPP ID</strong>로 붙는다(충전기 ID + A/B 채널 접미사). 화면은 이걸 &quot;회사 → 사이트 → 충전기 → 커넥터&quot; 물리 계층으로 다시 묶어 보여 줘야 한다. 2.0.1은 한 연결 안에 EVSE/커넥터가 들어 있다.</li>
+</ol>
+<p>결론적으로 **&quot;같은 화면 구조, 다른 설정&quot;**이 필요했다.</p>
+<h2>2. 구조: 페이지는 공유하고, 설정만 버전별로</h2>
+<p>Next.js 앱 라우터로 버전별 라우트 트리를 두 개 만들되, 실제 로직은 공유 컴포넌트에 둔다.</p>
+<pre><code class="hljs">app<span class="hljs-symbol">/</span>
+ ├─ ocpp16<span class="hljs-symbol">/</span>
+ │   ├─ layout.tsx          <span class="hljs-operator">&lt;</span>OcppShell version<span class="hljs-operator">=</span><span class="hljs-string">&quot;ocpp16&quot;</span><span class="hljs-operator">&gt;</span><span class="hljs-symbol">&lt;AuthGate&gt;</span>…
+ │   ├─ ws-sessions<span class="hljs-symbol">/page.tsx</span>   → <span class="hljs-operator">&lt;</span>WsSessionsPageView {...OCPP_CONFIGS.ocpp16} <span class="hljs-operator">/</span><span class="hljs-operator">&gt;</span>
+ │   ├─ test-cases<span class="hljs-symbol">/page.tsx</span>
+ │   └─ pnc<span class="hljs-symbol">/page.tsx</span>
+ └─ ocpp21<span class="hljs-symbol">/</span>
+     ├─ layout.tsx
+     ├─ ws-sessions<span class="hljs-symbol">/page.tsx</span>   → <span class="hljs-operator">&lt;</span>WsSessionsPageView {...OCPP_CONFIGS.ocpp21} showRemoteSessions <span class="hljs-operator">/</span><span class="hljs-operator">&gt;</span>
+     └─ …
+components<span class="hljs-symbol">/pages/WsSessionsPageView.tsx</span>   ← 모든 로직</code></pre>
+<p>버전 설정은 한 파일에 모았다.</p>
+<pre><code class="hljs language-ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-variable constant_">OCPP_CONFIGS</span> = {
+  <span class="hljs-attr">ocpp16</span>: {
+    <span class="hljs-attr">version</span>: <span class="hljs-string">&#x27;ocpp16&#x27;</span>,
+    <span class="hljs-attr">restGatewayPrefix</span>: <span class="hljs-string">&#x27;/gateway/ocpp16&#x27;</span>,
+    <span class="hljs-attr">wsBase</span>: <span class="hljs-string">&#x27;/wsgateway/ocpp16&#x27;</span>,
+    <span class="hljs-attr">wsTargets</span>: [
+      {<span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;profile2&#x27;</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">&#x27;Profile 2&#x27;</span>, <span class="hljs-attr">restGatewayPrefix</span>: <span class="hljs-string">&#x27;/gateway/ocpp16&#x27;</span>},
+      {<span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;profile1&#x27;</span>, <span class="hljs-attr">label</span>: <span class="hljs-string">&#x27;Profile 1&#x27;</span>, <span class="hljs-attr">restGatewayPrefix</span>: <span class="hljs-string">&#x27;/gateway/ocpp16-profile1&#x27;</span>},
+    ],
+  },
+  <span class="hljs-attr">ocpp21</span>: {<span class="hljs-attr">version</span>: <span class="hljs-string">&#x27;ocpp21&#x27;</span>, <span class="hljs-attr">restGatewayPrefix</span>: <span class="hljs-string">&#x27;/gateway/ocpp21&#x27;</span>, <span class="hljs-attr">wsBase</span>: <span class="hljs-string">&#x27;/wsgateway/ocpp21&#x27;</span>},
+} <span class="hljs-keyword">as</span> <span class="hljs-keyword">const</span>;</code></pre>
+<p>장점은 분명했다. 버그를 한 번 고치면 두 버전에 반영되고, 새 버전(2.1)은 설정 한 줄과 라우트 폴더 하나로 붙는다. 도메인 어댑터 계층을 거창하게 만드는 것보다 **&quot;설정으로 차이를 표현하고, 차이가 크면 그때 분기한다&quot;**가 실용적이었다.</p>
+<h2>3. 세션 화면: 트리, 상태, 원격 제어</h2>
+<p>메인 화면(<code>ws-sessions</code>)은 세 영역이다.</p>
+<ul>
+<li><strong>왼쪽 트리</strong>: 회사 → 사이트 → 충전기 → 커넥터. 연결 상태를 색으로, 커넥터별 상태 코드를 배지로.</li>
+<li><strong>가운데 목록</strong>: 선택한 범위의 세션. 접속 시각, 원격 IP, 부팅 상태(2.0.1), 충전 이력 패널.</li>
+<li><strong>오른쪽 원격 제어 패널</strong>: 선택한 충전기에 보낼 수 있는 액션 목록과 폼, 요청·응답 JSON.</li>
+</ul>
+<p>실무에서 다듬은 것들:</p>
+<ul>
+<li><strong>URL에 선택 상태를 담는다</strong>(<code>?cmpId&amp;csId&amp;ocppId&amp;profile</code>). 운영자가 링크 하나로 &quot;이 충전기 좀 봐 주세요&quot;를 전달할 수 있다.</li>
+<li><strong>새로고침은 필터를 유지</strong>하고, &quot;전체 조회&quot; 버튼만 필터를 초기화한다. 둘을 같은 버튼으로 만들었다가 운영자에게 욕을 먹었다.</li>
+<li><strong>2커넥터 충전기 판정</strong>: A와 B 채널 ID가 모두 있으면 한 대의 2커넥터 충전기로 묶어 센다. 연결된 충전기 수를 셀 때 커넥터 소켓 수로 세면 두 배가 된다.</li>
+<li><strong>자동 폴링 없음</strong>: 세션 목록은 진입 시와 새로고침 버튼으로만 읽는다. 수천 대 목록을 몇 초마다 다시 읽는 건 서버에도 화면에도 부담이었다. 실시간이 필요한 건 개별 충전기의 라이브 콘솔로 해결했다(5장).</li>
+</ul>
+<h2>4. 응답 정규화: 화면이 백엔드 차이를 흡수한다</h2>
+<p>서버마다, 버전마다 응답이 조금씩 달랐다. 세션 목록이 배열로 오기도 하고 <code>{sessions: []}</code>나 <code>{chargePointIds: []}</code>로 오기도 하고, 접속 시각 필드가 <code>connectedAt</code>이기도 하고 <code>connectedAtEpochMillis</code>이기도 했다. 게이트웨이 오류는 JSON이 아니라 평문으로 오기도 했다.</p>
+<p>화면 쪽에 <strong>정규화 함수</strong>를 한 겹 두었다.</p>
+<pre><code class="hljs language-ts"><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">normalizeSessions</span>(<span class="hljs-params"><span class="hljs-attr">raw</span>: <span class="hljs-built_in">unknown</span></span>): <span class="hljs-title class_">SessionRow</span>[] {
+  <span class="hljs-keyword">const</span> list = <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">isArray</span>(raw) ? raw
+    : <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">isArray</span>((raw <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>)?.<span class="hljs-property">sessions</span>) ? (raw <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>).<span class="hljs-property">sessions</span>
+    : <span class="hljs-title class_">Array</span>.<span class="hljs-title function_">isArray</span>((raw <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>)?.<span class="hljs-property">chargePointIds</span>) ? (raw <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>).<span class="hljs-property">chargePointIds</span>.<span class="hljs-title function_">map</span>(<span class="hljs-function">(<span class="hljs-params"><span class="hljs-attr">id</span>: <span class="hljs-built_in">string</span></span>) =&gt;</span> ({<span class="hljs-attr">chargePointId</span>: id}))
+    : [];
+  <span class="hljs-keyword">return</span> list.<span class="hljs-title function_">map</span>(toSessionRow);   <span class="hljs-comment">// connectedAt | connectedAtEpochMillis → Date</span>
+}</code></pre>
+<p>백엔드를 맞추는 게 정답이지만, 여러 서버를 순차적으로 고치는 동안 화면이 깨지지 않게 하는 완충재로 충분히 값을 했다. 2.0.1 화면은 전체 세션 목록(<code>/all-sessions</code>)에 원격 세션 목록(<code>/sessions</code>)을 합쳐 부팅 상태를 붙인다.</p>
+<h2>5. 액션 카탈로그: 세 층으로 나누기</h2>
+<p>원격 제어 패널에 보여 줄 액션은 성격이 세 가지다.</p>
+<table>
+<thead>
+<tr>
+<th>층</th>
+<th>의미</th>
+<th>예</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>csms</code></td>
+<td>서버 자체의 REST 기능</td>
+<td>세션 목록, 인증서 서명 트리거, 오프라인 임계값 설정</td>
+</tr>
+<tr>
+<td><code>chargepoint</code></td>
+<td>서버가 충전기에 보내는 OCPP 요청</td>
+<td>RemoteStart, Reset, SetVariables, InstallCertificate</td>
+</tr>
+<tr>
+<td><code>datatransfer</code></td>
+<td>벤더 확장 메시지</td>
+<td>요금, 사용자 유형, QR, 충전 이력, EVCC 정보</td>
+</tr>
+</tbody></table>
+<p>모든 액션을 하나의 타입으로 기술한다.</p>
+<pre><code class="hljs language-ts"><span class="hljs-keyword">type</span> <span class="hljs-title class_">SessionControlAction</span> =
+  | {<span class="hljs-attr">kind</span>: <span class="hljs-string">&#x27;octt&#x27;</span>; <span class="hljs-attr">layer</span>: <span class="hljs-string">&#x27;chargepoint&#x27;</span>; <span class="hljs-attr">action</span>: <span class="hljs-built_in">string</span>; <span class="hljs-attr">params</span>: <span class="hljs-title class_">OcttActionParam</span>[]}
+  | {<span class="hljs-attr">kind</span>: <span class="hljs-string">&#x27;rest&#x27;</span>; <span class="hljs-attr">layer</span>: <span class="hljs-string">&#x27;csms&#x27;</span>; <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;GET&#x27;</span> | <span class="hljs-string">&#x27;POST&#x27;</span>; <span class="hljs-attr">path</span>: <span class="hljs-built_in">string</span>; <span class="hljs-attr">params</span>: <span class="hljs-title class_">OcttActionParam</span>[]}
+  | {<span class="hljs-attr">kind</span>: <span class="hljs-string">&#x27;datatransfer&#x27;</span>; <span class="hljs-attr">layer</span>: <span class="hljs-string">&#x27;datatransfer&#x27;</span>; <span class="hljs-attr">vendorId</span>: <span class="hljs-built_in">string</span>; <span class="hljs-attr">messageId</span>: <span class="hljs-built_in">string</span>; <span class="hljs-attr">params</span>: <span class="hljs-title class_">OcttActionParam</span>[]};
+
+<span class="hljs-keyword">type</span> <span class="hljs-title class_">OcttActionParam</span> = {<span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span>; <span class="hljs-attr">type</span>: <span class="hljs-string">&#x27;string&#x27;</span> | <span class="hljs-string">&#x27;number&#x27;</span> | <span class="hljs-string">&#x27;boolean&#x27;</span> | <span class="hljs-string">&#x27;enum&#x27;</span> | <span class="hljs-string">&#x27;json&#x27;</span> | <span class="hljs-string">&#x27;pem&#x27;</span>; <span class="hljs-attr">required</span>?: <span class="hljs-built_in">boolean</span>; <span class="hljs-attr">options</span>?: <span class="hljs-built_in">string</span>[]};</code></pre>
+<p><code>buildSessionControlCatalog(version)</code>이 버전에 맞는 목록을 만들고, 폼은 <code>params</code> 정의로 <strong>자동 렌더링</strong>한다. 새 액션을 추가할 때 화면 코드를 건드릴 필요가 없다. 벤더 DataTransfer 카탈로그는 두 버전이 공유한다.</p>
+<p>이 카탈로그는 인증 시험에도 그대로 쓰인다. 6편의 &quot;시험용 REST API&quot;를 화면에서 파라미터를 채워 부르는 게 곧 OCTT 수동 액션이다. <code>testCase</code> 파라미터도 폼에서 고른다.</p>
+<h2>6. 브라우저를 가상 충전기로</h2>
+<p>콘솔의 두 번째 역할은 <strong>시험 도구</strong>다. API 허브의 WebSocket 게이트웨이(2편) 덕분에 브라우저가 실제 서버에 충전기로 붙을 수 있다.</p>
+<ul>
+<li><strong>WS 클라이언트</strong>: <code>sendAndWait()</code>가 CALL을 보내고 uniqueId로 CALLRESULT/CALLERROR를 매칭한다. 타임아웃이 있고, 최근 500개 메시지를 링 버퍼로 보관해 화면에 보여 준다.</li>
+<li><strong>목(mock) 케이스</strong>: 버전별 폴더에 메시지 빌더를 둔다. 1.6은 StartTransaction/StopTransaction/DiagnosticsStatusNotification…, 2.0.1은 TransactionEvent(Started/Updated/Ended), NotifyReport, NotifyEVChargingNeeds, Get15118EVCertificate…. JSON은 Monaco 에디터에서 고쳐 보낼 수 있다.</li>
+<li><strong>일괄 접속 패널</strong>: 가상 충전기 수백 개를 한 번에 붙이고 각자 BootNotification을 보낸다. 서버 부하와 세션 레지스트리를 확인할 때 썼다.</li>
+<li><strong>시나리오 러너</strong>: <code>send</code>(보내기), <code>wait_incoming</code>(서버발 요청 기다렸다가 자동 응답), <code>delay</code>, <code>reusable</code>(공통 절차 재사용) 단계로 시험 시나리오를 기술하고 실행한다. OCTT 시험 전에 우리끼리 먼저 돌려 보는 용도다.</li>
+</ul>
+<h2>7. PnC 화면</h2>
+<p>PnC 테스트 동안 가장 많이 쓴 화면이다.</p>
+<ul>
+<li>EMAID 생성기(체크 디지트 계산 포함), CSR 생성기</li>
+<li>PKI API 테스터(게이트웨이를 거쳐 호출, 요청·응답 로그)</li>
+<li>계약 사전 등록·폐기 배치, 충전기 인증서 만료 배치 수동 실행</li>
+<li>웹훅 등록 관리</li>
+<li>흐름도: SignCertificate, Get15118EVCertificate, Authorize, GetCertificateStatus 순서도를 화면에 붙여 두니 협력사와 회의할 때 유용했다.</li>
+</ul>
+<h2>8. 화면을 만들며 겪은 함정</h2>
+<ul>
+<li><strong>여러 줄 PEM이 JSON을 깬다.</strong> PEM/CSR 텍스트를 JSON 본문에 넣을 때 제어 문자 이스케이프를 빠뜨려 서버가 파싱 오류를 냈다. <code>JSON.stringify(v).slice(1, -1)</code>로 이스케이프하고, 전송 전에 <code>JSON.parse</code>로 한 번 검증한다.</li>
+<li><strong>길이 제한 필드가 조용히 무시된다.</strong> 40자를 넘는 인증서 시리얼이 서버에서 저장되지 않아, 폐기 시험의 전제 조건이 성립하지 않았다. 화면에서 규격 길이를 넘으면 경고를 띄운다.</li>
+<li><strong>정적 배포의 제약.</strong> 콘솔은 <code>output: &#39;export&#39;</code>로 정적 배포했다. 서버 코드가 없으니 모든 호출이 브라우저에서 나가고, 그래서 게이트웨이와 CORS, 인증(JWT) 설계가 중요하다. 대신 배포와 호스팅은 아주 단순하다.</li>
+<li><strong>상태 관리는 최소로.</strong> 전역 상태는 요청 중 스피너 카운터 정도만 두고, 나머지는 컴포넌트 상태, URL 쿼리, 로컬 스토리지, 짧은 TTL 캐시로 충분했다.</li>
+<li><strong>숨긴 메뉴를 정리하자.</strong> 초기에 만든 API 명세 화면, 시험 실행 화면 몇 개가 메뉴에서 주석 처리된 채 남아 있다. 쓰지 않는 화면은 코드도 지우는 편이 유지보수에 좋다.</li>
+</ul>
+<h2>9. 콘솔이 준 것</h2>
+<ul>
+<li>운영자가 개발자 없이 <strong>충전기 연결 여부·위치·상태를 확인하고 원격 조치</strong>를 한다.</li>
+<li>개발자는 <strong>서버 변경을 가상 충전기로 즉시 확인</strong>한다. 실제 충전기 없이 시나리오를 돌린다.</li>
+<li>인증 시험과 PnC 테스트에서 <strong>같은 액션 카탈로그</strong>를 쓰니, 시험에서 검증한 흐름이 곧 운영 기능이 된다.</li>
+</ul>
+<h2>정리</h2>
+<ul>
+<li>버전별 세션 화면이 필요한 이유는 <strong>백엔드, 명령 세트, 상태, 식별 모델</strong>이 다르기 때문이다.</li>
+<li><strong>라우트는 버전별, 페이지 컴포넌트는 공유, 차이는 설정으로.</strong> 2.1은 설정 한 줄로 붙는다.</li>
+<li>백엔드 응답 차이는 화면의 <strong>정규화 함수</strong>로 흡수한다.</li>
+<li>액션은 <strong>csms / chargepoint / datatransfer 세 층</strong>의 카탈로그로 기술하고 폼은 자동 렌더링한다.</li>
+<li>브라우저를 <strong>가상 충전기</strong>로 만들면 시험 속도가 달라진다.</li>
+</ul>
+<p>마지막 글에서는 서버 반대편, 충전기 안에서 도는 WPF HMI의 구조와 UI 노하우, 여러 버전과 하드웨어를 계층화로 받아낸 방법을 다룬다.</p>
+<hr>
+<h2>OCPP 시리즈</h2>
+<ol>
+<li><a href="/posts/ocpp-01/">OCPP 한눈에 보기 — 1.6J, 2.0.1, 2.1은 무엇이 다른가</a></li>
+<li><a href="/posts/ocpp-02/">CSMS 아키텍처 — 버전별 OCPP 서버, API 허브, 레거시 공존</a></li>
+<li><a href="/posts/ocpp-03/">OCPP-J 메시지 파이프라인 구현 — 핸드셰이크부터 응답 매칭까지</a></li>
+<li><a href="/posts/ocpp-04/">충전기 수천 대의 WebSocket 세션 운영기 — 중복 접속, 배포 끊김, NAT, 좀비 세션</a></li>
+<li><a href="/posts/ocpp-05/">트랜잭션과 계량값의 함정 — 멱등 처리, 늦게 온 Stop, 충전기 편차 정규화</a></li>
+<li><a href="/posts/ocpp-06/">OCTT 인증 통과기 — OCPP 1.6과 2.0.1 CSMS 적합성 시험에서 배운 것</a></li>
+<li><a href="/posts/ocpp-07/">OCPP 보안 프로파일과 인증서 운영 — Basic 인증부터 mTLS, SignCertificate까지</a></li>
+<li><a href="/posts/ocpp-08/">Plug &amp; Charge 1차 필드 테스트 — ISO 15118 인증서 체계와 CSMS가 해야 할 일</a></li>
+<li><strong>OCPP 버전별 세션 관리 화면이 필요한 이유 — 관제·원격 명령·시험을 한 콘솔에</strong> (현재 글)</li>
+<li><a href="/posts/ocpp-10/">충전기 HMI를 WPF로 만들기 — 계층화, 정규화, 키오스크 UI, 무중단 업데이트</a></li>
+</ol>
+1b:[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"OCPP 버전별 세션 관리 화면이 필요한 이유 — 관제·원격 명령·시험을 한 콘솔에\",\"description\":\"1.6과 2.0.1 서버를 동시에 운영하며 만든 세션 관리 콘솔의 설계를 정리한다. 왜 버전별 화면이 필요한지, 페이지는 공유하고 설정만 바꾸는 구조, 응답 정규화, 액션 카탈로그를 세 층으로 나눈 방법, 브라우저를 가상 충전기로 쓰는 시험 도구까지.\",\"datePublished\":\"2026-09-26\",\"url\":\"https://kaisa.co.kr/posts/ocpp-09/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"ocpp\",\"keywords\":\"ocpp, nextjs, frontend, admin, websocket, testing\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"OCPP 버전별 세션 관리 화면이 필요한 이유 — 관제·원격 명령·시험을 한 콘솔에\",\"item\":\"https://kaisa.co.kr/posts/ocpp-09/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L6",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2026-09-26"}]}],["$","h1",null,{"className":"blog-post__title","children":"OCPP 버전별 세션 관리 화면이 필요한 이유 — 관제·원격 명령·시험을 한 콘솔에"}],["$","div",null,{"className":"blog-post__body blog-post__body--markdown","children":["$","div",null,{"className":"markdown-body","dangerouslySetInnerHTML":{"__html":"$24"}}]}],"$L25","$L26"]}]}]}]]
+27:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],"default"]
+25:["$","$L27",null,{"pathKey":"ocpp-09"}]
+26:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L6",null,{"href":"/posts/ocpp-08/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Plug & Charge 1차 필드 테스트 — ISO 15118 인증서 체계와 CSMS가 해야 할 일"}]]}],["$","$L6",null,{"href":"/posts/ocpp-10/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"충전기 HMI를 WPF로 만들기 — 계층화, 정규화, 키오스크 UI, 무중단 업데이트"}]]}]]}],["$","$L6",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
+21:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+28:I[27201,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"IconMark"]
+1e:null
+23:[["$","title","0",{"children":"OCPP 버전별 세션 관리 화면이 필요한 이유 — 관제·원격 명령·시험을 한 콘솔에 · Kaisa"}],["$","meta","1",{"name":"description","content":"1.6과 2.0.1 서버를 동시에 운영하며 만든 세션 관리 콘솔의 설계를 정리한다. 왜 버전별 화면이 필요한지, 페이지는 공유하고 설정만 바꾸는 구조, 응답 정규화, 액션 카탈로그를 세 층으로 나눈 방법, 브라우저를 가상 충전기로 쓰는 시험 도구까지."}],["$","meta","2",{"name":"application-name","content":"Kaisa"}],["$","meta","3",{"name":"robots","content":"index, follow"}],["$","meta","4",{"name":"naver-site-verification","content":"4bc13b857695ff44988c260cb26124eedbcda90e"}],["$","link","5",{"rel":"canonical","href":"https://kaisa.co.kr/posts/ocpp-09/"}],["$","meta","6",{"property":"og:title","content":"OCPP 버전별 세션 관리 화면이 필요한 이유 — 관제·원격 명령·시험을 한 콘솔에 · Kaisa"}],["$","meta","7",{"property":"og:description","content":"1.6과 2.0.1 서버를 동시에 운영하며 만든 세션 관리 콘솔의 설계를 정리한다. 왜 버전별 화면이 필요한지, 페이지는 공유하고 설정만 바꾸는 구조, 응답 정규화, 액션 카탈로그를 세 층으로 나눈 방법, 브라우저를 가상 충전기로 쓰는 시험 도구까지."}],["$","meta","8",{"property":"og:url","content":"https://kaisa.co.kr/posts/ocpp-09/"}],["$","meta","9",{"property":"og:site_name","content":"Kaisa"}],["$","meta","10",{"property":"og:locale","content":"ko_KR"}],["$","meta","11",{"property":"og:type","content":"article"}],["$","meta","12",{"name":"twitter:card","content":"summary"}],["$","meta","13",{"name":"twitter:title","content":"OCPP 버전별 세션 관리 화면이 필요한 이유 — 관제·원격 명령·시험을 한 콘솔에 · Kaisa"}],["$","meta","14",{"name":"twitter:description","content":"1.6과 2.0.1 서버를 동시에 운영하며 만든 세션 관리 콘솔의 설계를 정리한다. 왜 버전별 화면이 필요한지, 페이지는 공유하고 설정만 바꾸는 구조, 응답 정규화, 액션 카탈로그를 세 층으로 나눈 방법, 브라우저를 가상 충전기로 쓰는 시험 도구까지."}],["$","link","15",{"rel":"shortcut icon","href":"/img/common/favicon.ico"}],["$","link","16",{"rel":"icon","href":"/img/common/favicon.ico"}],["$","link","17",{"rel":"apple-touch-icon","href":"/img/common/favicon.ico"}],["$","$L28","18",{}]]

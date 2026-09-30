@@ -1,0 +1,138 @@
+1:"$Sreact.fragment"
+2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],""]
+a:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],"default"]
+b:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
+c:"$Sreact.suspense"
+:HL["/_next/static/chunks/0br7e7j26qkj3.css","style"]
+:HL["/_next/static/chunks/21i9-auhncr4a.css","style"]
+3:T4215,<h1>OCPP-J 메시지 파이프라인 구현 — 핸드셰이크부터 응답 매칭까지</h1>
+<blockquote>
+<p>요약: Spring WebSocket으로 OCPP-J 서버를 직접 구현하며 정한 설계를 정리한다. 서브프로토콜 거부, 충전기 식별, 프레임 파싱, 스키마 대신 디코더를 쓴 이유, null 제거, 서버발 요청의 상관관계와 타임아웃까지 다룬다.</p>
+</blockquote>
+<hr>
+<h2>들어가며</h2>
+<p>OCPP 서버를 만들 때 선택지는 크게 두 가지다. 오픈소스 OCPP 프레임워크의 서버를 통째로 쓰거나, WebSocket은 직접 다루고 메시지 모델만 가져다 쓰거나. 나는 후자를 택했다. Java 진영의 OCPP 라이브러리에서 <strong>요청·응답 모델 클래스와 <code>validate()</code>만 쓰고</strong>, 전송·프레이밍·상관관계는 Spring WebSocket 위에 직접 만들었다.</p>
+<p>이유는 운영 요구사항 때문이었다. 충전기 식별을 DB로 확인하고, 보안 프로파일별로 인증을 다르게 하고, 충전기의 잘못된 입력을 필드 단위로 관대하게 받고, 서버발 요청을 REST에서 호출하는 흐름을 프레임워크 안에서 맞추기가 더 어려웠다. 이 글은 그렇게 만든 파이프라인을 순서대로 따라간다.</p>
+<h2>1. 핸드셰이크: 연결을 받기 전에 걸러낸다</h2>
+<pre><code class="hljs">충전기 ──HTTP Upgrade──▶ <span class="hljs-selector-attr">[서브프로토콜 인터셉터]</span> ─▶ <span class="hljs-selector-attr">[충전기 ID·인증 인터셉터]</span> ─▶ <span class="hljs-selector-attr">[핸드셰이크 핸들러]</span> ─▶ 연결</code></pre>
+<h3>1.1 서브프로토콜: 안 맞으면 반드시 거절한다</h3>
+<p>충전기는 <code>Sec-WebSocket-Protocol: ocpp1.6</code> 같은 헤더로 원하는 버전을 알린다. 서버는 지원하는 것 하나를 골라 응답 헤더에 넣는다.</p>
+<p>여기서 함정을 하나 밟았다. <strong>Spring의 기본 핸드셰이크 핸들러는 서브프로토콜 협상이 실패해도 업그레이드를 완료할 수 있다.</strong> 서버가 프로토콜을 고르지 않은 채 연결이 열리는 것이다. 인증 시험에는 <code>ocpp0.1</code> 같은 엉터리 프로토콜로 접속해서 서버가 거절하는지 보는 항목이 있고, 여기서 바로 떨어졌다.</p>
+<p>그래서 핸드셰이크 전에 인터셉터를 하나 더 둔다.</p>
+<pre><code class="hljs language-java"><span class="hljs-comment">// 헤더가 있는데 지원 버전이 하나도 없으면 400으로 끊는다</span>
+<span class="hljs-type">List</span>&lt;String&gt; <span class="hljs-variable">offered</span> <span class="hljs-operator">=</span> parseProtocols(request.getHeaders().get(<span class="hljs-string">&quot;Sec-WebSocket-Protocol&quot;</span>));
+<span class="hljs-keyword">if</span> (!offered.isEmpty() &amp;&amp; offered.stream().noneMatch(p -&gt; p.equalsIgnoreCase(<span class="hljs-string">&quot;ocpp1.6&quot;</span>))) {
+    response.setStatusCode(HttpStatus.BAD_REQUEST);
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+}</code></pre>
+<ul>
+<li>대소문자는 구분하지 않는다. 현장 충전기 중에 <code>OCPP1.6</code>을 보내는 기종이 있었다.</li>
+<li><strong>헤더가 아예 없는 경우는 허용했다.</strong> 규격대로라면 거절해야 하지만 오래된 충전기 일부가 헤더 없이 붙는다. 시험에서는 &quot;잘못된 값&quot;만 거절하면 통과한다.</li>
+<li>2.0.1 서버는 <code>ocpp2.0.1</code>과 <code>ocpp2.1</code>을 알고, 우선순위를 설정으로 둔다. Spring 6.2에서 서브프로토콜 선택 메서드 이름이 바뀌었으니 버전 올릴 때 확인하자.</li>
+</ul>
+<h3>1.2 충전기 식별과 인증</h3>
+<ul>
+<li>ID는 URL 마지막 경로에서 꺼내고 <code>^[A-Za-z0-9_-]+$</code>로 검증한다.</li>
+<li><strong>DB에 없는 충전기는 403</strong>, DB 조회 자체가 실패하면 <strong>503</strong>. 둘을 구분해야 장애 때 충전기가 &quot;등록 안 됨&quot;으로 오해받지 않는다.</li>
+<li>보안 프로파일 1/2는 HTTP Basic. 사용자명은 충전기 ID와 같아야 하고, 비밀번호는 <code>MessageDigest.isEqual</code>로 상수 시간 비교한다. 헤더가 없으면 401(시험 항목이다).</li>
+<li>프로파일 3은 mTLS라 Authorization 헤더가 없어도 받는다. 클라이언트 인증서 검증은 TLS 계층이 한다.</li>
+<li>브라우저 시험 클라이언트는 헤더를 못 넣으므로 쿼리 파라미터로 받는 우회로를 두되, 운영 설정에서는 끌 수 있게 한다.</li>
+</ul>
+<h2>2. 프레임 파싱: 네 칸짜리 배열을 정확히 읽는다</h2>
+<p>수신 메시지는 이 순서로 처리한다.</p>
+<ol>
+<li>JSON 파싱. 실패하면 uniqueId를 모르므로 <code>&quot;unknown&quot;</code>으로 CALLERROR를 보낸다.</li>
+<li><strong>응답(3) 또는 오류(4)인지 먼저 본다.</strong> 그렇다면 서버가 보낸 요청의 응답이므로, 대기 중인 Future를 완료시키고 아무것도 보내지 않는다(4장).</li>
+<li>요청(2)이면 형태를 엄격히 검사한다. 배열, 길이 4, 비어 있지 않은 문자열 uniqueId, 문자열 action, 객체 payload. 어기면 <code>FormationViolation</code>, 타입 번호가 이상하면 <code>NotSupported</code>.</li>
+<li>(2.0.1) <strong>부팅이 Accepted되기 전에는</strong> BootNotification과 Heartbeat 외의 요청을 <code>SecurityError</code>로 거절한다. 이것도 시험 항목이다.</li>
+<li>액션 이름으로 핸들러를 찾는다. 모든 핸들러를 스프링 빈으로 만들어 <code>Map&lt;String, Handler&gt;</code>로 모아 두면 새 액션 추가가 클래스 하나로 끝난다. 없으면 <code>NotSupported</code>.</li>
+</ol>
+<h2>3. 검증: JSON 스키마 대신 액션별 디코더</h2>
+<p>OCA는 액션별 JSON 스키마를 제공한다. 처음에는 스키마 검증기를 붙이려 했지만, 결국 <strong>런타임에는 쓰지 않고 참고 자료로만 저장소에 두었다.</strong> 대신 액션마다 손으로 쓴 디코더가 있다.</p>
+<pre><code class="hljs language-java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">StartTransactionRequestDecoder</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">AbstractOcppActionRequestDecoder</span>&lt;StartTransactionRequest&gt; {
+    <span class="hljs-type">StartTransactionRequest</span> <span class="hljs-title function_">decode</span><span class="hljs-params">(JsonNode p)</span> {
+        <span class="hljs-type">var</span> <span class="hljs-variable">req</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">StartTransactionRequest</span>();
+        req.setConnectorId(requiredInt(p, <span class="hljs-string">&quot;connectorId&quot;</span>));
+        req.setIdTag(optionalText(p, <span class="hljs-string">&quot;idTag&quot;</span>));          <span class="hljs-comment">// 규격은 필수지만 현장 편차 때문에 관대하게</span>
+        req.setMeterStart(requiredInt(p, <span class="hljs-string">&quot;meterStart&quot;</span>));
+        req.setTimestamp(requiredDateTime(p, <span class="hljs-string">&quot;timestamp&quot;</span>));
+        <span class="hljs-keyword">return</span> req;
+    }
+}</code></pre>
+<p>디코드 후에는 라이브러리 모델의 <code>validate()</code>를 한 번 더 돌린다. 디코더를 택한 이유는 현장 때문이다.</p>
+<ul>
+<li><strong>필수 필드가 비어 오는 충전기가 있다.</strong> BootNotification의 <code>chargePointVendor</code>가 빈 문자열인 기종을 스키마대로 거절하면, 그 충전기는 영원히 부팅하지 못한다. 디코더에서 <code>&quot;-&quot;</code>로 채워 받고 경고를 남긴다.</li>
+<li><strong>별칭과 느슨한 enum.</strong> 필드 이름 오타, 대소문자가 다른 enum 값을 필드 단위로 흡수할 수 있다.</li>
+<li><strong>인증 모드와 현장 모드를 나눌 수 있다.</strong> 2.0.1 서버는 enum 파싱을 <code>requiredEnumValue</code>(엄격, 인증 시험용)와 <code>safeEnumValue</code>(관대, 현장·2.1용)로 나눴다.</li>
+</ul>
+<p>대가도 분명하다. <strong>손으로 쓴 디코더는 필드를 조용히 빠뜨릴 수 있다.</strong> 실제로 겪은 사례들이다.</p>
+<ul>
+<li>빈 배열이 정상인 필드를 &quot;비어 있으면 안 됨&quot;으로 막아 시험에서 떨어졌다.</li>
+<li><code>Authorize</code>의 <code>certificate</code> 필드를 아예 읽지 않아 PnC 중앙 검증 시험이 실패했다.</li>
+<li>계량값 샘플을 만들 때 <code>value</code>만 옮기고 <code>measurand</code>·<code>unit</code>·<code>phase</code>를 버리는 코드가 있으면, 서버는 정상 응답하고 시험도 통과하지만 <strong>저장되는 데이터는 틀린다.</strong> 시험은 &quot;응답했는가&quot;를 볼 뿐 &quot;제대로 해석했는가&quot;를 보지 않는다.</li>
+</ul>
+<p>그래서 디코더에는 <strong>입력 JSON → 도메인 객체의 필드 단위 비교 테스트</strong>를 꼭 붙이자. 특히 MeterValues·TransactionEvent처럼 중첩 배열이 있는 메시지는 필수다.</p>
+<h2>4. 응답 만들기: null을 보내지 마라</h2>
+<p>응답은 라이브러리 모델(Confirmation)로 만들고, 보내기 직전에 <code>validate()</code>로 확인한다. 실패하면 <code>InternalError</code>를 보낸다. 직렬화에서 중요한 두 가지:</p>
+<ul>
+<li><strong>선택 필드는 생략해야 한다. <code>null</code>로 보내면 스키마 위반이다.</strong> 시험 도구는 <code>&quot;parentIdTag&quot;: null</code> 같은 값을 거절한다. Jackson에 <code>NON_NULL</code>을 걸고, 2.0.1 쪽은 중첩 객체까지 재귀적으로 null을 제거한다.</li>
+<li><strong>필드 없는 응답은 <code>{}</code>여야 한다.</strong> ClearCache 같은 빈 모델을 직렬화할 때 예외가 나지 않도록 <code>FAIL_ON_EMPTY_BEANS=false</code>. 라이브러리 내부용 필드가 직렬화에 섞여 나가지 않는지도 확인하자.</li>
+</ul>
+<h2>5. 서버발 요청: 상관관계와 타임아웃</h2>
+<p>원격 시작, 설정 변경, 인증서 설치처럼 서버가 충전기에 요청하는 흐름은 보통 REST에서 시작된다. 운영자가 화면에서 버튼을 누르면 API 허브를 거쳐 OCPP 서버의 REST가 호출되고, 서버는 충전기에 CALL을 보낸 뒤 응답을 기다려 REST 응답으로 돌려준다.</p>
+<pre><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-type">CompletableFuture</span>&lt;JsonNode&gt; <span class="hljs-title function_">sendRequest</span><span class="hljs-params">(String chargePointId, String action, Object payload, Duration timeout)</span> {
+    <span class="hljs-type">String</span> <span class="hljs-variable">uniqueId</span> <span class="hljs-operator">=</span> UUID.randomUUID().toString();
+    <span class="hljs-type">CompletableFuture</span>&lt;JsonNode&gt; <span class="hljs-variable">future</span> <span class="hljs-operator">=</span> pendingRegistry.register(sessionId, uniqueId);
+    send(session, <span class="hljs-string">&quot;[2,\&quot;&quot;</span> + uniqueId + <span class="hljs-string">&quot;\&quot;,\&quot;&quot;</span> + action + <span class="hljs-string">&quot;\&quot;,&quot;</span> + toJson(payload) + <span class="hljs-string">&quot;]&quot;</span>);
+    <span class="hljs-keyword">return</span> future.orTimeout(timeout.toSeconds(), TimeUnit.SECONDS);
+}</code></pre>
+<ul>
+<li>대기 목록의 키는 <strong>(세션 ID, uniqueId)</strong>. 충전기 ID가 아니라 세션 기준이어야 재접속 후 옛 응답이 새 요청에 붙지 않는다.</li>
+<li>CALLERROR는 예외(<code>OcppCallErrorException(errorCode, description)</code>)로 완료시켜 호출자가 구분할 수 있게 한다.</li>
+<li><strong>소켓이 닫히면 그 세션의 대기 요청을 전부 취소한다.</strong> 안 하면 REST 호출이 타임아웃까지 매달린다.</li>
+<li>타임아웃은 액션별로 다르게. 기본 60초, 서명 펌웨어처럼 충전기 쪽 처리가 긴 것은 3분까지 늘렸다.</li>
+<li><strong>BootNotification이 Accepted되기 전에는 서버발 요청을 막는다.</strong> 단, Pending 상태에서 허용되는 요청(TriggerMessage, Get/ChangeConfiguration, Reset 등)은 예외로 둔다.</li>
+</ul>
+<p>알고도 남겨 둔 한계가 두 가지 있다. OCPP-J는 <strong>방향별로 동시에 하나의 CALL만 진행</strong>하도록 권고하지만 우리 구현은 직렬화하지 않았고, REST 스레드가 <code>join()</code>으로 기다린다. 요청량이 적은 관리 기능이라 감수했지만, 대량 원격 명령이 필요해지면 충전기별 송신 큐를 먼저 만들 것이다.</p>
+<h2>6. 동시 전송: 세션 하나에 한 번에 하나씩</h2>
+<p>배포 직후 &quot;blocking send를 기다리던 스레드가 인터럽트됨&quot; 로그가 쏟아진 적이 있다. 톰캣의 blocking send는 <strong>한 세션에서 동시 전송을 허용하지 않는데</strong>, 핑 스케줄러와 응답 전송, 서버발 요청이 같은 세션에 동시에 쓰고 있었다. 모든 전송과 종료를 <code>synchronized (session)</code>으로 감싸 해결했다. Spring의 <code>ConcurrentWebSocketSessionDecorator</code>를 써도 된다. 핵심은 <strong>세션에 쓰는 경로를 하나로 모으는 것</strong>이다.</p>
+<h2>7. DataTransfer 라우팅</h2>
+<p>표준 밖의 메시지는 DataTransfer로 온다. 처리 규칙을 정해 두면 편하다.</p>
+<ul>
+<li><code>vendorId</code>로 먼저 나눈다. 모르는 벤더는 <code>UnknownVendorId</code>, 알지만 모르는 messageId는 <code>UnknownMessageId</code>.</li>
+<li><code>data</code>는 JSON으로 파싱을 시도하고, 안 되면 <code>{&quot;raw&quot;: &quot;...&quot;}</code>로 감싸서 넘긴다. 문자열 안에 JSON을 넣어 보내는 충전기와 객체를 그대로 보내는 충전기가 섞여 있다.</li>
+<li><strong>messageId는 대소문자 무시, <code>.req</code> 접미사 유무도 무시.</strong> 같은 메시지를 <code>tariff.req</code>, <code>Tariff</code>, <code>tariff</code>로 보내는 구현이 공존했다.</li>
+<li>표준 PnC vendorId(<code>org.openchargealliance.iso15118pnc</code>)는 별도 라우트로 보내 네이티브 PnC와 같은 업무 로직을 태운다(8편).</li>
+</ul>
+<h2>정리</h2>
+<ul>
+<li>서브프로토콜은 <strong>인터셉터에서 명시적으로 거절</strong>하자. 프레임워크 기본값이 업그레이드를 통과시킬 수 있다.</li>
+<li>충전기 식별은 경로, 인증은 보안 프로파일별로. &quot;등록 안 됨(403)&quot;과 &quot;조회 실패(503)&quot;를 나눈다.</li>
+<li>스키마 검증 대신 <strong>액션별 디코더</strong>로 현장 편차를 필드 단위로 흡수했다. 대신 디코더의 필드 누락을 잡는 테스트가 반드시 필요하다.</li>
+<li>응답에서 <strong>null은 생략</strong>, 빈 응답은 <code>{}</code>.</li>
+<li>서버발 요청은 (세션, uniqueId)로 매칭하고, 세션 종료 시 일괄 취소, 액션별 타임아웃.</li>
+<li>세션 쓰기는 한 곳으로 모아 <strong>직렬화</strong>한다.</li>
+</ul>
+<p>다음 글에서는 이렇게 연결된 수천 개의 세션을 운영하면서 겪은 일, 중복 접속·배포 중 끊김·NAT 타임아웃·좀비 세션을 다룬다.</p>
+<hr>
+<h2>OCPP 시리즈</h2>
+<ol>
+<li><a href="/posts/ocpp-01/">OCPP 한눈에 보기 — 1.6J, 2.0.1, 2.1은 무엇이 다른가</a></li>
+<li><a href="/posts/ocpp-02/">CSMS 아키텍처 — 버전별 OCPP 서버, API 허브, 레거시 공존</a></li>
+<li><strong>OCPP-J 메시지 파이프라인 구현 — 핸드셰이크부터 응답 매칭까지</strong> (현재 글)</li>
+<li><a href="/posts/ocpp-04/">충전기 수천 대의 WebSocket 세션 운영기 — 중복 접속, 배포 끊김, NAT, 좀비 세션</a></li>
+<li><a href="/posts/ocpp-05/">트랜잭션과 계량값의 함정 — 멱등 처리, 늦게 온 Stop, 충전기 편차 정규화</a></li>
+<li><a href="/posts/ocpp-06/">OCTT 인증 통과기 — OCPP 1.6과 2.0.1 CSMS 적합성 시험에서 배운 것</a></li>
+<li><a href="/posts/ocpp-07/">OCPP 보안 프로파일과 인증서 운영 — Basic 인증부터 mTLS, SignCertificate까지</a></li>
+<li><a href="/posts/ocpp-08/">Plug &amp; Charge 1차 필드 테스트 — ISO 15118 인증서 체계와 CSMS가 해야 할 일</a></li>
+<li><a href="/posts/ocpp-09/">OCPP 버전별 세션 관리 화면이 필요한 이유 — 관제·원격 명령·시험을 한 콘솔에</a></li>
+<li><a href="/posts/ocpp-10/">충전기 HMI를 WPF로 만들기 — 계층화, 정규화, 키오스크 UI, 무중단 업데이트</a></li>
+</ol>
+0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"OCPP-J 메시지 파이프라인 구현 — 핸드셰이크부터 응답 매칭까지\",\"description\":\"Spring WebSocket으로 OCPP-J 서버를 직접 구현하며 정한 설계를 정리한다. 서브프로토콜 거부, 충전기 식별, 프레임 파싱, 스키마 대신 디코더를 쓴 이유, null 제거, 서버발 요청의 상관관계와 타임아웃까지 다룬다.\",\"datePublished\":\"2026-09-08\",\"url\":\"https://kaisa.co.kr/posts/ocpp-03/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"ocpp\",\"keywords\":\"ocpp, websocket, spring-boot, json, csms\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"OCPP-J 메시지 파이프라인 구현 — 핸드셰이크부터 응답 매칭까지\",\"item\":\"https://kaisa.co.kr/posts/ocpp-03/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2026-09-08"}]}],["$","h1",null,{"className":"blog-post__title","children":"OCPP-J 메시지 파이프라인 구현 — 핸드셰이크부터 응답 매칭까지"}],["$","div",null,{"className":"blog-post__body blog-post__body--markdown","children":["$","div",null,{"className":"markdown-body","dangerouslySetInnerHTML":{"__html":"$3"}}]}],"$L4","$L5"]}]}]}]],["$L6","$L7","$L8"],"$L9"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"72soPwz3-0MGC1qZMTNqb"}
+4:["$","$La",null,{"pathKey":"ocpp-03"}]
+5:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/ocpp-02/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"CSMS 아키텍처 — 버전별 OCPP 서버, API 허브, 레거시 공존"}]]}],["$","$L2",null,{"href":"/posts/ocpp-04/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"충전기 수천 대의 WebSocket 세션 운영기 — 중복 접속, 배포 끊김, NAT, 좀비 세션"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
+6:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
+7:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
+8:["$","script","script-0",{"src":"/_next/static/chunks/26shoze10o-dc.js","async":true}]
+9:["$","$Lb",null,{"children":["$","$c",null,{"name":"Next.MetadataOutlet","children":"$@d"}]}]
+d:null

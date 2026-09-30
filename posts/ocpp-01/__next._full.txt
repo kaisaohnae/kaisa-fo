@@ -1,0 +1,283 @@
+1:"$Sreact.fragment"
+2:I[479520,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],""]
+3:I[883661,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"default"]
+4:I[339756,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"default"]
+5:I[837457,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"default"]
+6:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],""]
+7:I[722067,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"default"]
+8:I[778481,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"default"]
+9:I[902105,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"default"]
+14:I[168027,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"default",1]
+:HL["/_next/static/chunks/34-r72pc7x98u.css","style"]
+:HL["/_next/static/chunks/3xau-2enavhj9.css","style"]
+:HL["/_next/static/chunks/0souqbpzq6xbb.css","style"]
+:HL["/_next/static/chunks/1xra_60l-k8t4.css","style"]
+:HL["/_next/static/media/0c795a286deabae8-s.p.3vm0tq4e-zz_5.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/5c285b27cdda1fe8-s.p.2_mbdogr7ni8i.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/chunks/0br7e7j26qkj3.css","style"]
+:HL["/_next/static/chunks/21i9-auhncr4a.css","style"]
+:HL["/_next/static/chunks/0z_31kp4nojhg.css","style"]
+0:{"P":null,"c":["","posts","ocpp-01",""],"q":"","i":false,"f":[[["",{"children":["(site)",{"children":["posts",{"children":[["slug","ocpp-01","d",null],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/34-r72pc7x98u.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/3hb4n4ylf5-a0.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1ntn7efqc-iiw.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ko","className":"syne_53f86cd1-module__kiT3Eq__variable dm_sans_fd62f040-module__0jgVUW__variable","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","$L2",null,{"id":"kaisa-google-adsense","strategy":"afterInteractive","src":"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2641553863829571","crossOrigin":"anonymous"}]}],["$","body",null,{"children":[["$","script",null,{"id":"kaisa-init-1","dangerouslySetInnerHTML":{"__html":"(function(){try{var t=null;document.cookie.split(';').forEach(function(c){var p=c.trim().split('=');if(p[0]==='kaisa-shared-theme')t=decodeURIComponent(p[1]||'');});document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();"}}],["$","script",null,{"id":"kaisa-locale-init","dangerouslySetInnerHTML":{"__html":"(function(){try{\nvar key='kaisa-shared-locale',entry=document.cookie.split(';').map(function(c){return c.trim();}).find(function(c){return c.indexOf(key+'=')===0;});\nvar l=entry?entry.slice(key.length+1):null;\nfunction valid(v){return /^(ko|en|zh|hi)$/.test(v||'');}\nif(!valid(l)){try{l=sessionStorage.getItem('kaisa-locale');}catch(e){}}\nif(!valid(l)){var a=[navigator.language].concat(navigator.languages||[]);l=null;for(var i=0;i<a.length;i++){var m=/^(ko|en|zh|hi)/i.exec(a[i]||'');if(m){l=m[1].toLowerCase();break;}}}\nvar determined=valid(l);if(!determined)l='ko';\nif(determined&&(!entry||entry.slice(key.length+1)!==l)){var h=location.hostname,d=h==='kaisa.co.kr'||h.endsWith('.kaisa.co.kr')?'; domain=kaisa.co.kr':'';document.cookie=key+'='+l+'; max-age=2592000; path=/; samesite=lax'+d;}\ndocument.documentElement.lang=l;\n}catch(e){document.documentElement.lang='ko';}})();"}}],[["$","$L2",null,{"src":"https://www.googletagmanager.com/gtag/js?id=G-2281QQ6XP4","strategy":"afterInteractive"}],["$","$L2",null,{"id":"google-analytics","strategy":"afterInteractive","children":"\n          window.dataLayer = window.dataLayer || [];\n          function gtag(){dataLayer.push(arguments);}\n          gtag('js', new Date());\n          gtag('config', 'G-2281QQ6XP4');\n        "}]],["$","$L3",null,{}],["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}],["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]]}]}],[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0z_31kp4nojhg.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","$L7",null,{}],["$","$L8",null,{}],["$","$L9",null,{}]]}]]}]]}],{"children":[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3xau-2enavhj9.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0souqbpzq6xbb.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/1xra_60l-k8t4.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],"$La","$Lb","$Lc","$Ld"],"$Le"]}],{"children":["$Lf",{"children":["$L10",{"children":["$L11",{},null,false,null]},null,false,"$@12"]},null,false,"$@12"]},null,false,null]},null,false,null],"$L13",false]],"m":"$undefined","G":["$14",["$L15"]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"72soPwz3-0MGC1qZMTNqb"}
+16:I[669033,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js"],"LocaleProvider"]
+17:I[545872,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js"],"default"]
+18:I[320683,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js"],"default"]
+19:I[86979,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/2nllraa9qqjuh.js"],"default"]
+1a:I[44604,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js"],"default"]
+1c:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
+1d:"$Sreact.suspense"
+20:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"ViewportBoundary"]
+22:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"MetadataBoundary"]
+a:["$","script","script-0",{"src":"/_next/static/chunks/2t60f4_2tjmro.js","async":true,"nonce":"$undefined"}]
+b:["$","script","script-1",{"src":"/_next/static/chunks/1i1l5t--me2mi.js","async":true,"nonce":"$undefined"}]
+c:["$","script","script-2",{"src":"/_next/static/chunks/2-06zdxz3h-nd.js","async":true,"nonce":"$undefined"}]
+d:["$","script","script-3",{"src":"/_next/static/chunks/3ha5i75rsjlst.js","async":true,"nonce":"$undefined"}]
+e:["$","$L16",null,{"children":["$","div",null,{"className":"site-layout","children":[["$","$L17",null,{}],["$","$L18",null,{"children":["$","$L4",null,{"parallelRouterKey":"children","error":"$19","errorStyles":[],"errorScripts":[["$","script","script-0",{"src":"/_next/static/chunks/2nllraa9qqjuh.js","async":true}]],"template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}],["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]]}]}],[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0z_31kp4nojhg.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],["$","$L1a",null,{}]]}]}]
+f:["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]
+10:["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]
+11:["$","$1","c",{"children":["$L1b",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/26shoze10o-dc.js","async":true,"nonce":"$undefined"}]],["$","$L1c",null,{"children":["$","$1d",null,{"name":"Next.MetadataOutlet","children":"$@1e"}]}]]}]
+1f:[]
+12:"$W1f"
+13:["$","$1","h",{"children":[null,["$","$L20",null,{"children":"$L21"}],["$","div",null,{"hidden":true,"children":["$","$L22",null,{"children":["$","$1d",null,{"name":"Next.Metadata","children":"$L23"}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}]
+15:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/34-r72pc7x98u.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
+24:T5566,<h1>OCPP 한눈에 보기 — 1.6J, 2.0.1, 2.1은 무엇이 다른가</h1>
+<blockquote>
+<p>요약: 전기차 충전기와 관제 서버(CSMS)가 대화하는 규격 OCPP를 실무 관점에서 정리한다. 1.6J에서 2.0.1, 2.1로 넘어가며 바뀐 메시지 구조, 트랜잭션 모델, Device Model, 보안과 ISO 15118을 비교한다.</p>
+</blockquote>
+<hr>
+<h2>들어가며</h2>
+<p>충전 인프라 일을 하며 답답한일이 많았다. 규격 문서가 영어로만 있고, 예제 코드가 없고, 현장 충전기는 규격을 다르게 구현하고, </p>
+<p>여러 버전을 동시에 받아야 했다.</p>
+<p>특히 기존 개발자가 작업해 놓은 2만줄 이상의 파이썬 레거시 코드를 이어가야 했으니</p>
+<p>두손 두발 들며 어필한 후 결국 Spring Boot 로 변경하였다.</p>
+<p>여러 프레임워크 선택지가 많았으나 주위 다른 개발자들과 함께 할수 있고 안정적인 길을 택했다.</p>
+<p>enabled 플래그를 주입(Dependency Injection)이나 인터페이스 단에서 분기 처리하여 핵심 비즈니스 로직은 깔끔하게 정리하였고 </p>
+<p>코딩 레이어화(Layering)을 하며 적당히 계층화 하였다.</p>
+<p>블로킹 코드들을 제거하며 멀티 쓰레드 방식으로 바꾸며 </p>
+<p>2천여대의 충전기지만 기존 성능에 비하면 엄청 안정적으로 개선 되었으며 기존 에러도 어마어마하게 수정했다.</p>
+<p>1.6과 2.0.1 CSMS를 직접 만들고 OCA의 적합성 시험 도구(OCTT)로 두 버전 인증을 받은 뒤, 국내에서 막 시작된 Plug &amp; Charge(PnC) 1차 필드 테스트까지 진행하면서 겪은 일을 정리한 기록이다. </p>
+<p>첫 글에서는 전체 지도를 그린다. 이후 글에서 아키텍처, 메시지 파이프라인, 세션 운영, 트랜잭션, 인증 시험, 보안·인증서, PnC, 관리 화면, 충전기 HMI까지 하나씩 깊게 들어간다.</p>
+<h2>1. OCPP는 어디에 있는가</h2>
+<p>충전 서비스를 계층으로 나누면 대략 이렇다.</p>
+<pre><code class="hljs"><span class="hljs-selector-attr">[전기차]</span> ──ISO <span class="hljs-number">15118</span> / IEC <span class="hljs-number">61851</span>── <span class="hljs-selector-attr">[충전기(Charging Station)]</span> ──OCPP── <span class="hljs-selector-attr">[CSMS]</span> ──OCPI 등── <span class="hljs-selector-attr">[로밍·결제·다른 사업자]</span></code></pre>
+<ul>
+<li><strong>OCPP(Open Charge Point Protocol)</strong>: 충전기와 관제 서버(CSMS, Charging Station Management System) 사이의 규격. 부팅, 상태, 인증, 충전 시작·종료, 계량값, 원격 제어, 펌웨어, 보안을 다룬다.</li>
+<li><strong>ISO 15118 / IEC 61851</strong>: 차량과 충전기 사이. PnC(차량이 인증서로 스스로 인증)는 15118의 영역이지만, 인증서를 발급·검증하는 길은 결국 OCPP를 타고 CSMS까지 온다.</li>
+<li><strong>OCPI 등</strong>: 사업자 간 로밍. 이 시리즈의 범위 밖이다.</li>
+</ul>
+<p>실무에서 기억할 점은 하나다. <strong>CSMS 개발자는 충전기 펌웨어도, 차량 통신도 직접 만들지 않지만, 두 영역에서 생긴 문제는 전부 CSMS 로그에서 먼저 보인다.</strong> 그래서 규격 경계를 정확히 알아야 &quot;이건 충전기 쪽 문제다&quot;라고 말할 수 있다.</p>
+<p>하지만 이것저것 도와주며 같이하다보면 도움이 많이 된다.</p>
+<h2>2. 전송 방식: OCPP-J는 WebSocket 위의 JSON 배열이다</h2>
+<p>1.6부터 사실상의 표준이 된 OCPP-J는 WebSocket 연결 하나에 JSON 배열을 주고받는다. 1.5까지 쓰이던 SOAP 방식은 이제 현장에서 거의 보지 못했다.</p>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">[</span><span class="hljs-number">2</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;a1b2c3&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;BootNotification&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-punctuation">{</span><span class="hljs-attr">&quot;chargePointVendor&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Example&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">&quot;chargePointModel&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;X1&quot;</span><span class="hljs-punctuation">}</span><span class="hljs-punctuation">]</span>
+<span class="hljs-punctuation">[</span><span class="hljs-number">3</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;a1b2c3&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-punctuation">{</span><span class="hljs-attr">&quot;status&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Accepted&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">&quot;currentTime&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;2026-09-01T00:00:00Z&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">&quot;interval&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1800</span><span class="hljs-punctuation">}</span><span class="hljs-punctuation">]</span>
+<span class="hljs-punctuation">[</span><span class="hljs-number">4</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;a1b2c3&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;FormationViolation&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-string">&quot;payload is not valid&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-punctuation">{</span><span class="hljs-punctuation">}</span><span class="hljs-punctuation">]</span></code></pre>
+<ul>
+<li><code>2</code> = CALL(요청), <code>3</code> = CALLRESULT(응답), <code>4</code> = CALLERROR(오류). 2.1에서는 여기에 응답이 필요 없는 알림용 <code>SEND</code>(6) 등이 추가됐다.</li>
+<li>두 번째 요소는 요청과 응답을 짝짓는 <code>uniqueId</code>다. 양방향 모두 요청을 보낼 수 있으므로 <strong>서버도 충전기에 CALL을 보내고 응답을 기다린다.</strong></li>
+<li>충전기 식별은 보통 접속 URL의 마지막 경로(<code>wss://csms.example.com/ocpp/CP001</code>)로 한다.</li>
+<li>버전 협상은 WebSocket 핸드셰이크의 <code>Sec-WebSocket-Protocol</code> 헤더(<code>ocpp1.6</code>, <code>ocpp2.0.1</code>, <code>ocpp2.1</code>)로 한다.</li>
+</ul>
+<p>이 단순함 덕분에 구현 진입 장벽은 낮지만, 그만큼 &quot;규격이 정하지 않은 부분&quot;을 구현체마다 다르게 채운다. 충전기 제조사마다 조금씩 다른 해석을 받아내는 것이 CSMS의 일상이다.</p>
+<p>spring 에 장점!! 배포는 야물딱지게 야물파일로 불가피한 버전들은 나눠 젠킨스로 배포했다. </p>
+<ul>
+<li>application-prod.yml</li>
+<li>application-prod-profile2.yml</li>
+<li>application-prod-profile3.yml</li>
+</ul>
+<p>로그도 logback 으로 나누고 중앙로그서버에 전송한다. </p>
+<ul>
+<li>logback-prod.xml</li>
+<li>logback-prod-profile2.xml</li>
+<li>logback-prod-profile3.xml</li>
+</ul>
+<h2>3. 현장의 기본값</h2>
+<p>1.6은 2015년에 나왔고, 이후 보안 백서(Security Whitepaper)로 보안 프로파일·인증서 관리·서명 펌웨어가 확장됐다. 국내외 현장 충전기 대부분이 여전히 1.6 일듯하다.</p>
+<p><strong>기능 프로파일</strong>로 메시지를 묶는다.</p>
+<table>
+<thead>
+<tr>
+<th>프로파일</th>
+<th>대표 메시지</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Core</td>
+<td>BootNotification, Heartbeat, StatusNotification, Authorize, StartTransaction, StopTransaction, MeterValues, DataTransfer, RemoteStart/StopTransaction, ChangeConfiguration, GetConfiguration, Reset, UnlockConnector</td>
+</tr>
+<tr>
+<td>Firmware Management</td>
+<td>UpdateFirmware, GetDiagnostics, FirmwareStatusNotification, DiagnosticsStatusNotification</td>
+</tr>
+<tr>
+<td>Local Auth List</td>
+<td>GetLocalListVersion, SendLocalList</td>
+</tr>
+<tr>
+<td>Reservation</td>
+<td>ReserveNow, CancelReservation</td>
+</tr>
+<tr>
+<td>Smart Charging</td>
+<td>SetChargingProfile, ClearChargingProfile, GetCompositeSchedule</td>
+</tr>
+<tr>
+<td>Remote Trigger</td>
+<td>TriggerMessage</td>
+</tr>
+<tr>
+<td>(보안 확장)</td>
+<td>SignCertificate, CertificateSigned, InstallCertificate, GetInstalledCertificateIds, DeleteCertificate, SignedUpdateFirmware, GetLog, SecurityEventNotification, ExtendedTriggerMessage</td>
+</tr>
+</tbody></table>
+<p>1.6의 특징을 실무 관점에서 요약하면 이렇다.</p>
+<ul>
+<li><strong>충전기 = 커넥터 목록.</strong> <code>connectorId</code> 0은 충전기 전체, 1..N이 각 커넥터다. EVSE라는 중간 계층이 없다.</li>
+<li><strong>트랜잭션은 Start/Stop 두 메시지.</strong> StartTransaction 응답으로 서버가 정수 <code>transactionId</code>를 발급한다. 서버가 ID를 만들기 때문에 오프라인 상황과 중복 전송에서 문제가 많이 생긴다(5편에서 다룬다).</li>
+<li><strong>설정은 키-값.</strong> <code>GetConfiguration</code>/<code>ChangeConfiguration</code>으로 문자열 키(<code>HeartbeatInterval</code>, <code>MeterValueSampleInterval</code> 등)를 읽고 쓴다. 제조사 확장 키가 자유롭게 섞인다.</li>
+<li><strong>표준에 없는 건 전부 DataTransfer.</strong> 요금, 결제, QR, 부가 상태 같은 사업 로직이 <code>vendorId</code> + <code>messageId</code> + 자유 형식 <code>data</code>로 오간다. 뒤에서 보겠지만 1.6에서 PnC도 DataTransfer로 싣는다.</li>
+</ul>
+<h2>4. 2.0.1: 모델이 바뀐 버전</h2>
+<p>2.0(2018)을 거쳐 2020년에 나온 2.0.1은 사실상 새 규격이다. 메시지 이름이 비슷해 보여도 <strong>데이터 모델이 다르기 때문에 1.6 코드를 고쳐서 쓰는 방식으로는 오래 못 간다.</strong> 직접 겪은 차이를 중요한 순서로 정리한다.</p>
+<h3>4.1 트랜잭션: TransactionEvent 하나로 통합</h3>
+<pre><code class="hljs"><span class="hljs-number">1.6</span>:  <span class="hljs-title class_">StartTransaction</span> → <span class="hljs-title class_">MeterValues</span> … → <span class="hljs-title class_">StopTransaction</span>
+<span class="hljs-number">2.0</span>.<span class="hljs-number">1</span>: <span class="hljs-title class_">TransactionEvent</span>(<span class="hljs-title class_">Started</span>) → <span class="hljs-title class_">TransactionEvent</span>(<span class="hljs-title class_">Updated</span>) … → <span class="hljs-title class_">TransactionEvent</span>(<span class="hljs-title class_">Ended</span>)</code></pre>
+<ul>
+<li><code>transactionId</code>를 <strong>충전기가 문자열(UUID 등)로 만든다.</strong> 서버 발급 정수가 사라지면서 오프라인 시작이 자연스러워졌다.</li>
+<li>이벤트마다 <code>seqNo</code>가 붙어 중복·순서 역전을 판별할 수 있다.</li>
+<li><code>triggerReason</code>(CablePluggedIn, Authorized, EnergyLimitReached…)과 <code>chargingState</code>로 &quot;왜 이 이벤트가 왔는지&quot;를 알려준다.</li>
+<li>케이블을 먼저 꽂으면 인증 전에 Started가 온다. 즉 <strong>트랜잭션 시작 = 인증 성공이 아니다.</strong> 1.6식 사고로 접근하면 여기서 가장 많이 헤맨다.</li>
+</ul>
+<h3>4.2 EVSE 계층</h3>
+<pre><code class="hljs"><span class="hljs-title class_">Charging</span> <span class="hljs-title class_">Station</span> ─┬─ EVSE <span class="hljs-number">1</span> ─┬─ <span class="hljs-title class_">Connector</span> <span class="hljs-number">1</span> (<span class="hljs-title class_">CCS1</span>)
+                  │          └─ <span class="hljs-title class_">Connector</span> <span class="hljs-number">2</span> (<span class="hljs-title class_">CHAdeMO</span>)
+                  └─ EVSE <span class="hljs-number">2</span> ─── <span class="hljs-title class_">Connector</span> <span class="hljs-number">1</span></code></pre>
+<p>EVSE는 &quot;동시에 한 대만 충전할 수 있는 단위&quot;, 커넥터는 물리적인 건(gun)이다. 1.6의 <code>connectorId</code> 하나로 표현하던 것을 <code>evseId</code> + <code>connectorId</code>로 나눈다. 기존 DB가 &quot;충전기 채널 번호&quot; 한 칸으로 설계돼 있다면 매핑 규칙을 반드시 문서로 남겨야 한다.</p>
+<h3>4.3 Device Model: 설정의 구조화</h3>
+<p>1.6의 평평한 키-값 대신 <strong>Component / Variable / Attribute</strong> 구조를 쓴다.</p>
+<pre><code class="hljs"><span class="hljs-title class_">Component</span>: <span class="hljs-title class_">OCPPCommCtrlr</span>   <span class="hljs-title class_">Variable</span>: <span class="hljs-title class_">OfflineThreshold</span>   <span class="hljs-title class_">Attribute</span>: <span class="hljs-title class_">Actual</span>  → <span class="hljs-string">&quot;120&quot;</span>
+<span class="hljs-title class_">Component</span>: <span class="hljs-title class_">AuthCtrlr</span>       <span class="hljs-title class_">Variable</span>: <span class="hljs-title class_">AuthorizeRemoteStart</span> <span class="hljs-title class_">Attribute</span>: <span class="hljs-title class_">Actual</span> → <span class="hljs-string">&quot;true&quot;</span>
+<span class="hljs-title class_">Component</span>: EVSE(evseId=<span class="hljs-number">1</span>)  <span class="hljs-title class_">Variable</span>: <span class="hljs-title class_">Power</span>              <span class="hljs-title class_">Attribute</span>: <span class="hljs-title class_">MaxSet</span> → <span class="hljs-string">&quot;50000&quot;</span></code></pre>
+<p><code>GetVariables</code>/<code>SetVariables</code>로 개별 값을, <code>GetBaseReport</code>(ConfigurationInventory, FullInventory, SummaryInventory)로 전체 목록을 받고, 충전기는 <code>NotifyReport</code>로 결과를 여러 번에 나눠 보낸다. <code>SetVariableMonitoring</code>과 <code>NotifyEvent</code>로 값의 변화를 감시할 수도 있다. 제대로 쓰려면 서버가 충전기별 Device Model 저장소를 가져야 하는데, 처음부터 다 만들 필요는 없다. 인증 시험에 필요한 요청 기능부터 만들고 저장은 뒤로 미뤄도 된다.</p>
+<h3>4.4 보안이 본문으로 들어옴</h3>
+<p>1.6에서 백서로 따로 있던 보안 프로파일(0~3), 인증서 관리, 서명 펌웨어, 보안 이벤트가 2.0.1에서는 규격 본문이다. 인증 시험도 보안 섹션(A)부터 시작한다. 7편에서 자세히 다룬다.</p>
+<h3>4.5 ISO 15118(PnC) 네이티브 지원</h3>
+<p>1.6에서는 DataTransfer로 우회하던 PnC 메시지가 정식 액션이 됐다.</p>
+<ul>
+<li><code>Authorize</code>에 <code>iso15118CertificateHashData</code> 또는 계약 인증서 PEM</li>
+<li><code>Get15118EVCertificate</code>(차량 계약 인증서 설치·갱신), <code>GetCertificateStatus</code>(OCSP)</li>
+<li><code>SignCertificate</code> / <code>CertificateSigned</code>(충전기 인증서), <code>InstallCertificate</code> / <code>DeleteCertificate</code> / <code>GetInstalledCertificateIds</code></li>
+<li><code>NotifyEVChargingNeeds</code> → <code>SetChargingProfile</code>(15118 기반 스마트 충전)</li>
+</ul>
+<h3>4.6 그 밖에 체감이 큰 변화</h3>
+<ul>
+<li><strong>디스플레이 메시지</strong>: <code>SetDisplayMessage</code>로 충전기 화면에 문구를 띄운다.</li>
+<li><strong>요금 표시</strong>: <code>CostUpdated</code>, <code>TransactionEvent</code> 응답의 <code>totalCost</code>.</li>
+<li><strong>로컬 제어기, 네트워크 프로파일</strong>: <code>SetNetworkProfile</code>로 접속 정보를 원격 변경.</li>
+<li><strong>메시지 수</strong>가 1.6의 약 두 배로 늘었고 JSON 스키마가 훨씬 엄격하다. 선택 필드에 <code>null</code>을 넣으면 스키마 위반이다(3편).</li>
+</ul>
+<h2>5. 2.1: 2.0.1의 확장판</h2>
+<p>2.1은 2025년 초에 공개됐다. 2.0.1과 하위 호환을 목표로 만들어져서 대부분의 메시지가 그대로이고, 필드와 기능이 추가됐다.</p>
+<ul>
+<li><strong>양방향 충전(V2X)</strong>, 로컬 에너지 관리, 배터리 교환</li>
+<li><strong>요금(Tariff) 모델 강화</strong>, 선불·임시 결제 흐름</li>
+<li><code>allowedEnergyTransfer</code>, <code>tariffId</code>, <code>operationMode</code> 같은 필드 추가</li>
+<li>응답 없는 메시지 타입, 대량 메시지 처리 개선</li>
+</ul>
+<p>실무에서 내린 결정은 **&quot;2.0.1 모델로 구현하고, 2.1 필드는 스위치 하나 뒤에 숨긴다&quot;**였다. 서브프로토콜 협상 우선순위를 <code>ocpp2.0.1</code>로 두고, 2.1 확장 파싱은 코드로는 준비하되 기본값 꺼짐으로 둔다. 현장 충전기가 2.1을 말하기 시작할 때 설정만 바꾸면 된다. 다만 저장소 이름을 &quot;ocpp21&quot;로 지어 놓으면 &quot;우리 2.1 된다&quot;로 오해받기 쉬우니, README에 &quot;현재 협상 프로토콜은 2.0.1&quot;이라고 분명히 적어 두는 편이 좋다.</p>
+<h2>6. 버전별 비교표</h2>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>1.6J</th>
+<th>2.0.1</th>
+<th>2.1</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>서브프로토콜</td>
+<td><code>ocpp1.6</code></td>
+<td><code>ocpp2.0.1</code></td>
+<td><code>ocpp2.1</code></td>
+</tr>
+<tr>
+<td>장치 모델</td>
+<td>충전기 + 커넥터</td>
+<td>충전기 + EVSE + 커넥터</td>
+<td>동일</td>
+</tr>
+<tr>
+<td>트랜잭션</td>
+<td>Start/StopTransaction, 서버 발급 정수 ID</td>
+<td>TransactionEvent, 충전기 발급 문자열 ID, seqNo</td>
+<td>동일 + 확장 필드</td>
+</tr>
+<tr>
+<td>설정</td>
+<td>키-값 Configuration</td>
+<td>Device Model(Component/Variable)</td>
+<td>동일</td>
+</tr>
+<tr>
+<td>보안</td>
+<td>백서(확장)</td>
+<td>본문</td>
+<td>본문</td>
+</tr>
+<tr>
+<td>ISO 15118 PnC</td>
+<td>DataTransfer로 우회</td>
+<td>네이티브</td>
+<td>네이티브 + 확장</td>
+</tr>
+<tr>
+<td>요금</td>
+<td>DataTransfer</td>
+<td>CostUpdated, totalCost</td>
+<td>Tariff 모델 강화</td>
+</tr>
+<tr>
+<td>인증 시험</td>
+<td>OCTT 1.6</td>
+<td>OCTT 2.0.1</td>
+<td>준비 중인 곳이 많음</td>
+</tr>
+</tbody></table>
+<h2>7. 어떤 버전부터 만들까</h2>
+<p>두 버전을 모두 만들어 본 경험으로 정리하면 이렇다.</p>
+<ol>
+<li><strong>현장에 1.6 충전기가 있다면 1.6부터.</strong> 매출은 1.6에서 나온다. 보안 확장(프로파일 2/3, SignCertificate)까지 넣어야 앞으로의 입찰 요건을 맞춘다.</li>
+<li><strong>2.0.1은 별도 서버(또는 별도 모듈)로.</strong> 공통 로직(회원, 요금, 이력 저장)은 공유하되, 프로토콜 계층은 버전별로 분리하는 편이 결과적으로 덜 아팠다. 1.6 코드에 2.0.1을 끼워 넣으면 <code>if (version == ...)</code>이 끝없이 늘어난다.</li>
+<li><strong>내부 도메인 모델을 먼저 정한다.</strong> &quot;트랜잭션&quot;, &quot;충전 채널&quot;, &quot;계량 샘플&quot;을 버전 중립적으로 정의하고, 각 버전 파서가 그 모델로 변환하게 한다. 이걸 늦게 하면 2.0.1의 TransactionEvent를 1.6의 Start/Stop으로 억지로 쪼개는 코드가 생기고, 결국 이름만 1.6인 로직(<code>meterStart</code>, <code>StopTransactionFeeCalculator</code>)이 2.0.1 서버에 남는다. 우리도 그랬다.</li>
+<li><strong>인증 시험(OCTT)을 개발 초기에 돌린다.</strong> 규격 해석이 맞는지 가장 빨리 알려주는 도구다. 6편에서 자세히 다룬다.</li>
+</ol>
+<h2>정리</h2>
+<ul>
+<li>OCPP-J는 WebSocket 위의 <code>[타입, id, 액션, 페이로드]</code> 배열이다. 단순하지만 규격 밖의 해석 차이를 받아내는 것이 CSMS의 몫이다.</li>
+<li>1.6은 현장의 기본값, 2.0.1은 모델이 다른 새 규격, 2.1은 2.0.1의 확장이다.</li>
+<li>버전 간 가장 큰 차이는 트랜잭션 모델(Start/Stop vs TransactionEvent), 장치 계층(EVSE), 설정 구조(Device Model), 보안·PnC의 위치다.</li>
+<li>버전 중립 도메인 모델을 먼저 세우고 프로토콜 계층을 버전별로 분리하자.</li>
+</ul>
+<p>다음 글에서는 이 버전들을 한 시스템 안에서 어떻게 나눠 배치했는지, CSMS 전체 아키텍처를 다룬다.</p>
+<hr>
+<h2>OCPP 시리즈</h2>
+<ol>
+<li><strong>OCPP 한눈에 보기 — 1.6J, 2.0.1, 2.1은 무엇이 다른가</strong> (현재 글)</li>
+<li><a href="/posts/ocpp-02/">CSMS 아키텍처 — 버전별 OCPP 서버, API 허브, 레거시 공존</a></li>
+<li><a href="/posts/ocpp-03/">OCPP-J 메시지 파이프라인 구현 — 핸드셰이크부터 응답 매칭까지</a></li>
+<li><a href="/posts/ocpp-04/">충전기 수천 대의 WebSocket 세션 운영기 — 중복 접속, 배포 끊김, NAT, 좀비 세션</a></li>
+<li><a href="/posts/ocpp-05/">트랜잭션과 계량값의 함정 — 멱등 처리, 늦게 온 Stop, 충전기 편차 정규화</a></li>
+<li><a href="/posts/ocpp-06/">OCTT 인증 통과기 — OCPP 1.6과 2.0.1 CSMS 적합성 시험에서 배운 것</a></li>
+<li><a href="/posts/ocpp-07/">OCPP 보안 프로파일과 인증서 운영 — Basic 인증부터 mTLS, SignCertificate까지</a></li>
+<li><a href="/posts/ocpp-08/">Plug &amp; Charge 1차 필드 테스트 — ISO 15118 인증서 체계와 CSMS가 해야 할 일</a></li>
+<li><a href="/posts/ocpp-09/">OCPP 버전별 세션 관리 화면이 필요한 이유 — 관제·원격 명령·시험을 한 콘솔에</a></li>
+<li><a href="/posts/ocpp-10/">충전기 HMI를 WPF로 만들기 — 계층화, 정규화, 키오스크 UI, 무중단 업데이트</a></li>
+</ol>
+1b:[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"OCPP 한눈에 보기 — 1.6J, 2.0.1, 2.1은 무엇이 다른가\",\"description\":\"전기차 충전기와 관제 서버(CSMS)가 대화하는 규격 OCPP를 실무 관점에서 정리한다. 1.6J에서 2.0.1, 2.1로 넘어가며 바뀐 메시지 구조, 트랜잭션 모델, Device Model, 보안과 ISO 15118을 비교한다.\",\"datePublished\":\"2026-09-02\",\"url\":\"https://kaisa.co.kr/posts/ocpp-01/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"ocpp\",\"keywords\":\"ocpp, ev-charging, csms, ocpp1.6, ocpp2.0.1, ocpp2.1\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"OCPP 한눈에 보기 — 1.6J, 2.0.1, 2.1은 무엇이 다른가\",\"item\":\"https://kaisa.co.kr/posts/ocpp-01/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L6",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2026-09-02"}]}],["$","h1",null,{"className":"blog-post__title","children":"OCPP 한눈에 보기 — 1.6J, 2.0.1, 2.1은 무엇이 다른가"}],["$","div",null,{"className":"blog-post__body blog-post__body--markdown","children":["$","div",null,{"className":"markdown-body","dangerouslySetInnerHTML":{"__html":"$24"}}]}],"$L25","$L26"]}]}]}]]
+27:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],"default"]
+25:["$","$L27",null,{"pathKey":"ocpp-01"}]
+26:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[null,["$","$L6",null,{"href":"/posts/ocpp-02/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"CSMS 아키텍처 — 버전별 OCPP 서버, API 허브, 레거시 공존"}]]}]]}],["$","$L6",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
+21:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+28:I[27201,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"IconMark"]
+1e:null
+23:[["$","title","0",{"children":"OCPP 한눈에 보기 — 1.6J, 2.0.1, 2.1은 무엇이 다른가 · Kaisa"}],["$","meta","1",{"name":"description","content":"전기차 충전기와 관제 서버(CSMS)가 대화하는 규격 OCPP를 실무 관점에서 정리한다. 1.6J에서 2.0.1, 2.1로 넘어가며 바뀐 메시지 구조, 트랜잭션 모델, Device Model, 보안과 ISO 15118을 비교한다."}],["$","meta","2",{"name":"application-name","content":"Kaisa"}],["$","meta","3",{"name":"robots","content":"index, follow"}],["$","meta","4",{"name":"naver-site-verification","content":"4bc13b857695ff44988c260cb26124eedbcda90e"}],["$","link","5",{"rel":"canonical","href":"https://kaisa.co.kr/posts/ocpp-01/"}],["$","meta","6",{"property":"og:title","content":"OCPP 한눈에 보기 — 1.6J, 2.0.1, 2.1은 무엇이 다른가 · Kaisa"}],["$","meta","7",{"property":"og:description","content":"전기차 충전기와 관제 서버(CSMS)가 대화하는 규격 OCPP를 실무 관점에서 정리한다. 1.6J에서 2.0.1, 2.1로 넘어가며 바뀐 메시지 구조, 트랜잭션 모델, Device Model, 보안과 ISO 15118을 비교한다."}],["$","meta","8",{"property":"og:url","content":"https://kaisa.co.kr/posts/ocpp-01/"}],["$","meta","9",{"property":"og:site_name","content":"Kaisa"}],["$","meta","10",{"property":"og:locale","content":"ko_KR"}],["$","meta","11",{"property":"og:type","content":"article"}],["$","meta","12",{"name":"twitter:card","content":"summary"}],["$","meta","13",{"name":"twitter:title","content":"OCPP 한눈에 보기 — 1.6J, 2.0.1, 2.1은 무엇이 다른가 · Kaisa"}],["$","meta","14",{"name":"twitter:description","content":"전기차 충전기와 관제 서버(CSMS)가 대화하는 규격 OCPP를 실무 관점에서 정리한다. 1.6J에서 2.0.1, 2.1로 넘어가며 바뀐 메시지 구조, 트랜잭션 모델, Device Model, 보안과 ISO 15118을 비교한다."}],["$","link","15",{"rel":"shortcut icon","href":"/img/common/favicon.ico"}],["$","link","16",{"rel":"icon","href":"/img/common/favicon.ico"}],["$","link","17",{"rel":"apple-touch-icon","href":"/img/common/favicon.ico"}],["$","$L28","18",{}]]

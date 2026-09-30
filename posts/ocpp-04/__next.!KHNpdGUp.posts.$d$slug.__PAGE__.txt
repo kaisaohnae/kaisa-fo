@@ -1,0 +1,112 @@
+1:"$Sreact.fragment"
+2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],""]
+a:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],"default"]
+b:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
+c:"$Sreact.suspense"
+:HL["/_next/static/chunks/0br7e7j26qkj3.css","style"]
+:HL["/_next/static/chunks/21i9-auhncr4a.css","style"]
+3:T3054,<h1>충전기 수천 대의 WebSocket 세션 운영기 — 중복 접속, 배포 끊김, NAT, 좀비 세션</h1>
+<blockquote>
+<p>요약: OCPP 서버를 운영하며 실제로 겪은 연결 문제와 해결책을 정리한다. 같은 ID의 중복 접속, 배포 때 close frame 없이 끊긴 소켓이 부른 재전송 폭주, 통신사 NAT 유휴 타임아웃, 좀비 세션 정리, 로그 소음 줄이기까지.</p>
+</blockquote>
+<hr>
+<h2>들어가며</h2>
+<p>OCPP 서버는 일반 웹 서버와 성격이 다르다. 요청이 오고 끝나는 게 아니라, <strong>수천 개의 연결이 몇 주씩 열려 있고</strong>, 연결 하나가 곧 충전기 한 대의 &quot;온라인&quot; 상태다. 연결이 이상하면 관제 화면에서 충전기가 깜빡이고, 충전 이력이 꼬이고, 현장 기사가 출동한다.</p>
+<p>이 글은 운영 로그에서 시작해 원인을 찾고 고친 기록이다. 날짜 순이 아니라 주제별로 묶었다.</p>
+<h2>1. 세션 레지스트리: 두 개의 맵</h2>
+<p>세션은 두 방향으로 찾을 수 있어야 한다.</p>
+<pre><code class="hljs language-java">Map&lt;String, SessionBinding&gt; bySessionId;   <span class="hljs-comment">// 소켓 이벤트(메시지 수신, 종료)에서 찾기</span>
+Map&lt;String, String&gt;         byChargePointId; <span class="hljs-comment">// 원격 명령에서 찾기 (충전기 ID → 세션 ID)</span></code></pre>
+<p><code>SessionBinding</code>에는 충전기 ID, 접속 시각, 원격 IP, 협상된 서브프로토콜, 부팅 상태를 담는다. 세션 목록 API(<code>GET /api/ocpp/sessions</code>)는 모든 버전 서버가 같은 형식으로 돌려주게 해서, API 허브와 관리 화면이 버전을 몰라도 합칠 수 있게 했다.</p>
+<h2>2. 같은 ID로 두 번 접속하면: 새 연결이 이긴다</h2>
+<p>충전기가 네트워크 문제로 재접속할 때, 서버 입장에서는 옛 소켓이 아직 살아 있는 것처럼 보이는 경우가 많다. TCP가 끊긴 걸 서버가 아직 모르기 때문이다. 이때 규칙은 하나다.</p>
+<p><strong>새 연결을 받고, 옛 연결은 <code>GOING_AWAY</code>(1001)로 닫는다.</strong></p>
+<p>여기서 두 번째 함정이 있다. 옛 세션을 닫으면 그 세션의 종료 콜백이 뒤늦게 불리고, 그 콜백이 &quot;이 충전기 오프라인&quot; 처리를 해 버린다. 방금 새로 붙은 충전기가 관제에서 오프라인으로 보이는 것이다. 종료 콜백에서 **&quot;이 세션이 이미 새 세션으로 대체됐는가&quot;**를 먼저 확인해서, 대체됐으면 상태를 건드리지 않게 했다.</p>
+<p>같은 ID의 물리적으로 다른 두 기기가 몇 초씩 번갈아 붙는 경우도 있었다(설정 실수로 ID가 복제된 경우). 이때는 두 원격 IP를 함께 WARN 로그로 남기게 했다. 현장 확인이 훨씬 빨라졌다.</p>
+<h2>3. 배포 한 번에 StopTransaction 천 개: close frame의 중요성</h2>
+<p>어느 날 배포 직후 충전 이력 테이블에 중복 키 오류가 쏟아졌다. 추적해 보니 이랬다.</p>
+<ol>
+<li>서버를 재시작하면서 약 천 개의 소켓이 <strong>close frame 없이</strong> 끊겼다.</li>
+<li>충전기들은 &quot;보낸 메시지의 응답을 못 받았다&quot;고 판단하고, 재접속 후 <strong>진행 중이던 StopTransaction을 다시 보냈다.</strong></li>
+<li>일부는 이미 처리된 것이라 이력 insert가 중복 키로 실패했다.</li>
+</ol>
+<p><code>server.shutdown: graceful</code>을 켜 두었는데도 이랬다. graceful shutdown은 진행 중인 HTTP 요청을 기다려 줄 뿐, <strong>유휴 WebSocket 연결을 정중하게 닫아 주지 않는다.</strong></p>
+<p>해결은 종료 훅에서 모든 세션에 직접 close frame을 보내는 것이다.</p>
+<pre><code class="hljs language-java"><span class="hljs-meta">@PreDestroy</span>
+<span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">closeAllOnShutdown</span><span class="hljs-params">()</span> {
+    <span class="hljs-keyword">for</span> (WebSocketSession s : sessions.all()) {
+        <span class="hljs-keyword">synchronized</span> (s) {
+            s.close(<span class="hljs-keyword">new</span> <span class="hljs-title class_">CloseStatus</span>(<span class="hljs-number">1012</span>, <span class="hljs-string">&quot;Service Restart&quot;</span>));  <span class="hljs-comment">// 1012 = Service Restart</span>
+        }
+    }
+}</code></pre>
+<p>Spring은 웹 서버를 멈추기 전에 빈을 먼저 파괴하므로, <code>@PreDestroy</code> 시점에는 소켓이 아직 살아 있다. <strong>1012(Service Restart)</strong> 코드를 받은 충전기 대부분은 &quot;서버 재시작이구나&quot; 하고 잠시 후 깔끔하게 재접속했다. 재전송은 줄었지만 0이 되지는 않으므로, StopTransaction은 <strong>중복이 와도 Accepted로 응답하는 멱등 처리</strong>가 함께 필요하다(5편).</p>
+<h2>4. 30초마다 재접속하는 충전기: 통신사 NAT의 유휴 타임아웃</h2>
+<p>특정 지역 충전기들이 약 30초 간격으로 &quot;Connection reset&quot;과 함께 재접속을 반복했다. 서버에는 아무 문제가 없었다. 공통점은 <strong>LTE 모뎀을 쓰는 충전기</strong>라는 것이었다.</p>
+<p>원인은 통신사 NAT(또는 방화벽)의 유휴 타임아웃이었다. OCPP Heartbeat 간격을 1800초(30분)로 주고 있었는데, 그동안 아무 패킷이 없으니 중간 장비가 연결 매핑을 지워 버린 것이다. 충전기는 끊긴 줄 모르고 있다가 다음에 보낼 때 RST를 받는다.</p>
+<p>선택지는 두 가지다.</p>
+<ul>
+<li><strong>Heartbeat 간격을 줄인다.</strong> 가장 쉽지만 OCPP 메시지가 늘고 DB에 부하가 간다. Heartbeat마다 뭔가를 기록한다면 특히 그렇다.</li>
+<li><strong>WebSocket 프로토콜 수준의 ping을 쓴다.</strong> OCPP 메시지가 아니라 WebSocket 제어 프레임이라 업무 로직을 타지 않는다. 우리는 이쪽을 택했다.</li>
+</ul>
+<p>도입은 조심스럽게 했다. ping을 보내는 대상을 <strong>설정 목록(ID 목록 또는 <code>*</code>)으로 제한하는 파일럿 모드</strong>를 먼저 만들었다. 모든 충전기가 ping에 제대로 pong을 돌려주는지 모르기 때문이다. 몇 기종에서 확인한 뒤 범위를 넓혔다.</p>
+<blockquote>
+<p>OCPP 1.6에도 <code>WebSocketPingInterval</code> 설정 키가 있다. 충전기가 먼저 ping을 보내게 할 수도 있다. 다만 지원 여부가 기종마다 달라서 서버 쪽 ping을 기본으로 두었다.</p>
+</blockquote>
+<h2>5. 좀비 세션 정리</h2>
+<p>ping을 넣고 나니 쓸 데가 하나 더 생겼다. <strong>pong이 안 오는 세션</strong>은 사실상 죽은 연결이다. 서버는 소켓이 열려 있다고 믿지만 충전기는 이미 다른 곳에 있거나 전원이 꺼졌다. 이런 세션이 남아 있으면 원격 명령이 타임아웃까지 매달리고, 관제에서는 온라인으로 보인다.</p>
+<p>그래서 ping 스케줄러를 &quot;좀비 수거기&quot;로 확장했다.</p>
+<ul>
+<li>일정 주기(예: 20분)마다 ping을 보낸다.</li>
+<li>60초 안에 pong이 없으면 세션을 닫는다. 살아 있는 충전기라면 곧 재접속한다.</li>
+</ul>
+<p>기능 플래그로 켜고 끌 수 있게 했고, 처음에는 끈 채로 배포해 로그만 관찰했다. 연결을 끊는 기능은 <strong>반드시 관찰 모드부터</strong> 시작하자.</p>
+<h2>6. 동시 전송 충돌</h2>
+<p>ping을 넣은 직후 &quot;blocking send를 기다리던 스레드가 인터럽트됨&quot; 오류가 나왔다. 톰캣의 blocking send는 한 세션에 동시 쓰기를 허용하지 않는데, ping 스케줄러 스레드와 메시지 응답 스레드가 같은 세션에 동시에 쓰고 있었다. 모든 전송·종료를 세션 단위로 동기화해 해결했다(3편 6장). <strong>새 전송 경로(ping, 알림, 배치)를 추가할 때마다 이 규칙을 지키는지 확인하자.</strong></p>
+<h2>7. 로그 소음 줄이기</h2>
+<p>수천 대가 붙어 있으면 연결 끊김은 매분 일어나는 정상 이벤트다. 그런데 끊김마다 WARN과 스택 트레이스가 찍히면 진짜 문제가 묻힌다.</p>
+<ul>
+<li>예외의 원인 체인을 따라가서 <code>SocketException</code>, <code>EOFException</code> 같은 <strong>일반적인 연결 종료면 INFO 한 줄</strong>로 남긴다.</li>
+<li>Windows 서버에서는 강제 종료된 TCP가 평범한 <code>IOException</code>(&quot;현재 연결은 원격 호스트에 의해 강제로 끊겼습니다&quot; 류)으로 올라온다. 타입만으로는 못 거르므로 메시지 문자열로도 판별했다.</li>
+<li>재전송으로 인한 중복 insert, 의미 없는 오류 코드(<code>OtherError</code>)의 상태 알림도 WARN 한 줄로 줄였다.</li>
+</ul>
+<p>로그를 줄이는 기준은 &quot;이 로그를 보고 사람이 할 일이 있는가&quot;였다.</p>
+<h2>8. 그 밖의 운영 체크리스트</h2>
+<ul>
+<li><strong>부팅 거절 후 연결 종료 순서</strong>: Rejected 응답을 <strong>보낸 뒤에</strong> 닫는다(정책 위반 1008). 응답 전에 닫으면 충전기는 이유를 모른 채 재접속을 반복한다.</li>
+<li><strong>재접속 시 부팅 상태 초기화</strong>: 새 연결마다 등록 상태를 비우고 BootNotification을 다시 기다린다.</li>
+<li><strong>톰캣 버퍼</strong>: 인증서 체인이 담긴 메시지는 수 KB에서 수십 KB다. 기본 버퍼로는 잘릴 수 있어 128KB로 늘렸다.</li>
+<li><strong>최대 연결 수, 스레드 수</strong>: 수신 처리는 WebSocket 스레드에서 동기로 돌기 때문에, 한 메시지 처리가 느리면(외부 API 호출 등) 같은 스레드의 다른 충전기가 밀린다. 외부 호출은 별도 스레드 풀로 뺀다.</li>
+<li><strong>세션 수 모니터링</strong>: 서버별 세션 수, 분당 접속·종료 수를 대시보드로 본다. 배포나 통신 장애가 그래프 모양으로 바로 보인다.</li>
+</ul>
+<h2>정리</h2>
+<ul>
+<li>중복 접속은 <strong>새 연결 우선</strong>. 옛 세션의 늦은 종료 콜백이 새 상태를 덮어쓰지 않게 막는다.</li>
+<li>배포할 때는 <code>@PreDestroy</code>에서 <strong>1012 close frame</strong>을 보낸다. graceful shutdown은 유휴 WebSocket을 닫아 주지 않는다.</li>
+<li>30초 재접속은 대개 <strong>NAT 유휴 타임아웃</strong>이다. Heartbeat 대신 WebSocket ping으로 해결하되, 파일럿 모드로 시작한다.</li>
+<li>pong 없는 세션은 좀비다. 관찰 모드부터 시작해 정리한다.</li>
+<li>세션 쓰기는 항상 직렬화하고, 정상적인 끊김은 INFO 한 줄로.</li>
+</ul>
+<p>다음 글에서는 연결 위에서 오가는 데이터 중 가장 돈과 직결되는 트랜잭션과 계량값, 그리고 충전기마다 다른 편차를 정규화하는 방법을 다룬다.</p>
+<hr>
+<h2>OCPP 시리즈</h2>
+<ol>
+<li><a href="/posts/ocpp-01/">OCPP 한눈에 보기 — 1.6J, 2.0.1, 2.1은 무엇이 다른가</a></li>
+<li><a href="/posts/ocpp-02/">CSMS 아키텍처 — 버전별 OCPP 서버, API 허브, 레거시 공존</a></li>
+<li><a href="/posts/ocpp-03/">OCPP-J 메시지 파이프라인 구현 — 핸드셰이크부터 응답 매칭까지</a></li>
+<li><strong>충전기 수천 대의 WebSocket 세션 운영기 — 중복 접속, 배포 끊김, NAT, 좀비 세션</strong> (현재 글)</li>
+<li><a href="/posts/ocpp-05/">트랜잭션과 계량값의 함정 — 멱등 처리, 늦게 온 Stop, 충전기 편차 정규화</a></li>
+<li><a href="/posts/ocpp-06/">OCTT 인증 통과기 — OCPP 1.6과 2.0.1 CSMS 적합성 시험에서 배운 것</a></li>
+<li><a href="/posts/ocpp-07/">OCPP 보안 프로파일과 인증서 운영 — Basic 인증부터 mTLS, SignCertificate까지</a></li>
+<li><a href="/posts/ocpp-08/">Plug &amp; Charge 1차 필드 테스트 — ISO 15118 인증서 체계와 CSMS가 해야 할 일</a></li>
+<li><a href="/posts/ocpp-09/">OCPP 버전별 세션 관리 화면이 필요한 이유 — 관제·원격 명령·시험을 한 콘솔에</a></li>
+<li><a href="/posts/ocpp-10/">충전기 HMI를 WPF로 만들기 — 계층화, 정규화, 키오스크 UI, 무중단 업데이트</a></li>
+</ol>
+0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"충전기 수천 대의 WebSocket 세션 운영기 — 중복 접속, 배포 끊김, NAT, 좀비 세션\",\"description\":\"OCPP 서버를 운영하며 실제로 겪은 연결 문제와 해결책을 정리한다. 같은 ID의 중복 접속, 배포 때 close frame 없이 끊긴 소켓이 부른 재전송 폭주, 통신사 NAT 유휴 타임아웃, 좀비 세션 정리, 로그 소음 줄이기까지.\",\"datePublished\":\"2026-09-11\",\"url\":\"https://kaisa.co.kr/posts/ocpp-04/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"ocpp\",\"keywords\":\"ocpp, websocket, operations, tomcat, nat, csms\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"충전기 수천 대의 WebSocket 세션 운영기 — 중복 접속, 배포 끊김, NAT, 좀비 세션\",\"item\":\"https://kaisa.co.kr/posts/ocpp-04/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2026-09-11"}]}],["$","h1",null,{"className":"blog-post__title","children":"충전기 수천 대의 WebSocket 세션 운영기 — 중복 접속, 배포 끊김, NAT, 좀비 세션"}],["$","div",null,{"className":"blog-post__body blog-post__body--markdown","children":["$","div",null,{"className":"markdown-body","dangerouslySetInnerHTML":{"__html":"$3"}}]}],"$L4","$L5"]}]}]}]],["$L6","$L7","$L8"],"$L9"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"72soPwz3-0MGC1qZMTNqb"}
+4:["$","$La",null,{"pathKey":"ocpp-04"}]
+5:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/ocpp-03/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"OCPP-J 메시지 파이프라인 구현 — 핸드셰이크부터 응답 매칭까지"}]]}],["$","$L2",null,{"href":"/posts/ocpp-05/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"트랜잭션과 계량값의 함정 — 멱등 처리, 늦게 온 Stop, 충전기 편차 정규화"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
+6:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
+7:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
+8:["$","script","script-0",{"src":"/_next/static/chunks/26shoze10o-dc.js","async":true}]
+9:["$","$Lb",null,{"children":["$","$c",null,{"name":"Next.MetadataOutlet","children":"$@d"}]}]
+d:null

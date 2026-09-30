@@ -1,0 +1,202 @@
+1:"$Sreact.fragment"
+2:I[479520,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],""]
+3:I[883661,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"default"]
+4:I[339756,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"default"]
+5:I[837457,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"default"]
+6:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],""]
+7:I[722067,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"default"]
+8:I[778481,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"default"]
+9:I[902105,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"default"]
+14:I[168027,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"default",1]
+:HL["/_next/static/chunks/34-r72pc7x98u.css","style"]
+:HL["/_next/static/chunks/3xau-2enavhj9.css","style"]
+:HL["/_next/static/chunks/0souqbpzq6xbb.css","style"]
+:HL["/_next/static/chunks/1xra_60l-k8t4.css","style"]
+:HL["/_next/static/media/0c795a286deabae8-s.p.3vm0tq4e-zz_5.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/media/5c285b27cdda1fe8-s.p.2_mbdogr7ni8i.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/_next/static/chunks/0br7e7j26qkj3.css","style"]
+:HL["/_next/static/chunks/21i9-auhncr4a.css","style"]
+:HL["/_next/static/chunks/0z_31kp4nojhg.css","style"]
+0:{"P":null,"c":["","posts","ocpp-07",""],"q":"","i":false,"f":[[["",{"children":["(site)",{"children":["posts",{"children":[["slug","ocpp-07","d",null],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/34-r72pc7x98u.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/3hb4n4ylf5-a0.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1ntn7efqc-iiw.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ko","className":"syne_53f86cd1-module__kiT3Eq__variable dm_sans_fd62f040-module__0jgVUW__variable","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","$L2",null,{"id":"kaisa-google-adsense","strategy":"afterInteractive","src":"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2641553863829571","crossOrigin":"anonymous"}]}],["$","body",null,{"children":[["$","script",null,{"id":"kaisa-init-1","dangerouslySetInnerHTML":{"__html":"(function(){try{var t=null;document.cookie.split(';').forEach(function(c){var p=c.trim().split('=');if(p[0]==='kaisa-shared-theme')t=decodeURIComponent(p[1]||'');});document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();"}}],["$","script",null,{"id":"kaisa-locale-init","dangerouslySetInnerHTML":{"__html":"(function(){try{\nvar key='kaisa-shared-locale',entry=document.cookie.split(';').map(function(c){return c.trim();}).find(function(c){return c.indexOf(key+'=')===0;});\nvar l=entry?entry.slice(key.length+1):null;\nfunction valid(v){return /^(ko|en|zh|hi)$/.test(v||'');}\nif(!valid(l)){try{l=sessionStorage.getItem('kaisa-locale');}catch(e){}}\nif(!valid(l)){var a=[navigator.language].concat(navigator.languages||[]);l=null;for(var i=0;i<a.length;i++){var m=/^(ko|en|zh|hi)/i.exec(a[i]||'');if(m){l=m[1].toLowerCase();break;}}}\nvar determined=valid(l);if(!determined)l='ko';\nif(determined&&(!entry||entry.slice(key.length+1)!==l)){var h=location.hostname,d=h==='kaisa.co.kr'||h.endsWith('.kaisa.co.kr')?'; domain=kaisa.co.kr':'';document.cookie=key+'='+l+'; max-age=2592000; path=/; samesite=lax'+d;}\ndocument.documentElement.lang=l;\n}catch(e){document.documentElement.lang='ko';}})();"}}],[["$","$L2",null,{"src":"https://www.googletagmanager.com/gtag/js?id=G-2281QQ6XP4","strategy":"afterInteractive"}],["$","$L2",null,{"id":"google-analytics","strategy":"afterInteractive","children":"\n          window.dataLayer = window.dataLayer || [];\n          function gtag(){dataLayer.push(arguments);}\n          gtag('js', new Date());\n          gtag('config', 'G-2281QQ6XP4');\n        "}]],["$","$L3",null,{}],["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}],["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]]}]}],[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0z_31kp4nojhg.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","$L7",null,{}],["$","$L8",null,{}],["$","$L9",null,{}]]}]]}]]}],{"children":[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3xau-2enavhj9.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0souqbpzq6xbb.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/1xra_60l-k8t4.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],"$La","$Lb","$Lc","$Ld"],"$Le"]}],{"children":["$Lf",{"children":["$L10",{"children":["$L11",{},null,false,null]},null,false,"$@12"]},null,false,"$@12"]},null,false,null]},null,false,null],"$L13",false]],"m":"$undefined","G":["$14",["$L15"]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"72soPwz3-0MGC1qZMTNqb"}
+16:I[669033,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js"],"LocaleProvider"]
+17:I[545872,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js"],"default"]
+18:I[320683,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js"],"default"]
+19:I[86979,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/2nllraa9qqjuh.js"],"default"]
+1a:I[44604,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js"],"default"]
+1c:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
+1d:"$Sreact.suspense"
+20:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"ViewportBoundary"]
+22:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"MetadataBoundary"]
+a:["$","script","script-0",{"src":"/_next/static/chunks/2t60f4_2tjmro.js","async":true,"nonce":"$undefined"}]
+b:["$","script","script-1",{"src":"/_next/static/chunks/1i1l5t--me2mi.js","async":true,"nonce":"$undefined"}]
+c:["$","script","script-2",{"src":"/_next/static/chunks/2-06zdxz3h-nd.js","async":true,"nonce":"$undefined"}]
+d:["$","script","script-3",{"src":"/_next/static/chunks/3ha5i75rsjlst.js","async":true,"nonce":"$undefined"}]
+e:["$","$L16",null,{"children":["$","div",null,{"className":"site-layout","children":[["$","$L17",null,{}],["$","$L18",null,{"children":["$","$L4",null,{"parallelRouterKey":"children","error":"$19","errorStyles":[],"errorScripts":[["$","script","script-0",{"src":"/_next/static/chunks/2nllraa9qqjuh.js","async":true}]],"template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}],["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]]}]}],[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0z_31kp4nojhg.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],["$","$L1a",null,{}]]}]}]
+f:["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]
+10:["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]
+11:["$","$1","c",{"children":["$L1b",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/26shoze10o-dc.js","async":true,"nonce":"$undefined"}]],["$","$L1c",null,{"children":["$","$1d",null,{"name":"Next.MetadataOutlet","children":"$@1e"}]}]]}]
+1f:[]
+12:"$W1f"
+13:["$","$1","h",{"children":[null,["$","$L20",null,{"children":"$L21"}],["$","div",null,{"hidden":true,"children":["$","$L22",null,{"children":["$","$1d",null,{"name":"Next.Metadata","children":"$L23"}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}]
+15:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/34-r72pc7x98u.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
+24:T3b9d,<h1>OCPP 보안 프로파일과 인증서 운영 — Basic 인증부터 mTLS, SignCertificate까지</h1>
+<blockquote>
+<p>요약: OCPP 보안 프로파일 0~3의 의미와 실제 설정, 충전기·서버·CA 키스토어 세트를 한 번에 만드는 방법, SignCertificate로 충전기 인증서를 발급하는 흐름, 현장 IP 서버에서 루트 인증서를 자동 설치하게 만든 방법, 자주 하는 실수를 정리한다.</p>
+</blockquote>
+<hr>
+<h2>들어가며</h2>
+<p>충전기 보안은 오랫동안 &quot;URL에 충전기 ID만 맞으면 붙는&quot; 수준이었다. 보안 백서(1.6)와 2.0.1 본문이 보안 프로파일을 정의하면서 이제 입찰과 인증 시험 모두 최소 프로파일 2를 요구한다. 그리고 PnC로 가면 인증서가 충전 인증 자체가 된다.</p>
+<p>이 글은 보안 프로파일을 실제 서버에 적용하고, 인증서를 만들고 배포하고 갱신하면서 겪은 것을 정리한다. PnC 특유의 PKI는 다음 글에서 다룬다.</p>
+<h2>1. 보안 프로파일 한 장 요약</h2>
+<table>
+<thead>
+<tr>
+<th>프로파일</th>
+<th>전송</th>
+<th>충전기 인증</th>
+<th>서버 인증</th>
+<th>비고</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>ws</td>
+<td>없음</td>
+<td>없음</td>
+<td>규격상 정의만. 운영 금지</td>
+</tr>
+<tr>
+<td>1</td>
+<td>ws</td>
+<td>HTTP Basic</td>
+<td>없음</td>
+<td>폐쇄망 전제. 비밀번호가 평문으로 흐른다</td>
+</tr>
+<tr>
+<td>2</td>
+<td>wss (TLS)</td>
+<td>HTTP Basic</td>
+<td>서버 인증서</td>
+<td>현실적인 최소선</td>
+</tr>
+<tr>
+<td>3</td>
+<td>wss (mTLS)</td>
+<td>클라이언트 인증서</td>
+<td>서버 인증서</td>
+<td>Basic 없이 인증서로 충전기 식별</td>
+</tr>
+</tbody></table>
+<p>실무 포인트:</p>
+<ul>
+<li><strong>Basic 인증의 사용자명은 충전기 ID와 같아야</strong> 한다. 비밀번호는 충전기별로 달라야 하고, 서버는 상수 시간 비교를 한다. 비밀번호 변경은 1.6에서 <code>ChangeConfiguration(AuthorizationKey)</code>, 2.0.1에서 <code>SetVariables(SecurityCtrlr.BasicAuthPassword)</code>로 서버가 내린다.</li>
+<li><strong>프로파일 3의 충전기 인증서 CN은 충전기 ID</strong>여야 한다. 서버는 TLS 계층에서 인증서를 검증하고, 애플리케이션에서 CN과 URL의 ID가 같은지 확인한다.</li>
+<li>프로파일을 올리는 건 서버가 지시할 수 있지만(<code>SecurityProfile</code> 설정), <strong>내리는 건 막아야</strong> 한다. 다운그레이드 공격이 된다.</li>
+<li>운영에서 TLS를 리버스 프록시에서 끝낸다면 프로파일 2까지만 가능하다. 프로파일 3은 클라이언트 인증서를 서버가 직접 봐야 하므로, 프록시가 인증서를 넘겨주는 구성을 하거나 서버가 직접 TLS를 받아야 한다.</li>
+</ul>
+<h2>2. 한 포트 = 한 TLS 설정</h2>
+<p>처음에 겪은 제약이다. 톰캣 커넥터 하나는 하나의 키스토어, 하나의 클라이언트 인증 정책을 가진다.</p>
+<ul>
+<li>프로파일 2와 3을 같이 받으려면 포트를 둘로 나누거나, <code>client-auth: want</code>로 받고 애플리케이션에서 프로파일을 판정해야 한다. 인증 시험(프로파일 3)은 <code>need</code>를 요구했다.</li>
+<li>RSA 인증서와 ECDSA 인증서를 한 포트에서 섞지 못한다. 충전기 쪽 TLS 스택이 특정 알고리즘만 지원하는 경우가 있어, 알고리즘별 포트를 두기도 한다.</li>
+<li>프로파일 1(TLS 없음)은 아예 별도 서버 인스턴스로 분리했다(2편).</li>
+</ul>
+<h2>3. 키스토어 세트는 스크립트로 한 번에 만든다</h2>
+<p>필요한 파일이 생각보다 많다. 환경(로컬, 시험, 운영)마다, 알고리즘(RSA, ECDSA)마다 다음 세트를 만든다.</p>
+<pre><code class="hljs">csms-root-ca          서버 측 루트 CA <span class="hljs-punctuation">(</span>충전기가 신뢰할 대상<span class="hljs-punctuation">)</span>
+csms-server.p12       서버 TLS 인증서 + 키
+csms-mtls-truststore  서버가 신뢰할 충전기 발급 CA <span class="hljs-punctuation">(</span>프로파일 <span class="hljs-number">3</span><span class="hljs-punctuation">)</span>
+csms-ca.p12           SignCertificate의 CSR에 서명할 CA 키  ← 절대 외부 업로드 금지
+cp-client.jks         충전기<span class="hljs-punctuation">(</span>또는 시험 도구<span class="hljs-punctuation">)</span> 클라이언트 인증서 + 키
+cp-client-invalid.jks 일부러 잘못 만든 인증서 <span class="hljs-punctuation">(</span>거절 시험용<span class="hljs-punctuation">)</span>
+cp-truststore.jks     충전기가 신뢰할 루트 <span class="hljs-punctuation">(</span>서버 루트 + 제조사 루트<span class="hljs-punctuation">)</span>
+*.cer                 배포용 루트 인증서</code></pre>
+<p>PowerShell + keytool(또는 openssl) 스크립트 하나로 전체를 생성하게 만들었다. 경험상 규칙은 이렇다.</p>
+<ul>
+<li><strong>파일 하나만 손으로 다시 만들지 마라.</strong> 체인이 깨진다. 항상 스크립트 전체를 다시 돌린다.</li>
+<li><strong>truststore에 개인 키를 넣지 마라.</strong> 신뢰 저장소에는 인증서만 들어간다.</li>
+<li><strong>시험 도구가 JKS를 원하면 JKS로.</strong> PKCS12만 받는 도구와 JKS만 받는 도구가 섞여 있다.</li>
+<li><strong>CN/SAN이 실제 접속 호스트와 맞아야</strong> 한다. IP로 붙는 현장이면 SAN에 IP를 넣는다.</li>
+<li>CA 키(서명용)는 서버 키스토어와 다른 파일, 다른 비밀번호로. 저장소에 커밋하지 않는다. 비밀번호는 문서가 아니라 비밀 저장소에 둔다.</li>
+</ul>
+<h2>4. SignCertificate → CertificateSigned: 충전기 인증서 발급</h2>
+<p>프로파일 3과 PnC의 충전기(SECC) 인증서는 충전기가 스스로 키를 만들고 CSR을 보내는 방식으로 발급한다.</p>
+<pre><code class="hljs">충전기 ── SignCertificate<span class="hljs-punctuation">(</span>csr, certificateType<span class="hljs-punctuation">)</span> ──▶ CSMS
+       ◀── Accepted ─────────────────────────────── <span class="hljs-punctuation">(</span>즉시 응답<span class="hljs-punctuation">)</span>
+                             CSMS ── CSR ──▶ CA<span class="hljs-punctuation">(</span>내부 CA 또는 PKI<span class="hljs-punctuation">)</span>
+                             CSMS ◀── 인증서 체인 ──
+충전기 ◀── CertificateSigned<span class="hljs-punctuation">(</span>certificateChain<span class="hljs-punctuation">)</span> ──── CSMS <span class="hljs-punctuation">(</span>비동기<span class="hljs-punctuation">)</span>
+       ── Accepted / Rejected ─────────────────────▶</code></pre>
+<ul>
+<li>SignCertificate에는 <strong>즉시 Accepted</strong>로 답하고, 발급은 비동기로 한다. CA 호출이 느려도 WebSocket 스레드를 붙잡지 않는다.</li>
+<li>서버가 발급을 먼저 시작하게 하려면 <code>TriggerMessage(SignChargePointCertificate)</code>(1.6은 ExtendedTriggerMessage) / <code>TriggerMessage(SignChargingStationCertificate)</code>(2.0.1)를 보낸다.</li>
+<li>체인은 <strong>리프부터 위로</strong>(leaf → 중간 CA) PEM을 이어 붙인다. 루트를 포함할지는 용도별 규칙을 따른다(PnC는 다음 글).</li>
+<li>발급한 인증서의 시리얼과 만료일을 저장해 둔다. <strong>만료 임박 배치</strong>가 이걸 보고 재발급 트리거를 보낸다.</li>
+</ul>
+<h3>CSR 정리</h3>
+<p>현장에서 받은 CSR은 생각보다 지저분하다.</p>
+<ul>
+<li>줄바꿈이 CRLF로 섞여 있거나(윈도우 기반 충전기 소프트웨어), base64 중간에 줄바꿈이 들어 있다.</li>
+<li><code>-----BEGIN CERTIFICATE REQUEST-----</code>의 공백이 빠진 헤더(<code>BEGINCERTIFICATEREQUEST</code>)도 봤다.</li>
+</ul>
+<p>그래서 헤더·푸터·공백을 전부 제거하고 순수 base64 DER만 남기는 정규식(<code>\s|-----BEGIN[^-]*-----|-----END[^-]*-----</code>)을 쓴다. CA 쪽이 PEM을 원하든 DER을 원하든 여기서 다시 만든다.</p>
+<h3>재발급을 막지 마라</h3>
+<p>&quot;DB에 이미 유효한 인증서 시리얼이 있으면 재발급 요청을 무시하자&quot;는 아이디어가 나왔다가 기각됐다. <strong>충전기가 리셋 후 인증서 파일을 잃어버렸을 수 있다.</strong> 그러면 그 충전기는 영원히 인증서를 못 받는다. 대신 CA가 충돌(409)을 돌려주면 로그를 남기고 이전 인증서를 폐기해, 다음 시도가 저절로 성공하게 했다. <strong>서버 DB보다 충전기의 현재 상태를 믿는 쪽</strong>이 복구가 쉽다.</p>
+<h3>거절 시험을 위한 장치</h3>
+<p>&quot;잘못된 인증서를 보내면 충전기가 거절하고 보안 이벤트를 보내는가&quot;를 확인하는 시험이 있다. 충전기별 일회성 플래그를 세우고 TriggerMessage를 보낸 뒤, 다음 CertificateSigned에 <strong>별도 키스토어로 만든 잘못된 인증서</strong>를 싣게 했다. 충전기는 Rejected를 보내고 <code>SecurityEventNotification(InvalidChargingStationCertificate)</code>를 보내야 한다.</p>
+<h2>5. 루트 인증서 배포: 충전기를 다시 빌드하지 않기</h2>
+<p>프로파일 2 이상에서 충전기는 서버 인증서를 검증할 루트를 가지고 있어야 한다. 공인 인증서(도메인)라면 OS 기본 신뢰 저장소로 충분하지만, <strong>IP로 붙는 사설 서버</strong>라면 사설 루트를 충전기에 넣어야 한다. 처음에는 루트가 바뀔 때마다 충전기 소프트웨어를 다시 배포했다.</p>
+<p>지금은 이렇게 한다(충전기 HMI를 직접 만드는 경우).</p>
+<ol>
+<li>접속 대상이 IP이고 프로파일 2 이상이면, 접속 전에 API 허브의 <code>GET /ca/root?ip=…&amp;algorithm=ecdsa&amp;format=pem</code>을 호출한다.</li>
+<li>받은 루트를 로컬에 캐시하고, OS 루트 저장소에 설치한다(지문으로 중복 설치 방지).</li>
+<li>그다음 wss로 접속한다.</li>
+</ol>
+<p>서버 인증서를 바꿀 때 <strong>API 허브의 키스토어만 바꾸면</strong> 된다. 물론 &quot;이 엔드포인트를 누가 믿을 것인가&quot;라는 부트스트랩 문제가 남는다. 우리는 폐쇄망·고정 IP라는 전제에서 썼고, 공용망이라면 공인 인증서를 쓰는 것이 맞다. 1.6/2.0.1 규격의 <code>InstallCertificate(CentralSystemRootCertificate / CSMSRootCertificate)</code>로 서버가 루트를 내려주는 것이 표준 방식이고, 위 방식은 그 전 단계(최초 접속)를 풀기 위한 보조 수단이다.</p>
+<h2>6. 충전기 쪽에서 본 TLS 검증</h2>
+<p>충전기 소프트웨어(HMI)를 직접 만들면서 서버 인증서 검증 콜백을 구현했다. 기억할 점:</p>
+<ul>
+<li>체인 검증 결과를 <strong>자세히 로그로</strong> 남긴다(어느 단계에서 왜 실패했는지). 현장 원격 지원의 절반이 이 로그로 끝난다.</li>
+<li>설치된 CA로 검증되지 않는 체인은 거절한다. &quot;개발 중이라 일단 모두 허용&quot;을 운영에 남기지 않는다.</li>
+<li>와일드카드 CN 정책을 명확히 한다.</li>
+<li><strong>인증 정보를 로그에 찍지 마라.</strong> 디버깅하다 보면 Basic 헤더를 디코딩해 Info 로그로 남기는 코드가 생긴다. 실제로 그런 코드를 찾아서 지웠다. 클라이언트 인증서의 PFX 비밀번호를 소스에 하드코딩하는 것도 마찬가지로 피해야 한다.</li>
+</ul>
+<h2>7. 인증서 관리 메시지 운영</h2>
+<ul>
+<li><code>GetInstalledCertificateIds</code>로 충전기에 설치된 루트 목록을 주기적으로 받아 두면, 루트 교체 때 누락을 찾기 쉽다.</li>
+<li><code>DeleteCertificate</code>는 해시(<code>hashAlgorithm</code>, <code>issuerNameHash</code>, <code>issuerKeyHash</code>, <code>serialNumber</code>)로 지정한다. <strong>충전기가 보고한 해시 값을 그대로 저장</strong>해 두었다가 쓰는 것이 가장 안전하다. 서버가 인증서에서 계산한 값과 충전기가 계산한 값의 표기(대소문자, 선행 0)가 다를 수 있다.</li>
+<li>해시 필드의 길이 제한(시리얼 40자, 해시 128자)을 넘는 값은 저장하지 않는다. 나중 삭제 요청이 제약 위반으로 실패한다. 반대로 <strong>40자 시리얼이 36자로 잘려 오는</strong> 구현도 봤다. 길이는 받는 쪽과 보내는 쪽 모두 로그로 확인하자.</li>
+<li>여러 줄 PEM을 JSON 문자열에 넣을 때 제어 문자 이스케이프를 빠뜨리면 JSON이 깨진다. 관리 화면에서 PEM을 입력받는다면 전송 전에 <code>JSON.parse</code>로 검증하자.</li>
+</ul>
+<h2>정리</h2>
+<ul>
+<li>운영 최소선은 <strong>프로파일 2</strong>, 충전기 인증서로 식별하는 <strong>프로파일 3</strong>이 목표다. 다운그레이드는 막는다.</li>
+<li>한 포트는 한 TLS 설정이다. 프로파일·알고리즘별로 리스너를 설계하자.</li>
+<li>키스토어 세트는 <strong>스크립트로 전체를 한 번에</strong> 만든다. CA 서명 키는 따로, 절대 외부에 올리지 않는다.</li>
+<li>SignCertificate는 즉시 Accepted, 발급은 비동기. CSR은 정규화하고, 재발급을 막지 말고, 만료를 추적한다.</li>
+<li>사설 루트 배포는 표준(InstallCertificate)을 기본으로 하되 최초 접속 문제를 풀 보조 경로를 설계한다.</li>
+<li>인증 정보는 로그와 소스에 남기지 않는다.</li>
+</ul>
+<p>다음 글에서는 이 인증서 위에 세워지는 Plug &amp; Charge, 국내 1차 PnC 테스트를 진행하며 터득한 것을 정리한다.</p>
+<hr>
+<h2>OCPP 시리즈</h2>
+<ol>
+<li><a href="/posts/ocpp-01/">OCPP 한눈에 보기 — 1.6J, 2.0.1, 2.1은 무엇이 다른가</a></li>
+<li><a href="/posts/ocpp-02/">CSMS 아키텍처 — 버전별 OCPP 서버, API 허브, 레거시 공존</a></li>
+<li><a href="/posts/ocpp-03/">OCPP-J 메시지 파이프라인 구현 — 핸드셰이크부터 응답 매칭까지</a></li>
+<li><a href="/posts/ocpp-04/">충전기 수천 대의 WebSocket 세션 운영기 — 중복 접속, 배포 끊김, NAT, 좀비 세션</a></li>
+<li><a href="/posts/ocpp-05/">트랜잭션과 계량값의 함정 — 멱등 처리, 늦게 온 Stop, 충전기 편차 정규화</a></li>
+<li><a href="/posts/ocpp-06/">OCTT 인증 통과기 — OCPP 1.6과 2.0.1 CSMS 적합성 시험에서 배운 것</a></li>
+<li><strong>OCPP 보안 프로파일과 인증서 운영 — Basic 인증부터 mTLS, SignCertificate까지</strong> (현재 글)</li>
+<li><a href="/posts/ocpp-08/">Plug &amp; Charge 1차 필드 테스트 — ISO 15118 인증서 체계와 CSMS가 해야 할 일</a></li>
+<li><a href="/posts/ocpp-09/">OCPP 버전별 세션 관리 화면이 필요한 이유 — 관제·원격 명령·시험을 한 콘솔에</a></li>
+<li><a href="/posts/ocpp-10/">충전기 HMI를 WPF로 만들기 — 계층화, 정규화, 키오스크 UI, 무중단 업데이트</a></li>
+</ol>
+1b:[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"OCPP 보안 프로파일과 인증서 운영 — Basic 인증부터 mTLS, SignCertificate까지\",\"description\":\"OCPP 보안 프로파일 0~3의 의미와 실제 설정, 충전기·서버·CA 키스토어 세트를 한 번에 만드는 방법, SignCertificate로 충전기 인증서를 발급하는 흐름, 현장 IP 서버에서 루트 인증서를 자동 설치하게 만든 방법, 자주 하는 실수를 정리한다.\",\"datePublished\":\"2026-09-20\",\"url\":\"https://kaisa.co.kr/posts/ocpp-07/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"ocpp\",\"keywords\":\"ocpp, security, tls, mtls, certificate, pki\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"OCPP 보안 프로파일과 인증서 운영 — Basic 인증부터 mTLS, SignCertificate까지\",\"item\":\"https://kaisa.co.kr/posts/ocpp-07/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L6",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2026-09-20"}]}],["$","h1",null,{"className":"blog-post__title","children":"OCPP 보안 프로파일과 인증서 운영 — Basic 인증부터 mTLS, SignCertificate까지"}],["$","div",null,{"className":"blog-post__body blog-post__body--markdown","children":["$","div",null,{"className":"markdown-body","dangerouslySetInnerHTML":{"__html":"$24"}}]}],"$L25","$L26"]}]}]}]]
+27:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],"default"]
+25:["$","$L27",null,{"pathKey":"ocpp-07"}]
+26:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L6",null,{"href":"/posts/ocpp-06/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"OCTT 인증 통과기 — OCPP 1.6과 2.0.1 CSMS 적합성 시험에서 배운 것"}]]}],["$","$L6",null,{"href":"/posts/ocpp-08/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Plug & Charge 1차 필드 테스트 — ISO 15118 인증서 체계와 CSMS가 해야 할 일"}]]}]]}],["$","$L6",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
+21:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+28:I[27201,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"IconMark"]
+1e:null
+23:[["$","title","0",{"children":"OCPP 보안 프로파일과 인증서 운영 — Basic 인증부터 mTLS, SignCertificate까지 · Kaisa"}],["$","meta","1",{"name":"description","content":"OCPP 보안 프로파일 0~3의 의미와 실제 설정, 충전기·서버·CA 키스토어 세트를 한 번에 만드는 방법, SignCertificate로 충전기 인증서를 발급하는 흐름, 현장 IP 서버에서 루트 인증서를 자동 설치하게 만든 방법, 자주 하는 실수를 정리한다."}],["$","meta","2",{"name":"application-name","content":"Kaisa"}],["$","meta","3",{"name":"robots","content":"index, follow"}],["$","meta","4",{"name":"naver-site-verification","content":"4bc13b857695ff44988c260cb26124eedbcda90e"}],["$","link","5",{"rel":"canonical","href":"https://kaisa.co.kr/posts/ocpp-07/"}],["$","meta","6",{"property":"og:title","content":"OCPP 보안 프로파일과 인증서 운영 — Basic 인증부터 mTLS, SignCertificate까지 · Kaisa"}],["$","meta","7",{"property":"og:description","content":"OCPP 보안 프로파일 0~3의 의미와 실제 설정, 충전기·서버·CA 키스토어 세트를 한 번에 만드는 방법, SignCertificate로 충전기 인증서를 발급하는 흐름, 현장 IP 서버에서 루트 인증서를 자동 설치하게 만든 방법, 자주 하는 실수를 정리한다."}],["$","meta","8",{"property":"og:url","content":"https://kaisa.co.kr/posts/ocpp-07/"}],["$","meta","9",{"property":"og:site_name","content":"Kaisa"}],["$","meta","10",{"property":"og:locale","content":"ko_KR"}],["$","meta","11",{"property":"og:type","content":"article"}],["$","meta","12",{"name":"twitter:card","content":"summary"}],["$","meta","13",{"name":"twitter:title","content":"OCPP 보안 프로파일과 인증서 운영 — Basic 인증부터 mTLS, SignCertificate까지 · Kaisa"}],["$","meta","14",{"name":"twitter:description","content":"OCPP 보안 프로파일 0~3의 의미와 실제 설정, 충전기·서버·CA 키스토어 세트를 한 번에 만드는 방법, SignCertificate로 충전기 인증서를 발급하는 흐름, 현장 IP 서버에서 루트 인증서를 자동 설치하게 만든 방법, 자주 하는 실수를 정리한다."}],["$","link","15",{"rel":"shortcut icon","href":"/img/common/favicon.ico"}],["$","link","16",{"rel":"icon","href":"/img/common/favicon.ico"}],["$","link","17",{"rel":"apple-touch-icon","href":"/img/common/favicon.ico"}],["$","$L28","18",{}]]
