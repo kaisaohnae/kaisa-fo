@@ -240,6 +240,86 @@
       "file": "react-native/10-eas-build-store-ota.md",
       "title": "EAS 빌드·스토어 배포·OTA",
       "readingMinutes": 5
+    },
+    {
+      "category": "ocpp",
+      "order": 1,
+      "slug": "ocpp-01",
+      "file": "ocpp/01-ocpp-overview-versions.md",
+      "title": "OCPP 한눈에 보기 — 1.6J, 2.0.1, 2.1은 무엇이 다른가",
+      "readingMinutes": 9
+    },
+    {
+      "category": "ocpp",
+      "order": 2,
+      "slug": "ocpp-02",
+      "file": "ocpp/02-csms-architecture.md",
+      "title": "CSMS 아키텍처 — 버전별 OCPP 서버, API 허브, 레거시 공존",
+      "readingMinutes": 7
+    },
+    {
+      "category": "ocpp",
+      "order": 3,
+      "slug": "ocpp-03",
+      "file": "ocpp/03-ocpp-j-message-pipeline.md",
+      "title": "OCPP-J 메시지 파이프라인 구현 — 핸드셰이크부터 응답 매칭까지",
+      "readingMinutes": 8
+    },
+    {
+      "category": "ocpp",
+      "order": 4,
+      "slug": "ocpp-04",
+      "file": "ocpp/04-websocket-session-operations.md",
+      "title": "충전기 수천 대의 WebSocket 세션 운영기 — 중복 접속, 배포 끊김, NAT, 좀비 세션",
+      "readingMinutes": 6
+    },
+    {
+      "category": "ocpp",
+      "order": 5,
+      "slug": "ocpp-05",
+      "file": "ocpp/05-transactions-metervalues-normalization.md",
+      "title": "트랜잭션과 계량값의 함정 — 멱등 처리, 늦게 온 Stop, 충전기 편차 정규화",
+      "readingMinutes": 7
+    },
+    {
+      "category": "ocpp",
+      "order": 6,
+      "slug": "ocpp-06",
+      "file": "ocpp/06-octt-certification.md",
+      "title": "OCTT 인증 통과기 — OCPP 1.6과 2.0.1 CSMS 적합성 시험에서 배운 것",
+      "readingMinutes": 8
+    },
+    {
+      "category": "ocpp",
+      "order": 7,
+      "slug": "ocpp-07",
+      "file": "ocpp/07-security-profiles-certificates.md",
+      "title": "OCPP 보안 프로파일과 인증서 운영 — Basic 인증부터 mTLS, SignCertificate까지",
+      "readingMinutes": 7
+    },
+    {
+      "category": "ocpp",
+      "order": 8,
+      "slug": "ocpp-08",
+      "file": "ocpp/08-plug-and-charge-field-test.md",
+      "title": "Plug & Charge 1차 필드 테스트 — ISO 15118 인증서 체계와 CSMS가 해야 할 일",
+      "readingMinutes": 9
+    },
+    {
+      "category": "ocpp",
+      "order": 9,
+      "slug": "ocpp-09",
+      "file": "ocpp/09-version-aware-session-console.md",
+      "title": "OCPP 버전별 세션 관리 화면이 필요한 이유 — 관제·원격 명령·시험을 한 콘솔에",
+      "readingMinutes": 8
+    },
+    {
+      "category": "ocpp",
+      "order": 10,
+      "slug": "ocpp-10",
+      "file": "ocpp/10-charger-hmi-wpf.md",
+      "title": "충전기 HMI를 WPF로 만들기 — 계층화, 정규화, 키오스크 UI, 무중단 업데이트",
+      "readingMinutes": 10
     }
   ]
 }

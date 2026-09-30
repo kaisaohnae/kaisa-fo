@@ -33,6 +33,7 @@ const CATEGORY_LABELS: Record<string, string> = {
   angular: 'Angular',
   flutter: 'Flutter',
   wpf: 'WPF',
+  ocpp: 'OCPP',
 };
 
 function parseFrontmatter(raw: string): {data: Record<string, string>; body: string} {

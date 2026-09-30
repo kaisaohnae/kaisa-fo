@@ -2136,8 +2136,6 @@ html[data-theme='dark'] .tool-category-nav__link.tool-category-nav__link--photo 
 /* Tool usage guide — one accordion under each tool (content stays in the static HTML) */
 .tool-guide {
   margin-top: 48px;
-  border-top: 1px solid var(--color-border);
-  border-bottom: 1px solid var(--color-border);
   color: var(--color-text);
   line-height: 1.75;
 }
