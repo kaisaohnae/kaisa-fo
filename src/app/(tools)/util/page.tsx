@@ -1,7 +1,7 @@
 import Redirect from '@/components/redirect';
-import {toolPageMetadata} from '@/lib/seo';
+import {redirectPageMetadata} from '@/lib/seo';
 
-export const metadata = toolPageMetadata('/util/password/');
+export const metadata = redirectPageMetadata('/util/password/');
 
 export default function UtilIndexPage() {
   return <Redirect href="/util/password/" />;

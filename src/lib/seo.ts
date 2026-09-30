@@ -1,6 +1,8 @@
 import type {Metadata} from 'next';
 import type {BlogPost} from '@/data/blog-posts';
 import {getToolByHref} from '@/data/tools';
+import {TOOL_GUIDES} from '@/data/tool-guides';
+import {TOOL_SEO_TITLES} from '@/data/tool-seo';
 import {absoluteUrl, SITE_DESCRIPTION, SITE_NAME} from '@/config/site';
 
 type PageMetaInput = {
@@ -42,8 +44,16 @@ export function buildPageMetadata({
   };
 }
 
+export const HOME_TITLE = `${SITE_NAME} — 실무 개발 포스트와 브라우저 도구`;
+
 export function homePageMetadata(): Metadata {
-  return buildPageMetadata({title: SITE_NAME, description: SITE_DESCRIPTION, path: '/'});
+  const meta = buildPageMetadata({title: SITE_NAME, description: SITE_DESCRIPTION, path: '/'});
+  return {
+    ...meta,
+    title: {absolute: HOME_TITLE},
+    openGraph: {...meta.openGraph, title: HOME_TITLE},
+    twitter: {...meta.twitter, title: HOME_TITLE},
+  };
 }
 
 export function postPageMetadata(post: BlogPost): Metadata {
@@ -102,7 +112,27 @@ export function toolPageMetadata(href: string): Metadata {
   if (!tool) {
     return buildPageMetadata({title: SITE_NAME, description: SITE_DESCRIPTION, path: href});
   }
-  return buildPageMetadata({title: tool.title, description: tool.description, path: tool.href});
+  const intro = TOOL_GUIDES[tool.id]?.intro;
+  return buildPageMetadata({
+    title: TOOL_SEO_TITLES[tool.id] ?? tool.title,
+    description: intro ? clip(intro, 155) : tool.description,
+    path: tool.href,
+  });
+}
+
+/** Category hubs and legacy tool URLs only redirect: keep them out of the index, point to the target. */
+export function redirectPageMetadata(target: string): Metadata {
+  return {
+    alternates: {canonical: absoluteUrl(target)},
+    robots: {index: false, follow: true},
+  };
+}
+
+function clip(text: string, max: number): string {
+  if (text.length <= max) return text;
+  const cut = text.slice(0, max);
+  const lastStop = Math.max(cut.lastIndexOf('. '), cut.lastIndexOf('다. '));
+  return (lastStop > 60 ? cut.slice(0, lastStop + 1) : cut.trimEnd() + '…').trim();
 }
 
 export function toolJsonLd(href: string) {

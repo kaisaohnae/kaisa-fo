@@ -1,7 +1,7 @@
 import Redirect from '@/components/redirect';
-import {toolPageMetadata} from '@/lib/seo';
+import {redirectPageMetadata} from '@/lib/seo';
 
-export const metadata = toolPageMetadata('/edit/compare/');
+export const metadata = redirectPageMetadata('/edit/compare/');
 
 export default function EditIndexPage() {
   return <Redirect href="/edit/compare/" />;

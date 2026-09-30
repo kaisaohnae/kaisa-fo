@@ -1,7 +1,7 @@
 import Redirect from '@/components/redirect';
-import {toolPageMetadata} from '@/lib/seo';
+import {redirectPageMetadata} from '@/lib/seo';
 
-export const metadata = toolPageMetadata('/image/compress/');
+export const metadata = redirectPageMetadata('/image/compress/');
 
 export default function ImageIndexPage() {
   return <Redirect href="/image/compress/" />;
