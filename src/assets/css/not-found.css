@@ -1,0 +1,142 @@
+/*
+ * Styles for the root not-found page only (copied from styles.css).
+ * The root not-found boundary is part of every route, so it must not import the full
+ * fo reset/styles — that would leak into the tool pages under src/app/(tools).
+ */
+
+:root {
+  --color-accent: #ff4d00;
+  --color-accent-soft: rgba(255, 77, 0, 0.12);
+  --color-accent-border: rgba(255, 77, 0, 0.3);
+  --font-display: var(--font-display, 'Syne', sans-serif);
+  --font-body: var(--font-body, 'DM Sans', sans-serif);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --header-height: 72px;
+  --layout-max: 1100px;
+  --layout-gutter: clamp(24px, 5vw, 64px);
+}
+
+[data-theme='light'] {
+  color-scheme: light;
+  --color-bg: #f7f7f5;
+  --color-bg-elevated: #efefec;
+  --color-bg-card: #ffffff;
+  --color-text: #1a1a18;
+  --color-text-muted: #6b6964;
+  --color-border: rgba(0, 0, 0, 0.08);
+  --color-header-bg: rgba(247, 247, 245, 0.88);
+  --color-header-shadow: 0 4px 14px rgba(0, 0, 0, 0.03);
+  --color-overlay: rgba(26, 26, 24, 0.55);
+  --color-grid-line: rgba(0, 0, 0, 0.06);
+  --color-scrollbar: #c8c8c4;
+  --color-logo-fill: #1a1a18;
+  --color-cta-text: #ffffff;
+  --color-overlay-text: #ffffff;
+  --color-overlay-border: rgba(255, 255, 255, 0.4);
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+  --color-bg: #2a2a2e;
+  --color-bg-elevated: #323236;
+  --color-bg-card: #3a3a3f;
+  --color-text: #f0ede8;
+  --color-text-muted: #9a9790;
+  --color-border: rgba(255, 255, 255, 0.1);
+  --color-header-bg: rgba(42, 42, 46, 0.9);
+  --color-header-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  --color-overlay: rgba(20, 20, 22, 0.65);
+  --color-grid-line: rgba(255, 255, 255, 0.05);
+  --color-scrollbar: #555;
+  --color-logo-fill: #f0ede8;
+  --color-cta-text: #ffffff;
+  --color-overlay-text: #ffffff;
+  --color-overlay-border: rgba(255, 255, 255, 0.35);
+}
+
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body), 'SpoqaHanSansNeo-Regular', sans-serif;
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.35s var(--ease-out-expo), color 0.35s var(--ease-out-expo);
+}
+
+.error-page {
+  position: relative;
+  min-height: calc(100vh - var(--header-height));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: calc(var(--header-height) + 48px) var(--layout-gutter) 96px;
+  background: var(--color-bg);
+  overflow: hidden;
+}
+.error-page::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--color-grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-grid-line) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 20%, transparent 100%);
+  pointer-events: none;
+}
+.error-page__inner {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  text-align: center;
+}
+.error-page__code {
+  font-family: var(--font-display);
+  font-size: clamp(88px, 20vw, 168px);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  color: var(--color-accent);
+  margin: 0 0 20px;
+}
+.error-page__title {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 5vw, 42px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+  margin: 0 0 20px;
+}
+.error-page__desc {
+  font-size: clamp(15px, 2vw, 17px);
+  color: var(--color-text-muted);
+  line-height: 1.75;
+  margin: 0 0 40px;
+}
+.error-page__cta,
+.error-page__cta:link,
+.error-page__cta:visited,
+.error-page__cta:hover,
+.error-page__cta:active {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 160px;
+  padding: 14px 32px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #fff;
+  background: var(--color-accent);
+  border-radius: 100px;
+  transition: transform 0.35s var(--ease-out-expo), box-shadow 0.35s var(--ease-out-expo);
+}
+.error-page__cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px var(--color-accent-soft);
+}

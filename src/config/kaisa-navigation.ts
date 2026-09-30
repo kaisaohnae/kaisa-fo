@@ -1,4 +1,7 @@
-export type KaisaSite = 'fo' | 'blog' | 'tool' | 'game';
+export type KaisaSite = 'fo';
+
+/** Top-level paths served by the tool pages (src/app/(tools)). */
+const TOOL_PATH_PREFIXES = ['/image/', '/pdf/', '/format/', '/edit/', '/util/', '/photo/'];
 function navUrl(value: string | undefined, fallback: string) {
   if (!value) return fallback;
   try {
@@ -8,22 +11,22 @@ function navUrl(value: string | undefined, fallback: string) {
     return value;
   } catch { return fallback; }
 }
+/** kaisa-fo header: Posts, Tools (migrated from kaisa-tool, same-site routes) and Works. */
 export const KAISA_NAV = [
   {id: 'posts', label: 'Posts', href: navUrl(process.env.NEXT_PUBLIC_NAV_POSTS_URL, 'https://kaisa.co.kr/')},
-  {id: 'blog', label: 'Blog', href: navUrl(process.env.NEXT_PUBLIC_NAV_BLOG_URL, 'https://blog.kaisa.co.kr/')},
-  {id: 'tool', label: 'Tools', href: navUrl(process.env.NEXT_PUBLIC_NAV_TOOL_URL, 'https://tool.kaisa.co.kr/image/compress/')},
-  {id: 'game', label: 'Games', href: navUrl(process.env.NEXT_PUBLIC_NAV_GAME_URL, 'https://game.kaisa.co.kr/')},
+  {id: 'tool', label: 'Tools', href: '/image/compress/'},
   {id: 'works', label: 'Works', href: navUrl(process.env.NEXT_PUBLIC_NAV_WORKS_URL, 'https://kaisa.co.kr/works')}
 ] as const;
 export const KAISA_HOME_URL = navUrl(process.env.NEXT_PUBLIC_NAV_HOME_URL, 'https://kaisa.co.kr/');
-export function activeKaisaNav(site: KaisaSite, pathname: string) {
-  if (site === 'fo') return pathname.startsWith('/works') || pathname.startsWith('/illustration') ? 'works' : 'posts';
-  return site;
+export function activeKaisaNav(_site: KaisaSite, pathname: string) {
+  const path = pathname.endsWith('/') ? pathname : `${pathname}/`;
+  if (TOOL_PATH_PREFIXES.some(prefix => path.startsWith(prefix))) return 'tool';
+  return path.startsWith('/works/') || path.startsWith('/illustration/') ? 'works' : 'posts';
 }
 
 export const KAISA_NAV_LABELS = {
-  en: {posts: 'POST', blog: 'BLOG', tool: 'TOOL', game: 'GAME', works: 'WORK'},
-  ko: {posts: '포스트', blog: '블로그', tool: '툴', game: '게임', works: '작업'},
-  zh: {posts: '文章', blog: '博客', tool: '工具', game: '游戏', works: '作品'},
-  hi: {posts: 'पोस्ट', blog: 'ब्लॉग', tool: 'टूल', game: 'गेम', works: 'कार्य'}
+  en: {posts: 'POST', tool: 'TOOL', works: 'WORK'},
+  ko: {posts: '포스트', tool: '툴', works: '작업'},
+  zh: {posts: '文章', tool: '工具', works: '作品'},
+  hi: {posts: 'पोस्ट', tool: 'टूल', works: 'कार्य'}
 } as const;

@@ -1,5 +1,6 @@
 import type {Metadata} from 'next';
 import type {BlogPost} from '@/data/blog-posts';
+import {getToolByHref} from '@/data/tools';
 import {absoluteUrl, SITE_DESCRIPTION, SITE_NAME} from '@/config/site';
 
 type PageMetaInput = {
@@ -92,5 +93,47 @@ export function homeJsonLd() {
     name: SITE_NAME,
     description: SITE_DESCRIPTION,
     url: absoluteUrl('/'),
+  };
+}
+
+/** Metadata for a tool page — title/description aligned with on-page H1 (English). */
+export function toolPageMetadata(href: string): Metadata {
+  const tool = getToolByHref(href);
+  if (!tool) {
+    return buildPageMetadata({title: SITE_NAME, description: SITE_DESCRIPTION, path: href});
+  }
+  return buildPageMetadata({title: tool.title, description: tool.description, path: tool.href});
+}
+
+export function toolJsonLd(href: string) {
+  const tool = getToolByHref(href);
+  if (!tool) return null;
+
+  const pageUrl = absoluteUrl(tool.href);
+  const toolsUrl = absoluteUrl('/image/compress/');
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebApplication',
+        name: `${tool.title} · ${SITE_NAME}`,
+        description: tool.description,
+        url: pageUrl,
+        applicationCategory: 'UtilitiesApplication',
+        operatingSystem: 'Any',
+        browserRequirements: 'Requires JavaScript',
+        offers: {'@type': 'Offer', price: '0', priceCurrency: 'USD'},
+        isPartOf: {'@type': 'WebSite', name: SITE_NAME, url: absoluteUrl('/')},
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {'@type': 'ListItem', position: 1, name: SITE_NAME, item: absoluteUrl('/')},
+          {'@type': 'ListItem', position: 2, name: 'Tools', item: toolsUrl},
+          {'@type': 'ListItem', position: 3, name: tool.title, item: pageUrl},
+        ],
+      },
+    ],
   };
 }

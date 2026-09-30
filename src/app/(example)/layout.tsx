@@ -1,4 +1,5 @@
 import type {Metadata} from 'next';
+import '../site-styles';
 import '@/ui-components/styles/ui-components.css';
 import '@/modules/example/example1/example1.css';
 import '@/modules/example/example2/example2.css';

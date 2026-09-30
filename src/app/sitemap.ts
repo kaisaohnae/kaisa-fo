@@ -1,6 +1,7 @@
 import type {MetadataRoute} from 'next';
 import {absoluteUrl} from '@/config/site';
 import {getAllBlogPostSummaries} from '@/data/blog-posts';
+import {TOOLS} from '@/data/tools';
 
 export const dynamic = 'force-static';
 
@@ -36,5 +37,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  return [...staticPages, ...posts];
+  // Tool pages migrated from kaisa-tool (category hubs only redirect, so they are excluded)
+  const tools: MetadataRoute.Sitemap = TOOLS.map(tool => ({
+    url: absoluteUrl(tool.href),
+    lastModified: now,
+    changeFrequency: 'monthly',
+    priority: 0.7,
+  }));
+
+  return [...staticPages, ...posts, ...tools];
 }

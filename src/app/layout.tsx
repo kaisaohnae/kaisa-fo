@@ -4,14 +4,6 @@ import {LOCALE_BOOTSTRAP_SCRIPT} from '@/i18n/locale-cookie';
  */
 import type {Metadata} from 'next';
 import {Syne, DM_Sans} from 'next/font/google';
-import '@/assets/css/reset.css';
-import '@/assets/css/styles.css';
-import '@/assets/css/blog.css';
-import '@/assets/css/blog-board.css';
-import '@/assets/css/blog-chat.css';
-import '@/ui-components/styles/ui-components.css';
-import '@/ui-kit/kit.css';
-import '@/components/layout/kaisa-layout.css';
 import GoogleAnalytics from '@/components/layout/google-analytics';
 import GoogleAdsense from '@/components/layout/google-adsense';
 import {UiAlert, UiLoading, UiPopup} from '@/ui-components';

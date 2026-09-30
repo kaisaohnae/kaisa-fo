@@ -1,3 +1,4 @@
+import '../site-styles';
 import LayoutSub from '@/app/layout-sub';
 import Header from '@/components/layout/header';
 import Footer from '@/components/layout/footer';
