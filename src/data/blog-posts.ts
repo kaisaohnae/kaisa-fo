@@ -36,6 +36,16 @@ const CATEGORY_LABELS: Record<string, string> = {
   ocpp: 'OCPP',
 };
 
+/** Categories shown first (posts list and category filter). The rest follow alphabetically. */
+const CATEGORY_PRIORITY = ['ocpp'];
+
+function compareCategory(a: string, b: string): number {
+  const ia = CATEGORY_PRIORITY.indexOf(a);
+  const ib = CATEGORY_PRIORITY.indexOf(b);
+  if (ia !== ib) return (ia < 0 ? Infinity : ia) - (ib < 0 ? Infinity : ib);
+  return a.localeCompare(b);
+}
+
 function parseFrontmatter(raw: string): {data: Record<string, string>; body: string} {
   const text = raw.replace(/^\uFEFF/, '');
   if (!text.startsWith('---')) {
@@ -123,7 +133,7 @@ function loadAllPosts(): BlogPost[] {
   }
 
   return posts.sort((a, b) => {
-    if (a.category !== b.category) return a.category.localeCompare(b.category);
+    if (a.category !== b.category) return compareCategory(a.category, b.category);
     return a.order - b.order;
   });
 }
@@ -195,5 +205,5 @@ export function getBlogCategories(): {id: string; label: string; count: number}[
       });
     }
   }
-  return [...map.values()].sort((a, b) => a.id.localeCompare(b.id));
+  return [...map.values()].sort((a, b) => compareCategory(a.id, b.id));
 }
