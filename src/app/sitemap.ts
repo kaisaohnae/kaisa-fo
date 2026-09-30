@@ -5,15 +5,8 @@ import {TOOLS} from '@/data/tools';
 
 export const dynamic = 'force-static';
 
-const PUBLIC_PAGES = [
-  '/',
-  '/posts/',
-  '/works/',
-  '/login/',
-  '/register/',
-  '/find-id/',
-  '/reset-password/',
-];
+// Account pages (login/register/…) are noindex and intentionally left out.
+const PUBLIC_PAGES = ['/', '/posts/', '/works/', '/about/', '/privacy/'];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();

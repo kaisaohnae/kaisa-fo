@@ -1,28 +1,20 @@
 'use client';
 
-import SiteValidator from '@/components/site-validator';
-import {useState, Suspense} from 'react';
+import {Suspense} from 'react';
 
 /**
- * OrgValidator: 페이지 새로고침 및 이동시 공통으로 소속을 검증한다.
- * 검증시 화면 깜박임을 없애고자 onReady 추가
+ * Page content is rendered directly so it is included in the static HTML
+ * (crawlers / AdSense review see the real content, and the footer no longer
+ * jumps up under the header while the page loads).
  *
- * @param children
- * @constructor
+ * The previous version hid children until SiteValidator (which only called onReady)
+ * mounted, and wrapped everything in a Suspense boundary that bailed out of static
+ * rendering — so every page was exported as an empty shell.
  */
-export default function LayoutSub({
-  children
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  const [isReady, setReady] = useState(false);
-  const onReady = () => {
-    setReady(true);
-  };
+export default function LayoutSub({children}: Readonly<{children: React.ReactNode}>) {
   return (
-    <Suspense>
-      <div id="content">{isReady && children}</div>
-      <SiteValidator onReady={onReady} />
+    <Suspense fallback={<div id="content" className="content--pending" aria-busy="true" />}>
+      <div id="content">{children}</div>
     </Suspense>
   );
 }

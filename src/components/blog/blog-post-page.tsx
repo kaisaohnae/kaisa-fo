@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import PostContent from '@/components/blog/post-content';
+import StaticPostContent from '@/components/blog/static-post-content';
 import PathCommentSection from '@/components/blog/path-comment-section';
 import type {BlogPost} from '@/data/blog-posts';
 
@@ -23,7 +23,7 @@ export default function BlogPostPage({
             <span>{post.publishedAt}</span>
           </div>
           <h1 className="blog-post__title">{post.title}</h1>
-          <PostContent content={post.content.trim()} />
+          <StaticPostContent content={post.content.trim()} />
 
           <PathCommentSection pathKey={post.slug} />
 

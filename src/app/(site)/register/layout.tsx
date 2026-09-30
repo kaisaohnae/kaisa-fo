@@ -4,6 +4,7 @@ export const metadata = buildPageMetadata({
   title: 'Register',
   description: 'Create a Kaisa Blog member account.',
   path: '/register/',
+  index: false,
 });
 
 export default function RegisterLayout({children}: {children: React.ReactNode}) {

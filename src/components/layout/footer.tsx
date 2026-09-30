@@ -79,9 +79,14 @@ export default function Footer() {
                 );
               })}
             </div>
-            <a href="mailto:kaisa@kaisa.co.kr" className="site-footer__link">
-              kaisa@kaisa.co.kr
-            </a>
+            <nav className="site-footer__policy" aria-label={t('Site information')}>
+              {/* Plain <a>: the footer is also used on tool pages, which load separate global styles. */}
+              <a href="/about/" className="site-footer__policy-link">{t('About')}</a>
+              <a href="/privacy/" className="site-footer__policy-link">{t('Privacy Policy')}</a>
+              <a href="mailto:7083620@hanmail.net" className="site-footer__link">
+                7083620@hanmail.net
+              </a>
+            </nav>
           </div>
         </div>
       </div>

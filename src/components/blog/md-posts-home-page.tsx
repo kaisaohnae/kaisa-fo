@@ -4,7 +4,7 @@ import Link from 'next/link';
 import {useSearchParams} from 'next/navigation';
 import {Suspense, useMemo} from 'react';
 import BlogPagination from '@/components/blog/blog-pagination';
-import BlogSearchBar from '@/components/blog/blog-search-bar';
+import BlogSearchBar, {BlogSearchBarForm} from '@/components/blog/blog-search-bar';
 import type {BlogPostSummary} from '@/data/blog-posts';
 
 const PAGE_SIZE = 10;
@@ -44,11 +44,38 @@ function MdPostsHomeContent({
   categories: Category[];
 }) {
   const searchParams = useSearchParams();
-  const categoryFilter = searchParams.get('category')?.trim() || '';
-  const queryParam = searchParams.get('q')?.trim() || '';
   const pageParam = Number(searchParams.get('page') || '1');
-  const requestedPage =
-    Number.isFinite(pageParam) && pageParam > 0 ? Math.floor(pageParam) : 1;
+  return (
+    <MdPostsHomeView
+      posts={posts}
+      categories={categories}
+      categoryFilter={searchParams.get('category')?.trim() || ''}
+      queryParam={searchParams.get('q')?.trim() || ''}
+      requestedPage={Number.isFinite(pageParam) && pageParam > 0 ? Math.floor(pageParam) : 1}
+      searchBar={<BlogSearchBar className="blog-search--home" listBasePath="/posts/" />}
+    />
+  );
+}
+
+/**
+ * Pure list view. The Suspense fallback renders it with the default filters so the
+ * static HTML contains the real post list (crawlers / AdSense see content, not an empty shell).
+ */
+function MdPostsHomeView({
+  posts,
+  categories,
+  categoryFilter,
+  queryParam,
+  requestedPage,
+  searchBar,
+}: {
+  posts: BlogPostSummary[];
+  categories: Category[];
+  categoryFilter: string;
+  queryParam: string;
+  requestedPage: number;
+  searchBar: React.ReactNode;
+}) {
 
   const filtered = useMemo(() => {
     let result = posts;
@@ -83,7 +110,7 @@ function MdPostsHomeContent({
       <div className="site-shell">
         <div className="site-shell__inner blog-home">
           <div className="blog-search-area">
-            <BlogSearchBar className="blog-search--home" listBasePath="/posts/" />
+            {searchBar}
             <nav className="blog-category-filter" aria-label="포스트 카테고리">
               <Link
                 href={buildPostsListHref({page: 1, q: queryParam || undefined})}
@@ -166,7 +193,18 @@ export default function MdPostsHomePage({
   categories: Category[];
 }) {
   return (
-    <Suspense fallback={<main className="blog-main" aria-busy="true" />}>
+    <Suspense
+      fallback={
+        <MdPostsHomeView
+          posts={posts}
+          categories={categories}
+          categoryFilter=""
+          queryParam=""
+          requestedPage={1}
+          searchBar={<BlogSearchBarForm className="blog-search--home" listBasePath="/posts/" />}
+        />
+      }
+    >
       <MdPostsHomeContent posts={posts} categories={categories} />
     </Suspense>
   );

@@ -4,6 +4,7 @@ export const metadata = buildPageMetadata({
   title: 'Login',
   description: 'Sign in to Kaisa Blog.',
   path: '/login/',
+  index: false,
 });
 
 export default function LoginLayout({children}: {children: React.ReactNode}) {

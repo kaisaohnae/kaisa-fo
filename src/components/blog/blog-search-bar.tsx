@@ -9,14 +9,26 @@ type BlogSearchBarProps = {
   listBasePath?: string;
 };
 
-export default function BlogSearchBar({
+/** Reads q/category from the URL (client only — suspends during static export). */
+export default function BlogSearchBar(props: BlogSearchBarProps) {
+  const searchParams = useSearchParams();
+  return (
+    <BlogSearchBarForm
+      {...props}
+      urlQuery={searchParams.get('q') || ''}
+      category={searchParams.get('category') || ''}
+    />
+  );
+}
+
+/** Same form without reading the URL, so it can be part of the static HTML. */
+export function BlogSearchBarForm({
   className,
   listBasePath = '/posts/',
-}: BlogSearchBarProps) {
+  urlQuery = '',
+  category = '',
+}: BlogSearchBarProps & {urlQuery?: string; category?: string}) {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const urlQuery = searchParams.get('q') || '';
-  const category = searchParams.get('category') || '';
   const [query, setQuery] = useState(urlQuery);
   const base = listBasePath.endsWith('/') ? listBasePath : `${listBasePath}/`;
 
