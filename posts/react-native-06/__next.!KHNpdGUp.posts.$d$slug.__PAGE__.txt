@@ -1,229 +1,217 @@
 1:"$Sreact.fragment"
-2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],""]
-3:I[55489,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-c:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-d:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
-e:"$Sreact.suspense"
+2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],""]
+a:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],"default"]
+b:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
+c:"$Sreact.suspense"
 :HL["/_next/static/chunks/0br7e7j26qkj3.css","style"]
 :HL["/_next/static/chunks/21i9-auhncr4a.css","style"]
-4:T17cf,# 인증·보안 저장소·디바이스 권한
+3:T392a,<h1>인증·보안 저장소·디바이스 권한</h1>
+<blockquote>
+<p>요약: 로그인 토큰은 SecureStore에 두고, 카메라·앨범·알림 권한은 필요할 때만 요청한다.</p>
+</blockquote>
+<hr>
+<h2>1. 왜 지금 권한과 저장소를 나누나</h2>
+<p>웹은 쿠키·httpOnly로 세션을 숨길 여지가 있다. 앱은 토큰을 기기에 둬야 자동 로그인이 된다. 일반 저장소에 넣으면 백업·루팅·로그에 노출되기 쉽다.</p>
+<p><strong>SecureStore</strong>는 운영체제 보안 저장소에 작은 비밀 값을 넣는 Expo 모듈이다. iOS는 Keychain, Android는 Keystore 계열이다. access token처럼 짧은 비밀에 쓴다.</p>
+<p>권한(카메라, 앨범, 알림)은 앱 시작 시 한꺼번에 묻지 않는다. <strong>쓰는 화면에서</strong> 이유를 말한 뒤 시스템 다이얼로그를 띄운다.</p>
+<hr>
+<h2>2. 핵심 개념</h2>
+<table>
+<thead>
+<tr>
+<th>금지</th>
+<th>권장</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AsyncStorage에 access token</td>
+<td>SecureStore</td>
+</tr>
+<tr>
+<td>소스에 API 시크릿</td>
+<td>백엔드만</td>
+</tr>
+<tr>
+<td>로그에 토큰·개인정보</td>
+<td>마스킹</td>
+</tr>
+<tr>
+<td>실행 직후 모든 권한</td>
+<td>필요 시점 요청</td>
+</tr>
+</tbody></table>
+<p>세션은 Provider 한 곳이 소유한다. 시작 시 SecureStore에서 토큰을 읽고 <code>/me</code>로 복구한다. 실패하면 지운다.</p>
+<p>생체 인증은 <strong>로컬 잠금</strong>이다. 서버 로그인을 대체하지 않는다. 지문 성공이 곧 API 인증은 아니다.</p>
+<p>웹 타깃이면 SecureStore가 없다. <code>Platform</code> 분기 또는 쿠키 세션이 필요하다.</p>
+<p>권한 거부 후에는 설정 앱으로 보내는 UI가 필요하다. 시스템 다이얼로그는 한 번 거절되면 다시 안 뜨는 경우가 많다.</p>
+<hr>
+<h2>3. 예제</h2>
+<pre><code class="hljs language-bash">npx expo install expo-secure-store</code></pre>
+<pre><code class="hljs language-tsx"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> <span class="hljs-title class_">SecureStore</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;expo-secure-store&#x27;</span>;
 
-> 요약: 로그인 토큰은 SecureStore에 두고, 카메라·앨범·알림 권한은 필요할 때만 요청한다.
+<span class="hljs-keyword">const</span> <span class="hljs-variable constant_">TOKEN_KEY</span> = <span class="hljs-string">&#x27;access_token&#x27;</span>;
 
----
-
-## 1. 왜 지금 권한과 저장소를 나누나
-
-웹은 쿠키·httpOnly로 세션을 숨길 여지가 있다. 앱은 토큰을 기기에 둬야 자동 로그인이 된다. 일반 저장소에 넣으면 백업·루팅·로그에 노출되기 쉽다.
-
-**SecureStore**는 운영체제 보안 저장소에 작은 비밀 값을 넣는 Expo 모듈이다. iOS는 Keychain, Android는 Keystore 계열이다. access token처럼 짧은 비밀에 쓴다.
-
-권한(카메라, 앨범, 알림)은 앱 시작 시 한꺼번에 묻지 않는다. **쓰는 화면에서** 이유를 말한 뒤 시스템 다이얼로그를 띄운다.
-
----
-
-## 2. 핵심 개념
-
-| 금지 | 권장 |
-|------|------|
-| AsyncStorage에 access token | SecureStore |
-| 소스에 API 시크릿 | 백엔드만 |
-| 로그에 토큰·개인정보 | 마스킹 |
-| 실행 직후 모든 권한 | 필요 시점 요청 |
-
-세션은 Provider 한 곳이 소유한다. 시작 시 SecureStore에서 토큰을 읽고 `/me`로 복구한다. 실패하면 지운다.
-
-생체 인증은 **로컬 잠금**이다. 서버 로그인을 대체하지 않는다. 지문 성공이 곧 API 인증은 아니다.
-
-웹 타깃이면 SecureStore가 없다. `Platform` 분기 또는 쿠키 세션이 필요하다.
-
-권한 거부 후에는 설정 앱으로 보내는 UI가 필요하다. 시스템 다이얼로그는 한 번 거절되면 다시 안 뜨는 경우가 많다.
-
----
-
-## 3. 예제
-
-```bash
-npx expo install expo-secure-store
-```
-
-```tsx
-import * as SecureStore from 'expo-secure-store';
-
-const TOKEN_KEY = 'access_token';
-
-export async function saveToken(token: string) {
-  await SecureStore.setItemAsync(TOKEN_KEY, token);
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">saveToken</span>(<span class="hljs-params"><span class="hljs-attr">token</span>: <span class="hljs-built_in">string</span></span>) {
+  <span class="hljs-keyword">await</span> <span class="hljs-title class_">SecureStore</span>.<span class="hljs-title function_">setItemAsync</span>(<span class="hljs-variable constant_">TOKEN_KEY</span>, token);
 }
 
-export async function loadToken() {
-  return SecureStore.getItemAsync(TOKEN_KEY);
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">loadToken</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">return</span> <span class="hljs-title class_">SecureStore</span>.<span class="hljs-title function_">getItemAsync</span>(<span class="hljs-variable constant_">TOKEN_KEY</span>);
 }
 
-export async function clearToken() {
-  await SecureStore.deleteItemAsync(TOKEN_KEY);
-}
-```
-
-큰 JSON을 SecureStore에 넣지 않는다. 토큰 문자열만 둔다.
-
-```tsx
-type AuthState = {
-  user: User | null;
-  token: string | null;
-  isLoading: boolean;
-  signIn: (email: string, password: string) => Promise<void>;
-  signOut: () => Promise<void>;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">clearToken</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">await</span> <span class="hljs-title class_">SecureStore</span>.<span class="hljs-title function_">deleteItemAsync</span>(<span class="hljs-variable constant_">TOKEN_KEY</span>);
+}</code></pre>
+<p>큰 JSON을 SecureStore에 넣지 않는다. 토큰 문자열만 둔다.</p>
+<pre><code class="hljs language-tsx"><span class="hljs-keyword">type</span> <span class="hljs-title class_">AuthState</span> = {
+  <span class="hljs-attr">user</span>: <span class="hljs-title class_">User</span> | <span class="hljs-literal">null</span>;
+  <span class="hljs-attr">token</span>: <span class="hljs-built_in">string</span> | <span class="hljs-literal">null</span>;
+  <span class="hljs-attr">isLoading</span>: <span class="hljs-built_in">boolean</span>;
+  <span class="hljs-attr">signIn</span>: <span class="hljs-function">(<span class="hljs-params"><span class="hljs-attr">email</span>: <span class="hljs-built_in">string</span>, <span class="hljs-attr">password</span>: <span class="hljs-built_in">string</span></span>) =&gt;</span> <span class="hljs-title class_">Promise</span>&lt;<span class="hljs-built_in">void</span>&gt;;
+  <span class="hljs-attr">signOut</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-title class_">Promise</span>&lt;<span class="hljs-built_in">void</span>&gt;;
 };
 
-export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [token, setToken] = useState<string | null>(null);
-  const [user, setUser] = useState<User | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">AuthProvider</span>(<span class="hljs-params">{ children }: { children: React.ReactNode }</span>) {
+  <span class="hljs-keyword">const</span> [token, setToken] = useState&lt;<span class="hljs-built_in">string</span> | <span class="hljs-literal">null</span>&gt;(<span class="hljs-literal">null</span>);
+  <span class="hljs-keyword">const</span> [user, setUser] = useState&lt;<span class="hljs-title class_">User</span> | <span class="hljs-literal">null</span>&gt;(<span class="hljs-literal">null</span>);
+  <span class="hljs-keyword">const</span> [isLoading, setIsLoading] = <span class="hljs-title function_">useState</span>(<span class="hljs-literal">true</span>);
 
-  useEffect(() => {
-    (async () => {
-      const t = await loadToken();
-      if (t) {
-        setToken(t);
-        try {
-          setUser(await api<User>('/me', { token: t }));
-        } catch {
-          await clearToken();
-          setToken(null);
+  <span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =&gt;</span> {
+    (<span class="hljs-title function_">async</span> () =&gt; {
+      <span class="hljs-keyword">const</span> t = <span class="hljs-keyword">await</span> <span class="hljs-title function_">loadToken</span>();
+      <span class="hljs-keyword">if</span> (t) {
+        <span class="hljs-title function_">setToken</span>(t);
+        <span class="hljs-keyword">try</span> {
+          <span class="hljs-title function_">setUser</span>(<span class="hljs-keyword">await</span> api&lt;<span class="hljs-title class_">User</span>&gt;(<span class="hljs-string">&#x27;/me&#x27;</span>, { <span class="hljs-attr">token</span>: t }));
+        } <span class="hljs-keyword">catch</span> {
+          <span class="hljs-keyword">await</span> <span class="hljs-title function_">clearToken</span>();
+          <span class="hljs-title function_">setToken</span>(<span class="hljs-literal">null</span>);
         }
       }
-      setIsLoading(false);
+      <span class="hljs-title function_">setIsLoading</span>(<span class="hljs-literal">false</span>);
     })();
   }, []);
 
-  const signIn = async (email: string, password: string) => {
-    const res = await api<{ token: string; user: User }>('/auth/login', {
-      method: 'POST',
-      body: JSON.stringify({ email, password }),
+  <span class="hljs-keyword">const</span> <span class="hljs-title function_">signIn</span> = <span class="hljs-keyword">async</span> (<span class="hljs-params"><span class="hljs-attr">email</span>: <span class="hljs-built_in">string</span>, <span class="hljs-attr">password</span>: <span class="hljs-built_in">string</span></span>) =&gt; {
+    <span class="hljs-keyword">const</span> res = <span class="hljs-keyword">await</span> api&lt;{ <span class="hljs-attr">token</span>: <span class="hljs-built_in">string</span>; <span class="hljs-attr">user</span>: <span class="hljs-title class_">User</span> }&gt;(<span class="hljs-string">&#x27;/auth/login&#x27;</span>, {
+      <span class="hljs-attr">method</span>: <span class="hljs-string">&#x27;POST&#x27;</span>,
+      <span class="hljs-attr">body</span>: <span class="hljs-title class_">JSON</span>.<span class="hljs-title function_">stringify</span>({ email, password }),
     });
-    await saveToken(res.token);
-    setToken(res.token);
-    setUser(res.user);
+    <span class="hljs-keyword">await</span> <span class="hljs-title function_">saveToken</span>(res.<span class="hljs-property">token</span>);
+    <span class="hljs-title function_">setToken</span>(res.<span class="hljs-property">token</span>);
+    <span class="hljs-title function_">setUser</span>(res.<span class="hljs-property">user</span>);
   };
 
-  const signOut = async () => {
-    await clearToken();
-    queryClient.clear();
-    setToken(null);
-    setUser(null);
+  <span class="hljs-keyword">const</span> <span class="hljs-title function_">signOut</span> = <span class="hljs-keyword">async</span> (<span class="hljs-params"></span>) =&gt; {
+    <span class="hljs-keyword">await</span> <span class="hljs-title function_">clearToken</span>();
+    queryClient.<span class="hljs-title function_">clear</span>();
+    <span class="hljs-title function_">setToken</span>(<span class="hljs-literal">null</span>);
+    <span class="hljs-title function_">setUser</span>(<span class="hljs-literal">null</span>);
   };
 
-  return (
-    <AuthContext.Provider value={{ user, token, isLoading, signIn, signOut }}>
+  <span class="hljs-keyword">return</span> (
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">AuthContext.Provider</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{{</span> <span class="hljs-attr">user</span>, <span class="hljs-attr">token</span>, <span class="hljs-attr">isLoading</span>, <span class="hljs-attr">signIn</span>, <span class="hljs-attr">signOut</span> }}&gt;</span>
       {children}
-    </AuthContext.Provider>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">AuthContext.Provider</span>&gt;</span></span>
   );
-}
-```
-
-`isLoading` 동안 라우트를 바꾸지 않는다. 로그인 화면이 깜빡인다. `expo-splash-screen`으로 네이티브 스플래시를 유지할 수 있다.
-
-소셜 로그인은 인가 코드를 **서버에 넘겨** 토큰을 받는다. 클라이언트에 장기 시크릿을 두지 않는다.
-
-```bash
-npx expo install expo-auth-session expo-web-browser expo-crypto
-```
-
-생체 잠금(선택):
-
-```bash
-npx expo install expo-local-authentication
-```
-
-```tsx
-const ok = await LocalAuthentication.authenticateAsync({
-  promptMessage: '잠금 해제',
+}</code></pre>
+<p><code>isLoading</code> 동안 라우트를 바꾸지 않는다. 로그인 화면이 깜빡인다. <code>expo-splash-screen</code>으로 네이티브 스플래시를 유지할 수 있다.</p>
+<p>소셜 로그인은 인가 코드를 <strong>서버에 넘겨</strong> 토큰을 받는다. 클라이언트에 장기 시크릿을 두지 않는다.</p>
+<pre><code class="hljs language-bash">npx expo install expo-auth-session expo-web-browser expo-crypto</code></pre>
+<p>생체 잠금(선택):</p>
+<pre><code class="hljs language-bash">npx expo install expo-local-authentication</code></pre>
+<pre><code class="hljs language-tsx"><span class="hljs-keyword">const</span> ok = <span class="hljs-keyword">await</span> <span class="hljs-title class_">LocalAuthentication</span>.<span class="hljs-title function_">authenticateAsync</span>({
+  <span class="hljs-attr">promptMessage</span>: <span class="hljs-string">&#x27;잠금 해제&#x27;</span>,
 });
-if (ok.success) {
-  // 앱 잠금만 해제. 서버 세션과는 별개
-}
-```
-
-앨범은 쓰는 순간에 요청한다.
-
-```bash
-npx expo install expo-image-picker
-```
-
-```tsx
-const perm = await ImagePicker.requestMediaLibraryPermissionsAsync();
-if (!perm.granted) {
-  // 왜 필요한지 안내 후 Linking.openSettings()
-  return;
+<span class="hljs-keyword">if</span> (ok.<span class="hljs-property">success</span>) {
+  <span class="hljs-comment">// 앱 잠금만 해제. 서버 세션과는 별개</span>
+}</code></pre>
+<p>앨범은 쓰는 순간에 요청한다.</p>
+<pre><code class="hljs language-bash">npx expo install expo-image-picker</code></pre>
+<pre><code class="hljs language-tsx"><span class="hljs-keyword">const</span> perm = <span class="hljs-keyword">await</span> <span class="hljs-title class_">ImagePicker</span>.<span class="hljs-title function_">requestMediaLibraryPermissionsAsync</span>();
+<span class="hljs-keyword">if</span> (!perm.<span class="hljs-property">granted</span>) {
+  <span class="hljs-comment">// 왜 필요한지 안내 후 Linking.openSettings()</span>
+  <span class="hljs-keyword">return</span>;
 }
 
-const result = await ImagePicker.launchImageLibraryAsync({
-  mediaTypes: ['images'],
-  quality: 0.8,
-});
-```
-
-흐름: 사전 설명 → 시스템 다이얼로그 → 거부 시 설정 이동.
-
-`app.json`에 용도 문구가 없으면 스토어에서 거절된다.
-
-```json
-{
-  "expo": {
-    "plugins": [
-      [
-        "expo-image-picker",
-        {
-          "photosPermission": "프로필 사진을 올리려면 사진첩이 필요합니다."
-        }
-      ]
-    ],
-    "ios": {
-      "infoPlist": {
-        "NSCameraUsageDescription": "게시글에 사진을 찍기 위해 카메라가 필요합니다."
-      }
-    }
-  }
-}
-```
-
-푸시 토큰은 실기기에서 테스트한다. 에뮬레이터 제약이 있다. 탭 시 딥링크는 라우터와 맞춘다.
-
----
-
-## 4. 흔한 실수
-
-| 실수 | 대안 |
-|------|------|
-| AsyncStorage에 토큰 | SecureStore |
-| 시작 시 카메라·알림 한꺼번에 | 해당 버튼/화면에서 |
-| 권한 거부 후 아무 안내 없음 | 설정 이동 CTA |
-| 생체를 서버 로그인으로 착각 | 로컬 잠금만 |
-| 로그아웃 후 Query 캐시 잔류 | `queryClient.clear()` |
-| usage description 없이 플러그인 | `app.json` 문구 필수 |
-
----
-
-## 5. 정리
-
-인증은 **토큰 위치 + 세션 복구 + 권한 시점**이다. UI보다 이 세 가지가 먼저다.
-
-- 비밀은 SecureStore. 장바구니는 AsyncStorage도 된다.
-- 스플래시가 끝날 때까지 가드를 보류한다.
-- 권한 문구는 코드와 `app.json`에 같이 있다.
-
-## 연습
-
-1. SecureStore로 로그인·자동 로그인·로그아웃을 구현한다.
-2. `AuthProvider`와 라우터 가드를 연결한다.
-3. 이미지 피커 거절 시 설정 안내를 만든다.
-4. (선택) 포그라운드 복귀 시 생체 잠금을 붙인다.0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"인증·보안 저장소·디바이스 권한\",\"description\":\"로그인 토큰은 SecureStore에 두고, 카메라·앨범·알림 권한은 필요할 때만 요청한다.\",\"datePublished\":\"2025-08-19\",\"url\":\"https://kaisa.co.kr/posts/react-native-06/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"react-native\",\"keywords\":\"react-native\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"인증·보안 저장소·디바이스 권한\",\"item\":\"https://kaisa.co.kr/posts/react-native-06/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2025-08-19"}]}],["$","h1",null,{"className":"blog-post__title","children":"인증·보안 저장소·디바이스 권한"}],["$","$L3",null,{"content":"$4"}],"$L5","$L6"]}]}]}]],["$L7","$L8","$L9","$La"],"$Lb"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Zv4TpHss7ITjpJG-s6iGo"}
-5:["$","$Lc",null,{"pathKey":"react-native-06"}]
-6:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/react-native-05/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"네트워킹 — Fetch, React Query, 에러 처리"}]]}],["$","$L2",null,{"href":"/posts/react-native-07/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"애니메이션·제스처·사용자 경험"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
-7:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
-8:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
-9:["$","script","script-0",{"src":"/_next/static/chunks/1oevfsdj8hv5d.js","async":true}]
-a:["$","script","script-1",{"src":"/_next/static/chunks/22vl7s8dm-4u2.js","async":true}]
-b:["$","$Ld",null,{"children":["$","$e",null,{"name":"Next.MetadataOutlet","children":"$@f"}]}]
-f:null
+<span class="hljs-keyword">const</span> result = <span class="hljs-keyword">await</span> <span class="hljs-title class_">ImagePicker</span>.<span class="hljs-title function_">launchImageLibraryAsync</span>({
+  <span class="hljs-attr">mediaTypes</span>: [<span class="hljs-string">&#x27;images&#x27;</span>],
+  <span class="hljs-attr">quality</span>: <span class="hljs-number">0.8</span>,
+});</code></pre>
+<p>흐름: 사전 설명 → 시스템 다이얼로그 → 거부 시 설정 이동.</p>
+<p><code>app.json</code>에 용도 문구가 없으면 스토어에서 거절된다.</p>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;expo&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;plugins&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
+      <span class="hljs-punctuation">[</span>
+        <span class="hljs-string">&quot;expo-image-picker&quot;</span><span class="hljs-punctuation">,</span>
+        <span class="hljs-punctuation">{</span>
+          <span class="hljs-attr">&quot;photosPermission&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;프로필 사진을 올리려면 사진첩이 필요합니다.&quot;</span>
+        <span class="hljs-punctuation">}</span>
+      <span class="hljs-punctuation">]</span>
+    <span class="hljs-punctuation">]</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;ios&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+      <span class="hljs-attr">&quot;infoPlist&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+        <span class="hljs-attr">&quot;NSCameraUsageDescription&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;게시글에 사진을 찍기 위해 카메라가 필요합니다.&quot;</span>
+      <span class="hljs-punctuation">}</span>
+    <span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span></code></pre>
+<p>푸시 토큰은 실기기에서 테스트한다. 에뮬레이터 제약이 있다. 탭 시 딥링크는 라우터와 맞춘다.</p>
+<hr>
+<h2>4. 흔한 실수</h2>
+<table>
+<thead>
+<tr>
+<th>실수</th>
+<th>대안</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AsyncStorage에 토큰</td>
+<td>SecureStore</td>
+</tr>
+<tr>
+<td>시작 시 카메라·알림 한꺼번에</td>
+<td>해당 버튼/화면에서</td>
+</tr>
+<tr>
+<td>권한 거부 후 아무 안내 없음</td>
+<td>설정 이동 CTA</td>
+</tr>
+<tr>
+<td>생체를 서버 로그인으로 착각</td>
+<td>로컬 잠금만</td>
+</tr>
+<tr>
+<td>로그아웃 후 Query 캐시 잔류</td>
+<td><code>queryClient.clear()</code></td>
+</tr>
+<tr>
+<td>usage description 없이 플러그인</td>
+<td><code>app.json</code> 문구 필수</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>5. 정리</h2>
+<p>인증은 <strong>토큰 위치 + 세션 복구 + 권한 시점</strong>이다. UI보다 이 세 가지가 먼저다.</p>
+<ul>
+<li>비밀은 SecureStore. 장바구니는 AsyncStorage도 된다.</li>
+<li>스플래시가 끝날 때까지 가드를 보류한다.</li>
+<li>권한 문구는 코드와 <code>app.json</code>에 같이 있다.</li>
+</ul>
+<h2>연습</h2>
+<ol>
+<li>SecureStore로 로그인·자동 로그인·로그아웃을 구현한다.</li>
+<li><code>AuthProvider</code>와 라우터 가드를 연결한다.</li>
+<li>이미지 피커 거절 시 설정 안내를 만든다.</li>
+<li>(선택) 포그라운드 복귀 시 생체 잠금을 붙인다.</li>
+</ol>
+0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"인증·보안 저장소·디바이스 권한\",\"description\":\"로그인 토큰은 SecureStore에 두고, 카메라·앨범·알림 권한은 필요할 때만 요청한다.\",\"datePublished\":\"2025-08-19\",\"url\":\"https://kaisa.co.kr/posts/react-native-06/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"react-native\",\"keywords\":\"react-native\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"인증·보안 저장소·디바이스 권한\",\"item\":\"https://kaisa.co.kr/posts/react-native-06/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2025-08-19"}]}],["$","h1",null,{"className":"blog-post__title","children":"인증·보안 저장소·디바이스 권한"}],["$","div",null,{"className":"blog-post__body blog-post__body--markdown","children":["$","div",null,{"className":"markdown-body","dangerouslySetInnerHTML":{"__html":"$3"}}]}],"$L4","$L5"]}]}]}]],["$L6","$L7","$L8"],"$L9"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"_AZq8Hq_NwvdopxIW0Tgh"}
+4:["$","$La",null,{"pathKey":"react-native-06"}]
+5:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/react-native-05/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"네트워킹 — Fetch, React Query, 에러 처리"}]]}],["$","$L2",null,{"href":"/posts/react-native-07/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"애니메이션·제스처·사용자 경험"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
+6:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
+7:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
+8:["$","script","script-0",{"src":"/_next/static/chunks/26shoze10o-dc.js","async":true}]
+9:["$","$Lb",null,{"children":["$","$c",null,{"name":"Next.MetadataOutlet","children":"$@d"}]}]
+d:null

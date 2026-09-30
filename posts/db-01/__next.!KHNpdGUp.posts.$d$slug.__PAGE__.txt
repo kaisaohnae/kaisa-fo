@@ -1,164 +1,138 @@
 1:"$Sreact.fragment"
-2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],""]
-3:I[55489,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-c:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-d:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
-e:"$Sreact.suspense"
+2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],""]
+a:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],"default"]
+b:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
+c:"$Sreact.suspense"
 :HL["/_next/static/chunks/0br7e7j26qkj3.css","style"]
 :HL["/_next/static/chunks/21i9-auhncr4a.css","style"]
-4:T1d2f,# PostgreSQL: 관계형 DB의 실무 기본선
-
-> 요약: 관계·트랜잭션·JSON을 한 엔진에서 다루는 오픈소스 관계형 DB로, 웹과 API 백엔드의 기본선이 되는 이유를 정리한다.
-
----
-
-## 1. 언제 PostgreSQL인가
-
-PostgreSQL은 오픈소스 관계형 데이터베이스다. 표(테이블)로 데이터를 넣고, SQL로 조회한다. 웹 API, 관리자 화면, 정산·리포트처럼 **관계가 있고 틀리면 안 되는 데이터**에 잘 맞는다.
-
-| 맞는 경우 | 덜 맞는 경우 |
-|-----------|--------------|
-| 주문·회원처럼 관계가 중요할 때 | 키와 값만 초고속으로 필요할 때 (Redis) |
-| 제약·트랜잭션이 업무의 핵심일 때 | 문서 구조가 매일 바뀌고 조인이 거의 없을 때 (MongoDB) |
-| SQL로 분석·집계·리포팅을 할 때 | 극단적 수평 샤딩만 목표일 때 |
-| JSON과 관계를 한 DB에서 섞을 때 | 단일 파일·임베디드면 충분할 때 (SQLite) |
-| 확장(검색, 지리정보)을 DB 안에서 쓰고 싶을 때 | 호스팅이 MySQL만 제공하는 레거시 환경 |
-
-“그냥 SQL이 필요해서”만으로도 충분한 선택이 많다. 반대로 **캐시 전용**, **초단순 키-값**, **모바일 로컬 DB**에는 다른 도구가 더 단순하다.
-
-실무에서 기본선으로 자주 고르는 이유다. 표준 SQL에 가깝고, JSONB와 확장이 한 엔진에 들어 있다.
-
----
-
-## 2. 핵심 개념
-
-**트랜잭션**은 여러 쓰기를 한 묶음으로 성공하거나 전부 되돌리는 장치다. PostgreSQL은 ACID를 지킨다. ACID는 원자성(Atomicity)·일관성(Consistency)·격리(Isolation)·지속성(Durability)의 약자다.
-
-```sql
-BEGIN;
-UPDATE accounts SET balance = balance - 1000 WHERE id = 1;
-UPDATE accounts SET balance = balance + 1000 WHERE id = 2;
-COMMIT;
--- 중간에 실패하면 ROLLBACK
-```
-
-**스키마와 제약**이 데이터의 모양을 지킨다.
-
-- PK(Primary Key, 기본키): 행을 유일하게 가리킨다
-- FK(Foreign Key, 외래키): 다른 테이블의 존재를 강제한다
-- UNIQUE, CHECK: 중복·범위 같은 규칙을 엔진이 검사한다
-
-제약을 앱에만 두면 우회 경로에서 깨진다. DB에 두는 편이 안전하다.
-
-**인덱스**는 조회를 빠르게 하는 보조 구조다. 기본은 B-tree다. `WHERE`·`JOIN`·`ORDER BY`에 자주 쓰는 컬럼에 만든다. 너무 많으면 쓰기가 느려진다.
-
-**JSONB**는 이진 JSON이다. JSON은 JavaScript Object Notation, 키-값 문서 형식이다. 관계형 테이블 안에 유연한 필드를 넣을 때 쓴다. 검색이 필요하면 GIN 인덱스를 붙인다. GIN은 Generalized Inverted Index, 문서·배열 검색용 인덱스다.
-
-**WAL**은 Write-Ahead Log, 미리 쓰기 로그다. 변경을 디스크에 남긴 뒤 데이터 파일에 반영한다. 장애 복구와 연속 백업의 기반이다.
-
-**격리 수준**은 동시에 도는 트랜잭션이 서로를 얼마나 보는지다. 기본은 `READ COMMITTED`인 경우가 많다. 재고처럼 같은 행을 두고 경쟁하면 `SELECT … FOR UPDATE`로 잠근다. 기본값을 올리는 일은 측정 후에 한다. 교착(deadlock)이 늘 수 있다.
-
-연결 문자열은 시크릿이다. 예시는 플레이스홀더만 쓴다.
-
-```
-postgresql://APP_USER:YOUR_DB_PASSWORD@db.internal:5432/app
-```
-
----
-
-## 3. 최소 예제 — 주문과 JSON 메타
-
-회원과 주문을 가정한다. 고정 필드는 컬럼, 자주 바뀌는 옵션은 JSONB에 둔다.
-
-```sql
-CREATE TABLE users (
-  id         bigserial PRIMARY KEY,
-  email      text NOT NULL UNIQUE,
-  name       text NOT NULL,
-  created_at timestamptz NOT NULL DEFAULT now()
+3:T2de4,<h1>PostgreSQL: 관계형 DB의 실무 기본선</h1>
+<blockquote>
+<p>요약: 관계·트랜잭션·JSON을 한 엔진에서 다루는 오픈소스 관계형 DB로, 웹과 API 백엔드의 기본선이 되는 이유를 정리한다.</p>
+</blockquote>
+<hr>
+<h2>1. 언제 PostgreSQL인가</h2>
+<p>PostgreSQL은 오픈소스 관계형 데이터베이스다. 표(테이블)로 데이터를 넣고, SQL로 조회한다. 웹 API, 관리자 화면, 정산·리포트처럼 <strong>관계가 있고 틀리면 안 되는 데이터</strong>에 잘 맞는다.</p>
+<table>
+<thead>
+<tr>
+<th>맞는 경우</th>
+<th>덜 맞는 경우</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>주문·회원처럼 관계가 중요할 때</td>
+<td>키와 값만 초고속으로 필요할 때 (Redis)</td>
+</tr>
+<tr>
+<td>제약·트랜잭션이 업무의 핵심일 때</td>
+<td>문서 구조가 매일 바뀌고 조인이 거의 없을 때 (MongoDB)</td>
+</tr>
+<tr>
+<td>SQL로 분석·집계·리포팅을 할 때</td>
+<td>극단적 수평 샤딩만 목표일 때</td>
+</tr>
+<tr>
+<td>JSON과 관계를 한 DB에서 섞을 때</td>
+<td>단일 파일·임베디드면 충분할 때 (SQLite)</td>
+</tr>
+<tr>
+<td>확장(검색, 지리정보)을 DB 안에서 쓰고 싶을 때</td>
+<td>호스팅이 MySQL만 제공하는 레거시 환경</td>
+</tr>
+</tbody></table>
+<p>“그냥 SQL이 필요해서”만으로도 충분한 선택이 많다. 반대로 <strong>캐시 전용</strong>, <strong>초단순 키-값</strong>, <strong>모바일 로컬 DB</strong>에는 다른 도구가 더 단순하다.</p>
+<p>실무에서 기본선으로 자주 고르는 이유다. 표준 SQL에 가깝고, JSONB와 확장이 한 엔진에 들어 있다.</p>
+<hr>
+<h2>2. 핵심 개념</h2>
+<p><strong>트랜잭션</strong>은 여러 쓰기를 한 묶음으로 성공하거나 전부 되돌리는 장치다. PostgreSQL은 ACID를 지킨다. ACID는 원자성(Atomicity)·일관성(Consistency)·격리(Isolation)·지속성(Durability)의 약자다.</p>
+<pre><code class="hljs language-sql"><span class="hljs-keyword">BEGIN</span>;
+<span class="hljs-keyword">UPDATE</span> accounts <span class="hljs-keyword">SET</span> balance <span class="hljs-operator">=</span> balance <span class="hljs-operator">-</span> <span class="hljs-number">1000</span> <span class="hljs-keyword">WHERE</span> id <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;
+<span class="hljs-keyword">UPDATE</span> accounts <span class="hljs-keyword">SET</span> balance <span class="hljs-operator">=</span> balance <span class="hljs-operator">+</span> <span class="hljs-number">1000</span> <span class="hljs-keyword">WHERE</span> id <span class="hljs-operator">=</span> <span class="hljs-number">2</span>;
+<span class="hljs-keyword">COMMIT</span>;
+<span class="hljs-comment">-- 중간에 실패하면 ROLLBACK</span></code></pre>
+<p><strong>스키마와 제약</strong>이 데이터의 모양을 지킨다.</p>
+<ul>
+<li>PK(Primary Key, 기본키): 행을 유일하게 가리킨다</li>
+<li>FK(Foreign Key, 외래키): 다른 테이블의 존재를 강제한다</li>
+<li>UNIQUE, CHECK: 중복·범위 같은 규칙을 엔진이 검사한다</li>
+</ul>
+<p>제약을 앱에만 두면 우회 경로에서 깨진다. DB에 두는 편이 안전하다.</p>
+<p><strong>인덱스</strong>는 조회를 빠르게 하는 보조 구조다. 기본은 B-tree다. <code>WHERE</code>·<code>JOIN</code>·<code>ORDER BY</code>에 자주 쓰는 컬럼에 만든다. 너무 많으면 쓰기가 느려진다.</p>
+<p><strong>JSONB</strong>는 이진 JSON이다. JSON은 JavaScript Object Notation, 키-값 문서 형식이다. 관계형 테이블 안에 유연한 필드를 넣을 때 쓴다. 검색이 필요하면 GIN 인덱스를 붙인다. GIN은 Generalized Inverted Index, 문서·배열 검색용 인덱스다.</p>
+<p><strong>WAL</strong>은 Write-Ahead Log, 미리 쓰기 로그다. 변경을 디스크에 남긴 뒤 데이터 파일에 반영한다. 장애 복구와 연속 백업의 기반이다.</p>
+<p><strong>격리 수준</strong>은 동시에 도는 트랜잭션이 서로를 얼마나 보는지다. 기본은 <code>READ COMMITTED</code>인 경우가 많다. 재고처럼 같은 행을 두고 경쟁하면 <code>SELECT … FOR UPDATE</code>로 잠근다. 기본값을 올리는 일은 측정 후에 한다. 교착(deadlock)이 늘 수 있다.</p>
+<p>연결 문자열은 시크릿이다. 예시는 플레이스홀더만 쓴다.</p>
+<pre><code class="hljs"><span class="hljs-symbol">postgresql:</span><span class="hljs-comment">//APP_USER:YOUR_DB_PASSWORD@db.internal:5432/app</span></code></pre>
+<hr>
+<h2>3. 최소 예제 — 주문과 JSON 메타</h2>
+<p>회원과 주문을 가정한다. 고정 필드는 컬럼, 자주 바뀌는 옵션은 JSONB에 둔다.</p>
+<pre><code class="hljs language-sql"><span class="hljs-keyword">CREATE TABLE</span> users (
+  id         bigserial <span class="hljs-keyword">PRIMARY KEY</span>,
+  email      text <span class="hljs-keyword">NOT NULL</span> <span class="hljs-keyword">UNIQUE</span>,
+  name       text <span class="hljs-keyword">NOT NULL</span>,
+  created_at timestamptz <span class="hljs-keyword">NOT NULL</span> <span class="hljs-keyword">DEFAULT</span> now()
 );
 
-CREATE TABLE orders (
-  id           bigserial PRIMARY KEY,
-  user_id      bigint NOT NULL REFERENCES users(id),
-  status       text NOT NULL CHECK (status IN ('pending', 'paid', 'cancelled')),
-  payload      jsonb NOT NULL DEFAULT '{}',
-  created_at   timestamptz NOT NULL DEFAULT now()
+<span class="hljs-keyword">CREATE TABLE</span> orders (
+  id           bigserial <span class="hljs-keyword">PRIMARY KEY</span>,
+  user_id      <span class="hljs-type">bigint</span> <span class="hljs-keyword">NOT NULL</span> <span class="hljs-keyword">REFERENCES</span> users(id),
+  status       text <span class="hljs-keyword">NOT NULL</span> <span class="hljs-keyword">CHECK</span> (status <span class="hljs-keyword">IN</span> (<span class="hljs-string">&#x27;pending&#x27;</span>, <span class="hljs-string">&#x27;paid&#x27;</span>, <span class="hljs-string">&#x27;cancelled&#x27;</span>)),
+  payload      jsonb <span class="hljs-keyword">NOT NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-string">&#x27;{}&#x27;</span>,
+  created_at   timestamptz <span class="hljs-keyword">NOT NULL</span> <span class="hljs-keyword">DEFAULT</span> now()
 );
 
-CREATE INDEX orders_user_id_idx ON orders (user_id);
-CREATE INDEX orders_payload_gin ON orders USING gin (payload);
-```
+<span class="hljs-keyword">CREATE</span> INDEX orders_user_id_idx <span class="hljs-keyword">ON</span> orders (user_id);
+<span class="hljs-keyword">CREATE</span> INDEX orders_payload_gin <span class="hljs-keyword">ON</span> orders <span class="hljs-keyword">USING</span> gin (payload);</code></pre>
+<pre><code class="hljs language-sql"><span class="hljs-keyword">INSERT INTO</span> users (email, name) <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">&#x27;ada@example.com&#x27;</span>, <span class="hljs-string">&#x27;Ada&#x27;</span>);
 
-```sql
-INSERT INTO users (email, name) VALUES ('ada@example.com', 'Ada');
-
-INSERT INTO orders (user_id, status, payload)
-VALUES (
-  1,
-  'paid',
-  '{"channel": "web", "coupon": "WELCOME10"}'::jsonb
+<span class="hljs-keyword">INSERT INTO</span> orders (user_id, status, payload)
+<span class="hljs-keyword">VALUES</span> (
+  <span class="hljs-number">1</span>,
+  <span class="hljs-string">&#x27;paid&#x27;</span>,
+  <span class="hljs-string">&#x27;{&quot;channel&quot;: &quot;web&quot;, &quot;coupon&quot;: &quot;WELCOME10&quot;}&#x27;</span>::jsonb
 );
 
-SELECT o.id, u.email, o.status, o.payload->>'coupon' AS coupon
-FROM orders o
-JOIN users u ON u.id = o.user_id
-WHERE o.payload @> '{"channel": "web"}'::jsonb
-ORDER BY o.created_at DESC
-LIMIT 20;
-```
-
-느린 쿼리는 감으로 고치지 않는다.
-
-```sql
-EXPLAIN (ANALYZE, BUFFERS)
-SELECT * FROM orders WHERE user_id = 1 ORDER BY created_at DESC;
-```
-
-`Seq Scan`이 대량 테이블에서 반복되면 인덱스를 검토한다. 스키마 변경은 Flyway, Prisma migrate 같은 마이그레이션 도구로 버전을 남긴다.
-
----
-
-## 4. 운영 시 주의
-
-**연결.** PostgreSQL은 연결당 메모리를 쓴다. 앱 인스턴스 수 × 풀 크기가 곧 DB 연결 수다. 과다하면 신규 연결이 거절된다. PgBouncer 같은 풀러를 앞에 두는 구성이 흔하다.
-
-**백업.** `pg_dump`는 논리 백업이다. 소규모·개발에 충분하다. 운영 등급은 WAL을 이은 연속 백업(PITR, Point-In-Time Recovery)을 검토한다. 백업이 복원되는지는 주기적으로 확인한다. 찍기만 하고 복원을 안 해본 백업은 백업이 아니다.
-
-**보안.** 앱 계정은 `SUPERUSER`가 아니다. 필요한 스키마·테이블만 연다. 관리형이면 퍼블릭 액세스를 끄고, 앱 보안 그룹에서만 5432를 연다. 비밀번호는 코드·이미지에 넣지 않는다. `YOUR_DB_PASSWORD` 같은 플레이스홀더를 시크릿 저장소에 둔다.
-
-**성능.** 슬로우 쿼리 로그와 `EXPLAIN`을 먼저 본다. CPU를 키우기 전에 인덱스와 N+1 조회를 고친다.
-
-**마이그레이션.** 큰 테이블에 락이 긴 `ALTER`는 배포 창을 잡는다. `CREATE INDEX CONCURRENTLY`처럼 온라인에 가까운 방법을 버전별로 확인한다.
-
-**확장.** 자주 쓰는 것만 켠다. `pg_trgm`은 유사 문자열 검색, PostGIS는 지리 정보, `pgcrypto`는 해시·암호화 함수다. 확장은 백업·복원·메이저 업그레이드 체크리스트에 넣는다.
-
-**비용.** 관리형(RDS 등)은 인스턴스 클래스·스토리지·IOPS·백업 보존이 요금이다. 슬로우 쿼리를 두고 클래스만 키우면 매달 비용만 는다.
-
----
-
-## 5. 정리
-
-PostgreSQL은 “그냥 SQL DB”가 아니다. **관계 + JSON + 확장**을 한 엔진에서 다루는 기본선이다. 제약을 DB에 두고, 인덱스는 쿼리 패턴에 맞추고, 연결·백업·권한을 운영 항목으로 본다.
-
-### 체크리스트
-
-- [ ] PK·FK·CHECK를 스키마에 넣는다. 앱만의 규칙은 우회된다.
-- [ ] `WHERE`/`JOIN` 컬럼에 인덱스를 만든다. 풀스캔은 데이터가 커지면 비용이 된다.
-- [ ] 연결 풀 크기를 인스턴스 수와 곱해 본다. 과다 연결은 장애다.
-- [ ] `pg_dump` 또는 WAL 백업을 켜고 복원을 한 번 연습한다. 복원되지 않는 백업은 없다.
-- [ ] 앱 DB 계정에서 슈퍼유저 권한을 뺀다. 최소 권한이 사고 범위를 줄인다.
-
-### 연습
-
-1. 위 `users`/`orders` 테이블을 로컬에 만들고 주문을 세 건 넣는다.
-2. `payload->>'coupon'`으로 조회하는 쿼리에 `EXPLAIN`을 붙여 본다.
-3. `pg_dump`로 덤프한 뒤 빈 DB에 복원해 건수가 같은지 확인한다.0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"PostgreSQL: 관계형 DB의 실무 기본선\",\"description\":\"관계·트랜잭션·JSON을 한 엔진에서 다루는 오픈소스 관계형 DB로, 웹과 API 백엔드의 기본선이 되는 이유를 정리한다.\",\"datePublished\":\"2023-04-05\",\"url\":\"https://kaisa.co.kr/posts/db-01/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"db\",\"keywords\":\"db\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"PostgreSQL: 관계형 DB의 실무 기본선\",\"item\":\"https://kaisa.co.kr/posts/db-01/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2023-04-05"}]}],["$","h1",null,{"className":"blog-post__title","children":"PostgreSQL: 관계형 DB의 실무 기본선"}],["$","$L3",null,{"content":"$4"}],"$L5","$L6"]}]}]}]],["$L7","$L8","$L9","$La"],"$Lb"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Zv4TpHss7ITjpJG-s6iGo"}
-5:["$","$Lc",null,{"pathKey":"db-01"}]
-6:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[null,["$","$L2",null,{"href":"/posts/db-02/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"MySQL: 웹 서비스에서 가장 흔한 관계형 DB"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
-7:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
-8:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
-9:["$","script","script-0",{"src":"/_next/static/chunks/1oevfsdj8hv5d.js","async":true}]
-a:["$","script","script-1",{"src":"/_next/static/chunks/22vl7s8dm-4u2.js","async":true}]
-b:["$","$Ld",null,{"children":["$","$e",null,{"name":"Next.MetadataOutlet","children":"$@f"}]}]
-f:null
+<span class="hljs-keyword">SELECT</span> o.id, u.email, o.status, o.payload<span class="hljs-operator">-</span><span class="hljs-operator">&gt;&gt;</span><span class="hljs-string">&#x27;coupon&#x27;</span> <span class="hljs-keyword">AS</span> coupon
+<span class="hljs-keyword">FROM</span> orders o
+<span class="hljs-keyword">JOIN</span> users u <span class="hljs-keyword">ON</span> u.id <span class="hljs-operator">=</span> o.user_id
+<span class="hljs-keyword">WHERE</span> o.payload @<span class="hljs-operator">&gt;</span> <span class="hljs-string">&#x27;{&quot;channel&quot;: &quot;web&quot;}&#x27;</span>::jsonb
+<span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> o.created_at <span class="hljs-keyword">DESC</span>
+LIMIT <span class="hljs-number">20</span>;</code></pre>
+<p>느린 쿼리는 감으로 고치지 않는다.</p>
+<pre><code class="hljs language-sql">EXPLAIN (ANALYZE, BUFFERS)
+<span class="hljs-keyword">SELECT</span> <span class="hljs-operator">*</span> <span class="hljs-keyword">FROM</span> orders <span class="hljs-keyword">WHERE</span> user_id <span class="hljs-operator">=</span> <span class="hljs-number">1</span> <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> created_at <span class="hljs-keyword">DESC</span>;</code></pre>
+<p><code>Seq Scan</code>이 대량 테이블에서 반복되면 인덱스를 검토한다. 스키마 변경은 Flyway, Prisma migrate 같은 마이그레이션 도구로 버전을 남긴다.</p>
+<hr>
+<h2>4. 운영 시 주의</h2>
+<p><strong>연결.</strong> PostgreSQL은 연결당 메모리를 쓴다. 앱 인스턴스 수 × 풀 크기가 곧 DB 연결 수다. 과다하면 신규 연결이 거절된다. PgBouncer 같은 풀러를 앞에 두는 구성이 흔하다.</p>
+<p><strong>백업.</strong> <code>pg_dump</code>는 논리 백업이다. 소규모·개발에 충분하다. 운영 등급은 WAL을 이은 연속 백업(PITR, Point-In-Time Recovery)을 검토한다. 백업이 복원되는지는 주기적으로 확인한다. 찍기만 하고 복원을 안 해본 백업은 백업이 아니다.</p>
+<p><strong>보안.</strong> 앱 계정은 <code>SUPERUSER</code>가 아니다. 필요한 스키마·테이블만 연다. 관리형이면 퍼블릭 액세스를 끄고, 앱 보안 그룹에서만 5432를 연다. 비밀번호는 코드·이미지에 넣지 않는다. <code>YOUR_DB_PASSWORD</code> 같은 플레이스홀더를 시크릿 저장소에 둔다.</p>
+<p><strong>성능.</strong> 슬로우 쿼리 로그와 <code>EXPLAIN</code>을 먼저 본다. CPU를 키우기 전에 인덱스와 N+1 조회를 고친다.</p>
+<p><strong>마이그레이션.</strong> 큰 테이블에 락이 긴 <code>ALTER</code>는 배포 창을 잡는다. <code>CREATE INDEX CONCURRENTLY</code>처럼 온라인에 가까운 방법을 버전별로 확인한다.</p>
+<p><strong>확장.</strong> 자주 쓰는 것만 켠다. <code>pg_trgm</code>은 유사 문자열 검색, PostGIS는 지리 정보, <code>pgcrypto</code>는 해시·암호화 함수다. 확장은 백업·복원·메이저 업그레이드 체크리스트에 넣는다.</p>
+<p><strong>비용.</strong> 관리형(RDS 등)은 인스턴스 클래스·스토리지·IOPS·백업 보존이 요금이다. 슬로우 쿼리를 두고 클래스만 키우면 매달 비용만 는다.</p>
+<hr>
+<h2>5. 정리</h2>
+<p>PostgreSQL은 “그냥 SQL DB”가 아니다. <strong>관계 + JSON + 확장</strong>을 한 엔진에서 다루는 기본선이다. 제약을 DB에 두고, 인덱스는 쿼리 패턴에 맞추고, 연결·백업·권한을 운영 항목으로 본다.</p>
+<h3>체크리스트</h3>
+<ul>
+<li><input disabled="" type="checkbox"> PK·FK·CHECK를 스키마에 넣는다. 앱만의 규칙은 우회된다.</li>
+<li><input disabled="" type="checkbox"> <code>WHERE</code>/<code>JOIN</code> 컬럼에 인덱스를 만든다. 풀스캔은 데이터가 커지면 비용이 된다.</li>
+<li><input disabled="" type="checkbox"> 연결 풀 크기를 인스턴스 수와 곱해 본다. 과다 연결은 장애다.</li>
+<li><input disabled="" type="checkbox"> <code>pg_dump</code> 또는 WAL 백업을 켜고 복원을 한 번 연습한다. 복원되지 않는 백업은 없다.</li>
+<li><input disabled="" type="checkbox"> 앱 DB 계정에서 슈퍼유저 권한을 뺀다. 최소 권한이 사고 범위를 줄인다.</li>
+</ul>
+<h3>연습</h3>
+<ol>
+<li>위 <code>users</code>/<code>orders</code> 테이블을 로컬에 만들고 주문을 세 건 넣는다.</li>
+<li><code>payload-&gt;&gt;&#39;coupon&#39;</code>으로 조회하는 쿼리에 <code>EXPLAIN</code>을 붙여 본다.</li>
+<li><code>pg_dump</code>로 덤프한 뒤 빈 DB에 복원해 건수가 같은지 확인한다.</li>
+</ol>
+0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"PostgreSQL: 관계형 DB의 실무 기본선\",\"description\":\"관계·트랜잭션·JSON을 한 엔진에서 다루는 오픈소스 관계형 DB로, 웹과 API 백엔드의 기본선이 되는 이유를 정리한다.\",\"datePublished\":\"2023-04-05\",\"url\":\"https://kaisa.co.kr/posts/db-01/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"db\",\"keywords\":\"db\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"PostgreSQL: 관계형 DB의 실무 기본선\",\"item\":\"https://kaisa.co.kr/posts/db-01/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2023-04-05"}]}],["$","h1",null,{"className":"blog-post__title","children":"PostgreSQL: 관계형 DB의 실무 기본선"}],["$","div",null,{"className":"blog-post__body blog-post__body--markdown","children":["$","div",null,{"className":"markdown-body","dangerouslySetInnerHTML":{"__html":"$3"}}]}],"$L4","$L5"]}]}]}]],["$L6","$L7","$L8"],"$L9"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"_AZq8Hq_NwvdopxIW0Tgh"}
+4:["$","$La",null,{"pathKey":"db-01"}]
+5:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[null,["$","$L2",null,{"href":"/posts/db-02/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"MySQL: 웹 서비스에서 가장 흔한 관계형 DB"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
+6:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
+7:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
+8:["$","script","script-0",{"src":"/_next/static/chunks/26shoze10o-dc.js","async":true}]
+9:["$","$Lb",null,{"children":["$","$c",null,{"name":"Next.MetadataOutlet","children":"$@d"}]}]
+d:null

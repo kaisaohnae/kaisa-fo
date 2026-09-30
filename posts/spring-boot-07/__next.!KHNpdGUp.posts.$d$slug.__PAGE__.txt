@@ -1,224 +1,238 @@
 1:"$Sreact.fragment"
-2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],""]
-3:I[55489,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-c:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-d:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
-e:"$Sreact.suspense"
+2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],""]
+a:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],"default"]
+b:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
+c:"$Sreact.suspense"
 :HL["/_next/static/chunks/0br7e7j26qkj3.css","style"]
 :HL["/_next/static/chunks/21i9-auhncr4a.css","style"]
-4:T169b,# Observability — Actuator, Micrometer, OpenTelemetry
+3:T2c59,<h1>Observability — Actuator, Micrometer, OpenTelemetry</h1>
+<blockquote>
+<p>요약: Actuator와 OpenTelemetry로 헬스·메트릭·트레이스를 붙여, 느린 지점과 장애 지점을 관측한다.</p>
+</blockquote>
+<hr>
+<h2>1. 왜 관측인가</h2>
+<p><strong>Observability(관측 가능성)</strong> 는 로그·메트릭·트레이스만으로 “왜 느리고 어디서 깨졌는지”를 답할 수 있는 상태다.</p>
+<table>
+<thead>
+<tr>
+<th>기둥</th>
+<th>질문</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Logs</td>
+<td>무슨 일이 있었나</td>
+</tr>
+<tr>
+<td>Metrics</td>
+<td>얼마나, 얼마나 자주</td>
+</tr>
+<tr>
+<td>Traces</td>
+<td>이 요청의 시간이 어디에 쓰였나</td>
+</tr>
+</tbody></table>
+<p>Boot 3는 <strong>Micrometer Observation API</strong>로 메트릭과 트레이스를 같은 계측에서 뽑는다. <strong>Micrometer</strong>는 벤더에 치우치지 않는 메트릭 파사드다.</p>
+<hr>
+<h2>2. Actuator</h2>
+<p>한 줄 정의: <strong>Actuator</strong>는 헬스·메트릭·정보 같은 운영 엔드포인트를 HTTP로 연다.</p>
+<pre><code class="hljs language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter-actuator<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+<pre><code class="hljs language-yaml"><span class="hljs-attr">management:</span>
+  <span class="hljs-attr">endpoints:</span>
+    <span class="hljs-attr">web:</span>
+      <span class="hljs-attr">exposure:</span>
+        <span class="hljs-attr">include:</span> <span class="hljs-string">health,info,metrics,prometheus</span>
+  <span class="hljs-attr">endpoint:</span>
+    <span class="hljs-attr">health:</span>
+      <span class="hljs-attr">show-details:</span> <span class="hljs-string">when_authorized</span>
+      <span class="hljs-attr">probes:</span>
+        <span class="hljs-attr">enabled:</span> <span class="hljs-literal">true</span>
+  <span class="hljs-attr">server:</span>
+    <span class="hljs-attr">port:</span> <span class="hljs-number">8081</span></code></pre>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>용도</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/actuator/health</code></td>
+<td>생존·준비 요약</td>
+</tr>
+<tr>
+<td><code>/actuator/health/liveness</code></td>
+<td>k8s liveness</td>
+</tr>
+<tr>
+<td><code>/actuator/health/readiness</code></td>
+<td>k8s readiness</td>
+</tr>
+<tr>
+<td><code>/actuator/prometheus</code></td>
+<td>Prometheus 스크레이프</td>
+</tr>
+<tr>
+<td><code>/actuator/info</code></td>
+<td>빌드·앱 정보</td>
+</tr>
+</tbody></table>
+<p>운영에서는 별도 포트와 인증으로 막는다. <code>include: &#39;*&#39;</code>는 힙덤프까지 노출하기 쉽다.</p>
+<hr>
+<h2>3. Health Indicator</h2>
+<p>외부 결제망처럼 앱이 떠 있어도 트래픽을 받으면 안 되는 의존성은 readiness에 넣을지 팀 정책으로 정한다. 헬스마다 외부 ping을 치면 헬스 자체가 장애가 된다.</p>
+<pre><code class="hljs language-java"><span class="hljs-meta">@Component</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">PaymentGatewayHealthIndicator</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">HealthIndicator</span> {
 
-> 요약: Actuator와 OpenTelemetry로 헬스·메트릭·트레이스를 붙여, 느린 지점과 장애 지점을 관측한다.
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> PaymentClient client;
 
----
-
-## 1. 왜 관측인가
-
-**Observability(관측 가능성)** 는 로그·메트릭·트레이스만으로 “왜 느리고 어디서 깨졌는지”를 답할 수 있는 상태다.
-
-| 기둥 | 질문 |
-|------|------|
-| Logs | 무슨 일이 있었나 |
-| Metrics | 얼마나, 얼마나 자주 |
-| Traces | 이 요청의 시간이 어디에 쓰였나 |
-
-Boot 3는 **Micrometer Observation API**로 메트릭과 트레이스를 같은 계측에서 뽑는다. **Micrometer**는 벤더에 치우치지 않는 메트릭 파사드다.
-
----
-
-## 2. Actuator
-
-한 줄 정의: **Actuator**는 헬스·메트릭·정보 같은 운영 엔드포인트를 HTTP로 연다.
-
-```xml
-<dependency>
-  <groupId>org.springframework.boot</groupId>
-  <artifactId>spring-boot-starter-actuator</artifactId>
-</dependency>
-```
-
-```yaml
-management:
-  endpoints:
-    web:
-      exposure:
-        include: health,info,metrics,prometheus
-  endpoint:
-    health:
-      show-details: when_authorized
-      probes:
-        enabled: true
-  server:
-    port: 8081
-```
-
-| Path | 용도 |
-|------|------|
-| `/actuator/health` | 생존·준비 요약 |
-| `/actuator/health/liveness` | k8s liveness |
-| `/actuator/health/readiness` | k8s readiness |
-| `/actuator/prometheus` | Prometheus 스크레이프 |
-| `/actuator/info` | 빌드·앱 정보 |
-
-운영에서는 별도 포트와 인증으로 막는다. `include: '*'`는 힙덤프까지 노출하기 쉽다.
-
----
-
-## 3. Health Indicator
-
-외부 결제망처럼 앱이 떠 있어도 트래픽을 받으면 안 되는 의존성은 readiness에 넣을지 팀 정책으로 정한다. 헬스마다 외부 ping을 치면 헬스 자체가 장애가 된다.
-
-```java
-@Component
-public class PaymentGatewayHealthIndicator implements HealthIndicator {
-
-    private final PaymentClient client;
-
-    public PaymentGatewayHealthIndicator(PaymentClient client) {
-        this.client = client;
+    <span class="hljs-type">public</span> <span class="hljs-title function_">PaymentGatewayHealthIndicator</span><span class="hljs-params">(PaymentClient client)</span> {
+        <span class="hljs-built_in">this</span>.client = client;
     }
 
-    @Override
-    public Health health() {
-        try {
+    <span class="hljs-meta">@Override</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">Health</span> <span class="hljs-title function_">health</span><span class="hljs-params">()</span> {
+        <span class="hljs-keyword">try</span> {
             client.ping();
-            return Health.up().withDetail("payment", "reachable").build();
-        } catch (Exception e) {
-            return Health.down(e).build();
+            <span class="hljs-keyword">return</span> Health.up().withDetail(<span class="hljs-string">&quot;payment&quot;</span>, <span class="hljs-string">&quot;reachable&quot;</span>).build();
+        } <span class="hljs-keyword">catch</span> (Exception e) {
+            <span class="hljs-keyword">return</span> Health.down(e).build();
         }
     }
-}
-```
+}</code></pre>
+<hr>
+<h2>4. 메트릭과 Observation</h2>
+<p>Prometheus 레지스트리를 붙이면 <code>/actuator/prometheus</code>로 나간다.</p>
+<pre><code class="hljs language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>io.micrometer<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>micrometer-registry-prometheus<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+<p>HTTP 서버·<code>RestClient</code>·DataSource는 Boot가 기본 계측한다. 비즈니스 카운터는 직접 심는다.</p>
+<pre><code class="hljs language-java"><span class="hljs-meta">@Service</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">CheckoutService</span> {
 
----
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Counter checkoutCounter;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> Timer checkoutTimer;
 
-## 4. 메트릭과 Observation
-
-Prometheus 레지스트리를 붙이면 `/actuator/prometheus`로 나간다.
-
-```xml
-<dependency>
-  <groupId>io.micrometer</groupId>
-  <artifactId>micrometer-registry-prometheus</artifactId>
-</dependency>
-```
-
-HTTP 서버·`RestClient`·DataSource는 Boot가 기본 계측한다. 비즈니스 카운터는 직접 심는다.
-
-```java
-@Service
-public class CheckoutService {
-
-    private final Counter checkoutCounter;
-    private final Timer checkoutTimer;
-
-    public CheckoutService(MeterRegistry registry) {
-        this.checkoutCounter = registry.counter("checkout.completed");
-        this.checkoutTimer = registry.timer("checkout.latency");
+    <span class="hljs-type">public</span> <span class="hljs-title function_">CheckoutService</span><span class="hljs-params">(MeterRegistry registry)</span> {
+        <span class="hljs-built_in">this</span>.checkoutCounter = registry.counter(<span class="hljs-string">&quot;checkout.completed&quot;</span>);
+        <span class="hljs-built_in">this</span>.checkoutTimer = registry.timer(<span class="hljs-string">&quot;checkout.latency&quot;</span>);
     }
 
-    public void checkout(Order order) {
-        checkoutTimer.record(() -> {
-            // 유스케이스
+    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">checkout</span><span class="hljs-params">(Order order)</span> {
+        checkoutTimer.record(() -&gt; {
+            <span class="hljs-comment">// 유스케이스</span>
             checkoutCounter.increment();
         });
     }
-}
-```
+}</code></pre>
+<p>Observation은 메트릭과 트레이스를 한 구간으로 묶는다. 카디널리티가 높은 값(userId, 주문번호)을 태그로 넣으면 시계열이 폭발한다.</p>
+<pre><code class="hljs language-java">Observation.createNotStarted(<span class="hljs-string">&quot;order.create&quot;</span>, observationRegistry)
+        .lowCardinalityKeyValue(<span class="hljs-string">&quot;type&quot;</span>, <span class="hljs-string">&quot;online&quot;</span>)
+        .observe(() -&gt; orderService.create(request));</code></pre>
+<hr>
+<h2>5. OpenTelemetry</h2>
+<p>한 줄 정의: <strong>OpenTelemetry(OTel)</strong> 는 트레이스·메트릭·로그를 보내는 공개 표준이다. Micrometer Tracing이 OTel 브리지로 스팬을 내보내고, Collector가 Jaeger·Tempo 등으로 넘긴다.</p>
+<pre><code class="hljs language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>io.micrometer<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>micrometer-tracing-bridge-otel<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>io.opentelemetry<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>opentelemetry-exporter-otlp<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+<pre><code class="hljs language-yaml"><span class="hljs-attr">management:</span>
+  <span class="hljs-attr">tracing:</span>
+    <span class="hljs-attr">sampling:</span>
+      <span class="hljs-attr">probability:</span> <span class="hljs-number">1.0</span>
+  <span class="hljs-attr">otlp:</span>
+    <span class="hljs-attr">tracing:</span>
+      <span class="hljs-attr">endpoint:</span> <span class="hljs-string">http://localhost:4318/v1/traces</span>
 
-Observation은 메트릭과 트레이스를 한 구간으로 묶는다. 카디널리티가 높은 값(userId, 주문번호)을 태그로 넣으면 시계열이 폭발한다.
-
-```java
-Observation.createNotStarted("order.create", observationRegistry)
-        .lowCardinalityKeyValue("type", "online")
-        .observe(() -> orderService.create(request));
-```
-
----
-
-## 5. OpenTelemetry
-
-한 줄 정의: **OpenTelemetry(OTel)** 는 트레이스·메트릭·로그를 보내는 공개 표준이다. Micrometer Tracing이 OTel 브리지로 스팬을 내보내고, Collector가 Jaeger·Tempo 등으로 넘긴다.
-
-```xml
-<dependency>
-  <groupId>io.micrometer</groupId>
-  <artifactId>micrometer-tracing-bridge-otel</artifactId>
-</dependency>
-<dependency>
-  <groupId>io.opentelemetry</groupId>
-  <artifactId>opentelemetry-exporter-otlp</artifactId>
-</dependency>
-```
-
-```yaml
-management:
-  tracing:
-    sampling:
-      probability: 1.0
-  otlp:
-    tracing:
-      endpoint: http://localhost:4318/v1/traces
-
-logging:
-  pattern:
-    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
-```
-
-운영 샘플링은 0.05~0.2부터 본다. 전 요청 트레이스는 비용이 크다. 로그에 `traceId`가 있으면 티켓·로그·트레이스를 같은 요청으로 잇는다.
-
-| 환경 | probability |
-|------|-------------|
-| local | 1.0 |
-| staging | 0.5~1.0 |
-| prod | 0.05~0.2 |
-
----
-
-## 6. 구조화 로그
-
-운영 로그는 JSON이 검색·알람에 유리하다. Logback encoder 또는 Log4j2 JSON layout을 쓴다.
-
-남길 것: timestamp, level, service, env, traceId, spanId, 내부 userId, 제한된 스택.  
-남기지 말 것: 비밀번호, 토큰, 카드번호, 주민번호, 개인정보 원문.
-
----
-
-## 7. 알람 최소선
-
-- `http.server.requests` p99 급증
-- `hikaricp.connections.pending`이 지속
-- 5xx 비율
-- readiness 실패
-- JVM GC·힙, Tomcat 큐
-
-대시보드는 RED(Rate, Errors, Duration)와 의존성 지연, 그리고 `order.created` 같은 비즈니스 카운터를 같이 본다.
-
----
-
-## 8. 흔한 실수
-
-| 실수 | 대안 |
-|------|------|
-| Actuator `*` 노출 | 화이트리스트 + 별도 포트 |
-| userId를 메트릭 태그 | low cardinality만 |
-| prod 샘플링 1.0 | 트래픽에 맞게 낮춤 |
-| 로그에 토큰·PII | 마스킹 |
-| 기술 메트릭만 | 비즈니스 카운터 |
-
----
-
-## 연습
-
-1. Actuator + Prometheus registry로 `/actuator/prometheus`를 확인한다.
-2. `order.created` 카운터를 추가한다.
-3. 로그 패턴에 `traceId`를 넣는다.
-4. (선택) OTel Collector + Jaeger로 스팬을 본다.0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"Observability — Actuator, Micrometer, OpenTelemetry\",\"description\":\"Actuator와 OpenTelemetry로 헬스·메트릭·트레이스를 붙여, 느린 지점과 장애 지점을 관측한다.\",\"datePublished\":\"2025-12-19\",\"url\":\"https://kaisa.co.kr/posts/spring-boot-07/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"spring-boot\",\"keywords\":\"spring-boot\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Observability — Actuator, Micrometer, OpenTelemetry\",\"item\":\"https://kaisa.co.kr/posts/spring-boot-07/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2025-12-19"}]}],["$","h1",null,{"className":"blog-post__title","children":"Observability — Actuator, Micrometer, OpenTelemetry"}],["$","$L3",null,{"content":"$4"}],"$L5","$L6"]}]}]}]],["$L7","$L8","$L9","$La"],"$Lb"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Zv4TpHss7ITjpJG-s6iGo"}
-5:["$","$Lc",null,{"pathKey":"spring-boot-07"}]
-6:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/spring-boot-06/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"테스트 — JUnit 5, MockMvc, Testcontainers"}]]}],["$","$L2",null,{"href":"/posts/spring-boot-08/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"비동기·메시징·Virtual Threads"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
-7:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
-8:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
-9:["$","script","script-0",{"src":"/_next/static/chunks/1oevfsdj8hv5d.js","async":true}]
-a:["$","script","script-1",{"src":"/_next/static/chunks/22vl7s8dm-4u2.js","async":true}]
-b:["$","$Ld",null,{"children":["$","$e",null,{"name":"Next.MetadataOutlet","children":"$@f"}]}]
-f:null
+<span class="hljs-attr">logging:</span>
+  <span class="hljs-attr">pattern:</span>
+    <span class="hljs-attr">level:</span> <span class="hljs-string">&quot;%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]&quot;</span></code></pre>
+<p>운영 샘플링은 0.05~0.2부터 본다. 전 요청 트레이스는 비용이 크다. 로그에 <code>traceId</code>가 있으면 티켓·로그·트레이스를 같은 요청으로 잇는다.</p>
+<table>
+<thead>
+<tr>
+<th>환경</th>
+<th>probability</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>local</td>
+<td>1.0</td>
+</tr>
+<tr>
+<td>staging</td>
+<td>0.5~1.0</td>
+</tr>
+<tr>
+<td>prod</td>
+<td>0.05~0.2</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>6. 구조화 로그</h2>
+<p>운영 로그는 JSON이 검색·알람에 유리하다. Logback encoder 또는 Log4j2 JSON layout을 쓴다.</p>
+<p>남길 것: timestamp, level, service, env, traceId, spanId, 내부 userId, 제한된 스택.<br>남기지 말 것: 비밀번호, 토큰, 카드번호, 주민번호, 개인정보 원문.</p>
+<hr>
+<h2>7. 알람 최소선</h2>
+<ul>
+<li><code>http.server.requests</code> p99 급증</li>
+<li><code>hikaricp.connections.pending</code>이 지속</li>
+<li>5xx 비율</li>
+<li>readiness 실패</li>
+<li>JVM GC·힙, Tomcat 큐</li>
+</ul>
+<p>대시보드는 RED(Rate, Errors, Duration)와 의존성 지연, 그리고 <code>order.created</code> 같은 비즈니스 카운터를 같이 본다.</p>
+<hr>
+<h2>8. 흔한 실수</h2>
+<table>
+<thead>
+<tr>
+<th>실수</th>
+<th>대안</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Actuator <code>*</code> 노출</td>
+<td>화이트리스트 + 별도 포트</td>
+</tr>
+<tr>
+<td>userId를 메트릭 태그</td>
+<td>low cardinality만</td>
+</tr>
+<tr>
+<td>prod 샘플링 1.0</td>
+<td>트래픽에 맞게 낮춤</td>
+</tr>
+<tr>
+<td>로그에 토큰·PII</td>
+<td>마스킹</td>
+</tr>
+<tr>
+<td>기술 메트릭만</td>
+<td>비즈니스 카운터</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>연습</h2>
+<ol>
+<li>Actuator + Prometheus registry로 <code>/actuator/prometheus</code>를 확인한다.</li>
+<li><code>order.created</code> 카운터를 추가한다.</li>
+<li>로그 패턴에 <code>traceId</code>를 넣는다.</li>
+<li>(선택) OTel Collector + Jaeger로 스팬을 본다.</li>
+</ol>
+0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"Observability — Actuator, Micrometer, OpenTelemetry\",\"description\":\"Actuator와 OpenTelemetry로 헬스·메트릭·트레이스를 붙여, 느린 지점과 장애 지점을 관측한다.\",\"datePublished\":\"2025-12-19\",\"url\":\"https://kaisa.co.kr/posts/spring-boot-07/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"spring-boot\",\"keywords\":\"spring-boot\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Observability — Actuator, Micrometer, OpenTelemetry\",\"item\":\"https://kaisa.co.kr/posts/spring-boot-07/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2025-12-19"}]}],["$","h1",null,{"className":"blog-post__title","children":"Observability — Actuator, Micrometer, OpenTelemetry"}],["$","div",null,{"className":"blog-post__body blog-post__body--markdown","children":["$","div",null,{"className":"markdown-body","dangerouslySetInnerHTML":{"__html":"$3"}}]}],"$L4","$L5"]}]}]}]],["$L6","$L7","$L8"],"$L9"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"_AZq8Hq_NwvdopxIW0Tgh"}
+4:["$","$La",null,{"pathKey":"spring-boot-07"}]
+5:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/spring-boot-06/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"테스트 — JUnit 5, MockMvc, Testcontainers"}]]}],["$","$L2",null,{"href":"/posts/spring-boot-08/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"비동기·메시징·Virtual Threads"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
+6:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
+7:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
+8:["$","script","script-0",{"src":"/_next/static/chunks/26shoze10o-dc.js","async":true}]
+9:["$","$Lb",null,{"children":["$","$c",null,{"name":"Next.MetadataOutlet","children":"$@d"}]}]
+d:null

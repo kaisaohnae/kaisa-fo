@@ -1,207 +1,172 @@
 1:"$Sreact.fragment"
-2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],""]
-3:I[55489,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-c:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-d:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
-e:"$Sreact.suspense"
+2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],""]
+a:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],"default"]
+b:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
+c:"$Sreact.suspense"
 :HL["/_next/static/chunks/0br7e7j26qkj3.css","style"]
 :HL["/_next/static/chunks/21i9-auhncr4a.css","style"]
-4:T151e,# 애니메이션·제스처·사용자 경험
+3:T2f39,<h1>애니메이션·제스처·사용자 경험</h1>
+<blockquote>
+<p>요약: Reanimated와 Gesture Handler로 터치 피드백을 만들고, 햅틱·접근성까지 맞춘다.</p>
+</blockquote>
+<hr>
+<h2>1. 왜 Reanimated인가</h2>
+<p>웹은 CSS transition과 메인 스레드가 가깝다. RN에서 <code>setState</code>로 매 프레임 위치를 바꾸면 JS 스레드가 막혀 터치가 늦다.</p>
+<p>복잡한 제스처와 60fps 애니메이션은 <strong>react-native-reanimated</strong>와 <strong>react-native-gesture-handler</strong>가 표준이다. 값을 UI 스레드에서 읽는다. Expo 템플릿에 이미 들어 있는 경우가 많다.</p>
+<p>모든 화면에 모션을 넣지 않는다. 누르기, 스와이프 삭제, 모달처럼 <strong>의미가 있는 피드백</strong>만 남긴다.</p>
+<hr>
+<h2>2. 핵심 개념</h2>
+<ul>
+<li><code>useSharedValue</code>: UI 스레드가 읽는 값</li>
+<li><code>useAnimatedStyle</code>: 그 값 → 스타일</li>
+<li><code>withSpring</code> / <code>withTiming</code>: 목표까지 보간</li>
+<li>worklet: UI 스레드에서 도는 함수</li>
+</ul>
+<p>제스처는 <code>GestureDetector</code>에 제스처 객체를 넘긴다. <code>Pan</code>, <code>Pinch</code>, <code>Tap</code>을 <code>Simultaneous</code> / <code>Exclusive</code>로 조합한다.</p>
+<p>레이아웃 애니메이션(<code>entering</code>/<code>exiting</code>)은 리스트 추가·삭제에 쓰면 이해가 된다. 매 화면 페이드는 피로하다.</p>
+<p>Expo Router의 native stack 전환은 기본으로 충분하다. 커스텀 트랜지션은 필요할 때만.</p>
+<p>OS “동작 줄이기”가 켜져 있으면 큰 애니메이션을 건너뛴다.</p>
+<hr>
+<h2>3. 예제</h2>
+<pre><code class="hljs language-bash">npx expo install react-native-reanimated react-native-gesture-handler</code></pre>
+<p>Babel의 <code>reanimated/plugin</code>은 <strong>마지막</strong>에 둔다. 루트는 <code>GestureHandlerRootView</code>로 감싼다.</p>
+<pre><code class="hljs language-tsx"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">GestureHandlerRootView</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react-native-gesture-handler&#x27;</span>;
 
-> 요약: Reanimated와 Gesture Handler로 터치 피드백을 만들고, 햅틱·접근성까지 맞춘다.
-
----
-
-## 1. 왜 Reanimated인가
-
-웹은 CSS transition과 메인 스레드가 가깝다. RN에서 `setState`로 매 프레임 위치를 바꾸면 JS 스레드가 막혀 터치가 늦다.
-
-복잡한 제스처와 60fps 애니메이션은 **react-native-reanimated**와 **react-native-gesture-handler**가 표준이다. 값을 UI 스레드에서 읽는다. Expo 템플릿에 이미 들어 있는 경우가 많다.
-
-모든 화면에 모션을 넣지 않는다. 누르기, 스와이프 삭제, 모달처럼 **의미가 있는 피드백**만 남긴다.
-
----
-
-## 2. 핵심 개념
-
-- `useSharedValue`: UI 스레드가 읽는 값
-- `useAnimatedStyle`: 그 값 → 스타일
-- `withSpring` / `withTiming`: 목표까지 보간
-- worklet: UI 스레드에서 도는 함수
-
-제스처는 `GestureDetector`에 제스처 객체를 넘긴다. `Pan`, `Pinch`, `Tap`을 `Simultaneous` / `Exclusive`로 조합한다.
-
-레이아웃 애니메이션(`entering`/`exiting`)은 리스트 추가·삭제에 쓰면 이해가 된다. 매 화면 페이드는 피로하다.
-
-Expo Router의 native stack 전환은 기본으로 충분하다. 커스텀 트랜지션은 필요할 때만.
-
-OS “동작 줄이기”가 켜져 있으면 큰 애니메이션을 건너뛴다.
-
----
-
-## 3. 예제
-
-```bash
-npx expo install react-native-reanimated react-native-gesture-handler
-```
-
-Babel의 `reanimated/plugin`은 **마지막**에 둔다. 루트는 `GestureHandlerRootView`로 감싼다.
-
-```tsx
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
-
-export default function Root() {
-  return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Root</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">return</span> (
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">GestureHandlerRootView</span> <span class="hljs-attr">style</span>=<span class="hljs-string">{{</span> <span class="hljs-attr">flex:</span> <span class="hljs-attr">1</span> }}&gt;</span>
       {/* app */}
-    </GestureHandlerRootView>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">GestureHandlerRootView</span>&gt;</span></span>
   );
-}
-```
-
-누르는 동안 살짝 줄어드는 버튼:
-
-```tsx
-import Animated, {
+}</code></pre>
+<p>누르는 동안 살짝 줄어드는 버튼:</p>
+<pre><code class="hljs language-tsx"><span class="hljs-keyword">import</span> <span class="hljs-title class_">Animated</span>, {
   useSharedValue,
   useAnimatedStyle,
   withSpring,
-} from 'react-native-reanimated';
-import { Pressable } from 'react-native';
+} <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react-native-reanimated&#x27;</span>;
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">Pressable</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react-native&#x27;</span>;
 
-export function BounceButton({ children }: { children: React.ReactNode }) {
-  const scale = useSharedValue(1);
-  const style = useAnimatedStyle(() => ({
-    transform: [{ scale: scale.value }],
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">BounceButton</span>(<span class="hljs-params">{ children }: { children: React.ReactNode }</span>) {
+  <span class="hljs-keyword">const</span> scale = <span class="hljs-title function_">useSharedValue</span>(<span class="hljs-number">1</span>);
+  <span class="hljs-keyword">const</span> style = <span class="hljs-title function_">useAnimatedStyle</span>(<span class="hljs-function">() =&gt;</span> ({
+    <span class="hljs-attr">transform</span>: [{ <span class="hljs-attr">scale</span>: scale.<span class="hljs-property">value</span> }],
   }));
 
-  return (
-    <Pressable
-      onPressIn={() => {
+  <span class="hljs-keyword">return</span> (
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Pressable</span>
+      <span class="hljs-attr">onPressIn</span>=<span class="hljs-string">{()</span> =&gt;</span> {
         scale.value = withSpring(0.96);
       }}
-      onPressOut={() => {
+      onPressOut={() =&gt; {
         scale.value = withSpring(1);
       }}
-    >
-      <Animated.View style={style}>{children}</Animated.View>
-    </Pressable>
+    &gt;
+      <span class="hljs-tag">&lt;<span class="hljs-name">Animated.View</span> <span class="hljs-attr">style</span>=<span class="hljs-string">{style}</span>&gt;</span>{children}<span class="hljs-tag">&lt;/<span class="hljs-name">Animated.View</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">Pressable</span>&gt;</span></span>
   );
-}
-```
+}</code></pre>
+<p>드래그:</p>
+<pre><code class="hljs language-tsx"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">Gesture</span>, <span class="hljs-title class_">GestureDetector</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react-native-gesture-handler&#x27;</span>;
 
-드래그:
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">Draggable</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> x = <span class="hljs-title function_">useSharedValue</span>(<span class="hljs-number">0</span>);
+  <span class="hljs-keyword">const</span> y = <span class="hljs-title function_">useSharedValue</span>(<span class="hljs-number">0</span>);
 
-```tsx
-import { Gesture, GestureDetector } from 'react-native-gesture-handler';
-
-export function Draggable() {
-  const x = useSharedValue(0);
-  const y = useSharedValue(0);
-
-  const pan = Gesture.Pan().onChange((e) => {
-    x.value += e.changeX;
-    y.value += e.changeY;
+  <span class="hljs-keyword">const</span> pan = <span class="hljs-title class_">Gesture</span>.<span class="hljs-title class_">Pan</span>().<span class="hljs-title function_">onChange</span>(<span class="hljs-function">(<span class="hljs-params">e</span>) =&gt;</span> {
+    x.<span class="hljs-property">value</span> += e.<span class="hljs-property">changeX</span>;
+    y.<span class="hljs-property">value</span> += e.<span class="hljs-property">changeY</span>;
   });
 
-  const style = useAnimatedStyle(() => ({
-    transform: [{ translateX: x.value }, { translateY: y.value }],
+  <span class="hljs-keyword">const</span> style = <span class="hljs-title function_">useAnimatedStyle</span>(<span class="hljs-function">() =&gt;</span> ({
+    <span class="hljs-attr">transform</span>: [{ <span class="hljs-attr">translateX</span>: x.<span class="hljs-property">value</span> }, { <span class="hljs-attr">translateY</span>: y.<span class="hljs-property">value</span> }],
   }));
 
-  return (
-    <GestureDetector gesture={pan}>
-      <Animated.View
-        style={[{ width: 80, height: 80, backgroundColor: '#38bdf8' }, style]}
-      />
-    </GestureDetector>
+  <span class="hljs-keyword">return</span> (
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">GestureDetector</span> <span class="hljs-attr">gesture</span>=<span class="hljs-string">{pan}</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">Animated.View</span>
+        <span class="hljs-attr">style</span>=<span class="hljs-string">{[{</span> <span class="hljs-attr">width:</span> <span class="hljs-attr">80</span>, <span class="hljs-attr">height:</span> <span class="hljs-attr">80</span>, <span class="hljs-attr">backgroundColor:</span> &#x27;#<span class="hljs-attr">38bdf8</span>&#x27; }, <span class="hljs-attr">style</span>]}
+      /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">GestureDetector</span>&gt;</span></span>
   );
-}
-```
+}</code></pre>
+<p>실무에서 자주 쓰는 조합: 하단 시트, 스와이프 삭제, 핀치 줌.</p>
+<pre><code class="hljs language-tsx"><span class="hljs-title class_">Gesture</span>.<span class="hljs-title class_">Simultaneous</span>(pan, pinch);
+<span class="hljs-title class_">Gesture</span>.<span class="hljs-title class_">Exclusive</span>(native, swipe);</code></pre>
+<p>리스트 행이 들어올 때:</p>
+<pre><code class="hljs language-tsx"><span class="hljs-keyword">import</span> <span class="hljs-title class_">Animated</span>, { <span class="hljs-title class_">LinearTransition</span>, <span class="hljs-title class_">FadeIn</span>, <span class="hljs-title class_">FadeOut</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react-native-reanimated&#x27;</span>;
 
-실무에서 자주 쓰는 조합: 하단 시트, 스와이프 삭제, 핀치 줌.
-
-```tsx
-Gesture.Simultaneous(pan, pinch);
-Gesture.Exclusive(native, swipe);
-```
-
-리스트 행이 들어올 때:
-
-```tsx
-import Animated, { LinearTransition, FadeIn, FadeOut } from 'react-native-reanimated';
-
-<Animated.View entering={FadeIn} exiting={FadeOut} layout={LinearTransition}>
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Animated.View</span> <span class="hljs-attr">entering</span>=<span class="hljs-string">{FadeIn}</span> <span class="hljs-attr">exiting</span>=<span class="hljs-string">{FadeOut}</span> <span class="hljs-attr">layout</span>=<span class="hljs-string">{LinearTransition}</span>&gt;</span>
   ...
-</Animated.View>
-```
+<span class="hljs-tag">&lt;/<span class="hljs-name">Animated.View</span>&gt;</span></span></code></pre>
+<p>모달 화면:</p>
+<pre><code class="hljs language-tsx">&lt;<span class="hljs-title class_">Stack</span>.<span class="hljs-property">Screen</span> name=<span class="hljs-string">&quot;compose&quot;</span> options={{ <span class="hljs-attr">presentation</span>: <span class="hljs-string">&#x27;modal&#x27;</span> }} /&gt;</code></pre>
+<p>약한 햅틱:</p>
+<pre><code class="hljs language-bash">npx expo install expo-haptics</code></pre>
+<pre><code class="hljs language-tsx"><span class="hljs-keyword">import</span> * <span class="hljs-keyword">as</span> <span class="hljs-title class_">Haptics</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;expo-haptics&#x27;</span>;
 
-모달 화면:
-
-```tsx
-<Stack.Screen name="compose" options={{ presentation: 'modal' }} />
-```
-
-약한 햅틱:
-
-```bash
-npx expo install expo-haptics
-```
-
-```tsx
-import * as Haptics from 'expo-haptics';
-
-await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-```
-
-성공·삭제·토글에만 쓴다. 스크롤마다 울리면 방해다.
-
-로딩은 스피너보다 스켈레톤이 목록에서 체감이 낫다. mutation은 낙관적 업데이트 후 실패 시 롤백한다.
-
-최소 피드백은 opacity만으로도 된다.
-
-```tsx
-style={({ pressed }) => [{ opacity: pressed ? 0.7 : 1 }]}
-```
-
-접근성: `accessibilityLabel`, 포커스 순서, 동작 줄이기.
-
----
-
-## 4. 흔한 실수
-
-| 실수 | 대안 |
-|------|------|
-| `setState`로 매 프레임 좌표 | `useSharedValue` |
-| 루트에 GestureHandlerRootView 없음 | `_layout`에서 감싼다 |
-| Reanimated 플러그인 순서 | Babel 마지막 |
-| 모든 화면에 FadeIn | CTA·제스처만 |
-| worklet 안에서 `console.log` 남발 | 디버그 때만 |
-| 햅틱 남용 | 의미 있는 한두 곳 |
-
-애니메이션 중 무거운 JS(JSON 파싱, 큰 리스트 필터)는 버벅임의 원인이다. 이미지·그림자 과다도 같다. 리스트 행은 `memo`로 보호한다.
-
----
-
-## 5. 정리
-
-모션은 장식이 아니라 **터치가 먹혔다는 신호**다. UI 스레드에서 돌리고, 접근성과 햅틱을 같이 본다.
-
-- Reanimated + Gesture Handler가 기본 조합이다.
-- 내비 전환은 native stack, 화면은 `presentation: 'modal'`.
-- 동작 줄이기가 켜져 있으면 큰 스프링을 끈다.
-
-## 연습
-
-1. Pressable 스프링 스케일 버튼을 만든다.
-2. 스와이프로 지울 수 있는 리스트 행을 구현한다.
-3. `presentation: 'modal'` 화면을 추가한다.
-4. 주요 CTA에 약한 햅틱을 붙인다.0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"애니메이션·제스처·사용자 경험\",\"description\":\"Reanimated와 Gesture Handler로 터치 피드백을 만들고, 햅틱·접근성까지 맞춘다.\",\"datePublished\":\"2025-11-17\",\"url\":\"https://kaisa.co.kr/posts/react-native-07/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"react-native\",\"keywords\":\"react-native\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"애니메이션·제스처·사용자 경험\",\"item\":\"https://kaisa.co.kr/posts/react-native-07/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2025-11-17"}]}],["$","h1",null,{"className":"blog-post__title","children":"애니메이션·제스처·사용자 경험"}],["$","$L3",null,{"content":"$4"}],"$L5","$L6"]}]}]}]],["$L7","$L8","$L9","$La"],"$Lb"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Zv4TpHss7ITjpJG-s6iGo"}
-5:["$","$Lc",null,{"pathKey":"react-native-07"}]
-6:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/react-native-06/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"인증·보안 저장소·디바이스 권한"}]]}],["$","$L2",null,{"href":"/posts/react-native-08/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"상태 관리·아키텍처·모듈화"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
-7:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
-8:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
-9:["$","script","script-0",{"src":"/_next/static/chunks/1oevfsdj8hv5d.js","async":true}]
-a:["$","script","script-1",{"src":"/_next/static/chunks/22vl7s8dm-4u2.js","async":true}]
-b:["$","$Ld",null,{"children":["$","$e",null,{"name":"Next.MetadataOutlet","children":"$@f"}]}]
-f:null
+<span class="hljs-keyword">await</span> <span class="hljs-title class_">Haptics</span>.<span class="hljs-title function_">impactAsync</span>(<span class="hljs-title class_">Haptics</span>.<span class="hljs-property">ImpactFeedbackStyle</span>.<span class="hljs-property">Light</span>);
+<span class="hljs-keyword">await</span> <span class="hljs-title class_">Haptics</span>.<span class="hljs-title function_">notificationAsync</span>(<span class="hljs-title class_">Haptics</span>.<span class="hljs-property">NotificationFeedbackType</span>.<span class="hljs-property">Success</span>);</code></pre>
+<p>성공·삭제·토글에만 쓴다. 스크롤마다 울리면 방해다.</p>
+<p>로딩은 스피너보다 스켈레톤이 목록에서 체감이 낫다. mutation은 낙관적 업데이트 후 실패 시 롤백한다.</p>
+<p>최소 피드백은 opacity만으로도 된다.</p>
+<pre><code class="hljs language-tsx">style={<span class="hljs-function">(<span class="hljs-params">{ pressed }</span>) =&gt;</span> [{ <span class="hljs-attr">opacity</span>: pressed ? <span class="hljs-number">0.7</span> : <span class="hljs-number">1</span> }]}</code></pre>
+<p>접근성: <code>accessibilityLabel</code>, 포커스 순서, 동작 줄이기.</p>
+<hr>
+<h2>4. 흔한 실수</h2>
+<table>
+<thead>
+<tr>
+<th>실수</th>
+<th>대안</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>setState</code>로 매 프레임 좌표</td>
+<td><code>useSharedValue</code></td>
+</tr>
+<tr>
+<td>루트에 GestureHandlerRootView 없음</td>
+<td><code>_layout</code>에서 감싼다</td>
+</tr>
+<tr>
+<td>Reanimated 플러그인 순서</td>
+<td>Babel 마지막</td>
+</tr>
+<tr>
+<td>모든 화면에 FadeIn</td>
+<td>CTA·제스처만</td>
+</tr>
+<tr>
+<td>worklet 안에서 <code>console.log</code> 남발</td>
+<td>디버그 때만</td>
+</tr>
+<tr>
+<td>햅틱 남용</td>
+<td>의미 있는 한두 곳</td>
+</tr>
+</tbody></table>
+<p>애니메이션 중 무거운 JS(JSON 파싱, 큰 리스트 필터)는 버벅임의 원인이다. 이미지·그림자 과다도 같다. 리스트 행은 <code>memo</code>로 보호한다.</p>
+<hr>
+<h2>5. 정리</h2>
+<p>모션은 장식이 아니라 <strong>터치가 먹혔다는 신호</strong>다. UI 스레드에서 돌리고, 접근성과 햅틱을 같이 본다.</p>
+<ul>
+<li>Reanimated + Gesture Handler가 기본 조합이다.</li>
+<li>내비 전환은 native stack, 화면은 <code>presentation: &#39;modal&#39;</code>.</li>
+<li>동작 줄이기가 켜져 있으면 큰 스프링을 끈다.</li>
+</ul>
+<h2>연습</h2>
+<ol>
+<li>Pressable 스프링 스케일 버튼을 만든다.</li>
+<li>스와이프로 지울 수 있는 리스트 행을 구현한다.</li>
+<li><code>presentation: &#39;modal&#39;</code> 화면을 추가한다.</li>
+<li>주요 CTA에 약한 햅틱을 붙인다.</li>
+</ol>
+0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"애니메이션·제스처·사용자 경험\",\"description\":\"Reanimated와 Gesture Handler로 터치 피드백을 만들고, 햅틱·접근성까지 맞춘다.\",\"datePublished\":\"2025-11-17\",\"url\":\"https://kaisa.co.kr/posts/react-native-07/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"react-native\",\"keywords\":\"react-native\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"애니메이션·제스처·사용자 경험\",\"item\":\"https://kaisa.co.kr/posts/react-native-07/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2025-11-17"}]}],["$","h1",null,{"className":"blog-post__title","children":"애니메이션·제스처·사용자 경험"}],["$","div",null,{"className":"blog-post__body blog-post__body--markdown","children":["$","div",null,{"className":"markdown-body","dangerouslySetInnerHTML":{"__html":"$3"}}]}],"$L4","$L5"]}]}]}]],["$L6","$L7","$L8"],"$L9"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"_AZq8Hq_NwvdopxIW0Tgh"}
+4:["$","$La",null,{"pathKey":"react-native-07"}]
+5:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/react-native-06/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"인증·보안 저장소·디바이스 권한"}]]}],["$","$L2",null,{"href":"/posts/react-native-08/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"상태 관리·아키텍처·모듈화"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
+6:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
+7:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
+8:["$","script","script-0",{"src":"/_next/static/chunks/26shoze10o-dc.js","async":true}]
+9:["$","$Lb",null,{"children":["$","$c",null,{"name":"Next.MetadataOutlet","children":"$@d"}]}]
+d:null

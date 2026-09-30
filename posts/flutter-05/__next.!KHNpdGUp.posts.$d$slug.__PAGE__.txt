@@ -1,201 +1,213 @@
 1:"$Sreact.fragment"
-2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],""]
-3:I[55489,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-c:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-d:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
-e:"$Sreact.suspense"
+2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],""]
+a:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],"default"]
+b:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
+c:"$Sreact.suspense"
 :HL["/_next/static/chunks/0br7e7j26qkj3.css","style"]
 :HL["/_next/static/chunks/21i9-auhncr4a.css","style"]
-4:T17cf,# setState부터 Provider·Riverpod까지 상태 관리
+3:T2da4,<h1>setState부터 Provider·Riverpod까지 상태 관리</h1>
+<blockquote>
+<p>요약: 값이 누구의 기억인지 먼저 나누고, 로컬은 setState, 공유는 Provider로 올린다.</p>
+</blockquote>
+<hr>
+<h2>1. 왜 / 언제</h2>
+<p>상태 관리 패키지를 고르기 전에 질문 하나다. <strong>이 값은 누구의 기억인가.</strong></p>
+<p>입력 중인 글자, 토글, 버튼 로딩은 그 위젯 근처면 된다. <code>setState</code>가 가장 싸다. 로그인 세션, 장바구니, 테마 설정은 화면이 바뀌어도 남아야 한다. 그때 공유 계층이 필요하다.</p>
+<p>모든 키 입력을 전역 스토어에 넣으면 리빌드가 늘고 코드가 길어진다. 반대로 세션을 화면 <code>State</code>에 두면 라우트가 바뀌는 순간 로그아웃과 같아진다.</p>
+<p>패키지는 그 다음이다. 팀을 하나로 고정한다. 한 앱에 Provider·Riverpod·Bloc을 섞지 않는다.</p>
+<hr>
+<h2>2. 핵심</h2>
+<p>Flutter에서 화면이 바뀌는 기본 장치는 <code>setState</code>다. 값이 바뀌었다고 표시하면 그 <code>State</code>의 <code>build</code>가 다시 돈다. 위젯 트리는 위에서 아래로 다시 설명된다. <code>const</code> 자식과 분리한 위젯은 입력이 같으면 넘어갈 수 있다.</p>
+<p>위젯은 자주 다시 만들어진다. 공유 값을 위젯 필드에 두면 사라진다. 트리 위쪽에 값을 두고 아래가 읽게 하는 장치가 <code>InheritedWidget</code>이다. Provider는 그 패턴을 쓰기 쉽게 포장한 것이다.</p>
+<table>
+<thead>
+<tr>
+<th>상태</th>
+<th>위치</th>
+<th>이유</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>폼 입력, 토글, 로컬 로딩</td>
+<td>위젯 <code>setState</code></td>
+<td>화면과 수명이 같다</td>
+</tr>
+<tr>
+<td>로그인 세션</td>
+<td>앱 스코프</td>
+<td>라우트가 바뀌어도 유지</td>
+</tr>
+<tr>
+<td>장바구니·설정</td>
+<td>공유 레이어</td>
+<td>여러 화면이 읽는다</td>
+</tr>
+<tr>
+<td>서버 목록 캐시</td>
+<td>저장소/쿼리 계층</td>
+<td>UI 상태가 아니다</td>
+</tr>
+</tbody></table>
+<p>읽기 범위가 곧 리빌드 범위다. <code>watch</code>는 값이 바뀔 때 그 위젯을 다시 그린다. 큰 화면 루트에서 세션을 <code>watch</code>하면 타이핑마다 전체가 흔들릴 수 있다. 필요한 잎만 구독한다.</p>
+<table>
+<thead>
+<tr>
+<th>패키지</th>
+<th>언제</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Provider</td>
+<td>개념이 단순하고 생태계가 클 때</td>
+</tr>
+<tr>
+<td>Riverpod</td>
+<td>컴파일 안전·테스트·스코프가 필요할 때</td>
+</tr>
+<tr>
+<td>Bloc</td>
+<td>이벤트/상태 파이프라인을 팀이 원할 때</td>
+</tr>
+</tbody></table>
+<p>하나를 팀 표준으로 둔다.</p>
+<hr>
+<h2>3. 예제</h2>
+<h3>로컬 setState</h3>
+<pre><code class="hljs language-dart"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">LikeButton</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">StatefulWidget</span> </span>{
+  <span class="hljs-keyword">const</span> <span class="hljs-title class_">LikeButton</span>({<span class="hljs-keyword">super</span>.key});
 
-> 요약: 값이 누구의 기억인지 먼저 나누고, 로컬은 setState, 공유는 Provider로 올린다.
-
----
-
-## 1. 왜 / 언제
-
-상태 관리 패키지를 고르기 전에 질문 하나다. **이 값은 누구의 기억인가.**
-
-입력 중인 글자, 토글, 버튼 로딩은 그 위젯 근처면 된다. `setState`가 가장 싸다. 로그인 세션, 장바구니, 테마 설정은 화면이 바뀌어도 남아야 한다. 그때 공유 계층이 필요하다.
-
-모든 키 입력을 전역 스토어에 넣으면 리빌드가 늘고 코드가 길어진다. 반대로 세션을 화면 `State`에 두면 라우트가 바뀌는 순간 로그아웃과 같아진다.
-
-패키지는 그 다음이다. 팀을 하나로 고정한다. 한 앱에 Provider·Riverpod·Bloc을 섞지 않는다.
-
----
-
-## 2. 핵심
-
-Flutter에서 화면이 바뀌는 기본 장치는 `setState`다. 값이 바뀌었다고 표시하면 그 `State`의 `build`가 다시 돈다. 위젯 트리는 위에서 아래로 다시 설명된다. `const` 자식과 분리한 위젯은 입력이 같으면 넘어갈 수 있다.
-
-위젯은 자주 다시 만들어진다. 공유 값을 위젯 필드에 두면 사라진다. 트리 위쪽에 값을 두고 아래가 읽게 하는 장치가 `InheritedWidget`이다. Provider는 그 패턴을 쓰기 쉽게 포장한 것이다.
-
-| 상태 | 위치 | 이유 |
-|------|------|------|
-| 폼 입력, 토글, 로컬 로딩 | 위젯 `setState` | 화면과 수명이 같다 |
-| 로그인 세션 | 앱 스코프 | 라우트가 바뀌어도 유지 |
-| 장바구니·설정 | 공유 레이어 | 여러 화면이 읽는다 |
-| 서버 목록 캐시 | 저장소/쿼리 계층 | UI 상태가 아니다 |
-
-읽기 범위가 곧 리빌드 범위다. `watch`는 값이 바뀔 때 그 위젯을 다시 그린다. 큰 화면 루트에서 세션을 `watch`하면 타이핑마다 전체가 흔들릴 수 있다. 필요한 잎만 구독한다.
-
-| 패키지 | 언제 |
-|--------|------|
-| Provider | 개념이 단순하고 생태계가 클 때 |
-| Riverpod | 컴파일 안전·테스트·스코프가 필요할 때 |
-| Bloc | 이벤트/상태 파이프라인을 팀이 원할 때 |
-
-하나를 팀 표준으로 둔다.
-
----
-
-## 3. 예제
-
-### 로컬 setState
-
-```dart
-class LikeButton extends StatefulWidget {
-  const LikeButton({super.key});
-
-  @override
-  State<LikeButton> createState() => _LikeButtonState();
+  <span class="hljs-meta">@override</span>
+  <span class="hljs-title class_">State</span>&lt;<span class="hljs-title class_">LikeButton</span>&gt; <span class="hljs-title function_">createState</span>() =&gt; <span class="hljs-title class_">_LikeButtonState</span>();
 }
 
-class _LikeButtonState extends State<LikeButton> {
-  bool liked = false;
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">_LikeButtonState</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">State</span>&lt;<span class="hljs-title">LikeButton</span>&gt; </span>{
+  <span class="hljs-built_in">bool</span> liked = <span class="hljs-keyword">false</span>;
 
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      onPressed: () => setState(() => liked = !liked),
-      icon: Icon(liked ? Icons.favorite : Icons.favorite_border),
+  <span class="hljs-meta">@override</span>
+  <span class="hljs-title class_">Widget</span> <span class="hljs-title function_">build</span>(<span class="hljs-title class_">BuildContext</span> context) {
+    <span class="hljs-keyword">return</span> <span class="hljs-title class_">IconButton</span>(
+      onPressed: () =&gt; <span class="hljs-title function_">setState</span>(() =&gt; liked = !liked),
+      icon: <span class="hljs-title class_">Icon</span>(liked ? <span class="hljs-title class_">Icons</span>.favorite : <span class="hljs-title class_">Icons</span>.favorite_border),
     );
   }
-}
-```
+}</code></pre>
+<p>좋아요 토글은 이 버튼의 기억이다. 앱 스토어에 올리지 않는다.</p>
+<h3>Provider로 세션 공유</h3>
+<pre><code class="hljs language-yaml"><span class="hljs-attr">dependencies:</span>
+  <span class="hljs-attr">provider:</span> <span class="hljs-string">^6.1.0</span></code></pre>
+<pre><code class="hljs language-dart"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Auth</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">ChangeNotifier</span> </span>{
+  <span class="hljs-title class_">Auth</span>();
 
-좋아요 토글은 이 버튼의 기억이다. 앱 스토어에 올리지 않는다.
+  <span class="hljs-title class_">String</span>? userId;
 
-### Provider로 세션 공유
+  <span class="hljs-built_in">bool</span> <span class="hljs-keyword">get</span> signedIn =&gt; userId != <span class="hljs-keyword">null</span>;
 
-```yaml
-dependencies:
-  provider: ^6.1.0
-```
-
-```dart
-class Auth extends ChangeNotifier {
-  Auth();
-
-  String? userId;
-
-  bool get signedIn => userId != null;
-
-  void signIn(String id) {
+  <span class="hljs-keyword">void</span> <span class="hljs-title function_">signIn</span>(<span class="hljs-title class_">String</span> id) {
     userId = id;
-    notifyListeners();
+    <span class="hljs-title function_">notifyListeners</span>();
   }
 
-  void signOut() {
-    userId = null;
-    notifyListeners();
+  <span class="hljs-keyword">void</span> <span class="hljs-title function_">signOut</span>() {
+    userId = <span class="hljs-keyword">null</span>;
+    <span class="hljs-title function_">notifyListeners</span>();
   }
-}
-```
+}</code></pre>
+<p>루트에 올린다.</p>
+<pre><code class="hljs language-dart"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">App</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">StatelessWidget</span> </span>{
+  <span class="hljs-keyword">const</span> <span class="hljs-title class_">App</span>({<span class="hljs-keyword">super</span>.key});
 
-루트에 올린다.
-
-```dart
-class App extends StatelessWidget {
-  const App({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return ChangeNotifierProvider<Auth>(
-      create: (_) => Auth(),
-      child: const MaterialApp(
-        home: HomePage(),
+  <span class="hljs-meta">@override</span>
+  <span class="hljs-title class_">Widget</span> <span class="hljs-title function_">build</span>(<span class="hljs-title class_">BuildContext</span> context) {
+    <span class="hljs-keyword">return</span> <span class="hljs-title class_">ChangeNotifierProvider</span>&lt;<span class="hljs-title class_">Auth</span>&gt;(
+      create: (_) =&gt; <span class="hljs-title class_">Auth</span>(),
+      child: <span class="hljs-keyword">const</span> <span class="hljs-title class_">MaterialApp</span>(
+        home: <span class="hljs-title class_">HomePage</span>(),
       ),
     );
   }
-}
-```
+}</code></pre>
+<p>읽는 쪽은 범위를 나눈다.</p>
+<pre><code class="hljs language-dart"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">HomeHeader</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">StatelessWidget</span> </span>{
+  <span class="hljs-keyword">const</span> <span class="hljs-title class_">HomeHeader</span>({<span class="hljs-keyword">super</span>.key});
 
-읽는 쪽은 범위를 나눈다.
-
-```dart
-class HomeHeader extends StatelessWidget {
-  const HomeHeader({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final bool signedIn = context.watch<Auth>().signedIn;
-    return Text(signedIn ? '로그인됨' : '게스트');
+  <span class="hljs-meta">@override</span>
+  <span class="hljs-title class_">Widget</span> <span class="hljs-title function_">build</span>(<span class="hljs-title class_">BuildContext</span> context) {
+    <span class="hljs-keyword">final</span> <span class="hljs-built_in">bool</span> signedIn = context.watch&lt;<span class="hljs-title class_">Auth</span>&gt;().signedIn;
+    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Text</span>(signedIn ? <span class="hljs-string">&#x27;로그인됨&#x27;</span> : <span class="hljs-string">&#x27;게스트&#x27;</span>);
   }
 }
 
-class SignInButton extends StatelessWidget {
-  const SignInButton({super.key});
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SignInButton</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">StatelessWidget</span> </span>{
+  <span class="hljs-keyword">const</span> <span class="hljs-title class_">SignInButton</span>({<span class="hljs-keyword">super</span>.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: () => context.read<Auth>().signIn('user-1'),
-      child: const Text('로그인'),
+  <span class="hljs-meta">@override</span>
+  <span class="hljs-title class_">Widget</span> <span class="hljs-title function_">build</span>(<span class="hljs-title class_">BuildContext</span> context) {
+    <span class="hljs-keyword">return</span> <span class="hljs-title class_">TextButton</span>(
+      onPressed: () =&gt; context.read&lt;<span class="hljs-title class_">Auth</span>&gt;().<span class="hljs-title function_">signIn</span>(<span class="hljs-string">&#x27;user-1&#x27;</span>),
+      child: <span class="hljs-keyword">const</span> <span class="hljs-title class_">Text</span>(<span class="hljs-string">&#x27;로그인&#x27;</span>),
     );
   }
-}
-```
-
-`watch`는 구독이다. `read`는 한 번 읽고 액션만 호출한다. 버튼은 `read`가 맞다. 헤더처럼 값에 따라 그려져야 하는 곳만 `watch`한다.
-
-`select`로 필드 하나만 구독하면 리빌드가 더 줄어든다.
-
-```dart
-final String? userId = context.select<Auth, String?>((Auth a) => a.userId);
-```
-
-### 위젯 분리
-
-큰 `build` 하나에 `watch`를 여러 개 두지 않는다. 구독하는 위젯을 작게 쪼갠다. 카운터·헤더·리스트를 각각 Stateless로 빼면 상위 `setState`가 전체를 흔들지 않는다.
-
----
-
-## 4. 흔한 실수
-
-| 실수 | 결과 | 대안 |
-|------|------|------|
-| 모든 입력을 전역에 둔다 | 리빌드·복잡도 증가 | 로컬은 `setState` |
-| 화면 루트에서 `watch` | 타이핑마다 전체 재빌드 | 잎 위젯만 구독 |
-| `watch`로 액션 호출 | 빌드 중 부수 효과 | 콜백에서 `read` |
-| Provider를 `build`마다 생성 | 상태가 리셋된다 | 루트 `create` 한 번 |
-| 패키지를 화면마다 다르게 | 팀 온보딩 실패 | 표준 하나 |
-
-`notifyListeners`는 값이 실제로 바뀔 때만 호출한다. 같은 값으로 반복 알리면 구독 위젯이 불필요하게 다시 돈다.
-
-비동기 뒤에 `notifyListeners`를 호출할 때도 객체가 아직 쓰이는지 본다. `ChangeNotifier`를 `dispose`한 뒤 알리면 예외가 난다.
-
-전역이 필요해 보여도 먼저 위젯을 한 단계 올린다. 부모 `State`로 충분하면 Provider를 열지 않는다.
-
----
-
-## 정리
-
-상태 관리 프레임워크보다 **“이 값이 누구의 기억인가”** 를 먼저 정한다. 로컬은 `setState`, 공유는 Provider(또는 팀 표준)다. 구독 범위가 곧 리빌드 범위다.
-
----
-
-## 연습
-
-1. 토글 버튼을 `setState`만으로 만든다. Provider에 올리지 않는다.
-2. `Auth`를 `ChangeNotifier`로 두고 두 화면이 로그인 여부를 공유하게 한다.
-3. 헤더는 `watch`, 버튼은 `read`로 나눈다.
-4. 루트 `watch`를 잎 위젯으로 옮겨 리빌드 범위를 줄인다.0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"setState부터 Provider·Riverpod까지 상태 관리\",\"description\":\"값이 누구의 기억인지 먼저 나누고, 로컬은 setState, 공유는 Provider로 올린다.\",\"datePublished\":\"2025-04-08\",\"url\":\"https://kaisa.co.kr/posts/flutter-05/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"flutter\",\"keywords\":\"flutter\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"setState부터 Provider·Riverpod까지 상태 관리\",\"item\":\"https://kaisa.co.kr/posts/flutter-05/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2025-04-08"}]}],["$","h1",null,{"className":"blog-post__title","children":"setState부터 Provider·Riverpod까지 상태 관리"}],["$","$L3",null,{"content":"$4"}],"$L5","$L6"]}]}]}]],["$L7","$L8","$L9","$La"],"$Lb"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Zv4TpHss7ITjpJG-s6iGo"}
-5:["$","$Lc",null,{"pathKey":"flutter-05"}]
-6:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/flutter-04/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Navigator와 라우트로 화면 전환"}]]}],["$","$L2",null,{"href":"/posts/flutter-06/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"비동기·HTTP·JSON으로 서버 연동"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
-7:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
-8:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
-9:["$","script","script-0",{"src":"/_next/static/chunks/1oevfsdj8hv5d.js","async":true}]
-a:["$","script","script-1",{"src":"/_next/static/chunks/22vl7s8dm-4u2.js","async":true}]
-b:["$","$Ld",null,{"children":["$","$e",null,{"name":"Next.MetadataOutlet","children":"$@f"}]}]
-f:null
+}</code></pre>
+<p><code>watch</code>는 구독이다. <code>read</code>는 한 번 읽고 액션만 호출한다. 버튼은 <code>read</code>가 맞다. 헤더처럼 값에 따라 그려져야 하는 곳만 <code>watch</code>한다.</p>
+<p><code>select</code>로 필드 하나만 구독하면 리빌드가 더 줄어든다.</p>
+<pre><code class="hljs language-dart"><span class="hljs-keyword">final</span> <span class="hljs-title class_">String</span>? userId = context.select&lt;<span class="hljs-title class_">Auth</span>, <span class="hljs-title class_">String</span>?&gt;((<span class="hljs-title class_">Auth</span> a) =&gt; a.userId);</code></pre>
+<h3>위젯 분리</h3>
+<p>큰 <code>build</code> 하나에 <code>watch</code>를 여러 개 두지 않는다. 구독하는 위젯을 작게 쪼갠다. 카운터·헤더·리스트를 각각 Stateless로 빼면 상위 <code>setState</code>가 전체를 흔들지 않는다.</p>
+<hr>
+<h2>4. 흔한 실수</h2>
+<table>
+<thead>
+<tr>
+<th>실수</th>
+<th>결과</th>
+<th>대안</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>모든 입력을 전역에 둔다</td>
+<td>리빌드·복잡도 증가</td>
+<td>로컬은 <code>setState</code></td>
+</tr>
+<tr>
+<td>화면 루트에서 <code>watch</code></td>
+<td>타이핑마다 전체 재빌드</td>
+<td>잎 위젯만 구독</td>
+</tr>
+<tr>
+<td><code>watch</code>로 액션 호출</td>
+<td>빌드 중 부수 효과</td>
+<td>콜백에서 <code>read</code></td>
+</tr>
+<tr>
+<td>Provider를 <code>build</code>마다 생성</td>
+<td>상태가 리셋된다</td>
+<td>루트 <code>create</code> 한 번</td>
+</tr>
+<tr>
+<td>패키지를 화면마다 다르게</td>
+<td>팀 온보딩 실패</td>
+<td>표준 하나</td>
+</tr>
+</tbody></table>
+<p><code>notifyListeners</code>는 값이 실제로 바뀔 때만 호출한다. 같은 값으로 반복 알리면 구독 위젯이 불필요하게 다시 돈다.</p>
+<p>비동기 뒤에 <code>notifyListeners</code>를 호출할 때도 객체가 아직 쓰이는지 본다. <code>ChangeNotifier</code>를 <code>dispose</code>한 뒤 알리면 예외가 난다.</p>
+<p>전역이 필요해 보여도 먼저 위젯을 한 단계 올린다. 부모 <code>State</code>로 충분하면 Provider를 열지 않는다.</p>
+<hr>
+<h2>정리</h2>
+<p>상태 관리 프레임워크보다 <strong>“이 값이 누구의 기억인가”</strong> 를 먼저 정한다. 로컬은 <code>setState</code>, 공유는 Provider(또는 팀 표준)다. 구독 범위가 곧 리빌드 범위다.</p>
+<hr>
+<h2>연습</h2>
+<ol>
+<li>토글 버튼을 <code>setState</code>만으로 만든다. Provider에 올리지 않는다.</li>
+<li><code>Auth</code>를 <code>ChangeNotifier</code>로 두고 두 화면이 로그인 여부를 공유하게 한다.</li>
+<li>헤더는 <code>watch</code>, 버튼은 <code>read</code>로 나눈다.</li>
+<li>루트 <code>watch</code>를 잎 위젯으로 옮겨 리빌드 범위를 줄인다.</li>
+</ol>
+0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"setState부터 Provider·Riverpod까지 상태 관리\",\"description\":\"값이 누구의 기억인지 먼저 나누고, 로컬은 setState, 공유는 Provider로 올린다.\",\"datePublished\":\"2025-04-08\",\"url\":\"https://kaisa.co.kr/posts/flutter-05/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"flutter\",\"keywords\":\"flutter\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"setState부터 Provider·Riverpod까지 상태 관리\",\"item\":\"https://kaisa.co.kr/posts/flutter-05/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2025-04-08"}]}],["$","h1",null,{"className":"blog-post__title","children":"setState부터 Provider·Riverpod까지 상태 관리"}],["$","div",null,{"className":"blog-post__body blog-post__body--markdown","children":["$","div",null,{"className":"markdown-body","dangerouslySetInnerHTML":{"__html":"$3"}}]}],"$L4","$L5"]}]}]}]],["$L6","$L7","$L8"],"$L9"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"_AZq8Hq_NwvdopxIW0Tgh"}
+4:["$","$La",null,{"pathKey":"flutter-05"}]
+5:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/flutter-04/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Navigator와 라우트로 화면 전환"}]]}],["$","$L2",null,{"href":"/posts/flutter-06/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"비동기·HTTP·JSON으로 서버 연동"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
+6:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
+7:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
+8:["$","script","script-0",{"src":"/_next/static/chunks/26shoze10o-dc.js","async":true}]
+9:["$","$Lb",null,{"children":["$","$c",null,{"name":"Next.MetadataOutlet","children":"$@d"}]}]
+d:null

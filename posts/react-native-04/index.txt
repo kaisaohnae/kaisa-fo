@@ -3,244 +3,234 @@
 3:I[883661,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"default"]
 4:I[339756,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"default"]
 5:I[837457,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"default"]
-6:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],""]
+6:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],""]
 7:I[722067,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"default"]
 8:I[778481,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"default"]
 9:I[902105,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"default"]
 14:I[168027,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"default",1]
 :HL["/_next/static/chunks/34-r72pc7x98u.css","style"]
 :HL["/_next/static/chunks/3xau-2enavhj9.css","style"]
-:HL["/_next/static/chunks/01h2qkg9511bb.css","style"]
+:HL["/_next/static/chunks/0souqbpzq6xbb.css","style"]
 :HL["/_next/static/chunks/1xra_60l-k8t4.css","style"]
 :HL["/_next/static/media/0c795a286deabae8-s.p.3vm0tq4e-zz_5.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/media/5c285b27cdda1fe8-s.p.2_mbdogr7ni8i.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/chunks/0br7e7j26qkj3.css","style"]
 :HL["/_next/static/chunks/21i9-auhncr4a.css","style"]
 :HL["/_next/static/chunks/0z_31kp4nojhg.css","style"]
-0:{"P":null,"c":["","posts","react-native-04",""],"q":"","i":false,"f":[[["",{"children":["(site)",{"children":["posts",{"children":[["slug","react-native-04","d",null],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/34-r72pc7x98u.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/3hb4n4ylf5-a0.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1ntn7efqc-iiw.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ko","className":"syne_53f86cd1-module__kiT3Eq__variable dm_sans_fd62f040-module__0jgVUW__variable","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","$L2",null,{"id":"kaisa-google-adsense","strategy":"afterInteractive","src":"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2641553863829571","crossOrigin":"anonymous"}]}],["$","body",null,{"children":[["$","script",null,{"id":"kaisa-init-1","dangerouslySetInnerHTML":{"__html":"(function(){try{var t=null;document.cookie.split(';').forEach(function(c){var p=c.trim().split('=');if(p[0]==='kaisa-shared-theme')t=decodeURIComponent(p[1]||'');});document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();"}}],["$","script",null,{"id":"kaisa-locale-init","dangerouslySetInnerHTML":{"__html":"(function(){try{\nvar key='kaisa-shared-locale',entry=document.cookie.split(';').map(function(c){return c.trim();}).find(function(c){return c.indexOf(key+'=')===0;});\nvar l=entry?entry.slice(key.length+1):null;\nfunction valid(v){return /^(ko|en|zh|hi)$/.test(v||'');}\nif(!valid(l)){try{l=sessionStorage.getItem('kaisa-locale');}catch(e){}}\nif(!valid(l)){var a=[navigator.language].concat(navigator.languages||[]);l=null;for(var i=0;i<a.length;i++){var m=/^(ko|en|zh|hi)/i.exec(a[i]||'');if(m){l=m[1].toLowerCase();break;}}}\nvar determined=valid(l);if(!determined)l='ko';\nif(determined&&(!entry||entry.slice(key.length+1)!==l)){var h=location.hostname,d=h==='kaisa.co.kr'||h.endsWith('.kaisa.co.kr')?'; domain=kaisa.co.kr':'';document.cookie=key+'='+l+'; max-age=2592000; path=/; samesite=lax'+d;}\ndocument.documentElement.lang=l;\n}catch(e){document.documentElement.lang='ko';}})();"}}],[["$","$L2",null,{"src":"https://www.googletagmanager.com/gtag/js?id=G-2281QQ6XP4","strategy":"afterInteractive"}],["$","$L2",null,{"id":"google-analytics","strategy":"afterInteractive","children":"\n          window.dataLayer = window.dataLayer || [];\n          function gtag(){dataLayer.push(arguments);}\n          gtag('js', new Date());\n          gtag('config', 'G-2281QQ6XP4');\n        "}]],["$","$L3",null,{}],["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}],["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]]}]}],[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0z_31kp4nojhg.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","$L7",null,{}],["$","$L8",null,{}],["$","$L9",null,{}]]}]]}]]}],{"children":[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3xau-2enavhj9.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/01h2qkg9511bb.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/1xra_60l-k8t4.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],"$La","$Lb","$Lc","$Ld"],"$Le"]}],{"children":["$Lf",{"children":["$L10",{"children":["$L11",{},null,false,null]},null,false,"$@12"]},null,false,"$@12"]},null,false,null]},null,false,null],"$L13",false]],"m":"$undefined","G":["$14",["$L15"]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"Zv4TpHss7ITjpJG-s6iGo"}
-16:I[669033,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js"],"LocaleProvider"]
-17:I[545872,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js"],"default"]
-18:I[320683,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js"],"default"]
-19:I[86979,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/2nllraa9qqjuh.js"],"default"]
-1a:I[44604,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js"],"default"]
+0:{"P":null,"c":["","posts","react-native-04",""],"q":"","i":false,"f":[[["",{"children":["(site)",{"children":["posts",{"children":[["slug","react-native-04","d",null],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/34-r72pc7x98u.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/3hb4n4ylf5-a0.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1ntn7efqc-iiw.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ko","className":"syne_53f86cd1-module__kiT3Eq__variable dm_sans_fd62f040-module__0jgVUW__variable","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","$L2",null,{"id":"kaisa-google-adsense","strategy":"afterInteractive","src":"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2641553863829571","crossOrigin":"anonymous"}]}],["$","body",null,{"children":[["$","script",null,{"id":"kaisa-init-1","dangerouslySetInnerHTML":{"__html":"(function(){try{var t=null;document.cookie.split(';').forEach(function(c){var p=c.trim().split('=');if(p[0]==='kaisa-shared-theme')t=decodeURIComponent(p[1]||'');});document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();"}}],["$","script",null,{"id":"kaisa-locale-init","dangerouslySetInnerHTML":{"__html":"(function(){try{\nvar key='kaisa-shared-locale',entry=document.cookie.split(';').map(function(c){return c.trim();}).find(function(c){return c.indexOf(key+'=')===0;});\nvar l=entry?entry.slice(key.length+1):null;\nfunction valid(v){return /^(ko|en|zh|hi)$/.test(v||'');}\nif(!valid(l)){try{l=sessionStorage.getItem('kaisa-locale');}catch(e){}}\nif(!valid(l)){var a=[navigator.language].concat(navigator.languages||[]);l=null;for(var i=0;i<a.length;i++){var m=/^(ko|en|zh|hi)/i.exec(a[i]||'');if(m){l=m[1].toLowerCase();break;}}}\nvar determined=valid(l);if(!determined)l='ko';\nif(determined&&(!entry||entry.slice(key.length+1)!==l)){var h=location.hostname,d=h==='kaisa.co.kr'||h.endsWith('.kaisa.co.kr')?'; domain=kaisa.co.kr':'';document.cookie=key+'='+l+'; max-age=2592000; path=/; samesite=lax'+d;}\ndocument.documentElement.lang=l;\n}catch(e){document.documentElement.lang='ko';}})();"}}],[["$","$L2",null,{"src":"https://www.googletagmanager.com/gtag/js?id=G-2281QQ6XP4","strategy":"afterInteractive"}],["$","$L2",null,{"id":"google-analytics","strategy":"afterInteractive","children":"\n          window.dataLayer = window.dataLayer || [];\n          function gtag(){dataLayer.push(arguments);}\n          gtag('js', new Date());\n          gtag('config', 'G-2281QQ6XP4');\n        "}]],["$","$L3",null,{}],["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}],["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]]}]}],[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0z_31kp4nojhg.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","$L7",null,{}],["$","$L8",null,{}],["$","$L9",null,{}]]}]]}]]}],{"children":[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3xau-2enavhj9.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0souqbpzq6xbb.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/1xra_60l-k8t4.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],"$La","$Lb","$Lc","$Ld"],"$Le"]}],{"children":["$Lf",{"children":["$L10",{"children":["$L11",{},null,false,null]},null,false,"$@12"]},null,false,"$@12"]},null,false,null]},null,false,null],"$L13",false]],"m":"$undefined","G":["$14",["$L15"]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"_AZq8Hq_NwvdopxIW0Tgh"}
+16:I[669033,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js"],"LocaleProvider"]
+17:I[545872,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js"],"default"]
+18:I[320683,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js"],"default"]
+19:I[86979,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/2nllraa9qqjuh.js"],"default"]
+1a:I[44604,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js"],"default"]
 1c:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
 1d:"$Sreact.suspense"
 20:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"ViewportBoundary"]
 22:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"MetadataBoundary"]
-a:["$","script","script-0",{"src":"/_next/static/chunks/1210t6uckuu_4.js","async":true,"nonce":"$undefined"}]
+a:["$","script","script-0",{"src":"/_next/static/chunks/2t60f4_2tjmro.js","async":true,"nonce":"$undefined"}]
 b:["$","script","script-1",{"src":"/_next/static/chunks/1i1l5t--me2mi.js","async":true,"nonce":"$undefined"}]
-c:["$","script","script-2",{"src":"/_next/static/chunks/07ogw60khanqf.js","async":true,"nonce":"$undefined"}]
+c:["$","script","script-2",{"src":"/_next/static/chunks/2-06zdxz3h-nd.js","async":true,"nonce":"$undefined"}]
 d:["$","script","script-3",{"src":"/_next/static/chunks/3ha5i75rsjlst.js","async":true,"nonce":"$undefined"}]
 e:["$","$L16",null,{"children":["$","div",null,{"className":"site-layout","children":[["$","$L17",null,{}],["$","$L18",null,{"children":["$","$L4",null,{"parallelRouterKey":"children","error":"$19","errorStyles":[],"errorScripts":[["$","script","script-0",{"src":"/_next/static/chunks/2nllraa9qqjuh.js","async":true}]],"template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}],["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]]}]}],[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0z_31kp4nojhg.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],["$","$L1a",null,{}]]}]}]
 f:["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]
 10:["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]
-11:["$","$1","c",{"children":["$L1b",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/1oevfsdj8hv5d.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/22vl7s8dm-4u2.js","async":true,"nonce":"$undefined"}]],["$","$L1c",null,{"children":["$","$1d",null,{"name":"Next.MetadataOutlet","children":"$@1e"}]}]]}]
+11:["$","$1","c",{"children":["$L1b",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/26shoze10o-dc.js","async":true,"nonce":"$undefined"}]],["$","$L1c",null,{"children":["$","$1d",null,{"name":"Next.MetadataOutlet","children":"$@1e"}]}]]}]
 1f:[]
 12:"$W1f"
 13:["$","$1","h",{"children":[null,["$","$L20",null,{"children":"$L21"}],["$","div",null,{"hidden":true,"children":["$","$L22",null,{"children":["$","$1d",null,{"name":"Next.Metadata","children":"$L23"}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}]
 15:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/34-r72pc7x98u.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
-24:I[55489,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-25:T1514,# 리스트·네비게이션 — FlatList와 Expo Router
+24:T3549,<h1>리스트·네비게이션 — FlatList와 Expo Router</h1>
+<blockquote>
+<p>요약: 긴 목록은 FlatList로 가상화하고, 화면 이동은 Expo Router의 파일 기반 라우팅으로 구성한다.</p>
+</blockquote>
+<hr>
+<h2>1. 왜 FlatList와 파일 라우팅인가</h2>
+<p>목록이 길어지면 웹처럼 <code>map</code>으로 전부 그리면 안 된다. 화면에 안 보이는 행까지 마운트되어 스크롤이 끊긴다. <strong>FlatList</strong>는 보이는 근처만 렌더한다.</p>
+<p>화면 이동은 <strong>Expo Router</strong>가 기본이다. <code>app/</code> 폴더가 URL이 된다. Next.js App Router와 감각이 비슷하다. React Navigation을 직접 짜는 것보다 파일 구조가 문서가 된다.</p>
+<p>둘을 같이 익혀야 “목록에서 상세로”가 한 흐름이 된다.</p>
+<hr>
+<h2>2. 핵심 개념</h2>
+<table>
+<thead>
+<tr>
+<th>컴포넌트</th>
+<th>언제</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>ScrollView</code></td>
+<td>짧은 고정 콘텐츠</td>
+</tr>
+<tr>
+<td><code>FlatList</code></td>
+<td>긴 동종 리스트. <strong>기본</strong></td>
+</tr>
+<tr>
+<td><code>SectionList</code></td>
+<td>섹션 헤더가 있는 목록</td>
+</tr>
+<tr>
+<td><code>FlashList</code></td>
+<td>더 공격적인 가상화 (Shopify)</td>
+</tr>
+</tbody></table>
+<p>라우트는 파일이 경로다. 괄호 폴더 <code>(tabs)</code>는 URL에 안 나온다. <code>[id]</code>는 동적 세그먼트다.</p>
+<p>이동은 <code>Link</code> 또는 <code>router.push</code>. 큰 객체를 params에 넣지 않는다. id만 넘기고 상세는 캐시나 fetch로 채운다.</p>
+<p>인증 분기는 레이아웃에서 한다. 각 화면마다 <code>if (!user)</code>를 반복하지 않는다.</p>
+<p>딥링크는 <code>app.json</code>의 <code>scheme</code>이다. <code>myapp://posts/1</code>처럼 연다. HTTPS 유니버설 링크는 스토어·도메인 검증이 필요하다.</p>
+<hr>
+<h2>3. 예제</h2>
+<pre><code class="hljs language-tsx"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">FlatList</span>, <span class="hljs-title class_">Text</span>, <span class="hljs-title class_">View</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react-native&#x27;</span>;
 
-> 요약: 긴 목록은 FlatList로 가상화하고, 화면 이동은 Expo Router의 파일 기반 라우팅으로 구성한다.
+<span class="hljs-keyword">type</span> <span class="hljs-title class_">Item</span> = { <span class="hljs-attr">id</span>: <span class="hljs-built_in">string</span>; <span class="hljs-attr">title</span>: <span class="hljs-built_in">string</span> };
 
----
-
-## 1. 왜 FlatList와 파일 라우팅인가
-
-목록이 길어지면 웹처럼 `map`으로 전부 그리면 안 된다. 화면에 안 보이는 행까지 마운트되어 스크롤이 끊긴다. **FlatList**는 보이는 근처만 렌더한다.
-
-화면 이동은 **Expo Router**가 기본이다. `app/` 폴더가 URL이 된다. Next.js App Router와 감각이 비슷하다. React Navigation을 직접 짜는 것보다 파일 구조가 문서가 된다.
-
-둘을 같이 익혀야 “목록에서 상세로”가 한 흐름이 된다.
-
----
-
-## 2. 핵심 개념
-
-| 컴포넌트 | 언제 |
-|----------|------|
-| `ScrollView` | 짧은 고정 콘텐츠 |
-| `FlatList` | 긴 동종 리스트. **기본** |
-| `SectionList` | 섹션 헤더가 있는 목록 |
-| `FlashList` | 더 공격적인 가상화 (Shopify) |
-
-라우트는 파일이 경로다. 괄호 폴더 `(tabs)`는 URL에 안 나온다. `[id]`는 동적 세그먼트다.
-
-이동은 `Link` 또는 `router.push`. 큰 객체를 params에 넣지 않는다. id만 넘기고 상세는 캐시나 fetch로 채운다.
-
-인증 분기는 레이아웃에서 한다. 각 화면마다 `if (!user)`를 반복하지 않는다.
-
-딥링크는 `app.json`의 `scheme`이다. `myapp://posts/1`처럼 연다. HTTPS 유니버설 링크는 스토어·도메인 검증이 필요하다.
-
----
-
-## 3. 예제
-
-```tsx
-import { FlatList, Text, View } from 'react-native';
-
-type Item = { id: string; title: string };
-
-export function PostList({ data }: { data: Item[] }) {
-  return (
-    <FlatList
-      data={data}
-      keyExtractor={(item) => item.id}
-      renderItem={({ item }) => (
-        <View style={{ padding: 16 }}>
-          <Text>{item.title}</Text>
-        </View>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">PostList</span>(<span class="hljs-params">{ data }: { data: Item[] }</span>) {
+  <span class="hljs-keyword">return</span> (
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">FlatList</span>
+      <span class="hljs-attr">data</span>=<span class="hljs-string">{data}</span>
+      <span class="hljs-attr">keyExtractor</span>=<span class="hljs-string">{(item)</span> =&gt;</span> item.id}
+      renderItem={({ item }) =&gt; (
+        <span class="hljs-tag">&lt;<span class="hljs-name">View</span> <span class="hljs-attr">style</span>=<span class="hljs-string">{{</span> <span class="hljs-attr">padding:</span> <span class="hljs-attr">16</span> }}&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">Text</span>&gt;</span>{item.title}<span class="hljs-tag">&lt;/<span class="hljs-name">Text</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">View</span>&gt;</span>
       )}
-      ItemSeparatorComponent={() => (
-        <View style={{ height: 1, backgroundColor: '#e2e8f0' }} />
+      ItemSeparatorComponent={() =&gt; (
+        <span class="hljs-tag">&lt;<span class="hljs-name">View</span> <span class="hljs-attr">style</span>=<span class="hljs-string">{{</span> <span class="hljs-attr">height:</span> <span class="hljs-attr">1</span>, <span class="hljs-attr">backgroundColor:</span> &#x27;#<span class="hljs-attr">e2e8f0</span>&#x27; }} /&gt;</span>
       )}
-      ListEmptyComponent={<Text style={{ padding: 24 }}>게시글이 없습니다</Text>}
+      ListEmptyComponent={<span class="hljs-tag">&lt;<span class="hljs-name">Text</span> <span class="hljs-attr">style</span>=<span class="hljs-string">{{</span> <span class="hljs-attr">padding:</span> <span class="hljs-attr">24</span> }}&gt;</span>게시글이 없습니다<span class="hljs-tag">&lt;/<span class="hljs-name">Text</span>&gt;</span>}
       contentContainerStyle={{ flexGrow: 1 }}
-    />
+    /&gt;</span>
   );
-}
-```
-
-행 높이가 고정이면 `getItemLayout`으로 스크롤 측정 비용을 줄인다. 행 컴포넌트는 `memo`를 검토한다.
-
-```tsx
-<FlatList
-  initialNumToRender={10}
-  windowSize={7}
+}</code></pre>
+<p>행 높이가 고정이면 <code>getItemLayout</code>으로 스크롤 측정 비용을 줄인다. 행 컴포넌트는 <code>memo</code>를 검토한다.</p>
+<pre><code class="hljs language-tsx">&lt;<span class="hljs-title class_">FlatList</span>
+  initialNumToRender={<span class="hljs-number">10</span>}
+  windowSize={<span class="hljs-number">7</span>}
   removeClippedSubviews
-  getItemLayout={(_, index) => ({
-    length: ROW_HEIGHT,
-    offset: ROW_HEIGHT * index,
+  getItemLayout={<span class="hljs-function">(<span class="hljs-params">_, index</span>) =&gt;</span> ({
+    <span class="hljs-attr">length</span>: <span class="hljs-variable constant_">ROW_HEIGHT</span>,
+    <span class="hljs-attr">offset</span>: <span class="hljs-variable constant_">ROW_HEIGHT</span> * index,
     index,
   })}
-/>
-```
-
-당겨서 새로고침과 무한 스크롤:
-
-```tsx
-<FlatList
+/&gt;</code></pre>
+<p>당겨서 새로고침과 무한 스크롤:</p>
+<pre><code class="hljs language-tsx">&lt;<span class="hljs-title class_">FlatList</span>
   refreshing={refreshing}
   onRefresh={onRefresh}
   onEndReached={loadMore}
-  onEndReachedThreshold={0.3}
-  ListFooterComponent={isFetchingNextPage ? <ActivityIndicator /> : null}
-/>
-```
-
-페이지 데이터는 React Query `useInfiniteQuery`와 맞는다.
-
-폴더 예시:
-
-```
-app/
-├── _layout.tsx
-├── index.tsx
+  onEndReachedThreshold={<span class="hljs-number">0.3</span>}
+  <span class="hljs-title class_">ListFooterComponent</span>={isFetchingNextPage ? <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">ActivityIndicator</span> /&gt;</span></span> : <span class="hljs-literal">null</span>}
+/&gt;</code></pre>
+<p>페이지 데이터는 React Query <code>useInfiniteQuery</code>와 맞는다.</p>
+<p>폴더 예시:</p>
+<pre><code class="hljs">app/
+├── _layout<span class="hljs-selector-class">.tsx</span>
+├── index<span class="hljs-selector-class">.tsx</span>
 ├── (auth)/
-│   ├── _layout.tsx
-│   └── login.tsx
+│   ├── _layout<span class="hljs-selector-class">.tsx</span>
+│   └── login<span class="hljs-selector-class">.tsx</span>
 ├── (tabs)/
-│   ├── _layout.tsx
-│   ├── index.tsx
-│   └── settings.tsx
+│   ├── _layout<span class="hljs-selector-class">.tsx</span>
+│   ├── index<span class="hljs-selector-class">.tsx</span>
+│   └── settings<span class="hljs-selector-class">.tsx</span>
 └── posts/
-    ├── index.tsx
-    └── [id].tsx
-```
+    ├── index<span class="hljs-selector-class">.tsx</span>
+    └── <span class="hljs-selector-attr">[id]</span>.tsx</code></pre>
+<pre><code class="hljs language-tsx"><span class="hljs-comment">// app/_layout.tsx</span>
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">Stack</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;expo-router&#x27;</span>;
 
-```tsx
-// app/_layout.tsx
-import { Stack } from 'expo-router';
-
-export default function RootLayout() {
-  return (
-    <Stack screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="(tabs)" />
-      <Stack.Screen name="(auth)" />
-      <Stack.Screen name="posts/[id]" options={{ headerShown: true, title: 'Post' }} />
-    </Stack>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">RootLayout</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">return</span> (
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Stack</span> <span class="hljs-attr">screenOptions</span>=<span class="hljs-string">{{</span> <span class="hljs-attr">headerShown:</span> <span class="hljs-attr">false</span> }}&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">Stack.Screen</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;(tabs)&quot;</span> /&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">Stack.Screen</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;(auth)&quot;</span> /&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">Stack.Screen</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;posts/[id]&quot;</span> <span class="hljs-attr">options</span>=<span class="hljs-string">{{</span> <span class="hljs-attr">headerShown:</span> <span class="hljs-attr">true</span>, <span class="hljs-attr">title:</span> &#x27;<span class="hljs-attr">Post</span>&#x27; }} /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">Stack</span>&gt;</span></span>
   );
-}
-```
+}</code></pre>
+<pre><code class="hljs language-tsx"><span class="hljs-comment">// app/(tabs)/_layout.tsx</span>
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">Tabs</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;expo-router&#x27;</span>;
 
-```tsx
-// app/(tabs)/_layout.tsx
-import { Tabs } from 'expo-router';
-
-export default function TabsLayout() {
-  return (
-    <Tabs>
-      <Tabs.Screen name="index" options={{ title: 'Home' }} />
-      <Tabs.Screen name="settings" options={{ title: 'Settings' }} />
-    </Tabs>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">TabsLayout</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">return</span> (
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Tabs</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">Tabs.Screen</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;index&quot;</span> <span class="hljs-attr">options</span>=<span class="hljs-string">{{</span> <span class="hljs-attr">title:</span> &#x27;<span class="hljs-attr">Home</span>&#x27; }} /&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">Tabs.Screen</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;settings&quot;</span> <span class="hljs-attr">options</span>=<span class="hljs-string">{{</span> <span class="hljs-attr">title:</span> &#x27;<span class="hljs-attr">Settings</span>&#x27; }} /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">Tabs</span>&gt;</span></span>
   );
-}
-```
+}</code></pre>
+<p>이동과 파라미터:</p>
+<pre><code class="hljs language-tsx"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">Link</span>, router, useLocalSearchParams } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;expo-router&#x27;</span>;
 
-이동과 파라미터:
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Link</span> <span class="hljs-attr">href</span>=<span class="hljs-string">{</span>`/<span class="hljs-attr">posts</span>/${<span class="hljs-attr">id</span>}`}&gt;</span>열기<span class="hljs-tag">&lt;/<span class="hljs-name">Link</span>&gt;</span></span>
+router.<span class="hljs-title function_">push</span>(<span class="hljs-string">`/posts/<span class="hljs-subst">${id}</span>`</span>);
+router.<span class="hljs-title function_">replace</span>(<span class="hljs-string">&#x27;/login&#x27;</span>);
+router.<span class="hljs-title function_">back</span>();</code></pre>
+<pre><code class="hljs language-tsx"><span class="hljs-comment">// app/posts/[id].tsx</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">PostDetail</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> { id } = useLocalSearchParams&lt;{ <span class="hljs-attr">id</span>: <span class="hljs-built_in">string</span> }&gt;();
+  <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Text</span>&gt;</span>Post {id}<span class="hljs-tag">&lt;/<span class="hljs-name">Text</span>&gt;</span></span>;
+}</code></pre>
+<p>로그인 전후 분기(버전별 API는 <code>Redirect</code>로도 가능):</p>
+<pre><code class="hljs language-tsx"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">Redirect</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;expo-router&#x27;</span>;
 
-```tsx
-import { Link, router, useLocalSearchParams } from 'expo-router';
-
-<Link href={`/posts/${id}`}>열기</Link>
-router.push(`/posts/${id}`);
-router.replace('/login');
-router.back();
-```
-
-```tsx
-// app/posts/[id].tsx
-export default function PostDetail() {
-  const { id } = useLocalSearchParams<{ id: string }>();
-  return <Text>Post {id}</Text>;
-}
-```
-
-로그인 전후 분기(버전별 API는 `Redirect`로도 가능):
-
-```tsx
-import { Redirect } from 'expo-router';
-
-if (isLoading) return <Splash />;
-if (!user) return <Redirect href="/login" />;
-```
-
-typed routes 옵션을 켜면 `href` 자동완성이 좋아진다.
-
----
-
-## 4. 흔한 실수
-
-| 실수 | 대안 |
-|------|------|
-| `ScrollView` + 수천 개 `map` | `FlatList` / `FlashList` |
-| `keyExtractor`를 index로만 | 안정적 `id` |
-| 상세에 객체 전체 params | `id` + Query 캐시 |
-| 모든 화면에 로그인 가드 | 루트/그룹 레이아웃 |
-| 인라인 `renderItem` + 인라인 style 과다 | 행 컴포넌트 분리, `memo` |
-| 빈 목록에 높이 0 | `contentContainerStyle={{ flexGrow: 1 }}` |
-
----
-
-## 5. 정리
-
-목록은 가상화, 화면은 파일이다. 이 두 규칙이면 피드·상세·탭의 뼈대가 끝난다.
-
-- 짧은 스크롤만 `ScrollView`.
-- 탭은 `(tabs)`, 인가는 `(auth)`, 상세는 `[id]`.
-- params는 식별자만. 데이터는 fetch.
-
-## 연습
-
-1. `FlatList`로 50개 이상 아이템 리스트를 만든다.
-2. pull-to-refresh와 empty 상태를 구현한다.
-3. 탭 + `posts/[id]` 상세를 Expo Router로 연결한다.
-4. 로그인 여부에 따라 `(auth)` / `(tabs)`로 보낸다.1b:[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"리스트·네비게이션 — FlatList와 Expo Router\",\"description\":\"긴 목록은 FlatList로 가상화하고, 화면 이동은 Expo Router의 파일 기반 라우팅으로 구성한다.\",\"datePublished\":\"2024-12-18\",\"url\":\"https://kaisa.co.kr/posts/react-native-04/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"react-native\",\"keywords\":\"react-native\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"리스트·네비게이션 — FlatList와 Expo Router\",\"item\":\"https://kaisa.co.kr/posts/react-native-04/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L6",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2024-12-18"}]}],["$","h1",null,{"className":"blog-post__title","children":"리스트·네비게이션 — FlatList와 Expo Router"}],["$","$L24",null,{"content":"$25"}],"$L26","$L27"]}]}]}]]
-28:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-26:["$","$L28",null,{"pathKey":"react-native-04"}]
-27:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L6",null,{"href":"/posts/react-native-03/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"상태·훅·폼 — 사용자 입력과 데이터 흐름"}]]}],["$","$L6",null,{"href":"/posts/react-native-05/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"네트워킹 — Fetch, React Query, 에러 처리"}]]}]]}],["$","$L6",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
+<span class="hljs-keyword">if</span> (isLoading) <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Splash</span> /&gt;</span></span>;
+<span class="hljs-keyword">if</span> (!user) <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Redirect</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;/login&quot;</span> /&gt;</span></span>;</code></pre>
+<p>typed routes 옵션을 켜면 <code>href</code> 자동완성이 좋아진다.</p>
+<hr>
+<h2>4. 흔한 실수</h2>
+<table>
+<thead>
+<tr>
+<th>실수</th>
+<th>대안</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>ScrollView</code> + 수천 개 <code>map</code></td>
+<td><code>FlatList</code> / <code>FlashList</code></td>
+</tr>
+<tr>
+<td><code>keyExtractor</code>를 index로만</td>
+<td>안정적 <code>id</code></td>
+</tr>
+<tr>
+<td>상세에 객체 전체 params</td>
+<td><code>id</code> + Query 캐시</td>
+</tr>
+<tr>
+<td>모든 화면에 로그인 가드</td>
+<td>루트/그룹 레이아웃</td>
+</tr>
+<tr>
+<td>인라인 <code>renderItem</code> + 인라인 style 과다</td>
+<td>행 컴포넌트 분리, <code>memo</code></td>
+</tr>
+<tr>
+<td>빈 목록에 높이 0</td>
+<td><code>contentContainerStyle={{ flexGrow: 1 }}</code></td>
+</tr>
+</tbody></table>
+<hr>
+<h2>5. 정리</h2>
+<p>목록은 가상화, 화면은 파일이다. 이 두 규칙이면 피드·상세·탭의 뼈대가 끝난다.</p>
+<ul>
+<li>짧은 스크롤만 <code>ScrollView</code>.</li>
+<li>탭은 <code>(tabs)</code>, 인가는 <code>(auth)</code>, 상세는 <code>[id]</code>.</li>
+<li>params는 식별자만. 데이터는 fetch.</li>
+</ul>
+<h2>연습</h2>
+<ol>
+<li><code>FlatList</code>로 50개 이상 아이템 리스트를 만든다.</li>
+<li>pull-to-refresh와 empty 상태를 구현한다.</li>
+<li>탭 + <code>posts/[id]</code> 상세를 Expo Router로 연결한다.</li>
+<li>로그인 여부에 따라 <code>(auth)</code> / <code>(tabs)</code>로 보낸다.</li>
+</ol>
+1b:[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"리스트·네비게이션 — FlatList와 Expo Router\",\"description\":\"긴 목록은 FlatList로 가상화하고, 화면 이동은 Expo Router의 파일 기반 라우팅으로 구성한다.\",\"datePublished\":\"2024-12-18\",\"url\":\"https://kaisa.co.kr/posts/react-native-04/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"react-native\",\"keywords\":\"react-native\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"리스트·네비게이션 — FlatList와 Expo Router\",\"item\":\"https://kaisa.co.kr/posts/react-native-04/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L6",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2024-12-18"}]}],["$","h1",null,{"className":"blog-post__title","children":"리스트·네비게이션 — FlatList와 Expo Router"}],["$","div",null,{"className":"blog-post__body blog-post__body--markdown","children":["$","div",null,{"className":"markdown-body","dangerouslySetInnerHTML":{"__html":"$24"}}]}],"$L25","$L26"]}]}]}]]
+27:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],"default"]
+25:["$","$L27",null,{"pathKey":"react-native-04"}]
+26:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L6",null,{"href":"/posts/react-native-03/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"상태·훅·폼 — 사용자 입력과 데이터 흐름"}]]}],["$","$L6",null,{"href":"/posts/react-native-05/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"네트워킹 — Fetch, React Query, 에러 처리"}]]}]]}],["$","$L6",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
 21:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
-29:I[27201,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"IconMark"]
+28:I[27201,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"IconMark"]
 1e:null
-23:[["$","title","0",{"children":"리스트·네비게이션 — FlatList와 Expo Router · Kaisa"}],["$","meta","1",{"name":"description","content":"긴 목록은 FlatList로 가상화하고, 화면 이동은 Expo Router의 파일 기반 라우팅으로 구성한다."}],["$","meta","2",{"name":"application-name","content":"Kaisa"}],["$","meta","3",{"name":"robots","content":"index, follow"}],["$","meta","4",{"name":"naver-site-verification","content":"4bc13b857695ff44988c260cb26124eedbcda90e"}],["$","link","5",{"rel":"canonical","href":"https://kaisa.co.kr/posts/react-native-04/"}],["$","meta","6",{"property":"og:title","content":"리스트·네비게이션 — FlatList와 Expo Router · Kaisa"}],["$","meta","7",{"property":"og:description","content":"긴 목록은 FlatList로 가상화하고, 화면 이동은 Expo Router의 파일 기반 라우팅으로 구성한다."}],["$","meta","8",{"property":"og:url","content":"https://kaisa.co.kr/posts/react-native-04/"}],["$","meta","9",{"property":"og:site_name","content":"Kaisa"}],["$","meta","10",{"property":"og:locale","content":"ko_KR"}],["$","meta","11",{"property":"og:type","content":"article"}],["$","meta","12",{"name":"twitter:card","content":"summary"}],["$","meta","13",{"name":"twitter:title","content":"리스트·네비게이션 — FlatList와 Expo Router · Kaisa"}],["$","meta","14",{"name":"twitter:description","content":"긴 목록은 FlatList로 가상화하고, 화면 이동은 Expo Router의 파일 기반 라우팅으로 구성한다."}],["$","link","15",{"rel":"shortcut icon","href":"/img/common/favicon.ico"}],["$","link","16",{"rel":"icon","href":"/img/common/favicon.ico"}],["$","link","17",{"rel":"apple-touch-icon","href":"/img/common/favicon.ico"}],["$","$L29","18",{}]]
+23:[["$","title","0",{"children":"리스트·네비게이션 — FlatList와 Expo Router · Kaisa"}],["$","meta","1",{"name":"description","content":"긴 목록은 FlatList로 가상화하고, 화면 이동은 Expo Router의 파일 기반 라우팅으로 구성한다."}],["$","meta","2",{"name":"application-name","content":"Kaisa"}],["$","meta","3",{"name":"robots","content":"index, follow"}],["$","meta","4",{"name":"naver-site-verification","content":"4bc13b857695ff44988c260cb26124eedbcda90e"}],["$","link","5",{"rel":"canonical","href":"https://kaisa.co.kr/posts/react-native-04/"}],["$","meta","6",{"property":"og:title","content":"리스트·네비게이션 — FlatList와 Expo Router · Kaisa"}],["$","meta","7",{"property":"og:description","content":"긴 목록은 FlatList로 가상화하고, 화면 이동은 Expo Router의 파일 기반 라우팅으로 구성한다."}],["$","meta","8",{"property":"og:url","content":"https://kaisa.co.kr/posts/react-native-04/"}],["$","meta","9",{"property":"og:site_name","content":"Kaisa"}],["$","meta","10",{"property":"og:locale","content":"ko_KR"}],["$","meta","11",{"property":"og:type","content":"article"}],["$","meta","12",{"name":"twitter:card","content":"summary"}],["$","meta","13",{"name":"twitter:title","content":"리스트·네비게이션 — FlatList와 Expo Router · Kaisa"}],["$","meta","14",{"name":"twitter:description","content":"긴 목록은 FlatList로 가상화하고, 화면 이동은 Expo Router의 파일 기반 라우팅으로 구성한다."}],["$","link","15",{"rel":"shortcut icon","href":"/img/common/favicon.ico"}],["$","link","16",{"rel":"icon","href":"/img/common/favicon.ico"}],["$","link","17",{"rel":"apple-touch-icon","href":"/img/common/favicon.ico"}],["$","$L28","18",{}]]

@@ -1,181 +1,216 @@
 1:"$Sreact.fragment"
-2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],""]
-3:I[55489,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-c:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-d:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
-e:"$Sreact.suspense"
+2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],""]
+a:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],"default"]
+b:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
+c:"$Sreact.suspense"
 :HL["/_next/static/chunks/0br7e7j26qkj3.css","style"]
 :HL["/_next/static/chunks/21i9-auhncr4a.css","style"]
-4:T158c,# 컴포넌트·템플릿·데이터 바인딩
+3:T2788,<h1>컴포넌트·템플릿·데이터 바인딩</h1>
+<blockquote>
+<p>요약: 템플릿에 값을 넣고 클릭을 받으며, @if/@for와 input/output으로 화면과 클래스를 연결한다.</p>
+</blockquote>
+<hr>
+<h2>1. 왜 바인딩인가</h2>
+<p>템플릿은 HTML처럼 보이지만 <strong>클래스 필드를 화면에 붙인 계약</strong>이다. 클래스가 진실이고, 템플릿은 표시와 클릭만 담당한다.</p>
+<p>언제 어떤 문법을 쓰는가.</p>
+<table>
+<thead>
+<tr>
+<th>문법</th>
+<th>방향</th>
+<th>용도</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>{{ expr }}</code></td>
+<td>클래스 → 뷰</td>
+<td>텍스트</td>
+</tr>
+<tr>
+<td><code>[attr]</code> / <code>[prop]</code></td>
+<td>클래스 → DOM·자식</td>
+<td>disabled, src, 자식 input</td>
+</tr>
+<tr>
+<td><code>(event)</code></td>
+<td>뷰 → 클래스</td>
+<td>click, submit, 자식 output</td>
+</tr>
+<tr>
+<td><code>[(ngModel)]</code></td>
+<td>양방향</td>
+<td>작은 폼. <code>FormsModule</code> 필요</td>
+</tr>
+</tbody></table>
+<p>복잡한 검증은 4편 Reactive Forms를 쓴다. 여기서는 표시·클릭·자식 계약만 고정한다.</p>
+<hr>
+<h2>2. 핵심 개념</h2>
+<table>
+<thead>
+<tr>
+<th>개념</th>
+<th>한 줄</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>인터폴레이션</td>
+<td><code>{{ title }}</code> — 값을 텍스트로 넣는다</td>
+</tr>
+<tr>
+<td>프로퍼티 바인딩</td>
+<td><code>[disabled]=&quot;loading&quot;</code> — DOM 속성/프로퍼티에 연결한다</td>
+</tr>
+<tr>
+<td>이벤트 바인딩</td>
+<td><code>(click)=&quot;save()&quot;</code> — 브라우저 이벤트에 메서드를 붙인다</td>
+</tr>
+<tr>
+<td><code>@if</code> / <code>@for</code></td>
+<td>내장 제어 흐름. <code>*ngIf</code> / <code>*ngFor</code> 대신 신규 기본</td>
+</tr>
+<tr>
+<td><code>input()</code></td>
+<td>부모가 내려주는 값. 시그널이라 읽을 때 <code>name()</code></td>
+</tr>
+<tr>
+<td><code>output()</code></td>
+<td>자식이 부모에게 보내는 이벤트</td>
+</tr>
+</tbody></table>
+<p><code>track</code>은 리스트에서 <strong>같은 행을 DOM에 재사용하기 위한 id</strong>다. 없으면 배열이 바뀔 때마다 행을 다시 만든다.</p>
+<hr>
+<h2>3. 동작하는 예: 목록과 카드</h2>
+<p><code>src/app/user-card/user-card.ts</code>:</p>
+<pre><code class="hljs language-ts"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">Component</span>, input, output } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@angular/core&#x27;</span>;
 
-> 요약: 템플릿에 값을 넣고 클릭을 받으며, @if/@for와 input/output으로 화면과 클래스를 연결한다.
-
----
-
-## 1. 왜 바인딩인가
-
-템플릿은 HTML처럼 보이지만 **클래스 필드를 화면에 붙인 계약**이다. 클래스가 진실이고, 템플릿은 표시와 클릭만 담당한다.
-
-언제 어떤 문법을 쓰는가.
-
-| 문법 | 방향 | 용도 |
-|------|------|------|
-| `{{ expr }}` | 클래스 → 뷰 | 텍스트 |
-| `[attr]` / `[prop]` | 클래스 → DOM·자식 | disabled, src, 자식 input |
-| `(event)` | 뷰 → 클래스 | click, submit, 자식 output |
-| `[(ngModel)]` | 양방향 | 작은 폼. `FormsModule` 필요 |
-
-복잡한 검증은 4편 Reactive Forms를 쓴다. 여기서는 표시·클릭·자식 계약만 고정한다.
-
----
-
-## 2. 핵심 개념
-
-| 개념 | 한 줄 |
-|------|--------|
-| 인터폴레이션 | `{{ title }}` — 값을 텍스트로 넣는다 |
-| 프로퍼티 바인딩 | `[disabled]="loading"` — DOM 속성/프로퍼티에 연결한다 |
-| 이벤트 바인딩 | `(click)="save()"` — 브라우저 이벤트에 메서드를 붙인다 |
-| `@if` / `@for` | 내장 제어 흐름. `*ngIf` / `*ngFor` 대신 신규 기본 |
-| `input()` | 부모가 내려주는 값. 시그널이라 읽을 때 `name()` |
-| `output()` | 자식이 부모에게 보내는 이벤트 |
-
-`track`은 리스트에서 **같은 행을 DOM에 재사용하기 위한 id**다. 없으면 배열이 바뀔 때마다 행을 다시 만든다.
-
----
-
-## 3. 동작하는 예: 목록과 카드
-
-`src/app/user-card/user-card.ts`:
-
-```ts
-import { Component, input, output } from '@angular/core';
-
-@Component({
-  selector: 'app-user-card',
-  standalone: true,
-  template: `
-    <article>
-      <p>{{ name() }}</p>
-      <button type="button" (click)="select.emit(name())">선택</button>
-    </article>
-  `,
+<span class="hljs-meta">@Component</span>({
+  <span class="hljs-attr">selector</span>: <span class="hljs-string">&#x27;app-user-card&#x27;</span>,
+  <span class="hljs-attr">standalone</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`
+    &lt;article&gt;
+      &lt;p&gt;{{ name() }}&lt;/p&gt;
+      &lt;button type=&quot;button&quot; (click)=&quot;select.emit(name())&quot;&gt;선택&lt;/button&gt;
+    &lt;/article&gt;
+  `</span>,
 })
-export class UserCard {
-  name = input.required<string>();
-  select = output<string>();
-}
-```
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserCard</span> {
+  name = input.<span class="hljs-property">required</span>&lt;<span class="hljs-built_in">string</span>&gt;();
+  select = output&lt;<span class="hljs-built_in">string</span>&gt;();
+}</code></pre>
+<p><code>input.required</code>는 부모가 값을 안 주면 컴파일·런타임에서 드러난다. <code>name()</code>은 시그널을 <strong>호출해 현재 값</strong>을 읽는다. <code>name</code>만 쓰면 시그널 함수 자체가 나온다.</p>
+<p><code>src/app/home/home.ts</code>:</p>
+<pre><code class="hljs language-ts"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">Component</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@angular/core&#x27;</span>;
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">UserCard</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../user-card/user-card&#x27;</span>;
 
-`input.required`는 부모가 값을 안 주면 컴파일·런타임에서 드러난다. `name()`은 시그널을 **호출해 현재 값**을 읽는다. `name`만 쓰면 시그널 함수 자체가 나온다.
+<span class="hljs-keyword">type</span> <span class="hljs-title class_">User</span> = { <span class="hljs-attr">id</span>: <span class="hljs-built_in">string</span>; <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span> };
 
-`src/app/home/home.ts`:
-
-```ts
-import { Component } from '@angular/core';
-import { UserCard } from '../user-card/user-card';
-
-type User = { id: string; name: string };
-
-@Component({
-  selector: 'app-home',
-  standalone: true,
-  imports: [UserCard],
-  template: `
-    <button type="button" [disabled]="loading" (click)="reload()">
-      {{ loading ? '불러오는 중' : '다시 불러오기' }}
-    </button>
+<span class="hljs-meta">@Component</span>({
+  <span class="hljs-attr">selector</span>: <span class="hljs-string">&#x27;app-home&#x27;</span>,
+  <span class="hljs-attr">standalone</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">imports</span>: [<span class="hljs-title class_">UserCard</span>],
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`
+    &lt;button type=&quot;button&quot; [disabled]=&quot;loading&quot; (click)=&quot;reload()&quot;&gt;
+      {{ loading ? &#x27;불러오는 중&#x27; : &#x27;다시 불러오기&#x27; }}
+    &lt;/button&gt;
 
     @if (selected) {
-      <p>선택: {{ selected }}</p>
+      &lt;p&gt;선택: {{ selected }}&lt;/p&gt;
     } @else {
-      <p>아직 선택 없음</p>
+      &lt;p&gt;아직 선택 없음&lt;/p&gt;
     }
 
-    <ul>
+    &lt;ul&gt;
       @for (user of users; track user.id) {
-        <li>
-          <app-user-card [name]="user.name" (select)="onSelect($event)" />
-        </li>
+        &lt;li&gt;
+          &lt;app-user-card [name]=&quot;user.name&quot; (select)=&quot;onSelect($event)&quot; /&gt;
+        &lt;/li&gt;
       } @empty {
-        <li>사용자 없음</li>
+        &lt;li&gt;사용자 없음&lt;/li&gt;
       }
-    </ul>
-  `,
+    &lt;/ul&gt;
+  `</span>,
 })
-export class Home {
-  loading = false;
-  selected: string | null = null;
-  users: User[] = [
-    { id: '1', name: '김하늘' },
-    { id: '2', name: '이준' },
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Home</span> {
+  loading = <span class="hljs-literal">false</span>;
+  <span class="hljs-attr">selected</span>: <span class="hljs-built_in">string</span> | <span class="hljs-literal">null</span> = <span class="hljs-literal">null</span>;
+  <span class="hljs-attr">users</span>: <span class="hljs-title class_">User</span>[] = [
+    { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;1&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;김하늘&#x27;</span> },
+    { <span class="hljs-attr">id</span>: <span class="hljs-string">&#x27;2&#x27;</span>, <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;이준&#x27;</span> },
   ];
 
-  reload() {
-    this.loading = true;
-    this.loading = false;
+  <span class="hljs-title function_">reload</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">loading</span> = <span class="hljs-literal">true</span>;
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">loading</span> = <span class="hljs-literal">false</span>;
   }
 
-  onSelect(name: string) {
-    this.selected = name;
+  <span class="hljs-title function_">onSelect</span>(<span class="hljs-params"><span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span></span>) {
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">selected</span> = name;
   }
-}
-```
-
-- `[name]="user.name"` — 자식 input에 문자열을 넣는다
-- `(select)="onSelect($event)"` — `$event`가 `output`으로 내보낸 값
-- `@empty` — 배열이 비었을 때 `@for` 전용 분기
-
-`UserCard`를 템플릿에서 쓰려면 부모 `imports`에 넣는다. standalone의 핵심이다.
-
----
-
-## 4. 옛 문법과의 대응
-
-| 신규 | 옛 |
-|------|-----|
-| `@if (user) { }` | `*ngIf="user"` |
-| `@for (x of xs; track x.id)` | `*ngFor="let x of xs; trackBy: trackId"` |
-| `name = input.required<string>()` | `@Input() name!: string` |
-| `select = output<string>()` | `@Output() select = new EventEmitter<string>()` |
-
-옛 문법도 동작한다. 신규 화면은 내장 제어 흐름과 `input()`/`output()`을 쓴다. 한 파일에 둘을 섞지 않는 편이 읽기 쉽다.
-
-`[(ngModel)]`은 `FormsModule`을 `imports`에 넣어야 한다. 필드가 늘면 Reactive Forms로 옮긴다.
-
----
-
-## 5. 주의 / 흔한 실수
-
-- **템플릿에서 `name`만 출력.** 시그널 input은 `name()`이다. 안 부르면 `[object Function]`에 가깝게 보인다.
-- **`track` 생략.** 큰 목록에서 행 상태가 엉킨다. `track $index`는 최후 수단이다.
-- **템플릿에 구독·필터 로직 남발.** `users.filter(...)`를 템플릿에 두면 변경 감지마다 새 배열이 생긴다. 클래스의 `computed`나 메서드 캐시를 쓴다.
-- **`[innerHTML]`에 사용자 입력.** XSS다. 텍스트는 `{{ }}`다.
-- **`ChangeDetectionStrategy.OnPush`만 켜고 객체를 mutate.** OnPush는 참조가 바뀌거나 시그널이 갱신될 때 잘 맞는다. 배열 `push`만으로는 화면이 안 바뀔 수 있다.
-
----
-
-## 정리
-
-템플릿은 뷰의 계약이다. **표시는 바인딩, 분기는 @if/@for, 부모·자식은 input/output**으로 좁힌다.
-
-- 텍스트·속성 → `{{ }}` / `[ ]`
-- 클릭 → `(click)`
-- 목록 → `@for` + `track`
-- 내려주기·올리기 → `input()` / `output()`
-
----
-
-## 연습
-
-1. `loading`이 true일 때 버튼 문구와 `disabled`가 함께 바뀌는지 확인한다.
-2. `users`에 항목을 추가·삭제하는 버튼을 넣고 `@empty`가 보이는지 확인한다.
-3. `UserCard`에 `role = input<string>('일반')`을 추가하고 부모에서 한 명만 다른 role을 넘긴다.0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"컴포넌트·템플릿·데이터 바인딩\",\"description\":\"템플릿에 값을 넣고 클릭을 받으며, @if/@for와 input/output으로 화면과 클래스를 연결한다.\",\"datePublished\":\"2024-01-17\",\"url\":\"https://kaisa.co.kr/posts/angular-02/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"angular\",\"keywords\":\"angular\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"컴포넌트·템플릿·데이터 바인딩\",\"item\":\"https://kaisa.co.kr/posts/angular-02/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2024-01-17"}]}],["$","h1",null,{"className":"blog-post__title","children":"컴포넌트·템플릿·데이터 바인딩"}],["$","$L3",null,{"content":"$4"}],"$L5","$L6"]}]}]}]],["$L7","$L8","$L9","$La"],"$Lb"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Zv4TpHss7ITjpJG-s6iGo"}
-5:["$","$Lc",null,{"pathKey":"angular-02"}]
-6:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/angular-01/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Angular 스탠드얼론으로 프로젝트 시작하기"}]]}],["$","$L2",null,{"href":"/posts/angular-03/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"시그널·서비스·의존성 주입"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
-7:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
-8:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
-9:["$","script","script-0",{"src":"/_next/static/chunks/1oevfsdj8hv5d.js","async":true}]
-a:["$","script","script-1",{"src":"/_next/static/chunks/22vl7s8dm-4u2.js","async":true}]
-b:["$","$Ld",null,{"children":["$","$e",null,{"name":"Next.MetadataOutlet","children":"$@f"}]}]
-f:null
+}</code></pre>
+<ul>
+<li><code>[name]=&quot;user.name&quot;</code> — 자식 input에 문자열을 넣는다</li>
+<li><code>(select)=&quot;onSelect($event)&quot;</code> — <code>$event</code>가 <code>output</code>으로 내보낸 값</li>
+<li><code>@empty</code> — 배열이 비었을 때 <code>@for</code> 전용 분기</li>
+</ul>
+<p><code>UserCard</code>를 템플릿에서 쓰려면 부모 <code>imports</code>에 넣는다. standalone의 핵심이다.</p>
+<hr>
+<h2>4. 옛 문법과의 대응</h2>
+<table>
+<thead>
+<tr>
+<th>신규</th>
+<th>옛</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>@if (user) { }</code></td>
+<td><code>*ngIf=&quot;user&quot;</code></td>
+</tr>
+<tr>
+<td><code>@for (x of xs; track x.id)</code></td>
+<td><code>*ngFor=&quot;let x of xs; trackBy: trackId&quot;</code></td>
+</tr>
+<tr>
+<td><code>name = input.required&lt;string&gt;()</code></td>
+<td><code>@Input() name!: string</code></td>
+</tr>
+<tr>
+<td><code>select = output&lt;string&gt;()</code></td>
+<td><code>@Output() select = new EventEmitter&lt;string&gt;()</code></td>
+</tr>
+</tbody></table>
+<p>옛 문법도 동작한다. 신규 화면은 내장 제어 흐름과 <code>input()</code>/<code>output()</code>을 쓴다. 한 파일에 둘을 섞지 않는 편이 읽기 쉽다.</p>
+<p><code>[(ngModel)]</code>은 <code>FormsModule</code>을 <code>imports</code>에 넣어야 한다. 필드가 늘면 Reactive Forms로 옮긴다.</p>
+<hr>
+<h2>5. 주의 / 흔한 실수</h2>
+<ul>
+<li><strong>템플릿에서 <code>name</code>만 출력.</strong> 시그널 input은 <code>name()</code>이다. 안 부르면 <code>[object Function]</code>에 가깝게 보인다.</li>
+<li><strong><code>track</code> 생략.</strong> 큰 목록에서 행 상태가 엉킨다. <code>track $index</code>는 최후 수단이다.</li>
+<li><strong>템플릿에 구독·필터 로직 남발.</strong> <code>users.filter(...)</code>를 템플릿에 두면 변경 감지마다 새 배열이 생긴다. 클래스의 <code>computed</code>나 메서드 캐시를 쓴다.</li>
+<li><strong><code>[innerHTML]</code>에 사용자 입력.</strong> XSS다. 텍스트는 <code>{{ }}</code>다.</li>
+<li><strong><code>ChangeDetectionStrategy.OnPush</code>만 켜고 객체를 mutate.</strong> OnPush는 참조가 바뀌거나 시그널이 갱신될 때 잘 맞는다. 배열 <code>push</code>만으로는 화면이 안 바뀔 수 있다.</li>
+</ul>
+<hr>
+<h2>정리</h2>
+<p>템플릿은 뷰의 계약이다. <strong>표시는 바인딩, 분기는 @if/@for, 부모·자식은 input/output</strong>으로 좁힌다.</p>
+<ul>
+<li>텍스트·속성 → <code>{{ }}</code> / <code>[ ]</code></li>
+<li>클릭 → <code>(click)</code></li>
+<li>목록 → <code>@for</code> + <code>track</code></li>
+<li>내려주기·올리기 → <code>input()</code> / <code>output()</code></li>
+</ul>
+<hr>
+<h2>연습</h2>
+<ol>
+<li><code>loading</code>이 true일 때 버튼 문구와 <code>disabled</code>가 함께 바뀌는지 확인한다.</li>
+<li><code>users</code>에 항목을 추가·삭제하는 버튼을 넣고 <code>@empty</code>가 보이는지 확인한다.</li>
+<li><code>UserCard</code>에 <code>role = input&lt;string&gt;(&#39;일반&#39;)</code>을 추가하고 부모에서 한 명만 다른 role을 넘긴다.</li>
+</ol>
+0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"컴포넌트·템플릿·데이터 바인딩\",\"description\":\"템플릿에 값을 넣고 클릭을 받으며, @if/@for와 input/output으로 화면과 클래스를 연결한다.\",\"datePublished\":\"2024-01-17\",\"url\":\"https://kaisa.co.kr/posts/angular-02/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"angular\",\"keywords\":\"angular\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"컴포넌트·템플릿·데이터 바인딩\",\"item\":\"https://kaisa.co.kr/posts/angular-02/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2024-01-17"}]}],["$","h1",null,{"className":"blog-post__title","children":"컴포넌트·템플릿·데이터 바인딩"}],["$","div",null,{"className":"blog-post__body blog-post__body--markdown","children":["$","div",null,{"className":"markdown-body","dangerouslySetInnerHTML":{"__html":"$3"}}]}],"$L4","$L5"]}]}]}]],["$L6","$L7","$L8"],"$L9"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"_AZq8Hq_NwvdopxIW0Tgh"}
+4:["$","$La",null,{"pathKey":"angular-02"}]
+5:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/angular-01/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Angular 스탠드얼론으로 프로젝트 시작하기"}]]}],["$","$L2",null,{"href":"/posts/angular-03/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"시그널·서비스·의존성 주입"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
+6:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
+7:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
+8:["$","script","script-0",{"src":"/_next/static/chunks/26shoze10o-dc.js","async":true}]
+9:["$","$Lb",null,{"children":["$","$c",null,{"name":"Next.MetadataOutlet","children":"$@d"}]}]
+d:null

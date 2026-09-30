@@ -1,209 +1,211 @@
 1:"$Sreact.fragment"
-2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],""]
-3:I[55489,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-c:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-d:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
-e:"$Sreact.suspense"
+2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],""]
+a:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],"default"]
+b:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
+c:"$Sreact.suspense"
 :HL["/_next/static/chunks/0br7e7j26qkj3.css","style"]
 :HL["/_next/static/chunks/21i9-auhncr4a.css","style"]
-4:T18d3,# 시그널·서비스·의존성 주입
+3:T38f5,<h1>시그널·서비스·의존성 주입</h1>
+<blockquote>
+<p>요약: signal로 화면 상태를 두고, providedIn 서비스와 inject로 공유 로직을 연결하는 Angular 상태·DI 패턴을 정리한다.</p>
+</blockquote>
+<hr>
+<h2>1. 왜 시그널과 서비스인가</h2>
+<p>컴포넌트 필드는 그 화면만 안다. 로그인 사용자처럼 <strong>여러 화면이 같은 값</strong>을 보면 서비스로 올린다.</p>
+<p>시그널(signal)은 <strong>값이 바뀌면 그 값을 읽는 템플릿만 다시 그리는 상자</strong>다. Vue의 <code>ref</code>와 역할이 비슷하다. 읽을 때 <code>count()</code>처럼 함수로 연다.</p>
+<p>DI(의존성 주입)는 <strong>클래스가 <code>new AuthService()</code>를 하지 않고, Angular가 인스턴스를 넣어 주는 방식</strong>이다. 테스트에서 가짜 구현으로 갈아끼우기 쉽다.</p>
+<table>
+<thead>
+<tr>
+<th>층</th>
+<th>역할</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>signal</code> / <code>computed</code></td>
+<td>이 화면 또는 서비스의 상태·파생 값</td>
+</tr>
+<tr>
+<td><code>effect</code></td>
+<td>값이 바뀔 때 로그·연동. 남용하지 않는다</td>
+</tr>
+<tr>
+<td><code>@Injectable</code> 서비스</td>
+<td>공유 로직·HTTP·인증</td>
+</tr>
+<tr>
+<td><code>inject()</code></td>
+<td>생성자 대신 현재 주입 컨텍스트에서 꺼내 온다</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>2. 핵심 API</h2>
+<pre><code class="hljs language-ts"><span class="hljs-keyword">import</span> { signal, computed, effect } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@angular/core&#x27;</span>;
 
-> 요약: signal로 화면 상태를 두고, providedIn 서비스와 inject로 공유 로직을 연결하는 Angular 상태·DI 패턴을 정리한다.
+<span class="hljs-keyword">const</span> count = <span class="hljs-title function_">signal</span>(<span class="hljs-number">0</span>);
+<span class="hljs-keyword">const</span> double = <span class="hljs-title function_">computed</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">count</span>() * <span class="hljs-number">2</span>);
 
----
-
-## 1. 왜 시그널과 서비스인가
-
-컴포넌트 필드는 그 화면만 안다. 로그인 사용자처럼 **여러 화면이 같은 값**을 보면 서비스로 올린다.
-
-시그널(signal)은 **값이 바뀌면 그 값을 읽는 템플릿만 다시 그리는 상자**다. Vue의 `ref`와 역할이 비슷하다. 읽을 때 `count()`처럼 함수로 연다.
-
-DI(의존성 주입)는 **클래스가 `new AuthService()`를 하지 않고, Angular가 인스턴스를 넣어 주는 방식**이다. 테스트에서 가짜 구현으로 갈아끼우기 쉽다.
-
-| 층 | 역할 |
-|----|------|
-| `signal` / `computed` | 이 화면 또는 서비스의 상태·파생 값 |
-| `effect` | 값이 바뀔 때 로그·연동. 남용하지 않는다 |
-| `@Injectable` 서비스 | 공유 로직·HTTP·인증 |
-| `inject()` | 생성자 대신 현재 주입 컨텍스트에서 꺼내 온다 |
-
----
-
-## 2. 핵심 API
-
-```ts
-import { signal, computed, effect } from '@angular/core';
-
-const count = signal(0);
-const double = computed(() => count() * 2);
-
-effect(() => {
-  console.log('count', count());
+<span class="hljs-title function_">effect</span>(<span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;count&#x27;</span>, <span class="hljs-title function_">count</span>());
 });
 
-count.set(1);
-count.update((n) => n + 1);
-```
+count.<span class="hljs-title function_">set</span>(<span class="hljs-number">1</span>);
+count.<span class="hljs-title function_">update</span>(<span class="hljs-function">(<span class="hljs-params">n</span>) =&gt;</span> n + <span class="hljs-number">1</span>);</code></pre>
+<table>
+<thead>
+<tr>
+<th>API</th>
+<th>한 줄</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>signal(init)</code></td>
+<td>쓰기 가능한 상자. <code>set</code> / <code>update</code></td>
+</tr>
+<tr>
+<td><code>computed(() =&gt; ...)</code></td>
+<td>다른 시그널에서 계산. 직접 <code>set</code>하지 않는다</td>
+</tr>
+<tr>
+<td><code>effect(() =&gt; ...)</code></td>
+<td>읽은 시그널이 바뀔 때 부수 효과</td>
+</tr>
+</tbody></table>
+<p><code>effect</code>로 HTTP를 반복 호출하면 루프·중복 요청이 나기 쉽다. 데이터 로드는 이벤트·라우트 resolver·리소스 API 쪽을 검토한다.</p>
+<hr>
+<h2>3. 동작하는 예: 인증 서비스 + HTTP</h2>
+<p><code>src/app/auth.service.ts</code>:</p>
+<pre><code class="hljs language-ts"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">Injectable</span>, computed, signal } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@angular/core&#x27;</span>;
 
-| API | 한 줄 |
-|-----|--------|
-| `signal(init)` | 쓰기 가능한 상자. `set` / `update` |
-| `computed(() => ...)` | 다른 시그널에서 계산. 직접 `set`하지 않는다 |
-| `effect(() => ...)` | 읽은 시그널이 바뀔 때 부수 효과 |
+<span class="hljs-meta">@Injectable</span>({ <span class="hljs-attr">providedIn</span>: <span class="hljs-string">&#x27;root&#x27;</span> })
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">AuthService</span> {
+  <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> user = signal&lt;<span class="hljs-built_in">string</span> | <span class="hljs-literal">null</span>&gt;(<span class="hljs-literal">null</span>);
+  <span class="hljs-keyword">readonly</span> isLoggedIn = <span class="hljs-title function_">computed</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">user</span>() !== <span class="hljs-literal">null</span>);
+  <span class="hljs-keyword">readonly</span> displayName = <span class="hljs-title function_">computed</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-variable language_">this</span>.<span class="hljs-title function_">user</span>() ?? <span class="hljs-string">&#x27;게스트&#x27;</span>);
 
-`effect`로 HTTP를 반복 호출하면 루프·중복 요청이 나기 쉽다. 데이터 로드는 이벤트·라우트 resolver·리소스 API 쪽을 검토한다.
-
----
-
-## 3. 동작하는 예: 인증 서비스 + HTTP
-
-`src/app/auth.service.ts`:
-
-```ts
-import { Injectable, computed, signal } from '@angular/core';
-
-@Injectable({ providedIn: 'root' })
-export class AuthService {
-  private readonly user = signal<string | null>(null);
-  readonly isLoggedIn = computed(() => this.user() !== null);
-  readonly displayName = computed(() => this.user() ?? '게스트');
-
-  login(name: string) {
-    this.user.set(name);
+  <span class="hljs-title function_">login</span>(<span class="hljs-params"><span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span></span>) {
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">user</span>.<span class="hljs-title function_">set</span>(name);
   }
 
-  logout() {
-    this.user.set(null);
+  <span class="hljs-title function_">logout</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">user</span>.<span class="hljs-title function_">set</span>(<span class="hljs-literal">null</span>);
   }
-}
-```
+}</code></pre>
+<p><code>providedIn: &#39;root&#39;</code>는 <strong>앱에 인스턴스 하나</strong>다. 어느 컴포넌트에서 <code>inject</code>해도 같은 상자다.</p>
+<p><code>src/app/app.config.ts</code>에 HTTP를 등록한다.</p>
+<pre><code class="hljs language-ts"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">ApplicationConfig</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@angular/core&#x27;</span>;
+<span class="hljs-keyword">import</span> { provideHttpClient } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@angular/common/http&#x27;</span>;
+<span class="hljs-keyword">import</span> { provideRouter } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@angular/router&#x27;</span>;
+<span class="hljs-keyword">import</span> { routes } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./app.routes&#x27;</span>;
 
-`providedIn: 'root'`는 **앱에 인스턴스 하나**다. 어느 컴포넌트에서 `inject`해도 같은 상자다.
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-attr">appConfig</span>: <span class="hljs-title class_">ApplicationConfig</span> = {
+  <span class="hljs-attr">providers</span>: [<span class="hljs-title function_">provideRouter</span>(routes), <span class="hljs-title function_">provideHttpClient</span>()],
+};</code></pre>
+<p><code>src/app/user.service.ts</code>:</p>
+<pre><code class="hljs language-ts"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">HttpClient</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@angular/common/http&#x27;</span>;
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">Injectable</span>, inject, signal } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@angular/core&#x27;</span>;
 
-`src/app/app.config.ts`에 HTTP를 등록한다.
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">type</span> <span class="hljs-title class_">UserDto</span> = { <span class="hljs-attr">id</span>: <span class="hljs-built_in">number</span>; <span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span> };
 
-```ts
-import { ApplicationConfig } from '@angular/core';
-import { provideHttpClient } from '@angular/common/http';
-import { provideRouter } from '@angular/router';
-import { routes } from './app.routes';
+<span class="hljs-meta">@Injectable</span>({ <span class="hljs-attr">providedIn</span>: <span class="hljs-string">&#x27;root&#x27;</span> })
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserService</span> {
+  <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> http = <span class="hljs-title function_">inject</span>(<span class="hljs-title class_">HttpClient</span>);
+  <span class="hljs-keyword">readonly</span> users = signal&lt;<span class="hljs-title class_">UserDto</span>[]&gt;([]);
+  <span class="hljs-keyword">readonly</span> error = signal&lt;<span class="hljs-built_in">string</span> | <span class="hljs-literal">null</span>&gt;(<span class="hljs-literal">null</span>);
 
-export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideHttpClient()],
-};
-```
-
-`src/app/user.service.ts`:
-
-```ts
-import { HttpClient } from '@angular/common/http';
-import { Injectable, inject, signal } from '@angular/core';
-
-export type UserDto = { id: number; name: string };
-
-@Injectable({ providedIn: 'root' })
-export class UserService {
-  private readonly http = inject(HttpClient);
-  readonly users = signal<UserDto[]>([]);
-  readonly error = signal<string | null>(null);
-
-  load() {
-    this.error.set(null);
-    this.http.get<UserDto[]>('https://jsonplaceholder.typicode.com/users').subscribe({
-      next: (rows) => this.users.set(rows),
-      error: () => this.error.set('목록을 불러오지 못했다'),
+  <span class="hljs-title function_">load</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">error</span>.<span class="hljs-title function_">set</span>(<span class="hljs-literal">null</span>);
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">http</span>.<span class="hljs-property">get</span>&lt;<span class="hljs-title class_">UserDto</span>[]&gt;(<span class="hljs-string">&#x27;https://jsonplaceholder.typicode.com/users&#x27;</span>).<span class="hljs-title function_">subscribe</span>({
+      <span class="hljs-attr">next</span>: <span class="hljs-function">(<span class="hljs-params">rows</span>) =&gt;</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">users</span>.<span class="hljs-title function_">set</span>(rows),
+      <span class="hljs-attr">error</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">error</span>.<span class="hljs-title function_">set</span>(<span class="hljs-string">&#x27;목록을 불러오지 못했다&#x27;</span>),
     });
   }
-}
-```
+}</code></pre>
+<p><code>src/app/home/home.ts</code>:</p>
+<pre><code class="hljs language-ts"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">Component</span>, inject } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@angular/core&#x27;</span>;
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">AuthService</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../auth.service&#x27;</span>;
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">UserService</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../user.service&#x27;</span>;
 
-`src/app/home/home.ts`:
-
-```ts
-import { Component, inject } from '@angular/core';
-import { AuthService } from '../auth.service';
-import { UserService } from '../user.service';
-
-@Component({
-  selector: 'app-home',
-  standalone: true,
-  template: `
-    <p>{{ auth.displayName() }}</p>
-    <button type="button" (click)="auth.login('demo')">로그인</button>
-    <button type="button" (click)="auth.logout()">로그아웃</button>
-    <button type="button" (click)="users.load()">목록</button>
+<span class="hljs-meta">@Component</span>({
+  <span class="hljs-attr">selector</span>: <span class="hljs-string">&#x27;app-home&#x27;</span>,
+  <span class="hljs-attr">standalone</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`
+    &lt;p&gt;{{ auth.displayName() }}&lt;/p&gt;
+    &lt;button type=&quot;button&quot; (click)=&quot;auth.login(&#x27;demo&#x27;)&quot;&gt;로그인&lt;/button&gt;
+    &lt;button type=&quot;button&quot; (click)=&quot;auth.logout()&quot;&gt;로그아웃&lt;/button&gt;
+    &lt;button type=&quot;button&quot; (click)=&quot;users.load()&quot;&gt;목록&lt;/button&gt;
     @if (users.error()) {
-      <p>{{ users.error() }}</p>
+      &lt;p&gt;{{ users.error() }}&lt;/p&gt;
     }
-    <ul>
+    &lt;ul&gt;
       @for (row of users.users(); track row.id) {
-        <li>{{ row.name }}</li>
+        &lt;li&gt;{{ row.name }}&lt;/li&gt;
       }
-    </ul>
-  `,
+    &lt;/ul&gt;
+  `</span>,
 })
-export class Home {
-  readonly auth = inject(AuthService);
-  readonly users = inject(UserService);
-}
-```
-
-구독은 서비스 한곳에서 시그널로 접는다. 컴포넌트가 `subscribe`를 들고 있으면 `destroy` 때 해제를 잊기 쉽다. `async` 파이프를 쓸 때는 템플릿에서 구독 수명을 맡긴다.
-
-생성자 주입도 된다. `inject()`가 필드 초기화와 짧다. `inject`는 생성자·필드 초기화·`runInInjectionContext` 안에서만 호출한다. 임의 클릭 핸들러에서 부르면 실패한다.
-
----
-
-## 4. 제공 범위
-
-| 범위 | 언제 |
-|------|------|
-| `providedIn: 'root'` | 앱 전역 싱글톤. 인증·HTTP 래퍼 |
-| 컴포넌트 `providers: [X]` | 그 컴포넌트 트리만. 위저드 로컬 상태 |
-| 라우트 `providers` | 그 기능 라우트만. NgModule 대체 |
-
-테스트:
-
-```ts
-TestBed.configureTestingModule({
-  providers: [{ provide: AuthService, useValue: fakeAuth }],
-});
-```
-
-DI가 있는 이유다. `new AuthService()`를 컴포넌트 안에 쓰면 테스트가 실제 네트워크를 탄다.
-
----
-
-## 5. 주의 / 흔한 실수
-
-- **시그널을 `count`로 출력.** 템플릿도 `count()`다.
-- **`computed`에 대입.** 파생 값이다. 쓰기는 원본 `signal`.
-- **`effect`에서 다른 시그널을 `set`해 연쇄 갱신.** 순환이 난다. 이벤트 핸들러에서 갱신한다.
-- **컴포넌트에서 `HttpClient`를 직접 구독하고 해제 생략.** 라우트를 나가도 콜백이 산다.
-- **`providedIn: 'root'` 서비스를 컴포넌트 `providers`에 또 등록.** 인스턴스가 둘이라 로그인이 화면에 안 보인다.
-
----
-
-## 정리
-
-상태는 **시그널**, 공유 로직은 **서비스**, 연결은 **DI**다.
-
-- 화면 국소 값 → 컴포넌트 `signal`
-- 앱 공유 값 → `providedIn: 'root'` + `signal`
-- 꺼내기 → `inject(AuthService)` (생성자·필드에서만)
-
----
-
-## 연습
-
-1. `AuthService`의 `login`/`logout` 후 `isLoggedIn()`이 헤더와 홈에서 같이 바뀌는지 확인한다.
-2. `UserService.load` 실패 시 `error` 문구가 보이는지, 성공 시 목록이 바뀌는지 확인한다.
-3. `Home`에 `providers: [AuthService]`를 잠시 넣고, 헤더와 홈의 로그인 상태가 어긋나는지 본 뒤 제거한다.0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"시그널·서비스·의존성 주입\",\"description\":\"signal로 화면 상태를 두고, providedIn 서비스와 inject로 공유 로직을 연결하는 Angular 상태·DI 패턴을 정리한다.\",\"datePublished\":\"2024-06-13\",\"url\":\"https://kaisa.co.kr/posts/angular-03/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"angular\",\"keywords\":\"angular\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"시그널·서비스·의존성 주입\",\"item\":\"https://kaisa.co.kr/posts/angular-03/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2024-06-13"}]}],["$","h1",null,{"className":"blog-post__title","children":"시그널·서비스·의존성 주입"}],["$","$L3",null,{"content":"$4"}],"$L5","$L6"]}]}]}]],["$L7","$L8","$L9","$La"],"$Lb"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Zv4TpHss7ITjpJG-s6iGo"}
-5:["$","$Lc",null,{"pathKey":"angular-03"}]
-6:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/angular-02/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"컴포넌트·템플릿·데이터 바인딩"}]]}],["$","$L2",null,{"href":"/posts/angular-04/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"라우팅과 리액티브 폼"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
-7:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
-8:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
-9:["$","script","script-0",{"src":"/_next/static/chunks/1oevfsdj8hv5d.js","async":true}]
-a:["$","script","script-1",{"src":"/_next/static/chunks/22vl7s8dm-4u2.js","async":true}]
-b:["$","$Ld",null,{"children":["$","$e",null,{"name":"Next.MetadataOutlet","children":"$@f"}]}]
-f:null
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Home</span> {
+  <span class="hljs-keyword">readonly</span> auth = <span class="hljs-title function_">inject</span>(<span class="hljs-title class_">AuthService</span>);
+  <span class="hljs-keyword">readonly</span> users = <span class="hljs-title function_">inject</span>(<span class="hljs-title class_">UserService</span>);
+}</code></pre>
+<p>구독은 서비스 한곳에서 시그널로 접는다. 컴포넌트가 <code>subscribe</code>를 들고 있으면 <code>destroy</code> 때 해제를 잊기 쉽다. <code>async</code> 파이프를 쓸 때는 템플릿에서 구독 수명을 맡긴다.</p>
+<p>생성자 주입도 된다. <code>inject()</code>가 필드 초기화와 짧다. <code>inject</code>는 생성자·필드 초기화·<code>runInInjectionContext</code> 안에서만 호출한다. 임의 클릭 핸들러에서 부르면 실패한다.</p>
+<hr>
+<h2>4. 제공 범위</h2>
+<table>
+<thead>
+<tr>
+<th>범위</th>
+<th>언제</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>providedIn: &#39;root&#39;</code></td>
+<td>앱 전역 싱글톤. 인증·HTTP 래퍼</td>
+</tr>
+<tr>
+<td>컴포넌트 <code>providers: [X]</code></td>
+<td>그 컴포넌트 트리만. 위저드 로컬 상태</td>
+</tr>
+<tr>
+<td>라우트 <code>providers</code></td>
+<td>그 기능 라우트만. NgModule 대체</td>
+</tr>
+</tbody></table>
+<p>테스트:</p>
+<pre><code class="hljs language-ts"><span class="hljs-title class_">TestBed</span>.<span class="hljs-title function_">configureTestingModule</span>({
+  <span class="hljs-attr">providers</span>: [{ <span class="hljs-attr">provide</span>: <span class="hljs-title class_">AuthService</span>, <span class="hljs-attr">useValue</span>: fakeAuth }],
+});</code></pre>
+<p>DI가 있는 이유다. <code>new AuthService()</code>를 컴포넌트 안에 쓰면 테스트가 실제 네트워크를 탄다.</p>
+<hr>
+<h2>5. 주의 / 흔한 실수</h2>
+<ul>
+<li><strong>시그널을 <code>count</code>로 출력.</strong> 템플릿도 <code>count()</code>다.</li>
+<li><strong><code>computed</code>에 대입.</strong> 파생 값이다. 쓰기는 원본 <code>signal</code>.</li>
+<li><strong><code>effect</code>에서 다른 시그널을 <code>set</code>해 연쇄 갱신.</strong> 순환이 난다. 이벤트 핸들러에서 갱신한다.</li>
+<li><strong>컴포넌트에서 <code>HttpClient</code>를 직접 구독하고 해제 생략.</strong> 라우트를 나가도 콜백이 산다.</li>
+<li><strong><code>providedIn: &#39;root&#39;</code> 서비스를 컴포넌트 <code>providers</code>에 또 등록.</strong> 인스턴스가 둘이라 로그인이 화면에 안 보인다.</li>
+</ul>
+<hr>
+<h2>정리</h2>
+<p>상태는 <strong>시그널</strong>, 공유 로직은 <strong>서비스</strong>, 연결은 <strong>DI</strong>다.</p>
+<ul>
+<li>화면 국소 값 → 컴포넌트 <code>signal</code></li>
+<li>앱 공유 값 → <code>providedIn: &#39;root&#39;</code> + <code>signal</code></li>
+<li>꺼내기 → <code>inject(AuthService)</code> (생성자·필드에서만)</li>
+</ul>
+<hr>
+<h2>연습</h2>
+<ol>
+<li><code>AuthService</code>의 <code>login</code>/<code>logout</code> 후 <code>isLoggedIn()</code>이 헤더와 홈에서 같이 바뀌는지 확인한다.</li>
+<li><code>UserService.load</code> 실패 시 <code>error</code> 문구가 보이는지, 성공 시 목록이 바뀌는지 확인한다.</li>
+<li><code>Home</code>에 <code>providers: [AuthService]</code>를 잠시 넣고, 헤더와 홈의 로그인 상태가 어긋나는지 본 뒤 제거한다.</li>
+</ol>
+0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"시그널·서비스·의존성 주입\",\"description\":\"signal로 화면 상태를 두고, providedIn 서비스와 inject로 공유 로직을 연결하는 Angular 상태·DI 패턴을 정리한다.\",\"datePublished\":\"2024-06-13\",\"url\":\"https://kaisa.co.kr/posts/angular-03/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"angular\",\"keywords\":\"angular\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"시그널·서비스·의존성 주입\",\"item\":\"https://kaisa.co.kr/posts/angular-03/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2024-06-13"}]}],["$","h1",null,{"className":"blog-post__title","children":"시그널·서비스·의존성 주입"}],["$","div",null,{"className":"blog-post__body blog-post__body--markdown","children":["$","div",null,{"className":"markdown-body","dangerouslySetInnerHTML":{"__html":"$3"}}]}],"$L4","$L5"]}]}]}]],["$L6","$L7","$L8"],"$L9"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"_AZq8Hq_NwvdopxIW0Tgh"}
+4:["$","$La",null,{"pathKey":"angular-03"}]
+5:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/angular-02/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"컴포넌트·템플릿·데이터 바인딩"}]]}],["$","$L2",null,{"href":"/posts/angular-04/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"라우팅과 리액티브 폼"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
+6:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
+7:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
+8:["$","script","script-0",{"src":"/_next/static/chunks/26shoze10o-dc.js","async":true}]
+9:["$","$Lb",null,{"children":["$","$c",null,{"name":"Next.MetadataOutlet","children":"$@d"}]}]
+d:null

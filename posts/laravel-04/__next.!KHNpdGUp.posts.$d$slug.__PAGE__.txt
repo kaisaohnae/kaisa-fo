@@ -1,244 +1,206 @@
 1:"$Sreact.fragment"
-2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],""]
-3:I[55489,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-c:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-d:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
-e:"$Sreact.suspense"
+2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],""]
+a:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],"default"]
+b:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
+c:"$Sreact.suspense"
 :HL["/_next/static/chunks/0br7e7j26qkj3.css","style"]
 :HL["/_next/static/chunks/21i9-auhncr4a.css","style"]
-4:T1b0a,# Validation, Form Request, API Resource
-
-> 요약: 들어오는 값은 Form Request로 검증하고, 나가는 JSON은 API Resource로 정해 두면 컨트롤러가 얇아진다.
-
----
-
-## 1. 왜 컨트롤러에서 검증을 빼나
-
-검증 규칙이 컨트롤러에 쌓이면 유스케이스가 안 보인다. Laravel은 이 역할을 **Form Request**에 둔다. HTTP 요청 하나를 위한 클래스이며, “이 사용자가 이 동작을 해도 되는지”(`authorize`)와 “필드가 올바른지”(`rules`)를 함께 담는다.
-
-```bash
-php artisan make:request StorePostRequest
-```
-
-```php
-class StorePostRequest extends FormRequest
-{
-    public function authorize(): bool
-    {
-        return $this->user()?->can('create', Post::class) ?? false;
+3:T48f9,<h1>Validation, Form Request, API Resource</h1>
+<blockquote>
+<p>요약: 들어오는 값은 Form Request로 검증하고, 나가는 JSON은 API Resource로 정해 두면 컨트롤러가 얇아진다.</p>
+</blockquote>
+<hr>
+<h2>1. 왜 컨트롤러에서 검증을 빼나</h2>
+<p>검증 규칙이 컨트롤러에 쌓이면 유스케이스가 안 보인다. Laravel은 이 역할을 <strong>Form Request</strong>에 둔다. HTTP 요청 하나를 위한 클래스이며, “이 사용자가 이 동작을 해도 되는지”(<code>authorize</code>)와 “필드가 올바른지”(<code>rules</code>)를 함께 담는다.</p>
+<pre><code class="hljs language-bash">php artisan make:request StorePostRequest</code></pre>
+<pre><code class="hljs language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">StorePostRequest</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">FormRequest</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">authorize</span>(<span class="hljs-params"></span>): <span class="hljs-title">bool</span>
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">user</span>()?-&gt;<span class="hljs-title function_ invoke__">can</span>(<span class="hljs-string">&#x27;create&#x27;</span>, <span class="hljs-title class_">Post</span>::<span class="hljs-variable language_">class</span>) ?? <span class="hljs-literal">false</span>;
     }
 
-    public function rules(): array
-    {
-        return [
-            'title' => ['required', 'string', 'max:120'],
-            'slug' => ['nullable', 'alpha_dash', 'max:140', 'unique:posts,slug'],
-            'body' => ['required', 'string'],
-            'tag_ids' => ['array'],
-            'tag_ids.*' => ['integer', 'exists:tags,id'],
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">rules</span>(<span class="hljs-params"></span>): <span class="hljs-title">array</span>
+    </span>{
+        <span class="hljs-keyword">return</span> [
+            <span class="hljs-string">&#x27;title&#x27;</span> =&gt; [<span class="hljs-string">&#x27;required&#x27;</span>, <span class="hljs-string">&#x27;string&#x27;</span>, <span class="hljs-string">&#x27;max:120&#x27;</span>],
+            <span class="hljs-string">&#x27;slug&#x27;</span> =&gt; [<span class="hljs-string">&#x27;nullable&#x27;</span>, <span class="hljs-string">&#x27;alpha_dash&#x27;</span>, <span class="hljs-string">&#x27;max:140&#x27;</span>, <span class="hljs-string">&#x27;unique:posts,slug&#x27;</span>],
+            <span class="hljs-string">&#x27;body&#x27;</span> =&gt; [<span class="hljs-string">&#x27;required&#x27;</span>, <span class="hljs-string">&#x27;string&#x27;</span>],
+            <span class="hljs-string">&#x27;tag_ids&#x27;</span> =&gt; [<span class="hljs-string">&#x27;array&#x27;</span>],
+            <span class="hljs-string">&#x27;tag_ids.*&#x27;</span> =&gt; [<span class="hljs-string">&#x27;integer&#x27;</span>, <span class="hljs-string">&#x27;exists:tags,id&#x27;</span>],
         ];
     }
 
-    public function messages(): array
-    {
-        return [
-            'title.required' => '제목을 입력하세요.',
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">messages</span>(<span class="hljs-params"></span>): <span class="hljs-title">array</span>
+    </span>{
+        <span class="hljs-keyword">return</span> [
+            <span class="hljs-string">&#x27;title.required&#x27;</span> =&gt; <span class="hljs-string">&#x27;제목을 입력하세요.&#x27;</span>,
         ];
     }
-}
-```
+}</code></pre>
+<pre><code class="hljs language-php"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">store</span>(<span class="hljs-params">StorePostRequest <span class="hljs-variable">$request</span></span>)
+</span>{
+    <span class="hljs-variable">$data</span> = <span class="hljs-variable">$request</span>-&gt;<span class="hljs-title function_ invoke__">validated</span>();
+}</code></pre>
+<p><code>authorize()</code>가 false면 403이다. Policy(모델 권한, 5편)와 연결하면 컨트롤러마다 <code>if</code>를 반복하지 않는다.</p>
+<p>컨트롤러에서는 <code>$request-&gt;all()</code>이 아니라 <strong><code>validated()</code>만</strong> 쓴다. all은 검증을 우회한 필드까지 넘긴다.</p>
+<hr>
+<h2>2. 자주 쓰는 룰</h2>
+<table>
+<thead>
+<tr>
+<th>룰</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>required</code> / <code>nullable</code></td>
+<td>필수 / 빈 값 허용</td>
+</tr>
+<tr>
+<td><code>string</code>, <code>integer</code>, <code>boolean</code>, <code>array</code></td>
+<td>타입</td>
+</tr>
+<tr>
+<td><code>email</code>, <code>url</code>, <code>uuid</code></td>
+<td>형식</td>
+</tr>
+<tr>
+<td><code>max</code>, <code>min</code>, <code>between</code></td>
+<td>길이·범위</td>
+</tr>
+<tr>
+<td><code>unique:posts,slug</code></td>
+<td>유일</td>
+</tr>
+<tr>
+<td><code>exists:tags,id</code></td>
+<td>FK가 실제로 있음</td>
+</tr>
+<tr>
+<td><code>confirmed</code></td>
+<td><code>password_confirmation</code>과 같음</td>
+</tr>
+<tr>
+<td><code>Rule::enum(PostStatus::class)</code></td>
+<td>Enum 값만</td>
+</tr>
+<tr>
+<td><code>Rule::unique(...)-&gt;ignore($id)</code></td>
+<td>수정 시 자기 행은 유일에서 제외</td>
+</tr>
+</tbody></table>
+<pre><code class="hljs language-php"><span class="hljs-keyword">use</span> <span class="hljs-title">Illuminate</span>\<span class="hljs-title">Validation</span>\<span class="hljs-title">Rule</span>;
 
-```php
-public function store(StorePostRequest $request)
-{
-    $data = $request->validated();
-}
-```
-
-`authorize()`가 false면 403이다. Policy(모델 권한, 5편)와 연결하면 컨트롤러마다 `if`를 반복하지 않는다.
-
-컨트롤러에서는 `$request->all()`이 아니라 **`validated()`만** 쓴다. all은 검증을 우회한 필드까지 넘긴다.
-
----
-
-## 2. 자주 쓰는 룰
-
-| 룰 | 의미 |
-|----|------|
-| `required` / `nullable` | 필수 / 빈 값 허용 |
-| `string`, `integer`, `boolean`, `array` | 타입 |
-| `email`, `url`, `uuid` | 형식 |
-| `max`, `min`, `between` | 길이·범위 |
-| `unique:posts,slug` | 유일 |
-| `exists:tags,id` | FK가 실제로 있음 |
-| `confirmed` | `password_confirmation`과 같음 |
-| `Rule::enum(PostStatus::class)` | Enum 값만 |
-| `Rule::unique(...)->ignore($id)` | 수정 시 자기 행은 유일에서 제외 |
-
-```php
-use Illuminate\Validation\Rule;
-
-'title' => ['required', Rule::unique('posts')->ignore($this->post)],
-'status' => ['required', Rule::enum(PostStatus::class)],
-```
-
-수정 API에서 `unique`만 넣고 `ignore`를 빼면, 제목을 안 바꿔도 “이미 사용 중”이 난다. 가장 흔한 실수다.
-
----
-
-## 3. 검증 전후 훅
-
-슬러그를 비워 두면 제목에서 만들고 싶을 때 `prepareForValidation`을 쓴다. 룰만으로 표현하기 어려운 도메인 금지는 `after`에서 메시지를 추가한다.
-
-```php
-protected function prepareForValidation(): void
-{
-    $this->merge([
-        'slug' => $this->slug ?: Str::slug($this->title ?? ''),
+<span class="hljs-string">&#x27;title&#x27;</span> =&gt; [<span class="hljs-string">&#x27;required&#x27;</span>, <span class="hljs-title class_">Rule</span>::<span class="hljs-title function_ invoke__">unique</span>(<span class="hljs-string">&#x27;posts&#x27;</span>)-&gt;<span class="hljs-title function_ invoke__">ignore</span>(<span class="hljs-variable">$this</span>-&gt;post)],
+<span class="hljs-string">&#x27;status&#x27;</span> =&gt; [<span class="hljs-string">&#x27;required&#x27;</span>, <span class="hljs-title class_">Rule</span>::<span class="hljs-class"><span class="hljs-keyword">enum</span>(<span class="hljs-title">PostStatus</span>::<span class="hljs-title">class</span>)],</span></code></pre>
+<p>수정 API에서 <code>unique</code>만 넣고 <code>ignore</code>를 빼면, 제목을 안 바꿔도 “이미 사용 중”이 난다. 가장 흔한 실수다.</p>
+<hr>
+<h2>3. 검증 전후 훅</h2>
+<p>슬러그를 비워 두면 제목에서 만들고 싶을 때 <code>prepareForValidation</code>을 쓴다. 룰만으로 표현하기 어려운 도메인 금지는 <code>after</code>에서 메시지를 추가한다.</p>
+<pre><code class="hljs language-php"><span class="hljs-keyword">protected</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">prepareForValidation</span>(<span class="hljs-params"></span>): <span class="hljs-title">void</span>
+</span>{
+    <span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">merge</span>([
+        <span class="hljs-string">&#x27;slug&#x27;</span> =&gt; <span class="hljs-variable">$this</span>-&gt;slug ?: <span class="hljs-title class_">Str</span>::<span class="hljs-title function_ invoke__">slug</span>(<span class="hljs-variable">$this</span>-&gt;title ?? <span class="hljs-string">&#x27;&#x27;</span>),
     ]);
 }
 
-public function after(): array
-{
-    return [
-        function (Validator $validator) {
-            if ($this->containsBlockedPhrase()) {
-                $validator->errors()->add('body', '허용되지 않는 내용입니다.');
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">after</span>(<span class="hljs-params"></span>): <span class="hljs-title">array</span>
+</span>{
+    <span class="hljs-keyword">return</span> [
+        <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">Validator <span class="hljs-variable">$validator</span></span>) </span>{
+            <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">containsBlockedPhrase</span>()) {
+                <span class="hljs-variable">$validator</span>-&gt;<span class="hljs-title function_ invoke__">errors</span>()-&gt;<span class="hljs-title function_ invoke__">add</span>(<span class="hljs-string">&#x27;body&#x27;</span>, <span class="hljs-string">&#x27;허용되지 않는 내용입니다.&#x27;</span>);
             }
         },
     ];
-}
-```
-
----
-
-## 4. 검증 실패 JSON
-
-JSON 요청의 기본은 **422**와 `message` + `errors`다. 프론트가 RFC 7807 형태를 원하면 `bootstrap/app.php`의 `withExceptions`에서 한곳에서 맞춘다. 컨트롤러마다 포맷을 바꾸지 않는다.
-
-```php
-$exceptions->render(function (ValidationException $e, Request $request) {
-    if ($request->is('api/*')) {
-        return response()->json([
-            'title' => 'Validation Failed',
-            'status' => 422,
-            'errors' => $e->errors(),
-        ], 422);
+}</code></pre>
+<hr>
+<h2>4. 검증 실패 JSON</h2>
+<p>JSON 요청의 기본은 <strong>422</strong>와 <code>message</code> + <code>errors</code>다. 프론트가 RFC 7807 형태를 원하면 <code>bootstrap/app.php</code>의 <code>withExceptions</code>에서 한곳에서 맞춘다. 컨트롤러마다 포맷을 바꾸지 않는다.</p>
+<pre><code class="hljs language-php"><span class="hljs-variable">$exceptions</span>-&gt;<span class="hljs-title function_ invoke__">render</span>(function (ValidationException <span class="hljs-variable">$e</span>, Request <span class="hljs-variable">$request</span>) {
+    <span class="hljs-keyword">if</span> (<span class="hljs-variable">$request</span>-&gt;<span class="hljs-title function_ invoke__">is</span>(<span class="hljs-string">&#x27;api/*&#x27;</span>)) {
+        <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">response</span>()-&gt;<span class="hljs-title function_ invoke__">json</span>([
+            <span class="hljs-string">&#x27;title&#x27;</span> =&gt; <span class="hljs-string">&#x27;Validation Failed&#x27;</span>,
+            <span class="hljs-string">&#x27;status&#x27;</span> =&gt; <span class="hljs-number">422</span>,
+            <span class="hljs-string">&#x27;errors&#x27;</span> =&gt; <span class="hljs-variable">$e</span>-&gt;<span class="hljs-title function_ invoke__">errors</span>(),
+        ], <span class="hljs-number">422</span>);
     }
-});
-```
-
----
-
-## 5. API Resource
-
-**API Resource**는 모델(또는 컬렉션)을 JSON 배열로 바꾸는 계층이다. `return $post;`로 Eloquent를 그대로 내보내면 `password` 해시, 내부 플래그, 아직 안 올린 관계가 섞일 수 있다. 응답 계약은 Resource가 지킨다.
-
-```bash
-php artisan make:resource PostResource
-```
-
-```php
-class PostResource extends JsonResource
-{
-    public function toArray(Request $request): array
-    {
-        return [
-            'id' => $this->id,
-            'title' => $this->title,
-            'slug' => $this->slug,
-            'status' => $this->status->value,
-            'author' => new UserResource($this->whenLoaded('user')),
-            'tags' => TagResource::collection($this->whenLoaded('tags')),
-            'published_at' => $this->published_at?->toIso8601String(),
+});</code></pre>
+<hr>
+<h2>5. API Resource</h2>
+<p><strong>API Resource</strong>는 모델(또는 컬렉션)을 JSON 배열로 바꾸는 계층이다. <code>return $post;</code>로 Eloquent를 그대로 내보내면 <code>password</code> 해시, 내부 플래그, 아직 안 올린 관계가 섞일 수 있다. 응답 계약은 Resource가 지킨다.</p>
+<pre><code class="hljs language-bash">php artisan make:resource PostResource</code></pre>
+<pre><code class="hljs language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PostResource</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">JsonResource</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">toArray</span>(<span class="hljs-params">Request <span class="hljs-variable">$request</span></span>): <span class="hljs-title">array</span>
+    </span>{
+        <span class="hljs-keyword">return</span> [
+            <span class="hljs-string">&#x27;id&#x27;</span> =&gt; <span class="hljs-variable language_">$this</span>-&gt;id,
+            <span class="hljs-string">&#x27;title&#x27;</span> =&gt; <span class="hljs-variable language_">$this</span>-&gt;title,
+            <span class="hljs-string">&#x27;slug&#x27;</span> =&gt; <span class="hljs-variable language_">$this</span>-&gt;slug,
+            <span class="hljs-string">&#x27;status&#x27;</span> =&gt; <span class="hljs-variable language_">$this</span>-&gt;status-&gt;value,
+            <span class="hljs-string">&#x27;author&#x27;</span> =&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">UserResource</span>(<span class="hljs-variable language_">$this</span>-&gt;<span class="hljs-title function_ invoke__">whenLoaded</span>(<span class="hljs-string">&#x27;user&#x27;</span>)),
+            <span class="hljs-string">&#x27;tags&#x27;</span> =&gt; <span class="hljs-title class_">TagResource</span>::<span class="hljs-title function_ invoke__">collection</span>(<span class="hljs-variable">$this</span>-&gt;<span class="hljs-title function_ invoke__">whenLoaded</span>(<span class="hljs-string">&#x27;tags&#x27;</span>)),
+            <span class="hljs-string">&#x27;published_at&#x27;</span> =&gt; <span class="hljs-variable language_">$this</span>-&gt;published_at?-&gt;<span class="hljs-title function_ invoke__">toIso8601String</span>(),
         ];
     }
-}
-```
+}</code></pre>
+<p><code>whenLoaded</code>는 <code>with(&#39;user&#39;)</code>로 이미 불러온 때만 중첩한다. 없으면 키가 빠지므로 N+1도 막고, “항상 전체 그래프”를 강제하지 않는다.</p>
+<pre><code class="hljs language-php"><span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">PostResource</span>(<span class="hljs-variable">$post</span>-&gt;<span class="hljs-title function_ invoke__">load</span>(<span class="hljs-string">&#x27;user&#x27;</span>, <span class="hljs-string">&#x27;tags&#x27;</span>));
+<span class="hljs-keyword">return</span> <span class="hljs-title class_">PostResource</span>::<span class="hljs-title function_ invoke__">collection</span>(<span class="hljs-title class_">Post</span>::<span class="hljs-title function_ invoke__">with</span>(<span class="hljs-string">&#x27;user&#x27;</span>)-&gt;<span class="hljs-title function_ invoke__">paginate</span>());
+<span class="hljs-keyword">return</span> (<span class="hljs-keyword">new</span> <span class="hljs-title class_">PostResource</span>(<span class="hljs-variable">$post</span>))-&gt;<span class="hljs-title function_ invoke__">response</span>()-&gt;<span class="hljs-title function_ invoke__">setStatusCode</span>(<span class="hljs-number">201</span>);</code></pre>
+<p>페이지네이션을 Resource 컬렉션에 넘기면 <code>data</code>·<code>links</code>·<code>meta</code>가 붙는다. 프론트와 <code>meta.current_page</code>를 문서로 맞춰 둔다.</p>
+<pre><code class="hljs language-php"><span class="hljs-keyword">return</span> <span class="hljs-title class_">PostResource</span>::<span class="hljs-title function_ invoke__">collection</span>(
+    <span class="hljs-title class_">Post</span>::<span class="hljs-title function_ invoke__">published</span>()-&gt;<span class="hljs-title function_ invoke__">with</span>(<span class="hljs-string">&#x27;user&#x27;</span>)-&gt;<span class="hljs-title function_ invoke__">latest</span>()-&gt;<span class="hljs-title function_ invoke__">paginate</span>(<span class="hljs-number">20</span>)
+);</code></pre>
+<p>무한 스크롤 피드면 오프셋보다 커서가 유리하다.</p>
+<pre><code class="hljs language-php"><span class="hljs-title class_">Post</span>::<span class="hljs-title function_ invoke__">published</span>()-&gt;<span class="hljs-title function_ invoke__">orderBy</span>(<span class="hljs-string">&#x27;id&#x27;</span>)-&gt;<span class="hljs-title function_ invoke__">cursorPaginate</span>(<span class="hljs-number">20</span>);</code></pre>
+<hr>
+<h2>6. DTO는 선택</h2>
+<p>검증된 배열이 여러 계층을 지나면 키가 뭔지 잊힌다. 팀이 커지면 readonly DTO나 Spatie Laravel Data가 도움이 된다. 작은 API는 <code>validated()</code> 배열로도 충분하다.</p>
+<pre><code class="hljs language-php"><span class="hljs-keyword">readonly</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">StorePostData</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">__construct</span>(<span class="hljs-params">
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">string</span> <span class="hljs-variable">$title</span>,
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">string</span> <span class="hljs-variable">$body</span>,
+        <span class="hljs-keyword">public</span> <span class="hljs-keyword">array</span> <span class="hljs-variable">$tagIds</span> = [],
+    </span>) </span>{}
 
-`whenLoaded`는 `with('user')`로 이미 불러온 때만 중첩한다. 없으면 키가 빠지므로 N+1도 막고, “항상 전체 그래프”를 강제하지 않는다.
+    <span class="hljs-keyword">public</span> <span class="hljs-built_in">static</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fromRequest</span>(<span class="hljs-params">StorePostRequest <span class="hljs-variable">$request</span></span>): <span class="hljs-title">self</span>
+    </span>{
+        <span class="hljs-variable">$v</span> = <span class="hljs-variable">$request</span>-&gt;<span class="hljs-title function_ invoke__">validated</span>();
 
-```php
-return new PostResource($post->load('user', 'tags'));
-return PostResource::collection(Post::with('user')->paginate());
-return (new PostResource($post))->response()->setStatusCode(201);
-```
-
-페이지네이션을 Resource 컬렉션에 넘기면 `data`·`links`·`meta`가 붙는다. 프론트와 `meta.current_page`를 문서로 맞춰 둔다.
-
-```php
-return PostResource::collection(
-    Post::published()->with('user')->latest()->paginate(20)
-);
-```
-
-무한 스크롤 피드면 오프셋보다 커서가 유리하다.
-
-```php
-Post::published()->orderBy('id')->cursorPaginate(20);
-```
-
----
-
-## 6. DTO는 선택
-
-검증된 배열이 여러 계층을 지나면 키가 뭔지 잊힌다. 팀이 커지면 readonly DTO나 Spatie Laravel Data가 도움이 된다. 작은 API는 `validated()` 배열로도 충분하다.
-
-```php
-readonly class StorePostData
-{
-    public function __construct(
-        public string $title,
-        public string $body,
-        public array $tagIds = [],
-    ) {}
-
-    public static function fromRequest(StorePostRequest $request): self
-    {
-        $v = $request->validated();
-
-        return new self($v['title'], $v['body'], $v['tag_ids'] ?? []);
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">self</span>(<span class="hljs-variable">$v</span>[<span class="hljs-string">&#x27;title&#x27;</span>], <span class="hljs-variable">$v</span>[<span class="hljs-string">&#x27;body&#x27;</span>], <span class="hljs-variable">$v</span>[<span class="hljs-string">&#x27;tag_ids&#x27;</span>] ?? []);
     }
-}
-```
-
----
-
-## 7. 파일 업로드
-
-```php
-'cover' => ['nullable', 'image', 'max:2048', 'dimensions:max_width=2000'],
-```
-
-```php
-$path = $request->file('cover')->store('covers', 's3');
-```
-
-`image` 룰은 MIME를 보지만, 확장자만 믿는 저장은 위험하다. 공개 디스크에 실행 가능한 파일을 두지 말고, 운영에서는 용량·MIME·저장 위치를 추가로 검토한다.
-
----
-
-## 8. 흔한 실수
-
-- `$request->all()`을 `Post::create`에 그대로 넣는다.
-- 모델 JSON을 그대로 반환해 숨겨야 할 컬럼이 나간다.
-- 수정 시 `unique`에 `ignore`가 없다.
-- `authorize()`를 항상 true로 두고 Policy를 우회한다.
-- 생성 응답을 200으로 보낸다. 생성은 201이 계약에 맞다.
-
----
-
-## 연습
-
-1. `StorePostRequest`와 `UpdatePostRequest`를 나눈다. 수정의 unique에는 ignore를 넣는다.
-2. show/index를 `PostResource`로 통일한다.
-3. API 검증 실패 JSON 포맷을 `withExceptions`에서 맞춘다.
-4. 이미지 필드 검증 후 `storage` 또는 S3에 저장한다.0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"Validation, Form Request, API Resource\",\"description\":\"들어오는 값은 Form Request로 검증하고, 나가는 JSON은 API Resource로 정해 두면 컨트롤러가 얇아진다.\",\"datePublished\":\"2024-11-08\",\"url\":\"https://kaisa.co.kr/posts/laravel-04/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"laravel\",\"keywords\":\"laravel\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Validation, Form Request, API Resource\",\"item\":\"https://kaisa.co.kr/posts/laravel-04/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2024-11-08"}]}],["$","h1",null,{"className":"blog-post__title","children":"Validation, Form Request, API Resource"}],["$","$L3",null,{"content":"$4"}],"$L5","$L6"]}]}]}]],["$L7","$L8","$L9","$La"],"$Lb"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Zv4TpHss7ITjpJG-s6iGo"}
-5:["$","$Lc",null,{"pathKey":"laravel-04"}]
-6:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/laravel-03/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Eloquent ORM과 데이터베이스"}]]}],["$","$L2",null,{"href":"/posts/laravel-05/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"인증·인가 — Sanctum, Policy, Gate"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
-7:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
-8:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
-9:["$","script","script-0",{"src":"/_next/static/chunks/1oevfsdj8hv5d.js","async":true}]
-a:["$","script","script-1",{"src":"/_next/static/chunks/22vl7s8dm-4u2.js","async":true}]
-b:["$","$Ld",null,{"children":["$","$e",null,{"name":"Next.MetadataOutlet","children":"$@f"}]}]
-f:null
+}</code></pre>
+<hr>
+<h2>7. 파일 업로드</h2>
+<pre><code class="hljs language-php"><span class="hljs-string">&#x27;cover&#x27;</span> =&gt; [<span class="hljs-string">&#x27;nullable&#x27;</span>, <span class="hljs-string">&#x27;image&#x27;</span>, <span class="hljs-string">&#x27;max:2048&#x27;</span>, <span class="hljs-string">&#x27;dimensions:max_width=2000&#x27;</span>],</code></pre>
+<pre><code class="hljs language-php"><span class="hljs-variable">$path</span> = <span class="hljs-variable">$request</span>-&gt;<span class="hljs-title function_ invoke__">file</span>(<span class="hljs-string">&#x27;cover&#x27;</span>)-&gt;<span class="hljs-title function_ invoke__">store</span>(<span class="hljs-string">&#x27;covers&#x27;</span>, <span class="hljs-string">&#x27;s3&#x27;</span>);</code></pre>
+<p><code>image</code> 룰은 MIME를 보지만, 확장자만 믿는 저장은 위험하다. 공개 디스크에 실행 가능한 파일을 두지 말고, 운영에서는 용량·MIME·저장 위치를 추가로 검토한다.</p>
+<hr>
+<h2>8. 흔한 실수</h2>
+<ul>
+<li><code>$request-&gt;all()</code>을 <code>Post::create</code>에 그대로 넣는다.</li>
+<li>모델 JSON을 그대로 반환해 숨겨야 할 컬럼이 나간다.</li>
+<li>수정 시 <code>unique</code>에 <code>ignore</code>가 없다.</li>
+<li><code>authorize()</code>를 항상 true로 두고 Policy를 우회한다.</li>
+<li>생성 응답을 200으로 보낸다. 생성은 201이 계약에 맞다.</li>
+</ul>
+<hr>
+<h2>연습</h2>
+<ol>
+<li><code>StorePostRequest</code>와 <code>UpdatePostRequest</code>를 나눈다. 수정의 unique에는 ignore를 넣는다.</li>
+<li>show/index를 <code>PostResource</code>로 통일한다.</li>
+<li>API 검증 실패 JSON 포맷을 <code>withExceptions</code>에서 맞춘다.</li>
+<li>이미지 필드 검증 후 <code>storage</code> 또는 S3에 저장한다.</li>
+</ol>
+0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"Validation, Form Request, API Resource\",\"description\":\"들어오는 값은 Form Request로 검증하고, 나가는 JSON은 API Resource로 정해 두면 컨트롤러가 얇아진다.\",\"datePublished\":\"2024-11-08\",\"url\":\"https://kaisa.co.kr/posts/laravel-04/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"laravel\",\"keywords\":\"laravel\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Validation, Form Request, API Resource\",\"item\":\"https://kaisa.co.kr/posts/laravel-04/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2024-11-08"}]}],["$","h1",null,{"className":"blog-post__title","children":"Validation, Form Request, API Resource"}],["$","div",null,{"className":"blog-post__body blog-post__body--markdown","children":["$","div",null,{"className":"markdown-body","dangerouslySetInnerHTML":{"__html":"$3"}}]}],"$L4","$L5"]}]}]}]],["$L6","$L7","$L8"],"$L9"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"_AZq8Hq_NwvdopxIW0Tgh"}
+4:["$","$La",null,{"pathKey":"laravel-04"}]
+5:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/laravel-03/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Eloquent ORM과 데이터베이스"}]]}],["$","$L2",null,{"href":"/posts/laravel-05/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"인증·인가 — Sanctum, Policy, Gate"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
+6:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
+7:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
+8:["$","script","script-0",{"src":"/_next/static/chunks/26shoze10o-dc.js","async":true}]
+9:["$","$Lb",null,{"children":["$","$c",null,{"name":"Next.MetadataOutlet","children":"$@d"}]}]
+d:null

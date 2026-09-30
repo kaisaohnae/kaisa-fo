@@ -1,191 +1,184 @@
 1:"$Sreact.fragment"
-2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],""]
-3:I[55489,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-c:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-d:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
-e:"$Sreact.suspense"
+2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],""]
+a:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],"default"]
+b:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
+c:"$Sreact.suspense"
 :HL["/_next/static/chunks/0br7e7j26qkj3.css","style"]
 :HL["/_next/static/chunks/21i9-auhncr4a.css","style"]
-4:T12d6,# Vue 3 Composition API로 시작하기
-
-> 요약: 한 파일에 화면·로직·스타일을 두고, script setup으로 Vue 3 컴포넌트를 시작한다.
-
----
-
-## 1. 언제 Vue 3인가
-
-Vue는 HTML 템플릿에 상태를 연결해 화면을 그리는 프레임워크다. 값이 바뀌면 해당 부분만 다시 그린다.
-
-신규 프로젝트는 **Vue 3 + TypeScript + `<script setup>`** 을 기본선으로 둔다. Vue 2는 유지보수만 한다.
-
-| 항목 | Vue 2 | Vue 3 |
-|------|-------|-------|
-| 기본 API | Options (`data`, `methods`) | Composition (`setup`, `ref`) |
-| 반응형 | `Object.defineProperty` | Proxy |
-| 파일 | Options SFC | SFC(단일 파일 컴포넌트) + script setup |
-| TypeScript | 보조 | 공식 경로 |
-
-Composition API(조합형 API)는 관련 코드를 함수 단위로 모아 재사용하기 쉽게 만든 방식이다. Options는 `data`/`methods`/`computed`로 역할이 갈라져, 한 기능이 파일 여러 곳에 흩어진다.
-
----
-
-## 2. 핵심 구조
-
-SFC는 한 파일에 로직·마크업·스타일을 담는다.
-
-```
-Counter.vue
-├── <script setup>   상태와 동작
-├── <template>       화면
-└── <style scoped>   이 컴포넌트만의 스타일
-```
-
-| 개념 | 한 줄 |
-|------|--------|
-| `createApp` | 앱을 만들고 `#app`에 붙인다 |
-| SFC | `.vue` 한 장이 컴포넌트 하나다 |
-| `<script setup>` | setup의 축약. 최상위 변수·함수가 템플릿에 노출된다 |
-| `scoped` | 스타일이 이 파일 밖으로 새지 않는다 |
-
-파일명은 `UserCard.vue`처럼 PascalCase로 둔다.
-
----
-
-## 3. 프로젝트 생성
-
-```bash
-npm create vue@latest my-app
-cd my-app
+3:T2bb3,<h1>Vue 3 Composition API로 시작하기</h1>
+<blockquote>
+<p>요약: 한 파일에 화면·로직·스타일을 두고, script setup으로 Vue 3 컴포넌트를 시작한다.</p>
+</blockquote>
+<hr>
+<h2>1. 언제 Vue 3인가</h2>
+<p>Vue는 HTML 템플릿에 상태를 연결해 화면을 그리는 프레임워크다. 값이 바뀌면 해당 부분만 다시 그린다.</p>
+<p>신규 프로젝트는 <strong>Vue 3 + TypeScript + <code>&lt;script setup&gt;</code></strong> 을 기본선으로 둔다. Vue 2는 유지보수만 한다.</p>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>Vue 2</th>
+<th>Vue 3</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>기본 API</td>
+<td>Options (<code>data</code>, <code>methods</code>)</td>
+<td>Composition (<code>setup</code>, <code>ref</code>)</td>
+</tr>
+<tr>
+<td>반응형</td>
+<td><code>Object.defineProperty</code></td>
+<td>Proxy</td>
+</tr>
+<tr>
+<td>파일</td>
+<td>Options SFC</td>
+<td>SFC(단일 파일 컴포넌트) + script setup</td>
+</tr>
+<tr>
+<td>TypeScript</td>
+<td>보조</td>
+<td>공식 경로</td>
+</tr>
+</tbody></table>
+<p>Composition API(조합형 API)는 관련 코드를 함수 단위로 모아 재사용하기 쉽게 만든 방식이다. Options는 <code>data</code>/<code>methods</code>/<code>computed</code>로 역할이 갈라져, 한 기능이 파일 여러 곳에 흩어진다.</p>
+<hr>
+<h2>2. 핵심 구조</h2>
+<p>SFC는 한 파일에 로직·마크업·스타일을 담는다.</p>
+<pre><code class="hljs">Counter.vue
+├── <span class="hljs-attribute">&lt;script setup&gt;</span>   상태와 동작
+├── <span class="hljs-attribute">&lt;template&gt;</span>       화면
+└── <span class="hljs-attribute">&lt;style scoped&gt;</span>   이 컴포넌트만의 스타일</code></pre>
+<table>
+<thead>
+<tr>
+<th>개념</th>
+<th>한 줄</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>createApp</code></td>
+<td>앱을 만들고 <code>#app</code>에 붙인다</td>
+</tr>
+<tr>
+<td>SFC</td>
+<td><code>.vue</code> 한 장이 컴포넌트 하나다</td>
+</tr>
+<tr>
+<td><code>&lt;script setup&gt;</code></td>
+<td>setup의 축약. 최상위 변수·함수가 템플릿에 노출된다</td>
+</tr>
+<tr>
+<td><code>scoped</code></td>
+<td>스타일이 이 파일 밖으로 새지 않는다</td>
+</tr>
+</tbody></table>
+<p>파일명은 <code>UserCard.vue</code>처럼 PascalCase로 둔다.</p>
+<hr>
+<h2>3. 프로젝트 생성</h2>
+<pre><code class="hljs language-bash">npm create vue@latest my-app
+<span class="hljs-built_in">cd</span> my-app
 npm install
-npm run dev
-```
+npm run dev</code></pre>
+<p>선택 시 TypeScript, Vue Router, Pinia는 이후 글에서 다룬다. 지금은 Vue + TS만으로도 충분하다.</p>
+<p>진입점은 <code>main.ts</code>다.</p>
+<pre><code class="hljs language-ts"><span class="hljs-keyword">import</span> { createApp } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">App</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./App.vue&#x27;</span>
 
-선택 시 TypeScript, Vue Router, Pinia는 이후 글에서 다룬다. 지금은 Vue + TS만으로도 충분하다.
+<span class="hljs-title function_">createApp</span>(<span class="hljs-title class_">App</span>).<span class="hljs-title function_">mount</span>(<span class="hljs-string">&#x27;#app&#x27;</span>)</code></pre>
+<p><code>index.html</code>의 <code>&lt;div id=&quot;app&quot;&gt;&lt;/div&gt;</code>가 마운트 지점이다.</p>
+<hr>
+<h2>4. 동작하는 예: 카운터</h2>
+<p><code>src/components/Counter.vue</code>:</p>
+<pre><code class="hljs language-vue"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript">
+<span class="hljs-keyword">import</span> { ref, computed } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>
 
-진입점은 `main.ts`다.
+<span class="hljs-keyword">const</span> count = <span class="hljs-title function_">ref</span>(<span class="hljs-number">0</span>)
+<span class="hljs-keyword">const</span> label = <span class="hljs-title function_">computed</span>(<span class="hljs-function">() =&gt;</span> (count.<span class="hljs-property">value</span> === <span class="hljs-number">0</span> ? <span class="hljs-string">&#x27;시작&#x27;</span> : <span class="hljs-string">`<span class="hljs-subst">${count.value}</span>회`</span>))
 
-```ts
-import { createApp } from 'vue'
-import App from './App.vue'
-
-createApp(App).mount('#app')
-```
-
-`index.html`의 `<div id="app"></div>`가 마운트 지점이다.
-
----
-
-## 4. 동작하는 예: 카운터
-
-`src/components/Counter.vue`:
-
-```vue
-<script setup lang="ts">
-import { ref, computed } from 'vue'
-
-const count = ref(0)
-const label = computed(() => (count.value === 0 ? '시작' : `${count.value}회`))
-
-function increment() {
-  count.value += 1
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">increment</span>(<span class="hljs-params"></span>) {
+  count.<span class="hljs-property">value</span> += <span class="hljs-number">1</span>
 }
 
-function reset() {
-  count.value = 0
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">reset</span>(<span class="hljs-params"></span>) {
+  count.<span class="hljs-property">value</span> = <span class="hljs-number">0</span>
 }
-</script>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-<template>
-  <section>
-    <p>{{ label }}</p>
-    <button type="button" @click="increment">증가</button>
-    <button type="button" @click="reset">초기화</button>
-  </section>
-</template>
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">section</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span></span><span class="hljs-template-variable">{{ <span class="hljs-name">label</span> }}</span><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;button&quot;</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">&quot;increment&quot;</span>&gt;</span>증가<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;button&quot;</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">&quot;reset&quot;</span>&gt;</span>초기화<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
 
-<style scoped>
-section {
-  display: flex;
-  gap: 8px;
-  align-items: center;
+<span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">scoped</span>&gt;</span><span class="language-css">
+<span class="hljs-selector-tag">section</span> {
+  <span class="hljs-attribute">display</span>: flex;
+  <span class="hljs-attribute">gap</span>: <span class="hljs-number">8px</span>;
+  <span class="hljs-attribute">align-items</span>: center;
 }
-</style>
-```
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span></span></code></pre>
+<p><code>src/App.vue</code>:</p>
+<pre><code class="hljs language-vue"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript">
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">Counter</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./components/Counter.vue&#x27;</span>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-`src/App.vue`:
-
-```vue
-<script setup lang="ts">
-import Counter from './components/Counter.vue'
-</script>
-
-<template>
-  <main>
-    <h1>카운터</h1>
-    <Counter />
-  </main>
-</template>
-```
-
-`ref(0)`은 **값이 바뀌면 화면을 다시 그릴 상자**다. script에서는 `count.value`로 열고, 템플릿에서는 `{{ count }}`로 쓴다. Vue가 템플릿에서 상자를 자동으로 연다(언래핑).
-
-`<script setup>`은 `setup()` 함수의 문법 설탕이다. `export` 없이 선언한 이름만 템플릿이 본다.
-
----
-
-## 5. Options와 무엇을 다르게 쓰는가
-
-Options API 예:
-
-```vue
-<script lang="ts">
-export default {
-  data() {
-    return { count: 0 }
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">main</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>카운터<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Counter</span> /&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">main</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></code></pre>
+<p><code>ref(0)</code>은 <strong>값이 바뀌면 화면을 다시 그릴 상자</strong>다. script에서는 <code>count.value</code>로 열고, 템플릿에서는 <code>{{ count }}</code>로 쓴다. Vue가 템플릿에서 상자를 자동으로 연다(언래핑).</p>
+<p><code>&lt;script setup&gt;</code>은 <code>setup()</code> 함수의 문법 설탕이다. <code>export</code> 없이 선언한 이름만 템플릿이 본다.</p>
+<hr>
+<h2>5. Options와 무엇을 다르게 쓰는가</h2>
+<p>Options API 예:</p>
+<pre><code class="hljs language-vue"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript">
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> {
+  <span class="hljs-title function_">data</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">return</span> { <span class="hljs-attr">count</span>: <span class="hljs-number">0</span> }
   },
-  methods: {
-    increment() {
-      this.count += 1
+  <span class="hljs-attr">methods</span>: {
+    <span class="hljs-title function_">increment</span>(<span class="hljs-params"></span>) {
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">count</span> += <span class="hljs-number">1</span>
     },
   },
 }
-</script>
-```
-
-동작은 같다. 다만 기능이 커지면 `data`와 `methods`가 멀어진다. Composition은 카운터 관련 코드를 한 블록에 둔다. 기존 Options 코드는 점진 이관하면 된다. 신규는 script setup만 쓴다.
-
----
-
-## 6. 주의 / 흔한 실수
-
-- **Vue 2 문법으로 시작하기.** `new Vue()`는 Vue 3가 아니다. `createApp`을 쓴다.
-- **script에서 `count`만 쓰기.** `ref`는 `.value`가 실제 값이다. `count++`는 상자를 증가시키지 않는다.
-- **`<script setup>`과 `export default`를 섞기.** setup 블록은 컴포넌트 옵션 객체가 아니다.
-- **전역 CSS로 컴포넌트 스타일 잡기.** `scoped`를 기본으로 둔다. 테마만 전역에 둔다.
-- **한 SFC에 화면 여러 개를 넣기.** 파일 하나 = 책임 하나.
-
----
-
-## 정리
-
-Vue 3 시작은 버전 비교가 아니다. **SFC + `<script setup>` + `ref`** 세 가지를 고정하면 나머지는 이 위에 쌓인다.
-
-- 화면 조각 → `.vue` 파일
-- 변하는 값 → `ref` / `computed`
-- 앱 시작 → `createApp(App).mount('#app')`
-
----
-
-## 연습
-
-1. `npm create vue@latest`로 프로젝트를 만들고 `Counter.vue`를 붙여 증가·초기화가 동작하는지 확인한다.
-2. `label` computed를 바꿔 10 이상이면 문구를 `많음`으로 표시한다.
-3. `HelloName.vue`를 만들어 입력한 이름을 `<p>`에 출력한다. 상태는 `ref('')` 하나로 둔다.0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"Vue 3 Composition API로 시작하기\",\"description\":\"한 파일에 화면·로직·스타일을 두고, script setup으로 Vue 3 컴포넌트를 시작한다.\",\"datePublished\":\"2023-04-25\",\"url\":\"https://kaisa.co.kr/posts/vue-01/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"vue\",\"keywords\":\"vue\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Vue 3 Composition API로 시작하기\",\"item\":\"https://kaisa.co.kr/posts/vue-01/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2023-04-25"}]}],["$","h1",null,{"className":"blog-post__title","children":"Vue 3 Composition API로 시작하기"}],["$","$L3",null,{"content":"$4"}],"$L5","$L6"]}]}]}]],["$L7","$L8","$L9","$La"],"$Lb"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Zv4TpHss7ITjpJG-s6iGo"}
-5:["$","$Lc",null,{"pathKey":"vue-01"}]
-6:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[null,["$","$L2",null,{"href":"/posts/vue-02/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"ref와 reactive로 반응형 상태 다루기"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
-7:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
-8:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
-9:["$","script","script-0",{"src":"/_next/static/chunks/1oevfsdj8hv5d.js","async":true}]
-a:["$","script","script-1",{"src":"/_next/static/chunks/22vl7s8dm-4u2.js","async":true}]
-b:["$","$Ld",null,{"children":["$","$e",null,{"name":"Next.MetadataOutlet","children":"$@f"}]}]
-f:null
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span></code></pre>
+<p>동작은 같다. 다만 기능이 커지면 <code>data</code>와 <code>methods</code>가 멀어진다. Composition은 카운터 관련 코드를 한 블록에 둔다. 기존 Options 코드는 점진 이관하면 된다. 신규는 script setup만 쓴다.</p>
+<hr>
+<h2>6. 주의 / 흔한 실수</h2>
+<ul>
+<li><strong>Vue 2 문법으로 시작하기.</strong> <code>new Vue()</code>는 Vue 3가 아니다. <code>createApp</code>을 쓴다.</li>
+<li><strong>script에서 <code>count</code>만 쓰기.</strong> <code>ref</code>는 <code>.value</code>가 실제 값이다. <code>count++</code>는 상자를 증가시키지 않는다.</li>
+<li><strong><code>&lt;script setup&gt;</code>과 <code>export default</code>를 섞기.</strong> setup 블록은 컴포넌트 옵션 객체가 아니다.</li>
+<li><strong>전역 CSS로 컴포넌트 스타일 잡기.</strong> <code>scoped</code>를 기본으로 둔다. 테마만 전역에 둔다.</li>
+<li><strong>한 SFC에 화면 여러 개를 넣기.</strong> 파일 하나 = 책임 하나.</li>
+</ul>
+<hr>
+<h2>정리</h2>
+<p>Vue 3 시작은 버전 비교가 아니다. <strong>SFC + <code>&lt;script setup&gt;</code> + <code>ref</code></strong> 세 가지를 고정하면 나머지는 이 위에 쌓인다.</p>
+<ul>
+<li>화면 조각 → <code>.vue</code> 파일</li>
+<li>변하는 값 → <code>ref</code> / <code>computed</code></li>
+<li>앱 시작 → <code>createApp(App).mount(&#39;#app&#39;)</code></li>
+</ul>
+<hr>
+<h2>연습</h2>
+<ol>
+<li><code>npm create vue@latest</code>로 프로젝트를 만들고 <code>Counter.vue</code>를 붙여 증가·초기화가 동작하는지 확인한다.</li>
+<li><code>label</code> computed를 바꿔 10 이상이면 문구를 <code>많음</code>으로 표시한다.</li>
+<li><code>HelloName.vue</code>를 만들어 입력한 이름을 <code>&lt;p&gt;</code>에 출력한다. 상태는 <code>ref(&#39;&#39;)</code> 하나로 둔다.</li>
+</ol>
+0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"Vue 3 Composition API로 시작하기\",\"description\":\"한 파일에 화면·로직·스타일을 두고, script setup으로 Vue 3 컴포넌트를 시작한다.\",\"datePublished\":\"2023-04-25\",\"url\":\"https://kaisa.co.kr/posts/vue-01/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"vue\",\"keywords\":\"vue\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Vue 3 Composition API로 시작하기\",\"item\":\"https://kaisa.co.kr/posts/vue-01/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2023-04-25"}]}],["$","h1",null,{"className":"blog-post__title","children":"Vue 3 Composition API로 시작하기"}],["$","div",null,{"className":"blog-post__body blog-post__body--markdown","children":["$","div",null,{"className":"markdown-body","dangerouslySetInnerHTML":{"__html":"$3"}}]}],"$L4","$L5"]}]}]}]],["$L6","$L7","$L8"],"$L9"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"_AZq8Hq_NwvdopxIW0Tgh"}
+4:["$","$La",null,{"pathKey":"vue-01"}]
+5:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[null,["$","$L2",null,{"href":"/posts/vue-02/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"ref와 reactive로 반응형 상태 다루기"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
+6:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
+7:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
+8:["$","script","script-0",{"src":"/_next/static/chunks/26shoze10o-dc.js","async":true}]
+9:["$","$Lb",null,{"children":["$","$c",null,{"name":"Next.MetadataOutlet","children":"$@d"}]}]
+d:null

@@ -3,229 +3,188 @@
 3:I[883661,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"default"]
 4:I[339756,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"default"]
 5:I[837457,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"default"]
-6:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],""]
+6:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],""]
 7:I[722067,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"default"]
 8:I[778481,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"default"]
 9:I[902105,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"default"]
 14:I[168027,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"default",1]
 :HL["/_next/static/chunks/34-r72pc7x98u.css","style"]
 :HL["/_next/static/chunks/3xau-2enavhj9.css","style"]
-:HL["/_next/static/chunks/01h2qkg9511bb.css","style"]
+:HL["/_next/static/chunks/0souqbpzq6xbb.css","style"]
 :HL["/_next/static/chunks/1xra_60l-k8t4.css","style"]
 :HL["/_next/static/media/0c795a286deabae8-s.p.3vm0tq4e-zz_5.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/media/5c285b27cdda1fe8-s.p.2_mbdogr7ni8i.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/chunks/0br7e7j26qkj3.css","style"]
 :HL["/_next/static/chunks/21i9-auhncr4a.css","style"]
 :HL["/_next/static/chunks/0z_31kp4nojhg.css","style"]
-0:{"P":null,"c":["","posts","spring-boot-09",""],"q":"","i":false,"f":[[["",{"children":["(site)",{"children":["posts",{"children":[["slug","spring-boot-09","d",null],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/34-r72pc7x98u.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/3hb4n4ylf5-a0.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1ntn7efqc-iiw.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ko","className":"syne_53f86cd1-module__kiT3Eq__variable dm_sans_fd62f040-module__0jgVUW__variable","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","$L2",null,{"id":"kaisa-google-adsense","strategy":"afterInteractive","src":"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2641553863829571","crossOrigin":"anonymous"}]}],["$","body",null,{"children":[["$","script",null,{"id":"kaisa-init-1","dangerouslySetInnerHTML":{"__html":"(function(){try{var t=null;document.cookie.split(';').forEach(function(c){var p=c.trim().split('=');if(p[0]==='kaisa-shared-theme')t=decodeURIComponent(p[1]||'');});document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();"}}],["$","script",null,{"id":"kaisa-locale-init","dangerouslySetInnerHTML":{"__html":"(function(){try{\nvar key='kaisa-shared-locale',entry=document.cookie.split(';').map(function(c){return c.trim();}).find(function(c){return c.indexOf(key+'=')===0;});\nvar l=entry?entry.slice(key.length+1):null;\nfunction valid(v){return /^(ko|en|zh|hi)$/.test(v||'');}\nif(!valid(l)){try{l=sessionStorage.getItem('kaisa-locale');}catch(e){}}\nif(!valid(l)){var a=[navigator.language].concat(navigator.languages||[]);l=null;for(var i=0;i<a.length;i++){var m=/^(ko|en|zh|hi)/i.exec(a[i]||'');if(m){l=m[1].toLowerCase();break;}}}\nvar determined=valid(l);if(!determined)l='ko';\nif(determined&&(!entry||entry.slice(key.length+1)!==l)){var h=location.hostname,d=h==='kaisa.co.kr'||h.endsWith('.kaisa.co.kr')?'; domain=kaisa.co.kr':'';document.cookie=key+'='+l+'; max-age=2592000; path=/; samesite=lax'+d;}\ndocument.documentElement.lang=l;\n}catch(e){document.documentElement.lang='ko';}})();"}}],[["$","$L2",null,{"src":"https://www.googletagmanager.com/gtag/js?id=G-2281QQ6XP4","strategy":"afterInteractive"}],["$","$L2",null,{"id":"google-analytics","strategy":"afterInteractive","children":"\n          window.dataLayer = window.dataLayer || [];\n          function gtag(){dataLayer.push(arguments);}\n          gtag('js', new Date());\n          gtag('config', 'G-2281QQ6XP4');\n        "}]],["$","$L3",null,{}],["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}],["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]]}]}],[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0z_31kp4nojhg.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","$L7",null,{}],["$","$L8",null,{}],["$","$L9",null,{}]]}]]}]]}],{"children":[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3xau-2enavhj9.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/01h2qkg9511bb.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/1xra_60l-k8t4.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],"$La","$Lb","$Lc","$Ld"],"$Le"]}],{"children":["$Lf",{"children":["$L10",{"children":["$L11",{},null,false,null]},null,false,"$@12"]},null,false,"$@12"]},null,false,null]},null,false,null],"$L13",false]],"m":"$undefined","G":["$14",["$L15"]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"Zv4TpHss7ITjpJG-s6iGo"}
-16:I[669033,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js"],"LocaleProvider"]
-17:I[545872,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js"],"default"]
-18:I[320683,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js"],"default"]
-19:I[86979,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/2nllraa9qqjuh.js"],"default"]
-1a:I[44604,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js"],"default"]
+0:{"P":null,"c":["","posts","spring-boot-09",""],"q":"","i":false,"f":[[["",{"children":["(site)",{"children":["posts",{"children":[["slug","spring-boot-09","d",null],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/34-r72pc7x98u.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/3hb4n4ylf5-a0.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1ntn7efqc-iiw.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ko","className":"syne_53f86cd1-module__kiT3Eq__variable dm_sans_fd62f040-module__0jgVUW__variable","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","$L2",null,{"id":"kaisa-google-adsense","strategy":"afterInteractive","src":"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2641553863829571","crossOrigin":"anonymous"}]}],["$","body",null,{"children":[["$","script",null,{"id":"kaisa-init-1","dangerouslySetInnerHTML":{"__html":"(function(){try{var t=null;document.cookie.split(';').forEach(function(c){var p=c.trim().split('=');if(p[0]==='kaisa-shared-theme')t=decodeURIComponent(p[1]||'');});document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();"}}],["$","script",null,{"id":"kaisa-locale-init","dangerouslySetInnerHTML":{"__html":"(function(){try{\nvar key='kaisa-shared-locale',entry=document.cookie.split(';').map(function(c){return c.trim();}).find(function(c){return c.indexOf(key+'=')===0;});\nvar l=entry?entry.slice(key.length+1):null;\nfunction valid(v){return /^(ko|en|zh|hi)$/.test(v||'');}\nif(!valid(l)){try{l=sessionStorage.getItem('kaisa-locale');}catch(e){}}\nif(!valid(l)){var a=[navigator.language].concat(navigator.languages||[]);l=null;for(var i=0;i<a.length;i++){var m=/^(ko|en|zh|hi)/i.exec(a[i]||'');if(m){l=m[1].toLowerCase();break;}}}\nvar determined=valid(l);if(!determined)l='ko';\nif(determined&&(!entry||entry.slice(key.length+1)!==l)){var h=location.hostname,d=h==='kaisa.co.kr'||h.endsWith('.kaisa.co.kr')?'; domain=kaisa.co.kr':'';document.cookie=key+'='+l+'; max-age=2592000; path=/; samesite=lax'+d;}\ndocument.documentElement.lang=l;\n}catch(e){document.documentElement.lang='ko';}})();"}}],[["$","$L2",null,{"src":"https://www.googletagmanager.com/gtag/js?id=G-2281QQ6XP4","strategy":"afterInteractive"}],["$","$L2",null,{"id":"google-analytics","strategy":"afterInteractive","children":"\n          window.dataLayer = window.dataLayer || [];\n          function gtag(){dataLayer.push(arguments);}\n          gtag('js', new Date());\n          gtag('config', 'G-2281QQ6XP4');\n        "}]],["$","$L3",null,{}],["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}],["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]]}]}],[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0z_31kp4nojhg.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","$L7",null,{}],["$","$L8",null,{}],["$","$L9",null,{}]]}]]}]]}],{"children":[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3xau-2enavhj9.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0souqbpzq6xbb.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/1xra_60l-k8t4.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],"$La","$Lb","$Lc","$Ld"],"$Le"]}],{"children":["$Lf",{"children":["$L10",{"children":["$L11",{},null,false,null]},null,false,"$@12"]},null,false,"$@12"]},null,false,null]},null,false,null],"$L13",false]],"m":"$undefined","G":["$14",["$L15"]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"_AZq8Hq_NwvdopxIW0Tgh"}
+16:I[669033,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js"],"LocaleProvider"]
+17:I[545872,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js"],"default"]
+18:I[320683,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js"],"default"]
+19:I[86979,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/2nllraa9qqjuh.js"],"default"]
+1a:I[44604,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js"],"default"]
 1c:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
 1d:"$Sreact.suspense"
 20:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"ViewportBoundary"]
 22:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"MetadataBoundary"]
-a:["$","script","script-0",{"src":"/_next/static/chunks/1210t6uckuu_4.js","async":true,"nonce":"$undefined"}]
+a:["$","script","script-0",{"src":"/_next/static/chunks/2t60f4_2tjmro.js","async":true,"nonce":"$undefined"}]
 b:["$","script","script-1",{"src":"/_next/static/chunks/1i1l5t--me2mi.js","async":true,"nonce":"$undefined"}]
-c:["$","script","script-2",{"src":"/_next/static/chunks/07ogw60khanqf.js","async":true,"nonce":"$undefined"}]
+c:["$","script","script-2",{"src":"/_next/static/chunks/2-06zdxz3h-nd.js","async":true,"nonce":"$undefined"}]
 d:["$","script","script-3",{"src":"/_next/static/chunks/3ha5i75rsjlst.js","async":true,"nonce":"$undefined"}]
 e:["$","$L16",null,{"children":["$","div",null,{"className":"site-layout","children":[["$","$L17",null,{}],["$","$L18",null,{"children":["$","$L4",null,{"parallelRouterKey":"children","error":"$19","errorStyles":[],"errorScripts":[["$","script","script-0",{"src":"/_next/static/chunks/2nllraa9qqjuh.js","async":true}]],"template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}],["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]]}]}],[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0z_31kp4nojhg.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],["$","$L1a",null,{}]]}]}]
 f:["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]
 10:["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]
-11:["$","$1","c",{"children":["$L1b",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/1oevfsdj8hv5d.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/22vl7s8dm-4u2.js","async":true,"nonce":"$undefined"}]],["$","$L1c",null,{"children":["$","$1d",null,{"name":"Next.MetadataOutlet","children":"$@1e"}]}]]}]
+11:["$","$1","c",{"children":["$L1b",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/26shoze10o-dc.js","async":true,"nonce":"$undefined"}]],["$","$L1c",null,{"children":["$","$1d",null,{"name":"Next.MetadataOutlet","children":"$@1e"}]}]]}]
 1f:[]
 12:"$W1f"
 13:["$","$1","h",{"children":[null,["$","$L20",null,{"children":"$L21"}],["$","div",null,{"hidden":true,"children":["$","$L22",null,{"children":["$","$1d",null,{"name":"Next.Metadata","children":"$L23"}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}]
 15:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/34-r72pc7x98u.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
-24:I[55489,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-25:T17ba,# 캐시·Resilience·성능 최적화
-
-> 요약: 측정 뒤에 캐시·재시도·서킷 브레이커·타임아웃을 넣고, 쿼리와 페이로드 병목을 줄인다.
-
----
-
-## 1. 왜 측정이 먼저인가
-
-감으로 캐시를 켜면 잘못된 키·TTL이 더 큰 장애가 된다. 순서는 측정 → 쿼리/N+1 → 풀·타임아웃 → 캐시 → 스케일 아웃이다. 가장 싼 최적화는 **안 하는 일**을 줄이는 것이다.
-
----
-
-## 2. Spring Cache
-
-한 줄 정의: 같은 입력의 비싼 조회 결과를 **이름 붙은 저장소**에 잠시 두는 것이다. `@EnableCaching` + `@Cacheable` / `@CacheEvict`가 선언적 API다.
-
-```java
-@Configuration
-@EnableCaching
-public class CacheConfig {
-    @Bean
-    CacheManager cacheManager() {
-        return new ConcurrentMapCacheManager("products", "users");
+24:T2881,<h1>캐시·Resilience·성능 최적화</h1>
+<blockquote>
+<p>요약: 측정 뒤에 캐시·재시도·서킷 브레이커·타임아웃을 넣고, 쿼리와 페이로드 병목을 줄인다.</p>
+</blockquote>
+<hr>
+<h2>1. 왜 측정이 먼저인가</h2>
+<p>감으로 캐시를 켜면 잘못된 키·TTL이 더 큰 장애가 된다. 순서는 측정 → 쿼리/N+1 → 풀·타임아웃 → 캐시 → 스케일 아웃이다. 가장 싼 최적화는 <strong>안 하는 일</strong>을 줄이는 것이다.</p>
+<hr>
+<h2>2. Spring Cache</h2>
+<p>한 줄 정의: 같은 입력의 비싼 조회 결과를 <strong>이름 붙은 저장소</strong>에 잠시 두는 것이다. <code>@EnableCaching</code> + <code>@Cacheable</code> / <code>@CacheEvict</code>가 선언적 API다.</p>
+<pre><code class="hljs language-java"><span class="hljs-meta">@Configuration</span>
+<span class="hljs-meta">@EnableCaching</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">CacheConfig</span> {
+    <span class="hljs-meta">@Bean</span>
+    <span class="hljs-type">CacheManager</span> <span class="hljs-title function_">cacheManager</span><span class="hljs-params">()</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ConcurrentMapCacheManager</span>(<span class="hljs-string">&quot;products&quot;</span>, <span class="hljs-string">&quot;users&quot;</span>);
     }
-}
-```
+}</code></pre>
+<pre><code class="hljs language-java"><span class="hljs-meta">@Cacheable(cacheNames = &quot;products&quot;, key = &quot;#id&quot;)</span>
+<span class="hljs-keyword">public</span> <span class="hljs-type">ProductResponse</span> <span class="hljs-title function_">get</span><span class="hljs-params">(Long id)</span> { }
 
-```java
-@Cacheable(cacheNames = "products", key = "#id")
-public ProductResponse get(Long id) { }
-
-@CacheEvict(cacheNames = "products", key = "#id")
-public void update(Long id, UpdateProductRequest request) { }
-```
-
-`ConcurrentMap`은 프로세스 하나용이고 TTL이 없다. 단일 인스턴스에서 TTL이 필요하면 Caffeine이 기본선이다. 인스턴스가 여러 개면 Redis(`spring-boot-starter-data-redis`)다.
-
-```yaml
-spring:
-  cache:
-    type: caffeine
-    caffeine:
-      spec: maximumSize=10_000,expireAfterWrite=5m
-```
-
-캐시 키가 사용자와 무관하면 권한 데이터가 섞인다. TTL과 무효화를 같이 정한다. **캐시 스탬피드**는 만료 순간 요청이 한꺼번에 원본을 두드리는 현상이다. 락·singleflight 또는 소프트 만료로 줄인다. `@Cacheable` 메서드가 self-invocation(같은 클래스 내부 호출)이면 프록시를 안 타서 캐시가 비어 있다.
-
----
-
-## 3. Resilience4j
-
-한 줄 정의: 원격 호출이 실패·지연할 때 **재시도·차단·격리**로 내 스레드와 의존성을 보호하는 라이브러리다. 아티팩트는 `resilience4j-spring-boot3`다.
-
-외부 호출에는 타임아웃이 필수다. 타임아웃 없는 클라이언트는 가상 스레드든 플랫폼 스레드든 풀을 고갈시킨다.
-
-```java
-JdkClientHttpRequestFactory factory = new JdkClientHttpRequestFactory();
-factory.setReadTimeout(Duration.ofSeconds(3));
-RestClient client = RestClient.builder()
+<span class="hljs-meta">@CacheEvict(cacheNames = &quot;products&quot;, key = &quot;#id&quot;)</span>
+<span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">update</span><span class="hljs-params">(Long id, UpdateProductRequest request)</span> { }</code></pre>
+<p><code>ConcurrentMap</code>은 프로세스 하나용이고 TTL이 없다. 단일 인스턴스에서 TTL이 필요하면 Caffeine이 기본선이다. 인스턴스가 여러 개면 Redis(<code>spring-boot-starter-data-redis</code>)다.</p>
+<pre><code class="hljs language-yaml"><span class="hljs-attr">spring:</span>
+  <span class="hljs-attr">cache:</span>
+    <span class="hljs-attr">type:</span> <span class="hljs-string">caffeine</span>
+    <span class="hljs-attr">caffeine:</span>
+      <span class="hljs-attr">spec:</span> <span class="hljs-string">maximumSize=10_000,expireAfterWrite=5m</span></code></pre>
+<p>캐시 키가 사용자와 무관하면 권한 데이터가 섞인다. TTL과 무효화를 같이 정한다. <strong>캐시 스탬피드</strong>는 만료 순간 요청이 한꺼번에 원본을 두드리는 현상이다. 락·singleflight 또는 소프트 만료로 줄인다. <code>@Cacheable</code> 메서드가 self-invocation(같은 클래스 내부 호출)이면 프록시를 안 타서 캐시가 비어 있다.</p>
+<hr>
+<h2>3. Resilience4j</h2>
+<p>한 줄 정의: 원격 호출이 실패·지연할 때 <strong>재시도·차단·격리</strong>로 내 스레드와 의존성을 보호하는 라이브러리다. 아티팩트는 <code>resilience4j-spring-boot3</code>다.</p>
+<p>외부 호출에는 타임아웃이 필수다. 타임아웃 없는 클라이언트는 가상 스레드든 플랫폼 스레드든 풀을 고갈시킨다.</p>
+<pre><code class="hljs language-java"><span class="hljs-type">JdkClientHttpRequestFactory</span> <span class="hljs-variable">factory</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">JdkClientHttpRequestFactory</span>();
+factory.setReadTimeout(Duration.ofSeconds(<span class="hljs-number">3</span>));
+<span class="hljs-type">RestClient</span> <span class="hljs-variable">client</span> <span class="hljs-operator">=</span> RestClient.builder()
         .requestFactory(factory)
         .baseUrl(props.baseUrl())
-        .build();
-```
-
-### Retry
-
-멱등하지 않은 POST에 무분별한 재시도는 결제를 두 번 만든다. 네트워크·408·429·5xx만, 그리고 Idempotency-Key가 있을 때만 재시도한다.
-
-```yaml
-resilience4j:
-  retry:
-    instances:
-      payment:
-        maxAttempts: 3
-        waitDuration: 200ms
-        retryExceptions:
-          - java.io.IOException
-```
-
-```java
-@Retry(name = "payment", fallbackMethod = "payFallback")
-public PaymentResult pay(PaymentRequest request) {
-    return paymentClient.charge(request);
-}
-```
-
-### Circuit Breaker
-
-한 줄 정의: 실패율이 임계를 넘으면 **호출을 잠시 끊고**(open) 연쇄 실패를 막은 뒤, 시험 호출(half-open)로 닫는다.
-
-```yaml
-resilience4j:
-  circuitbreaker:
-    instances:
-      payment:
-        slidingWindowSize: 20
-        failureRateThreshold: 50
-        waitDurationInOpenState: 10s
-```
-
-### Bulkhead / RateLimiter / Fallback
-
-Bulkhead는 동시 실행 수를 나눠 한 의존성이 스레드를 다 먹지 못하게 한다. Fallback은 비즈니스적으로 안전할 때만 쓴다. 가짜 성공은 재고·결제에서 금지다.
-
-```java
-private PaymentResult payFallback(PaymentRequest request, Throwable t) {
-    return PaymentResult.failed("temporary unavailable");
-}
-```
-
----
-
-## 4. DB와 페이로드
-
-- `WHERE` / `JOIN` / `ORDER BY`에 인덱스, `EXPLAIN ANALYZE`로 확인
-- 목록은 엔티티 그래프 대신 DTO 프로젝션
-- 페이지 크기 상한, 장시간 트랜잭션 금지
-
-```yaml
-spring:
-  datasource:
-    hikari:
-      maximum-pool-size: 10
-      connection-timeout: 3000
-```
-
-Hikari `maximum-pool-size`는 인스턴스 수 × 풀이 DB `max_connections`를 넘지 않게 둔다. 풀을 키우기 전에 슬로우 쿼리와 트랜잭션 길이를 본다.
-
-오프셋 `page=100000`은 깊게 갈수록 느리다. 피드성 API는 **키셋 페이지네이션**—이미 본 마지막 id보다 작은 행만 가져오기—이 맞다.
-
-```java
-List<Post> findByIdLessThanOrderByIdDesc(Long cursor, Pageable pageable);
-```
-
-큰 JSON은 전용 DTO와 `@JsonIgnore`로 줄이고, 파일은 오브젝트 스토리지 + CDN으로 뺀다.
-
----
-
-## 5. 동시성과 멱등
-
-재고 차감은 낙관적 락·DB 제약·단일 큐 중 하나를 고른다. Redis 분산 락은 만료·펜싱 토큰 없이 쓰기 쉽다.
-
-```java
-@Entity
-@Table(name = "idempotency_keys",
-        uniqueConstraints = @UniqueConstraint(columnNames = "key_value"))
-public class IdempotencyKey {
-    @Id
-    private String keyValue;
-    private String responseHash;
-}
-```
-
-컨테이너 메모리 한도에 heap을 맞춘다(`MaxRAMPercentage`). Native Image는 기동·RSS에 유리하지만 빌드와 리플렉션 제약이 있다.
-
----
-
-## 6. 부하 테스트
-
-k6·Gatling·JMeter로 **같은 시나리오**를 최적화 전후에 돌린다. RPS, p50/p95/p99, 에러율, CPU·힙·GC, DB 커넥션·slow query, 외부 의존성 지연을 같이 본다.
-
----
-
-## 7. 흔한 실수
-
-| 실수 | 대안 |
-|------|------|
-| 캐시만 넣고 evict 없음 | 갱신 경로에 `@CacheEvict` |
-| 같은 클래스 내부에서 `@Cacheable` 호출 | 별도 Bean으로 분리 |
-| 사용자별 데이터를 공용 키 | 키에 주체 포함 |
-| 비멱등 POST 재시도 | 키·안전한 상태 코드만 |
-| 서킷 없이 재시도만 | 실패 폭풍 → 브레이커 |
-| 타임아웃 0에 가까운 무한 대기 | connect/read 명시 |
-
----
-
-## 연습
-
-1. 상품 조회에 `@Cacheable`, 수정에 evict를 붙인다.
-2. 외부 호출에 CircuitBreaker + Retry를 적용한다.
-3. RestClient read timeout을 3초로 둔다.
-4. 느린 목록을 키셋 페이지네이션으로 바꾼다.1b:[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"캐시·Resilience·성능 최적화\",\"description\":\"측정 뒤에 캐시·재시도·서킷 브레이커·타임아웃을 넣고, 쿼리와 페이로드 병목을 줄인다.\",\"datePublished\":\"2026-05-01\",\"url\":\"https://kaisa.co.kr/posts/spring-boot-09/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"spring-boot\",\"keywords\":\"spring-boot\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"캐시·Resilience·성능 최적화\",\"item\":\"https://kaisa.co.kr/posts/spring-boot-09/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L6",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2026-05-01"}]}],["$","h1",null,{"className":"blog-post__title","children":"캐시·Resilience·성능 최적화"}],["$","$L24",null,{"content":"$25"}],"$L26","$L27"]}]}]}]]
-28:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-26:["$","$L28",null,{"pathKey":"spring-boot-09"}]
-27:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L6",null,{"href":"/posts/spring-boot-08/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"비동기·메시징·Virtual Threads"}]]}],["$","$L6",null,{"href":"/posts/spring-boot-10/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"운영 배포 — Docker, 설정, Native Image, 프로덕션 체크리스트"}]]}]]}],["$","$L6",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
+        .build();</code></pre>
+<h3>Retry</h3>
+<p>멱등하지 않은 POST에 무분별한 재시도는 결제를 두 번 만든다. 네트워크·408·429·5xx만, 그리고 Idempotency-Key가 있을 때만 재시도한다.</p>
+<pre><code class="hljs language-yaml"><span class="hljs-attr">resilience4j:</span>
+  <span class="hljs-attr">retry:</span>
+    <span class="hljs-attr">instances:</span>
+      <span class="hljs-attr">payment:</span>
+        <span class="hljs-attr">maxAttempts:</span> <span class="hljs-number">3</span>
+        <span class="hljs-attr">waitDuration:</span> <span class="hljs-string">200ms</span>
+        <span class="hljs-attr">retryExceptions:</span>
+          <span class="hljs-bullet">-</span> <span class="hljs-string">java.io.IOException</span></code></pre>
+<pre><code class="hljs language-java"><span class="hljs-meta">@Retry(name = &quot;payment&quot;, fallbackMethod = &quot;payFallback&quot;)</span>
+<span class="hljs-keyword">public</span> <span class="hljs-type">PaymentResult</span> <span class="hljs-title function_">pay</span><span class="hljs-params">(PaymentRequest request)</span> {
+    <span class="hljs-keyword">return</span> paymentClient.charge(request);
+}</code></pre>
+<h3>Circuit Breaker</h3>
+<p>한 줄 정의: 실패율이 임계를 넘으면 <strong>호출을 잠시 끊고</strong>(open) 연쇄 실패를 막은 뒤, 시험 호출(half-open)로 닫는다.</p>
+<pre><code class="hljs language-yaml"><span class="hljs-attr">resilience4j:</span>
+  <span class="hljs-attr">circuitbreaker:</span>
+    <span class="hljs-attr">instances:</span>
+      <span class="hljs-attr">payment:</span>
+        <span class="hljs-attr">slidingWindowSize:</span> <span class="hljs-number">20</span>
+        <span class="hljs-attr">failureRateThreshold:</span> <span class="hljs-number">50</span>
+        <span class="hljs-attr">waitDurationInOpenState:</span> <span class="hljs-string">10s</span></code></pre>
+<h3>Bulkhead / RateLimiter / Fallback</h3>
+<p>Bulkhead는 동시 실행 수를 나눠 한 의존성이 스레드를 다 먹지 못하게 한다. Fallback은 비즈니스적으로 안전할 때만 쓴다. 가짜 성공은 재고·결제에서 금지다.</p>
+<pre><code class="hljs language-java"><span class="hljs-keyword">private</span> <span class="hljs-type">PaymentResult</span> <span class="hljs-title function_">payFallback</span><span class="hljs-params">(PaymentRequest request, Throwable t)</span> {
+    <span class="hljs-keyword">return</span> PaymentResult.failed(<span class="hljs-string">&quot;temporary unavailable&quot;</span>);
+}</code></pre>
+<hr>
+<h2>4. DB와 페이로드</h2>
+<ul>
+<li><code>WHERE</code> / <code>JOIN</code> / <code>ORDER BY</code>에 인덱스, <code>EXPLAIN ANALYZE</code>로 확인</li>
+<li>목록은 엔티티 그래프 대신 DTO 프로젝션</li>
+<li>페이지 크기 상한, 장시간 트랜잭션 금지</li>
+</ul>
+<pre><code class="hljs language-yaml"><span class="hljs-attr">spring:</span>
+  <span class="hljs-attr">datasource:</span>
+    <span class="hljs-attr">hikari:</span>
+      <span class="hljs-attr">maximum-pool-size:</span> <span class="hljs-number">10</span>
+      <span class="hljs-attr">connection-timeout:</span> <span class="hljs-number">3000</span></code></pre>
+<p>Hikari <code>maximum-pool-size</code>는 인스턴스 수 × 풀이 DB <code>max_connections</code>를 넘지 않게 둔다. 풀을 키우기 전에 슬로우 쿼리와 트랜잭션 길이를 본다.</p>
+<p>오프셋 <code>page=100000</code>은 깊게 갈수록 느리다. 피드성 API는 <strong>키셋 페이지네이션</strong>—이미 본 마지막 id보다 작은 행만 가져오기—이 맞다.</p>
+<pre><code class="hljs language-java"><span class="hljs-type">List</span>&lt;Post&gt; <span class="hljs-title function_">findByIdLessThanOrderByIdDesc</span><span class="hljs-params">(Long cursor, Pageable pageable)</span>;</code></pre>
+<p>큰 JSON은 전용 DTO와 <code>@JsonIgnore</code>로 줄이고, 파일은 오브젝트 스토리지 + CDN으로 뺀다.</p>
+<hr>
+<h2>5. 동시성과 멱등</h2>
+<p>재고 차감은 낙관적 락·DB 제약·단일 큐 중 하나를 고른다. Redis 분산 락은 만료·펜싱 토큰 없이 쓰기 쉽다.</p>
+<pre><code class="hljs language-java"><span class="hljs-meta">@Entity</span>
+<span class="hljs-meta">@Table(name = &quot;idempotency_keys&quot;,
+        uniqueConstraints = @UniqueConstraint(columnNames = &quot;key_value&quot;))</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">IdempotencyKey</span> {
+    <span class="hljs-meta">@Id</span>
+    <span class="hljs-keyword">private</span> String keyValue;
+    <span class="hljs-keyword">private</span> String responseHash;
+}</code></pre>
+<p>컨테이너 메모리 한도에 heap을 맞춘다(<code>MaxRAMPercentage</code>). Native Image는 기동·RSS에 유리하지만 빌드와 리플렉션 제약이 있다.</p>
+<hr>
+<h2>6. 부하 테스트</h2>
+<p>k6·Gatling·JMeter로 <strong>같은 시나리오</strong>를 최적화 전후에 돌린다. RPS, p50/p95/p99, 에러율, CPU·힙·GC, DB 커넥션·slow query, 외부 의존성 지연을 같이 본다.</p>
+<hr>
+<h2>7. 흔한 실수</h2>
+<table>
+<thead>
+<tr>
+<th>실수</th>
+<th>대안</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>캐시만 넣고 evict 없음</td>
+<td>갱신 경로에 <code>@CacheEvict</code></td>
+</tr>
+<tr>
+<td>같은 클래스 내부에서 <code>@Cacheable</code> 호출</td>
+<td>별도 Bean으로 분리</td>
+</tr>
+<tr>
+<td>사용자별 데이터를 공용 키</td>
+<td>키에 주체 포함</td>
+</tr>
+<tr>
+<td>비멱등 POST 재시도</td>
+<td>키·안전한 상태 코드만</td>
+</tr>
+<tr>
+<td>서킷 없이 재시도만</td>
+<td>실패 폭풍 → 브레이커</td>
+</tr>
+<tr>
+<td>타임아웃 0에 가까운 무한 대기</td>
+<td>connect/read 명시</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>연습</h2>
+<ol>
+<li>상품 조회에 <code>@Cacheable</code>, 수정에 evict를 붙인다.</li>
+<li>외부 호출에 CircuitBreaker + Retry를 적용한다.</li>
+<li>RestClient read timeout을 3초로 둔다.</li>
+<li>느린 목록을 키셋 페이지네이션으로 바꾼다.</li>
+</ol>
+1b:[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"캐시·Resilience·성능 최적화\",\"description\":\"측정 뒤에 캐시·재시도·서킷 브레이커·타임아웃을 넣고, 쿼리와 페이로드 병목을 줄인다.\",\"datePublished\":\"2026-05-01\",\"url\":\"https://kaisa.co.kr/posts/spring-boot-09/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"spring-boot\",\"keywords\":\"spring-boot\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"캐시·Resilience·성능 최적화\",\"item\":\"https://kaisa.co.kr/posts/spring-boot-09/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L6",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2026-05-01"}]}],["$","h1",null,{"className":"blog-post__title","children":"캐시·Resilience·성능 최적화"}],["$","div",null,{"className":"blog-post__body blog-post__body--markdown","children":["$","div",null,{"className":"markdown-body","dangerouslySetInnerHTML":{"__html":"$24"}}]}],"$L25","$L26"]}]}]}]]
+27:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],"default"]
+25:["$","$L27",null,{"pathKey":"spring-boot-09"}]
+26:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L6",null,{"href":"/posts/spring-boot-08/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"비동기·메시징·Virtual Threads"}]]}],["$","$L6",null,{"href":"/posts/spring-boot-10/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"운영 배포 — Docker, 설정, Native Image, 프로덕션 체크리스트"}]]}]]}],["$","$L6",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
 21:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
-29:I[27201,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"IconMark"]
+28:I[27201,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"IconMark"]
 1e:null
-23:[["$","title","0",{"children":"캐시·Resilience·성능 최적화 · Kaisa"}],["$","meta","1",{"name":"description","content":"측정 뒤에 캐시·재시도·서킷 브레이커·타임아웃을 넣고, 쿼리와 페이로드 병목을 줄인다."}],["$","meta","2",{"name":"application-name","content":"Kaisa"}],["$","meta","3",{"name":"robots","content":"index, follow"}],["$","meta","4",{"name":"naver-site-verification","content":"4bc13b857695ff44988c260cb26124eedbcda90e"}],["$","link","5",{"rel":"canonical","href":"https://kaisa.co.kr/posts/spring-boot-09/"}],["$","meta","6",{"property":"og:title","content":"캐시·Resilience·성능 최적화 · Kaisa"}],["$","meta","7",{"property":"og:description","content":"측정 뒤에 캐시·재시도·서킷 브레이커·타임아웃을 넣고, 쿼리와 페이로드 병목을 줄인다."}],["$","meta","8",{"property":"og:url","content":"https://kaisa.co.kr/posts/spring-boot-09/"}],["$","meta","9",{"property":"og:site_name","content":"Kaisa"}],["$","meta","10",{"property":"og:locale","content":"ko_KR"}],["$","meta","11",{"property":"og:type","content":"article"}],["$","meta","12",{"name":"twitter:card","content":"summary"}],["$","meta","13",{"name":"twitter:title","content":"캐시·Resilience·성능 최적화 · Kaisa"}],["$","meta","14",{"name":"twitter:description","content":"측정 뒤에 캐시·재시도·서킷 브레이커·타임아웃을 넣고, 쿼리와 페이로드 병목을 줄인다."}],["$","link","15",{"rel":"shortcut icon","href":"/img/common/favicon.ico"}],["$","link","16",{"rel":"icon","href":"/img/common/favicon.ico"}],["$","link","17",{"rel":"apple-touch-icon","href":"/img/common/favicon.ico"}],["$","$L29","18",{}]]
+23:[["$","title","0",{"children":"캐시·Resilience·성능 최적화 · Kaisa"}],["$","meta","1",{"name":"description","content":"측정 뒤에 캐시·재시도·서킷 브레이커·타임아웃을 넣고, 쿼리와 페이로드 병목을 줄인다."}],["$","meta","2",{"name":"application-name","content":"Kaisa"}],["$","meta","3",{"name":"robots","content":"index, follow"}],["$","meta","4",{"name":"naver-site-verification","content":"4bc13b857695ff44988c260cb26124eedbcda90e"}],["$","link","5",{"rel":"canonical","href":"https://kaisa.co.kr/posts/spring-boot-09/"}],["$","meta","6",{"property":"og:title","content":"캐시·Resilience·성능 최적화 · Kaisa"}],["$","meta","7",{"property":"og:description","content":"측정 뒤에 캐시·재시도·서킷 브레이커·타임아웃을 넣고, 쿼리와 페이로드 병목을 줄인다."}],["$","meta","8",{"property":"og:url","content":"https://kaisa.co.kr/posts/spring-boot-09/"}],["$","meta","9",{"property":"og:site_name","content":"Kaisa"}],["$","meta","10",{"property":"og:locale","content":"ko_KR"}],["$","meta","11",{"property":"og:type","content":"article"}],["$","meta","12",{"name":"twitter:card","content":"summary"}],["$","meta","13",{"name":"twitter:title","content":"캐시·Resilience·성능 최적화 · Kaisa"}],["$","meta","14",{"name":"twitter:description","content":"측정 뒤에 캐시·재시도·서킷 브레이커·타임아웃을 넣고, 쿼리와 페이로드 병목을 줄인다."}],["$","link","15",{"rel":"shortcut icon","href":"/img/common/favicon.ico"}],["$","link","16",{"rel":"icon","href":"/img/common/favicon.ico"}],["$","link","17",{"rel":"apple-touch-icon","href":"/img/common/favicon.ico"}],["$","$L28","18",{}]]

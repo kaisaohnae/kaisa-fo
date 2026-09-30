@@ -1,238 +1,231 @@
 1:"$Sreact.fragment"
-2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],""]
-3:I[55489,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-c:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-d:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
-e:"$Sreact.suspense"
+2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],""]
+a:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],"default"]
+b:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
+c:"$Sreact.suspense"
 :HL["/_next/static/chunks/0br7e7j26qkj3.css","style"]
 :HL["/_next/static/chunks/21i9-auhncr4a.css","style"]
-4:T1bc5,# 라우팅과 리액티브 폼
+3:T46cc,<h1>라우팅과 리액티브 폼</h1>
+<blockquote>
+<p>요약: provideRouter와 lazy loadComponent로 화면을 나누고, 가드·FormBuilder로 진입 조건과 입력 검증을 구성하는 방법을 정리한다.</p>
+</blockquote>
+<hr>
+<h2>1. 왜 라우터와 폼인가</h2>
+<p>SPA에서 주소는 화면의 이름이다. 새로고침·공유 링크가 같은 화면을 열어야 한다.</p>
+<p>폼은 입력을 클래스로 들고 검증한다. 템플릿의 <code>ngModel</code>만으로는 필드가 늘고 조건이 겹치면 추적이 어렵다. <strong>복잡한 검증·동적 필드</strong>는 Reactive Forms(리액티브 폼)가 맞다. 검색 한 칸은 <code>ngModel</code>로도 충분하다.</p>
+<table>
+<thead>
+<tr>
+<th>구성</th>
+<th>역할</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Routes</code></td>
+<td>path ↔ 컴포넌트</td>
+</tr>
+<tr>
+<td><code>loadComponent</code></td>
+<td>그 화면 JS를 나중에 받는다</td>
+</tr>
+<tr>
+<td><code>CanActivateFn</code></td>
+<td>이동 전에 로그인·권한을 검사한다</td>
+</tr>
+<tr>
+<td><code>FormGroup</code></td>
+<td>필드 묶음. 값·유효·에러를 한 객체로 본다</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>2. 핵심 라우팅</h2>
+<p><code>src/app/app.routes.ts</code>:</p>
+<pre><code class="hljs language-ts"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">Routes</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@angular/router&#x27;</span>;
+<span class="hljs-keyword">import</span> { authGuard } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./auth.guard&#x27;</span>;
 
-> 요약: provideRouter와 lazy loadComponent로 화면을 나누고, 가드·FormBuilder로 진입 조건과 입력 검증을 구성하는 방법을 정리한다.
-
----
-
-## 1. 왜 라우터와 폼인가
-
-SPA에서 주소는 화면의 이름이다. 새로고침·공유 링크가 같은 화면을 열어야 한다.
-
-폼은 입력을 클래스로 들고 검증한다. 템플릿의 `ngModel`만으로는 필드가 늘고 조건이 겹치면 추적이 어렵다. **복잡한 검증·동적 필드**는 Reactive Forms(리액티브 폼)가 맞다. 검색 한 칸은 `ngModel`로도 충분하다.
-
-| 구성 | 역할 |
-|------|------|
-| `Routes` | path ↔ 컴포넌트 |
-| `loadComponent` | 그 화면 JS를 나중에 받는다 |
-| `CanActivateFn` | 이동 전에 로그인·권한을 검사한다 |
-| `FormGroup` | 필드 묶음. 값·유효·에러를 한 객체로 본다 |
-
----
-
-## 2. 핵심 라우팅
-
-`src/app/app.routes.ts`:
-
-```ts
-import { Routes } from '@angular/router';
-import { authGuard } from './auth.guard';
-
-export const routes: Routes = [
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-attr">routes</span>: <span class="hljs-title class_">Routes</span> = [
   {
-    path: '',
-    loadComponent: () => import('./home/home').then((m) => m.Home),
+    <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;&#x27;</span>,
+    <span class="hljs-attr">loadComponent</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;./home/home&#x27;</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">m</span>) =&gt;</span> m.<span class="hljs-property">Home</span>),
   },
   {
-    path: 'login',
-    loadComponent: () => import('./login/login').then((m) => m.Login),
+    <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;login&#x27;</span>,
+    <span class="hljs-attr">loadComponent</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;./login/login&#x27;</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">m</span>) =&gt;</span> m.<span class="hljs-property">Login</span>),
   },
   {
-    path: 'posts/:id',
-    loadComponent: () => import('./post/post').then((m) => m.Post),
-    canActivate: [authGuard],
+    <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;posts/:id&#x27;</span>,
+    <span class="hljs-attr">loadComponent</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;./post/post&#x27;</span>).<span class="hljs-title function_">then</span>(<span class="hljs-function">(<span class="hljs-params">m</span>) =&gt;</span> m.<span class="hljs-property">Post</span>),
+    <span class="hljs-attr">canActivate</span>: [authGuard],
   },
-  { path: '**', redirectTo: '' },
-];
-```
+  { <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;**&#x27;</span>, <span class="hljs-attr">redirectTo</span>: <span class="hljs-string">&#x27;&#x27;</span> },
+];</code></pre>
+<p><code>src/app/app.config.ts</code>:</p>
+<pre><code class="hljs language-ts"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">ApplicationConfig</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@angular/core&#x27;</span>;
+<span class="hljs-keyword">import</span> { provideRouter, withComponentInputBinding } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@angular/router&#x27;</span>;
+<span class="hljs-keyword">import</span> { provideHttpClient } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@angular/common/http&#x27;</span>;
+<span class="hljs-keyword">import</span> { routes } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./app.routes&#x27;</span>;
 
-`src/app/app.config.ts`:
-
-```ts
-import { ApplicationConfig } from '@angular/core';
-import { provideRouter, withComponentInputBinding } from '@angular/router';
-import { provideHttpClient } from '@angular/common/http';
-import { routes } from './app.routes';
-
-export const appConfig: ApplicationConfig = {
-  providers: [
-    provideRouter(routes, withComponentInputBinding()),
-    provideHttpClient(),
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-attr">appConfig</span>: <span class="hljs-title class_">ApplicationConfig</span> = {
+  <span class="hljs-attr">providers</span>: [
+    <span class="hljs-title function_">provideRouter</span>(routes, <span class="hljs-title function_">withComponentInputBinding</span>()),
+    <span class="hljs-title function_">provideHttpClient</span>(),
   ],
-};
-```
+};</code></pre>
+<p><code>withComponentInputBinding()</code>은 라우트 <code>:id</code>를 컴포넌트 <code>input()</code>과 같은 이름으로 연결한다. <code>ActivatedRoute.snapshot.paramMap</code>을 직접 읽지 않아도 된다.</p>
+<p><code>src/app/post/post.ts</code>:</p>
+<pre><code class="hljs language-ts"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">Component</span>, input } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@angular/core&#x27;</span>;
 
-`withComponentInputBinding()`은 라우트 `:id`를 컴포넌트 `input()`과 같은 이름으로 연결한다. `ActivatedRoute.snapshot.paramMap`을 직접 읽지 않아도 된다.
-
-`src/app/post/post.ts`:
-
-```ts
-import { Component, input } from '@angular/core';
-
-@Component({
-  selector: 'app-post',
-  standalone: true,
-  template: `<h1>글 {{ id() }}</h1>`,
+<span class="hljs-meta">@Component</span>({
+  <span class="hljs-attr">selector</span>: <span class="hljs-string">&#x27;app-post&#x27;</span>,
+  <span class="hljs-attr">standalone</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`&lt;h1&gt;글 {{ id() }}&lt;/h1&gt;`</span>,
 })
-export class Post {
-  id = input.required<string>();
-}
-```
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Post</span> {
+  id = input.<span class="hljs-property">required</span>&lt;<span class="hljs-built_in">string</span>&gt;();
+}</code></pre>
+<p><code>src/app/auth.guard.ts</code>:</p>
+<pre><code class="hljs language-ts"><span class="hljs-keyword">import</span> { inject } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@angular/core&#x27;</span>;
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">CanActivateFn</span>, <span class="hljs-title class_">Router</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@angular/router&#x27;</span>;
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">AuthService</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./auth.service&#x27;</span>;
 
-`src/app/auth.guard.ts`:
-
-```ts
-import { inject } from '@angular/core';
-import { CanActivateFn, Router } from '@angular/router';
-import { AuthService } from './auth.service';
-
-export const authGuard: CanActivateFn = (_route, state) => {
-  const auth = inject(AuthService);
-  const router = inject(Router);
-  if (auth.isLoggedIn()) return true;
-  return router.createUrlTree(['/login'], {
-    queryParams: { redirect: state.url },
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-attr">authGuard</span>: <span class="hljs-title class_">CanActivateFn</span> = <span class="hljs-function">(<span class="hljs-params">_route, state</span>) =&gt;</span> {
+  <span class="hljs-keyword">const</span> auth = <span class="hljs-title function_">inject</span>(<span class="hljs-title class_">AuthService</span>);
+  <span class="hljs-keyword">const</span> router = <span class="hljs-title function_">inject</span>(<span class="hljs-title class_">Router</span>);
+  <span class="hljs-keyword">if</span> (auth.<span class="hljs-title function_">isLoggedIn</span>()) <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+  <span class="hljs-keyword">return</span> router.<span class="hljs-title function_">createUrlTree</span>([<span class="hljs-string">&#x27;/login&#x27;</span>], {
+    <span class="hljs-attr">queryParams</span>: { <span class="hljs-attr">redirect</span>: state.<span class="hljs-property">url</span> },
   });
-};
-```
+};</code></pre>
+<p>가드에서 목록 API를 기다리면 전환이 느려진다. 세션 존재 여부만 본다.</p>
+<p>템플릿 이동:</p>
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">routerLink</span>=<span class="hljs-string">&quot;/&quot;</span>&gt;</span>홈<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">a</span> [<span class="hljs-attr">routerLink</span>]=<span class="hljs-string">&quot;[&#x27;/posts&#x27;, &#x27;42&#x27;]&quot;</span>&gt;</span>글 42<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span></code></pre>
+<p><code>RouterLink</code>를 해당 컴포넌트 <code>imports</code>에 넣는다.</p>
+<hr>
+<h2>3. 동작하는 예: 로그인 폼</h2>
+<p><code>src/app/login/login.ts</code>:</p>
+<pre><code class="hljs language-ts"><span class="hljs-keyword">import</span> { <span class="hljs-title class_">Component</span>, inject } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@angular/core&#x27;</span>;
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">FormBuilder</span>, <span class="hljs-title class_">ReactiveFormsModule</span>, <span class="hljs-title class_">Validators</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@angular/forms&#x27;</span>;
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">Router</span>, <span class="hljs-title class_">RouterLink</span>, <span class="hljs-title class_">ActivatedRoute</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@angular/router&#x27;</span>;
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">AuthService</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../auth.service&#x27;</span>;
 
-가드에서 목록 API를 기다리면 전환이 느려진다. 세션 존재 여부만 본다.
-
-템플릿 이동:
-
-```html
-<a routerLink="/">홈</a>
-<a [routerLink]="['/posts', '42']">글 42</a>
-```
-
-`RouterLink`를 해당 컴포넌트 `imports`에 넣는다.
-
----
-
-## 3. 동작하는 예: 로그인 폼
-
-`src/app/login/login.ts`:
-
-```ts
-import { Component, inject } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router, RouterLink, ActivatedRoute } from '@angular/router';
-import { AuthService } from '../auth.service';
-
-@Component({
-  selector: 'app-login',
-  standalone: true,
-  imports: [ReactiveFormsModule, RouterLink],
-  template: `
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <label for="email">이메일</label>
-      <input id="email" type="email" formControlName="email" [attr.aria-describedby]="emailErr ? 'email-err' : null" />
+<span class="hljs-meta">@Component</span>({
+  <span class="hljs-attr">selector</span>: <span class="hljs-string">&#x27;app-login&#x27;</span>,
+  <span class="hljs-attr">standalone</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">imports</span>: [<span class="hljs-title class_">ReactiveFormsModule</span>, <span class="hljs-title class_">RouterLink</span>],
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`
+    &lt;form [formGroup]=&quot;form&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
+      &lt;label for=&quot;email&quot;&gt;이메일&lt;/label&gt;
+      &lt;input id=&quot;email&quot; type=&quot;email&quot; formControlName=&quot;email&quot; [attr.aria-describedby]=&quot;emailErr ? &#x27;email-err&#x27; : null&quot; /&gt;
       @if (emailErr) {
-        <p id="email-err">{{ emailErr }}</p>
+        &lt;p id=&quot;email-err&quot;&gt;{{ emailErr }}&lt;/p&gt;
       }
 
-      <label>
-        <input type="checkbox" formControlName="agree" />
+      &lt;label&gt;
+        &lt;input type=&quot;checkbox&quot; formControlName=&quot;agree&quot; /&gt;
         약관 동의
-      </label>
-      @if (form.controls.agree.touched && form.controls.agree.invalid) {
-        <p>동의해야 진행한다</p>
+      &lt;/label&gt;
+      @if (form.controls.agree.touched &amp;&amp; form.controls.agree.invalid) {
+        &lt;p&gt;동의해야 진행한다&lt;/p&gt;
       }
 
-      <button type="submit" [disabled]="form.invalid">로그인</button>
-      <a routerLink="/">홈</a>
-    </form>
-  `,
+      &lt;button type=&quot;submit&quot; [disabled]=&quot;form.invalid&quot;&gt;로그인&lt;/button&gt;
+      &lt;a routerLink=&quot;/&quot;&gt;홈&lt;/a&gt;
+    &lt;/form&gt;
+  `</span>,
 })
-export class Login {
-  private readonly fb = inject(FormBuilder);
-  private readonly auth = inject(AuthService);
-  private readonly router = inject(Router);
-  private readonly route = inject(ActivatedRoute);
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Login</span> {
+  <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> fb = <span class="hljs-title function_">inject</span>(<span class="hljs-title class_">FormBuilder</span>);
+  <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> auth = <span class="hljs-title function_">inject</span>(<span class="hljs-title class_">AuthService</span>);
+  <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> router = <span class="hljs-title function_">inject</span>(<span class="hljs-title class_">Router</span>);
+  <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> route = <span class="hljs-title function_">inject</span>(<span class="hljs-title class_">ActivatedRoute</span>);
 
-  readonly form = this.fb.nonNullable.group({
-    email: ['', [Validators.required, Validators.email]],
-    agree: [false, Validators.requiredTrue],
+  <span class="hljs-keyword">readonly</span> form = <span class="hljs-variable language_">this</span>.<span class="hljs-property">fb</span>.<span class="hljs-property">nonNullable</span>.<span class="hljs-title function_">group</span>({
+    <span class="hljs-attr">email</span>: [<span class="hljs-string">&#x27;&#x27;</span>, [<span class="hljs-title class_">Validators</span>.<span class="hljs-property">required</span>, <span class="hljs-title class_">Validators</span>.<span class="hljs-property">email</span>]],
+    <span class="hljs-attr">agree</span>: [<span class="hljs-literal">false</span>, <span class="hljs-title class_">Validators</span>.<span class="hljs-property">requiredTrue</span>],
   });
 
-  get emailErr(): string | null {
-    const c = this.form.controls.email;
-    if (!c.touched && !c.dirty) return null;
-    if (c.hasError('required')) return '이메일을 입력한다';
-    if (c.hasError('email')) return '이메일 형식이 아니다';
-    return null;
+  <span class="hljs-keyword">get</span> <span class="hljs-title function_">emailErr</span>(): <span class="hljs-built_in">string</span> | <span class="hljs-literal">null</span> {
+    <span class="hljs-keyword">const</span> c = <span class="hljs-variable language_">this</span>.<span class="hljs-property">form</span>.<span class="hljs-property">controls</span>.<span class="hljs-property">email</span>;
+    <span class="hljs-keyword">if</span> (!c.<span class="hljs-property">touched</span> &amp;&amp; !c.<span class="hljs-property">dirty</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+    <span class="hljs-keyword">if</span> (c.<span class="hljs-title function_">hasError</span>(<span class="hljs-string">&#x27;required&#x27;</span>)) <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;이메일을 입력한다&#x27;</span>;
+    <span class="hljs-keyword">if</span> (c.<span class="hljs-title function_">hasError</span>(<span class="hljs-string">&#x27;email&#x27;</span>)) <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;이메일 형식이 아니다&#x27;</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
   }
 
-  onSubmit() {
-    if (this.form.invalid) {
-      this.form.markAllAsTouched();
-      return;
+  <span class="hljs-title function_">onSubmit</span>(<span class="hljs-params"></span>) {
+    <span class="hljs-keyword">if</span> (<span class="hljs-variable language_">this</span>.<span class="hljs-property">form</span>.<span class="hljs-property">invalid</span>) {
+      <span class="hljs-variable language_">this</span>.<span class="hljs-property">form</span>.<span class="hljs-title function_">markAllAsTouched</span>();
+      <span class="hljs-keyword">return</span>;
     }
-    this.auth.login(this.form.getRawValue().email);
-    const redirect = this.route.snapshot.queryParamMap.get('redirect') ?? '/';
-    void this.router.navigateByUrl(redirect);
+    <span class="hljs-variable language_">this</span>.<span class="hljs-property">auth</span>.<span class="hljs-title function_">login</span>(<span class="hljs-variable language_">this</span>.<span class="hljs-property">form</span>.<span class="hljs-title function_">getRawValue</span>().<span class="hljs-property">email</span>);
+    <span class="hljs-keyword">const</span> redirect = <span class="hljs-variable language_">this</span>.<span class="hljs-property">route</span>.<span class="hljs-property">snapshot</span>.<span class="hljs-property">queryParamMap</span>.<span class="hljs-title function_">get</span>(<span class="hljs-string">&#x27;redirect&#x27;</span>) ?? <span class="hljs-string">&#x27;/&#x27;</span>;
+    <span class="hljs-built_in">void</span> <span class="hljs-variable language_">this</span>.<span class="hljs-property">router</span>.<span class="hljs-title function_">navigateByUrl</span>(redirect);
   }
-}
-```
-
-- `[formGroup]` / `formControlName` — 템플릿 필드와 모델이 같은 이름
-- `nonNullable.group` — `getRawValue()`가 `string` / `boolean`으로 남는다 (`string | null`이 아니다)
-- `disabled`만으로 제출을 막지 않는다. 엔터 제출 시 `invalid`면 `markAllAsTouched`로 문구를 연다
-
-`label`의 `for`와 `input`의 `id`를 맞춘다. 에러는 `aria-describedby`로 필드와 연결한다.
-
----
-
-## 4. 템플릿 주도 vs 리액티브
-
-| | 템플릿 주도 | 리액티브 |
-|--|-------------|----------|
-| 모델 | `ngModel` | `FormGroup` |
-| 모듈 | `FormsModule` | `ReactiveFormsModule` |
-| 맞는 규모 | 필드 1~2개 | 검증·교차 필드·동적 배열 |
-
-둘을 한 폼에 섞지 않는다.
-
----
-
-## 5. 주의 / 흔한 실수
-
-- **`loadComponent` 없이 모든 페이지를 정적 import.** 초기 번들에 관리자 화면이 포함된다.
-- **가드에서 `true`/`false`만 반환하고 URL을 안 바꿈.** `false`는 이동만 취소한다. 로그인 페이지로 보내려면 `UrlTree`를 반환한다.
-- **라우트 `id`와 `input()` 이름 불일치.** `withComponentInputBinding`은 이름이 같아야 한다.
-- **`form.value.email`이 `string | undefined`.** `nonNullable` 또는 `getRawValue()`를 쓴다. disabled 컨트롤은 `value`에서 빠진다.
-- **제출 버튼을 `invalid`로만 disable.** 오류 문구가 안 보여 사용자가 이유를 모른다. `touched`와 메시지를 병행한다.
-
----
-
-## 정리
-
-URL은 라우터가, 입력은 폼 모델이 책임진다.
-
-- 화면 분할 → `loadComponent`
-- 진입 조건 → `CanActivateFn` + `createUrlTree`
-- 파라미터 → `withComponentInputBinding` + `input()`
-- 검증 → `FormBuilder` + `Validators`
-
----
-
-## 연습
-
-1. `/posts/1`에 비로그인으로 진입해 `/login?redirect=...`로 가는지 확인한다. 로그인 후 원래 글로 돌아오게 한다.
-2. 이메일 형식이 틀릴 때 `emailErr` 문구가 필드 아래에 붙는지 확인한다.
-3. `agree`를 끄면 제출이 막히고, 체크하면 `getRawValue()`에 `true`가 들어오는지 확인한다.0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"라우팅과 리액티브 폼\",\"description\":\"provideRouter와 lazy loadComponent로 화면을 나누고, 가드·FormBuilder로 진입 조건과 입력 검증을 구성하는 방법을 정리한다.\",\"datePublished\":\"2024-10-07\",\"url\":\"https://kaisa.co.kr/posts/angular-04/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"angular\",\"keywords\":\"angular\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"라우팅과 리액티브 폼\",\"item\":\"https://kaisa.co.kr/posts/angular-04/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2024-10-07"}]}],["$","h1",null,{"className":"blog-post__title","children":"라우팅과 리액티브 폼"}],["$","$L3",null,{"content":"$4"}],"$L5","$L6"]}]}]}]],["$L7","$L8","$L9","$La"],"$Lb"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Zv4TpHss7ITjpJG-s6iGo"}
-5:["$","$Lc",null,{"pathKey":"angular-04"}]
-6:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/angular-03/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"시그널·서비스·의존성 주입"}]]}],["$","$L2",null,{"href":"/posts/angular-05/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Angular 앱 실무 체크리스트"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
-7:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
-8:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
-9:["$","script","script-0",{"src":"/_next/static/chunks/1oevfsdj8hv5d.js","async":true}]
-a:["$","script","script-1",{"src":"/_next/static/chunks/22vl7s8dm-4u2.js","async":true}]
-b:["$","$Ld",null,{"children":["$","$e",null,{"name":"Next.MetadataOutlet","children":"$@f"}]}]
-f:null
+}</code></pre>
+<ul>
+<li><code>[formGroup]</code> / <code>formControlName</code> — 템플릿 필드와 모델이 같은 이름</li>
+<li><code>nonNullable.group</code> — <code>getRawValue()</code>가 <code>string</code> / <code>boolean</code>으로 남는다 (<code>string | null</code>이 아니다)</li>
+<li><code>disabled</code>만으로 제출을 막지 않는다. 엔터 제출 시 <code>invalid</code>면 <code>markAllAsTouched</code>로 문구를 연다</li>
+</ul>
+<p><code>label</code>의 <code>for</code>와 <code>input</code>의 <code>id</code>를 맞춘다. 에러는 <code>aria-describedby</code>로 필드와 연결한다.</p>
+<hr>
+<h2>4. 템플릿 주도 vs 리액티브</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>템플릿 주도</th>
+<th>리액티브</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>모델</td>
+<td><code>ngModel</code></td>
+<td><code>FormGroup</code></td>
+</tr>
+<tr>
+<td>모듈</td>
+<td><code>FormsModule</code></td>
+<td><code>ReactiveFormsModule</code></td>
+</tr>
+<tr>
+<td>맞는 규모</td>
+<td>필드 1~2개</td>
+<td>검증·교차 필드·동적 배열</td>
+</tr>
+</tbody></table>
+<p>둘을 한 폼에 섞지 않는다.</p>
+<hr>
+<h2>5. 주의 / 흔한 실수</h2>
+<ul>
+<li><strong><code>loadComponent</code> 없이 모든 페이지를 정적 import.</strong> 초기 번들에 관리자 화면이 포함된다.</li>
+<li><strong>가드에서 <code>true</code>/<code>false</code>만 반환하고 URL을 안 바꿈.</strong> <code>false</code>는 이동만 취소한다. 로그인 페이지로 보내려면 <code>UrlTree</code>를 반환한다.</li>
+<li><strong>라우트 <code>id</code>와 <code>input()</code> 이름 불일치.</strong> <code>withComponentInputBinding</code>은 이름이 같아야 한다.</li>
+<li><strong><code>form.value.email</code>이 <code>string | undefined</code>.</strong> <code>nonNullable</code> 또는 <code>getRawValue()</code>를 쓴다. disabled 컨트롤은 <code>value</code>에서 빠진다.</li>
+<li><strong>제출 버튼을 <code>invalid</code>로만 disable.</strong> 오류 문구가 안 보여 사용자가 이유를 모른다. <code>touched</code>와 메시지를 병행한다.</li>
+</ul>
+<hr>
+<h2>정리</h2>
+<p>URL은 라우터가, 입력은 폼 모델이 책임진다.</p>
+<ul>
+<li>화면 분할 → <code>loadComponent</code></li>
+<li>진입 조건 → <code>CanActivateFn</code> + <code>createUrlTree</code></li>
+<li>파라미터 → <code>withComponentInputBinding</code> + <code>input()</code></li>
+<li>검증 → <code>FormBuilder</code> + <code>Validators</code></li>
+</ul>
+<hr>
+<h2>연습</h2>
+<ol>
+<li><code>/posts/1</code>에 비로그인으로 진입해 <code>/login?redirect=...</code>로 가는지 확인한다. 로그인 후 원래 글로 돌아오게 한다.</li>
+<li>이메일 형식이 틀릴 때 <code>emailErr</code> 문구가 필드 아래에 붙는지 확인한다.</li>
+<li><code>agree</code>를 끄면 제출이 막히고, 체크하면 <code>getRawValue()</code>에 <code>true</code>가 들어오는지 확인한다.</li>
+</ol>
+0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"라우팅과 리액티브 폼\",\"description\":\"provideRouter와 lazy loadComponent로 화면을 나누고, 가드·FormBuilder로 진입 조건과 입력 검증을 구성하는 방법을 정리한다.\",\"datePublished\":\"2024-10-07\",\"url\":\"https://kaisa.co.kr/posts/angular-04/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"angular\",\"keywords\":\"angular\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"라우팅과 리액티브 폼\",\"item\":\"https://kaisa.co.kr/posts/angular-04/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2024-10-07"}]}],["$","h1",null,{"className":"blog-post__title","children":"라우팅과 리액티브 폼"}],["$","div",null,{"className":"blog-post__body blog-post__body--markdown","children":["$","div",null,{"className":"markdown-body","dangerouslySetInnerHTML":{"__html":"$3"}}]}],"$L4","$L5"]}]}]}]],["$L6","$L7","$L8"],"$L9"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"_AZq8Hq_NwvdopxIW0Tgh"}
+4:["$","$La",null,{"pathKey":"angular-04"}]
+5:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/angular-03/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"시그널·서비스·의존성 주입"}]]}],["$","$L2",null,{"href":"/posts/angular-05/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Angular 앱 실무 체크리스트"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
+6:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
+7:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
+8:["$","script","script-0",{"src":"/_next/static/chunks/26shoze10o-dc.js","async":true}]
+9:["$","$Lb",null,{"children":["$","$c",null,{"name":"Next.MetadataOutlet","children":"$@d"}]}]
+d:null

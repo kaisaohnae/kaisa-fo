@@ -1,125 +1,115 @@
 1:"$Sreact.fragment"
-2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],""]
-3:I[55489,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-c:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-d:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
-e:"$Sreact.suspense"
+2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],""]
+a:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],"default"]
+b:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
+c:"$Sreact.suspense"
 :HL["/_next/static/chunks/0br7e7j26qkj3.css","style"]
 :HL["/_next/static/chunks/21i9-auhncr4a.css","style"]
-4:T1864,# Nginx 운영·보안 체크리스트
+3:T2313,<h1>Nginx 운영·보안 체크리스트</h1>
+<blockquote>
+<p>요약: 배포 전에 타임아웃, 업로드 한도, 보안 헤더, 로그, 압축, 인증서 갱신이 앱 특성에 맞는지 확인한다.</p>
+</blockquote>
+<hr>
+<h2>언제 이 목록을 보는가</h2>
+<p>리버스 프록시와 TLS(전송 계층 보안)가 열린 뒤에 본다. 문법만 통과한 설정은 배포 구성이 아니다.</p>
+<p>앱이 60초 걸리는 내보내기를 쓰는데 프록시가 30초에 끊으면 사용자는 앱 버그로 느낀다. 헤더·로그·인증서 갱신은 장애 때 원인 구간을 가르는 도구이다. 아래는 옵션 나열이 아니라 배포 전에 한 번씩 통과할 항목이다.</p>
+<hr>
+<h2>1. 프록시·타임아웃</h2>
+<p>앱이 느린데 Nginx가 먼저 끊으면 사용자는 502/504만 본다. 값은 앱의 실제 응답 시간에 맞춘다.</p>
+<ul>
+<li><input disabled="" type="checkbox"> <code>proxy_connect_timeout</code>을 짧게 둔다. 업스트림이 꺼졌을 때 연결 대기만 길어진다.</li>
+<li><input disabled="" type="checkbox"> <code>proxy_read_timeout</code>을 가장 긴 API(리포트·내보내기)보다 조금 크게 둔다. 짧으면 정상 작업이 504로 죽는다.</li>
+<li><input disabled="" type="checkbox"> 파일 업로드가 있으면 <code>client_max_body_size</code>를 앱·스토리지 한도와 같게 둔다. 기본 1m이면 큰 폼이 413으로 거절된다.</li>
+<li><input disabled="" type="checkbox"> WebSocket이면 <code>Upgrade</code>와 <code>Connection</code>을 넘긴다. 빼면 핸드셰이크가 HTTP로 남는다.</li>
+<li><input disabled="" type="checkbox"> 업스트림 다운 시 재시도·에러 페이지를 정한다. 무한 재시도는 장애를 키운다.</li>
+</ul>
+<pre><code class="hljs language-nginx"><span class="hljs-attribute">proxy_connect_timeout</span> <span class="hljs-number">5s</span>;
+<span class="hljs-attribute">proxy_read_timeout</span> <span class="hljs-number">60s</span>;
+<span class="hljs-attribute">client_max_body_size</span> <span class="hljs-number">20m</span>;
 
-> 요약: 배포 전에 타임아웃, 업로드 한도, 보안 헤더, 로그, 압축, 인증서 갱신이 앱 특성에 맞는지 확인한다.
-
----
-
-## 언제 이 목록을 보는가
-
-리버스 프록시와 TLS(전송 계층 보안)가 열린 뒤에 본다. 문법만 통과한 설정은 배포 구성이 아니다.
-
-앱이 60초 걸리는 내보내기를 쓰는데 프록시가 30초에 끊으면 사용자는 앱 버그로 느낀다. 헤더·로그·인증서 갱신은 장애 때 원인 구간을 가르는 도구이다. 아래는 옵션 나열이 아니라 배포 전에 한 번씩 통과할 항목이다.
-
----
-
-## 1. 프록시·타임아웃
-
-앱이 느린데 Nginx가 먼저 끊으면 사용자는 502/504만 본다. 값은 앱의 실제 응답 시간에 맞춘다.
-
-- [ ] `proxy_connect_timeout`을 짧게 둔다. 업스트림이 꺼졌을 때 연결 대기만 길어진다.
-- [ ] `proxy_read_timeout`을 가장 긴 API(리포트·내보내기)보다 조금 크게 둔다. 짧으면 정상 작업이 504로 죽는다.
-- [ ] 파일 업로드가 있으면 `client_max_body_size`를 앱·스토리지 한도와 같게 둔다. 기본 1m이면 큰 폼이 413으로 거절된다.
-- [ ] WebSocket이면 `Upgrade`와 `Connection`을 넘긴다. 빼면 핸드셰이크가 HTTP로 남는다.
-- [ ] 업스트림 다운 시 재시도·에러 페이지를 정한다. 무한 재시도는 장애를 키운다.
-
-```nginx
-proxy_connect_timeout 5s;
-proxy_read_timeout 60s;
-client_max_body_size 20m;
-
-# WebSocket location 예
-proxy_http_version 1.1;
-proxy_set_header Upgrade $http_upgrade;
-proxy_set_header Connection "upgrade";
-```
-
----
-
-## 2. 보안 헤더
-
-브라우저에 “이 응답을 어떻게 다룰지”를 알려 주는 헤더이다. 앱이 이미 같은 헤더를 내면 중복·충돌을 먼저 본다.
-
-```nginx
-add_header X-Content-Type-Options nosniff always;
-add_header X-Frame-Options SAMEORIGIN always;
-add_header Referrer-Policy strict-origin-when-cross-origin always;
-```
-
-- [ ] `X-Content-Type-Options: nosniff`를 둔다. MIME을 추측해 스크립트로 실행하는 길을 줄인다.
-- [ ] 클릭재킹이 문제면 `X-Frame-Options` 또는 CSP(콘텐츠 보안 정책)의 `frame-ancestors`를 둔다. iframe으로 넣을 사이트가 있으면 `SAMEORIGIN`이 막는다.
-- [ ] `Referrer-Policy`를 정한다. 기본값이면 외부 사이트로 경로가 과도하게 새어 나갈 수 있다.
-- [ ] `server_tokens off`로 버전 문자열을 줄인다. 정찰을 완전히 막지는 못하지만 노출은 줄어든다.
-- [ ] CSP는 앱의 스크립트·스타일·폰트 출처와 맞춰 단계적으로 넣는다. 한 번에 `default-src 'self'`만 넣으면 화면이 한꺼번에 깨진다.
-- [ ] HTTPS가 안정된 뒤에만 HSTS(HTTP 엄격 전송 보안)를 켠다. 인증서 문제가 남은 상태에서는 넣지 않는다.
-
-`add_header`는 일부 오류 응답에서 빠질 수 있다. `always`를 붙인 이유를 주석으로 남긴다. `if` 안에서 `add_header`를 쓰면 부모 헤더가 사라지는 함정이 있다.
-
----
-
-## 3. 로그·관측
-
-장애 때 요청이 Nginx에서 멈췄는지 앱에서 멈췄는지 나뉘어야 한다.
-
-- [ ] `access_log`와 `error_log` 경로가 디스크 용량·로테이션 대상이다. 안 돌리면 파티션이 찬다.
-- [ ] 로그 포맷에 `$request_time`과 `$upstream_response_time`을 넣는다. 앞은 전체, 뒤는 앱 시간이다.
-- [ ] 헬스체크 URL은 `access_log off`를 검토한다. 로드밸런서 폴링이 액세스 로그를 덮는다.
-- [ ] 5xx가 늘면 에러 로그의 upstream 메시지를 먼저 본다. 타임아웃·연결 거부가 여기에 찍힌다.
-
-```nginx
-log_format main '$remote_addr $status $request_time $upstream_response_time '
-                '"$request"';
-access_log /var/log/nginx/access.log main;
-```
-
----
-
-## 4. 성능
-
-미세 `worker` 튜닝보다 불필요한 프록시와 큰 바디를 먼저 줄인다.
-
-| 항목 | 확인 이유 |
-|------|-----------|
-| gzip / brotli | HTML·JSON·CSS·JS는 압축 이득이 크다. 이미 압축된 이미지는 제외한다 |
-| `sendfile` | 정적 파일을 커널이 바로 보낼 때 복사 비용이 줄어든다 |
-| 캐시 헤더 | 해시가 붙은 자산은 장기 `expires`. HTML은 짧게 둔다 |
-| `worker_connections` | 동시 연결 상한. 부족하면 대기열만 늘고 원인 로그가 빈약하다 |
-
-- [ ] 텍스트 응답에 gzip(또는 brotli)이 켜져 있다. `gzip_types`에 `application/json`이 빠지기 쉽다.
-- [ ] `/assets/app.abc123.js`처럼 파일명에 해시가 있으면 긴 캐시를 준다. 배포마다 URL이 바뀌므로 구버전을 붙잡지 않는다.
-- [ ] HTML·API는 짧게 캐시하거나 `private`로 둔다. 로그인 페이지를 공용 캐시하면 내용이 섞인다.
-- [ ] 정적 location이 앱 `proxy_pass`로 안 새는지 본다. 정적인데 앱 로그가 찍히면 location 우선순위 문제이다.
-
----
-
-## 5. 배포 직전
-
-설정을 바꾼 직후와 인증서 갱신 직후에 같은 목록을 탄다.
-
-- [ ] `nginx -t`가 성공한 뒤에만 reload한다. 문법 오류를 운영 프로세스에 넣지 않는다.
-- [ ] reload 후 헬스 URL과 로그인·결제 같은 핵심 경로를 `curl -I`로 본다. 프로세스는 살아 있어도 location이 틀릴 수 있다.
-- [ ] HTTP→HTTPS, www/non-www 정규 호스트가 기획과 같다. 인증서 SAN(주제 대체 이름)에 둘 다 있어야 한다.
-- [ ] 인증서 만료일과 자동 갱신 hook에 reload가 있다. 파일만 바뀌고 프로세스가 옛 키를 들고 있으면 브라우저만 실패한다.
-- [ ] `privkey` 권한이 최소이다. 백업 경로에 비밀키가 평문으로 복사되지 않았는지 본다.
-- [ ] 스테이징과 프로덕션 `server_name`·업스트림 포트가 뒤바뀌지 않았는지 한 줄로 대조한다.
-
----
-
-## 정리
-
-Nginx 운영은 옵션을 많이 켜는 일이 아니다. 앱이 끝나기 전에 프록시가 끊지 않는지, 브라우저에 필요한 헤더가 나가는지, 로그로 지연 구간을 나눌 수 있는지, 인증서가 갱신 후에도 로드되는지가 체크리스트이다. 배포 전에 위 순서로 한 바퀴 돌리면 된다.0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"Nginx 운영·보안 체크리스트\",\"description\":\"배포 전에 타임아웃, 업로드 한도, 보안 헤더, 로그, 압축, 인증서 갱신이 앱 특성에 맞는지 확인한다.\",\"datePublished\":\"2024-07-18\",\"url\":\"https://kaisa.co.kr/posts/nginx-03/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"nginx\",\"keywords\":\"nginx\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Nginx 운영·보안 체크리스트\",\"item\":\"https://kaisa.co.kr/posts/nginx-03/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2024-07-18"}]}],["$","h1",null,{"className":"blog-post__title","children":"Nginx 운영·보안 체크리스트"}],["$","$L3",null,{"content":"$4"}],"$L5","$L6"]}]}]}]],["$L7","$L8","$L9","$La"],"$Lb"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Zv4TpHss7ITjpJG-s6iGo"}
-5:["$","$Lc",null,{"pathKey":"nginx-03"}]
-6:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/nginx-02/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Nginx에서 HTTPS·TLS 종단하기"}]]}],null]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
-7:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
-8:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
-9:["$","script","script-0",{"src":"/_next/static/chunks/1oevfsdj8hv5d.js","async":true}]
-a:["$","script","script-1",{"src":"/_next/static/chunks/22vl7s8dm-4u2.js","async":true}]
-b:["$","$Ld",null,{"children":["$","$e",null,{"name":"Next.MetadataOutlet","children":"$@f"}]}]
-f:null
+<span class="hljs-comment"># WebSocket location 예</span>
+<span class="hljs-attribute">proxy_http_version</span> <span class="hljs-number">1</span>.<span class="hljs-number">1</span>;
+<span class="hljs-attribute">proxy_set_header</span> Upgrade <span class="hljs-variable">$http_upgrade</span>;
+<span class="hljs-attribute">proxy_set_header</span> Connection <span class="hljs-string">&quot;upgrade&quot;</span>;</code></pre>
+<hr>
+<h2>2. 보안 헤더</h2>
+<p>브라우저에 “이 응답을 어떻게 다룰지”를 알려 주는 헤더이다. 앱이 이미 같은 헤더를 내면 중복·충돌을 먼저 본다.</p>
+<pre><code class="hljs language-nginx"><span class="hljs-attribute">add_header</span> X-Content-Type-Options nosniff always;
+<span class="hljs-attribute">add_header</span> X-Frame-Options SAMEORIGIN always;
+<span class="hljs-attribute">add_header</span> Referrer-Policy strict-origin-when-cross-origin always;</code></pre>
+<ul>
+<li><input disabled="" type="checkbox"> <code>X-Content-Type-Options: nosniff</code>를 둔다. MIME을 추측해 스크립트로 실행하는 길을 줄인다.</li>
+<li><input disabled="" type="checkbox"> 클릭재킹이 문제면 <code>X-Frame-Options</code> 또는 CSP(콘텐츠 보안 정책)의 <code>frame-ancestors</code>를 둔다. iframe으로 넣을 사이트가 있으면 <code>SAMEORIGIN</code>이 막는다.</li>
+<li><input disabled="" type="checkbox"> <code>Referrer-Policy</code>를 정한다. 기본값이면 외부 사이트로 경로가 과도하게 새어 나갈 수 있다.</li>
+<li><input disabled="" type="checkbox"> <code>server_tokens off</code>로 버전 문자열을 줄인다. 정찰을 완전히 막지는 못하지만 노출은 줄어든다.</li>
+<li><input disabled="" type="checkbox"> CSP는 앱의 스크립트·스타일·폰트 출처와 맞춰 단계적으로 넣는다. 한 번에 <code>default-src &#39;self&#39;</code>만 넣으면 화면이 한꺼번에 깨진다.</li>
+<li><input disabled="" type="checkbox"> HTTPS가 안정된 뒤에만 HSTS(HTTP 엄격 전송 보안)를 켠다. 인증서 문제가 남은 상태에서는 넣지 않는다.</li>
+</ul>
+<p><code>add_header</code>는 일부 오류 응답에서 빠질 수 있다. <code>always</code>를 붙인 이유를 주석으로 남긴다. <code>if</code> 안에서 <code>add_header</code>를 쓰면 부모 헤더가 사라지는 함정이 있다.</p>
+<hr>
+<h2>3. 로그·관측</h2>
+<p>장애 때 요청이 Nginx에서 멈췄는지 앱에서 멈췄는지 나뉘어야 한다.</p>
+<ul>
+<li><input disabled="" type="checkbox"> <code>access_log</code>와 <code>error_log</code> 경로가 디스크 용량·로테이션 대상이다. 안 돌리면 파티션이 찬다.</li>
+<li><input disabled="" type="checkbox"> 로그 포맷에 <code>$request_time</code>과 <code>$upstream_response_time</code>을 넣는다. 앞은 전체, 뒤는 앱 시간이다.</li>
+<li><input disabled="" type="checkbox"> 헬스체크 URL은 <code>access_log off</code>를 검토한다. 로드밸런서 폴링이 액세스 로그를 덮는다.</li>
+<li><input disabled="" type="checkbox"> 5xx가 늘면 에러 로그의 upstream 메시지를 먼저 본다. 타임아웃·연결 거부가 여기에 찍힌다.</li>
+</ul>
+<pre><code class="hljs language-nginx"><span class="hljs-attribute">log_format</span> main <span class="hljs-string">&#x27;<span class="hljs-variable">$remote_addr</span> <span class="hljs-variable">$status</span> <span class="hljs-variable">$request_time</span> <span class="hljs-variable">$upstream_response_time</span> &#x27;</span>
+                <span class="hljs-string">&#x27;&quot;<span class="hljs-variable">$request</span>&quot;&#x27;</span>;
+<span class="hljs-attribute">access_log</span> /var/log/nginx/access.log main;</code></pre>
+<hr>
+<h2>4. 성능</h2>
+<p>미세 <code>worker</code> 튜닝보다 불필요한 프록시와 큰 바디를 먼저 줄인다.</p>
+<table>
+<thead>
+<tr>
+<th>항목</th>
+<th>확인 이유</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>gzip / brotli</td>
+<td>HTML·JSON·CSS·JS는 압축 이득이 크다. 이미 압축된 이미지는 제외한다</td>
+</tr>
+<tr>
+<td><code>sendfile</code></td>
+<td>정적 파일을 커널이 바로 보낼 때 복사 비용이 줄어든다</td>
+</tr>
+<tr>
+<td>캐시 헤더</td>
+<td>해시가 붙은 자산은 장기 <code>expires</code>. HTML은 짧게 둔다</td>
+</tr>
+<tr>
+<td><code>worker_connections</code></td>
+<td>동시 연결 상한. 부족하면 대기열만 늘고 원인 로그가 빈약하다</td>
+</tr>
+</tbody></table>
+<ul>
+<li><input disabled="" type="checkbox"> 텍스트 응답에 gzip(또는 brotli)이 켜져 있다. <code>gzip_types</code>에 <code>application/json</code>이 빠지기 쉽다.</li>
+<li><input disabled="" type="checkbox"> <code>/assets/app.abc123.js</code>처럼 파일명에 해시가 있으면 긴 캐시를 준다. 배포마다 URL이 바뀌므로 구버전을 붙잡지 않는다.</li>
+<li><input disabled="" type="checkbox"> HTML·API는 짧게 캐시하거나 <code>private</code>로 둔다. 로그인 페이지를 공용 캐시하면 내용이 섞인다.</li>
+<li><input disabled="" type="checkbox"> 정적 location이 앱 <code>proxy_pass</code>로 안 새는지 본다. 정적인데 앱 로그가 찍히면 location 우선순위 문제이다.</li>
+</ul>
+<hr>
+<h2>5. 배포 직전</h2>
+<p>설정을 바꾼 직후와 인증서 갱신 직후에 같은 목록을 탄다.</p>
+<ul>
+<li><input disabled="" type="checkbox"> <code>nginx -t</code>가 성공한 뒤에만 reload한다. 문법 오류를 운영 프로세스에 넣지 않는다.</li>
+<li><input disabled="" type="checkbox"> reload 후 헬스 URL과 로그인·결제 같은 핵심 경로를 <code>curl -I</code>로 본다. 프로세스는 살아 있어도 location이 틀릴 수 있다.</li>
+<li><input disabled="" type="checkbox"> HTTP→HTTPS, www/non-www 정규 호스트가 기획과 같다. 인증서 SAN(주제 대체 이름)에 둘 다 있어야 한다.</li>
+<li><input disabled="" type="checkbox"> 인증서 만료일과 자동 갱신 hook에 reload가 있다. 파일만 바뀌고 프로세스가 옛 키를 들고 있으면 브라우저만 실패한다.</li>
+<li><input disabled="" type="checkbox"> <code>privkey</code> 권한이 최소이다. 백업 경로에 비밀키가 평문으로 복사되지 않았는지 본다.</li>
+<li><input disabled="" type="checkbox"> 스테이징과 프로덕션 <code>server_name</code>·업스트림 포트가 뒤바뀌지 않았는지 한 줄로 대조한다.</li>
+</ul>
+<hr>
+<h2>정리</h2>
+<p>Nginx 운영은 옵션을 많이 켜는 일이 아니다. 앱이 끝나기 전에 프록시가 끊지 않는지, 브라우저에 필요한 헤더가 나가는지, 로그로 지연 구간을 나눌 수 있는지, 인증서가 갱신 후에도 로드되는지가 체크리스트이다. 배포 전에 위 순서로 한 바퀴 돌리면 된다.</p>
+0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"Nginx 운영·보안 체크리스트\",\"description\":\"배포 전에 타임아웃, 업로드 한도, 보안 헤더, 로그, 압축, 인증서 갱신이 앱 특성에 맞는지 확인한다.\",\"datePublished\":\"2024-07-18\",\"url\":\"https://kaisa.co.kr/posts/nginx-03/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"nginx\",\"keywords\":\"nginx\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Nginx 운영·보안 체크리스트\",\"item\":\"https://kaisa.co.kr/posts/nginx-03/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2024-07-18"}]}],["$","h1",null,{"className":"blog-post__title","children":"Nginx 운영·보안 체크리스트"}],["$","div",null,{"className":"blog-post__body blog-post__body--markdown","children":["$","div",null,{"className":"markdown-body","dangerouslySetInnerHTML":{"__html":"$3"}}]}],"$L4","$L5"]}]}]}]],["$L6","$L7","$L8"],"$L9"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"_AZq8Hq_NwvdopxIW0Tgh"}
+4:["$","$La",null,{"pathKey":"nginx-03"}]
+5:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/nginx-02/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Nginx에서 HTTPS·TLS 종단하기"}]]}],null]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
+6:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
+7:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
+8:["$","script","script-0",{"src":"/_next/static/chunks/26shoze10o-dc.js","async":true}]
+9:["$","$Lb",null,{"children":["$","$c",null,{"name":"Next.MetadataOutlet","children":"$@d"}]}]
+d:null

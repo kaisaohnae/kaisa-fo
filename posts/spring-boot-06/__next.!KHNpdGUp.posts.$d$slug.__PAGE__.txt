@@ -1,224 +1,225 @@
 1:"$Sreact.fragment"
-2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],""]
-3:I[55489,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-c:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-d:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
-e:"$Sreact.suspense"
+2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],""]
+a:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],"default"]
+b:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
+c:"$Sreact.suspense"
 :HL["/_next/static/chunks/0br7e7j26qkj3.css","style"]
 :HL["/_next/static/chunks/21i9-auhncr4a.css","style"]
-4:T174d,# 테스트 — JUnit 5, MockMvc, Testcontainers
+3:T2ec0,<h1>테스트 — JUnit 5, MockMvc, Testcontainers</h1>
+<blockquote>
+<p>요약: 단위·슬라이스·통합 테스트 비중을 나누고, Testcontainers로 실제 DB에 가까운 검증을 한다.</p>
+</blockquote>
+<hr>
+<h2>1. 왜 피라미드를 나누는가</h2>
+<p>모든 케이스를 <code>@SpringBootTest</code>로 올리면 CI가 느리고 실패 지점이 흐려진다. 빠른 테스트로 규칙을 지키고, 조립은 소수 통합으로 확인한다.</p>
+<table>
+<thead>
+<tr>
+<th>종류</th>
+<th>도구</th>
+<th>목적</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>단위</td>
+<td>JUnit + Mockito</td>
+<td>도메인·서비스 규칙</td>
+</tr>
+<tr>
+<td>슬라이스</td>
+<td><code>@WebMvcTest</code>, <code>@DataJpaTest</code></td>
+<td>계층 경계</td>
+</tr>
+<tr>
+<td>통합</td>
+<td><code>@SpringBootTest</code> + Testcontainers</td>
+<td>실제 조립</td>
+</tr>
+<tr>
+<td>E2E</td>
+<td>RestAssured 등</td>
+<td>핵심 시나리오만</td>
+</tr>
+</tbody></table>
+<p><strong>슬라이스 테스트</strong>는 웹 또는 JPA처럼 <strong>한 계층만</strong> 띄우는 테스트다.</p>
+<hr>
+<h2>2. 단위 테스트</h2>
+<p>Spring 컨텍스트 없이 생성자로 목을 넣는다.</p>
+<pre><code class="hljs language-java"><span class="hljs-keyword">class</span> <span class="hljs-title class_">OrderServiceTest</span> {
 
-> 요약: 단위·슬라이스·통합 테스트 비중을 나누고, Testcontainers로 실제 DB에 가까운 검증을 한다.
+    <span class="hljs-meta">@Test</span>
+    <span class="hljs-type">void</span> <span class="hljs-title function_">rejectsEmptyItems</span><span class="hljs-params">()</span> {
+        <span class="hljs-type">OrderRepository</span> <span class="hljs-variable">repo</span> <span class="hljs-operator">=</span> mock(OrderRepository.class);
+        <span class="hljs-type">OrderService</span> <span class="hljs-variable">service</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">OrderService</span>(repo);
 
----
-
-## 1. 왜 피라미드를 나누는가
-
-모든 케이스를 `@SpringBootTest`로 올리면 CI가 느리고 실패 지점이 흐려진다. 빠른 테스트로 규칙을 지키고, 조립은 소수 통합으로 확인한다.
-
-| 종류 | 도구 | 목적 |
-|------|------|------|
-| 단위 | JUnit + Mockito | 도메인·서비스 규칙 |
-| 슬라이스 | `@WebMvcTest`, `@DataJpaTest` | 계층 경계 |
-| 통합 | `@SpringBootTest` + Testcontainers | 실제 조립 |
-| E2E | RestAssured 등 | 핵심 시나리오만 |
-
-**슬라이스 테스트**는 웹 또는 JPA처럼 **한 계층만** 띄우는 테스트다.
-
----
-
-## 2. 단위 테스트
-
-Spring 컨텍스트 없이 생성자로 목을 넣는다.
-
-```java
-class OrderServiceTest {
-
-    @Test
-    void rejectsEmptyItems() {
-        OrderRepository repo = mock(OrderRepository.class);
-        OrderService service = new OrderService(repo);
-
-        assertThatThrownBy(() -> service.create(new CreateOrderRequest(List.of())))
+        assertThatThrownBy(() -&gt; service.create(<span class="hljs-keyword">new</span> <span class="hljs-title class_">CreateOrderRequest</span>(List.of())))
                 .isInstanceOf(InvalidOrderException.class);
     }
-}
-```
+}</code></pre>
+<p>필드 <code>@Autowired</code> 서비스는 이런 테스트가 불편해진다.</p>
+<hr>
+<h2>3. <code>@WebMvcTest</code></h2>
+<p>컨트롤러·검증·예외 핸들러만 올린다. 서비스는 목이다. Boot 3.4+는 <code>@MockitoBean</code>(<code>@MockBean</code> 후속)을 쓴다.</p>
+<pre><code class="hljs language-java"><span class="hljs-meta">@WebMvcTest(UserController.class)</span>
+<span class="hljs-meta">@Import(GlobalExceptionHandler.class)</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">UserControllerTest</span> {
 
-필드 `@Autowired` 서비스는 이런 테스트가 불편해진다.
+    <span class="hljs-meta">@Autowired</span> MockMvc mockMvc;
+    <span class="hljs-meta">@MockitoBean</span> UserService userService;
 
----
-
-## 3. `@WebMvcTest`
-
-컨트롤러·검증·예외 핸들러만 올린다. 서비스는 목이다. Boot 3.4+는 `@MockitoBean`(`@MockBean` 후속)을 쓴다.
-
-```java
-@WebMvcTest(UserController.class)
-@Import(GlobalExceptionHandler.class)
-class UserControllerTest {
-
-    @Autowired MockMvc mockMvc;
-    @MockitoBean UserService userService;
-
-    @Test
-    void createUser() throws Exception {
+    <span class="hljs-meta">@Test</span>
+    <span class="hljs-type">void</span> <span class="hljs-title function_">createUser</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception {
         given(userService.create(any()))
-                .willReturn(new UserResponse(1L, "a@b.com", "Ann"));
+                .willReturn(<span class="hljs-keyword">new</span> <span class="hljs-title class_">UserResponse</span>(<span class="hljs-number">1L</span>, <span class="hljs-string">&quot;a@b.com&quot;</span>, <span class="hljs-string">&quot;Ann&quot;</span>));
 
-        mockMvc.perform(post("/api/users")
+        mockMvc.perform(post(<span class="hljs-string">&quot;/api/users&quot;</span>)
                         .contentType(MediaType.APPLICATION_JSON)
-                        .content("""
-                            {"email":"a@b.com","name":"Ann"}
-                            """))
+                        .content(<span class="hljs-string">&quot;&quot;&quot;
+                            {&quot;email&quot;:&quot;a@b.com&quot;,&quot;name&quot;:&quot;Ann&quot;}
+                            &quot;&quot;&quot;</span>))
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.email").value("a@b.com"));
+                .andExpect(jsonPath(<span class="hljs-string">&quot;$.email&quot;</span>).value(<span class="hljs-string">&quot;a@b.com&quot;</span>));
     }
-}
-```
+}</code></pre>
+<p>Security가 켜져 있으면 <code>@WithMockUser</code> 또는 <code>@AutoConfigureMockMvc(addFilters = false)</code>를 명시한다. 필터를 끄면 인가 버그를 놓친다.</p>
+<hr>
+<h2>4. <code>@DataJpaTest</code>와 Testcontainers</h2>
+<p>한 줄 정의: <strong>Testcontainers</strong>는 테스트 동안 Docker로 PostgreSQL 같은 실제 미들웨어를 띄운다. H2는 방언이 달라 운영에서만 깨지는 쿼리가 나온다.</p>
+<pre><code class="hljs language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-testcontainers<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>test<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.testcontainers<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>postgresql<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>test<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
+<pre><code class="hljs language-java"><span class="hljs-meta">@TestConfiguration(proxyBeanMethods = false)</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TestcontainersConfig</span> {
 
-Security가 켜져 있으면 `@WithMockUser` 또는 `@AutoConfigureMockMvc(addFilters = false)`를 명시한다. 필터를 끄면 인가 버그를 놓친다.
-
----
-
-## 4. `@DataJpaTest`와 Testcontainers
-
-한 줄 정의: **Testcontainers**는 테스트 동안 Docker로 PostgreSQL 같은 실제 미들웨어를 띄운다. H2는 방언이 달라 운영에서만 깨지는 쿼리가 나온다.
-
-```xml
-<dependency>
-  <groupId>org.springframework.boot</groupId>
-  <artifactId>spring-boot-testcontainers</artifactId>
-  <scope>test</scope>
-</dependency>
-<dependency>
-  <groupId>org.testcontainers</groupId>
-  <artifactId>postgresql</artifactId>
-  <scope>test</scope>
-</dependency>
-```
-
-```java
-@TestConfiguration(proxyBeanMethods = false)
-public class TestcontainersConfig {
-
-    @Bean
-    @ServiceConnection
-    PostgreSQLContainer<?> postgres() {
-        return new PostgreSQLContainer<>("postgres:16-alpine");
+    <span class="hljs-meta">@Bean</span>
+    <span class="hljs-meta">@ServiceConnection</span>
+    <span class="hljs-type">PostgreSQLContainer</span>&lt;?&gt; <span class="hljs-title function_">postgres</span><span class="hljs-params">()</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">PostgreSQLContainer</span>&lt;&gt;(<span class="hljs-string">&quot;postgres:16-alpine&quot;</span>);
     }
-}
-```
+}</code></pre>
+<p><code>@ServiceConnection</code>(Boot 3.1+)이 datasource URL을 붙인다. <code>@DynamicPropertySource</code>보다 짧다.</p>
+<pre><code class="hljs language-java"><span class="hljs-meta">@DataJpaTest</span>
+<span class="hljs-meta">@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)</span>
+<span class="hljs-meta">@Import(TestcontainersConfig.class)</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">UserRepositoryTest</span> {
 
-`@ServiceConnection`(Boot 3.1+)이 datasource URL을 붙인다. `@DynamicPropertySource`보다 짧다.
+    <span class="hljs-meta">@Autowired</span> UserRepository userRepository;
 
-```java
-@DataJpaTest
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@Import(TestcontainersConfig.class)
-class UserRepositoryTest {
-
-    @Autowired UserRepository userRepository;
-
-    @Test
-    void findByEmail() {
-        userRepository.save(User.create("a@b.com", "Ann"));
-        assertThat(userRepository.findByEmail("a@b.com")).isPresent();
+    <span class="hljs-meta">@Test</span>
+    <span class="hljs-type">void</span> <span class="hljs-title function_">findByEmail</span><span class="hljs-params">()</span> {
+        userRepository.save(User.create(<span class="hljs-string">&quot;a@b.com&quot;</span>, <span class="hljs-string">&quot;Ann&quot;</span>));
+        assertThat(userRepository.findByEmail(<span class="hljs-string">&quot;a@b.com&quot;</span>)).isPresent();
     }
-}
-```
+}</code></pre>
+<p><code>Replace.ANY</code>(기본)면 H2로 바뀌어 컨테이너를 띄운 의미가 없다.</p>
+<hr>
+<h2>5. <code>@SpringBootTest</code></h2>
+<p>전체 컨텍스트가 필요할 때만 쓴다. HTTP까지 보려면 <code>RANDOM_PORT</code> + <code>TestRestTemplate</code> 또는 MockMvc(<code>@AutoConfigureMockMvc</code>)다. Boot 3.4+에는 <code>RestTestClient</code>도 있다.</p>
+<pre><code class="hljs language-java"><span class="hljs-meta">@SpringBootTest</span>
+<span class="hljs-meta">@Import(TestcontainersConfig.class)</span>
+<span class="hljs-keyword">class</span> <span class="hljs-title class_">UserServiceIT</span> {
 
-`Replace.ANY`(기본)면 H2로 바뀌어 컨테이너를 띄운 의미가 없다.
+    <span class="hljs-meta">@Autowired</span> UserService userService;
 
----
-
-## 5. `@SpringBootTest`
-
-전체 컨텍스트가 필요할 때만 쓴다. HTTP까지 보려면 `RANDOM_PORT` + `TestRestTemplate` 또는 MockMvc(`@AutoConfigureMockMvc`)다. Boot 3.4+에는 `RestTestClient`도 있다.
-
-```java
-@SpringBootTest
-@Import(TestcontainersConfig.class)
-class UserServiceIT {
-
-    @Autowired UserService userService;
-
-    @Test
-    void createAndGet() {
-        UserResponse created = userService.create(new CreateUserRequest("a@b.com", "Ann"));
-        assertThat(userService.get(created.id()).email()).isEqualTo("a@b.com");
+    <span class="hljs-meta">@Test</span>
+    <span class="hljs-type">void</span> <span class="hljs-title function_">createAndGet</span><span class="hljs-params">()</span> {
+        <span class="hljs-type">UserResponse</span> <span class="hljs-variable">created</span> <span class="hljs-operator">=</span> userService.create(<span class="hljs-keyword">new</span> <span class="hljs-title class_">CreateUserRequest</span>(<span class="hljs-string">&quot;a@b.com&quot;</span>, <span class="hljs-string">&quot;Ann&quot;</span>));
+        assertThat(userService.get(created.id()).email()).isEqualTo(<span class="hljs-string">&quot;a@b.com&quot;</span>);
     }
-}
-```
-
-Kafka·Redis도 같은 `@ServiceConnection` 패턴이다.
-
----
-
-## 6. 데이터·시간·외부 의존성
-
-테스트마다 독립이어야 한다. `@Transactional` 롤백, 또는 컨테이너 재사용 + 테이블 정리. `@Sql`은 데이터가 단순할 때만 쓴다.
-
-```java
-static User user(String email) {
-    return User.create(email, email.split("@")[0]);
-}
-```
-
-AssertJ 체인이 JUnit `assertEquals`보다 실패 메시지가 읽기 쉽다.
-
-```java
-assertThat(result)
+}</code></pre>
+<p>Kafka·Redis도 같은 <code>@ServiceConnection</code> 패턴이다.</p>
+<hr>
+<h2>6. 데이터·시간·외부 의존성</h2>
+<p>테스트마다 독립이어야 한다. <code>@Transactional</code> 롤백, 또는 컨테이너 재사용 + 테이블 정리. <code>@Sql</code>은 데이터가 단순할 때만 쓴다.</p>
+<pre><code class="hljs language-java"><span class="hljs-keyword">static</span> <span class="hljs-type">User</span> <span class="hljs-title function_">user</span><span class="hljs-params">(String email)</span> {
+    <span class="hljs-keyword">return</span> User.create(email, email.split(<span class="hljs-string">&quot;@&quot;</span>)[<span class="hljs-number">0</span>]);
+}</code></pre>
+<p>AssertJ 체인이 JUnit <code>assertEquals</code>보다 실패 메시지가 읽기 쉽다.</p>
+<pre><code class="hljs language-java">assertThat(result)
         .extracting(UserResponse::email, UserResponse::name)
-        .containsExactly("a@b.com", "Ann");
-```
-
-| 대상 | 기법 |
-|------|------|
-| 시간 | `Clock` Bean을 고정 |
-| 외부 HTTP | WireMock / MockWebServer |
-| 메시지 | Testcontainers Kafka |
-| 파일 | `@TempDir` |
-
-```java
-@Bean
-@Primary
-Clock fixedClock() {
-    return Clock.fixed(Instant.parse("2026-01-01T00:00:00Z"), ZoneOffset.UTC);
-}
-```
-
----
-
-## 7. CI
-
-러너에 Docker가 있어야 Testcontainers가 돈다. 로컬 재사용은 `testcontainers.reuse.enable=true`. 실패한 테스트를 재시도로 통과시키지 않는다.
-
----
-
-## 8. 흔한 실수
-
-| 실수 | 대안 |
-|------|------|
-| 전부 `@SpringBootTest` | 단위·슬라이스 먼저 |
-| `@DataJpaTest` + H2로 복잡한 SQL | Testcontainers + `Replace.NONE` |
-| Security 필터를 항상 끔 | 인가 케이스는 `@WithMockUser` |
-| `now()` 직접 호출 | `Clock` 주입 |
-| flaky를 `@RepeatedTest`로 숨김 | 원인 제거 |
-
----
-
-## 연습
-
-1. 서비스 단위 테스트 2개(성공/실패)를 작성한다.
-2. `@WebMvcTest`로 validation 400을 검증한다.
-3. Testcontainers PostgreSQL로 리포지토리 IT를 작성한다.
-4. `@ServiceConnection`으로 datasource가 붙는지 확인한다.0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"테스트 — JUnit 5, MockMvc, Testcontainers\",\"description\":\"단위·슬라이스·통합 테스트 비중을 나누고, Testcontainers로 실제 DB에 가까운 검증을 한다.\",\"datePublished\":\"2025-10-20\",\"url\":\"https://kaisa.co.kr/posts/spring-boot-06/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"spring-boot\",\"keywords\":\"spring-boot\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"테스트 — JUnit 5, MockMvc, Testcontainers\",\"item\":\"https://kaisa.co.kr/posts/spring-boot-06/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2025-10-20"}]}],["$","h1",null,{"className":"blog-post__title","children":"테스트 — JUnit 5, MockMvc, Testcontainers"}],["$","$L3",null,{"content":"$4"}],"$L5","$L6"]}]}]}]],["$L7","$L8","$L9","$La"],"$Lb"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Zv4TpHss7ITjpJG-s6iGo"}
-5:["$","$Lc",null,{"pathKey":"spring-boot-06"}]
-6:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/spring-boot-05/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Spring Security 6 — 인증·인가·OAuth2·JWT"}]]}],["$","$L2",null,{"href":"/posts/spring-boot-07/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Observability — Actuator, Micrometer, OpenTelemetry"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
-7:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
-8:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
-9:["$","script","script-0",{"src":"/_next/static/chunks/1oevfsdj8hv5d.js","async":true}]
-a:["$","script","script-1",{"src":"/_next/static/chunks/22vl7s8dm-4u2.js","async":true}]
-b:["$","$Ld",null,{"children":["$","$e",null,{"name":"Next.MetadataOutlet","children":"$@f"}]}]
-f:null
+        .containsExactly(<span class="hljs-string">&quot;a@b.com&quot;</span>, <span class="hljs-string">&quot;Ann&quot;</span>);</code></pre>
+<table>
+<thead>
+<tr>
+<th>대상</th>
+<th>기법</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>시간</td>
+<td><code>Clock</code> Bean을 고정</td>
+</tr>
+<tr>
+<td>외부 HTTP</td>
+<td>WireMock / MockWebServer</td>
+</tr>
+<tr>
+<td>메시지</td>
+<td>Testcontainers Kafka</td>
+</tr>
+<tr>
+<td>파일</td>
+<td><code>@TempDir</code></td>
+</tr>
+</tbody></table>
+<pre><code class="hljs language-java"><span class="hljs-meta">@Bean</span>
+<span class="hljs-meta">@Primary</span>
+<span class="hljs-type">Clock</span> <span class="hljs-title function_">fixedClock</span><span class="hljs-params">()</span> {
+    <span class="hljs-keyword">return</span> Clock.fixed(Instant.parse(<span class="hljs-string">&quot;2026-01-01T00:00:00Z&quot;</span>), ZoneOffset.UTC);
+}</code></pre>
+<hr>
+<h2>7. CI</h2>
+<p>러너에 Docker가 있어야 Testcontainers가 돈다. 로컬 재사용은 <code>testcontainers.reuse.enable=true</code>. 실패한 테스트를 재시도로 통과시키지 않는다.</p>
+<hr>
+<h2>8. 흔한 실수</h2>
+<table>
+<thead>
+<tr>
+<th>실수</th>
+<th>대안</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>전부 <code>@SpringBootTest</code></td>
+<td>단위·슬라이스 먼저</td>
+</tr>
+<tr>
+<td><code>@DataJpaTest</code> + H2로 복잡한 SQL</td>
+<td>Testcontainers + <code>Replace.NONE</code></td>
+</tr>
+<tr>
+<td>Security 필터를 항상 끔</td>
+<td>인가 케이스는 <code>@WithMockUser</code></td>
+</tr>
+<tr>
+<td><code>now()</code> 직접 호출</td>
+<td><code>Clock</code> 주입</td>
+</tr>
+<tr>
+<td>flaky를 <code>@RepeatedTest</code>로 숨김</td>
+<td>원인 제거</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>연습</h2>
+<ol>
+<li>서비스 단위 테스트 2개(성공/실패)를 작성한다.</li>
+<li><code>@WebMvcTest</code>로 validation 400을 검증한다.</li>
+<li>Testcontainers PostgreSQL로 리포지토리 IT를 작성한다.</li>
+<li><code>@ServiceConnection</code>으로 datasource가 붙는지 확인한다.</li>
+</ol>
+0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"테스트 — JUnit 5, MockMvc, Testcontainers\",\"description\":\"단위·슬라이스·통합 테스트 비중을 나누고, Testcontainers로 실제 DB에 가까운 검증을 한다.\",\"datePublished\":\"2025-10-20\",\"url\":\"https://kaisa.co.kr/posts/spring-boot-06/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"spring-boot\",\"keywords\":\"spring-boot\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"테스트 — JUnit 5, MockMvc, Testcontainers\",\"item\":\"https://kaisa.co.kr/posts/spring-boot-06/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2025-10-20"}]}],["$","h1",null,{"className":"blog-post__title","children":"테스트 — JUnit 5, MockMvc, Testcontainers"}],["$","div",null,{"className":"blog-post__body blog-post__body--markdown","children":["$","div",null,{"className":"markdown-body","dangerouslySetInnerHTML":{"__html":"$3"}}]}],"$L4","$L5"]}]}]}]],["$L6","$L7","$L8"],"$L9"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"_AZq8Hq_NwvdopxIW0Tgh"}
+4:["$","$La",null,{"pathKey":"spring-boot-06"}]
+5:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/spring-boot-05/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Spring Security 6 — 인증·인가·OAuth2·JWT"}]]}],["$","$L2",null,{"href":"/posts/spring-boot-07/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Observability — Actuator, Micrometer, OpenTelemetry"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
+6:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
+7:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
+8:["$","script","script-0",{"src":"/_next/static/chunks/26shoze10o-dc.js","async":true}]
+9:["$","$Lb",null,{"children":["$","$c",null,{"name":"Next.MetadataOutlet","children":"$@d"}]}]
+d:null

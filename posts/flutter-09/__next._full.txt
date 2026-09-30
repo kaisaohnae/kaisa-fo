@@ -3,250 +3,254 @@
 3:I[883661,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"default"]
 4:I[339756,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"default"]
 5:I[837457,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"default"]
-6:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],""]
+6:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],""]
 7:I[722067,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"default"]
 8:I[778481,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"default"]
 9:I[902105,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"default"]
 14:I[168027,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"default",1]
 :HL["/_next/static/chunks/34-r72pc7x98u.css","style"]
 :HL["/_next/static/chunks/3xau-2enavhj9.css","style"]
-:HL["/_next/static/chunks/01h2qkg9511bb.css","style"]
+:HL["/_next/static/chunks/0souqbpzq6xbb.css","style"]
 :HL["/_next/static/chunks/1xra_60l-k8t4.css","style"]
 :HL["/_next/static/media/0c795a286deabae8-s.p.3vm0tq4e-zz_5.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/media/5c285b27cdda1fe8-s.p.2_mbdogr7ni8i.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/chunks/0br7e7j26qkj3.css","style"]
 :HL["/_next/static/chunks/21i9-auhncr4a.css","style"]
 :HL["/_next/static/chunks/0z_31kp4nojhg.css","style"]
-0:{"P":null,"c":["","posts","flutter-09",""],"q":"","i":false,"f":[[["",{"children":["(site)",{"children":["posts",{"children":[["slug","flutter-09","d",null],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/34-r72pc7x98u.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/3hb4n4ylf5-a0.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1ntn7efqc-iiw.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ko","className":"syne_53f86cd1-module__kiT3Eq__variable dm_sans_fd62f040-module__0jgVUW__variable","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","$L2",null,{"id":"kaisa-google-adsense","strategy":"afterInteractive","src":"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2641553863829571","crossOrigin":"anonymous"}]}],["$","body",null,{"children":[["$","script",null,{"id":"kaisa-init-1","dangerouslySetInnerHTML":{"__html":"(function(){try{var t=null;document.cookie.split(';').forEach(function(c){var p=c.trim().split('=');if(p[0]==='kaisa-shared-theme')t=decodeURIComponent(p[1]||'');});document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();"}}],["$","script",null,{"id":"kaisa-locale-init","dangerouslySetInnerHTML":{"__html":"(function(){try{\nvar key='kaisa-shared-locale',entry=document.cookie.split(';').map(function(c){return c.trim();}).find(function(c){return c.indexOf(key+'=')===0;});\nvar l=entry?entry.slice(key.length+1):null;\nfunction valid(v){return /^(ko|en|zh|hi)$/.test(v||'');}\nif(!valid(l)){try{l=sessionStorage.getItem('kaisa-locale');}catch(e){}}\nif(!valid(l)){var a=[navigator.language].concat(navigator.languages||[]);l=null;for(var i=0;i<a.length;i++){var m=/^(ko|en|zh|hi)/i.exec(a[i]||'');if(m){l=m[1].toLowerCase();break;}}}\nvar determined=valid(l);if(!determined)l='ko';\nif(determined&&(!entry||entry.slice(key.length+1)!==l)){var h=location.hostname,d=h==='kaisa.co.kr'||h.endsWith('.kaisa.co.kr')?'; domain=kaisa.co.kr':'';document.cookie=key+'='+l+'; max-age=2592000; path=/; samesite=lax'+d;}\ndocument.documentElement.lang=l;\n}catch(e){document.documentElement.lang='ko';}})();"}}],[["$","$L2",null,{"src":"https://www.googletagmanager.com/gtag/js?id=G-2281QQ6XP4","strategy":"afterInteractive"}],["$","$L2",null,{"id":"google-analytics","strategy":"afterInteractive","children":"\n          window.dataLayer = window.dataLayer || [];\n          function gtag(){dataLayer.push(arguments);}\n          gtag('js', new Date());\n          gtag('config', 'G-2281QQ6XP4');\n        "}]],["$","$L3",null,{}],["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}],["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]]}]}],[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0z_31kp4nojhg.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","$L7",null,{}],["$","$L8",null,{}],["$","$L9",null,{}]]}]]}]]}],{"children":[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3xau-2enavhj9.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/01h2qkg9511bb.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/1xra_60l-k8t4.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],"$La","$Lb","$Lc","$Ld"],"$Le"]}],{"children":["$Lf",{"children":["$L10",{"children":["$L11",{},null,false,null]},null,false,"$@12"]},null,false,"$@12"]},null,false,null]},null,false,null],"$L13",false]],"m":"$undefined","G":["$14",["$L15"]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"Zv4TpHss7ITjpJG-s6iGo"}
-16:I[669033,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js"],"LocaleProvider"]
-17:I[545872,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js"],"default"]
-18:I[320683,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js"],"default"]
-19:I[86979,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/2nllraa9qqjuh.js"],"default"]
-1a:I[44604,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js"],"default"]
+0:{"P":null,"c":["","posts","flutter-09",""],"q":"","i":false,"f":[[["",{"children":["(site)",{"children":["posts",{"children":[["slug","flutter-09","d",null],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/34-r72pc7x98u.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/3hb4n4ylf5-a0.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1ntn7efqc-iiw.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ko","className":"syne_53f86cd1-module__kiT3Eq__variable dm_sans_fd62f040-module__0jgVUW__variable","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","$L2",null,{"id":"kaisa-google-adsense","strategy":"afterInteractive","src":"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2641553863829571","crossOrigin":"anonymous"}]}],["$","body",null,{"children":[["$","script",null,{"id":"kaisa-init-1","dangerouslySetInnerHTML":{"__html":"(function(){try{var t=null;document.cookie.split(';').forEach(function(c){var p=c.trim().split('=');if(p[0]==='kaisa-shared-theme')t=decodeURIComponent(p[1]||'');});document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();"}}],["$","script",null,{"id":"kaisa-locale-init","dangerouslySetInnerHTML":{"__html":"(function(){try{\nvar key='kaisa-shared-locale',entry=document.cookie.split(';').map(function(c){return c.trim();}).find(function(c){return c.indexOf(key+'=')===0;});\nvar l=entry?entry.slice(key.length+1):null;\nfunction valid(v){return /^(ko|en|zh|hi)$/.test(v||'');}\nif(!valid(l)){try{l=sessionStorage.getItem('kaisa-locale');}catch(e){}}\nif(!valid(l)){var a=[navigator.language].concat(navigator.languages||[]);l=null;for(var i=0;i<a.length;i++){var m=/^(ko|en|zh|hi)/i.exec(a[i]||'');if(m){l=m[1].toLowerCase();break;}}}\nvar determined=valid(l);if(!determined)l='ko';\nif(determined&&(!entry||entry.slice(key.length+1)!==l)){var h=location.hostname,d=h==='kaisa.co.kr'||h.endsWith('.kaisa.co.kr')?'; domain=kaisa.co.kr':'';document.cookie=key+'='+l+'; max-age=2592000; path=/; samesite=lax'+d;}\ndocument.documentElement.lang=l;\n}catch(e){document.documentElement.lang='ko';}})();"}}],[["$","$L2",null,{"src":"https://www.googletagmanager.com/gtag/js?id=G-2281QQ6XP4","strategy":"afterInteractive"}],["$","$L2",null,{"id":"google-analytics","strategy":"afterInteractive","children":"\n          window.dataLayer = window.dataLayer || [];\n          function gtag(){dataLayer.push(arguments);}\n          gtag('js', new Date());\n          gtag('config', 'G-2281QQ6XP4');\n        "}]],["$","$L3",null,{}],["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}],["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]]}]}],[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0z_31kp4nojhg.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","$L7",null,{}],["$","$L8",null,{}],["$","$L9",null,{}]]}]]}]]}],{"children":[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3xau-2enavhj9.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0souqbpzq6xbb.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/1xra_60l-k8t4.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],"$La","$Lb","$Lc","$Ld"],"$Le"]}],{"children":["$Lf",{"children":["$L10",{"children":["$L11",{},null,false,null]},null,false,"$@12"]},null,false,"$@12"]},null,false,null]},null,false,null],"$L13",false]],"m":"$undefined","G":["$14",["$L15"]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"_AZq8Hq_NwvdopxIW0Tgh"}
+16:I[669033,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js"],"LocaleProvider"]
+17:I[545872,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js"],"default"]
+18:I[320683,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js"],"default"]
+19:I[86979,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/2nllraa9qqjuh.js"],"default"]
+1a:I[44604,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js"],"default"]
 1c:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
 1d:"$Sreact.suspense"
 20:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"ViewportBoundary"]
 22:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"MetadataBoundary"]
-a:["$","script","script-0",{"src":"/_next/static/chunks/1210t6uckuu_4.js","async":true,"nonce":"$undefined"}]
+a:["$","script","script-0",{"src":"/_next/static/chunks/2t60f4_2tjmro.js","async":true,"nonce":"$undefined"}]
 b:["$","script","script-1",{"src":"/_next/static/chunks/1i1l5t--me2mi.js","async":true,"nonce":"$undefined"}]
-c:["$","script","script-2",{"src":"/_next/static/chunks/07ogw60khanqf.js","async":true,"nonce":"$undefined"}]
+c:["$","script","script-2",{"src":"/_next/static/chunks/2-06zdxz3h-nd.js","async":true,"nonce":"$undefined"}]
 d:["$","script","script-3",{"src":"/_next/static/chunks/3ha5i75rsjlst.js","async":true,"nonce":"$undefined"}]
 e:["$","$L16",null,{"children":["$","div",null,{"className":"site-layout","children":[["$","$L17",null,{}],["$","$L18",null,{"children":["$","$L4",null,{"parallelRouterKey":"children","error":"$19","errorStyles":[],"errorScripts":[["$","script","script-0",{"src":"/_next/static/chunks/2nllraa9qqjuh.js","async":true}]],"template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}],["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]]}]}],[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0z_31kp4nojhg.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],["$","$L1a",null,{}]]}]}]
 f:["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]
 10:["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]
-11:["$","$1","c",{"children":["$L1b",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/1oevfsdj8hv5d.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/22vl7s8dm-4u2.js","async":true,"nonce":"$undefined"}]],["$","$L1c",null,{"children":["$","$1d",null,{"name":"Next.MetadataOutlet","children":"$@1e"}]}]]}]
+11:["$","$1","c",{"children":["$L1b",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/26shoze10o-dc.js","async":true,"nonce":"$undefined"}]],["$","$L1c",null,{"children":["$","$1d",null,{"name":"Next.MetadataOutlet","children":"$@1e"}]}]]}]
 1f:[]
 12:"$W1f"
 13:["$","$1","h",{"children":[null,["$","$L20",null,{"children":"$L21"}],["$","div",null,{"hidden":true,"children":["$","$L22",null,{"children":["$","$1d",null,{"name":"Next.Metadata","children":"$L23"}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}]
 15:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/34-r72pc7x98u.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
-24:I[55489,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-25:T19f1,# 로컬 저장·설정 영속화
+24:T34d5,<h1>로컬 저장·설정 영속화</h1>
+<blockquote>
+<p>요약: 기기에 남길 데이터는 민감도와 수명에 따라 prefs, 보안 저장소, DB로 나눈다.</p>
+</blockquote>
+<hr>
+<h2>1. 왜 / 언제</h2>
+<p>앱을 껐다 켜도 온보딩을 다시 보면 설정이 영속화되지 않은 것이다. 반대로 액세스 토큰을 일반 설정 파일에 두면 백업·루팅·공유 스토리지에서 새어 나간다.</p>
+<p>로컬 저장은 패키지 이름이 먼저가 아니다. <strong>민감도·수명·오프라인 요구</strong>를 나눈 다음 저장소를 고른다.</p>
+<p>서버가 진실의 원천인 데이터는 캐시다. 기기 전용 플래그는 로컬이 원천이다. 이 구분을 제품에서 합의하지 않으면 멀티 기기에서 설정이 싸운다.</p>
+<hr>
+<h2>2. 핵심</h2>
+<table>
+<thead>
+<tr>
+<th>데이터</th>
+<th>후보</th>
+<th>이유</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>온보딩 완료, 테마 모드</td>
+<td><code>shared_preferences</code></td>
+<td>작은 키-값, 비밀 아님</td>
+</tr>
+<tr>
+<td>액세스·리프레시 토큰</td>
+<td>secure storage</td>
+<td>키체인/키스토어</td>
+</tr>
+<tr>
+<td>검색·오프라인 큐·관계</td>
+<td>SQLite / drift</td>
+<td>쿼리와 마이그레이션</td>
+</tr>
+<tr>
+<td>이미지·파일 캐시</td>
+<td>캐시 디렉터리</td>
+<td>만료·용량 제한</td>
+</tr>
+</tbody></table>
+<p>일반 prefs는 XML/plist에 가깝다. 암호화가 목적이 아니다. 토큰·개인식별값을 두지 않는다.</p>
+<p>키 이름은 도메인처럼 짓는다. <code>done</code>, <code>flag1</code>은 충돌한다. <code>onboarding.done</code>, <code>settings.themeMode</code>처럼 읽히게 한다. 마이그레이션 계획이 없으면 키가 늘어나며 죽은 값이 남는다.</p>
+<p>SQLite는 스키마 버전이 앱 버전과 함께 간다. 컬럼을 추가하면 마이그레이션을 적는다. 파일을 지우고 다시 만드는 방식은 사용자 데이터를 날린다.</p>
+<p>로컬은 유실된다. 기기 변경, 앱 삭제, OS 저장소 정리다. “절대 없어지면 안 되는 값”은 서버에 둔다.</p>
+<p>읽기·쓰기는 비동기다. <code>build</code>에서 <code>await</code>하지 않는다. 로드는 <code>initState</code> 또는 앱 기동 시퀀스에서 하고, 결과는 상태에 넣는다.</p>
+<hr>
+<h2>3. 예제</h2>
+<h3>shared_preferences</h3>
+<pre><code class="hljs language-yaml"><span class="hljs-attr">dependencies:</span>
+  <span class="hljs-attr">shared_preferences:</span> <span class="hljs-string">^2.3.0</span></code></pre>
+<pre><code class="hljs language-dart"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SettingsStore</span> </span>{
+  <span class="hljs-title class_">SettingsStore</span>(<span class="hljs-keyword">this</span>._prefs);
 
-> 요약: 기기에 남길 데이터는 민감도와 수명에 따라 prefs, 보안 저장소, DB로 나눈다.
+  <span class="hljs-keyword">static</span> <span class="hljs-keyword">const</span> <span class="hljs-title class_">String</span> themeKey = <span class="hljs-string">&#x27;settings.themeMode&#x27;</span>;
 
----
+  <span class="hljs-keyword">final</span> <span class="hljs-title class_">SharedPreferences</span> _prefs;
 
-## 1. 왜 / 언제
-
-앱을 껐다 켜도 온보딩을 다시 보면 설정이 영속화되지 않은 것이다. 반대로 액세스 토큰을 일반 설정 파일에 두면 백업·루팅·공유 스토리지에서 새어 나간다.
-
-로컬 저장은 패키지 이름이 먼저가 아니다. **민감도·수명·오프라인 요구**를 나눈 다음 저장소를 고른다.
-
-서버가 진실의 원천인 데이터는 캐시다. 기기 전용 플래그는 로컬이 원천이다. 이 구분을 제품에서 합의하지 않으면 멀티 기기에서 설정이 싸운다.
-
----
-
-## 2. 핵심
-
-| 데이터 | 후보 | 이유 |
-|--------|------|------|
-| 온보딩 완료, 테마 모드 | `shared_preferences` | 작은 키-값, 비밀 아님 |
-| 액세스·리프레시 토큰 | secure storage | 키체인/키스토어 |
-| 검색·오프라인 큐·관계 | SQLite / drift | 쿼리와 마이그레이션 |
-| 이미지·파일 캐시 | 캐시 디렉터리 | 만료·용량 제한 |
-
-일반 prefs는 XML/plist에 가깝다. 암호화가 목적이 아니다. 토큰·개인식별값을 두지 않는다.
-
-키 이름은 도메인처럼 짓는다. `done`, `flag1`은 충돌한다. `onboarding.done`, `settings.themeMode`처럼 읽히게 한다. 마이그레이션 계획이 없으면 키가 늘어나며 죽은 값이 남는다.
-
-SQLite는 스키마 버전이 앱 버전과 함께 간다. 컬럼을 추가하면 마이그레이션을 적는다. 파일을 지우고 다시 만드는 방식은 사용자 데이터를 날린다.
-
-로컬은 유실된다. 기기 변경, 앱 삭제, OS 저장소 정리다. “절대 없어지면 안 되는 값”은 서버에 둔다.
-
-읽기·쓰기는 비동기다. `build`에서 `await`하지 않는다. 로드는 `initState` 또는 앱 기동 시퀀스에서 하고, 결과는 상태에 넣는다.
-
----
-
-## 3. 예제
-
-### shared_preferences
-
-```yaml
-dependencies:
-  shared_preferences: ^2.3.0
-```
-
-```dart
-class SettingsStore {
-  SettingsStore(this._prefs);
-
-  static const String themeKey = 'settings.themeMode';
-
-  final SharedPreferences _prefs;
-
-  static Future<SettingsStore> open() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    return SettingsStore(prefs);
+  <span class="hljs-keyword">static</span> <span class="hljs-title class_">Future</span>&lt;<span class="hljs-title class_">SettingsStore</span>&gt; <span class="hljs-title function_">open</span>() <span class="hljs-keyword">async</span> {
+    <span class="hljs-keyword">final</span> <span class="hljs-title class_">SharedPreferences</span> prefs = <span class="hljs-keyword">await</span> <span class="hljs-title class_">SharedPreferences</span>.<span class="hljs-title function_">getInstance</span>();
+    <span class="hljs-keyword">return</span> <span class="hljs-title class_">SettingsStore</span>(prefs);
   }
 
-  ThemeMode themeMode() {
-    final String? raw = _prefs.getString(themeKey);
-    return switch (raw) {
-      'dark' => ThemeMode.dark,
-      'light' => ThemeMode.light,
-      _ => ThemeMode.system,
+  <span class="hljs-title class_">ThemeMode</span> <span class="hljs-title function_">themeMode</span>() {
+    <span class="hljs-keyword">final</span> <span class="hljs-title class_">String</span>? raw = _prefs.<span class="hljs-title function_">getString</span>(themeKey);
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">switch</span> (raw) {
+      <span class="hljs-string">&#x27;dark&#x27;</span> =&gt; <span class="hljs-title class_">ThemeMode</span>.dark,
+      <span class="hljs-string">&#x27;light&#x27;</span> =&gt; <span class="hljs-title class_">ThemeMode</span>.light,
+      _ =&gt; <span class="hljs-title class_">ThemeMode</span>.system,
     };
   }
 
-  Future<void> setThemeMode(ThemeMode mode) async {
-    final String raw = switch (mode) {
-      ThemeMode.dark => 'dark',
-      ThemeMode.light => 'light',
-      ThemeMode.system => 'system',
+  <span class="hljs-title class_">Future</span>&lt;<span class="hljs-keyword">void</span>&gt; <span class="hljs-title function_">setThemeMode</span>(<span class="hljs-title class_">ThemeMode</span> mode) <span class="hljs-keyword">async</span> {
+    <span class="hljs-keyword">final</span> <span class="hljs-title class_">String</span> raw = <span class="hljs-keyword">switch</span> (mode) {
+      <span class="hljs-title class_">ThemeMode</span>.dark =&gt; <span class="hljs-string">&#x27;dark&#x27;</span>,
+      <span class="hljs-title class_">ThemeMode</span>.light =&gt; <span class="hljs-string">&#x27;light&#x27;</span>,
+      <span class="hljs-title class_">ThemeMode</span>.system =&gt; <span class="hljs-string">&#x27;system&#x27;</span>,
     };
-    await _prefs.setString(themeKey, raw);
+    <span class="hljs-keyword">await</span> _prefs.<span class="hljs-title function_">setString</span>(themeKey, raw);
   }
-}
-```
+}</code></pre>
+<p>불리언 플래그도 같다.</p>
+<pre><code class="hljs language-dart"><span class="hljs-keyword">const</span> <span class="hljs-title class_">String</span> onboardingKey = <span class="hljs-string">&#x27;onboarding.done&#x27;</span>;
 
-불리언 플래그도 같다.
-
-```dart
-const String onboardingKey = 'onboarding.done';
-
-Future<void> completeOnboarding(SharedPreferences prefs) async {
-  await prefs.setBool(onboardingKey, true);
+<span class="hljs-title class_">Future</span>&lt;<span class="hljs-keyword">void</span>&gt; <span class="hljs-title function_">completeOnboarding</span>(<span class="hljs-title class_">SharedPreferences</span> prefs) <span class="hljs-keyword">async</span> {
+  <span class="hljs-keyword">await</span> prefs.<span class="hljs-title function_">setBool</span>(onboardingKey, <span class="hljs-keyword">true</span>);
 }
 
-bool isOnboardingDone(SharedPreferences prefs) {
-  return prefs.getBool(onboardingKey) ?? false;
-}
-```
+<span class="hljs-built_in">bool</span> <span class="hljs-title function_">isOnboardingDone</span>(<span class="hljs-title class_">SharedPreferences</span> prefs) {
+  <span class="hljs-keyword">return</span> prefs.<span class="hljs-title function_">getBool</span>(onboardingKey) ?? <span class="hljs-keyword">false</span>;
+}</code></pre>
+<p>없는 키는 <code>null</code>이다. <code>?? false</code>로 기본값을 명시한다. “없음”과 <code>false</code>를 구분해야 하면 별도 키 또는 버전을 둔다.</p>
+<h3>비밀은 보안 저장소</h3>
+<pre><code class="hljs language-yaml"><span class="hljs-attr">dependencies:</span>
+  <span class="hljs-attr">flutter_secure_storage:</span> <span class="hljs-string">^9.2.0</span></code></pre>
+<pre><code class="hljs language-dart"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TokenStore</span> </span>{
+  <span class="hljs-title class_">TokenStore</span>(<span class="hljs-keyword">this</span>._storage);
 
-없는 키는 `null`이다. `?? false`로 기본값을 명시한다. “없음”과 `false`를 구분해야 하면 별도 키 또는 버전을 둔다.
+  <span class="hljs-keyword">static</span> <span class="hljs-keyword">const</span> <span class="hljs-title class_">String</span> accessKey = <span class="hljs-string">&#x27;auth.accessToken&#x27;</span>;
 
-### 비밀은 보안 저장소
+  <span class="hljs-keyword">final</span> <span class="hljs-title class_">FlutterSecureStorage</span> _storage;
 
-```yaml
-dependencies:
-  flutter_secure_storage: ^9.2.0
-```
-
-```dart
-class TokenStore {
-  TokenStore(this._storage);
-
-  static const String accessKey = 'auth.accessToken';
-
-  final FlutterSecureStorage _storage;
-
-  Future<void> saveAccessToken(String token) async {
-    await _storage.write(key: accessKey, value: token);
+  <span class="hljs-title class_">Future</span>&lt;<span class="hljs-keyword">void</span>&gt; <span class="hljs-title function_">saveAccessToken</span>(<span class="hljs-title class_">String</span> token) <span class="hljs-keyword">async</span> {
+    <span class="hljs-keyword">await</span> _storage.<span class="hljs-title function_">write</span>(key: accessKey, value: token);
   }
 
-  Future<String?> readAccessToken() {
-    return _storage.read(key: accessKey);
+  <span class="hljs-title class_">Future</span>&lt;<span class="hljs-title class_">String</span>?&gt; <span class="hljs-title function_">readAccessToken</span>() {
+    <span class="hljs-keyword">return</span> _storage.<span class="hljs-title function_">read</span>(key: accessKey);
   }
 
-  Future<void> clear() async {
-    await _storage.delete(key: accessKey);
+  <span class="hljs-title class_">Future</span>&lt;<span class="hljs-keyword">void</span>&gt; <span class="hljs-title function_">clear</span>() <span class="hljs-keyword">async</span> {
+    <span class="hljs-keyword">await</span> _storage.<span class="hljs-title function_">delete</span>(key: accessKey);
   }
-}
-```
+}</code></pre>
+<p>로그아웃은 메모리뿐 아니라 저장소도 지운다. prefs에 토큰을 미러링하지 않는다.</p>
+<h3>기동 시 로드</h3>
+<pre><code class="hljs language-dart"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AppScope</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">StatefulWidget</span> </span>{
+  <span class="hljs-keyword">const</span> <span class="hljs-title class_">AppScope</span>({<span class="hljs-keyword">super</span>.key, <span class="hljs-keyword">required</span> <span class="hljs-keyword">this</span>.child});
 
-로그아웃은 메모리뿐 아니라 저장소도 지운다. prefs에 토큰을 미러링하지 않는다.
+  <span class="hljs-keyword">final</span> <span class="hljs-title class_">Widget</span> child;
 
-### 기동 시 로드
-
-```dart
-class AppScope extends StatefulWidget {
-  const AppScope({super.key, required this.child});
-
-  final Widget child;
-
-  @override
-  State<AppScope> createState() => _AppScopeState();
+  <span class="hljs-meta">@override</span>
+  <span class="hljs-title class_">State</span>&lt;<span class="hljs-title class_">AppScope</span>&gt; <span class="hljs-title function_">createState</span>() =&gt; <span class="hljs-title class_">_AppScopeState</span>();
 }
 
-class _AppScopeState extends State<AppScope> {
-  late final Future<SettingsStore> _settings;
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">_AppScopeState</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">State</span>&lt;<span class="hljs-title">AppScope</span>&gt; </span>{
+  <span class="hljs-keyword">late</span> <span class="hljs-keyword">final</span> <span class="hljs-title class_">Future</span>&lt;<span class="hljs-title class_">SettingsStore</span>&gt; _settings;
 
-  @override
-  void initState() {
-    super.initState();
-    _settings = SettingsStore.open();
+  <span class="hljs-meta">@override</span>
+  <span class="hljs-keyword">void</span> <span class="hljs-title function_">initState</span>() {
+    <span class="hljs-keyword">super</span>.<span class="hljs-title function_">initState</span>();
+    _settings = <span class="hljs-title class_">SettingsStore</span>.<span class="hljs-title function_">open</span>();
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return FutureBuilder<SettingsStore>(
+  <span class="hljs-meta">@override</span>
+  <span class="hljs-title class_">Widget</span> <span class="hljs-title function_">build</span>(<span class="hljs-title class_">BuildContext</span> context) {
+    <span class="hljs-keyword">return</span> <span class="hljs-title class_">FutureBuilder</span>&lt;<span class="hljs-title class_">SettingsStore</span>&gt;(
       future: _settings,
-      builder: (BuildContext context, AsyncSnapshot<SettingsStore> snap) {
-        if (!snap.hasData) {
-          return const MaterialApp(
-            home: Scaffold(
-              body: Center(child: CircularProgressIndicator()),
+      builder: (<span class="hljs-title class_">BuildContext</span> context, <span class="hljs-title class_">AsyncSnapshot</span>&lt;<span class="hljs-title class_">SettingsStore</span>&gt; snap) {
+        <span class="hljs-keyword">if</span> (!snap.hasData) {
+          <span class="hljs-keyword">return</span> <span class="hljs-keyword">const</span> <span class="hljs-title class_">MaterialApp</span>(
+            home: <span class="hljs-title class_">Scaffold</span>(
+              body: <span class="hljs-title class_">Center</span>(child: <span class="hljs-title class_">CircularProgressIndicator</span>()),
             ),
           );
         }
-        return MyApp(settings: snap.data!);
+        <span class="hljs-keyword">return</span> <span class="hljs-title class_">MyApp</span>(settings: snap.data!);
       },
     );
   }
-}
-```
-
-설정이 준비되기 전에 본문을 그리지 않는다. 테마가 깜빡이며 바뀌는 것을 줄인다.
-
-### SQLite가 맞을 때
-
-오프라인 초안, 전문 검색, 관계(글-댓글)가 있으면 키-값으로 직렬화하지 않는다. drift 또는 sqflite로 테이블을 둔다. 스키마 버전을 올리고, 마이그레이션에 `ALTER TABLE`을 적는다. 릴리스 노트에 마이그레이션을 포함한다.
-
----
-
-## 4. 흔한 실수
-
-| 실수 | 결과 | 대안 |
-|------|------|------|
-| prefs에 토큰 | 유출·백업 노출 | secure storage |
-| 키 이름 `flag` | 충돌·폐기 불가 | 도메인.키 + 버전 |
-| `build`에서 getInstance | 리빌드마다 비동기 깜빡임 | 기동 시 한 번 |
-| JSON 문자열을 prefs에 대형 목록 | 파싱·용량 한계 | SQLite |
-| 마이그레이션 없이 컬럼 추가 | 업데이트 후 크래시 | 스키마 버전 |
-| 로컬만 진실 | 기기 변경 시 데이터 상실 | 서버 원천 여부 합의 |
-
-멀티 프로세스(위젯·백그라운드)에서 prefs 타이밍이 어긋날 수 있다. 단순 설정은 괜찮다. 카운터처럼 자주 쓰는 값은 충돌을 가정한다.
-
-캐시 디렉터리 파일은 언제든 지워질 수 있다. 사용자 문서처럼 다루지 않는다.
-
----
-
-## 정리
-
-영속화는 패키지 선택이 아니다. **민감도·수명·오프라인 요구**를 표로 나눈 다음 prefs, 보안 저장소, DB를 고른다. 비밀은 일반 설정에 두지 않는다.
-
----
-
-## 연습
-
-1. 테마 모드를 prefs에 저장하고 재실행 뒤 복원한다.
-2. 온보딩 플래그 키를 `onboarding.done`으로 고정한다.
-3. 토큰 저장을 secure storage로 옮기고 로그아웃 때 삭제한다.
-4. 앱이 지워지면 사라져도 되는 값과 서버에 있어야 하는 값을 표로 나눈다.1b:[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"로컬 저장·설정 영속화\",\"description\":\"기기에 남길 데이터는 민감도와 수명에 따라 prefs, 보안 저장소, DB로 나눈다.\",\"datePublished\":\"2026-07-06\",\"url\":\"https://kaisa.co.kr/posts/flutter-09/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"flutter\",\"keywords\":\"flutter\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"로컬 저장·설정 영속화\",\"item\":\"https://kaisa.co.kr/posts/flutter-09/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L6",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2026-07-06"}]}],["$","h1",null,{"className":"blog-post__title","children":"로컬 저장·설정 영속화"}],["$","$L24",null,{"content":"$25"}],"$L26","$L27"]}]}]}]]
-28:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-26:["$","$L28",null,{"pathKey":"flutter-09"}]
-27:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L6",null,{"href":"/posts/flutter-08/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"ThemeData로 머티리얼 디자인 토큰"}]]}],["$","$L6",null,{"href":"/posts/flutter-10/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Flutter 빌드·배포 실무 체크리스트"}]]}]]}],["$","$L6",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
+}</code></pre>
+<p>설정이 준비되기 전에 본문을 그리지 않는다. 테마가 깜빡이며 바뀌는 것을 줄인다.</p>
+<h3>SQLite가 맞을 때</h3>
+<p>오프라인 초안, 전문 검색, 관계(글-댓글)가 있으면 키-값으로 직렬화하지 않는다. drift 또는 sqflite로 테이블을 둔다. 스키마 버전을 올리고, 마이그레이션에 <code>ALTER TABLE</code>을 적는다. 릴리스 노트에 마이그레이션을 포함한다.</p>
+<hr>
+<h2>4. 흔한 실수</h2>
+<table>
+<thead>
+<tr>
+<th>실수</th>
+<th>결과</th>
+<th>대안</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>prefs에 토큰</td>
+<td>유출·백업 노출</td>
+<td>secure storage</td>
+</tr>
+<tr>
+<td>키 이름 <code>flag</code></td>
+<td>충돌·폐기 불가</td>
+<td>도메인.키 + 버전</td>
+</tr>
+<tr>
+<td><code>build</code>에서 getInstance</td>
+<td>리빌드마다 비동기 깜빡임</td>
+<td>기동 시 한 번</td>
+</tr>
+<tr>
+<td>JSON 문자열을 prefs에 대형 목록</td>
+<td>파싱·용량 한계</td>
+<td>SQLite</td>
+</tr>
+<tr>
+<td>마이그레이션 없이 컬럼 추가</td>
+<td>업데이트 후 크래시</td>
+<td>스키마 버전</td>
+</tr>
+<tr>
+<td>로컬만 진실</td>
+<td>기기 변경 시 데이터 상실</td>
+<td>서버 원천 여부 합의</td>
+</tr>
+</tbody></table>
+<p>멀티 프로세스(위젯·백그라운드)에서 prefs 타이밍이 어긋날 수 있다. 단순 설정은 괜찮다. 카운터처럼 자주 쓰는 값은 충돌을 가정한다.</p>
+<p>캐시 디렉터리 파일은 언제든 지워질 수 있다. 사용자 문서처럼 다루지 않는다.</p>
+<hr>
+<h2>정리</h2>
+<p>영속화는 패키지 선택이 아니다. <strong>민감도·수명·오프라인 요구</strong>를 표로 나눈 다음 prefs, 보안 저장소, DB를 고른다. 비밀은 일반 설정에 두지 않는다.</p>
+<hr>
+<h2>연습</h2>
+<ol>
+<li>테마 모드를 prefs에 저장하고 재실행 뒤 복원한다.</li>
+<li>온보딩 플래그 키를 <code>onboarding.done</code>으로 고정한다.</li>
+<li>토큰 저장을 secure storage로 옮기고 로그아웃 때 삭제한다.</li>
+<li>앱이 지워지면 사라져도 되는 값과 서버에 있어야 하는 값을 표로 나눈다.</li>
+</ol>
+1b:[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"로컬 저장·설정 영속화\",\"description\":\"기기에 남길 데이터는 민감도와 수명에 따라 prefs, 보안 저장소, DB로 나눈다.\",\"datePublished\":\"2026-07-06\",\"url\":\"https://kaisa.co.kr/posts/flutter-09/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"flutter\",\"keywords\":\"flutter\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"로컬 저장·설정 영속화\",\"item\":\"https://kaisa.co.kr/posts/flutter-09/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L6",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2026-07-06"}]}],["$","h1",null,{"className":"blog-post__title","children":"로컬 저장·설정 영속화"}],["$","div",null,{"className":"blog-post__body blog-post__body--markdown","children":["$","div",null,{"className":"markdown-body","dangerouslySetInnerHTML":{"__html":"$24"}}]}],"$L25","$L26"]}]}]}]]
+27:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],"default"]
+25:["$","$L27",null,{"pathKey":"flutter-09"}]
+26:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L6",null,{"href":"/posts/flutter-08/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"ThemeData로 머티리얼 디자인 토큰"}]]}],["$","$L6",null,{"href":"/posts/flutter-10/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Flutter 빌드·배포 실무 체크리스트"}]]}]]}],["$","$L6",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
 21:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
-29:I[27201,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"IconMark"]
+28:I[27201,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"IconMark"]
 1e:null
-23:[["$","title","0",{"children":"로컬 저장·설정 영속화 · Kaisa"}],["$","meta","1",{"name":"description","content":"기기에 남길 데이터는 민감도와 수명에 따라 prefs, 보안 저장소, DB로 나눈다."}],["$","meta","2",{"name":"application-name","content":"Kaisa"}],["$","meta","3",{"name":"robots","content":"index, follow"}],["$","meta","4",{"name":"naver-site-verification","content":"4bc13b857695ff44988c260cb26124eedbcda90e"}],["$","link","5",{"rel":"canonical","href":"https://kaisa.co.kr/posts/flutter-09/"}],["$","meta","6",{"property":"og:title","content":"로컬 저장·설정 영속화 · Kaisa"}],["$","meta","7",{"property":"og:description","content":"기기에 남길 데이터는 민감도와 수명에 따라 prefs, 보안 저장소, DB로 나눈다."}],["$","meta","8",{"property":"og:url","content":"https://kaisa.co.kr/posts/flutter-09/"}],["$","meta","9",{"property":"og:site_name","content":"Kaisa"}],["$","meta","10",{"property":"og:locale","content":"ko_KR"}],["$","meta","11",{"property":"og:type","content":"article"}],["$","meta","12",{"name":"twitter:card","content":"summary"}],["$","meta","13",{"name":"twitter:title","content":"로컬 저장·설정 영속화 · Kaisa"}],["$","meta","14",{"name":"twitter:description","content":"기기에 남길 데이터는 민감도와 수명에 따라 prefs, 보안 저장소, DB로 나눈다."}],["$","link","15",{"rel":"shortcut icon","href":"/img/common/favicon.ico"}],["$","link","16",{"rel":"icon","href":"/img/common/favicon.ico"}],["$","link","17",{"rel":"apple-touch-icon","href":"/img/common/favicon.ico"}],["$","$L29","18",{}]]
+23:[["$","title","0",{"children":"로컬 저장·설정 영속화 · Kaisa"}],["$","meta","1",{"name":"description","content":"기기에 남길 데이터는 민감도와 수명에 따라 prefs, 보안 저장소, DB로 나눈다."}],["$","meta","2",{"name":"application-name","content":"Kaisa"}],["$","meta","3",{"name":"robots","content":"index, follow"}],["$","meta","4",{"name":"naver-site-verification","content":"4bc13b857695ff44988c260cb26124eedbcda90e"}],["$","link","5",{"rel":"canonical","href":"https://kaisa.co.kr/posts/flutter-09/"}],["$","meta","6",{"property":"og:title","content":"로컬 저장·설정 영속화 · Kaisa"}],["$","meta","7",{"property":"og:description","content":"기기에 남길 데이터는 민감도와 수명에 따라 prefs, 보안 저장소, DB로 나눈다."}],["$","meta","8",{"property":"og:url","content":"https://kaisa.co.kr/posts/flutter-09/"}],["$","meta","9",{"property":"og:site_name","content":"Kaisa"}],["$","meta","10",{"property":"og:locale","content":"ko_KR"}],["$","meta","11",{"property":"og:type","content":"article"}],["$","meta","12",{"name":"twitter:card","content":"summary"}],["$","meta","13",{"name":"twitter:title","content":"로컬 저장·설정 영속화 · Kaisa"}],["$","meta","14",{"name":"twitter:description","content":"기기에 남길 데이터는 민감도와 수명에 따라 prefs, 보안 저장소, DB로 나눈다."}],["$","link","15",{"rel":"shortcut icon","href":"/img/common/favicon.ico"}],["$","link","16",{"rel":"icon","href":"/img/common/favicon.ico"}],["$","link","17",{"rel":"apple-touch-icon","href":"/img/common/favicon.ico"}],["$","$L28","18",{}]]

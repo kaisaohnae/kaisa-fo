@@ -1,234 +1,228 @@
 1:"$Sreact.fragment"
-2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],""]
-3:I[55489,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-c:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-d:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
-e:"$Sreact.suspense"
+2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],""]
+a:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],"default"]
+b:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
+c:"$Sreact.suspense"
 :HL["/_next/static/chunks/0br7e7j26qkj3.css","style"]
 :HL["/_next/static/chunks/21i9-auhncr4a.css","style"]
-4:T181b,# Vue Router와 Pinia로 화면·상태 구성
+3:T416a,<h1>Vue Router와 Pinia로 화면·상태 구성</h1>
+<blockquote>
+<p>요약: URL과 화면을 라우터로 맞추고, 여러 화면이 공유하는 상태는 Pinia 스토어에 두는 SPA 구성 방법을 정리한다.</p>
+</blockquote>
+<hr>
+<h2>1. 왜 둘을 나누는가</h2>
+<p>SPA(단일 페이지 애플리케이션)는 페이지를 통째로 새로고침하지 않고 화면만 바꾼다.</p>
+<ul>
+<li><strong>Vue Router</strong> — URL ↔ 화면. 주소가 북마크·뒤로 가기의 진실이다.</li>
+<li><strong>Pinia</strong> — 여러 화면이 공유하는 클라이언트 상태 창고. 로그인 사용자, UI 설정처럼 서버에 없는 값.</li>
+</ul>
+<p>폼 입력, 모달 열림처럼 <strong>한 화면만</strong> 아는 값은 컴포넌트 <code>ref</code>에 둔다. 목록 캐시처럼 서버 데이터는 나중 단계에서 TanStack Query 등을 검토한다. 모든 것을 Pinia에 넣지 않는다.</p>
+<hr>
+<h2>2. 핵심 개념</h2>
+<table>
+<thead>
+<tr>
+<th>개념</th>
+<th>한 줄</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>routes</code></td>
+<td><code>path</code>와 컴포넌트를 짝짓는다</td>
+</tr>
+<tr>
+<td>lazy import</td>
+<td>해당 화면 JS를 필요할 때 받는다</td>
+</tr>
+<tr>
+<td><code>beforeEach</code></td>
+<td>이동 전에 로그인·권한을 검사하는 가드</td>
+</tr>
+<tr>
+<td>Pinia 스토어</td>
+<td><code>defineStore</code>로 만든 공유 상태. setup 함수와 같은 모양</td>
+</tr>
+<tr>
+<td><code>useRoute</code> / <code>useRouter</code></td>
+<td>현재 URL, 프로그래밍 방식 이동</td>
+</tr>
+</tbody></table>
+<p>Vue 3의 상태 라이브러리는 Vuex가 아니라 <strong>Pinia</strong>가 기본 권장이다.</p>
+<hr>
+<h2>3. 동작하는 예: 라우터 + 인증 스토어</h2>
+<p><code>src/stores/auth.ts</code>:</p>
+<pre><code class="hljs language-ts"><span class="hljs-keyword">import</span> { defineStore } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;pinia&#x27;</span>
+<span class="hljs-keyword">import</span> { computed, ref } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>
 
-> 요약: URL과 화면을 라우터로 맞추고, 여러 화면이 공유하는 상태는 Pinia 스토어에 두는 SPA 구성 방법을 정리한다.
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> useAuthStore = <span class="hljs-title function_">defineStore</span>(<span class="hljs-string">&#x27;auth&#x27;</span>, <span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-keyword">const</span> user = ref&lt;<span class="hljs-built_in">string</span> | <span class="hljs-literal">null</span>&gt;(<span class="hljs-literal">null</span>)
+  <span class="hljs-keyword">const</span> isLoggedIn = <span class="hljs-title function_">computed</span>(<span class="hljs-function">() =&gt;</span> user.<span class="hljs-property">value</span> !== <span class="hljs-literal">null</span>)
 
----
-
-## 1. 왜 둘을 나누는가
-
-SPA(단일 페이지 애플리케이션)는 페이지를 통째로 새로고침하지 않고 화면만 바꾼다.
-
-- **Vue Router** — URL ↔ 화면. 주소가 북마크·뒤로 가기의 진실이다.
-- **Pinia** — 여러 화면이 공유하는 클라이언트 상태 창고. 로그인 사용자, UI 설정처럼 서버에 없는 값.
-
-폼 입력, 모달 열림처럼 **한 화면만** 아는 값은 컴포넌트 `ref`에 둔다. 목록 캐시처럼 서버 데이터는 나중 단계에서 TanStack Query 등을 검토한다. 모든 것을 Pinia에 넣지 않는다.
-
----
-
-## 2. 핵심 개념
-
-| 개념 | 한 줄 |
-|------|--------|
-| `routes` | `path`와 컴포넌트를 짝짓는다 |
-| lazy import | 해당 화면 JS를 필요할 때 받는다 |
-| `beforeEach` | 이동 전에 로그인·권한을 검사하는 가드 |
-| Pinia 스토어 | `defineStore`로 만든 공유 상태. setup 함수와 같은 모양 |
-| `useRoute` / `useRouter` | 현재 URL, 프로그래밍 방식 이동 |
-
-Vue 3의 상태 라이브러리는 Vuex가 아니라 **Pinia**가 기본 권장이다.
-
----
-
-## 3. 동작하는 예: 라우터 + 인증 스토어
-
-`src/stores/auth.ts`:
-
-```ts
-import { defineStore } from 'pinia'
-import { computed, ref } from 'vue'
-
-export const useAuthStore = defineStore('auth', () => {
-  const user = ref<string | null>(null)
-  const isLoggedIn = computed(() => user.value !== null)
-
-  function login(name: string) {
-    user.value = name
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">login</span>(<span class="hljs-params"><span class="hljs-attr">name</span>: <span class="hljs-built_in">string</span></span>) {
+    user.<span class="hljs-property">value</span> = name
   }
 
-  function logout() {
-    user.value = null
+  <span class="hljs-keyword">function</span> <span class="hljs-title function_">logout</span>(<span class="hljs-params"></span>) {
+    user.<span class="hljs-property">value</span> = <span class="hljs-literal">null</span>
   }
 
-  return { user, isLoggedIn, login, logout }
-})
-```
+  <span class="hljs-keyword">return</span> { user, isLoggedIn, login, logout }
+})</code></pre>
+<p>setup 스토어는 Composition API와 같다. <code>return</code>한 것만 바깥에서 쓴다.</p>
+<p><code>src/router/index.ts</code>:</p>
+<pre><code class="hljs language-ts"><span class="hljs-keyword">import</span> { createRouter, createWebHistory } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue-router&#x27;</span>
+<span class="hljs-keyword">import</span> { useAuthStore } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../stores/auth&#x27;</span>
 
-setup 스토어는 Composition API와 같다. `return`한 것만 바깥에서 쓴다.
-
-`src/router/index.ts`:
-
-```ts
-import { createRouter, createWebHistory } from 'vue-router'
-import { useAuthStore } from '../stores/auth'
-
-const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
-  routes: [
+<span class="hljs-keyword">const</span> router = <span class="hljs-title function_">createRouter</span>({
+  <span class="hljs-attr">history</span>: <span class="hljs-title function_">createWebHistory</span>(<span class="hljs-keyword">import</span>.<span class="hljs-property">meta</span>.<span class="hljs-property">env</span>.<span class="hljs-property">BASE_URL</span>),
+  <span class="hljs-attr">routes</span>: [
     {
-      path: '/',
-      name: 'home',
-      component: () => import('../pages/HomeView.vue'),
+      <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;/&#x27;</span>,
+      <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;home&#x27;</span>,
+      <span class="hljs-attr">component</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;../pages/HomeView.vue&#x27;</span>),
     },
     {
-      path: '/login',
-      name: 'login',
-      component: () => import('../pages/LoginView.vue'),
+      <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;/login&#x27;</span>,
+      <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;login&#x27;</span>,
+      <span class="hljs-attr">component</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;../pages/LoginView.vue&#x27;</span>),
     },
     {
-      path: '/posts/:id',
-      name: 'post',
-      component: () => import('../pages/PostView.vue'),
-      props: true,
-      meta: { requiresAuth: true },
+      <span class="hljs-attr">path</span>: <span class="hljs-string">&#x27;/posts/:id&#x27;</span>,
+      <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;post&#x27;</span>,
+      <span class="hljs-attr">component</span>: <span class="hljs-function">() =&gt;</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;../pages/PostView.vue&#x27;</span>),
+      <span class="hljs-attr">props</span>: <span class="hljs-literal">true</span>,
+      <span class="hljs-attr">meta</span>: { <span class="hljs-attr">requiresAuth</span>: <span class="hljs-literal">true</span> },
     },
   ],
 })
 
-router.beforeEach((to) => {
-  const auth = useAuthStore()
-  if (to.meta.requiresAuth && !auth.isLoggedIn) {
-    return { name: 'login', query: { redirect: to.fullPath } }
+router.<span class="hljs-title function_">beforeEach</span>(<span class="hljs-function">(<span class="hljs-params">to</span>) =&gt;</span> {
+  <span class="hljs-keyword">const</span> auth = <span class="hljs-title function_">useAuthStore</span>()
+  <span class="hljs-keyword">if</span> (to.<span class="hljs-property">meta</span>.<span class="hljs-property">requiresAuth</span> &amp;&amp; !auth.<span class="hljs-property">isLoggedIn</span>) {
+    <span class="hljs-keyword">return</span> { <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;login&#x27;</span>, <span class="hljs-attr">query</span>: { <span class="hljs-attr">redirect</span>: to.<span class="hljs-property">fullPath</span> } }
   }
 })
 
-export default router
-```
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> router</code></pre>
+<p><code>props: true</code>면 <code>:id</code>가 컴포넌트 props <code>id</code>로 들어간다.</p>
+<p><code>src/main.ts</code>:</p>
+<pre><code class="hljs language-ts"><span class="hljs-keyword">import</span> { createApp } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>
+<span class="hljs-keyword">import</span> { createPinia } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;pinia&#x27;</span>
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">App</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./App.vue&#x27;</span>
+<span class="hljs-keyword">import</span> router <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./router&#x27;</span>
 
-`props: true`면 `:id`가 컴포넌트 props `id`로 들어간다.
+<span class="hljs-keyword">const</span> app = <span class="hljs-title function_">createApp</span>(<span class="hljs-title class_">App</span>)
+app.<span class="hljs-title function_">use</span>(<span class="hljs-title function_">createPinia</span>())
+app.<span class="hljs-title function_">use</span>(router)
+app.<span class="hljs-title function_">mount</span>(<span class="hljs-string">&#x27;#app&#x27;</span>)</code></pre>
+<p>Pinia를 라우터보다 먼저 <code>use</code>한다. 가드에서 스토어를 쓰기 때문이다.</p>
+<p><code>src/App.vue</code>:</p>
+<pre><code class="hljs language-vue"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript">
+<span class="hljs-keyword">import</span> </span></span><span class="hljs-template-variable">{ RouterLink, RouterView }</span><span class="language-xml"><span class="language-javascript"> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue-router&#x27;</span>
+<span class="hljs-keyword">import</span> </span></span><span class="hljs-template-variable">{ useAuthStore }</span><span class="language-xml"><span class="language-javascript"> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./stores/auth&#x27;</span>
 
-`src/main.ts`:
+<span class="hljs-keyword">const</span> auth = <span class="hljs-title function_">useAuthStore</span>()
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-```ts
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
-import App from './App.vue'
-import router from './router'
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">header</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">nav</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">RouterLink</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&quot;/&quot;</span>&gt;</span>홈<span class="hljs-tag">&lt;/<span class="hljs-name">RouterLink</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">RouterLink</span> <span class="hljs-attr">to</span>=<span class="hljs-string">&quot;/posts/42&quot;</span>&gt;</span>글 42<span class="hljs-tag">&lt;/<span class="hljs-name">RouterLink</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">span</span> <span class="hljs-attr">v-if</span>=<span class="hljs-string">&quot;auth.isLoggedIn&quot;</span>&gt;</span></span><span class="hljs-template-variable">{{ auth.user }</span><span class="language-xml">}<span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">v-else</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;button&quot;</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">&quot;auth.login(&#x27;demo&#x27;)&quot;</span>&gt;</span>로그인<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">header</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">RouterView</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></span></code></pre>
+<p><code>src/pages/PostView.vue</code>:</p>
+<pre><code class="hljs language-vue"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript">
+defineProps&lt;{ <span class="hljs-attr">id</span>: string }&gt;()
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-const app = createApp(App)
-app.use(createPinia())
-app.use(router)
-app.mount('#app')
-```
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">article</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>글 </span><span class="hljs-template-variable">{{ <span class="hljs-name">id</span> }}</span><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">article</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></span></code></pre>
+<p><code>src/pages/LoginView.vue</code>:</p>
+<pre><code class="hljs language-vue"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript">
+<span class="hljs-keyword">import</span> { useRoute, useRouter } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue-router&#x27;</span>
+<span class="hljs-keyword">import</span> { useAuthStore } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;../stores/auth&#x27;</span>
 
-Pinia를 라우터보다 먼저 `use`한다. 가드에서 스토어를 쓰기 때문이다.
+<span class="hljs-keyword">const</span> route = <span class="hljs-title function_">useRoute</span>()
+<span class="hljs-keyword">const</span> router = <span class="hljs-title function_">useRouter</span>()
+<span class="hljs-keyword">const</span> auth = <span class="hljs-title function_">useAuthStore</span>()
 
-`src/App.vue`:
-
-```vue
-<script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import { useAuthStore } from './stores/auth'
-
-const auth = useAuthStore()
-</script>
-
-<template>
-  <header>
-    <nav>
-      <RouterLink to="/">홈</RouterLink>
-      <RouterLink to="/posts/42">글 42</RouterLink>
-    </nav>
-    <span v-if="auth.isLoggedIn">{{ auth.user }}</span>
-    <button v-else type="button" @click="auth.login('demo')">로그인</button>
-  </header>
-  <RouterView />
-</template>
-```
-
-`src/pages/PostView.vue`:
-
-```vue
-<script setup lang="ts">
-defineProps<{ id: string }>()
-</script>
-
-<template>
-  <article>
-    <h1>글 {{ id }}</h1>
-  </article>
-</template>
-```
-
-`src/pages/LoginView.vue`:
-
-```vue
-<script setup lang="ts">
-import { useRoute, useRouter } from 'vue-router'
-import { useAuthStore } from '../stores/auth'
-
-const route = useRoute()
-const router = useRouter()
-const auth = useAuthStore()
-
-function submit() {
-  auth.login('demo')
-  const redirect = typeof route.query.redirect === 'string' ? route.query.redirect : '/'
-  router.replace(redirect)
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">submit</span>(<span class="hljs-params"></span>) {
+  auth.<span class="hljs-title function_">login</span>(<span class="hljs-string">&#x27;demo&#x27;</span>)
+  <span class="hljs-keyword">const</span> redirect = <span class="hljs-keyword">typeof</span> route.<span class="hljs-property">query</span>.<span class="hljs-property">redirect</span> === <span class="hljs-string">&#x27;string&#x27;</span> ? route.<span class="hljs-property">query</span>.<span class="hljs-property">redirect</span> : <span class="hljs-string">&#x27;/&#x27;</span>
+  router.<span class="hljs-title function_">replace</span>(redirect)
 }
-</script>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-<template>
-  <form @submit.prevent="submit">
-    <button type="submit">데모 로그인</button>
-  </form>
-</template>
-```
-
-가드에서 무거운 API를 매 이동마다 호출하면 전환이 느려진다. 토큰 존재 여부처럼 최소 정보만 본다.
-
----
-
-## 4. 상태를 어디에 둘 것인가
-
-| 상태 | 위치 |
-|------|------|
-| 입력 중인 검색어 | 페이지 컴포넌트 `ref` |
-| 로그인 세션 | Pinia (+ httpOnly 쿠키는 서버) |
-| 현재 글 id | URL `params` (스토어 복제 금지) |
-| 서버 목록 캐시 | 페칭 라이브러리 검토. Pinia에 수동 복사하지 않음 |
-
-URL에 있는 값을 스토어에 또 넣으면 둘이 어긋난다. `id`는 라우트만 진실로 둔다.
-
----
-
-## 5. 주의 / 흔한 실수
-
-- **라우터보다 Pinia를 늦게 등록.** `beforeEach`에서 `useAuthStore()`가 실패한다.
-- **가드에서 `next()` (Vue Router 3).** Vue Router 4는 `return { name: 'login' }` 또는 아무것도 반환하지 않으면 통과다.
-- **모든 페이지를 한 번에 import.** `() => import(...)` lazy가 초기 번들을 줄인다.
-- **스토어에서 컴포넌트 `useRouter()`로 화면을 바꾸기.** 스토어는 데이터. 이동은 뷰/가드.
-- **Pinia에 서버 리스트를 미러링.** 중복·만료·페이지네이션이 한 창고에 섞인다.
-
----
-
-## 정리
-
-Router는 **주소와 화면**, Pinia는 **공유 클라이언트 상태**다. 경계를 지키면 SPA가 단순해진다.
-
-- 화면 전환 → `routes` + `RouterView`
-- 인증 문 → `meta` + `beforeEach`
-- 공유 상태 → setup 스토어 `return { ... }`
-
----
-
-## 연습
-
-1. `/about` 라우트를 lazy 컴포넌트로 추가하고 홈에서 `RouterLink`로 이동한다.
-2. `requiresAuth` 메타를 홈에도 걸고, 로그아웃 후 홈 진입이 로그인으로 리다이렉트되는지 확인한다.
-3. `useCounterStore`를 만들어 홈과 다른 페이지에서 같은 `count`가 보이는지 확인한다.0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"Vue Router와 Pinia로 화면·상태 구성\",\"description\":\"URL과 화면을 라우터로 맞추고, 여러 화면이 공유하는 상태는 Pinia 스토어에 두는 SPA 구성 방법을 정리한다.\",\"datePublished\":\"2024-09-23\",\"url\":\"https://kaisa.co.kr/posts/vue-04/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"vue\",\"keywords\":\"vue\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Vue Router와 Pinia로 화면·상태 구성\",\"item\":\"https://kaisa.co.kr/posts/vue-04/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2024-09-23"}]}],["$","h1",null,{"className":"blog-post__title","children":"Vue Router와 Pinia로 화면·상태 구성"}],["$","$L3",null,{"content":"$4"}],"$L5","$L6"]}]}]}]],["$L7","$L8","$L9","$La"],"$Lb"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Zv4TpHss7ITjpJG-s6iGo"}
-5:["$","$Lc",null,{"pathKey":"vue-04"}]
-6:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/vue-03/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"컴포넌트 props·emits·슬롯"}]]}],["$","$L2",null,{"href":"/posts/vue-05/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Vue 앱 실무 체크리스트"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
-7:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
-8:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
-9:["$","script","script-0",{"src":"/_next/static/chunks/1oevfsdj8hv5d.js","async":true}]
-a:["$","script","script-1",{"src":"/_next/static/chunks/22vl7s8dm-4u2.js","async":true}]
-b:["$","$Ld",null,{"children":["$","$e",null,{"name":"Next.MetadataOutlet","children":"$@f"}]}]
-f:null
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">form</span> @<span class="hljs-attr">submit.prevent</span>=<span class="hljs-string">&quot;submit&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span>&gt;</span>데모 로그인<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></code></pre>
+<p>가드에서 무거운 API를 매 이동마다 호출하면 전환이 느려진다. 토큰 존재 여부처럼 최소 정보만 본다.</p>
+<hr>
+<h2>4. 상태를 어디에 둘 것인가</h2>
+<table>
+<thead>
+<tr>
+<th>상태</th>
+<th>위치</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>입력 중인 검색어</td>
+<td>페이지 컴포넌트 <code>ref</code></td>
+</tr>
+<tr>
+<td>로그인 세션</td>
+<td>Pinia (+ httpOnly 쿠키는 서버)</td>
+</tr>
+<tr>
+<td>현재 글 id</td>
+<td>URL <code>params</code> (스토어 복제 금지)</td>
+</tr>
+<tr>
+<td>서버 목록 캐시</td>
+<td>페칭 라이브러리 검토. Pinia에 수동 복사하지 않음</td>
+</tr>
+</tbody></table>
+<p>URL에 있는 값을 스토어에 또 넣으면 둘이 어긋난다. <code>id</code>는 라우트만 진실로 둔다.</p>
+<hr>
+<h2>5. 주의 / 흔한 실수</h2>
+<ul>
+<li><strong>라우터보다 Pinia를 늦게 등록.</strong> <code>beforeEach</code>에서 <code>useAuthStore()</code>가 실패한다.</li>
+<li><strong>가드에서 <code>next()</code> (Vue Router 3).</strong> Vue Router 4는 <code>return { name: &#39;login&#39; }</code> 또는 아무것도 반환하지 않으면 통과다.</li>
+<li><strong>모든 페이지를 한 번에 import.</strong> <code>() =&gt; import(...)</code> lazy가 초기 번들을 줄인다.</li>
+<li><strong>스토어에서 컴포넌트 <code>useRouter()</code>로 화면을 바꾸기.</strong> 스토어는 데이터. 이동은 뷰/가드.</li>
+<li><strong>Pinia에 서버 리스트를 미러링.</strong> 중복·만료·페이지네이션이 한 창고에 섞인다.</li>
+</ul>
+<hr>
+<h2>정리</h2>
+<p>Router는 <strong>주소와 화면</strong>, Pinia는 <strong>공유 클라이언트 상태</strong>다. 경계를 지키면 SPA가 단순해진다.</p>
+<ul>
+<li>화면 전환 → <code>routes</code> + <code>RouterView</code></li>
+<li>인증 문 → <code>meta</code> + <code>beforeEach</code></li>
+<li>공유 상태 → setup 스토어 <code>return { ... }</code></li>
+</ul>
+<hr>
+<h2>연습</h2>
+<ol>
+<li><code>/about</code> 라우트를 lazy 컴포넌트로 추가하고 홈에서 <code>RouterLink</code>로 이동한다.</li>
+<li><code>requiresAuth</code> 메타를 홈에도 걸고, 로그아웃 후 홈 진입이 로그인으로 리다이렉트되는지 확인한다.</li>
+<li><code>useCounterStore</code>를 만들어 홈과 다른 페이지에서 같은 <code>count</code>가 보이는지 확인한다.</li>
+</ol>
+0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"Vue Router와 Pinia로 화면·상태 구성\",\"description\":\"URL과 화면을 라우터로 맞추고, 여러 화면이 공유하는 상태는 Pinia 스토어에 두는 SPA 구성 방법을 정리한다.\",\"datePublished\":\"2024-09-23\",\"url\":\"https://kaisa.co.kr/posts/vue-04/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"vue\",\"keywords\":\"vue\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Vue Router와 Pinia로 화면·상태 구성\",\"item\":\"https://kaisa.co.kr/posts/vue-04/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2024-09-23"}]}],["$","h1",null,{"className":"blog-post__title","children":"Vue Router와 Pinia로 화면·상태 구성"}],["$","div",null,{"className":"blog-post__body blog-post__body--markdown","children":["$","div",null,{"className":"markdown-body","dangerouslySetInnerHTML":{"__html":"$3"}}]}],"$L4","$L5"]}]}]}]],["$L6","$L7","$L8"],"$L9"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"_AZq8Hq_NwvdopxIW0Tgh"}
+4:["$","$La",null,{"pathKey":"vue-04"}]
+5:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/vue-03/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"컴포넌트 props·emits·슬롯"}]]}],["$","$L2",null,{"href":"/posts/vue-05/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Vue 앱 실무 체크리스트"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
+6:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
+7:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
+8:["$","script","script-0",{"src":"/_next/static/chunks/26shoze10o-dc.js","async":true}]
+9:["$","$Lb",null,{"children":["$","$c",null,{"name":"Next.MetadataOutlet","children":"$@d"}]}]
+d:null

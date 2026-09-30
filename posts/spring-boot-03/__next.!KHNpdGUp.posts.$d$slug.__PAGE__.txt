@@ -1,257 +1,269 @@
 1:"$Sreact.fragment"
-2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],""]
-3:I[55489,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-c:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-d:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
-e:"$Sreact.suspense"
+2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],""]
+a:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],"default"]
+b:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
+c:"$Sreact.suspense"
 :HL["/_next/static/chunks/0br7e7j26qkj3.css","style"]
 :HL["/_next/static/chunks/21i9-auhncr4a.css","style"]
-4:T1bf9,# REST API 설계 — Validation, Problem Details, RestClient
+3:T3940,<h1>REST API 설계 — Validation, Problem Details, RestClient</h1>
+<blockquote>
+<p>요약: 검증·Problem Details·RestClient로 REST API의 계약과 에러 응답, 외부 호출을 일관되게 만든다.</p>
+</blockquote>
+<hr>
+<h2>1. 컨트롤러는 HTTP 어댑터다</h2>
+<p>컨트롤러는 요청을 파싱·검증하고 애플리케이션 서비스를 호출한 뒤, 상태 코드와 본문만 매핑한다. 비즈니스 규칙은 서비스에 둔다.</p>
+<pre><code class="hljs language-java"><span class="hljs-meta">@RestController</span>
+<span class="hljs-meta">@RequestMapping(&quot;/api/users&quot;)</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserController</span> {
 
-> 요약: 검증·Problem Details·RestClient로 REST API의 계약과 에러 응답, 외부 호출을 일관되게 만든다.
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> UserService userService;
 
----
-
-## 1. 컨트롤러는 HTTP 어댑터다
-
-컨트롤러는 요청을 파싱·검증하고 애플리케이션 서비스를 호출한 뒤, 상태 코드와 본문만 매핑한다. 비즈니스 규칙은 서비스에 둔다.
-
-```java
-@RestController
-@RequestMapping("/api/users")
-public class UserController {
-
-    private final UserService userService;
-
-    public UserController(UserService userService) {
-        this.userService = userService;
+    <span class="hljs-type">public</span> <span class="hljs-title function_">UserController</span><span class="hljs-params">(UserService userService)</span> {
+        <span class="hljs-built_in">this</span>.userService = userService;
     }
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public UserResponse create(@Valid @RequestBody CreateUserRequest request) {
-        return userService.create(request);
+    <span class="hljs-meta">@PostMapping</span>
+    <span class="hljs-meta">@ResponseStatus(HttpStatus.CREATED)</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">UserResponse</span> <span class="hljs-title function_">create</span><span class="hljs-params">(<span class="hljs-meta">@Valid</span> <span class="hljs-meta">@RequestBody</span> CreateUserRequest request)</span> {
+        <span class="hljs-keyword">return</span> userService.create(request);
     }
 
-    @GetMapping("/{id}")
-    public UserResponse get(@PathVariable Long id) {
-        return userService.get(id);
+    <span class="hljs-meta">@GetMapping(&quot;/{id}&quot;)</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">UserResponse</span> <span class="hljs-title function_">get</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable</span> Long id)</span> {
+        <span class="hljs-keyword">return</span> userService.get(id);
     }
-}
-```
-
-엔티티를 그대로 응답하지 않는다. 영속성 모델과 API 계약은 별개다.
-
-```java
-public record CreateUserRequest(
+}</code></pre>
+<p>엔티티를 그대로 응답하지 않는다. 영속성 모델과 API 계약은 별개다.</p>
+<pre><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">record</span> <span class="hljs-title class_">CreateUserRequest</span><span class="hljs-params">(
         @NotBlank @Email String email,
-        @NotBlank @Size(max = 50) String name
+        @NotBlank @Size(max = 50)</span> String name
 ) {}
 
-public record UserResponse(Long id, String email, String name) {}
-```
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">record</span> <span class="hljs-title class_">UserResponse</span><span class="hljs-params">(Long id, String email, String name)</span> {}</code></pre>
+<hr>
+<h2>2. Bean Validation</h2>
+<p>한 줄 정의: <strong><code>jakarta.validation</code> 제약으로 입력 형태를 선언</strong>하고, <code>@Valid</code>가 붙은 시점에 검사한다. 의존성은 <code>spring-boot-starter-validation</code>이다.</p>
+<table>
+<thead>
+<tr>
+<th>어노테이션</th>
+<th>용도</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>@NotNull</code> / <code>@NotBlank</code></td>
+<td>필수</td>
+</tr>
+<tr>
+<td><code>@Email</code></td>
+<td>이메일</td>
+</tr>
+<tr>
+<td><code>@Size</code> / <code>@Min</code> / <code>@Max</code></td>
+<td>길이·범위</td>
+</tr>
+<tr>
+<td><code>@Pattern</code></td>
+<td>정규식</td>
+</tr>
+<tr>
+<td><code>@Valid</code></td>
+<td>중첩 객체</td>
+</tr>
+<tr>
+<td><code>@Validated</code></td>
+<td>그룹·메서드 파라미터</td>
+</tr>
+</tbody></table>
+<p>쿼리 파라미터 검증은 클래스에 <code>@Validated</code>가 있어야 동작한다.</p>
+<pre><code class="hljs language-java"><span class="hljs-meta">@Validated</span>
+<span class="hljs-meta">@RestController</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserController</span> {
 
----
-
-## 2. Bean Validation
-
-한 줄 정의: **`jakarta.validation` 제약으로 입력 형태를 선언**하고, `@Valid`가 붙은 시점에 검사한다. 의존성은 `spring-boot-starter-validation`이다.
-
-| 어노테이션 | 용도 |
-|-----------|------|
-| `@NotNull` / `@NotBlank` | 필수 |
-| `@Email` | 이메일 |
-| `@Size` / `@Min` / `@Max` | 길이·범위 |
-| `@Pattern` | 정규식 |
-| `@Valid` | 중첩 객체 |
-| `@Validated` | 그룹·메서드 파라미터 |
-
-쿼리 파라미터 검증은 클래스에 `@Validated`가 있어야 동작한다.
-
-```java
-@Validated
-@RestController
-public class UserController {
-
-    @GetMapping
-    public Page<UserResponse> search(
-            @RequestParam @Min(0) int page,
-            @RequestParam @Min(1) @Max(100) int size) {
-        return userService.search(page, size);
+    <span class="hljs-meta">@GetMapping</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">Page</span>&lt;UserResponse&gt; <span class="hljs-title function_">search</span><span class="hljs-params">(
+            <span class="hljs-meta">@RequestParam</span> <span class="hljs-meta">@Min(0)</span> <span class="hljs-type">int</span> page,
+            <span class="hljs-meta">@RequestParam</span> <span class="hljs-meta">@Min(1)</span> <span class="hljs-meta">@Max(100)</span> <span class="hljs-type">int</span> size)</span> {
+        <span class="hljs-keyword">return</span> userService.search(page, size);
     }
-}
-```
+}</code></pre>
+<p><code>@NotNull</code>은 공백 문자열을 통과시킨다. 문자열 필수는 <code>@NotBlank</code>다.</p>
+<hr>
+<h2>3. 상태 코드</h2>
+<table>
+<thead>
+<tr>
+<th>상황</th>
+<th>코드</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>조회 성공</td>
+<td>200</td>
+</tr>
+<tr>
+<td>생성</td>
+<td>201 + <code>Location</code></td>
+</tr>
+<tr>
+<td>본문 없는 성공</td>
+<td>204</td>
+</tr>
+<tr>
+<td>검증 실패</td>
+<td>400</td>
+</tr>
+<tr>
+<td>인증 필요</td>
+<td>401</td>
+</tr>
+<tr>
+<td>권한 없음</td>
+<td>403</td>
+</tr>
+<tr>
+<td>없음</td>
+<td>404</td>
+</tr>
+<tr>
+<td>중복 등 충돌</td>
+<td>409</td>
+</tr>
+<tr>
+<td>서버 오류</td>
+<td>500</td>
+</tr>
+</tbody></table>
+<pre><code class="hljs language-java"><span class="hljs-meta">@PostMapping</span>
+<span class="hljs-keyword">public</span> <span class="hljs-type">ResponseEntity</span>&lt;UserResponse&gt; <span class="hljs-title function_">create</span><span class="hljs-params">(<span class="hljs-meta">@Valid</span> <span class="hljs-meta">@RequestBody</span> CreateUserRequest request)</span> {
+    <span class="hljs-type">UserResponse</span> <span class="hljs-variable">created</span> <span class="hljs-operator">=</span> userService.create(request);
+    <span class="hljs-type">URI</span> <span class="hljs-variable">location</span> <span class="hljs-operator">=</span> URI.create(<span class="hljs-string">&quot;/api/users/&quot;</span> + created.id());
+    <span class="hljs-keyword">return</span> ResponseEntity.created(location).body(created);
+}</code></pre>
+<hr>
+<h2>4. Problem Details</h2>
+<p>한 줄 정의: <strong>RFC 7807</strong> 형식의 에러 본문이다. <code>type</code>, <code>title</code>, <code>status</code>, <code>detail</code>과 확장 필드로 클라이언트가 분기한다. Boot 3 / Framework 6의 <code>ProblemDetail</code>이 이 계약이다.</p>
+<pre><code class="hljs language-java"><span class="hljs-meta">@RestControllerAdvice</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">GlobalExceptionHandler</span> {
 
-`@NotNull`은 공백 문자열을 통과시킨다. 문자열 필수는 `@NotBlank`다.
-
----
-
-## 3. 상태 코드
-
-| 상황 | 코드 |
-|------|------|
-| 조회 성공 | 200 |
-| 생성 | 201 + `Location` |
-| 본문 없는 성공 | 204 |
-| 검증 실패 | 400 |
-| 인증 필요 | 401 |
-| 권한 없음 | 403 |
-| 없음 | 404 |
-| 중복 등 충돌 | 409 |
-| 서버 오류 | 500 |
-
-```java
-@PostMapping
-public ResponseEntity<UserResponse> create(@Valid @RequestBody CreateUserRequest request) {
-    UserResponse created = userService.create(request);
-    URI location = URI.create("/api/users/" + created.id());
-    return ResponseEntity.created(location).body(created);
-}
-```
-
----
-
-## 4. Problem Details
-
-한 줄 정의: **RFC 7807** 형식의 에러 본문이다. `type`, `title`, `status`, `detail`과 확장 필드로 클라이언트가 분기한다. Boot 3 / Framework 6의 `ProblemDetail`이 이 계약이다.
-
-```java
-@RestControllerAdvice
-public class GlobalExceptionHandler {
-
-    @ExceptionHandler(UserNotFoundException.class)
-    ResponseEntity<ProblemDetail> handleNotFound(UserNotFoundException ex) {
-        ProblemDetail problem = ProblemDetail.forStatusAndDetail(
+    <span class="hljs-meta">@ExceptionHandler(UserNotFoundException.class)</span>
+    <span class="hljs-type">ResponseEntity</span>&lt;ProblemDetail&gt; <span class="hljs-title function_">handleNotFound</span><span class="hljs-params">(UserNotFoundException ex)</span> {
+        <span class="hljs-type">ProblemDetail</span> <span class="hljs-variable">problem</span> <span class="hljs-operator">=</span> ProblemDetail.forStatusAndDetail(
                 HttpStatus.NOT_FOUND, ex.getMessage());
-        problem.setTitle("User Not Found");
-        problem.setProperty("userId", ex.getUserId());
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(problem);
+        problem.setTitle(<span class="hljs-string">&quot;User Not Found&quot;</span>);
+        problem.setProperty(<span class="hljs-string">&quot;userId&quot;</span>, ex.getUserId());
+        <span class="hljs-keyword">return</span> ResponseEntity.status(HttpStatus.NOT_FOUND).body(problem);
     }
 
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    ResponseEntity<ProblemDetail> handleValidation(MethodArgumentNotValidException ex) {
-        ProblemDetail problem = ProblemDetail.forStatus(HttpStatus.BAD_REQUEST);
-        problem.setTitle("Validation Failed");
-        problem.setProperty("errors", ex.getBindingResult().getFieldErrors().stream()
-                .map(fe -> Map.of("field", fe.getField(), "message", fe.getDefaultMessage()))
+    <span class="hljs-meta">@ExceptionHandler(MethodArgumentNotValidException.class)</span>
+    <span class="hljs-type">ResponseEntity</span>&lt;ProblemDetail&gt; <span class="hljs-title function_">handleValidation</span><span class="hljs-params">(MethodArgumentNotValidException ex)</span> {
+        <span class="hljs-type">ProblemDetail</span> <span class="hljs-variable">problem</span> <span class="hljs-operator">=</span> ProblemDetail.forStatus(HttpStatus.BAD_REQUEST);
+        problem.setTitle(<span class="hljs-string">&quot;Validation Failed&quot;</span>);
+        problem.setProperty(<span class="hljs-string">&quot;errors&quot;</span>, ex.getBindingResult().getFieldErrors().stream()
+                .map(fe -&gt; Map.of(<span class="hljs-string">&quot;field&quot;</span>, fe.getField(), <span class="hljs-string">&quot;message&quot;</span>, fe.getDefaultMessage()))
                 .toList());
-        return ResponseEntity.badRequest().body(problem);
+        <span class="hljs-keyword">return</span> ResponseEntity.badRequest().body(problem);
     }
-}
-```
+}</code></pre>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;type&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;about:blank&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;title&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;Validation Failed&quot;</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;status&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">400</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;errors&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">[</span>
+    <span class="hljs-punctuation">{</span> <span class="hljs-attr">&quot;field&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;email&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">&quot;message&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;must be a well-formed email address&quot;</span> <span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">]</span>
+<span class="hljs-punctuation">}</span></code></pre>
+<p>메시지 문자열만 제각각 내려주면 프론트가 필드 단위로 표시하기 어렵다.</p>
+<hr>
+<h2>5. 버전·페이지네이션</h2>
+<p>중소규모는 URL 버전(<code>/api/v1/users</code>)이 운영하기 쉽다. 필드 추가만 하고, 깨지는 변경은 새 버전으로 둔다.</p>
+<pre><code class="hljs language-java"><span class="hljs-meta">@GetMapping</span>
+<span class="hljs-keyword">public</span> <span class="hljs-type">Page</span>&lt;UserResponse&gt; <span class="hljs-title function_">list</span><span class="hljs-params">(Pageable pageable)</span> {
+    <span class="hljs-keyword">return</span> userService.list(pageable);
+}</code></pre>
+<pre><code class="hljs"><span class="hljs-built_in">GET</span> /api/users?<span class="hljs-attribute">page</span>=0&amp;size=20&amp;sort=createdAt,desc</code></pre>
+<p>외부 공개 API는 <code>items</code> / <code>page</code> / <code>total</code>처럼 팀 봉투를 따로 정하는 경우가 많다. <code>size</code> 상한을 두지 않으면 한 번에 전체를 끌어가는 요청이 나온다.</p>
+<hr>
+<h2>6. RestClient</h2>
+<p>한 줄 정의: Boot 3.2+의 <strong>동기 HTTP 클라이언트</strong>다. <code>RestTemplate</code>은 유지보수 모드에 가깝고, 리액티브면 <code>WebClient</code>다.</p>
+<pre><code class="hljs language-java"><span class="hljs-meta">@Configuration</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">HttpClientConfig</span> {
 
-```json
-{
-  "type": "about:blank",
-  "title": "Validation Failed",
-  "status": 400,
-  "errors": [
-    { "field": "email", "message": "must be a well-formed email address" }
-  ]
-}
-```
-
-메시지 문자열만 제각각 내려주면 프론트가 필드 단위로 표시하기 어렵다.
-
----
-
-## 5. 버전·페이지네이션
-
-중소규모는 URL 버전(`/api/v1/users`)이 운영하기 쉽다. 필드 추가만 하고, 깨지는 변경은 새 버전으로 둔다.
-
-```java
-@GetMapping
-public Page<UserResponse> list(Pageable pageable) {
-    return userService.list(pageable);
-}
-```
-
-```
-GET /api/users?page=0&size=20&sort=createdAt,desc
-```
-
-외부 공개 API는 `items` / `page` / `total`처럼 팀 봉투를 따로 정하는 경우가 많다. `size` 상한을 두지 않으면 한 번에 전체를 끌어가는 요청이 나온다.
-
----
-
-## 6. RestClient
-
-한 줄 정의: Boot 3.2+의 **동기 HTTP 클라이언트**다. `RestTemplate`은 유지보수 모드에 가깝고, 리액티브면 `WebClient`다.
-
-```java
-@Configuration
-public class HttpClientConfig {
-
-    @Bean
-    RestClient paymentRestClient(RestClient.Builder builder, PaymentProperties props) {
-        JdkClientHttpRequestFactory factory = new JdkClientHttpRequestFactory();
-        factory.setReadTimeout(Duration.ofSeconds(3));
-        return builder
+    <span class="hljs-meta">@Bean</span>
+    <span class="hljs-type">RestClient</span> <span class="hljs-title function_">paymentRestClient</span><span class="hljs-params">(RestClient.Builder builder, PaymentProperties props)</span> {
+        <span class="hljs-type">JdkClientHttpRequestFactory</span> <span class="hljs-variable">factory</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">JdkClientHttpRequestFactory</span>();
+        factory.setReadTimeout(Duration.ofSeconds(<span class="hljs-number">3</span>));
+        <span class="hljs-keyword">return</span> builder
                 .baseUrl(props.baseUrl())
                 .defaultHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .requestFactory(factory)
                 .build();
     }
-}
-```
-
-```java
-public PaymentResponse charge(ChargeRequest request) {
-    return paymentRestClient.post()
-            .uri("/charges")
+}</code></pre>
+<pre><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-type">PaymentResponse</span> <span class="hljs-title function_">charge</span><span class="hljs-params">(ChargeRequest request)</span> {
+    <span class="hljs-keyword">return</span> paymentRestClient.post()
+            .uri(<span class="hljs-string">&quot;/charges&quot;</span>)
             .body(request)
             .retrieve()
-            .onStatus(HttpStatusCode::is4xxClientError, (req, res) -> {
-                throw new PaymentRejectedException("payment rejected");
+            .onStatus(HttpStatusCode::is4xxClientError, (req, res) -&gt; {
+                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">PaymentRejectedException</span>(<span class="hljs-string">&quot;payment rejected&quot;</span>);
             })
             .body(PaymentResponse.class);
-}
-```
-
-타임아웃 없는 클라이언트는 스레드와 커넥션을 붙잡는다. 재시도는 멱등한 호출에만 붙인다.
-
----
-
-## 7. JSON·OpenAPI
-
-```yaml
-spring:
-  jackson:
-    default-property-inclusion: non_null
-    serialization:
-      write-dates-as-timestamps: false
-    time-zone: Asia/Seoul
-```
-
-날짜는 ISO-8601 (`OffsetDateTime`)을 쓴다. 문서화는 `springdoc-openapi-starter-webmvc-ui`로 `/swagger-ui.html`, `/v3/api-docs`를 연다. 운영에서는 인증 뒤에 두거나 끈다.
-
-비밀번호·토큰은 응답 DTO에 넣지 않는다. 생성·결제 API는 Idempotency-Key를 검토한다.
-
----
-
-## 8. 흔한 실수
-
-| 실수 | 대안 |
-|------|------|
-| 엔티티 직접 노출 | record DTO |
-| `@NotNull`로 문자열 필수 | `@NotBlank` |
-| 예외마다 다른 JSON 모양 | `ProblemDetail` |
-| RestTemplate 신규 코드 | `RestClient` |
-| 타임아웃 없음 | connect/read 명시 |
-
----
-
-## 연습
-
-1. `POST /api/products`에 Bean Validation과 201 Created를 붙인다.
-2. 없는 상품은 `ProblemDetail` 404로 반환한다.
-3. `RestClient`로 공개 API를 호출하는 서비스를 만든다.
-4. springdoc으로 계약을 확인한다.0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"REST API 설계 — Validation, Problem Details, RestClient\",\"description\":\"검증·Problem Details·RestClient로 REST API의 계약과 에러 응답, 외부 호출을 일관되게 만든다.\",\"datePublished\":\"2024-05-13\",\"url\":\"https://kaisa.co.kr/posts/spring-boot-03/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"spring-boot\",\"keywords\":\"spring-boot\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"REST API 설계 — Validation, Problem Details, RestClient\",\"item\":\"https://kaisa.co.kr/posts/spring-boot-03/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2024-05-13"}]}],["$","h1",null,{"className":"blog-post__title","children":"REST API 설계 — Validation, Problem Details, RestClient"}],["$","$L3",null,{"content":"$4"}],"$L5","$L6"]}]}]}]],["$L7","$L8","$L9","$La"],"$Lb"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Zv4TpHss7ITjpJG-s6iGo"}
-5:["$","$Lc",null,{"pathKey":"spring-boot-03"}]
-6:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/spring-boot-02/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"IoC, Bean, Configuration — 의존성 주입"}]]}],["$","$L2",null,{"href":"/posts/spring-boot-04/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Spring Data JPA와 영속성 계층"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
-7:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
-8:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
-9:["$","script","script-0",{"src":"/_next/static/chunks/1oevfsdj8hv5d.js","async":true}]
-a:["$","script","script-1",{"src":"/_next/static/chunks/22vl7s8dm-4u2.js","async":true}]
-b:["$","$Ld",null,{"children":["$","$e",null,{"name":"Next.MetadataOutlet","children":"$@f"}]}]
-f:null
+}</code></pre>
+<p>타임아웃 없는 클라이언트는 스레드와 커넥션을 붙잡는다. 재시도는 멱등한 호출에만 붙인다.</p>
+<hr>
+<h2>7. JSON·OpenAPI</h2>
+<pre><code class="hljs language-yaml"><span class="hljs-attr">spring:</span>
+  <span class="hljs-attr">jackson:</span>
+    <span class="hljs-attr">default-property-inclusion:</span> <span class="hljs-string">non_null</span>
+    <span class="hljs-attr">serialization:</span>
+      <span class="hljs-attr">write-dates-as-timestamps:</span> <span class="hljs-literal">false</span>
+    <span class="hljs-attr">time-zone:</span> <span class="hljs-string">Asia/Seoul</span></code></pre>
+<p>날짜는 ISO-8601 (<code>OffsetDateTime</code>)을 쓴다. 문서화는 <code>springdoc-openapi-starter-webmvc-ui</code>로 <code>/swagger-ui.html</code>, <code>/v3/api-docs</code>를 연다. 운영에서는 인증 뒤에 두거나 끈다.</p>
+<p>비밀번호·토큰은 응답 DTO에 넣지 않는다. 생성·결제 API는 Idempotency-Key를 검토한다.</p>
+<hr>
+<h2>8. 흔한 실수</h2>
+<table>
+<thead>
+<tr>
+<th>실수</th>
+<th>대안</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>엔티티 직접 노출</td>
+<td>record DTO</td>
+</tr>
+<tr>
+<td><code>@NotNull</code>로 문자열 필수</td>
+<td><code>@NotBlank</code></td>
+</tr>
+<tr>
+<td>예외마다 다른 JSON 모양</td>
+<td><code>ProblemDetail</code></td>
+</tr>
+<tr>
+<td>RestTemplate 신규 코드</td>
+<td><code>RestClient</code></td>
+</tr>
+<tr>
+<td>타임아웃 없음</td>
+<td>connect/read 명시</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>연습</h2>
+<ol>
+<li><code>POST /api/products</code>에 Bean Validation과 201 Created를 붙인다.</li>
+<li>없는 상품은 <code>ProblemDetail</code> 404로 반환한다.</li>
+<li><code>RestClient</code>로 공개 API를 호출하는 서비스를 만든다.</li>
+<li>springdoc으로 계약을 확인한다.</li>
+</ol>
+0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"REST API 설계 — Validation, Problem Details, RestClient\",\"description\":\"검증·Problem Details·RestClient로 REST API의 계약과 에러 응답, 외부 호출을 일관되게 만든다.\",\"datePublished\":\"2024-05-13\",\"url\":\"https://kaisa.co.kr/posts/spring-boot-03/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"spring-boot\",\"keywords\":\"spring-boot\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"REST API 설계 — Validation, Problem Details, RestClient\",\"item\":\"https://kaisa.co.kr/posts/spring-boot-03/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2024-05-13"}]}],["$","h1",null,{"className":"blog-post__title","children":"REST API 설계 — Validation, Problem Details, RestClient"}],["$","div",null,{"className":"blog-post__body blog-post__body--markdown","children":["$","div",null,{"className":"markdown-body","dangerouslySetInnerHTML":{"__html":"$3"}}]}],"$L4","$L5"]}]}]}]],["$L6","$L7","$L8"],"$L9"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"_AZq8Hq_NwvdopxIW0Tgh"}
+4:["$","$La",null,{"pathKey":"spring-boot-03"}]
+5:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/spring-boot-02/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"IoC, Bean, Configuration — 의존성 주입"}]]}],["$","$L2",null,{"href":"/posts/spring-boot-04/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Spring Data JPA와 영속성 계층"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
+6:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
+7:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
+8:["$","script","script-0",{"src":"/_next/static/chunks/26shoze10o-dc.js","async":true}]
+9:["$","$Lb",null,{"children":["$","$c",null,{"name":"Next.MetadataOutlet","children":"$@d"}]}]
+d:null

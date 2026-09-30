@@ -1,255 +1,228 @@
 1:"$Sreact.fragment"
-2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],""]
-3:I[55489,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-c:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-d:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
-e:"$Sreact.suspense"
+2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],""]
+a:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],"default"]
+b:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
+c:"$Sreact.suspense"
 :HL["/_next/static/chunks/0br7e7j26qkj3.css","style"]
 :HL["/_next/static/chunks/21i9-auhncr4a.css","style"]
-4:T1c3b,# 화면 전환과 다이얼로그 패턴
+3:T3eb3,<h1>화면 전환과 다이얼로그 패턴</h1>
+<blockquote>
+<p>요약: ContentControl과 DataTemplate로 ViewModel을 갈아 끼워 화면을 전환하고, 대화상자는 서비스로 추상화하는 방법을 정리한다.</p>
+</blockquote>
+<hr>
+<h2>1. 언제 어떤 전환인가</h2>
+<p>WPF에는 웹 라우터가 없다. 화면 흐름을 초기에 고른다.</p>
+<table>
+<thead>
+<tr>
+<th>방식</th>
+<th>맞는 경우</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Window를 여러 개</td>
+<td>독립 도구 창, 팝업 편집기</td>
+</tr>
+<tr>
+<td><code>Frame</code> + <code>Page</code></td>
+<td>마법사, 뒤로 가기 스택이 필요할 때</td>
+</tr>
+<tr>
+<td><code>UserControl</code> + <code>ContentControl</code></td>
+<td>단일 메인 셸. 메뉴만 바뀌는 업무 앱</td>
+</tr>
+</tbody></table>
+<p>작은·중간 앱은 <strong>현재 ViewModel을 바꾸고 ContentControl이 View를 고르는 방식</strong>이 단순하다. ViewModel이 UI 타입을 몰라도 된다.</p>
+<p>대화상자(<code>MessageBox</code>, 파일 선택)를 ViewModel에서 직접 호출하면 테스트가 실제 창을 연다. <strong>인터페이스 뒤</strong>로 숨긴다.</p>
+<hr>
+<h2>2. 핵심 개념</h2>
+<table>
+<thead>
+<tr>
+<th>개념</th>
+<th>한 줄</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>CurrentViewModel</code></td>
+<td>셸이 지금 보여줄 화면 상태</td>
+</tr>
+<tr>
+<td><code>ContentControl</code></td>
+<td><code>Content</code>에 넣은 객체를 화면에 표시한다</td>
+</tr>
+<tr>
+<td>DataTemplate</td>
+<td>그 객체의 타입 → 어떤 View XAML인지 매핑</td>
+</tr>
+<tr>
+<td><code>IDialogService</code></td>
+<td>확인/알림을 ViewModel이 UI API 없이 요청하는 창구</td>
+</tr>
+<tr>
+<td><code>IFileDialogService</code></td>
+<td>열기/저장 경로. 마찬가지로 추상화</td>
+</tr>
+</tbody></table>
+<p><code>Frame.Navigate(typeof(Page))</code>는 View 타입을 코드가 알게 된다. MVVM과 섞이면 책임이 흐려진다. 셸+DataTemplate을 기본선으로 둔다.</p>
+<hr>
+<h2>3. 동작하는 예: 셸 전환</h2>
+<p><code>ViewModels/HomeViewModel.cs</code>:</p>
+<pre><code class="hljs language-csharp"><span class="hljs-keyword">using</span> CommunityToolkit.Mvvm.ComponentModel;
 
-> 요약: ContentControl과 DataTemplate로 ViewModel을 갈아 끼워 화면을 전환하고, 대화상자는 서비스로 추상화하는 방법을 정리한다.
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">MyApp.ViewModels</span>;
 
----
-
-## 1. 언제 어떤 전환인가
-
-WPF에는 웹 라우터가 없다. 화면 흐름을 초기에 고른다.
-
-| 방식 | 맞는 경우 |
-|------|-----------|
-| Window를 여러 개 | 독립 도구 창, 팝업 편집기 |
-| `Frame` + `Page` | 마법사, 뒤로 가기 스택이 필요할 때 |
-| `UserControl` + `ContentControl` | 단일 메인 셸. 메뉴만 바뀌는 업무 앱 |
-
-작은·중간 앱은 **현재 ViewModel을 바꾸고 ContentControl이 View를 고르는 방식**이 단순하다. ViewModel이 UI 타입을 몰라도 된다.
-
-대화상자(`MessageBox`, 파일 선택)를 ViewModel에서 직접 호출하면 테스트가 실제 창을 연다. **인터페이스 뒤**로 숨긴다.
-
----
-
-## 2. 핵심 개념
-
-| 개념 | 한 줄 |
-|------|--------|
-| `CurrentViewModel` | 셸이 지금 보여줄 화면 상태 |
-| `ContentControl` | `Content`에 넣은 객체를 화면에 표시한다 |
-| DataTemplate | 그 객체의 타입 → 어떤 View XAML인지 매핑 |
-| `IDialogService` | 확인/알림을 ViewModel이 UI API 없이 요청하는 창구 |
-| `IFileDialogService` | 열기/저장 경로. 마찬가지로 추상화 |
-
-`Frame.Navigate(typeof(Page))`는 View 타입을 코드가 알게 된다. MVVM과 섞이면 책임이 흐려진다. 셸+DataTemplate을 기본선으로 둔다.
-
----
-
-## 3. 동작하는 예: 셸 전환
-
-`ViewModels/HomeViewModel.cs`:
-
-```csharp
-using CommunityToolkit.Mvvm.ComponentModel;
-
-namespace MyApp.ViewModels;
-
-public partial class HomeViewModel : ObservableObject
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">partial</span> <span class="hljs-keyword">class</span> <span class="hljs-title">HomeViewModel</span> : <span class="hljs-title">ObservableObject</span>
 {
-    public string Message { get; } = "홈";
-}
-```
+    <span class="hljs-keyword">public</span> <span class="hljs-built_in">string</span> Message { <span class="hljs-keyword">get</span>; } = <span class="hljs-string">&quot;홈&quot;</span>;
+}</code></pre>
+<p><code>ViewModels/SettingsViewModel.cs</code>:</p>
+<pre><code class="hljs language-csharp"><span class="hljs-keyword">using</span> CommunityToolkit.Mvvm.ComponentModel;
 
-`ViewModels/SettingsViewModel.cs`:
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">MyApp.ViewModels</span>;
 
-```csharp
-using CommunityToolkit.Mvvm.ComponentModel;
-
-namespace MyApp.ViewModels;
-
-public partial class SettingsViewModel : ObservableObject
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">partial</span> <span class="hljs-keyword">class</span> <span class="hljs-title">SettingsViewModel</span> : <span class="hljs-title">ObservableObject</span>
 {
-    [ObservableProperty]
-    private bool darkTheme;
-}
-```
+    [<span class="hljs-meta">ObservableProperty</span>]
+    <span class="hljs-keyword">private</span> <span class="hljs-built_in">bool</span> darkTheme;
+}</code></pre>
+<p><code>ViewModels/MainViewModel.cs</code>:</p>
+<pre><code class="hljs language-csharp"><span class="hljs-keyword">using</span> CommunityToolkit.Mvvm.ComponentModel;
+<span class="hljs-keyword">using</span> CommunityToolkit.Mvvm.Input;
 
-`ViewModels/MainViewModel.cs`:
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">MyApp.ViewModels</span>;
 
-```csharp
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
-
-namespace MyApp.ViewModels;
-
-public partial class MainViewModel : ObservableObject
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">partial</span> <span class="hljs-keyword">class</span> <span class="hljs-title">MainViewModel</span> : <span class="hljs-title">ObservableObject</span>
 {
-    [ObservableProperty]
-    private ObservableObject currentViewModel = null!;
+    [<span class="hljs-meta">ObservableProperty</span>]
+    <span class="hljs-keyword">private</span> ObservableObject currentViewModel = <span class="hljs-literal">null</span>!;
 
-    public MainViewModel()
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MainViewModel</span>()</span>
     {
-        CurrentViewModel = new HomeViewModel();
+        CurrentViewModel = <span class="hljs-keyword">new</span> HomeViewModel();
     }
 
-    [RelayCommand]
-    private void GoHome() => CurrentViewModel = new HomeViewModel();
+    [<span class="hljs-meta">RelayCommand</span>]
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">GoHome</span>()</span> =&gt; CurrentViewModel = <span class="hljs-keyword">new</span> HomeViewModel();
 
-    [RelayCommand]
-    private void GoSettings() => CurrentViewModel = new SettingsViewModel();
-}
-```
+    [<span class="hljs-meta">RelayCommand</span>]
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">GoSettings</span>()</span> =&gt; CurrentViewModel = <span class="hljs-keyword">new</span> SettingsViewModel();
+}</code></pre>
+<p>실제 앱은 인스턴스를 캐시할지, 매번 <code>new</code>할지 팀에서 정한다. 마법사는 단계마다 새로 만들고, 설정은 유지하는 편이 흔하다.</p>
+<p><code>Views/HomeView.xaml</code> (UserControl):</p>
+<pre><code class="hljs language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">UserControl</span> <span class="hljs-attr">x:Class</span>=<span class="hljs-string">&quot;MyApp.Views.HomeView&quot;</span>
+             <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;</span>
+             <span class="hljs-attr">xmlns:x</span>=<span class="hljs-string">&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">TextBlock</span> <span class="hljs-attr">Text</span>=<span class="hljs-string">&quot;{Binding Message}&quot;</span> <span class="hljs-attr">FontSize</span>=<span class="hljs-string">&quot;20&quot;</span> <span class="hljs-attr">Margin</span>=<span class="hljs-string">&quot;16&quot;</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">UserControl</span>&gt;</span></code></pre>
+<p><code>Views/MainWindow.xaml</code>:</p>
+<pre><code class="hljs language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Window</span> <span class="hljs-attr">x:Class</span>=<span class="hljs-string">&quot;MyApp.Views.MainWindow&quot;</span>
+        <span class="hljs-attr">xmlns</span>=<span class="hljs-string">&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;</span>
+        <span class="hljs-attr">xmlns:x</span>=<span class="hljs-string">&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;</span>
+        <span class="hljs-attr">xmlns:vm</span>=<span class="hljs-string">&quot;clr-namespace:MyApp.ViewModels&quot;</span>
+        <span class="hljs-attr">xmlns:views</span>=<span class="hljs-string">&quot;clr-namespace:MyApp.Views&quot;</span>
+        <span class="hljs-attr">Title</span>=<span class="hljs-string">&quot;MyApp&quot;</span> <span class="hljs-attr">Height</span>=<span class="hljs-string">&quot;400&quot;</span> <span class="hljs-attr">Width</span>=<span class="hljs-string">&quot;640&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">Window.Resources</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">DataTemplate</span> <span class="hljs-attr">DataType</span>=<span class="hljs-string">&quot;{x:Type vm:HomeViewModel}&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">views:HomeView</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">DataTemplate</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">DataTemplate</span> <span class="hljs-attr">DataType</span>=<span class="hljs-string">&quot;{x:Type vm:SettingsViewModel}&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">views:SettingsView</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">DataTemplate</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">Window.Resources</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">DockPanel</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">StackPanel</span> <span class="hljs-attr">DockPanel.Dock</span>=<span class="hljs-string">&quot;Top&quot;</span> <span class="hljs-attr">Orientation</span>=<span class="hljs-string">&quot;Horizontal&quot;</span> <span class="hljs-attr">Margin</span>=<span class="hljs-string">&quot;8&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">Button</span> <span class="hljs-attr">Content</span>=<span class="hljs-string">&quot;홈&quot;</span> <span class="hljs-attr">Command</span>=<span class="hljs-string">&quot;{Binding GoHomeCommand}&quot;</span> /&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">Button</span> <span class="hljs-attr">Content</span>=<span class="hljs-string">&quot;설정&quot;</span> <span class="hljs-attr">Command</span>=<span class="hljs-string">&quot;{Binding GoSettingsCommand}&quot;</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">StackPanel</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">ContentControl</span> <span class="hljs-attr">Content</span>=<span class="hljs-string">&quot;{Binding CurrentViewModel}&quot;</span> /&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">DockPanel</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">Window</span>&gt;</span></code></pre>
+<p><code>DataType</code> 템플릿은 <code>Content</code> 객체의 CLR 타입으로 View를 고른다. 셸은 <code>if (vm is Home)</code> 분기를 하지 않는다.</p>
+<p><code>SettingsView.xaml</code>에는 <code>{Binding DarkTheme}</code> 체크박스를 두면 된다.</p>
+<hr>
+<h2>4. 다이얼로그 서비스</h2>
+<p><code>Services/IDialogService.cs</code>:</p>
+<pre><code class="hljs language-csharp"><span class="hljs-keyword">namespace</span> <span class="hljs-title">MyApp.Services</span>;
 
-실제 앱은 인스턴스를 캐시할지, 매번 `new`할지 팀에서 정한다. 마법사는 단계마다 새로 만들고, 설정은 유지하는 편이 흔하다.
-
-`Views/HomeView.xaml` (UserControl):
-
-```xml
-<UserControl x:Class="MyApp.Views.HomeView"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-  <TextBlock Text="{Binding Message}" FontSize="20" Margin="16" />
-</UserControl>
-```
-
-`Views/MainWindow.xaml`:
-
-```xml
-<Window x:Class="MyApp.Views.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:vm="clr-namespace:MyApp.ViewModels"
-        xmlns:views="clr-namespace:MyApp.Views"
-        Title="MyApp" Height="400" Width="640">
-  <Window.Resources>
-    <DataTemplate DataType="{x:Type vm:HomeViewModel}">
-      <views:HomeView />
-    </DataTemplate>
-    <DataTemplate DataType="{x:Type vm:SettingsViewModel}">
-      <views:SettingsView />
-    </DataTemplate>
-  </Window.Resources>
-  <DockPanel>
-    <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Margin="8">
-      <Button Content="홈" Command="{Binding GoHomeCommand}" />
-      <Button Content="설정" Command="{Binding GoSettingsCommand}" />
-    </StackPanel>
-    <ContentControl Content="{Binding CurrentViewModel}" />
-  </DockPanel>
-</Window>
-```
-
-`DataType` 템플릿은 `Content` 객체의 CLR 타입으로 View를 고른다. 셸은 `if (vm is Home)` 분기를 하지 않는다.
-
-`SettingsView.xaml`에는 `{Binding DarkTheme}` 체크박스를 두면 된다.
-
----
-
-## 4. 다이얼로그 서비스
-
-`Services/IDialogService.cs`:
-
-```csharp
-namespace MyApp.Services;
-
-public interface IDialogService
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IDialogService</span>
 {
-    bool Confirm(string message, string caption = "확인");
-    void Inform(string message, string caption = "알림");
-}
-```
+    <span class="hljs-function"><span class="hljs-built_in">bool</span> <span class="hljs-title">Confirm</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> message, <span class="hljs-built_in">string</span> caption = <span class="hljs-string">&quot;확인&quot;</span></span>)</span>;
+    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Inform</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> message, <span class="hljs-built_in">string</span> caption = <span class="hljs-string">&quot;알림&quot;</span></span>)</span>;
+}</code></pre>
+<p><code>Services/WpfDialogService.cs</code>:</p>
+<pre><code class="hljs language-csharp"><span class="hljs-keyword">using</span> System.Windows;
 
-`Services/WpfDialogService.cs`:
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">MyApp.Services</span>;
 
-```csharp
-using System.Windows;
-
-namespace MyApp.Services;
-
-public sealed class WpfDialogService : IDialogService
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">sealed</span> <span class="hljs-keyword">class</span> <span class="hljs-title">WpfDialogService</span> : <span class="hljs-title">IDialogService</span>
 {
-    public bool Confirm(string message, string caption = "확인")
-        => MessageBox.Show(message, caption, MessageBoxButton.YesNo, MessageBoxImage.Question)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-built_in">bool</span> <span class="hljs-title">Confirm</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> message, <span class="hljs-built_in">string</span> caption = <span class="hljs-string">&quot;확인&quot;</span></span>)</span>
+        =&gt; MessageBox.Show(message, caption, MessageBoxButton.YesNo, MessageBoxImage.Question)
            == MessageBoxResult.Yes;
 
-    public void Inform(string message, string caption = "알림")
-        => MessageBox.Show(message, caption, MessageBoxButton.OK, MessageBoxImage.Information);
-}
-```
-
-ViewModel:
-
-```csharp
-public sealed class MainViewModel : ObservableObject
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Inform</span>(<span class="hljs-params"><span class="hljs-built_in">string</span> message, <span class="hljs-built_in">string</span> caption = <span class="hljs-string">&quot;알림&quot;</span></span>)</span>
+        =&gt; MessageBox.Show(message, caption, MessageBoxButton.OK, MessageBoxImage.Information);
+}</code></pre>
+<p>ViewModel:</p>
+<pre><code class="hljs language-csharp"><span class="hljs-keyword">public</span> <span class="hljs-keyword">sealed</span> <span class="hljs-keyword">class</span> <span class="hljs-title">MainViewModel</span> : <span class="hljs-title">ObservableObject</span>
 {
-    private readonly IDialogService _dialogs;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> IDialogService _dialogs;
 
-    public MainViewModel(IDialogService dialogs)
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MainViewModel</span>(<span class="hljs-params">IDialogService dialogs</span>)</span>
     {
         _dialogs = dialogs;
     }
 
-    [RelayCommand]
-    private void Delete()
+    [<span class="hljs-meta">RelayCommand</span>]
+    <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Delete</span>()</span>
     {
-        if (!_dialogs.Confirm("삭제할까?")) return;
-        // 삭제 로직
+        <span class="hljs-keyword">if</span> (!_dialogs.Confirm(<span class="hljs-string">&quot;삭제할까?&quot;</span>)) <span class="hljs-keyword">return</span>;
+        <span class="hljs-comment">// 삭제 로직</span>
     }
-}
-```
-
-생성자 주입이면 XAML `new MainViewModel`은 못 쓴다. `App` 또는 창 코드에서:
-
-```csharp
-public MainWindow()
+}</code></pre>
+<p>생성자 주입이면 XAML <code>new MainViewModel</code>은 못 쓴다. <code>App</code> 또는 창 코드에서:</p>
+<pre><code class="hljs language-csharp"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MainWindow</span>()</span>
 {
     InitializeComponent();
-    DataContext = new MainViewModel(new WpfDialogService());
-}
-```
-
-테스트는 `IDialogService`를 `Confirm`이 항상 true인 가짜로 바꾼다.
-
-파일 선택:
-
-```csharp
-public interface IFileDialogService
+    DataContext = <span class="hljs-keyword">new</span> MainViewModel(<span class="hljs-keyword">new</span> WpfDialogService());
+}</code></pre>
+<p>테스트는 <code>IDialogService</code>를 <code>Confirm</code>이 항상 true인 가짜로 바꾼다.</p>
+<p>파일 선택:</p>
+<pre><code class="hljs language-csharp"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IFileDialogService</span>
 {
-    string? OpenFile(string filter);
-}
-```
-
-`OpenFileDialog`는 이 구현 클래스 안에만 둔다. ViewModel은 경로 문자열만 받는다.
-
----
-
-## 5. 주의 / 흔한 실수
-
-- **ViewModel에서 `new SettingsView()`.** View 타입이 VM에 들어간다. DataTemplate만 View를 안다.
-- **`MessageBox.Show`를 명령 한가운데.** CI·단위 테스트가 멈춘다.
-- **Frame+Page와 ContentControl을 한 셸에 혼용.** 뒤로 가기 스택이 두 개가 된다. 하나를 고른다.
-- **전환마다 무거운 ViewModel을 무조건 `new`.** 입력 중이던 설정이 날아간다. 유지가 필요하면 필드로 들고 있는다.
-- **커스텀 다이얼로그 Window의 DataContext를 안 넘김.** 바인딩이 비고, 확인 결과를 닫힌 창에서 읽지 못한다. 결과를 서비스 반환값으로 받는다.
-
----
-
-## 정리
-
-전환 구조는 초기에 정할수록 싸다. **CurrentViewModel + DataTemplate + DialogService**가 실무에서 단순하다.
-
-- 화면 전환 → 셸 ViewModel의 현재 VM 교체
-- View 선택 → `DataTemplate DataType`
-- 알림·파일 → 인터페이스, WPF 구현은 한곳
-
----
-
-## 연습
-
-1. 홈/설정 버튼으로 `ContentControl` 내용이 바뀌는지 확인한다.
-2. 설정에서 `DarkTheme`를 켠 뒤 홈에 갔다 와도 값이 남게, `SettingsViewModel`을 필드로 재사용한다.
-3. 삭제 명령에 `IDialogService.Confirm`을 넣고, 취소를 누르면 목록이 그대로인지 확인한다.0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"화면 전환과 다이얼로그 패턴\",\"description\":\"ContentControl과 DataTemplate로 ViewModel을 갈아 끼워 화면을 전환하고, 대화상자는 서비스로 추상화하는 방법을 정리한다.\",\"datePublished\":\"2025-01-17\",\"url\":\"https://kaisa.co.kr/posts/wpf-05/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"wpf\",\"keywords\":\"wpf\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"화면 전환과 다이얼로그 패턴\",\"item\":\"https://kaisa.co.kr/posts/wpf-05/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2025-01-17"}]}],["$","h1",null,{"className":"blog-post__title","children":"화면 전환과 다이얼로그 패턴"}],["$","$L3",null,{"content":"$4"}],"$L5","$L6"]}]}]}]],["$L7","$L8","$L9","$La"],"$Lb"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Zv4TpHss7ITjpJG-s6iGo"}
-5:["$","$Lc",null,{"pathKey":"wpf-05"}]
-6:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/wpf-04/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"스타일·리소스·테마 관리"}]]}],["$","$L2",null,{"href":"/posts/wpf-06/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"WPF 앱 실무 체크리스트"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
-7:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
-8:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
-9:["$","script","script-0",{"src":"/_next/static/chunks/1oevfsdj8hv5d.js","async":true}]
-a:["$","script","script-1",{"src":"/_next/static/chunks/22vl7s8dm-4u2.js","async":true}]
-b:["$","$Ld",null,{"children":["$","$e",null,{"name":"Next.MetadataOutlet","children":"$@f"}]}]
-f:null
+    <span class="hljs-built_in">string</span>? OpenFile(<span class="hljs-built_in">string</span> filter);
+}</code></pre>
+<p><code>OpenFileDialog</code>는 이 구현 클래스 안에만 둔다. ViewModel은 경로 문자열만 받는다.</p>
+<hr>
+<h2>5. 주의 / 흔한 실수</h2>
+<ul>
+<li><strong>ViewModel에서 <code>new SettingsView()</code>.</strong> View 타입이 VM에 들어간다. DataTemplate만 View를 안다.</li>
+<li><strong><code>MessageBox.Show</code>를 명령 한가운데.</strong> CI·단위 테스트가 멈춘다.</li>
+<li><strong>Frame+Page와 ContentControl을 한 셸에 혼용.</strong> 뒤로 가기 스택이 두 개가 된다. 하나를 고른다.</li>
+<li><strong>전환마다 무거운 ViewModel을 무조건 <code>new</code>.</strong> 입력 중이던 설정이 날아간다. 유지가 필요하면 필드로 들고 있는다.</li>
+<li><strong>커스텀 다이얼로그 Window의 DataContext를 안 넘김.</strong> 바인딩이 비고, 확인 결과를 닫힌 창에서 읽지 못한다. 결과를 서비스 반환값으로 받는다.</li>
+</ul>
+<hr>
+<h2>정리</h2>
+<p>전환 구조는 초기에 정할수록 싸다. <strong>CurrentViewModel + DataTemplate + DialogService</strong>가 실무에서 단순하다.</p>
+<ul>
+<li>화면 전환 → 셸 ViewModel의 현재 VM 교체</li>
+<li>View 선택 → <code>DataTemplate DataType</code></li>
+<li>알림·파일 → 인터페이스, WPF 구현은 한곳</li>
+</ul>
+<hr>
+<h2>연습</h2>
+<ol>
+<li>홈/설정 버튼으로 <code>ContentControl</code> 내용이 바뀌는지 확인한다.</li>
+<li>설정에서 <code>DarkTheme</code>를 켠 뒤 홈에 갔다 와도 값이 남게, <code>SettingsViewModel</code>을 필드로 재사용한다.</li>
+<li>삭제 명령에 <code>IDialogService.Confirm</code>을 넣고, 취소를 누르면 목록이 그대로인지 확인한다.</li>
+</ol>
+0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"화면 전환과 다이얼로그 패턴\",\"description\":\"ContentControl과 DataTemplate로 ViewModel을 갈아 끼워 화면을 전환하고, 대화상자는 서비스로 추상화하는 방법을 정리한다.\",\"datePublished\":\"2025-01-17\",\"url\":\"https://kaisa.co.kr/posts/wpf-05/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"wpf\",\"keywords\":\"wpf\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"화면 전환과 다이얼로그 패턴\",\"item\":\"https://kaisa.co.kr/posts/wpf-05/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2025-01-17"}]}],["$","h1",null,{"className":"blog-post__title","children":"화면 전환과 다이얼로그 패턴"}],["$","div",null,{"className":"blog-post__body blog-post__body--markdown","children":["$","div",null,{"className":"markdown-body","dangerouslySetInnerHTML":{"__html":"$3"}}]}],"$L4","$L5"]}]}]}]],["$L6","$L7","$L8"],"$L9"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"_AZq8Hq_NwvdopxIW0Tgh"}
+4:["$","$La",null,{"pathKey":"wpf-05"}]
+5:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/wpf-04/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"스타일·리소스·테마 관리"}]]}],["$","$L2",null,{"href":"/posts/wpf-06/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"WPF 앱 실무 체크리스트"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
+6:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
+7:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
+8:["$","script","script-0",{"src":"/_next/static/chunks/26shoze10o-dc.js","async":true}]
+9:["$","$Lb",null,{"children":["$","$c",null,{"name":"Next.MetadataOutlet","children":"$@d"}]}]
+d:null

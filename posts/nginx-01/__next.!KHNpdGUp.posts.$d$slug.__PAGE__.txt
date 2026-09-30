@@ -1,160 +1,156 @@
 1:"$Sreact.fragment"
-2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],""]
-3:I[55489,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-c:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-d:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
-e:"$Sreact.suspense"
+2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],""]
+a:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],"default"]
+b:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
+c:"$Sreact.suspense"
 :HL["/_next/static/chunks/0br7e7j26qkj3.css","style"]
 :HL["/_next/static/chunks/21i9-auhncr4a.css","style"]
-4:T179c,# Nginx 리버스 프록시 기초
+3:T2385,<h1>Nginx 리버스 프록시 기초</h1>
+<blockquote>
+<p>요약: 브라우저와 앱 서버 사이에 Nginx를 두고, 정적 파일은 직접 주고 API는 내부 포트로 넘기는 최소 구성을 만든다.</p>
+</blockquote>
+<hr>
+<h2>언제 Nginx를 앞에 두는가</h2>
+<p>브라우저가 Node·Java·PHP-FPM 같은 앱 서버에 직접 붙지 않게 할 때 Nginx를 앞단에 둔다. 바깥에는 80/443만 열고, 앱은 <code>127.0.0.1:3000</code>처럼 내부 포트만 연다.</p>
+<p>리버스 프록시는 “뒤에서 오는 요청을 대신 받아 앱에 넘기는” 역할이다. 포워드 프록시(클라이언트가 밖으로 나갈 때 거치는 프록시)와 반대 방향이다.</p>
+<p>이 구성에서 Nginx가 맡는 일은 세 가지이다. 호스트 이름과 포트를 한곳에서 받는다. CSS·이미지 같은 정적 파일은 앱을 거치지 않는다. 타임아웃과 헤더를 앞단에서 고정한다.</p>
+<hr>
+<h2>요청이 앱으로 가는 최소 블록</h2>
+<p><code>server</code>는 가상 호스트이다. <code>listen</code>과 <code>server_name</code>이 맞으면 그 블록이 요청을 받는다. <code>location /</code>는 나머지 경로를 앱으로 넘긴다.</p>
+<pre><code class="hljs language-nginx"><span class="hljs-section">server</span> {
+    <span class="hljs-attribute">listen</span> <span class="hljs-number">80</span>;
+    <span class="hljs-attribute">server_name</span> example.com;
 
-> 요약: 브라우저와 앱 서버 사이에 Nginx를 두고, 정적 파일은 직접 주고 API는 내부 포트로 넘기는 최소 구성을 만든다.
-
----
-
-## 언제 Nginx를 앞에 두는가
-
-브라우저가 Node·Java·PHP-FPM 같은 앱 서버에 직접 붙지 않게 할 때 Nginx를 앞단에 둔다. 바깥에는 80/443만 열고, 앱은 `127.0.0.1:3000`처럼 내부 포트만 연다.
-
-리버스 프록시는 “뒤에서 오는 요청을 대신 받아 앱에 넘기는” 역할이다. 포워드 프록시(클라이언트가 밖으로 나갈 때 거치는 프록시)와 반대 방향이다.
-
-이 구성에서 Nginx가 맡는 일은 세 가지이다. 호스트 이름과 포트를 한곳에서 받는다. CSS·이미지 같은 정적 파일은 앱을 거치지 않는다. 타임아웃과 헤더를 앞단에서 고정한다.
-
----
-
-## 요청이 앱으로 가는 최소 블록
-
-`server`는 가상 호스트이다. `listen`과 `server_name`이 맞으면 그 블록이 요청을 받는다. `location /`는 나머지 경로를 앱으로 넘긴다.
-
-```nginx
-server {
-    listen 80;
-    server_name example.com;
-
-    location / {
-        proxy_pass http://127.0.0.1:3000;
-        proxy_http_version 1.1;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
+    <span class="hljs-section">location</span> / {
+        <span class="hljs-attribute">proxy_pass</span> http://127.0.0.1:3000;
+        <span class="hljs-attribute">proxy_http_version</span> <span class="hljs-number">1</span>.<span class="hljs-number">1</span>;
+        <span class="hljs-attribute">proxy_set_header</span> Host <span class="hljs-variable">$host</span>;
+        <span class="hljs-attribute">proxy_set_header</span> X-Real-IP <span class="hljs-variable">$remote_addr</span>;
+        <span class="hljs-attribute">proxy_set_header</span> X-Forwarded-For <span class="hljs-variable">$proxy_add_x_forwarded_for</span>;
+        <span class="hljs-attribute">proxy_set_header</span> X-Forwarded-Proto <span class="hljs-variable">$scheme</span>;
     }
-}
-```
+}</code></pre>
+<p><code>proxy_pass</code>만 넣고 헤더를 안 바꾸면 앱은 자기 자신을 <code>127.0.0.1</code>로 알게 된다. 리다이렉트 URL과 쿠키 도메인이 틀린다.</p>
+<table>
+<thead>
+<tr>
+<th>헤더</th>
+<th>앱이 알게 되는 값</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Host</code></td>
+<td>브라우저가 요청한 호스트. 가상호스트·절대 URL 생성</td>
+</tr>
+<tr>
+<td><code>X-Real-IP</code></td>
+<td>클라이언트 IP 한 개</td>
+</tr>
+<tr>
+<td><code>X-Forwarded-For</code></td>
+<td>프록시를 거친 IP 목록. 맨 앞이 원 IP인 경우가 많다</td>
+</tr>
+<tr>
+<td><code>X-Forwarded-Proto</code></td>
+<td><code>http</code> 또는 <code>https</code>. 앱이 링크 스킴을 맞출 때 쓴다</td>
+</tr>
+</tbody></table>
+<p>앱이 이 헤더를 신뢰하는지는 프레임워크 설정을 확인한다. 아무 호스트나 넘기면 호스트 헤더 공격에 열린다. <code>server_name</code>을 실제 도메인으로 제한한다.</p>
+<hr>
+<h2>정적 파일과 앱을 나눈다</h2>
+<p><code>/assets/</code>는 디스크에서 바로 주고, 나머지는 앱으로 보낸다. 앱이 이미지 요청마다 깨어날 필요가 없다.</p>
+<pre><code class="hljs language-nginx"><span class="hljs-section">server</span> {
+    <span class="hljs-attribute">listen</span> <span class="hljs-number">80</span>;
+    <span class="hljs-attribute">server_name</span> example.com;
+    <span class="hljs-attribute">root</span> /var/www/app;
 
-`proxy_pass`만 넣고 헤더를 안 바꾸면 앱은 자기 자신을 `127.0.0.1`로 알게 된다. 리다이렉트 URL과 쿠키 도메인이 틀린다.
-
-| 헤더 | 앱이 알게 되는 값 |
-|------|-------------------|
-| `Host` | 브라우저가 요청한 호스트. 가상호스트·절대 URL 생성 |
-| `X-Real-IP` | 클라이언트 IP 한 개 |
-| `X-Forwarded-For` | 프록시를 거친 IP 목록. 맨 앞이 원 IP인 경우가 많다 |
-| `X-Forwarded-Proto` | `http` 또는 `https`. 앱이 링크 스킴을 맞출 때 쓴다 |
-
-앱이 이 헤더를 신뢰하는지는 프레임워크 설정을 확인한다. 아무 호스트나 넘기면 호스트 헤더 공격에 열린다. `server_name`을 실제 도메인으로 제한한다.
-
----
-
-## 정적 파일과 앱을 나눈다
-
-`/assets/`는 디스크에서 바로 주고, 나머지는 앱으로 보낸다. 앱이 이미지 요청마다 깨어날 필요가 없다.
-
-```nginx
-server {
-    listen 80;
-    server_name example.com;
-    root /var/www/app;
-
-    location /assets/ {
-        alias /var/www/app/assets/;
-        expires 7d;
-        access_log off;
+    <span class="hljs-section">location</span> /assets/ {
+        <span class="hljs-attribute">alias</span> /var/www/app/assets/;
+        <span class="hljs-attribute">expires</span> <span class="hljs-number">7d</span>;
+        <span class="hljs-attribute">access_log</span> <span class="hljs-literal">off</span>;
     }
 
-    location / {
-        proxy_pass http://127.0.0.1:3000;
-        proxy_set_header Host $host;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
+    <span class="hljs-section">location</span> / {
+        <span class="hljs-attribute">proxy_pass</span> http://127.0.0.1:3000;
+        <span class="hljs-attribute">proxy_set_header</span> Host <span class="hljs-variable">$host</span>;
+        <span class="hljs-attribute">proxy_set_header</span> X-Forwarded-For <span class="hljs-variable">$proxy_add_x_forwarded_for</span>;
+        <span class="hljs-attribute">proxy_set_header</span> X-Forwarded-Proto <span class="hljs-variable">$scheme</span>;
     }
+}</code></pre>
+<p><code>alias</code>는 location 경로를 파일 경로로 바꾼다. <code>root</code>는 location을 root 아래에 이어 붙인다. <code>/assets/app.css</code>를 <code>alias /var/www/app/assets/</code>에 매면 파일은 <code>/var/www/app/assets/app.css</code>이다. <code>root</code>와 <code>alias</code>를 같은 location에 섞지 않는다.</p>
+<p>location은 더 구체적인 쪽이 이긴다. <code>^~ /assets/</code>처럼 접두 우선을 주면 정규식 location에 빼앗기지 않는다. 의도치 않게 정적 요청이 앱으로 들어가면 이 우선순위를 의심한다.</p>
+<table>
+<thead>
+<tr>
+<th>접두</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>=</code></td>
+<td>경로가 정확히 같을 때만</td>
+</tr>
+<tr>
+<td><code>^~</code></td>
+<td>이 접두가 이긴다. 정규식보다 앞선다</td>
+</tr>
+<tr>
+<td>접두 문자열</td>
+<td>가장 긴 접두가 후보</td>
+</tr>
+<tr>
+<td><code>~</code> / <code>~*</code></td>
+<td>정규식. <code>~*</code>는 대소문자 무시</td>
+</tr>
+</tbody></table>
+<p>앱 포트가 여러 개이면 <code>upstream</code>에 이름을 붙인다. <code>proxy_pass</code>가 주소를 반복하지 않는다.</p>
+<pre><code class="hljs language-nginx"><span class="hljs-section">upstream</span> app {
+    <span class="hljs-attribute">server</span> <span class="hljs-number">127.0.0.1:3000</span>;
 }
-```
 
-`alias`는 location 경로를 파일 경로로 바꾼다. `root`는 location을 root 아래에 이어 붙인다. `/assets/app.css`를 `alias /var/www/app/assets/`에 매면 파일은 `/var/www/app/assets/app.css`이다. `root`와 `alias`를 같은 location에 섞지 않는다.
+<span class="hljs-section">server</span> {
+    <span class="hljs-attribute">listen</span> <span class="hljs-number">80</span>;
+    <span class="hljs-attribute">server_name</span> example.com;
 
-location은 더 구체적인 쪽이 이긴다. `^~ /assets/`처럼 접두 우선을 주면 정규식 location에 빼앗기지 않는다. 의도치 않게 정적 요청이 앱으로 들어가면 이 우선순위를 의심한다.
-
-| 접두 | 의미 |
-|------|------|
-| `=` | 경로가 정확히 같을 때만 |
-| `^~` | 이 접두가 이긴다. 정규식보다 앞선다 |
-| 접두 문자열 | 가장 긴 접두가 후보 |
-| `~` / `~*` | 정규식. `~*`는 대소문자 무시 |
-
-앱 포트가 여러 개이면 `upstream`에 이름을 붙인다. `proxy_pass`가 주소를 반복하지 않는다.
-
-```nginx
-upstream app {
-    server 127.0.0.1:3000;
-}
-
-server {
-    listen 80;
-    server_name example.com;
-
-    location / {
-        proxy_pass http://app;
-        proxy_set_header Host $host;
-        proxy_set_header X-Forwarded-Proto $scheme;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    <span class="hljs-section">location</span> / {
+        <span class="hljs-attribute">proxy_pass</span> http://app;
+        <span class="hljs-attribute">proxy_set_header</span> Host <span class="hljs-variable">$host</span>;
+        <span class="hljs-attribute">proxy_set_header</span> X-Forwarded-Proto <span class="hljs-variable">$scheme</span>;
+        <span class="hljs-attribute">proxy_set_header</span> X-Forwarded-For <span class="hljs-variable">$proxy_add_x_forwarded_for</span>;
     }
-}
-```
-
-`proxy_pass http://app`처럼 변수·이름이 들어가면 URI를 그대로 넘긴다. location 경로를 잘라 붙이는 치환이 일어나지 않는다.
-
----
-
-## 적용 전에 문법부터 본다
-
-```bash
-sudo nginx -t
-sudo systemctl reload nginx
-curl -I http://127.0.0.1/
-```
-
-`-t`는 설정 파일 문법과 경로를 검사한다. 실패하면 reload하지 않는다. 잘못된 설정으로 reload하면 사이트가 통째로 죽을 수 있다.
-
-`curl -I`로 상태 코드와 `Server` 헤더를 본다. 앱이 아니라 Nginx가 응답하는지가 첫 확인이다. `502`면 업스트림(앱)이 꺼졌거나 포트가 틀린다. `404`면 location이 파일을 못 찾는다.
-
----
-
-## 흔한 실수
-
-- `proxy_pass` 뒤에 경로를 붙인다. `proxy_pass http://127.0.0.1:3000/;`처럼 슬래시가 있으면 location 치환 규칙이 달라진다. 앱 루트로 통째로 넘기면 슬래시 없이 호스트만 둔다.
-- `Host`를 넘기지 않아 앱이 내부 호스트로 리다이렉트한다.
-- `alias` 끝에 `/`가 없어 파일 경로가 이어 붙는다. location과 alias의 슬래시를 짝맞춘다.
-- `nginx -t` 없이 reload한다. 문법 오류가 운영 프로세스에 들어간다.
-- `server_name`을 `_`만 두고 여러 사이트가 한 블록으로 들어온다. 도메인을 명시한다.
-
----
-
-## 정리
-
-Nginx 첫 목표는 튜닝이 아니다. 바깥 요청을 받아 Host와 Forwarded 헤더를 채우고, 정적과 동적을 갈라 앱에 넘기는 일이다. 이 세 줄이 맞으면 TLS(전송 계층 보안)와 타임아웃은 그다음에 얹으면 된다.
-
----
-
-## 연습
-
-1. 로컬에서 앱을 3000 포트로 띄우고, 위 `server` 블록으로 80 포트에서 같은 페이지가 열리는지 `curl -I`로 확인한다.
-2. `Host` 헤더를 주석 처리한 뒤 앱이 만드는 리다이렉트 Location이 어떻게 바뀌는지 비교한다.
-3. `/assets/test.css` 파일을 디스크에 두고, 그 경로가 앱 로그에 안 찍히고 Nginx가 200을 주는지 확인한다.0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"Nginx 리버스 프록시 기초\",\"description\":\"브라우저와 앱 서버 사이에 Nginx를 두고, 정적 파일은 직접 주고 API는 내부 포트로 넘기는 최소 구성을 만든다.\",\"datePublished\":\"2023-02-07\",\"url\":\"https://kaisa.co.kr/posts/nginx-01/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"nginx\",\"keywords\":\"nginx\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Nginx 리버스 프록시 기초\",\"item\":\"https://kaisa.co.kr/posts/nginx-01/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2023-02-07"}]}],["$","h1",null,{"className":"blog-post__title","children":"Nginx 리버스 프록시 기초"}],["$","$L3",null,{"content":"$4"}],"$L5","$L6"]}]}]}]],["$L7","$L8","$L9","$La"],"$Lb"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Zv4TpHss7ITjpJG-s6iGo"}
-5:["$","$Lc",null,{"pathKey":"nginx-01"}]
-6:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[null,["$","$L2",null,{"href":"/posts/nginx-02/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Nginx에서 HTTPS·TLS 종단하기"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
-7:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
-8:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
-9:["$","script","script-0",{"src":"/_next/static/chunks/1oevfsdj8hv5d.js","async":true}]
-a:["$","script","script-1",{"src":"/_next/static/chunks/22vl7s8dm-4u2.js","async":true}]
-b:["$","$Ld",null,{"children":["$","$e",null,{"name":"Next.MetadataOutlet","children":"$@f"}]}]
-f:null
+}</code></pre>
+<p><code>proxy_pass http://app</code>처럼 변수·이름이 들어가면 URI를 그대로 넘긴다. location 경로를 잘라 붙이는 치환이 일어나지 않는다.</p>
+<hr>
+<h2>적용 전에 문법부터 본다</h2>
+<pre><code class="hljs language-bash"><span class="hljs-built_in">sudo</span> nginx -t
+<span class="hljs-built_in">sudo</span> systemctl reload nginx
+curl -I http://127.0.0.1/</code></pre>
+<p><code>-t</code>는 설정 파일 문법과 경로를 검사한다. 실패하면 reload하지 않는다. 잘못된 설정으로 reload하면 사이트가 통째로 죽을 수 있다.</p>
+<p><code>curl -I</code>로 상태 코드와 <code>Server</code> 헤더를 본다. 앱이 아니라 Nginx가 응답하는지가 첫 확인이다. <code>502</code>면 업스트림(앱)이 꺼졌거나 포트가 틀린다. <code>404</code>면 location이 파일을 못 찾는다.</p>
+<hr>
+<h2>흔한 실수</h2>
+<ul>
+<li><code>proxy_pass</code> 뒤에 경로를 붙인다. <code>proxy_pass http://127.0.0.1:3000/;</code>처럼 슬래시가 있으면 location 치환 규칙이 달라진다. 앱 루트로 통째로 넘기면 슬래시 없이 호스트만 둔다.</li>
+<li><code>Host</code>를 넘기지 않아 앱이 내부 호스트로 리다이렉트한다.</li>
+<li><code>alias</code> 끝에 <code>/</code>가 없어 파일 경로가 이어 붙는다. location과 alias의 슬래시를 짝맞춘다.</li>
+<li><code>nginx -t</code> 없이 reload한다. 문법 오류가 운영 프로세스에 들어간다.</li>
+<li><code>server_name</code>을 <code>_</code>만 두고 여러 사이트가 한 블록으로 들어온다. 도메인을 명시한다.</li>
+</ul>
+<hr>
+<h2>정리</h2>
+<p>Nginx 첫 목표는 튜닝이 아니다. 바깥 요청을 받아 Host와 Forwarded 헤더를 채우고, 정적과 동적을 갈라 앱에 넘기는 일이다. 이 세 줄이 맞으면 TLS(전송 계층 보안)와 타임아웃은 그다음에 얹으면 된다.</p>
+<hr>
+<h2>연습</h2>
+<ol>
+<li>로컬에서 앱을 3000 포트로 띄우고, 위 <code>server</code> 블록으로 80 포트에서 같은 페이지가 열리는지 <code>curl -I</code>로 확인한다.</li>
+<li><code>Host</code> 헤더를 주석 처리한 뒤 앱이 만드는 리다이렉트 Location이 어떻게 바뀌는지 비교한다.</li>
+<li><code>/assets/test.css</code> 파일을 디스크에 두고, 그 경로가 앱 로그에 안 찍히고 Nginx가 200을 주는지 확인한다.</li>
+</ol>
+0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"Nginx 리버스 프록시 기초\",\"description\":\"브라우저와 앱 서버 사이에 Nginx를 두고, 정적 파일은 직접 주고 API는 내부 포트로 넘기는 최소 구성을 만든다.\",\"datePublished\":\"2023-02-07\",\"url\":\"https://kaisa.co.kr/posts/nginx-01/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"nginx\",\"keywords\":\"nginx\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Nginx 리버스 프록시 기초\",\"item\":\"https://kaisa.co.kr/posts/nginx-01/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2023-02-07"}]}],["$","h1",null,{"className":"blog-post__title","children":"Nginx 리버스 프록시 기초"}],["$","div",null,{"className":"blog-post__body blog-post__body--markdown","children":["$","div",null,{"className":"markdown-body","dangerouslySetInnerHTML":{"__html":"$3"}}]}],"$L4","$L5"]}]}]}]],["$L6","$L7","$L8"],"$L9"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"_AZq8Hq_NwvdopxIW0Tgh"}
+4:["$","$La",null,{"pathKey":"nginx-01"}]
+5:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[null,["$","$L2",null,{"href":"/posts/nginx-02/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Nginx에서 HTTPS·TLS 종단하기"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
+6:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
+7:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
+8:["$","script","script-0",{"src":"/_next/static/chunks/26shoze10o-dc.js","async":true}]
+9:["$","$Lb",null,{"children":["$","$c",null,{"name":"Next.MetadataOutlet","children":"$@d"}]}]
+d:null

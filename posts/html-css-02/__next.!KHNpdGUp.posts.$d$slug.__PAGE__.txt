@@ -1,165 +1,144 @@
 1:"$Sreact.fragment"
-2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],""]
-3:I[55489,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-c:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-d:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
-e:"$Sreact.suspense"
+2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],""]
+a:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],"default"]
+b:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
+c:"$Sreact.suspense"
 :HL["/_next/static/chunks/0br7e7j26qkj3.css","style"]
 :HL["/_next/static/chunks/21i9-auhncr4a.css","style"]
-4:T13ce,# CSS 박스 모델과 display 기초
-
-> 요약: 박스가 content·padding·border·margin으로 어떻게 커지는지와 display가 흐름을 어떻게 바꾸는지 구분해 레이아웃을 계산한다.
-
----
-
-## 언제 박스 모델을 먼저 보는가
-
-CSS(캐스케이딩 스타일시트)에서 모든 요소는 사각형 박스로 그려진다. 너비가 안 맞거나 간격이 겹치면 장식이 아니라 박스 계산을 의심한다.
-
-레이아웃을 잡기 전에 두 가지만 고정한다. 이 박스의 너비에 padding과 border가 포함되는가. 이 박스는 한 줄을 차지하는가, 글자처럼 흐르는가.
-
----
-
-## 박스는 네 겹이다
-
-안에서 바깥으로 content, padding, border, margin이다.
-
-```
-margin          ← 이웃 박스와의 바깥 간격. 배경이 없다
-  border        ← 테두리. width에 포함할지 box-sizing이 정한다
-    padding     ← 내용과 테두리 사이 안쪽 여백
-      content   ← 텍스트·이미지·자식이 들어가는 영역
-```
-
-기본값 `content-box`에서는 `width: 200px`이 content만 200px이다. padding 16px와 border 1px를 더하면 화면에 234px가 된다. 옆 박스가 밀려 난다.
-
-`border-box`면 `width`에 padding과 border가 포함된다. 200px이라고 쓰면 테두리까지 합쳐 200px이다. 계산이 예측 가능하다.
-
-```css
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-```
-
-프로젝트 전역에 이 한 줄을 둔다. 컴포넌트마다 `box-sizing`을 바꾸지 않는다.
-
----
-
-## display가 흐름을 정한다
-
-`display`는 박스가 이웃과 어떻게 줄을 서는지를 정한다.
-
-| 값 | 동작 | 쓸 때 |
-|----|------|-------|
-| `block` | 가로를 한 줄 차지하고 위아래로 쌓인다 | 문단, 섹션, 카드 |
-| `inline` | 글자처럼 옆에 붙는다. width·height가 거의 안 먹는다 | 문장 속 강조, 링크 |
-| `inline-block` | 옆에 붙으면서 박스 크기를 지정한다 | 뱃지, 작은 버튼 나열 |
-| `none` | 그리지도 않고 자리도 없앤다 | 닫힌 메뉴, 숨긴 영역 |
-| `flex` / `grid` | 자식 배치용 컨텍스트를 연다 | 다음 글에서 다룬다 |
-
-`visibility: hidden`은 안 보이지만 자리는 남긴다. `display: none`은 자리까지 없앤다. 레이아웃이 당겨지면 `none`이고, 자리만 비워 두면 `hidden`이다.
-
-```css
-.badge {
-  display: inline-block;
-  padding: 0.25rem 0.5rem;
-  border: 1px solid #ccc;
-}
-
-.is-closed {
-  display: none;
-}
-```
-
----
-
-## 카드 한 장으로 계산해 보기
-
-```html
-<article class="card">
-  <h2>제목</h2>
-  <p>본문</p>
-</article>
-```
-
-```css
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+3:T2072,<h1>CSS 박스 모델과 display 기초</h1>
+<blockquote>
+<p>요약: 박스가 content·padding·border·margin으로 어떻게 커지는지와 display가 흐름을 어떻게 바꾸는지 구분해 레이아웃을 계산한다.</p>
+</blockquote>
+<hr>
+<h2>언제 박스 모델을 먼저 보는가</h2>
+<p>CSS(캐스케이딩 스타일시트)에서 모든 요소는 사각형 박스로 그려진다. 너비가 안 맞거나 간격이 겹치면 장식이 아니라 박스 계산을 의심한다.</p>
+<p>레이아웃을 잡기 전에 두 가지만 고정한다. 이 박스의 너비에 padding과 border가 포함되는가. 이 박스는 한 줄을 차지하는가, 글자처럼 흐르는가.</p>
+<hr>
+<h2>박스는 네 겹이다</h2>
+<p>안에서 바깥으로 content, padding, border, margin이다.</p>
+<pre><code class="hljs"><span class="hljs-attribute">margin</span>          ← 이웃 박스와의 바깥 간격. 배경이 없다
+  <span class="hljs-attribute">border</span>        ← 테두리. <span class="hljs-attribute">width</span>에 포함할지 <span class="hljs-attribute">box-sizing</span>이 정한다
+    <span class="hljs-attribute">padding</span>     ← 내용과 테두리 사이 안쪽 여백
+      <span class="hljs-attribute">content</span>   ← 텍스트·이미지·자식이 들어가는 영역</code></pre>
+<p>기본값 <code>content-box</code>에서는 <code>width: 200px</code>이 content만 200px이다. padding 16px와 border 1px를 더하면 화면에 234px가 된다. 옆 박스가 밀려 난다.</p>
+<p><code>border-box</code>면 <code>width</code>에 padding과 border가 포함된다. 200px이라고 쓰면 테두리까지 합쳐 200px이다. 계산이 예측 가능하다.</p>
+<pre><code class="hljs language-css">*,
+*<span class="hljs-selector-pseudo">::before</span>,
+*<span class="hljs-selector-pseudo">::after</span> {
+  <span class="hljs-attribute">box-sizing</span>: border-box;
+}</code></pre>
+<p>프로젝트 전역에 이 한 줄을 둔다. 컴포넌트마다 <code>box-sizing</code>을 바꾸지 않는다.</p>
+<hr>
+<h2>display가 흐름을 정한다</h2>
+<p><code>display</code>는 박스가 이웃과 어떻게 줄을 서는지를 정한다.</p>
+<table>
+<thead>
+<tr>
+<th>값</th>
+<th>동작</th>
+<th>쓸 때</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>block</code></td>
+<td>가로를 한 줄 차지하고 위아래로 쌓인다</td>
+<td>문단, 섹션, 카드</td>
+</tr>
+<tr>
+<td><code>inline</code></td>
+<td>글자처럼 옆에 붙는다. width·height가 거의 안 먹는다</td>
+<td>문장 속 강조, 링크</td>
+</tr>
+<tr>
+<td><code>inline-block</code></td>
+<td>옆에 붙으면서 박스 크기를 지정한다</td>
+<td>뱃지, 작은 버튼 나열</td>
+</tr>
+<tr>
+<td><code>none</code></td>
+<td>그리지도 않고 자리도 없앤다</td>
+<td>닫힌 메뉴, 숨긴 영역</td>
+</tr>
+<tr>
+<td><code>flex</code> / <code>grid</code></td>
+<td>자식 배치용 컨텍스트를 연다</td>
+<td>다음 글에서 다룬다</td>
+</tr>
+</tbody></table>
+<p><code>visibility: hidden</code>은 안 보이지만 자리는 남긴다. <code>display: none</code>은 자리까지 없앤다. 레이아웃이 당겨지면 <code>none</code>이고, 자리만 비워 두면 <code>hidden</code>이다.</p>
+<pre><code class="hljs language-css"><span class="hljs-selector-class">.badge</span> {
+  <span class="hljs-attribute">display</span>: inline-block;
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">0.25rem</span> <span class="hljs-number">0.5rem</span>;
+  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#ccc</span>;
 }
 
-.card {
-  width: 320px;
-  padding: 16px;
-  border: 1px solid #ddd;
-  margin: 16px;
-}
-```
-
-`border-box`이므로 테두리까지 합쳐 가로 320px이다. 바깥으로 16px 간격이 더해진다. `content-box`였다면 padding·border만큼 더 넓어져 옆 카드와 줄이 안 맞는다.
-
-이미지가 부모를 넘치지 않게 하는 최소 리셋이다.
-
-```css
-html {
-  line-height: 1.5;
+<span class="hljs-selector-class">.is-closed</span> {
+  <span class="hljs-attribute">display</span>: none;
+}</code></pre>
+<hr>
+<h2>카드 한 장으로 계산해 보기</h2>
+<pre><code class="hljs language-html"><span class="hljs-tag">&lt;<span class="hljs-name">article</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;card&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>제목<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>본문<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">article</span>&gt;</span></code></pre>
+<pre><code class="hljs language-css">*,
+*<span class="hljs-selector-pseudo">::before</span>,
+*<span class="hljs-selector-pseudo">::after</span> {
+  <span class="hljs-attribute">box-sizing</span>: border-box;
 }
 
-body {
-  margin: 0;
+<span class="hljs-selector-class">.card</span> {
+  <span class="hljs-attribute">width</span>: <span class="hljs-number">320px</span>;
+  <span class="hljs-attribute">padding</span>: <span class="hljs-number">16px</span>;
+  <span class="hljs-attribute">border</span>: <span class="hljs-number">1px</span> solid <span class="hljs-number">#ddd</span>;
+  <span class="hljs-attribute">margin</span>: <span class="hljs-number">16px</span>;
+}</code></pre>
+<p><code>border-box</code>이므로 테두리까지 합쳐 가로 320px이다. 바깥으로 16px 간격이 더해진다. <code>content-box</code>였다면 padding·border만큼 더 넓어져 옆 카드와 줄이 안 맞는다.</p>
+<p>이미지가 부모를 넘치지 않게 하는 최소 리셋이다.</p>
+<pre><code class="hljs language-css"><span class="hljs-selector-tag">html</span> {
+  <span class="hljs-attribute">line-height</span>: <span class="hljs-number">1.5</span>;
 }
 
-img,
-svg {
-  max-width: 100%;
-  height: auto;
-  display: block;
+<span class="hljs-selector-tag">body</span> {
+  <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;
 }
-```
 
-`body`의 기본 margin을 0으로 두지 않으면 페이지 가장자리에 예상 못 한 여백이 생긴다. `img`를 `block`으로 두면 인라인 이미지 아래 틈이 사라진다.
-
----
-
-## 세로 margin이 합쳐지는 이유
-
-인접한 block끼리는 위아래 margin이 더해지지 않고 큰 쪽만 남는다. 이를 margin collapse(마진 병합)라고 한다.
-
-부모의 첫 자식 `margin-top`이 부모 밖으로 새어 나가기도 한다. 부모에 padding이나 border를 두면 막힌다. overflow를 `auto`로 두는 방법도 있다.
-
-컴포넌트 사이 간격은 각자 `margin`을 쌓기보다 부모의 `gap`으로 통일하는 편이 덜 겹친다. Flexbox나 Grid에서 `gap`을 쓴다.
-
----
-
-## 흔한 실수
-
-- `width: 100%`에 padding을 더하고 가로 스크롤이 생긴다. `border-box`인지 확인한다.
-- `inline` 요소에 `width`·`height`를 준다. `inline-block`이나 `block`으로 바꾼다.
-- 숨길 때 `display: none`과 `visibility: hidden`을 혼동한다. 자리가 필요하면 `hidden`이다.
-- 세로 간격이 의도의 절반만 나온다. margin collapse를 의심한다.
-- 전체 태그 리셋으로 `ul`·`button`까지 지운다. 팀이 합의한 최소 세트만 둔다.
-
----
-
-## 정리
-
-레이아웃 버그의 상당수는 박스 크기와 `display` 오해에서 온다. 먼저 이 박스가 몇 픽셀인지, 한 줄을 차지하는지부터 본다. `border-box`를 전역으로 두고 나면 나머지는 간격과 흐름이다.
-
----
-
-## 연습
-
-1. 같은 카드에 `content-box`와 `border-box`를 번갈아 적용하고 개발자 도구에서 실제 너비를 비교한다.
-2. `inline` 링크 세 개에 padding을 준 뒤, `inline-block`으로 바꿨을 때 줄 높이가 어떻게 달라지는지 본다.
-3. 부모·자식에 `margin-top: 20px`을 각각 주고, 화면에 40px가 아니라 20px만 생기는지 확인한다.0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"CSS 박스 모델과 display 기초\",\"description\":\"박스가 content·padding·border·margin으로 어떻게 커지는지와 display가 흐름을 어떻게 바꾸는지 구분해 레이아웃을 계산한다.\",\"datePublished\":\"2023-11-15\",\"url\":\"https://kaisa.co.kr/posts/html-css-02/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"html-css\",\"keywords\":\"html-css\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"CSS 박스 모델과 display 기초\",\"item\":\"https://kaisa.co.kr/posts/html-css-02/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2023-11-15"}]}],["$","h1",null,{"className":"blog-post__title","children":"CSS 박스 모델과 display 기초"}],["$","$L3",null,{"content":"$4"}],"$L5","$L6"]}]}]}]],["$L7","$L8","$L9","$La"],"$Lb"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Zv4TpHss7ITjpJG-s6iGo"}
-5:["$","$Lc",null,{"pathKey":"html-css-02"}]
-6:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/html-css-01/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"시맨틱 HTML로 문서 뼈대 잡기"}]]}],["$","$L2",null,{"href":"/posts/html-css-03/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Flexbox로 한 줄 레이아웃 잡기"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
-7:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
-8:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
-9:["$","script","script-0",{"src":"/_next/static/chunks/1oevfsdj8hv5d.js","async":true}]
-a:["$","script","script-1",{"src":"/_next/static/chunks/22vl7s8dm-4u2.js","async":true}]
-b:["$","$Ld",null,{"children":["$","$e",null,{"name":"Next.MetadataOutlet","children":"$@f"}]}]
-f:null
+<span class="hljs-selector-tag">img</span>,
+<span class="hljs-selector-tag">svg</span> {
+  <span class="hljs-attribute">max-width</span>: <span class="hljs-number">100%</span>;
+  <span class="hljs-attribute">height</span>: auto;
+  <span class="hljs-attribute">display</span>: block;
+}</code></pre>
+<p><code>body</code>의 기본 margin을 0으로 두지 않으면 페이지 가장자리에 예상 못 한 여백이 생긴다. <code>img</code>를 <code>block</code>으로 두면 인라인 이미지 아래 틈이 사라진다.</p>
+<hr>
+<h2>세로 margin이 합쳐지는 이유</h2>
+<p>인접한 block끼리는 위아래 margin이 더해지지 않고 큰 쪽만 남는다. 이를 margin collapse(마진 병합)라고 한다.</p>
+<p>부모의 첫 자식 <code>margin-top</code>이 부모 밖으로 새어 나가기도 한다. 부모에 padding이나 border를 두면 막힌다. overflow를 <code>auto</code>로 두는 방법도 있다.</p>
+<p>컴포넌트 사이 간격은 각자 <code>margin</code>을 쌓기보다 부모의 <code>gap</code>으로 통일하는 편이 덜 겹친다. Flexbox나 Grid에서 <code>gap</code>을 쓴다.</p>
+<hr>
+<h2>흔한 실수</h2>
+<ul>
+<li><code>width: 100%</code>에 padding을 더하고 가로 스크롤이 생긴다. <code>border-box</code>인지 확인한다.</li>
+<li><code>inline</code> 요소에 <code>width</code>·<code>height</code>를 준다. <code>inline-block</code>이나 <code>block</code>으로 바꾼다.</li>
+<li>숨길 때 <code>display: none</code>과 <code>visibility: hidden</code>을 혼동한다. 자리가 필요하면 <code>hidden</code>이다.</li>
+<li>세로 간격이 의도의 절반만 나온다. margin collapse를 의심한다.</li>
+<li>전체 태그 리셋으로 <code>ul</code>·<code>button</code>까지 지운다. 팀이 합의한 최소 세트만 둔다.</li>
+</ul>
+<hr>
+<h2>정리</h2>
+<p>레이아웃 버그의 상당수는 박스 크기와 <code>display</code> 오해에서 온다. 먼저 이 박스가 몇 픽셀인지, 한 줄을 차지하는지부터 본다. <code>border-box</code>를 전역으로 두고 나면 나머지는 간격과 흐름이다.</p>
+<hr>
+<h2>연습</h2>
+<ol>
+<li>같은 카드에 <code>content-box</code>와 <code>border-box</code>를 번갈아 적용하고 개발자 도구에서 실제 너비를 비교한다.</li>
+<li><code>inline</code> 링크 세 개에 padding을 준 뒤, <code>inline-block</code>으로 바꿨을 때 줄 높이가 어떻게 달라지는지 본다.</li>
+<li>부모·자식에 <code>margin-top: 20px</code>을 각각 주고, 화면에 40px가 아니라 20px만 생기는지 확인한다.</li>
+</ol>
+0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"CSS 박스 모델과 display 기초\",\"description\":\"박스가 content·padding·border·margin으로 어떻게 커지는지와 display가 흐름을 어떻게 바꾸는지 구분해 레이아웃을 계산한다.\",\"datePublished\":\"2023-11-15\",\"url\":\"https://kaisa.co.kr/posts/html-css-02/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"html-css\",\"keywords\":\"html-css\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"CSS 박스 모델과 display 기초\",\"item\":\"https://kaisa.co.kr/posts/html-css-02/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2023-11-15"}]}],["$","h1",null,{"className":"blog-post__title","children":"CSS 박스 모델과 display 기초"}],["$","div",null,{"className":"blog-post__body blog-post__body--markdown","children":["$","div",null,{"className":"markdown-body","dangerouslySetInnerHTML":{"__html":"$3"}}]}],"$L4","$L5"]}]}]}]],["$L6","$L7","$L8"],"$L9"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"_AZq8Hq_NwvdopxIW0Tgh"}
+4:["$","$La",null,{"pathKey":"html-css-02"}]
+5:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/html-css-01/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"시맨틱 HTML로 문서 뼈대 잡기"}]]}],["$","$L2",null,{"href":"/posts/html-css-03/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Flexbox로 한 줄 레이아웃 잡기"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
+6:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
+7:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
+8:["$","script","script-0",{"src":"/_next/static/chunks/26shoze10o-dc.js","async":true}]
+9:["$","$Lb",null,{"children":["$","$c",null,{"name":"Next.MetadataOutlet","children":"$@d"}]}]
+d:null

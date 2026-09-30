@@ -1,160 +1,122 @@
 1:"$Sreact.fragment"
-2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],""]
-3:I[55489,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-c:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-d:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
-e:"$Sreact.suspense"
+2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],""]
+a:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],"default"]
+b:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
+c:"$Sreact.suspense"
 :HL["/_next/static/chunks/0br7e7j26qkj3.css","style"]
 :HL["/_next/static/chunks/21i9-auhncr4a.css","style"]
-4:T12c9,# 타이포·색·CSS 변수로 디자인 토큰 잡기
-
-> 요약: 글자 크기·행간·색을 CSS 변수로 이름 붙여 두고, 컴포넌트는 그 이름만 참조하여 화면을 일관되게 만든다.
-
----
-
-## 언제 토큰을 만드는가
-
-페이지마다 `font-size: 15px`, `#333`, `margin: 13px`가 섞이면 다음 화면을 그릴 때마다 값이 흔들린다. 반복되는 값에 이름을 붙인 것이 디자인 토큰이다.
-
-CSS 변수(커스텀 프로퍼티)로 토큰을 두면 테마 전환과 간격 통일이 한곳 수정으로 끝난다. 컴포넌트 파일에 raw hex를 직접 쓰지 않는다.
-
----
-
-## 본문이 읽히는 타이포
-
-본문은 16px 전후(`1rem`)에서 시작한다. 행간은 1.5 전후이다. 줄이 너무 길면 눈이 줄을 잃는다. 한 줄은 대략 45–75자가 읽기 쉽다.
-
-```css
-:root {
-  --font-sans: "Pretendard", system-ui, sans-serif;
-  --text-body: 1rem;
-  --text-sm: 0.875rem;
-  --text-lg: 1.25rem;
-  --leading: 1.6;
+3:T1f5a,<h1>타이포·색·CSS 변수로 디자인 토큰 잡기</h1>
+<blockquote>
+<p>요약: 글자 크기·행간·색을 CSS 변수로 이름 붙여 두고, 컴포넌트는 그 이름만 참조하여 화면을 일관되게 만든다.</p>
+</blockquote>
+<hr>
+<h2>언제 토큰을 만드는가</h2>
+<p>페이지마다 <code>font-size: 15px</code>, <code>#333</code>, <code>margin: 13px</code>가 섞이면 다음 화면을 그릴 때마다 값이 흔들린다. 반복되는 값에 이름을 붙인 것이 디자인 토큰이다.</p>
+<p>CSS 변수(커스텀 프로퍼티)로 토큰을 두면 테마 전환과 간격 통일이 한곳 수정으로 끝난다. 컴포넌트 파일에 raw hex를 직접 쓰지 않는다.</p>
+<hr>
+<h2>본문이 읽히는 타이포</h2>
+<p>본문은 16px 전후(<code>1rem</code>)에서 시작한다. 행간은 1.5 전후이다. 줄이 너무 길면 눈이 줄을 잃는다. 한 줄은 대략 45–75자가 읽기 쉽다.</p>
+<pre><code class="hljs language-css"><span class="hljs-selector-pseudo">:root</span> {
+  <span class="hljs-attr">--font-sans</span>: <span class="hljs-string">&quot;Pretendard&quot;</span>, system-ui, sans-serif;
+  <span class="hljs-attr">--text-body</span>: <span class="hljs-number">1rem</span>;
+  <span class="hljs-attr">--text-sm</span>: <span class="hljs-number">0.875rem</span>;
+  <span class="hljs-attr">--text-lg</span>: <span class="hljs-number">1.25rem</span>;
+  <span class="hljs-attr">--leading</span>: <span class="hljs-number">1.6</span>;
 }
 
-body {
-  font-family: var(--font-sans);
-  font-size: var(--text-body);
-  line-height: var(--leading);
+<span class="hljs-selector-tag">body</span> {
+  <span class="hljs-attribute">font-family</span>: <span class="hljs-built_in">var</span>(--font-sans);
+  <span class="hljs-attribute">font-size</span>: <span class="hljs-built_in">var</span>(--text-body);
+  <span class="hljs-attribute">line-height</span>: <span class="hljs-built_in">var</span>(--leading);
 }
 
-.lead {
-  font-size: var(--text-lg);
-  max-width: 40rem;
-}
-```
-
-제목 단계를 너무 많이 두지 않는다. `h1`–`h3` 정도로 시작하고, 같은 역할이면 같은 크기를 쓴다. 본문보다 작은 글자는 캡션·보조 설명에만 쓴다.
-
-시스템 폰트 스택을 뒤에 두면 웹폰트 로드 전에도 글자가 보인다. `"Pretendard"`만 단독으로 두지 않는다.
-
----
-
-## 색은 대비가 역할이다
-
-배경과 본문 글자의 밝기 차이가 커야 읽힌다. WCAG(웹 콘텐츠 접근성 지침) AA를 목표로 하면 본문은 대비율 4.5:1 전후가 필요하다. 브라우저 확장이나 개발자 도구로 한 번 잰다.
-
-브랜드 초록을 본문 색으로 쓰지 않는다. 브랜드 색은 링크·버튼 같은 강조에 둔다. 본문은 거의 검정에 가까운 중립색이다.
-
-성공·오류를 색만으로 알리지 않는다. 아이콘이나 “저장됨”, “필수 항목” 텍스트를 같이 둔다. 색각 차이와 흑백 인쇄에서도 의미가 남아야 한다.
-
-```css
-:root {
-  --color-bg: #f7f7f5;
-  --color-text: #1a1a1a;
-  --color-muted: #5c5c5c;
-  --color-accent: #0b6e4f;
-  --color-danger: #b42318;
+<span class="hljs-selector-class">.lead</span> {
+  <span class="hljs-attribute">font-size</span>: <span class="hljs-built_in">var</span>(--text-lg);
+  <span class="hljs-attribute">max-width</span>: <span class="hljs-number">40rem</span>;
+}</code></pre>
+<p>제목 단계를 너무 많이 두지 않는다. <code>h1</code>–<code>h3</code> 정도로 시작하고, 같은 역할이면 같은 크기를 쓴다. 본문보다 작은 글자는 캡션·보조 설명에만 쓴다.</p>
+<p>시스템 폰트 스택을 뒤에 두면 웹폰트 로드 전에도 글자가 보인다. <code>&quot;Pretendard&quot;</code>만 단독으로 두지 않는다.</p>
+<hr>
+<h2>색은 대비가 역할이다</h2>
+<p>배경과 본문 글자의 밝기 차이가 커야 읽힌다. WCAG(웹 콘텐츠 접근성 지침) AA를 목표로 하면 본문은 대비율 4.5:1 전후가 필요하다. 브라우저 확장이나 개발자 도구로 한 번 잰다.</p>
+<p>브랜드 초록을 본문 색으로 쓰지 않는다. 브랜드 색은 링크·버튼 같은 강조에 둔다. 본문은 거의 검정에 가까운 중립색이다.</p>
+<p>성공·오류를 색만으로 알리지 않는다. 아이콘이나 “저장됨”, “필수 항목” 텍스트를 같이 둔다. 색각 차이와 흑백 인쇄에서도 의미가 남아야 한다.</p>
+<pre><code class="hljs language-css"><span class="hljs-selector-pseudo">:root</span> {
+  <span class="hljs-attr">--color-bg</span>: <span class="hljs-number">#f7f7f5</span>;
+  <span class="hljs-attr">--color-text</span>: <span class="hljs-number">#1a1a1a</span>;
+  <span class="hljs-attr">--color-muted</span>: <span class="hljs-number">#5c5c5c</span>;
+  <span class="hljs-attr">--color-accent</span>: <span class="hljs-number">#0b6e4f</span>;
+  <span class="hljs-attr">--color-danger</span>: <span class="hljs-number">#b42318</span>;
 }
 
-.button-primary {
-  background: var(--color-accent);
-  color: #fff;
+<span class="hljs-selector-class">.button-primary</span> {
+  <span class="hljs-attribute">background</span>: <span class="hljs-built_in">var</span>(--color-accent);
+  <span class="hljs-attribute">color</span>: <span class="hljs-number">#fff</span>;
 }
 
-.error {
-  color: var(--color-danger);
-}
-```
-
-`.error` 옆에는 반드시 문구가 있다. 빨간 테두리만으로 끝내지 않는다.
-
----
-
-## 변수로 테마를 바꾼다
-
-`:root`에 토큰을 모은다. 다크 모드는 같은 이름에 값만 바꾼다. 컴포넌트는 `var(--color-bg)`만 보면 된다.
-
-```css
-:root {
-  --color-bg: #f7f7f5;
-  --color-text: #1a1a1a;
-  --color-accent: #0b6e4f;
-  --space-2: 0.5rem;
-  --space-4: 1rem;
-  --space-6: 1.5rem;
-  --radius: 8px;
+<span class="hljs-selector-class">.error</span> {
+  <span class="hljs-attribute">color</span>: <span class="hljs-built_in">var</span>(--color-danger);
+}</code></pre>
+<p><code>.error</code> 옆에는 반드시 문구가 있다. 빨간 테두리만으로 끝내지 않는다.</p>
+<hr>
+<h2>변수로 테마를 바꾼다</h2>
+<p><code>:root</code>에 토큰을 모은다. 다크 모드는 같은 이름에 값만 바꾼다. 컴포넌트는 <code>var(--color-bg)</code>만 보면 된다.</p>
+<pre><code class="hljs language-css"><span class="hljs-selector-pseudo">:root</span> {
+  <span class="hljs-attr">--color-bg</span>: <span class="hljs-number">#f7f7f5</span>;
+  <span class="hljs-attr">--color-text</span>: <span class="hljs-number">#1a1a1a</span>;
+  <span class="hljs-attr">--color-accent</span>: <span class="hljs-number">#0b6e4f</span>;
+  <span class="hljs-attr">--space-2</span>: <span class="hljs-number">0.5rem</span>;
+  <span class="hljs-attr">--space-4</span>: <span class="hljs-number">1rem</span>;
+  <span class="hljs-attr">--space-6</span>: <span class="hljs-number">1.5rem</span>;
+  <span class="hljs-attr">--radius</span>: <span class="hljs-number">8px</span>;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-bg: #121212;
-    --color-text: #f2f2f2;
+<span class="hljs-keyword">@media</span> (<span class="hljs-attribute">prefers-color-scheme</span>: dark) {
+  <span class="hljs-selector-pseudo">:root</span> {
+    <span class="hljs-attr">--color-bg</span>: <span class="hljs-number">#121212</span>;
+    <span class="hljs-attr">--color-text</span>: <span class="hljs-number">#f2f2f2</span>;
   }
 }
 
-body {
-  background: var(--color-bg);
-  color: var(--color-text);
+<span class="hljs-selector-tag">body</span> {
+  <span class="hljs-attribute">background</span>: <span class="hljs-built_in">var</span>(--color-bg);
+  <span class="hljs-attribute">color</span>: <span class="hljs-built_in">var</span>(--color-text);
 }
 
-.card {
-  padding: var(--space-4);
-  border-radius: var(--radius);
-}
-```
-
-컴포넌트에 `#121212`를 다시 적으면 다크 모드가 빠지기 쉽다. 색이 필요하면 토큰을 추가하고 이름만 참조한다.
-
-인라인 스타일이나 유틸 클래스에 hex를 흩뿌리는 것도 같은 문제이다. 토큰 이름과 유틸 이름을 대응시킨다.
-
----
-
-## 간격도 스케일로 제한한다
-
-`4 / 8 / 12 / 16 / 24 / 32`(px)처럼 쓸 수 있는 칸을 정해 둔다. `--space-2`, `--space-4`가 그 칸이다.
-
-임의 `13px`, `17px`가 늘수록 카드마다 숨이 달라 보인다. 새 간격이 필요하면 스케일에 단계를 추가할지 먼저 정한다.
-
----
-
-## 흔한 실수
-
-- 본문 색을 브랜드 색으로 둔다. 본문은 중립, 강조만 브랜드이다.
-- 버튼마다 `#0b6e4f`를 직접 쓴다. `--color-accent`로 올린다.
-- 제목 크기를 페이지마다 다르게 잡는다. `--text-lg` 같은 단계를 재사용한다.
-- 다크 모드에서 배경만 바꾸고 테두리·muted 텍스트를 그대로 둔다. 같이 쓰는 토큰도 덮는다.
-- 오류를 빨간 테두리만으로 표시한다. 텍스트를 입력 근처에 둔다.
-
----
-
-## 정리
-
-한 페이지를 예쁘게 만드는 값보다, 다음 페이지가 같은 이름을 쓰게 하는 값이 유지비용을 낮춘다. 글자·색·간격에 이름을 붙이고 컴포넌트는 그 이름만 참조하면 된다.
-
----
-
-## 연습
-
-1. `:root`에 본문 색·배경·강조색·행간을 변수로 옮기고, `body`와 버튼에서 hex를 제거한다.
-2. `prefers-color-scheme: dark`에서 배경과 본문 색만 바꿔 카드가 따라오는지 확인한다.
-3. 카드 padding을 `13px` 대신 `--space-4`로 바꾸고, 다른 카드도 같은 변수를 쓰게 한다.0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"타이포·색·CSS 변수로 디자인 토큰 잡기\",\"description\":\"글자 크기·행간·색을 CSS 변수로 이름 붙여 두고, 컴포넌트는 그 이름만 참조하여 화면을 일관되게 만든다.\",\"datePublished\":\"2025-09-15\",\"url\":\"https://kaisa.co.kr/posts/html-css-06/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"html-css\",\"keywords\":\"html-css\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"타이포·색·CSS 변수로 디자인 토큰 잡기\",\"item\":\"https://kaisa.co.kr/posts/html-css-06/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2025-09-15"}]}],["$","h1",null,{"className":"blog-post__title","children":"타이포·색·CSS 변수로 디자인 토큰 잡기"}],["$","$L3",null,{"content":"$4"}],"$L5","$L6"]}]}]}]],["$L7","$L8","$L9","$La"],"$Lb"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Zv4TpHss7ITjpJG-s6iGo"}
-5:["$","$Lc",null,{"pathKey":"html-css-06"}]
-6:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/html-css-05/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"반응형 디자인과 미디어 쿼리"}]]}],["$","$L2",null,{"href":"/posts/html-css-07/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"폼·포커스·접근성 기본"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
-7:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
-8:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
-9:["$","script","script-0",{"src":"/_next/static/chunks/1oevfsdj8hv5d.js","async":true}]
-a:["$","script","script-1",{"src":"/_next/static/chunks/22vl7s8dm-4u2.js","async":true}]
-b:["$","$Ld",null,{"children":["$","$e",null,{"name":"Next.MetadataOutlet","children":"$@f"}]}]
-f:null
+<span class="hljs-selector-class">.card</span> {
+  <span class="hljs-attribute">padding</span>: <span class="hljs-built_in">var</span>(--space-<span class="hljs-number">4</span>);
+  <span class="hljs-attribute">border-radius</span>: <span class="hljs-built_in">var</span>(--radius);
+}</code></pre>
+<p>컴포넌트에 <code>#121212</code>를 다시 적으면 다크 모드가 빠지기 쉽다. 색이 필요하면 토큰을 추가하고 이름만 참조한다.</p>
+<p>인라인 스타일이나 유틸 클래스에 hex를 흩뿌리는 것도 같은 문제이다. 토큰 이름과 유틸 이름을 대응시킨다.</p>
+<hr>
+<h2>간격도 스케일로 제한한다</h2>
+<p><code>4 / 8 / 12 / 16 / 24 / 32</code>(px)처럼 쓸 수 있는 칸을 정해 둔다. <code>--space-2</code>, <code>--space-4</code>가 그 칸이다.</p>
+<p>임의 <code>13px</code>, <code>17px</code>가 늘수록 카드마다 숨이 달라 보인다. 새 간격이 필요하면 스케일에 단계를 추가할지 먼저 정한다.</p>
+<hr>
+<h2>흔한 실수</h2>
+<ul>
+<li>본문 색을 브랜드 색으로 둔다. 본문은 중립, 강조만 브랜드이다.</li>
+<li>버튼마다 <code>#0b6e4f</code>를 직접 쓴다. <code>--color-accent</code>로 올린다.</li>
+<li>제목 크기를 페이지마다 다르게 잡는다. <code>--text-lg</code> 같은 단계를 재사용한다.</li>
+<li>다크 모드에서 배경만 바꾸고 테두리·muted 텍스트를 그대로 둔다. 같이 쓰는 토큰도 덮는다.</li>
+<li>오류를 빨간 테두리만으로 표시한다. 텍스트를 입력 근처에 둔다.</li>
+</ul>
+<hr>
+<h2>정리</h2>
+<p>한 페이지를 예쁘게 만드는 값보다, 다음 페이지가 같은 이름을 쓰게 하는 값이 유지비용을 낮춘다. 글자·색·간격에 이름을 붙이고 컴포넌트는 그 이름만 참조하면 된다.</p>
+<hr>
+<h2>연습</h2>
+<ol>
+<li><code>:root</code>에 본문 색·배경·강조색·행간을 변수로 옮기고, <code>body</code>와 버튼에서 hex를 제거한다.</li>
+<li><code>prefers-color-scheme: dark</code>에서 배경과 본문 색만 바꿔 카드가 따라오는지 확인한다.</li>
+<li>카드 padding을 <code>13px</code> 대신 <code>--space-4</code>로 바꾸고, 다른 카드도 같은 변수를 쓰게 한다.</li>
+</ol>
+0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"타이포·색·CSS 변수로 디자인 토큰 잡기\",\"description\":\"글자 크기·행간·색을 CSS 변수로 이름 붙여 두고, 컴포넌트는 그 이름만 참조하여 화면을 일관되게 만든다.\",\"datePublished\":\"2025-09-15\",\"url\":\"https://kaisa.co.kr/posts/html-css-06/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"html-css\",\"keywords\":\"html-css\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"타이포·색·CSS 변수로 디자인 토큰 잡기\",\"item\":\"https://kaisa.co.kr/posts/html-css-06/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2025-09-15"}]}],["$","h1",null,{"className":"blog-post__title","children":"타이포·색·CSS 변수로 디자인 토큰 잡기"}],["$","div",null,{"className":"blog-post__body blog-post__body--markdown","children":["$","div",null,{"className":"markdown-body","dangerouslySetInnerHTML":{"__html":"$3"}}]}],"$L4","$L5"]}]}]}]],["$L6","$L7","$L8"],"$L9"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"_AZq8Hq_NwvdopxIW0Tgh"}
+4:["$","$La",null,{"pathKey":"html-css-06"}]
+5:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/html-css-05/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"반응형 디자인과 미디어 쿼리"}]]}],["$","$L2",null,{"href":"/posts/html-css-07/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"폼·포커스·접근성 기본"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
+6:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
+7:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
+8:["$","script","script-0",{"src":"/_next/static/chunks/26shoze10o-dc.js","async":true}]
+9:["$","$Lb",null,{"children":["$","$c",null,{"name":"Next.MetadataOutlet","children":"$@d"}]}]
+d:null

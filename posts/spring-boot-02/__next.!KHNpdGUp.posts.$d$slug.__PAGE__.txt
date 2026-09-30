@@ -1,236 +1,217 @@
 1:"$Sreact.fragment"
-2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],""]
-3:I[55489,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-c:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-d:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
-e:"$Sreact.suspense"
+2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],""]
+a:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],"default"]
+b:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
+c:"$Sreact.suspense"
 :HL["/_next/static/chunks/0br7e7j26qkj3.css","style"]
 :HL["/_next/static/chunks/21i9-auhncr4a.css","style"]
-4:T186c,# IoC, Bean, Configuration — 의존성 주입
+3:T2ec2,<h1>IoC, Bean, Configuration — 의존성 주입</h1>
+<blockquote>
+<p>요약: IoC 컨테이너가 Bean을 조립하는 방식을 이해하고, 생성자 주입과 타입 세이프 설정으로 의존성을 구성한다.</p>
+</blockquote>
+<hr>
+<h2>1. 왜 IoC인가</h2>
+<p><strong>IoC(Inversion of Control)</strong> 는 객체 생성과 생명주기 제어권을 프레임워크가 갖는 것이다. <strong>DI(Dependency Injection)</strong> 는 그 구현 방식으로, 필요한 의존성을 외부에서 넣어 준다.</p>
+<p>직접 <code>new</code>로 조립하면 테스트에서 구현을 바꾸기 어렵다. Spring은 <strong>Bean</strong>—컨테이너가 만들고 주입하는 객체—으로 그래프를 짠다.</p>
+<hr>
+<h2>2. Bean이 되는 방법</h2>
+<p>직접 만든 클래스는 스테레오타입, 외부 라이브러리 객체는 <code>@Bean</code>이 기본이다.</p>
+<table>
+<thead>
+<tr>
+<th>방식</th>
+<th>언제</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>@Component</code> / <code>@Service</code> / <code>@Repository</code> / <code>@Controller</code></td>
+<td>우리가 작성한 클래스</td>
+</tr>
+<tr>
+<td><code>@Bean</code> + <code>@Configuration</code></td>
+<td>생성 과정이 있거나 남이 만든 타입</td>
+</tr>
+<tr>
+<td><code>@ConfigurationProperties</code></td>
+<td>설정값을 타입으로 바인딩</td>
+</tr>
+<tr>
+<td>Auto-configuration</td>
+<td>starter가 조건에 맞으면 등록</td>
+</tr>
+</tbody></table>
+<pre><code class="hljs language-java"><span class="hljs-meta">@Service</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">OrderService</span> {
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> OrderRepository orderRepository;
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> PaymentClient paymentClient;
 
-> 요약: IoC 컨테이너가 Bean을 조립하는 방식을 이해하고, 생성자 주입과 타입 세이프 설정으로 의존성을 구성한다.
-
----
-
-## 1. 왜 IoC인가
-
-**IoC(Inversion of Control)** 는 객체 생성과 생명주기 제어권을 프레임워크가 갖는 것이다. **DI(Dependency Injection)** 는 그 구현 방식으로, 필요한 의존성을 외부에서 넣어 준다.
-
-직접 `new`로 조립하면 테스트에서 구현을 바꾸기 어렵다. Spring은 **Bean**—컨테이너가 만들고 주입하는 객체—으로 그래프를 짠다.
-
----
-
-## 2. Bean이 되는 방법
-
-직접 만든 클래스는 스테레오타입, 외부 라이브러리 객체는 `@Bean`이 기본이다.
-
-| 방식 | 언제 |
-|------|------|
-| `@Component` / `@Service` / `@Repository` / `@Controller` | 우리가 작성한 클래스 |
-| `@Bean` + `@Configuration` | 생성 과정이 있거나 남이 만든 타입 |
-| `@ConfigurationProperties` | 설정값을 타입으로 바인딩 |
-| Auto-configuration | starter가 조건에 맞으면 등록 |
-
-```java
-@Service
-public class OrderService {
-    private final OrderRepository orderRepository;
-    private final PaymentClient paymentClient;
-
-    public OrderService(OrderRepository orderRepository, PaymentClient paymentClient) {
-        this.orderRepository = orderRepository;
-        this.paymentClient = paymentClient;
+    <span class="hljs-type">public</span> <span class="hljs-title function_">OrderService</span><span class="hljs-params">(OrderRepository orderRepository, PaymentClient paymentClient)</span> {
+        <span class="hljs-built_in">this</span>.orderRepository = orderRepository;
+        <span class="hljs-built_in">this</span>.paymentClient = paymentClient;
     }
-}
-```
+}</code></pre>
+<p>생성자가 하나면 <code>@Autowired</code>는 생략한다.</p>
+<hr>
+<h2>3. 주입 방식</h2>
+<p>생성자 주입이 기본선이다. <code>final</code>로 불변이고, 순환 의존성은 기동 시점에 드러나며, 테스트에서 목을 넣기 쉽다.</p>
+<pre><code class="hljs language-java"><span class="hljs-meta">@Service</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserService</span> {
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> UserRepository userRepository;
 
-생성자가 하나면 `@Autowired`는 생략한다.
-
----
-
-## 3. 주입 방식
-
-생성자 주입이 기본선이다. `final`로 불변이고, 순환 의존성은 기동 시점에 드러나며, 테스트에서 목을 넣기 쉽다.
-
-```java
-@Service
-public class UserService {
-    private final UserRepository userRepository;
-
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    <span class="hljs-type">public</span> <span class="hljs-title function_">UserService</span><span class="hljs-params">(UserRepository userRepository)</span> {
+        <span class="hljs-built_in">this</span>.userRepository = userRepository;
     }
-}
-```
+}</code></pre>
+<p><code>@Autowired</code> 필드 주입은 테스트와 불변성이 약하다. Setter는 정말 선택적 의존성일 때만 쓴다.</p>
+<hr>
+<h2>4. <code>@Configuration</code>과 <code>@Bean</code></h2>
+<p>한 줄 정의: 설정 클래스는 <strong>조립 공장</strong>이고, <code>@Bean</code> 메서드 반환값이 컨테이너에 등록된다.</p>
+<pre><code class="hljs language-java"><span class="hljs-meta">@Configuration</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">AppConfig</span> {
 
-`@Autowired` 필드 주입은 테스트와 불변성이 약하다. Setter는 정말 선택적 의존성일 때만 쓴다.
-
----
-
-## 4. `@Configuration`과 `@Bean`
-
-한 줄 정의: 설정 클래스는 **조립 공장**이고, `@Bean` 메서드 반환값이 컨테이너에 등록된다.
-
-```java
-@Configuration
-public class AppConfig {
-
-    @Bean
-    Clock clock() {
-        return Clock.systemUTC();
+    <span class="hljs-meta">@Bean</span>
+    <span class="hljs-type">Clock</span> <span class="hljs-title function_">clock</span><span class="hljs-params">()</span> {
+        <span class="hljs-keyword">return</span> Clock.systemUTC();
     }
 
-    @Bean
-    ObjectMapper objectMapper() {
-        return JsonMapper.builder()
-                .addModule(new JavaTimeModule())
+    <span class="hljs-meta">@Bean</span>
+    <span class="hljs-type">ObjectMapper</span> <span class="hljs-title function_">objectMapper</span><span class="hljs-params">()</span> {
+        <span class="hljs-keyword">return</span> JsonMapper.builder()
+                .addModule(<span class="hljs-keyword">new</span> <span class="hljs-title class_">JavaTimeModule</span>())
                 .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
                 .build();
     }
+}</code></pre>
+<p>기본 <code>@Configuration</code>은 CGLIB 프록시로 <code>@Bean</code> 메서드 간 호출을 싱글톤으로 맞춘다. <code>@Bean</code>끼리 서로 호출하지 않으면 <code>@Configuration(proxyBeanMethods = false)</code>(Lite)가 기동에 유리하다.</p>
+<hr>
+<h2>5. 스코프</h2>
+<table>
+<thead>
+<tr>
+<th>Scope</th>
+<th>의미</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>singleton</code> (기본)</td>
+<td>컨테이너당 하나</td>
+</tr>
+<tr>
+<td><code>prototype</code></td>
+<td>조회마다 새 인스턴스</td>
+</tr>
+<tr>
+<td><code>request</code> / <code>session</code></td>
+<td>HTTP 요청·세션당 하나</td>
+</tr>
+</tbody></table>
+<p>서비스·리포지토리는 거의 항상 singleton이다. <strong>요청 상태를 필드로 두지 않는다.</strong> 두면 스레드끼리 데이터가 섞인다.</p>
+<pre><code class="hljs language-java"><span class="hljs-meta">@Bean</span>
+<span class="hljs-meta">@Scope(&quot;prototype&quot;)</span>
+<span class="hljs-type">ReportBuilder</span> <span class="hljs-title function_">reportBuilder</span><span class="hljs-params">()</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ReportBuilder</span>();
+}</code></pre>
+<hr>
+<h2>6. 조건부 Bean</h2>
+<p>환경마다 구현을 바꾸려면 조건 어노테이션을 쓴다. 로컬에서만 가짜 클라이언트를 쓰는 전형적인 패턴이다.</p>
+<pre><code class="hljs language-java"><span class="hljs-meta">@Bean</span>
+<span class="hljs-meta">@ConditionalOnProperty(name = &quot;app.mail.enabled&quot;, havingValue = &quot;true&quot;)</span>
+<span class="hljs-type">MailSender</span> <span class="hljs-title function_">mailSender</span><span class="hljs-params">(MailProperties props)</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">SmtpMailSender</span>(props);
 }
-```
 
-기본 `@Configuration`은 CGLIB 프록시로 `@Bean` 메서드 간 호출을 싱글톤으로 맞춘다. `@Bean`끼리 서로 호출하지 않으면 `@Configuration(proxyBeanMethods = false)`(Lite)가 기동에 유리하다.
-
----
-
-## 5. 스코프
-
-| Scope | 의미 |
-|-------|------|
-| `singleton` (기본) | 컨테이너당 하나 |
-| `prototype` | 조회마다 새 인스턴스 |
-| `request` / `session` | HTTP 요청·세션당 하나 |
-
-서비스·리포지토리는 거의 항상 singleton이다. **요청 상태를 필드로 두지 않는다.** 두면 스레드끼리 데이터가 섞인다.
-
-```java
-@Bean
-@Scope("prototype")
-ReportBuilder reportBuilder() {
-    return new ReportBuilder();
-}
-```
-
----
-
-## 6. 조건부 Bean
-
-환경마다 구현을 바꾸려면 조건 어노테이션을 쓴다. 로컬에서만 가짜 클라이언트를 쓰는 전형적인 패턴이다.
-
-```java
-@Bean
-@ConditionalOnProperty(name = "app.mail.enabled", havingValue = "true")
-MailSender mailSender(MailProperties props) {
-    return new SmtpMailSender(props);
-}
-
-@Bean
-@ConditionalOnMissingBean(MailSender.class)
-MailSender noopMailSender() {
-    return new NoopMailSender();
-}
-```
-
-`@Profile("!prod")`, `@ConditionalOnClass`, `@ConditionalOnWebApplication`도 같은 계열이다.
-
-```java
-@Service
-@Profile("!prod")
-public class FakePaymentClient implements PaymentClient { }
-```
-
----
-
-## 7. `@ConfigurationProperties`
-
-URL·타임아웃을 코드에 쓰지 않는다. Boot 3에서는 **record + `@ConfigurationProperties`** 가 맞다.
-
-```java
-@ConfigurationProperties(prefix = "app.payment")
-public record PaymentProperties(
+<span class="hljs-meta">@Bean</span>
+<span class="hljs-meta">@ConditionalOnMissingBean(MailSender.class)</span>
+<span class="hljs-type">MailSender</span> <span class="hljs-title function_">noopMailSender</span><span class="hljs-params">()</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">NoopMailSender</span>();
+}</code></pre>
+<p><code>@Profile(&quot;!prod&quot;)</code>, <code>@ConditionalOnClass</code>, <code>@ConditionalOnWebApplication</code>도 같은 계열이다.</p>
+<pre><code class="hljs language-java"><span class="hljs-meta">@Service</span>
+<span class="hljs-meta">@Profile(&quot;!prod&quot;)</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">FakePaymentClient</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">PaymentClient</span> { }</code></pre>
+<hr>
+<h2>7. <code>@ConfigurationProperties</code></h2>
+<p>URL·타임아웃을 코드에 쓰지 않는다. Boot 3에서는 <strong>record + <code>@ConfigurationProperties</code></strong> 가 맞다.</p>
+<pre><code class="hljs language-java"><span class="hljs-meta">@ConfigurationProperties(prefix = &quot;app.payment&quot;)</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">record</span> <span class="hljs-title class_">PaymentProperties</span><span class="hljs-params">(
         String baseUrl,
         Duration timeout,
-        int maxRetries
-) {}
-```
+        <span class="hljs-type">int</span> maxRetries
+)</span> {}</code></pre>
+<pre><code class="hljs language-yaml"><span class="hljs-attr">app:</span>
+  <span class="hljs-attr">payment:</span>
+    <span class="hljs-attr">base-url:</span> <span class="hljs-string">https://pay.example.com</span>
+    <span class="hljs-attr">timeout:</span> <span class="hljs-string">3s</span>
+    <span class="hljs-attr">max-retries:</span> <span class="hljs-number">2</span></code></pre>
+<pre><code class="hljs language-java"><span class="hljs-meta">@Configuration</span>
+<span class="hljs-meta">@EnableConfigurationProperties(PaymentProperties.class)</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">PaymentConfig</span> {
 
-```yaml
-app:
-  payment:
-    base-url: https://pay.example.com
-    timeout: 3s
-    max-retries: 2
-```
-
-```java
-@Configuration
-@EnableConfigurationProperties(PaymentProperties.class)
-public class PaymentConfig {
-
-    @Bean
-    PaymentClient paymentClient(PaymentProperties props, RestClient.Builder builder) {
-        return new HttpPaymentClient(builder.baseUrl(props.baseUrl()).build(), props);
+    <span class="hljs-meta">@Bean</span>
+    <span class="hljs-type">PaymentClient</span> <span class="hljs-title function_">paymentClient</span><span class="hljs-params">(PaymentProperties props, RestClient.Builder builder)</span> {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">HttpPaymentClient</span>(builder.baseUrl(props.baseUrl()).build(), props);
     }
-}
-```
-
-IDE 자동완성은 `spring-boot-configuration-processor`를 annotation processor로 넣으면 된다.
-
----
-
-## 8. 포트로 의존성 끊기
-
-구현체가 아니라 **인터페이스(포트)** 에 의존하면 테스트에서 구현만 바꾸면 된다.
-
-```java
-public interface NotificationPort {
-    void send(String to, String message);
+}</code></pre>
+<p>IDE 자동완성은 <code>spring-boot-configuration-processor</code>를 annotation processor로 넣으면 된다.</p>
+<hr>
+<h2>8. 포트로 의존성 끊기</h2>
+<p>구현체가 아니라 <strong>인터페이스(포트)</strong> 에 의존하면 테스트에서 구현만 바꾸면 된다.</p>
+<pre><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">NotificationPort</span> {
+    <span class="hljs-type">void</span> <span class="hljs-title function_">send</span><span class="hljs-params">(String to, String message)</span>;
 }
 
-@Service
-public class EmailNotificationAdapter implements NotificationPort { }
-```
-
----
-
-## 9. 순환 의존성과 생명주기
-
-Boot 3는 순환 참조를 기본적으로 허용하지 않는다. 공통 로직을 제3 서비스로 빼거나 `ApplicationEventPublisher`로 결합을 낮춘다. `@Lazy`는 최후 수단이다.
-
-기동·종료 훅은 `@PostConstruct` / `@PreDestroy` 또는 `@Bean(initMethod, destroyMethod)`다. 파일·스레드 풀처럼 닫을 자원이 있으면 destroy를 빠뜨리지 않는다.
-
-```java
-@Bean(initMethod = "start", destroyMethod = "stop")
-MyWorker myWorker() {
-    return new MyWorker();
-}
-```
-
----
-
-## 10. 흔한 실수
-
-| 실수 | 대안 |
-|------|------|
-| 필드 `@Autowired` | 생성자 + `final` |
-| yml 값을 `@Value`로 흩뿌리기 | `@ConfigurationProperties` |
-| 서비스에 요청 상태 필드 | 메서드 인자·요청 스코프 |
-| 순환을 `@Lazy`로 숨기기 | 설계 분리 |
-| `@Component`와 `@Bean`으로 같은 타입을 두 번 등록 | 하나만 |
-
----
-
-## 연습
-
-1. `AppProperties` record로 `app.greeting`을 읽어 API로 반환한다.
-2. `Clock` Bean을 등록하고, 테스트에서는 고정 `Clock`으로 교체한다.
-3. `local` 프로필에서만 동작하는 `DevBanner`를 만든다.0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"IoC, Bean, Configuration — 의존성 주입\",\"description\":\"IoC 컨테이너가 Bean을 조립하는 방식을 이해하고, 생성자 주입과 타입 세이프 설정으로 의존성을 구성한다.\",\"datePublished\":\"2023-10-13\",\"url\":\"https://kaisa.co.kr/posts/spring-boot-02/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"spring-boot\",\"keywords\":\"spring-boot\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"IoC, Bean, Configuration — 의존성 주입\",\"item\":\"https://kaisa.co.kr/posts/spring-boot-02/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2023-10-13"}]}],["$","h1",null,{"className":"blog-post__title","children":"IoC, Bean, Configuration — 의존성 주입"}],["$","$L3",null,{"content":"$4"}],"$L5","$L6"]}]}]}]],["$L7","$L8","$L9","$La"],"$Lb"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Zv4TpHss7ITjpJG-s6iGo"}
-5:["$","$Lc",null,{"pathKey":"spring-boot-02"}]
-6:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/spring-boot-01/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Spring Boot 3와 Java 21 시작하기"}]]}],["$","$L2",null,{"href":"/posts/spring-boot-03/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"REST API 설계 — Validation, Problem Details, RestClient"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
-7:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
-8:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
-9:["$","script","script-0",{"src":"/_next/static/chunks/1oevfsdj8hv5d.js","async":true}]
-a:["$","script","script-1",{"src":"/_next/static/chunks/22vl7s8dm-4u2.js","async":true}]
-b:["$","$Ld",null,{"children":["$","$e",null,{"name":"Next.MetadataOutlet","children":"$@f"}]}]
-f:null
+<span class="hljs-meta">@Service</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">EmailNotificationAdapter</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">NotificationPort</span> { }</code></pre>
+<hr>
+<h2>9. 순환 의존성과 생명주기</h2>
+<p>Boot 3는 순환 참조를 기본적으로 허용하지 않는다. 공통 로직을 제3 서비스로 빼거나 <code>ApplicationEventPublisher</code>로 결합을 낮춘다. <code>@Lazy</code>는 최후 수단이다.</p>
+<p>기동·종료 훅은 <code>@PostConstruct</code> / <code>@PreDestroy</code> 또는 <code>@Bean(initMethod, destroyMethod)</code>다. 파일·스레드 풀처럼 닫을 자원이 있으면 destroy를 빠뜨리지 않는다.</p>
+<pre><code class="hljs language-java"><span class="hljs-meta">@Bean(initMethod = &quot;start&quot;, destroyMethod = &quot;stop&quot;)</span>
+<span class="hljs-type">MyWorker</span> <span class="hljs-title function_">myWorker</span><span class="hljs-params">()</span> {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">MyWorker</span>();
+}</code></pre>
+<hr>
+<h2>10. 흔한 실수</h2>
+<table>
+<thead>
+<tr>
+<th>실수</th>
+<th>대안</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>필드 <code>@Autowired</code></td>
+<td>생성자 + <code>final</code></td>
+</tr>
+<tr>
+<td>yml 값을 <code>@Value</code>로 흩뿌리기</td>
+<td><code>@ConfigurationProperties</code></td>
+</tr>
+<tr>
+<td>서비스에 요청 상태 필드</td>
+<td>메서드 인자·요청 스코프</td>
+</tr>
+<tr>
+<td>순환을 <code>@Lazy</code>로 숨기기</td>
+<td>설계 분리</td>
+</tr>
+<tr>
+<td><code>@Component</code>와 <code>@Bean</code>으로 같은 타입을 두 번 등록</td>
+<td>하나만</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>연습</h2>
+<ol>
+<li><code>AppProperties</code> record로 <code>app.greeting</code>을 읽어 API로 반환한다.</li>
+<li><code>Clock</code> Bean을 등록하고, 테스트에서는 고정 <code>Clock</code>으로 교체한다.</li>
+<li><code>local</code> 프로필에서만 동작하는 <code>DevBanner</code>를 만든다.</li>
+</ol>
+0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"IoC, Bean, Configuration — 의존성 주입\",\"description\":\"IoC 컨테이너가 Bean을 조립하는 방식을 이해하고, 생성자 주입과 타입 세이프 설정으로 의존성을 구성한다.\",\"datePublished\":\"2023-10-13\",\"url\":\"https://kaisa.co.kr/posts/spring-boot-02/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"spring-boot\",\"keywords\":\"spring-boot\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"IoC, Bean, Configuration — 의존성 주입\",\"item\":\"https://kaisa.co.kr/posts/spring-boot-02/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2023-10-13"}]}],["$","h1",null,{"className":"blog-post__title","children":"IoC, Bean, Configuration — 의존성 주입"}],["$","div",null,{"className":"blog-post__body blog-post__body--markdown","children":["$","div",null,{"className":"markdown-body","dangerouslySetInnerHTML":{"__html":"$3"}}]}],"$L4","$L5"]}]}]}]],["$L6","$L7","$L8"],"$L9"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"_AZq8Hq_NwvdopxIW0Tgh"}
+4:["$","$La",null,{"pathKey":"spring-boot-02"}]
+5:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/spring-boot-01/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Spring Boot 3와 Java 21 시작하기"}]]}],["$","$L2",null,{"href":"/posts/spring-boot-03/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"REST API 설계 — Validation, Problem Details, RestClient"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
+6:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
+7:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
+8:["$","script","script-0",{"src":"/_next/static/chunks/26shoze10o-dc.js","async":true}]
+9:["$","$Lb",null,{"children":["$","$c",null,{"name":"Next.MetadataOutlet","children":"$@d"}]}]
+d:null

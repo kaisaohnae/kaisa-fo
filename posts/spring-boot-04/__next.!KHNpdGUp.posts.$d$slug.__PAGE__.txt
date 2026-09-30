@@ -1,279 +1,247 @@
 1:"$Sreact.fragment"
-2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],""]
-3:I[55489,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-c:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-d:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
-e:"$Sreact.suspense"
+2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],""]
+a:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],"default"]
+b:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
+c:"$Sreact.suspense"
 :HL["/_next/static/chunks/0br7e7j26qkj3.css","style"]
 :HL["/_next/static/chunks/21i9-auhncr4a.css","style"]
-4:T1d2a,# Spring Data JPA와 영속성 계층
+3:T39eb,<h1>Spring Data JPA와 영속성 계층</h1>
+<blockquote>
+<p>요약: JPA 엔티티와 트랜잭션 경계를 명확히 하고, N+1·OSIV·스키마 마이그레이션 함정을 피한다.</p>
+</blockquote>
+<hr>
+<h2>1. 왜 JPA인가</h2>
+<p><strong>JPA(Jakarta Persistence API)</strong> 는 객체를 테이블에 매핑하는 표준이다. Hibernate가 구현체고, Spring Data JPA는 리포지토리 인터페이스로 반복 쿼리를 줄인다.</p>
+<table>
+<thead>
+<tr>
+<th>계층</th>
+<th>책임</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Entity</td>
+<td>상태와 불변식</td>
+</tr>
+<tr>
+<td>Repository</td>
+<td>영속성 추상화</td>
+</tr>
+<tr>
+<td>Service (<code>@Transactional</code>)</td>
+<td>유스케이스 단위 트랜잭션</td>
+</tr>
+<tr>
+<td>Controller</td>
+<td>HTTP만</td>
+</tr>
+</tbody></table>
+<p>컨트롤러에 <code>save</code>를 두거나, 리포지토리에 비즈니스 분기를 넣지 않는다.</p>
+<hr>
+<h2>2. 엔티티</h2>
+<p>기본 생성자는 JPA용으로 <code>protected</code>, 변경은 setter 대신 도메인 메서드로 둔다.</p>
+<pre><code class="hljs language-java"><span class="hljs-meta">@Entity</span>
+<span class="hljs-meta">@Table(name = &quot;users&quot;)</span>
+<span class="hljs-meta">@EntityListeners(AuditingEntityListener.class)</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">User</span> {
 
-> 요약: JPA 엔티티와 트랜잭션 경계를 명확히 하고, N+1·OSIV·스키마 마이그레이션 함정을 피한다.
+    <span class="hljs-meta">@Id</span>
+    <span class="hljs-meta">@GeneratedValue(strategy = GenerationType.IDENTITY)</span>
+    <span class="hljs-keyword">private</span> Long id;
 
----
+    <span class="hljs-meta">@Column(nullable = false, unique = true, length = 100)</span>
+    <span class="hljs-keyword">private</span> String email;
 
-## 1. 왜 JPA인가
+    <span class="hljs-meta">@Column(nullable = false, length = 50)</span>
+    <span class="hljs-keyword">private</span> String name;
 
-**JPA(Jakarta Persistence API)** 는 객체를 테이블에 매핑하는 표준이다. Hibernate가 구현체고, Spring Data JPA는 리포지토리 인터페이스로 반복 쿼리를 줄인다.
+    <span class="hljs-meta">@CreatedDate</span>
+    <span class="hljs-meta">@Column(nullable = false, updatable = false)</span>
+    <span class="hljs-keyword">private</span> Instant createdAt;
 
-| 계층 | 책임 |
-|------|------|
-| Entity | 상태와 불변식 |
-| Repository | 영속성 추상화 |
-| Service (`@Transactional`) | 유스케이스 단위 트랜잭션 |
-| Controller | HTTP만 |
+    <span class="hljs-meta">@LastModifiedDate</span>
+    <span class="hljs-keyword">private</span> Instant updatedAt;
 
-컨트롤러에 `save`를 두거나, 리포지토리에 비즈니스 분기를 넣지 않는다.
+    <span class="hljs-type">protected</span> <span class="hljs-title function_">User</span><span class="hljs-params">()</span> {}
 
----
-
-## 2. 엔티티
-
-기본 생성자는 JPA용으로 `protected`, 변경은 setter 대신 도메인 메서드로 둔다.
-
-```java
-@Entity
-@Table(name = "users")
-@EntityListeners(AuditingEntityListener.class)
-public class User {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column(nullable = false, unique = true, length = 100)
-    private String email;
-
-    @Column(nullable = false, length = 50)
-    private String name;
-
-    @CreatedDate
-    @Column(nullable = false, updatable = false)
-    private Instant createdAt;
-
-    @LastModifiedDate
-    private Instant updatedAt;
-
-    protected User() {}
-
-    public static User create(String email, String name) {
-        User user = new User();
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">User</span> <span class="hljs-title function_">create</span><span class="hljs-params">(String email, String name)</span> {
+        <span class="hljs-type">User</span> <span class="hljs-variable">user</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">User</span>();
         user.email = email;
         user.name = name;
-        return user;
+        <span class="hljs-keyword">return</span> user;
     }
 
-    public void rename(String name) {
-        if (name == null || name.isBlank()) {
-            throw new IllegalArgumentException("name required");
+    <span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">rename</span><span class="hljs-params">(String name)</span> {
+        <span class="hljs-keyword">if</span> (name == <span class="hljs-literal">null</span> || name.isBlank()) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">IllegalArgumentException</span>(<span class="hljs-string">&quot;name required&quot;</span>);
         }
-        this.name = name;
+        <span class="hljs-built_in">this</span>.name = name;
     }
-}
-```
+}</code></pre>
+<p><code>@EnableJpaAuditing</code>을 켜야 <code>@CreatedDate</code>가 동작한다. <code>equals</code>/<code>hashCode</code>를 전 필드 Lombok으로 만들면 영속 전후 동등성이 깨지기 쉽다. 식별자 기준으로 신중히 구현한다.</p>
+<p>공통 시각 필드는 <code>@MappedSuperclass</code>로 빼고, 소프트 삭제는 <code>deletedAt</code> 또는 Hibernate <code>@SoftDelete</code>로 명시한다.</p>
+<hr>
+<h2>3. 리포지토리</h2>
+<p>파생 메서드 → JPQL <code>@Query</code> → <code>Specification</code> / QueryDSL 순으로 복잡도를 올린다.</p>
+<pre><code class="hljs language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">UserRepository</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">JpaRepository</span>&lt;User, Long&gt; {
+    <span class="hljs-type">Optional</span>&lt;User&gt; <span class="hljs-title function_">findByEmail</span><span class="hljs-params">(String email)</span>;
+    <span class="hljs-type">boolean</span> <span class="hljs-title function_">existsByEmail</span><span class="hljs-params">(String email)</span>;
 
-`@EnableJpaAuditing`을 켜야 `@CreatedDate`가 동작한다. `equals`/`hashCode`를 전 필드 Lombok으로 만들면 영속 전후 동등성이 깨지기 쉽다. 식별자 기준으로 신중히 구현한다.
+    <span class="hljs-meta">@Query(&quot;select u from User u where u.name like %:keyword%&quot;)</span>
+    <span class="hljs-type">List</span>&lt;User&gt; <span class="hljs-title function_">searchByName</span><span class="hljs-params">(<span class="hljs-meta">@Param(&quot;keyword&quot;)</span> String keyword)</span>;
 
-공통 시각 필드는 `@MappedSuperclass`로 빼고, 소프트 삭제는 `deletedAt` 또는 Hibernate `@SoftDelete`로 명시한다.
+    <span class="hljs-meta">@Modifying(clearAutomatically = true, flushAutomatically = true)</span>
+    <span class="hljs-meta">@Query(&quot;update User u set u.name = :name where u.id = :id&quot;)</span>
+    <span class="hljs-type">int</span> <span class="hljs-title function_">rename</span><span class="hljs-params">(<span class="hljs-meta">@Param(&quot;id&quot;)</span> Long id, <span class="hljs-meta">@Param(&quot;name&quot;)</span> String name)</span>;
+}</code></pre>
+<p>벌크 <code>@Modifying</code>은 영속성 컨텍스트를 건너뛴다. <code>clearAutomatically</code> 없이 같은 트랜잭션에서 엔티티를 다시 쓰면 DB와 객체가 어긋난다.</p>
+<hr>
+<h2>4. 트랜잭션</h2>
+<p>한 줄 정의: 트랜잭션은 <strong>한 유스케이스가 전부 성공하거나 전부 롤백</strong>되는 경계다. 클래스를 <code>readOnly = true</code>로 두고 쓰기 메서드만 <code>@Transactional</code>을 연다.</p>
+<pre><code class="hljs language-java"><span class="hljs-meta">@Service</span>
+<span class="hljs-meta">@Transactional(readOnly = true)</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">UserService</span> {
 
----
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> UserRepository userRepository;
 
-## 3. 리포지토리
-
-파생 메서드 → JPQL `@Query` → `Specification` / QueryDSL 순으로 복잡도를 올린다.
-
-```java
-public interface UserRepository extends JpaRepository<User, Long> {
-    Optional<User> findByEmail(String email);
-    boolean existsByEmail(String email);
-
-    @Query("select u from User u where u.name like %:keyword%")
-    List<User> searchByName(@Param("keyword") String keyword);
-
-    @Modifying(clearAutomatically = true, flushAutomatically = true)
-    @Query("update User u set u.name = :name where u.id = :id")
-    int rename(@Param("id") Long id, @Param("name") String name);
-}
-```
-
-벌크 `@Modifying`은 영속성 컨텍스트를 건너뛴다. `clearAutomatically` 없이 같은 트랜잭션에서 엔티티를 다시 쓰면 DB와 객체가 어긋난다.
-
----
-
-## 4. 트랜잭션
-
-한 줄 정의: 트랜잭션은 **한 유스케이스가 전부 성공하거나 전부 롤백**되는 경계다. 클래스를 `readOnly = true`로 두고 쓰기 메서드만 `@Transactional`을 연다.
-
-```java
-@Service
-@Transactional(readOnly = true)
-public class UserService {
-
-    private final UserRepository userRepository;
-
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    <span class="hljs-type">public</span> <span class="hljs-title function_">UserService</span><span class="hljs-params">(UserRepository userRepository)</span> {
+        <span class="hljs-built_in">this</span>.userRepository = userRepository;
     }
 
-    public UserResponse get(Long id) {
-        return userRepository.findById(id)
+    <span class="hljs-keyword">public</span> <span class="hljs-type">UserResponse</span> <span class="hljs-title function_">get</span><span class="hljs-params">(Long id)</span> {
+        <span class="hljs-keyword">return</span> userRepository.findById(id)
                 .map(UserMapper::toResponse)
-                .orElseThrow(() -> new UserNotFoundException(id));
+                .orElseThrow(() -&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">UserNotFoundException</span>(id));
     }
 
-    @Transactional
-    public UserResponse create(CreateUserRequest request) {
-        if (userRepository.existsByEmail(request.email())) {
-            throw new DuplicateEmailException(request.email());
+    <span class="hljs-meta">@Transactional</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-type">UserResponse</span> <span class="hljs-title function_">create</span><span class="hljs-params">(CreateUserRequest request)</span> {
+        <span class="hljs-keyword">if</span> (userRepository.existsByEmail(request.email())) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">DuplicateEmailException</span>(request.email());
         }
-        User saved = userRepository.save(User.create(request.email(), request.name()));
-        return UserMapper.toResponse(saved);
+        <span class="hljs-type">User</span> <span class="hljs-variable">saved</span> <span class="hljs-operator">=</span> userRepository.save(User.create(request.email(), request.name()));
+        <span class="hljs-keyword">return</span> UserMapper.toResponse(saved);
     }
-}
-```
+}</code></pre>
+<p>전파·격리 수준은 기본값으로 대부분 충분하다. 긴 트랜잭션 안에서 외부 HTTP를 호출하면 커넥션을 붙잡은 채 대기한다.</p>
+<hr>
+<h2>5. 연관과 지연 로딩</h2>
+<p>연관은 <strong>LAZY</strong>가 기본 전략이다. <code>EAGER</code>는 목록 조회마다 조인이 붙는 사고의 주범이다.</p>
+<pre><code class="hljs language-java"><span class="hljs-meta">@ManyToOne(fetch = FetchType.LAZY, optional = false)</span>
+<span class="hljs-meta">@JoinColumn(name = &quot;user_id&quot;)</span>
+<span class="hljs-keyword">private</span> User user;
 
-전파·격리 수준은 기본값으로 대부분 충분하다. 긴 트랜잭션 안에서 외부 HTTP를 호출하면 커넥션을 붙잡은 채 대기한다.
+<span class="hljs-meta">@OneToMany(mappedBy = &quot;order&quot;, cascade = CascadeType.ALL, orphanRemoval = true)</span>
+<span class="hljs-keyword">private</span> <span class="hljs-type">List</span>&lt;OrderLine&gt; <span class="hljs-variable">lines</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;&gt;();
 
----
-
-## 5. 연관과 지연 로딩
-
-연관은 **LAZY**가 기본 전략이다. `EAGER`는 목록 조회마다 조인이 붙는 사고의 주범이다.
-
-```java
-@ManyToOne(fetch = FetchType.LAZY, optional = false)
-@JoinColumn(name = "user_id")
-private User user;
-
-@OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
-private List<OrderLine> lines = new ArrayList<>();
-
-public void addLine(OrderLine line) {
+<span class="hljs-keyword">public</span> <span class="hljs-type">void</span> <span class="hljs-title function_">addLine</span><span class="hljs-params">(OrderLine line)</span> {
     lines.add(line);
-    line.setOrder(this);
-}
-```
+    line.setOrder(<span class="hljs-built_in">this</span>);
+}</code></pre>
+<p>양방향은 편의 메서드로 양쪽을 맞춘다.</p>
+<hr>
+<h2>6. N+1과 OSIV</h2>
+<p><strong>N+1</strong>: 목록 1번 조회 후 연관에 접근할 때마다 쿼리가 N번 더 나간다.</p>
+<pre><code class="hljs language-java"><span class="hljs-meta">@Query(&quot;select o from Order o join fetch o.user where o.id = :id&quot;)</span>
+<span class="hljs-type">Optional</span>&lt;Order&gt; <span class="hljs-title function_">findWithUser</span><span class="hljs-params">(<span class="hljs-meta">@Param(&quot;id&quot;)</span> Long id)</span>;
 
-양방향은 편의 메서드로 양쪽을 맞춘다.
+<span class="hljs-meta">@EntityGraph(attributePaths = {&quot;lines&quot;})</span>
+<span class="hljs-type">Optional</span>&lt;Order&gt; <span class="hljs-title function_">findWithLinesById</span><span class="hljs-params">(Long id)</span>;
 
----
-
-## 6. N+1과 OSIV
-
-**N+1**: 목록 1번 조회 후 연관에 접근할 때마다 쿼리가 N번 더 나간다.
-
-```java
-@Query("select o from Order o join fetch o.user where o.id = :id")
-Optional<Order> findWithUser(@Param("id") Long id);
-
-@EntityGraph(attributePaths = {"lines"})
-Optional<Order> findWithLinesById(Long id);
-
-@Query("""
+<span class="hljs-meta">@Query(&quot;&quot;&quot;
         select new com.example.demo.order.OrderSummary(o.id, u.email, o.totalAmount)
         from Order o join o.user u
         where o.status = :status
-        """)
-List<OrderSummary> findSummaries(OrderStatus status);
-```
-
-읽기 전용 화면에 DTO 프로젝션이 가장 싸다. fetch join은 컬렉션을 두 개 이상 동시에 끌어오면 카테시안 곱이 난다.
-
-**OSIV(Open Session In View)** 는 뷰 렌더까지 영속성 컨텍스트를 열어 두는 설정이다. Boot 기본은 `true`이고, 운영은 `false`를 권장한다. 컨트롤러에서 지연 로딩이 터지면 쿼리를 고친다.
-
-```yaml
-spring:
-  jpa:
-    open-in-view: false
-```
-
----
-
-## 7. Flyway와 낙관적 락
-
-`ddl-auto: update`는 로컬 실험용이다. 운영 스키마의 진실은 **Flyway/Liquibase 마이그레이션 파일**이다.
-
-```yaml
-spring:
-  jpa:
-    hibernate:
-      ddl-auto: validate
-  flyway:
-    enabled: true
-```
-
-```
-db/migration/
-  V1__create_users.sql
-```
-
-```sql
-CREATE TABLE users (
-    id BIGSERIAL PRIMARY KEY,
-    email VARCHAR(100) NOT NULL UNIQUE,
-    name VARCHAR(50) NOT NULL,
-    created_at TIMESTAMPTZ NOT NULL,
+        &quot;&quot;&quot;)</span>
+<span class="hljs-type">List</span>&lt;OrderSummary&gt; <span class="hljs-title function_">findSummaries</span><span class="hljs-params">(OrderStatus status)</span>;</code></pre>
+<p>읽기 전용 화면에 DTO 프로젝션이 가장 싸다. fetch join은 컬렉션을 두 개 이상 동시에 끌어오면 카테시안 곱이 난다.</p>
+<p><strong>OSIV(Open Session In View)</strong> 는 뷰 렌더까지 영속성 컨텍스트를 열어 두는 설정이다. Boot 기본은 <code>true</code>이고, 운영은 <code>false</code>를 권장한다. 컨트롤러에서 지연 로딩이 터지면 쿼리를 고친다.</p>
+<pre><code class="hljs language-yaml"><span class="hljs-attr">spring:</span>
+  <span class="hljs-attr">jpa:</span>
+    <span class="hljs-attr">open-in-view:</span> <span class="hljs-literal">false</span></code></pre>
+<hr>
+<h2>7. Flyway와 낙관적 락</h2>
+<p><code>ddl-auto: update</code>는 로컬 실험용이다. 운영 스키마의 진실은 <strong>Flyway/Liquibase 마이그레이션 파일</strong>이다.</p>
+<pre><code class="hljs language-yaml"><span class="hljs-attr">spring:</span>
+  <span class="hljs-attr">jpa:</span>
+    <span class="hljs-attr">hibernate:</span>
+      <span class="hljs-attr">ddl-auto:</span> <span class="hljs-string">validate</span>
+  <span class="hljs-attr">flyway:</span>
+    <span class="hljs-attr">enabled:</span> <span class="hljs-literal">true</span></code></pre>
+<pre><code class="hljs">db<span class="hljs-regexp">/migration/</span>
+  V1__create_users.sql</code></pre>
+<pre><code class="hljs language-sql"><span class="hljs-keyword">CREATE TABLE</span> users (
+    id BIGSERIAL <span class="hljs-keyword">PRIMARY KEY</span>,
+    email <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">100</span>) <span class="hljs-keyword">NOT NULL</span> <span class="hljs-keyword">UNIQUE</span>,
+    name <span class="hljs-type">VARCHAR</span>(<span class="hljs-number">50</span>) <span class="hljs-keyword">NOT NULL</span>,
+    created_at TIMESTAMPTZ <span class="hljs-keyword">NOT NULL</span>,
     updated_at TIMESTAMPTZ
-);
-```
+);</code></pre>
+<p>동시 수정 충돌은 <code>@Version</code> 낙관적 락으로 잡는다. 실패 시 <code>OptimisticLockException</code> → 409 또는 재조회 후 재시도.</p>
+<pre><code class="hljs language-java"><span class="hljs-meta">@Version</span>
+<span class="hljs-keyword">private</span> Long version;</code></pre>
+<hr>
+<h2>8. 로컬에서 SQL 보기</h2>
+<pre><code class="hljs language-yaml"><span class="hljs-attr">spring:</span>
+  <span class="hljs-attr">datasource:</span>
+    <span class="hljs-attr">hikari:</span>
+      <span class="hljs-attr">maximum-pool-size:</span> <span class="hljs-number">10</span>
+      <span class="hljs-attr">connection-timeout:</span> <span class="hljs-number">3000</span>
+  <span class="hljs-attr">jpa:</span>
+    <span class="hljs-attr">properties:</span>
+      <span class="hljs-attr">hibernate:</span>
+        <span class="hljs-attr">jdbc.batch_size:</span> <span class="hljs-number">50</span>
+        <span class="hljs-attr">order_inserts:</span> <span class="hljs-literal">true</span>
+        <span class="hljs-attr">order_updates:</span> <span class="hljs-literal">true</span>
 
-동시 수정 충돌은 `@Version` 낙관적 락으로 잡는다. 실패 시 `OptimisticLockException` → 409 또는 재조회 후 재시도.
-
-```java
-@Version
-private Long version;
-```
-
----
-
-## 8. 로컬에서 SQL 보기
-
-```yaml
-spring:
-  datasource:
-    hikari:
-      maximum-pool-size: 10
-      connection-timeout: 3000
-  jpa:
-    properties:
-      hibernate:
-        jdbc.batch_size: 50
-        order_inserts: true
-        order_updates: true
-
-logging:
-  level:
-    org.hibernate.SQL: DEBUG
-    org.hibernate.orm.jdbc.bind: TRACE
-```
-
-`show-sql=true`만으로는 바인딩 파라미터가 안 보인다. Hibernate 6 로거는 `orm.jdbc.bind`다.
-
----
-
-## 9. 흔한 실수
-
-| 실수 | 대안 |
-|------|------|
-| 전역 `EAGER` | LAZY + 필요한 조회만 fetch/DTO |
-| OSIV에 의존 | `open-in-view: false` + 명시 조회 |
-| `ddl-auto: update` 운영 | Flyway + `validate` |
-| 트랜잭션 안에서 외부 API | 커밋 후 이벤트/아웃박스 |
-| 벌크 업데이트 후 엔티티 재사용 | clear/flush 또는 재조회 |
-
----
-
-## 연습
-
-1. `User` 1:N `Post` 엔티티와 리포지토리를 만든다.
-2. 목록 + 작성자 이메일을 fetch join 또는 DTO로 N+1 없이 조회한다.
-3. Flyway로 테이블을 만들고 `ddl-auto: validate`로 맞춘다.
-4. `open-in-view: false`에서 지연 로딩 예외가 안 나는지 확인한다.0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"Spring Data JPA와 영속성 계층\",\"description\":\"JPA 엔티티와 트랜잭션 경계를 명확히 하고, N+1·OSIV·스키마 마이그레이션 함정을 피한다.\",\"datePublished\":\"2024-12-04\",\"url\":\"https://kaisa.co.kr/posts/spring-boot-04/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"spring-boot\",\"keywords\":\"spring-boot\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Spring Data JPA와 영속성 계층\",\"item\":\"https://kaisa.co.kr/posts/spring-boot-04/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2024-12-04"}]}],["$","h1",null,{"className":"blog-post__title","children":"Spring Data JPA와 영속성 계층"}],["$","$L3",null,{"content":"$4"}],"$L5","$L6"]}]}]}]],["$L7","$L8","$L9","$La"],"$Lb"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Zv4TpHss7ITjpJG-s6iGo"}
-5:["$","$Lc",null,{"pathKey":"spring-boot-04"}]
-6:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/spring-boot-03/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"REST API 설계 — Validation, Problem Details, RestClient"}]]}],["$","$L2",null,{"href":"/posts/spring-boot-05/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Spring Security 6 — 인증·인가·OAuth2·JWT"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
-7:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
-8:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
-9:["$","script","script-0",{"src":"/_next/static/chunks/1oevfsdj8hv5d.js","async":true}]
-a:["$","script","script-1",{"src":"/_next/static/chunks/22vl7s8dm-4u2.js","async":true}]
-b:["$","$Ld",null,{"children":["$","$e",null,{"name":"Next.MetadataOutlet","children":"$@f"}]}]
-f:null
+<span class="hljs-attr">logging:</span>
+  <span class="hljs-attr">level:</span>
+    <span class="hljs-attr">org.hibernate.SQL:</span> <span class="hljs-string">DEBUG</span>
+    <span class="hljs-attr">org.hibernate.orm.jdbc.bind:</span> <span class="hljs-string">TRACE</span></code></pre>
+<p><code>show-sql=true</code>만으로는 바인딩 파라미터가 안 보인다. Hibernate 6 로거는 <code>orm.jdbc.bind</code>다.</p>
+<hr>
+<h2>9. 흔한 실수</h2>
+<table>
+<thead>
+<tr>
+<th>실수</th>
+<th>대안</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>전역 <code>EAGER</code></td>
+<td>LAZY + 필요한 조회만 fetch/DTO</td>
+</tr>
+<tr>
+<td>OSIV에 의존</td>
+<td><code>open-in-view: false</code> + 명시 조회</td>
+</tr>
+<tr>
+<td><code>ddl-auto: update</code> 운영</td>
+<td>Flyway + <code>validate</code></td>
+</tr>
+<tr>
+<td>트랜잭션 안에서 외부 API</td>
+<td>커밋 후 이벤트/아웃박스</td>
+</tr>
+<tr>
+<td>벌크 업데이트 후 엔티티 재사용</td>
+<td>clear/flush 또는 재조회</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>연습</h2>
+<ol>
+<li><code>User</code> 1:N <code>Post</code> 엔티티와 리포지토리를 만든다.</li>
+<li>목록 + 작성자 이메일을 fetch join 또는 DTO로 N+1 없이 조회한다.</li>
+<li>Flyway로 테이블을 만들고 <code>ddl-auto: validate</code>로 맞춘다.</li>
+<li><code>open-in-view: false</code>에서 지연 로딩 예외가 안 나는지 확인한다.</li>
+</ol>
+0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"Spring Data JPA와 영속성 계층\",\"description\":\"JPA 엔티티와 트랜잭션 경계를 명확히 하고, N+1·OSIV·스키마 마이그레이션 함정을 피한다.\",\"datePublished\":\"2024-12-04\",\"url\":\"https://kaisa.co.kr/posts/spring-boot-04/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"spring-boot\",\"keywords\":\"spring-boot\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Spring Data JPA와 영속성 계층\",\"item\":\"https://kaisa.co.kr/posts/spring-boot-04/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2024-12-04"}]}],["$","h1",null,{"className":"blog-post__title","children":"Spring Data JPA와 영속성 계층"}],["$","div",null,{"className":"blog-post__body blog-post__body--markdown","children":["$","div",null,{"className":"markdown-body","dangerouslySetInnerHTML":{"__html":"$3"}}]}],"$L4","$L5"]}]}]}]],["$L6","$L7","$L8"],"$L9"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"_AZq8Hq_NwvdopxIW0Tgh"}
+4:["$","$La",null,{"pathKey":"spring-boot-04"}]
+5:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/spring-boot-03/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"REST API 설계 — Validation, Problem Details, RestClient"}]]}],["$","$L2",null,{"href":"/posts/spring-boot-05/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Spring Security 6 — 인증·인가·OAuth2·JWT"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
+6:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
+7:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
+8:["$","script","script-0",{"src":"/_next/static/chunks/26shoze10o-dc.js","async":true}]
+9:["$","$Lb",null,{"children":["$","$c",null,{"name":"Next.MetadataOutlet","children":"$@d"}]}]
+d:null

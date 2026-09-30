@@ -1,220 +1,165 @@
 1:"$Sreact.fragment"
-2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],""]
-3:I[55489,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-c:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-d:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
-e:"$Sreact.suspense"
+2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],""]
+a:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],"default"]
+b:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
+c:"$Sreact.suspense"
 :HL["/_next/static/chunks/0br7e7j26qkj3.css","style"]
 :HL["/_next/static/chunks/21i9-auhncr4a.css","style"]
-4:T1926,# Blade·Livewire·Inertia와 API 프론트 전략
+3:T32b7,<h1>Blade·Livewire·Inertia와 API 프론트 전략</h1>
+<blockquote>
+<p>요약: Blade·Livewire·Inertia·순수 API 중 제품에 맞는 프론트를 고르고, 한 앱 안에서도 경계를 나누면 된다.</p>
+</blockquote>
+<hr>
+<h2>1. “전부 React”가 기본값은 아니다</h2>
+<p>프론트 선택은 팀 취향보다 <strong>누가 화면을 소유하는지</strong>에 가깝다. Laravel이 HTML을 그리면 검증·인가·라우트가 한곳에 남는다. 별도 SPA면 그 계약을 API로 문서화해야 한다.</p>
+<table>
+<thead>
+<tr>
+<th>상황</th>
+<th>추천</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>관리자·내부툴·폼이 많음</td>
+<td>Filament 또는 Blade/Livewire</td>
+</tr>
+<tr>
+<td>멀티페이지, SEO</td>
+<td><strong>Blade</strong> (+ 필요한 곳만 JS)</td>
+</tr>
+<tr>
+<td>SPA UX인데 Laravel 라우트·검증을 유지</td>
+<td><strong>Inertia</strong> (Vue/React/Svelte)</td>
+</tr>
+<tr>
+<td>모바일 앱과 웹이 따로</td>
+<td>Sanctum API + 별도 프론트</td>
+</tr>
+<tr>
+<td>위젯·부분 갱신</td>
+<td>Livewire 또는 Echo 방송</td>
+</tr>
+</tbody></table>
+<p>한 제품에 마케팅은 Blade, 앱은 Inertia, 어드민은 Filament여도 된다. 경계를 URL이나 레이아웃으로 명확히 한다.</p>
+<hr>
+<h2>2. Blade</h2>
+<p><strong>Blade</strong>는 Laravel 서버가 HTML을 조립하는 템플릿이다. <code>{{ $var }}</code>는 이스케이프되어 XSS를 줄인다. <code>{!! $html !!}</code>는 신뢰한 HTML만 넣는다. 사용자 입력을 그대로 <code>{!! !!}</code>에 넣으면 스크립트가 실행된다.</p>
+<pre><code class="hljs language-blade"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">x-app-layout</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">x-slot:title</span>&gt;</span></span><span class="hljs-template-variable">{{ <span class="hljs-name">$post-</span>&gt;title }}</span><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">x-slot:title</span>&gt;</span>
 
-> 요약: Blade·Livewire·Inertia·순수 API 중 제품에 맞는 프론트를 고르고, 한 앱 안에서도 경계를 나누면 된다.
+    <span class="hljs-tag">&lt;<span class="hljs-name">article</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span></span><span class="hljs-template-variable">{{ <span class="hljs-name">$post-</span>&gt;title }}</span><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span></span><span class="hljs-template-variable">{{ <span class="hljs-name">$post-</span>&gt;user-&gt;name }}</span><span class="language-xml"> · </span><span class="hljs-template-variable">{{ <span class="hljs-name">$post-</span>&gt;published_at?-&gt;diffForHumans() }}</span><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>{!! $post-&gt;rendered_body !!}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">article</span>&gt;</span>
 
----
-
-## 1. “전부 React”가 기본값은 아니다
-
-프론트 선택은 팀 취향보다 **누가 화면을 소유하는지**에 가깝다. Laravel이 HTML을 그리면 검증·인가·라우트가 한곳에 남는다. 별도 SPA면 그 계약을 API로 문서화해야 한다.
-
-| 상황 | 추천 |
-|------|------|
-| 관리자·내부툴·폼이 많음 | Filament 또는 Blade/Livewire |
-| 멀티페이지, SEO | **Blade** (+ 필요한 곳만 JS) |
-| SPA UX인데 Laravel 라우트·검증을 유지 | **Inertia** (Vue/React/Svelte) |
-| 모바일 앱과 웹이 따로 | Sanctum API + 별도 프론트 |
-| 위젯·부분 갱신 | Livewire 또는 Echo 방송 |
-
-한 제품에 마케팅은 Blade, 앱은 Inertia, 어드민은 Filament여도 된다. 경계를 URL이나 레이아웃으로 명확히 한다.
-
----
-
-## 2. Blade
-
-**Blade**는 Laravel 서버가 HTML을 조립하는 템플릿이다. `{{ $var }}`는 이스케이프되어 XSS를 줄인다. `{!! $html !!}`는 신뢰한 HTML만 넣는다. 사용자 입력을 그대로 `{!! !!}`에 넣으면 스크립트가 실행된다.
-
-```blade
-<x-app-layout>
-    <x-slot:title>{{ $post->title }}</x-slot:title>
-
-    <article>
-        <h1>{{ $post->title }}</h1>
-        <p>{{ $post->user->name }} · {{ $post->published_at?->diffForHumans() }}</p>
-        <div>{!! $post->rendered_body !!}</div>
-    </article>
-
-    @can('update', $post)
-        <a href="{{ route('posts.edit', $post) }}">수정</a>
+    @can(&#x27;update&#x27;, $post)
+        <span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;</span></span></span><span class="hljs-template-variable">{{ <span class="hljs-name">route</span>(<span class="hljs-name">&#x27;posts.edit&#x27;</span>, $post) }}</span><span class="language-xml"><span class="hljs-tag"><span class="hljs-string">&quot;</span>&gt;</span>수정<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span>
     @endcan
-</x-app-layout>
-```
-
-컴포넌트는 반복 UI를 태그처럼 재사용한다. 폼은 `@csrf`, PUT/PATCH는 `@method('PUT')`이 필요하다. 빼먹으면 419가 난다.
-
-```bash
-php artisan make:component Alert
-```
-
-```blade
-<x-alert type="success" :message="session('status')" />
-```
-
-링크는 `route('posts.edit', $post)`를 쓴다. 경로 하드코딩은 2편과 같은 실수다.
-
----
-
-## 3. Vite
-
-자산 파이프라인의 기본은 **Vite**다. Mix는 레거시다.
-
-```blade
-@vite(['resources/css/app.css', 'resources/js/app.js'])
-```
-
-```bash
-npm install
+<span class="hljs-tag">&lt;/<span class="hljs-name">x-app-layout</span>&gt;</span></span></code></pre>
+<p>컴포넌트는 반복 UI를 태그처럼 재사용한다. 폼은 <code>@csrf</code>, PUT/PATCH는 <code>@method(&#39;PUT&#39;)</code>이 필요하다. 빼먹으면 419가 난다.</p>
+<pre><code class="hljs language-bash">php artisan make:component Alert</code></pre>
+<pre><code class="hljs language-blade">&lt;<span class="hljs-variable language_">x</span>-alert type=<span class="hljs-string">&quot;success&quot;</span> :<span class="hljs-variable language_">message</span>=<span class="hljs-string">&quot;session(&#x27;status&#x27;)&quot;</span> /&gt;</code></pre>
+<p>링크는 <code>route(&#39;posts.edit&#39;, $post)</code>를 쓴다. 경로 하드코딩은 2편과 같은 실수다.</p>
+<hr>
+<h2>3. Vite</h2>
+<p>자산 파이프라인의 기본은 <strong>Vite</strong>다. Mix는 레거시다.</p>
+<pre><code class="hljs language-blade"><span class="hljs-meta">@vite([<span class="hljs-string">&#x27;resources/css/app.css&#x27;</span>, <span class="hljs-string">&#x27;resources/js/app.js&#x27;</span>])</span></code></pre>
+<pre><code class="hljs language-bash">npm install
 npm run dev
-npm run build
-```
+npm run build</code></pre>
+<p>운영에서 <code>npm run build</code>를 빼면 CSS가 없거나 <code>@vite</code>가 개발 서버를 찾다 실패한다. 배포 스크립트에 포함한다.</p>
+<hr>
+<h2>4. Livewire</h2>
+<p><strong>Livewire</strong>는 PHP 컴포넌트 상태로 화면을 부분 갱신한다. 검색 박스처럼 AJAX를 직접 짜기 싫은 CRUD·필터·위자드에 맞다. 오프라인 앱이나 캔버스급 인터랙션에는 맞지 않다.</p>
+<pre><code class="hljs language-bash">composer require livewire/livewire
+php artisan make:livewire PostSearch</code></pre>
+<pre><code class="hljs language-php"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PostSearch</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span>
+</span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">string</span> <span class="hljs-variable">$q</span> = <span class="hljs-string">&#x27;&#x27;</span>;
 
-운영에서 `npm run build`를 빼면 CSS가 없거나 `@vite`가 개발 서버를 찾다 실패한다. 배포 스크립트에 포함한다.
-
----
-
-## 4. Livewire
-
-**Livewire**는 PHP 컴포넌트 상태로 화면을 부분 갱신한다. 검색 박스처럼 AJAX를 직접 짜기 싫은 CRUD·필터·위자드에 맞다. 오프라인 앱이나 캔버스급 인터랙션에는 맞지 않다.
-
-```bash
-composer require livewire/livewire
-php artisan make:livewire PostSearch
-```
-
-```php
-class PostSearch extends Component
-{
-    public string $q = '';
-
-    public function render()
-    {
-        return view('livewire.post-search', [
-            'posts' => Post::query()
-                ->when($this->q, fn ($q) => $q->where('title', 'like', "%{$this->q}%"))
-                ->latest()
-                ->paginate(10),
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">render</span>(<span class="hljs-params"></span>)
+    </span>{
+        <span class="hljs-keyword">return</span> <span class="hljs-title function_ invoke__">view</span>(<span class="hljs-string">&#x27;livewire.post-search&#x27;</span>, [
+            <span class="hljs-string">&#x27;posts&#x27;</span> =&gt; <span class="hljs-title class_">Post</span>::<span class="hljs-title function_ invoke__">query</span>()
+                -&gt;<span class="hljs-title function_ invoke__">when</span>(<span class="hljs-variable">$this</span>-&gt;q, fn (<span class="hljs-variable">$q</span>) =&gt; <span class="hljs-variable">$q</span>-&gt;<span class="hljs-title function_ invoke__">where</span>(<span class="hljs-string">&#x27;title&#x27;</span>, <span class="hljs-string">&#x27;like&#x27;</span>, <span class="hljs-string">&quot;%<span class="hljs-subst">{$this-&gt;q}</span>%&quot;</span>))
+                -&gt;<span class="hljs-title function_ invoke__">latest</span>()
+                -&gt;<span class="hljs-title function_ invoke__">paginate</span>(<span class="hljs-number">10</span>),
         ]);
     }
-}
-```
-
-```blade
-<div>
-    <input wire:model.live.debounce.300ms="q" />
+}</code></pre>
+<pre><code class="hljs language-blade"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">wire:model.live.debounce.300ms</span>=<span class="hljs-string">&quot;q&quot;</span> /&gt;</span>
     @foreach ($posts as $post)
-        <div wire:key="post-{{ $post->id }}">{{ $post->title }}</div>
+        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">wire:key</span>=<span class="hljs-string">&quot;post-</span></span></span><span class="hljs-template-variable">{{ <span class="hljs-name">$post-</span>&gt;id }}</span><span class="language-xml"><span class="hljs-tag"><span class="hljs-string">&quot;</span>&gt;</span></span><span class="hljs-template-variable">{{ <span class="hljs-name">$post-</span>&gt;title }}</span><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
     @endforeach
-    {{ $posts->links() }}
-</div>
-```
+    </span><span class="hljs-template-variable">{{ <span class="hljs-name">$posts-</span>&gt;links() }}</span><span class="language-xml">
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span></code></pre>
+<p>루프에 <code>wire:key</code>가 없으면 잘못된 행이 갱신된다. <code>wire:model.live</code>는 타이핑마다 서버 왕복이므로 debounce를 둔다. 권한 없는 프로퍼티를 public으로 열어 두면 클라이언트가 값을 조작할 수 있다. 민감한 결정은 서버 메서드에서 Policy로 다시 본다.</p>
+<p>Livewire 3의 islands·Volt는 팀 스타일에 맞게 선택한다. 필수는 아니다.</p>
+<hr>
+<h2>5. Inertia</h2>
+<p><strong>Inertia</strong>는 서버가 JSON 대신 <strong>페이지 컴포넌트 이름 + props</strong>를 내려 주고, 프론트가 그 페이지를 그리는 방식이다. REST API를 하나 더 운영하는 SPA가 아니다. 라우팅·세션·Form Request 검증은 Laravel이 유지한다.</p>
+<pre><code class="hljs language-bash">php artisan breeze:install vue</code></pre>
+<pre><code class="hljs language-php"><span class="hljs-keyword">return</span> <span class="hljs-title class_">Inertia</span>::<span class="hljs-title function_ invoke__">render</span>(<span class="hljs-string">&#x27;Posts/Show&#x27;</span>, [
+    <span class="hljs-string">&#x27;post&#x27;</span> =&gt; <span class="hljs-keyword">new</span> <span class="hljs-title class_">PostResource</span>(<span class="hljs-variable">$post</span>),
+]);</code></pre>
+<p>폼은 Inertia 헬퍼가 검증 에러를 공유 props로 돌려준다. API Resource를 props에 쓰면 JSON API와 필드 이름을 맞출 수 있다.</p>
+<pre><code class="hljs language-js"><span class="hljs-keyword">import</span> { useForm } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@inertiajs/vue3&#x27;</span>
 
-루프에 `wire:key`가 없으면 잘못된 행이 갱신된다. `wire:model.live`는 타이핑마다 서버 왕복이므로 debounce를 둔다. 권한 없는 프로퍼티를 public으로 열어 두면 클라이언트가 값을 조작할 수 있다. 민감한 결정은 서버 메서드에서 Policy로 다시 본다.
-
-Livewire 3의 islands·Volt는 팀 스타일에 맞게 선택한다. 필수는 아니다.
-
----
-
-## 5. Inertia
-
-**Inertia**는 서버가 JSON 대신 **페이지 컴포넌트 이름 + props**를 내려 주고, 프론트가 그 페이지를 그리는 방식이다. REST API를 하나 더 운영하는 SPA가 아니다. 라우팅·세션·Form Request 검증은 Laravel이 유지한다.
-
-```bash
-php artisan breeze:install vue
-```
-
-```php
-return Inertia::render('Posts/Show', [
-    'post' => new PostResource($post),
-]);
-```
-
-폼은 Inertia 헬퍼가 검증 에러를 공유 props로 돌려준다. API Resource를 props에 쓰면 JSON API와 필드 이름을 맞출 수 있다.
-
-```js
-import { useForm } from '@inertiajs/vue3'
-
-const form = useForm({ title: '', body: '' })
-form.post('/posts')
-```
-
-모바일 앱이 같은 백엔드를 쓰면 Inertia만으로는 부족하다. 그때는 4~5편의 API + Sanctum을 따로 연다.
-
----
-
-## 6. 순수 API + SPA
-
-Next.js·Nuxt 등 프론트가 완전히 분리되면:
-
-- Form Request
-- API Resource
-- Sanctum (쿠키 또는 토큰)
-- OpenAPI (scribe / scramble)
-
-CORS, 쿠키 도메인, `/api/v1` 버전을 계약으로 적는다. Inertia와 순수 API를 한 컨트롤러에서 섞으면 응답 형태가 흔들린다. 진입점을 나눈다.
-
----
-
-## 7. 실시간과 어드민
-
-**Reverb**는 Laravel 공식 WebSocket 서버다. Echo가 브라우저에서 채널을 구독한다. 알림 벨, 대시보드 숫자 갱신에 쓴다. 채팅 전체를 Reverb만으로 만들기 전에 규모를 본다.
-
-```bash
-composer require laravel/reverb
-php artisan reverb:install
-```
-
-```php
-broadcast(new OrderStatusUpdated($order))->toOthers();
-```
-
-**Filament**는 관리자 CRUD·필터·권한을 리소스 기반으로 빨리 만든다. 고객용 UI와 관리자 UI를 한 Blade 트리에 섞지 않을 때 생산성이 크다. 패널 가드와 Policy를 고객 가드와 분리한다.
-
-```bash
-composer require filament/filament
-php artisan filament:install --panels
-```
-
----
-
-## 8. 조합 예
-
-1. 마케팅 사이트: Blade + Vite
-2. SaaS 본편: Inertia + Fortify/Breeze + Policy
-3. 내부 어드민: Filament
-4. 모바일: Sanctum API
-5. 일부 위젯: Livewire 또는 Echo
-
----
-
-## 9. 흔한 실수
-
-- 사용자 HTML을 `{!! !!}`에 넣는다.
-- Livewire public 프로퍼티로 가격·역할을 받는다.
-- Inertia와 JSON API를 한 액션에서 분기하다 계약이 갈라진다.
-- `npm run build` 없이 배포한다.
-- 어드민을 고객 `web` 가드에 그대로 연다.
-
----
-
-## 연습
-
-1. Blade 컴포넌트로 플래시 알림을 만든다.
-2. Livewire 검색 리스트 **또는** Inertia 상세 페이지 하나를 연결한다.
-3. 상세 데이터는 `PostResource` 형태로 내려 준다.
-4. (선택) Reverb로 알림 이벤트 하나를 방송한다.0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"Blade·Livewire·Inertia와 API 프론트 전략\",\"description\":\"Blade·Livewire·Inertia·순수 API 중 제품에 맞는 프론트를 고르고, 한 앱 안에서도 경계를 나누면 된다.\",\"datePublished\":\"2026-06-24\",\"url\":\"https://kaisa.co.kr/posts/laravel-09/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"laravel\",\"keywords\":\"laravel\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Blade·Livewire·Inertia와 API 프론트 전략\",\"item\":\"https://kaisa.co.kr/posts/laravel-09/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2026-06-24"}]}],["$","h1",null,{"className":"blog-post__title","children":"Blade·Livewire·Inertia와 API 프론트 전략"}],["$","$L3",null,{"content":"$4"}],"$L5","$L6"]}]}]}]],["$L7","$L8","$L9","$La"],"$Lb"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Zv4TpHss7ITjpJG-s6iGo"}
-5:["$","$Lc",null,{"pathKey":"laravel-09"}]
-6:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/laravel-08/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"캐시·Redis·성능 최적화"}]]}],["$","$L2",null,{"href":"/posts/laravel-10/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"운영 배포 — Sail, Forge/Vapor, 프로덕션 체크리스트"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
-7:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
-8:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
-9:["$","script","script-0",{"src":"/_next/static/chunks/1oevfsdj8hv5d.js","async":true}]
-a:["$","script","script-1",{"src":"/_next/static/chunks/22vl7s8dm-4u2.js","async":true}]
-b:["$","$Ld",null,{"children":["$","$e",null,{"name":"Next.MetadataOutlet","children":"$@f"}]}]
-f:null
+<span class="hljs-keyword">const</span> form = <span class="hljs-title function_">useForm</span>({ <span class="hljs-attr">title</span>: <span class="hljs-string">&#x27;&#x27;</span>, <span class="hljs-attr">body</span>: <span class="hljs-string">&#x27;&#x27;</span> })
+form.<span class="hljs-title function_">post</span>(<span class="hljs-string">&#x27;/posts&#x27;</span>)</code></pre>
+<p>모바일 앱이 같은 백엔드를 쓰면 Inertia만으로는 부족하다. 그때는 4~5편의 API + Sanctum을 따로 연다.</p>
+<hr>
+<h2>6. 순수 API + SPA</h2>
+<p>Next.js·Nuxt 등 프론트가 완전히 분리되면:</p>
+<ul>
+<li>Form Request</li>
+<li>API Resource</li>
+<li>Sanctum (쿠키 또는 토큰)</li>
+<li>OpenAPI (scribe / scramble)</li>
+</ul>
+<p>CORS, 쿠키 도메인, <code>/api/v1</code> 버전을 계약으로 적는다. Inertia와 순수 API를 한 컨트롤러에서 섞으면 응답 형태가 흔들린다. 진입점을 나눈다.</p>
+<hr>
+<h2>7. 실시간과 어드민</h2>
+<p><strong>Reverb</strong>는 Laravel 공식 WebSocket 서버다. Echo가 브라우저에서 채널을 구독한다. 알림 벨, 대시보드 숫자 갱신에 쓴다. 채팅 전체를 Reverb만으로 만들기 전에 규모를 본다.</p>
+<pre><code class="hljs language-bash">composer require laravel/reverb
+php artisan reverb:install</code></pre>
+<pre><code class="hljs language-php"><span class="hljs-title function_ invoke__">broadcast</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">OrderStatusUpdated</span>(<span class="hljs-variable">$order</span>))-&gt;<span class="hljs-title function_ invoke__">toOthers</span>();</code></pre>
+<p><strong>Filament</strong>는 관리자 CRUD·필터·권한을 리소스 기반으로 빨리 만든다. 고객용 UI와 관리자 UI를 한 Blade 트리에 섞지 않을 때 생산성이 크다. 패널 가드와 Policy를 고객 가드와 분리한다.</p>
+<pre><code class="hljs language-bash">composer require filament/filament
+php artisan filament:install --panels</code></pre>
+<hr>
+<h2>8. 조합 예</h2>
+<ol>
+<li>마케팅 사이트: Blade + Vite</li>
+<li>SaaS 본편: Inertia + Fortify/Breeze + Policy</li>
+<li>내부 어드민: Filament</li>
+<li>모바일: Sanctum API</li>
+<li>일부 위젯: Livewire 또는 Echo</li>
+</ol>
+<hr>
+<h2>9. 흔한 실수</h2>
+<ul>
+<li>사용자 HTML을 <code>{!! !!}</code>에 넣는다.</li>
+<li>Livewire public 프로퍼티로 가격·역할을 받는다.</li>
+<li>Inertia와 JSON API를 한 액션에서 분기하다 계약이 갈라진다.</li>
+<li><code>npm run build</code> 없이 배포한다.</li>
+<li>어드민을 고객 <code>web</code> 가드에 그대로 연다.</li>
+</ul>
+<hr>
+<h2>연습</h2>
+<ol>
+<li>Blade 컴포넌트로 플래시 알림을 만든다.</li>
+<li>Livewire 검색 리스트 <strong>또는</strong> Inertia 상세 페이지 하나를 연결한다.</li>
+<li>상세 데이터는 <code>PostResource</code> 형태로 내려 준다.</li>
+<li>(선택) Reverb로 알림 이벤트 하나를 방송한다.</li>
+</ol>
+0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"Blade·Livewire·Inertia와 API 프론트 전략\",\"description\":\"Blade·Livewire·Inertia·순수 API 중 제품에 맞는 프론트를 고르고, 한 앱 안에서도 경계를 나누면 된다.\",\"datePublished\":\"2026-06-24\",\"url\":\"https://kaisa.co.kr/posts/laravel-09/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"laravel\",\"keywords\":\"laravel\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Blade·Livewire·Inertia와 API 프론트 전략\",\"item\":\"https://kaisa.co.kr/posts/laravel-09/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2026-06-24"}]}],["$","h1",null,{"className":"blog-post__title","children":"Blade·Livewire·Inertia와 API 프론트 전략"}],["$","div",null,{"className":"blog-post__body blog-post__body--markdown","children":["$","div",null,{"className":"markdown-body","dangerouslySetInnerHTML":{"__html":"$3"}}]}],"$L4","$L5"]}]}]}]],["$L6","$L7","$L8"],"$L9"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"_AZq8Hq_NwvdopxIW0Tgh"}
+4:["$","$La",null,{"pathKey":"laravel-09"}]
+5:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/laravel-08/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"캐시·Redis·성능 최적화"}]]}],["$","$L2",null,{"href":"/posts/laravel-10/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"운영 배포 — Sail, Forge/Vapor, 프로덕션 체크리스트"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
+6:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
+7:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
+8:["$","script","script-0",{"src":"/_next/static/chunks/26shoze10o-dc.js","async":true}]
+9:["$","$Lb",null,{"children":["$","$c",null,{"name":"Next.MetadataOutlet","children":"$@d"}]}]
+d:null

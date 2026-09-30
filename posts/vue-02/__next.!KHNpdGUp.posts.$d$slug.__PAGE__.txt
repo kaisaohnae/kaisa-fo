@@ -1,210 +1,222 @@
 1:"$Sreact.fragment"
-2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],""]
-3:I[55489,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-c:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-d:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
-e:"$Sreact.suspense"
+2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],""]
+a:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],"default"]
+b:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
+c:"$Sreact.suspense"
 :HL["/_next/static/chunks/0br7e7j26qkj3.css","style"]
 :HL["/_next/static/chunks/21i9-auhncr4a.css","style"]
-4:T15a0,# ref와 reactive로 반응형 상태 다루기
+3:T35ec,<h1>ref와 reactive로 반응형 상태 다루기</h1>
+<blockquote>
+<p>요약: 값이 바뀌면 화면이 다시 그려지도록 ref로 상태를 두고, 계산 값과 감시 로직을 나눈다.</p>
+</blockquote>
+<hr>
+<h2>1. 왜 반응형인가</h2>
+<p>일반 변수 <code>let n = 0</code>은 값이 바뀌어도 화면이 모른다. Vue의 반응형은 <strong>값이 바뀌면 그 값을 쓰는 템플릿을 다시 그리게</strong> 만든다.</p>
+<p>언제 무엇을 쓰는가.</p>
+<table>
+<thead>
+<tr>
+<th>상황</th>
+<th>선택</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>숫자, 문자열, 불리언, 한 객체 참조</td>
+<td><code>ref</code></td>
+</tr>
+<tr>
+<td>서로 붙어 다니는 필드 묶음</td>
+<td><code>reactive</code> 또는 <code>ref({ ... })</code></td>
+</tr>
+<tr>
+<td>다른 상태에서 계산만 하는 값</td>
+<td><code>computed</code></td>
+</tr>
+<tr>
+<td>값이 바뀔 때 API 호출 등</td>
+<td><code>watch</code> / <code>watchEffect</code></td>
+</tr>
+</tbody></table>
+<p>실무 기본선은 <strong>거의 모든 상태를 <code>ref</code>로 두고</strong>, 필드가 많은 폼만 <code>reactive</code>를 검토한다.</p>
+<hr>
+<h2>2. 핵심 개념</h2>
+<table>
+<thead>
+<tr>
+<th>API</th>
+<th>한 줄</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>ref</code></td>
+<td>값이 바뀌면 화면을 다시 그릴 상자. script에서는 <code>.value</code></td>
+</tr>
+<tr>
+<td><code>reactive</code></td>
+<td>객체 전체에 Proxy를 씌운다. 프로퍼티는 바로 읽는다</td>
+</tr>
+<tr>
+<td>언래핑</td>
+<td>템플릿은 <code>ref</code> 상자를 자동으로 연다</td>
+</tr>
+<tr>
+<td><code>computed</code></td>
+<td>다른 상태에 의존하는 캐시된 파생 값</td>
+</tr>
+<tr>
+<td><code>watch</code></td>
+<td>특정 상자가 바뀔 때 부수 효과를 실행한다</td>
+</tr>
+</tbody></table>
+<p><code>ref</code>로 객체를 담아도 된다. <code>user.value.name = &#39;a&#39;</code>처럼 연 뒤 필드를 바꾼다. Vue 3는 객체 <code>ref</code>의 안쪽도 반응형이다.</p>
+<hr>
+<h2>3. 동작하는 예: 프로필 폼</h2>
+<p><code>src/components/ProfileForm.vue</code>:</p>
+<pre><code class="hljs language-vue"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript">
+<span class="hljs-keyword">import</span> { ref, reactive, computed, watch } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>
 
-> 요약: 값이 바뀌면 화면이 다시 그려지도록 ref로 상태를 두고, 계산 값과 감시 로직을 나눈다.
+<span class="hljs-keyword">const</span> count = <span class="hljs-title function_">ref</span>(<span class="hljs-number">0</span>)
 
----
-
-## 1. 왜 반응형인가
-
-일반 변수 `let n = 0`은 값이 바뀌어도 화면이 모른다. Vue의 반응형은 **값이 바뀌면 그 값을 쓰는 템플릿을 다시 그리게** 만든다.
-
-언제 무엇을 쓰는가.
-
-| 상황 | 선택 |
-|------|------|
-| 숫자, 문자열, 불리언, 한 객체 참조 | `ref` |
-| 서로 붙어 다니는 필드 묶음 | `reactive` 또는 `ref({ ... })` |
-| 다른 상태에서 계산만 하는 값 | `computed` |
-| 값이 바뀔 때 API 호출 등 | `watch` / `watchEffect` |
-
-실무 기본선은 **거의 모든 상태를 `ref`로 두고**, 필드가 많은 폼만 `reactive`를 검토한다.
-
----
-
-## 2. 핵심 개념
-
-| API | 한 줄 |
-|-----|--------|
-| `ref` | 값이 바뀌면 화면을 다시 그릴 상자. script에서는 `.value` |
-| `reactive` | 객체 전체에 Proxy를 씌운다. 프로퍼티는 바로 읽는다 |
-| 언래핑 | 템플릿은 `ref` 상자를 자동으로 연다 |
-| `computed` | 다른 상태에 의존하는 캐시된 파생 값 |
-| `watch` | 특정 상자가 바뀔 때 부수 효과를 실행한다 |
-
-`ref`로 객체를 담아도 된다. `user.value.name = 'a'`처럼 연 뒤 필드를 바꾼다. Vue 3는 객체 `ref`의 안쪽도 반응형이다.
-
----
-
-## 3. 동작하는 예: 프로필 폼
-
-`src/components/ProfileForm.vue`:
-
-```vue
-<script setup lang="ts">
-import { ref, reactive, computed, watch } from 'vue'
-
-const count = ref(0)
-
-const form = reactive({
-  name: '',
-  age: 0,
+<span class="hljs-keyword">const</span> form = <span class="hljs-title function_">reactive</span>({
+  <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;&#x27;</span>,
+  <span class="hljs-attr">age</span>: <span class="hljs-number">0</span>,
 })
 
-const summary = computed(() => {
-  if (!form.name) return '이름을 입력한다'
-  return `${form.name} (${form.age}세), 저장 ${count.value}회`
+<span class="hljs-keyword">const</span> summary = <span class="hljs-title function_">computed</span>(<span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-keyword">if</span> (!form.<span class="hljs-property">name</span>) <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;이름을 입력한다&#x27;</span>
+  <span class="hljs-keyword">return</span> <span class="hljs-string">`<span class="hljs-subst">${form.name}</span> (<span class="hljs-subst">${form.age}</span>세), 저장 <span class="hljs-subst">${count.value}</span>회`</span>
 })
 
-watch(
-  () => form.name,
-  (next, prev) => {
-    if (prev && next !== prev) {
-      count.value = 0
+<span class="hljs-title function_">watch</span>(
+  <span class="hljs-function">() =&gt;</span> form.<span class="hljs-property">name</span>,
+  <span class="hljs-function">(<span class="hljs-params">next, prev</span>) =&gt;</span> {
+    <span class="hljs-keyword">if</span> (prev &amp;&amp; next !== prev) {
+      count.<span class="hljs-property">value</span> = <span class="hljs-number">0</span>
     }
   },
 )
 
-function save() {
-  if (!form.name.trim()) return
-  count.value += 1
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">save</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">if</span> (!form.<span class="hljs-property">name</span>.<span class="hljs-title function_">trim</span>()) <span class="hljs-keyword">return</span>
+  count.<span class="hljs-property">value</span> += <span class="hljs-number">1</span>
 }
 
-function reset() {
-  form.name = ''
-  form.age = 0
-  count.value = 0
+<span class="hljs-keyword">function</span> <span class="hljs-title function_">reset</span>(<span class="hljs-params"></span>) {
+  form.<span class="hljs-property">name</span> = <span class="hljs-string">&#x27;&#x27;</span>
+  form.<span class="hljs-property">age</span> = <span class="hljs-number">0</span>
+  count.<span class="hljs-property">value</span> = <span class="hljs-number">0</span>
 }
-</script>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-<template>
-  <form @submit.prevent="save">
-    <label>
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">form</span> @<span class="hljs-attr">submit.prevent</span>=<span class="hljs-string">&quot;save&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>
       이름
-      <input v-model="form.name" type="text" autocomplete="name" />
-    </label>
-    <label>
+      <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;form.name&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attr">autocomplete</span>=<span class="hljs-string">&quot;name&quot;</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">label</span>&gt;</span>
       나이
-      <input v-model.number="form.age" type="number" min="0" />
-    </label>
-    <p>{{ summary }}</p>
-    <button type="submit">저장</button>
-    <button type="button" @click="reset">초기화</button>
-  </form>
-</template>
-```
+      <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">v-model.number</span>=<span class="hljs-string">&quot;form.age&quot;</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;number&quot;</span> <span class="hljs-attr">min</span>=<span class="hljs-string">&quot;0&quot;</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">label</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span></span><span class="hljs-template-variable">{{ <span class="hljs-name">summary</span> }}</span><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;submit&quot;</span>&gt;</span>저장<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;button&quot;</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">&quot;reset&quot;</span>&gt;</span>초기화<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">form</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></span></code></pre>
+<ul>
+<li><code>count</code>는 단일 숫자 → <code>ref</code></li>
+<li><code>form</code>은 이름·나이가 함께 움직임 → <code>reactive</code></li>
+<li><code>summary</code>는 둘을 읽어 문장을 만든다 → <code>computed</code> (직접 할당하지 않는다)</li>
+<li>이름이 바뀌면 저장 횟수를 0으로 → <code>watch</code></li>
+</ul>
+<p>템플릿의 <code>v-model=&quot;form.name&quot;</code>은 <code>form.name</code>에 직접 붙는다. <code>v-model=&quot;count&quot;</code>는 템플릿 언래핑 덕분에 <code>.value</code> 없이 동작한다.</p>
+<hr>
+<h2>4. 구조 분해와 교체</h2>
+<p><code>reactive</code> 객체를 구조 분해하면 반응형이 끊긴다.</p>
+<pre><code class="hljs language-ts"><span class="hljs-keyword">const</span> form = <span class="hljs-title function_">reactive</span>({ <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;&#x27;</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">0</span> })
+<span class="hljs-keyword">const</span> { name } = form <span class="hljs-comment">// name은 일반 문자열. 이후 form.name 변경이 이 변수에 안 온다</span></code></pre>
+<p>필드를 따로 쓰려면 <code>toRefs</code>를 쓴다.</p>
+<pre><code class="hljs language-ts"><span class="hljs-keyword">import</span> { reactive, toRefs } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>
 
-- `count`는 단일 숫자 → `ref`
-- `form`은 이름·나이가 함께 움직임 → `reactive`
-- `summary`는 둘을 읽어 문장을 만든다 → `computed` (직접 할당하지 않는다)
-- 이름이 바뀌면 저장 횟수를 0으로 → `watch`
+<span class="hljs-keyword">const</span> form = <span class="hljs-title function_">reactive</span>({ <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;&#x27;</span>, <span class="hljs-attr">age</span>: <span class="hljs-number">0</span> })
+<span class="hljs-keyword">const</span> { name, age } = <span class="hljs-title function_">toRefs</span>(form) <span class="hljs-comment">// name.value, age.value</span></code></pre>
+<p>객체 통째 교체도 <code>reactive</code>의 약점이다.</p>
+<pre><code class="hljs language-ts"><span class="hljs-keyword">let</span> state = <span class="hljs-title function_">reactive</span>({ <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;a&#x27;</span> })
+state = <span class="hljs-title function_">reactive</span>({ <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;b&#x27;</span> }) <span class="hljs-comment">// 새 객체. 템플릿이 옛 Proxy를 보고 있을 수 있다</span></code></pre>
+<p>통째 교체가 필요하면 <code>ref</code>로 담는다.</p>
+<pre><code class="hljs language-ts"><span class="hljs-keyword">const</span> state = <span class="hljs-title function_">ref</span>({ <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;a&#x27;</span> })
+state.<span class="hljs-property">value</span> = { <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;b&#x27;</span> } <span class="hljs-comment">// 상자 안만 갈아끼운다</span></code></pre>
+<hr>
+<h2>5. computed와 watch 구분</h2>
+<pre><code class="hljs language-ts"><span class="hljs-keyword">import</span> { ref, computed, watch, watchEffect } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>
 
-템플릿의 `v-model="form.name"`은 `form.name`에 직접 붙는다. `v-model="count"`는 템플릿 언래핑 덕분에 `.value` 없이 동작한다.
+<span class="hljs-keyword">const</span> price = <span class="hljs-title function_">ref</span>(<span class="hljs-number">1000</span>)
+<span class="hljs-keyword">const</span> qty = <span class="hljs-title function_">ref</span>(<span class="hljs-number">2</span>)
+<span class="hljs-keyword">const</span> total = <span class="hljs-title function_">computed</span>(<span class="hljs-function">() =&gt;</span> price.<span class="hljs-property">value</span> * qty.<span class="hljs-property">value</span>)
 
----
-
-## 4. 구조 분해와 교체
-
-`reactive` 객체를 구조 분해하면 반응형이 끊긴다.
-
-```ts
-const form = reactive({ name: '', age: 0 })
-const { name } = form // name은 일반 문자열. 이후 form.name 변경이 이 변수에 안 온다
-```
-
-필드를 따로 쓰려면 `toRefs`를 쓴다.
-
-```ts
-import { reactive, toRefs } from 'vue'
-
-const form = reactive({ name: '', age: 0 })
-const { name, age } = toRefs(form) // name.value, age.value
-```
-
-객체 통째 교체도 `reactive`의 약점이다.
-
-```ts
-let state = reactive({ name: 'a' })
-state = reactive({ name: 'b' }) // 새 객체. 템플릿이 옛 Proxy를 보고 있을 수 있다
-```
-
-통째 교체가 필요하면 `ref`로 담는다.
-
-```ts
-const state = ref({ name: 'a' })
-state.value = { name: 'b' } // 상자 안만 갈아끼운다
-```
-
----
-
-## 5. computed와 watch 구분
-
-```ts
-import { ref, computed, watch, watchEffect } from 'vue'
-
-const price = ref(1000)
-const qty = ref(2)
-const total = computed(() => price.value * qty.value)
-
-watch(qty, (n) => {
-  if (n < 1) qty.value = 1
+<span class="hljs-title function_">watch</span>(qty, <span class="hljs-function">(<span class="hljs-params">n</span>) =&gt;</span> {
+  <span class="hljs-keyword">if</span> (n &lt; <span class="hljs-number">1</span>) qty.<span class="hljs-property">value</span> = <span class="hljs-number">1</span>
 })
 
-watchEffect(() => {
-  console.log('합계', total.value)
-})
-```
-
-| | `computed` | `watch` |
-|--|------------|---------|
-| 목적 | 파생 **값** | 부수 **효과** |
-| 캐시 | 의존이 같으면 재계산 안 함 | 매번 콜백 |
-| 쓰기 | 기본은 읽기 전용 | 값 변경·API·로그 |
-
-화면 표시용 계산은 `computed`다. 저장 API, `localStorage`, 포커스 이동은 `watch`다.
-
----
-
-## 6. 주의 / 흔한 실수
-
-- **script에서 `.value` 누락.** `count = 1`은 `ref` 상자를 숫자로 덮어 반응형이 죽는다. `count.value = 1`이다.
-- **`reactive`에 원시값.** `reactive(0)`은 객체가 아니라서 기대한 추적이 안 된다. 원시는 `ref`.
-- **`reactive` 변수 재할당.** 위 4절. 교체가 필요하면 `ref`.
-- **deep `watch` 남용.** `{ deep: true }`는 큰 객체에서 비용이 크다. 경로를 좁힌다.
-- **`computed` 안에서 상태 변경.** 파생만 한다. 쓰기는 `watch`나 이벤트 핸들러.
-
----
-
-## 정리
-
-상태를 만들 때 질문 하나는 이것이다. **값 하나인가, 필드 묶음인가.**
-
-- 하나 → `ref`
-- 묶음 → `reactive` 또는 `ref({ ... })`
-- 파생 → `computed`
-- 부수 효과 → `watch`
-
-거의 모든 신규 코드는 `ref`만으로도 충분하다.
-
----
-
-## 연습
-
-1. `ref`로 `score`를 두고, `computed`로 60 이상이면 `통과` 아니면 `재시험`을 표시한다.
-2. `reactive` 주소 객체 `{ city, street }`를 만들고 `toRefs`로 템플릿에 나눠 바인딩한다.
-3. `watch`로 `score`가 100이 되면 `console.log('만점')`을 한 번 출력한다.0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"ref와 reactive로 반응형 상태 다루기\",\"description\":\"값이 바뀌면 화면이 다시 그려지도록 ref로 상태를 두고, 계산 값과 감시 로직을 나눈다.\",\"datePublished\":\"2024-02-07\",\"url\":\"https://kaisa.co.kr/posts/vue-02/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"vue\",\"keywords\":\"vue\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"ref와 reactive로 반응형 상태 다루기\",\"item\":\"https://kaisa.co.kr/posts/vue-02/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2024-02-07"}]}],["$","h1",null,{"className":"blog-post__title","children":"ref와 reactive로 반응형 상태 다루기"}],["$","$L3",null,{"content":"$4"}],"$L5","$L6"]}]}]}]],["$L7","$L8","$L9","$La"],"$Lb"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Zv4TpHss7ITjpJG-s6iGo"}
-5:["$","$Lc",null,{"pathKey":"vue-02"}]
-6:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/vue-01/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Vue 3 Composition API로 시작하기"}]]}],["$","$L2",null,{"href":"/posts/vue-03/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"컴포넌트 props·emits·슬롯"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
-7:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
-8:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
-9:["$","script","script-0",{"src":"/_next/static/chunks/1oevfsdj8hv5d.js","async":true}]
-a:["$","script","script-1",{"src":"/_next/static/chunks/22vl7s8dm-4u2.js","async":true}]
-b:["$","$Ld",null,{"children":["$","$e",null,{"name":"Next.MetadataOutlet","children":"$@f"}]}]
-f:null
+<span class="hljs-title function_">watchEffect</span>(<span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-variable language_">console</span>.<span class="hljs-title function_">log</span>(<span class="hljs-string">&#x27;합계&#x27;</span>, total.<span class="hljs-property">value</span>)
+})</code></pre>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><code>computed</code></th>
+<th><code>watch</code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>목적</td>
+<td>파생 <strong>값</strong></td>
+<td>부수 <strong>효과</strong></td>
+</tr>
+<tr>
+<td>캐시</td>
+<td>의존이 같으면 재계산 안 함</td>
+<td>매번 콜백</td>
+</tr>
+<tr>
+<td>쓰기</td>
+<td>기본은 읽기 전용</td>
+<td>값 변경·API·로그</td>
+</tr>
+</tbody></table>
+<p>화면 표시용 계산은 <code>computed</code>다. 저장 API, <code>localStorage</code>, 포커스 이동은 <code>watch</code>다.</p>
+<hr>
+<h2>6. 주의 / 흔한 실수</h2>
+<ul>
+<li><strong>script에서 <code>.value</code> 누락.</strong> <code>count = 1</code>은 <code>ref</code> 상자를 숫자로 덮어 반응형이 죽는다. <code>count.value = 1</code>이다.</li>
+<li><strong><code>reactive</code>에 원시값.</strong> <code>reactive(0)</code>은 객체가 아니라서 기대한 추적이 안 된다. 원시는 <code>ref</code>.</li>
+<li><strong><code>reactive</code> 변수 재할당.</strong> 위 4절. 교체가 필요하면 <code>ref</code>.</li>
+<li><strong>deep <code>watch</code> 남용.</strong> <code>{ deep: true }</code>는 큰 객체에서 비용이 크다. 경로를 좁힌다.</li>
+<li><strong><code>computed</code> 안에서 상태 변경.</strong> 파생만 한다. 쓰기는 <code>watch</code>나 이벤트 핸들러.</li>
+</ul>
+<hr>
+<h2>정리</h2>
+<p>상태를 만들 때 질문 하나는 이것이다. <strong>값 하나인가, 필드 묶음인가.</strong></p>
+<ul>
+<li>하나 → <code>ref</code></li>
+<li>묶음 → <code>reactive</code> 또는 <code>ref({ ... })</code></li>
+<li>파생 → <code>computed</code></li>
+<li>부수 효과 → <code>watch</code></li>
+</ul>
+<p>거의 모든 신규 코드는 <code>ref</code>만으로도 충분하다.</p>
+<hr>
+<h2>연습</h2>
+<ol>
+<li><code>ref</code>로 <code>score</code>를 두고, <code>computed</code>로 60 이상이면 <code>통과</code> 아니면 <code>재시험</code>을 표시한다.</li>
+<li><code>reactive</code> 주소 객체 <code>{ city, street }</code>를 만들고 <code>toRefs</code>로 템플릿에 나눠 바인딩한다.</li>
+<li><code>watch</code>로 <code>score</code>가 100이 되면 <code>console.log(&#39;만점&#39;)</code>을 한 번 출력한다.</li>
+</ol>
+0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"ref와 reactive로 반응형 상태 다루기\",\"description\":\"값이 바뀌면 화면이 다시 그려지도록 ref로 상태를 두고, 계산 값과 감시 로직을 나눈다.\",\"datePublished\":\"2024-02-07\",\"url\":\"https://kaisa.co.kr/posts/vue-02/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"vue\",\"keywords\":\"vue\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"ref와 reactive로 반응형 상태 다루기\",\"item\":\"https://kaisa.co.kr/posts/vue-02/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2024-02-07"}]}],["$","h1",null,{"className":"blog-post__title","children":"ref와 reactive로 반응형 상태 다루기"}],["$","div",null,{"className":"blog-post__body blog-post__body--markdown","children":["$","div",null,{"className":"markdown-body","dangerouslySetInnerHTML":{"__html":"$3"}}]}],"$L4","$L5"]}]}]}]],["$L6","$L7","$L8"],"$L9"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"_AZq8Hq_NwvdopxIW0Tgh"}
+4:["$","$La",null,{"pathKey":"vue-02"}]
+5:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/vue-01/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Vue 3 Composition API로 시작하기"}]]}],["$","$L2",null,{"href":"/posts/vue-03/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"컴포넌트 props·emits·슬롯"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
+6:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
+7:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
+8:["$","script","script-0",{"src":"/_next/static/chunks/26shoze10o-dc.js","async":true}]
+9:["$","$Lb",null,{"children":["$","$c",null,{"name":"Next.MetadataOutlet","children":"$@d"}]}]
+d:null

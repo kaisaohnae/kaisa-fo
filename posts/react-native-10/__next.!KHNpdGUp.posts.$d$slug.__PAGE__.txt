@@ -1,176 +1,174 @@
 1:"$Sreact.fragment"
-2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],""]
-3:I[55489,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-c:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-d:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
-e:"$Sreact.suspense"
+2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],""]
+a:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],"default"]
+b:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
+c:"$Sreact.suspense"
 :HL["/_next/static/chunks/0br7e7j26qkj3.css","style"]
 :HL["/_next/static/chunks/21i9-auhncr4a.css","style"]
-4:T1916,# EAS 빌드·스토어 배포·OTA
-
-> 요약: EAS로 스토어 빌드와 OTA 업데이트를 나누고, 출시 전에 볼 점검 목록을 정리한다.
-
----
-
-## 1. 왜 EAS인가
-
-로컬 Xcode/Gradle만으로도 IPA/AAB는 나온다. 다만 인증서, 시뮬레이터, CI 머신을 팀마다 맞추기 어렵다.
-
-**EAS**(Expo Application Services)는 Expo의 클라우드 빌드·스토어 제출·JS 업데이트 서비스다. 실무 기본은 **EAS Build로 바이너리를 만들고**, 카피·버그 수정은 가능하면 스토어 없이 내린다.
-
-**OTA**(Over-The-Air)는 스토어 심사 없이 JavaScript와 에셋을 기기에 보내는 방식이다. Expo에서는 **EAS Update**가 담당한다. 네이티브 모듈·권한·SDK를 바꾸면 OTA로 안 된다. 새 스토어 빌드가 필요하다.
-
----
-
-## 2. 핵심 개념
-
-| 방식 | 왜 쓰는가 |
-|------|-----------|
-| Expo Go | 프로토타입. 커스텀 네이티브가 없으면 가장 빠르다 |
-| Development Build | 팀 네이티브 모듈을 실기기에 넣고 JS는 Metro로 돌린다 |
-| EAS Build | CI와 같은 환경에서 IPA/AAB를 만든다 |
-| 로컬 prebuild | `ios/`/`android/`를 열어 네이티브를 직접 볼 때 |
-
-프로파일로 환경을 나눈다. development는 내부 개발 클라이언트, preview는 테스터 APK, production은 스토어다.
-
-`version`은 사용자가 본다. 스토어 빌드 번호는 `autoIncrement`가 안전하다. 번들 ID / applicationId는 나중에 바꾸기 어렵다.
-
-OTA는 `runtimeVersion`이 맞는 바이너리에만 들어간다. 너무 오래된 앱에는 강제 업데이트 UI가 필요하다.
-
----
-
-## 3. 예제
-
-```bash
-npm i -g eas-cli
+3:T3004,<h1>EAS 빌드·스토어 배포·OTA</h1>
+<blockquote>
+<p>요약: EAS로 스토어 빌드와 OTA 업데이트를 나누고, 출시 전에 볼 점검 목록을 정리한다.</p>
+</blockquote>
+<hr>
+<h2>1. 왜 EAS인가</h2>
+<p>로컬 Xcode/Gradle만으로도 IPA/AAB는 나온다. 다만 인증서, 시뮬레이터, CI 머신을 팀마다 맞추기 어렵다.</p>
+<p><strong>EAS</strong>(Expo Application Services)는 Expo의 클라우드 빌드·스토어 제출·JS 업데이트 서비스다. 실무 기본은 <strong>EAS Build로 바이너리를 만들고</strong>, 카피·버그 수정은 가능하면 스토어 없이 내린다.</p>
+<p><strong>OTA</strong>(Over-The-Air)는 스토어 심사 없이 JavaScript와 에셋을 기기에 보내는 방식이다. Expo에서는 <strong>EAS Update</strong>가 담당한다. 네이티브 모듈·권한·SDK를 바꾸면 OTA로 안 된다. 새 스토어 빌드가 필요하다.</p>
+<hr>
+<h2>2. 핵심 개념</h2>
+<table>
+<thead>
+<tr>
+<th>방식</th>
+<th>왜 쓰는가</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Expo Go</td>
+<td>프로토타입. 커스텀 네이티브가 없으면 가장 빠르다</td>
+</tr>
+<tr>
+<td>Development Build</td>
+<td>팀 네이티브 모듈을 실기기에 넣고 JS는 Metro로 돌린다</td>
+</tr>
+<tr>
+<td>EAS Build</td>
+<td>CI와 같은 환경에서 IPA/AAB를 만든다</td>
+</tr>
+<tr>
+<td>로컬 prebuild</td>
+<td><code>ios/</code>/<code>android/</code>를 열어 네이티브를 직접 볼 때</td>
+</tr>
+</tbody></table>
+<p>프로파일로 환경을 나눈다. development는 내부 개발 클라이언트, preview는 테스터 APK, production은 스토어다.</p>
+<p><code>version</code>은 사용자가 본다. 스토어 빌드 번호는 <code>autoIncrement</code>가 안전하다. 번들 ID / applicationId는 나중에 바꾸기 어렵다.</p>
+<p>OTA는 <code>runtimeVersion</code>이 맞는 바이너리에만 들어간다. 너무 오래된 앱에는 강제 업데이트 UI가 필요하다.</p>
+<hr>
+<h2>3. 예제</h2>
+<pre><code class="hljs language-bash">npm i -g eas-cli
 eas login
-eas build:configure
-```
-
-```bash
-npx expo install expo-dev-client
-eas build --profile development --platform android
-```
-
-```json
-{
-  "cli": { "version": ">= 12.0.0" },
-  "build": {
-    "development": {
-      "developmentClient": true,
-      "distribution": "internal"
-    },
-    "preview": {
-      "distribution": "internal",
-      "android": { "buildType": "apk" }
-    },
-    "production": {
-      "autoIncrement": true
-    }
-  },
-  "submit": {
-    "production": {}
-  }
-}
-```
-
-`EXPO_PUBLIC_API_URL`은 프로파일별 시크릿/환경으로 나눈다. `eas secret:create` 또는 EAS env.
-
-```bash
-eas build --platform ios --profile production
+eas build:configure</code></pre>
+<pre><code class="hljs language-bash">npx expo install expo-dev-client
+eas build --profile development --platform android</code></pre>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;cli&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span> <span class="hljs-attr">&quot;version&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;&gt;= 12.0.0&quot;</span> <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;build&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;development&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+      <span class="hljs-attr">&quot;developmentClient&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">&quot;distribution&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;internal&quot;</span>
+    <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;preview&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+      <span class="hljs-attr">&quot;distribution&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;internal&quot;</span><span class="hljs-punctuation">,</span>
+      <span class="hljs-attr">&quot;android&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span> <span class="hljs-attr">&quot;buildType&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;apk&quot;</span> <span class="hljs-punctuation">}</span>
+    <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;production&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+      <span class="hljs-attr">&quot;autoIncrement&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-literal"><span class="hljs-keyword">true</span></span>
+    <span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+  <span class="hljs-attr">&quot;submit&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;production&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span><span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span></code></pre>
+<p><code>EXPO_PUBLIC_API_URL</code>은 프로파일별 시크릿/환경으로 나눈다. <code>eas secret:create</code> 또는 EAS env.</p>
+<pre><code class="hljs language-bash">eas build --platform ios --profile production
 eas build --platform android --profile production
 eas submit --platform ios
-eas submit --platform android
-```
-
-```json
-{
-  "expo": {
-    "ios": { "bundleIdentifier": "com.example.myapp" },
-    "android": { "package": "com.example.myapp", "versionCode": 1 },
-    "version": "1.0.0",
-    "runtimeVersion": { "policy": "appVersion" },
-    "updates": { "url": "https://u.expo.dev/..." }
-  }
-}
-```
-
-```bash
-npx expo install expo-updates
-eas update --branch production --message "Fix checkout crash"
-```
-
-CI 스케치: PR은 lint·typecheck·test. `main`은 preview. 태그는 production build + submit. 핫픽스는 `eas update`. 시크릿은 `EXPO_TOKEN`과 스토어 키.
-
-딥링크: `myapp://` 스킴 + HTTPS App Links / Universal Links. 알림·매직링크가 심사에서 자주 막힌다.
-
-Play는 AAB. 불필요 권한은 심사 리스크다. iOS Privacy Manifest, 계정 삭제, 암호화 질문도 체크한다.
-
----
-
-## 4. 흔한 실수
-
-| 실수 | 왜 문제인가 |
-|------|-------------|
-| 네이티브 변경을 OTA로 배포 | 모듈·권한이 없는 옛 바이너리에서는 크래시한다 |
-| runtimeVersion 없이 업데이트 | 호환 안 되는 JS가 깔려 기동이 실패한다 |
-| 번들 ID를 출시 직전 변경 | 스토어 앱이 새 앱이 되어 리뷰·구매가 끊긴다 |
-| 모든 테스터에게 production 서명 | 내부 배포와 스토어 트랙이 섞여 롤백이 어렵다 |
-| 롤백 절차 없음 | 잘못된 OTA를 이전 업데이트로 되돌릴 수 있어야 한다 |
-
----
-
-## 5. 정리 — 프로덕션 체크리스트
-
-각 항목은 **한 줄 이유**다. 통과/미통과로 표시한다.
-
-### 제품
-
-- [ ] 빈·로딩·에러·오프라인 UI — 네트워크가 기본인 앱에서 흰 화면은 이탈이다
-- [ ] 인증 만료·토큰 갱신 — 재설치 없이 세션이 죽으면 리뷰가 쌓인다
-- [ ] 딥링크·푸시 진입점 — 알림을 열었는데 홈만 뜨면 캠페인이 무의미하다
-- [ ] 주요 CTA 접근성 라벨 — 심사와 스크린 리더가 버튼을 못 찾는다
-
-### 기술
-
-- [ ] API 환경 분리 — prod 앱이 staging을 치면 데이터가 섞인다
-- [ ] 토큰은 SecureStore — 백업·로그에 access token이 남으면 탈취 경로다
-- [ ] Sentry + 소스맵 — 스토어 크래시를 파일·줄로 못 보면 고칠 수 없다
-- [ ] 프로덕션 로그에 시크릿 없음 — 토큰이 관측 도구에 쌓인다
-- [ ] Hermes / New Architecture 확인 — 끄고 빌드하면 성능·호환이 문서와 달라진다
-- [ ] 권한 문구가 `app.json`에 있음 — usage description 없으면 iOS 제출이 거절된다
-
-### 배포
-
-- [ ] EAS production 빌드 성공 — 로컬에서만 되는 빌드는 CI에서 깨진다
-- [ ] 내부 테스트 트랙 — 스토어 공개 전에 테스터 바이너리로 회귀를 본다
-- [ ] OTA 브랜치 전략 문서 — production 핫픽스와 preview 실험이 섞이면 사고다
-- [ ] 롤백 방법 — 이전 `eas update` 또는 스토어 이전 빌드로 되돌린다
-- [ ] version + 빌드 번호 autoIncrement — 같은 번호 재업로드는 스토어가 거절한다
-- [ ] 아이콘·스플래시·개인정보 고지 — 메타 누락은 바이너리보다 심사를 오래 끈다
-- [ ] Play AAB / 불필요 권한 제거 — APK 직접 업로드·과잉 권한은 정책 위반이다
-- [ ] 계정 삭제(해당 시) — 로그인 앱은 스토어가 삭제 경로를 요구한다
-
-기본 조합은 **Expo + TypeScript + Expo Router + React Query + EAS**다.
-
-- UI: Flex와 명확한 컴포넌트
-- 서버 상태: Query. 클라이언트 전역: 최소
-- 토큰: SecureStore. 권한: 필요 시점
-- 애니메이션: UI 스레드
-- 출시: EAS 빌드. 핫픽스: OTA. 네이티브 변경: 스토어
-
-## 연습
-
-1. EAS 프로젝트를 연결하고 preview 내부 배포를 만든다.
-2. production 프로파일에서 빌드 번호가 증가하는지 확인한다.
-3. 카피 수정만 `eas update`로 배포한다.
-4. 위 체크리스트를 통과/미통과로 표시한다.
-5. (선택) PR에 typecheck + test를 건다.0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"EAS 빌드·스토어 배포·OTA\",\"description\":\"EAS로 스토어 빌드와 OTA 업데이트를 나누고, 출시 전에 볼 점검 목록을 정리한다.\",\"datePublished\":\"2026-08-19\",\"url\":\"https://kaisa.co.kr/posts/react-native-10/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"react-native\",\"keywords\":\"react-native\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"EAS 빌드·스토어 배포·OTA\",\"item\":\"https://kaisa.co.kr/posts/react-native-10/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2026-08-19"}]}],["$","h1",null,{"className":"blog-post__title","children":"EAS 빌드·스토어 배포·OTA"}],["$","$L3",null,{"content":"$4"}],"$L5","$L6"]}]}]}]],["$L7","$L8","$L9","$La"],"$Lb"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Zv4TpHss7ITjpJG-s6iGo"}
-5:["$","$Lc",null,{"pathKey":"react-native-10"}]
-6:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/react-native-09/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"테스트·디버깅·성능"}]]}],null]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
-7:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
-8:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
-9:["$","script","script-0",{"src":"/_next/static/chunks/1oevfsdj8hv5d.js","async":true}]
-a:["$","script","script-1",{"src":"/_next/static/chunks/22vl7s8dm-4u2.js","async":true}]
-b:["$","$Ld",null,{"children":["$","$e",null,{"name":"Next.MetadataOutlet","children":"$@f"}]}]
-f:null
+eas submit --platform android</code></pre>
+<pre><code class="hljs language-json"><span class="hljs-punctuation">{</span>
+  <span class="hljs-attr">&quot;expo&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span>
+    <span class="hljs-attr">&quot;ios&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span> <span class="hljs-attr">&quot;bundleIdentifier&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;com.example.myapp&quot;</span> <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;android&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span> <span class="hljs-attr">&quot;package&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;com.example.myapp&quot;</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">&quot;versionCode&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span> <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;version&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;1.0.0&quot;</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;runtimeVersion&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span> <span class="hljs-attr">&quot;policy&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;appVersion&quot;</span> <span class="hljs-punctuation">}</span><span class="hljs-punctuation">,</span>
+    <span class="hljs-attr">&quot;updates&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-punctuation">{</span> <span class="hljs-attr">&quot;url&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-string">&quot;https://u.expo.dev/...&quot;</span> <span class="hljs-punctuation">}</span>
+  <span class="hljs-punctuation">}</span>
+<span class="hljs-punctuation">}</span></code></pre>
+<pre><code class="hljs language-bash">npx expo install expo-updates
+eas update --branch production --message <span class="hljs-string">&quot;Fix checkout crash&quot;</span></code></pre>
+<p>CI 스케치: PR은 lint·typecheck·test. <code>main</code>은 preview. 태그는 production build + submit. 핫픽스는 <code>eas update</code>. 시크릿은 <code>EXPO_TOKEN</code>과 스토어 키.</p>
+<p>딥링크: <code>myapp://</code> 스킴 + HTTPS App Links / Universal Links. 알림·매직링크가 심사에서 자주 막힌다.</p>
+<p>Play는 AAB. 불필요 권한은 심사 리스크다. iOS Privacy Manifest, 계정 삭제, 암호화 질문도 체크한다.</p>
+<hr>
+<h2>4. 흔한 실수</h2>
+<table>
+<thead>
+<tr>
+<th>실수</th>
+<th>왜 문제인가</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>네이티브 변경을 OTA로 배포</td>
+<td>모듈·권한이 없는 옛 바이너리에서는 크래시한다</td>
+</tr>
+<tr>
+<td>runtimeVersion 없이 업데이트</td>
+<td>호환 안 되는 JS가 깔려 기동이 실패한다</td>
+</tr>
+<tr>
+<td>번들 ID를 출시 직전 변경</td>
+<td>스토어 앱이 새 앱이 되어 리뷰·구매가 끊긴다</td>
+</tr>
+<tr>
+<td>모든 테스터에게 production 서명</td>
+<td>내부 배포와 스토어 트랙이 섞여 롤백이 어렵다</td>
+</tr>
+<tr>
+<td>롤백 절차 없음</td>
+<td>잘못된 OTA를 이전 업데이트로 되돌릴 수 있어야 한다</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>5. 정리 — 프로덕션 체크리스트</h2>
+<p>각 항목은 <strong>한 줄 이유</strong>다. 통과/미통과로 표시한다.</p>
+<h3>제품</h3>
+<ul>
+<li><input disabled="" type="checkbox"> 빈·로딩·에러·오프라인 UI — 네트워크가 기본인 앱에서 흰 화면은 이탈이다</li>
+<li><input disabled="" type="checkbox"> 인증 만료·토큰 갱신 — 재설치 없이 세션이 죽으면 리뷰가 쌓인다</li>
+<li><input disabled="" type="checkbox"> 딥링크·푸시 진입점 — 알림을 열었는데 홈만 뜨면 캠페인이 무의미하다</li>
+<li><input disabled="" type="checkbox"> 주요 CTA 접근성 라벨 — 심사와 스크린 리더가 버튼을 못 찾는다</li>
+</ul>
+<h3>기술</h3>
+<ul>
+<li><input disabled="" type="checkbox"> API 환경 분리 — prod 앱이 staging을 치면 데이터가 섞인다</li>
+<li><input disabled="" type="checkbox"> 토큰은 SecureStore — 백업·로그에 access token이 남으면 탈취 경로다</li>
+<li><input disabled="" type="checkbox"> Sentry + 소스맵 — 스토어 크래시를 파일·줄로 못 보면 고칠 수 없다</li>
+<li><input disabled="" type="checkbox"> 프로덕션 로그에 시크릿 없음 — 토큰이 관측 도구에 쌓인다</li>
+<li><input disabled="" type="checkbox"> Hermes / New Architecture 확인 — 끄고 빌드하면 성능·호환이 문서와 달라진다</li>
+<li><input disabled="" type="checkbox"> 권한 문구가 <code>app.json</code>에 있음 — usage description 없으면 iOS 제출이 거절된다</li>
+</ul>
+<h3>배포</h3>
+<ul>
+<li><input disabled="" type="checkbox"> EAS production 빌드 성공 — 로컬에서만 되는 빌드는 CI에서 깨진다</li>
+<li><input disabled="" type="checkbox"> 내부 테스트 트랙 — 스토어 공개 전에 테스터 바이너리로 회귀를 본다</li>
+<li><input disabled="" type="checkbox"> OTA 브랜치 전략 문서 — production 핫픽스와 preview 실험이 섞이면 사고다</li>
+<li><input disabled="" type="checkbox"> 롤백 방법 — 이전 <code>eas update</code> 또는 스토어 이전 빌드로 되돌린다</li>
+<li><input disabled="" type="checkbox"> version + 빌드 번호 autoIncrement — 같은 번호 재업로드는 스토어가 거절한다</li>
+<li><input disabled="" type="checkbox"> 아이콘·스플래시·개인정보 고지 — 메타 누락은 바이너리보다 심사를 오래 끈다</li>
+<li><input disabled="" type="checkbox"> Play AAB / 불필요 권한 제거 — APK 직접 업로드·과잉 권한은 정책 위반이다</li>
+<li><input disabled="" type="checkbox"> 계정 삭제(해당 시) — 로그인 앱은 스토어가 삭제 경로를 요구한다</li>
+</ul>
+<p>기본 조합은 <strong>Expo + TypeScript + Expo Router + React Query + EAS</strong>다.</p>
+<ul>
+<li>UI: Flex와 명확한 컴포넌트</li>
+<li>서버 상태: Query. 클라이언트 전역: 최소</li>
+<li>토큰: SecureStore. 권한: 필요 시점</li>
+<li>애니메이션: UI 스레드</li>
+<li>출시: EAS 빌드. 핫픽스: OTA. 네이티브 변경: 스토어</li>
+</ul>
+<h2>연습</h2>
+<ol>
+<li>EAS 프로젝트를 연결하고 preview 내부 배포를 만든다.</li>
+<li>production 프로파일에서 빌드 번호가 증가하는지 확인한다.</li>
+<li>카피 수정만 <code>eas update</code>로 배포한다.</li>
+<li>위 체크리스트를 통과/미통과로 표시한다.</li>
+<li>(선택) PR에 typecheck + test를 건다.</li>
+</ol>
+0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"EAS 빌드·스토어 배포·OTA\",\"description\":\"EAS로 스토어 빌드와 OTA 업데이트를 나누고, 출시 전에 볼 점검 목록을 정리한다.\",\"datePublished\":\"2026-08-19\",\"url\":\"https://kaisa.co.kr/posts/react-native-10/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"react-native\",\"keywords\":\"react-native\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"EAS 빌드·스토어 배포·OTA\",\"item\":\"https://kaisa.co.kr/posts/react-native-10/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2026-08-19"}]}],["$","h1",null,{"className":"blog-post__title","children":"EAS 빌드·스토어 배포·OTA"}],["$","div",null,{"className":"blog-post__body blog-post__body--markdown","children":["$","div",null,{"className":"markdown-body","dangerouslySetInnerHTML":{"__html":"$3"}}]}],"$L4","$L5"]}]}]}]],["$L6","$L7","$L8"],"$L9"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"_AZq8Hq_NwvdopxIW0Tgh"}
+4:["$","$La",null,{"pathKey":"react-native-10"}]
+5:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/react-native-09/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"테스트·디버깅·성능"}]]}],null]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
+6:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
+7:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
+8:["$","script","script-0",{"src":"/_next/static/chunks/26shoze10o-dc.js","async":true}]
+9:["$","$Lb",null,{"children":["$","$c",null,{"name":"Next.MetadataOutlet","children":"$@d"}]}]
+d:null

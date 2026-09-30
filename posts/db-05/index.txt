@@ -3,184 +3,156 @@
 3:I[883661,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"default"]
 4:I[339756,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"default"]
 5:I[837457,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"default"]
-6:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],""]
+6:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],""]
 7:I[722067,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"default"]
 8:I[778481,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"default"]
 9:I[902105,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"default"]
 13:I[168027,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"default",1]
 :HL["/_next/static/chunks/34-r72pc7x98u.css","style"]
 :HL["/_next/static/chunks/3xau-2enavhj9.css","style"]
-:HL["/_next/static/chunks/01h2qkg9511bb.css","style"]
+:HL["/_next/static/chunks/0souqbpzq6xbb.css","style"]
 :HL["/_next/static/chunks/1xra_60l-k8t4.css","style"]
 :HL["/_next/static/media/0c795a286deabae8-s.p.3vm0tq4e-zz_5.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/media/5c285b27cdda1fe8-s.p.2_mbdogr7ni8i.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
 :HL["/_next/static/chunks/0br7e7j26qkj3.css","style"]
 :HL["/_next/static/chunks/21i9-auhncr4a.css","style"]
 :HL["/_next/static/chunks/0z_31kp4nojhg.css","style"]
-0:{"P":null,"c":["","posts","db-05",""],"q":"","i":false,"f":[[["",{"children":["(site)",{"children":["posts",{"children":[["slug","db-05","d",null],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/34-r72pc7x98u.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/3hb4n4ylf5-a0.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1ntn7efqc-iiw.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ko","className":"syne_53f86cd1-module__kiT3Eq__variable dm_sans_fd62f040-module__0jgVUW__variable","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","$L2",null,{"id":"kaisa-google-adsense","strategy":"afterInteractive","src":"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2641553863829571","crossOrigin":"anonymous"}]}],["$","body",null,{"children":[["$","script",null,{"id":"kaisa-init-1","dangerouslySetInnerHTML":{"__html":"(function(){try{var t=null;document.cookie.split(';').forEach(function(c){var p=c.trim().split('=');if(p[0]==='kaisa-shared-theme')t=decodeURIComponent(p[1]||'');});document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();"}}],["$","script",null,{"id":"kaisa-locale-init","dangerouslySetInnerHTML":{"__html":"(function(){try{\nvar key='kaisa-shared-locale',entry=document.cookie.split(';').map(function(c){return c.trim();}).find(function(c){return c.indexOf(key+'=')===0;});\nvar l=entry?entry.slice(key.length+1):null;\nfunction valid(v){return /^(ko|en|zh|hi)$/.test(v||'');}\nif(!valid(l)){try{l=sessionStorage.getItem('kaisa-locale');}catch(e){}}\nif(!valid(l)){var a=[navigator.language].concat(navigator.languages||[]);l=null;for(var i=0;i<a.length;i++){var m=/^(ko|en|zh|hi)/i.exec(a[i]||'');if(m){l=m[1].toLowerCase();break;}}}\nvar determined=valid(l);if(!determined)l='ko';\nif(determined&&(!entry||entry.slice(key.length+1)!==l)){var h=location.hostname,d=h==='kaisa.co.kr'||h.endsWith('.kaisa.co.kr')?'; domain=kaisa.co.kr':'';document.cookie=key+'='+l+'; max-age=2592000; path=/; samesite=lax'+d;}\ndocument.documentElement.lang=l;\n}catch(e){document.documentElement.lang='ko';}})();"}}],[["$","$L2",null,{"src":"https://www.googletagmanager.com/gtag/js?id=G-2281QQ6XP4","strategy":"afterInteractive"}],["$","$L2",null,{"id":"google-analytics","strategy":"afterInteractive","children":"\n          window.dataLayer = window.dataLayer || [];\n          function gtag(){dataLayer.push(arguments);}\n          gtag('js', new Date());\n          gtag('config', 'G-2281QQ6XP4');\n        "}]],["$","$L3",null,{}],["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}],["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]]}]}],[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0z_31kp4nojhg.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","$L7",null,{}],["$","$L8",null,{}],["$","$L9",null,{}]]}]]}]]}],{"children":[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3xau-2enavhj9.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/01h2qkg9511bb.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/1xra_60l-k8t4.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/1210t6uckuu_4.js","async":true,"nonce":"$undefined"}],"$La","$Lb","$Lc"],"$Ld"]}],{"children":["$Le",{"children":["$Lf",{"children":["$L10",{},null,false,null]},null,false,"$@11"]},null,false,"$@11"]},null,false,null]},null,false,null],"$L12",false]],"m":"$undefined","G":["$13",["$L14"]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"Zv4TpHss7ITjpJG-s6iGo"}
-15:I[669033,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js"],"LocaleProvider"]
-16:I[545872,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js"],"default"]
-17:I[320683,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js"],"default"]
-18:I[86979,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/2nllraa9qqjuh.js"],"default"]
-19:I[44604,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js"],"default"]
+0:{"P":null,"c":["","posts","db-05",""],"q":"","i":false,"f":[[["",{"children":["(site)",{"children":["posts",{"children":[["slug","db-05","d",null],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",16],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/34-r72pc7x98u.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/3hb4n4ylf5-a0.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/1ntn7efqc-iiw.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"ko","className":"syne_53f86cd1-module__kiT3Eq__variable dm_sans_fd62f040-module__0jgVUW__variable","suppressHydrationWarning":true,"children":[["$","head",null,{"children":["$","$L2",null,{"id":"kaisa-google-adsense","strategy":"afterInteractive","src":"https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2641553863829571","crossOrigin":"anonymous"}]}],["$","body",null,{"children":[["$","script",null,{"id":"kaisa-init-1","dangerouslySetInnerHTML":{"__html":"(function(){try{var t=null;document.cookie.split(';').forEach(function(c){var p=c.trim().split('=');if(p[0]==='kaisa-shared-theme')t=decodeURIComponent(p[1]||'');});document.documentElement.setAttribute('data-theme',t==='dark'?'dark':'light');}catch(e){document.documentElement.setAttribute('data-theme','light');}})();"}}],["$","script",null,{"id":"kaisa-locale-init","dangerouslySetInnerHTML":{"__html":"(function(){try{\nvar key='kaisa-shared-locale',entry=document.cookie.split(';').map(function(c){return c.trim();}).find(function(c){return c.indexOf(key+'=')===0;});\nvar l=entry?entry.slice(key.length+1):null;\nfunction valid(v){return /^(ko|en|zh|hi)$/.test(v||'');}\nif(!valid(l)){try{l=sessionStorage.getItem('kaisa-locale');}catch(e){}}\nif(!valid(l)){var a=[navigator.language].concat(navigator.languages||[]);l=null;for(var i=0;i<a.length;i++){var m=/^(ko|en|zh|hi)/i.exec(a[i]||'');if(m){l=m[1].toLowerCase();break;}}}\nvar determined=valid(l);if(!determined)l='ko';\nif(determined&&(!entry||entry.slice(key.length+1)!==l)){var h=location.hostname,d=h==='kaisa.co.kr'||h.endsWith('.kaisa.co.kr')?'; domain=kaisa.co.kr':'';document.cookie=key+'='+l+'; max-age=2592000; path=/; samesite=lax'+d;}\ndocument.documentElement.lang=l;\n}catch(e){document.documentElement.lang='ko';}})();"}}],[["$","$L2",null,{"src":"https://www.googletagmanager.com/gtag/js?id=G-2281QQ6XP4","strategy":"afterInteractive"}],["$","$L2",null,{"id":"google-analytics","strategy":"afterInteractive","children":"\n          window.dataLayer = window.dataLayer || [];\n          function gtag(){dataLayer.push(arguments);}\n          gtag('js', new Date());\n          gtag('config', 'G-2281QQ6XP4');\n        "}]],["$","$L3",null,{}],["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}],["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]]}]}],[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0z_31kp4nojhg.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"forbidden":"$undefined","unauthorized":"$undefined"}],["$","$L7",null,{}],["$","$L8",null,{}],["$","$L9",null,{}]]}]]}]]}],{"children":[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/3xau-2enavhj9.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/0souqbpzq6xbb.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","2",{"rel":"stylesheet","href":"/_next/static/chunks/1xra_60l-k8t4.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/2t60f4_2tjmro.js","async":true,"nonce":"$undefined"}],"$La","$Lb","$Lc"],"$Ld"]}],{"children":["$Le",{"children":["$Lf",{"children":["$L10",{},null,false,null]},null,false,"$@11"]},null,false,"$@11"]},null,false,null]},null,false,null],"$L12",false]],"m":"$undefined","G":["$13",["$L14"]],"S":true,"h":null,"s":"$undefined","l":"$undefined","p":"$undefined","d":"$undefined","b":"_AZq8Hq_NwvdopxIW0Tgh"}
+15:I[669033,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js"],"LocaleProvider"]
+16:I[545872,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js"],"default"]
+17:I[320683,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js"],"default"]
+18:I[86979,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/2nllraa9qqjuh.js"],"default"]
+19:I[44604,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js"],"default"]
 1b:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
 1c:"$Sreact.suspense"
 1f:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"ViewportBoundary"]
 21:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"MetadataBoundary"]
 a:["$","script","script-1",{"src":"/_next/static/chunks/1i1l5t--me2mi.js","async":true,"nonce":"$undefined"}]
-b:["$","script","script-2",{"src":"/_next/static/chunks/07ogw60khanqf.js","async":true,"nonce":"$undefined"}]
+b:["$","script","script-2",{"src":"/_next/static/chunks/2-06zdxz3h-nd.js","async":true,"nonce":"$undefined"}]
 c:["$","script","script-3",{"src":"/_next/static/chunks/3ha5i75rsjlst.js","async":true,"nonce":"$undefined"}]
 d:["$","$L15",null,{"children":["$","div",null,{"className":"site-layout","children":[["$","$L16",null,{}],["$","$L17",null,{"children":["$","$L4",null,{"parallelRouterKey":"children","error":"$18","errorStyles":[],"errorScripts":[["$","script","script-0",{"src":"/_next/static/chunks/2nllraa9qqjuh.js","async":true}]],"template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","div",null,{"className":"error-page","children":["$","div",null,{"className":"error-page__inner","children":[["$","p",null,{"className":"error-page__code","children":"404"}],["$","h1",null,{"className":"error-page__title","children":"Page Not Found"}],["$","p",null,{"className":"error-page__desc","children":["요청하신 페이지를 찾을 수 없습니다.",["$","br",null,{}],"주소가 변경되었거나 삭제된 페이지일 수 있습니다."]}],["$","$L6",null,{"href":"/","className":"error-page__cta","children":"HOME"}]]}]}],[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0z_31kp4nojhg.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],["$","$L19",null,{}]]}]}]
 e:["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]
 f:["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]
-10:["$","$1","c",{"children":["$L1a",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/1oevfsdj8hv5d.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/_next/static/chunks/22vl7s8dm-4u2.js","async":true,"nonce":"$undefined"}]],["$","$L1b",null,{"children":["$","$1c",null,{"name":"Next.MetadataOutlet","children":"$@1d"}]}]]}]
+10:["$","$1","c",{"children":["$L1a",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/_next/static/chunks/26shoze10o-dc.js","async":true,"nonce":"$undefined"}]],["$","$L1b",null,{"children":["$","$1c",null,{"name":"Next.MetadataOutlet","children":"$@1d"}]}]]}]
 1e:[]
 11:"$W1e"
 12:["$","$1","h",{"children":[null,["$","$L1f",null,{"children":"$L20"}],["$","div",null,{"hidden":true,"children":["$","$L21",null,{"children":["$","$1c",null,{"name":"Next.Metadata","children":"$L22"}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}]
 14:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/34-r72pc7x98u.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]
-23:I[55489,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-24:T1ed1,# SQLite: 파일 하나로 충분한 임베디드 SQL
+23:T28c0,<h1>SQLite: 파일 하나로 충분한 임베디드 SQL</h1>
+<blockquote>
+<p>요약: 서버 없이 파일 하나로 SQL을 쓰는 임베디드 DB로, 언제 충분하고 어디서 한계가 나는지를 정리한다.</p>
+</blockquote>
+<hr>
+<h2>1. 언제 SQLite인가</h2>
+<p>SQLite는 별도 서버 프로세스가 없다. 라이브러리가 <strong>파일 하나</strong>를 데이터베이스로 연다. 설치·계정·포트가 없다. “서버 설치 없이 SQL”이 필요하면 최우선 후보다.</p>
+<p>작다는 뜻이 아니다. 임베디드 관계형 엔진이다. 모바일, 데스크톱, CLI, 테스트, 소규모 단일 서버 웹까지 실제 제품에 쓰인다.</p>
+<table>
+<thead>
+<tr>
+<th>맞는 경우</th>
+<th>아닌 경우</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>데스크톱·모바일·CLI 로컬 저장</td>
+<td>여러 서버가 같은 DB 파일을 동시에 쓸 때</td>
+</tr>
+<tr>
+<td>프로토타입, 테스트 픽스처</td>
+<td>높은 동시 쓰기 TPS가 필요할 때</td>
+</tr>
+<tr>
+<td>읽기 위주 소규모 단일 인스턴스</td>
+<td>운영급 HA·자동 페일오버가 필요할 때</td>
+</tr>
+<tr>
+<td>엣지·임베디드, 오프라인 우선 앱</td>
+<td>중앙 관리형 멀티테넌트 DB</td>
+</tr>
+<tr>
+<td>CI에서 마이그레이션을 파일로 검증할 때</td>
+<td>팀 전원이 원격 접속해 같은 DB를 쓸 때</td>
+</tr>
+</tbody></table>
+<p>“일단 Postgres로 시작”이 습관인 팀도 많다. 단일 노드·배포 단위가 파일과 같으면 SQLite가 운영이 더 단순하다. 반대로 <strong>수평 확장하는 API 서버 여러 대</strong>가 같은 파일을 마운트하면 깨진다.</p>
+<hr>
+<h2>2. 핵심 개념</h2>
+<p><strong>파일 = 데이터베이스.</strong> <code>app.db</code> 하나가 테이블·인덱스·WAL 친구 파일을 포함한다. 경로와 권한·백업이 곧 운영이다.</p>
+<p><strong>동적 타입.</strong> 컬럼에 INTEGER를 선언해도 다른 타입을 넣을 수 있다. 엔진은 관대하다. 앱과 CHECK 제약으로 규약을 지키는 편이 안전하다.</p>
+<p><strong>WAL.</strong> Write-Ahead Log, 미리 쓰기 로그다. <code>journal_mode=WAL</code>이면 읽기와 쓰기가 덜 막힌다. 기본 DELETE 저널보다 동시성에 유리한 경우가 많다. WAL 모드면 <code>-wal</code>, <code>-shm</code> 파일이 옆에 생긴다. 복사할 때 셋 다 필요하거나, 백업 API를 쓴다.</p>
+<p><strong>쓰기 락.</strong> 한 시점에 쓰기 트랜잭션은 사실상 하나다. 읽기는 여러 개 가능하다. 다중 서버가 네트워크 파일 시스템(NFS 등) 위 같은 파일을 쓰면 잠금이 실패한다. 지원하지 않는다고 보는 편이 맞다.</p>
+<p><strong>외래키는 기본이 꺼져 있다.</strong> 연결마다 <code>PRAGMA foreign_keys = ON</code>을 켠다. ORM이 켜 주는지도 확인한다.</p>
+<p><strong>트랜잭션</strong>은 <code>BEGIN</code> / <code>COMMIT</code>이다. 여러 <code>INSERT</code>를 한 트랜잭션에 넣으면 쓰기가 훨씬 빠르다. 한 행마다 커밋하면 디스크 동기화 비용이 반복된다.</p>
+<p><code>INTEGER PRIMARY KEY</code>는 곧 ROWID다. 별도 UUID 문자열 PK는 인덱스가 커진다. 외부 공개 id가 필요하면 별 컬럼을 둔다.</p>
+<hr>
+<h2>3. 최소 예제 — 메모 앱</h2>
+<p>로컬 메모 저장을 가정한다.</p>
+<pre><code class="hljs language-bash">sqlite3 app.db</code></pre>
+<pre><code class="hljs language-sql">PRAGMA foreign_keys <span class="hljs-operator">=</span> <span class="hljs-keyword">ON</span>;
+PRAGMA journal_mode <span class="hljs-operator">=</span> WAL;
+PRAGMA busy_timeout <span class="hljs-operator">=</span> <span class="hljs-number">5000</span>;
 
-> 요약: 서버 없이 파일 하나로 SQL을 쓰는 임베디드 DB로, 언제 충분하고 어디서 한계가 나는지를 정리한다.
-
----
-
-## 1. 언제 SQLite인가
-
-SQLite는 별도 서버 프로세스가 없다. 라이브러리가 **파일 하나**를 데이터베이스로 연다. 설치·계정·포트가 없다. “서버 설치 없이 SQL”이 필요하면 최우선 후보다.
-
-작다는 뜻이 아니다. 임베디드 관계형 엔진이다. 모바일, 데스크톱, CLI, 테스트, 소규모 단일 서버 웹까지 실제 제품에 쓰인다.
-
-| 맞는 경우 | 아닌 경우 |
-|-----------|-----------|
-| 데스크톱·모바일·CLI 로컬 저장 | 여러 서버가 같은 DB 파일을 동시에 쓸 때 |
-| 프로토타입, 테스트 픽스처 | 높은 동시 쓰기 TPS가 필요할 때 |
-| 읽기 위주 소규모 단일 인스턴스 | 운영급 HA·자동 페일오버가 필요할 때 |
-| 엣지·임베디드, 오프라인 우선 앱 | 중앙 관리형 멀티테넌트 DB |
-| CI에서 마이그레이션을 파일로 검증할 때 | 팀 전원이 원격 접속해 같은 DB를 쓸 때 |
-
-“일단 Postgres로 시작”이 습관인 팀도 많다. 단일 노드·배포 단위가 파일과 같으면 SQLite가 운영이 더 단순하다. 반대로 **수평 확장하는 API 서버 여러 대**가 같은 파일을 마운트하면 깨진다.
-
----
-
-## 2. 핵심 개념
-
-**파일 = 데이터베이스.** `app.db` 하나가 테이블·인덱스·WAL 친구 파일을 포함한다. 경로와 권한·백업이 곧 운영이다.
-
-**동적 타입.** 컬럼에 INTEGER를 선언해도 다른 타입을 넣을 수 있다. 엔진은 관대하다. 앱과 CHECK 제약으로 규약을 지키는 편이 안전하다.
-
-**WAL.** Write-Ahead Log, 미리 쓰기 로그다. `journal_mode=WAL`이면 읽기와 쓰기가 덜 막힌다. 기본 DELETE 저널보다 동시성에 유리한 경우가 많다. WAL 모드면 `-wal`, `-shm` 파일이 옆에 생긴다. 복사할 때 셋 다 필요하거나, 백업 API를 쓴다.
-
-**쓰기 락.** 한 시점에 쓰기 트랜잭션은 사실상 하나다. 읽기는 여러 개 가능하다. 다중 서버가 네트워크 파일 시스템(NFS 등) 위 같은 파일을 쓰면 잠금이 실패한다. 지원하지 않는다고 보는 편이 맞다.
-
-**외래키는 기본이 꺼져 있다.** 연결마다 `PRAGMA foreign_keys = ON`을 켠다. ORM이 켜 주는지도 확인한다.
-
-**트랜잭션**은 `BEGIN` / `COMMIT`이다. 여러 `INSERT`를 한 트랜잭션에 넣으면 쓰기가 훨씬 빠르다. 한 행마다 커밋하면 디스크 동기화 비용이 반복된다.
-
-`INTEGER PRIMARY KEY`는 곧 ROWID다. 별도 UUID 문자열 PK는 인덱스가 커진다. 외부 공개 id가 필요하면 별 컬럼을 둔다.
-
----
-
-## 3. 최소 예제 — 메모 앱
-
-로컬 메모 저장을 가정한다.
-
-```bash
-sqlite3 app.db
-```
-
-```sql
-PRAGMA foreign_keys = ON;
-PRAGMA journal_mode = WAL;
-PRAGMA busy_timeout = 5000;
-
-CREATE TABLE notes (
-  id         INTEGER PRIMARY KEY,
-  title      TEXT NOT NULL,
-  body       TEXT NOT NULL,
-  created_at TEXT NOT NULL DEFAULT (datetime('now'))
+<span class="hljs-keyword">CREATE TABLE</span> notes (
+  id         <span class="hljs-type">INTEGER</span> <span class="hljs-keyword">PRIMARY KEY</span>,
+  title      TEXT <span class="hljs-keyword">NOT NULL</span>,
+  body       TEXT <span class="hljs-keyword">NOT NULL</span>,
+  created_at TEXT <span class="hljs-keyword">NOT NULL</span> <span class="hljs-keyword">DEFAULT</span> (datetime(<span class="hljs-string">&#x27;now&#x27;</span>))
 );
 
-CREATE INDEX notes_created_at_idx ON notes (created_at);
+<span class="hljs-keyword">CREATE</span> INDEX notes_created_at_idx <span class="hljs-keyword">ON</span> notes (created_at);
 
-INSERT INTO notes (title, body) VALUES ('회의', '다음 주 배포 일정 확인');
+<span class="hljs-keyword">INSERT INTO</span> notes (title, body) <span class="hljs-keyword">VALUES</span> (<span class="hljs-string">&#x27;회의&#x27;</span>, <span class="hljs-string">&#x27;다음 주 배포 일정 확인&#x27;</span>);
 
-SELECT id, title, created_at FROM notes ORDER BY created_at DESC;
-```
+<span class="hljs-keyword">SELECT</span> id, title, created_at <span class="hljs-keyword">FROM</span> notes <span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> created_at <span class="hljs-keyword">DESC</span>;</code></pre>
+<p>앱 연결 예(의사 코드):</p>
+<pre><code class="hljs language-python"><span class="hljs-keyword">import</span> sqlite3
 
-앱 연결 예(의사 코드):
-
-```python
-import sqlite3
-
-conn = sqlite3.connect("app.db")
-conn.execute("PRAGMA foreign_keys = ON")
-conn.execute("PRAGMA journal_mode = WAL")
-conn.row_factory = sqlite3.Row
-```
-
-컨테이너·서버리스라면 파일 위치를 고정한다. 이미지 레이어 안 `app.db`는 재배포 때 사라진다. 볼륨 또는 객체 스토리지 동기화(운영 난이도 상승)를 전제로 둔다.
-
-마이그레이션은 파일 스키마 버전 테이블을 두거나, Prisma·Drizzle처럼 SQLite를 지원하는 도구를 쓴다.
-
----
-
-## 4. 운영 시 주의
-
-**연결.** 요청마다 새 연결을 열어도 부담은 작은 편이다. 다만 쓰기 경합이 있으면 `SQLITE_BUSY`가 난다. `busy_timeout`을 두고, 긴 쓰기는 짧게 나눈다. 웹 서버 워커가 많으면 쓰기가 줄을 선다. 그때가 Postgres/MySQL로 옮길 신호다.
-
-**백업.** 실행 중에 `app.db`만 복사하면 WAL과 어긋날 수 있다. `sqlite3 app.db ".backup backup.db"` 또는 `VACUUM INTO 'backup.db'`를 쓴다. Litestream 등으로 S3에 복제하는 운영도 있다. 복원 후 `PRAGMA integrity_check`를 한 번 돌린다.
-
-**배포.** 다중 인스턴스가 같은 파일을 쓰지 않는다. 읽기 전용 레플리카를 파일 복사로 흉내 내는 패턴은 지연을 감수한다. HA가 필요하면 서버형 DB로 옮긴다.
-
-**보안.** 파일 권한이 곧 접근 권한이다. 웹 루트에 `app.db`를 두지 않는다. 다운로드되면 전체가 유출된다. 암호화가 필요하면 SQLCipher 등 확장 또는 OS 디스크 암호화를 검토한다.
-
-**디스크.** WAL이 안 체크포인트되면 파일이 커진다. 주기적 체크포인트와 디스크 용량 알람을 둔다.
-
-**이동.** 나중에 Postgres로 옮길 수 있다. 다만 타입·`datetime` 문자열·부분 인덱스 문법이 다르다. “언젠가 이전”을 가정하면 앱의 SQL을 방언에 덜 묶는 편이 낫다. 지금은 SQLite가 맞으면 맞다고 쓴다.
-
-**테스트.** 메모리 DB(`:memory:`)는 연결마다 비어 있다. 마이그레이션을 테스트마다 적용한다. 파일 DB 픽스처는 CI 워크스페이스에 남기지 않게 지운다.
-
-옮겨야 할 신호는 대체로 이렇다. 쓰기 대기 큐가 상시 있다. 서버를 두 대로 늘려야 한다. 백업·페일오버 SLA가 파일 복사로 안 된다. 그때 Postgres나 MySQL로 간다. 스키마와 쿼리가 단순하면 이전이 덜 아프다.
-
-**흔한 실수.** Docker 이미지 안에 DB 파일을 굽기, NFS 위에 SQLite, `PRAGMA foreign_keys`를 ORM이 켠 줄 알고 넘어가기. 세 가지가 데이터 유실로 이어진다.
-
----
-
-## 5. 정리
-
-SQLite는 작은 DB가 아니라 **임베디드 관계형 엔진**이다. 경계(단일 쓰기 주체, 파일 위치, 백업 방법)만 지키면 운영이 매우 단순해진다. 서버 여러 대가 같은 파일을 쓰는 순간부터는 다른 도구다.
-
-### 체크리스트
-
-- [ ] `PRAGMA foreign_keys = ON`을 연결마다 켠다. 기본값은 꺼져 있다.
-- [ ] 동시 읽기가 있으면 WAL을 검토한다. 기본 저널은 읽기가 더 자주 막힌다.
-- [ ] 실행 중 파일 복사 대신 `.backup` / `VACUUM INTO`를 쓴다. 깨진 복사는 복구가 아니다.
-- [ ] DB 파일을 웹 공개 경로와 이미지 레이어 밖에 둔다.
-- [ ] 인스턴스가 둘 이상이면 공유 파일 SQLite를 포기한다. 잠금이 네트워크에서 깨진다.
-
-### 연습
-
-1. `notes` 테이블을 만들고 세 건을 넣은 뒤 `ORDER BY created_at` 목록을 출력한다.
-2. WAL 모드에서 `.backup`으로 복사한 파일을 열어 건수가 같은지 확인한다.
-3. 두 프로세스가 동시에 `INSERT`할 때 `busy_timeout` 유무 차이를 관찰한다.
-
-버전 테이블로 마이그레이션을 남기는 최소 예다.
-
-```sql
-CREATE TABLE schema_migrations (
-  version TEXT PRIMARY KEY,
-  applied_at TEXT NOT NULL DEFAULT (datetime('now'))
-);
-```
-
-앱이 기동할 때 `version`을 보고 `ALTER TABLE`을 순서대로 적용한다. 파일 DB라도 스키마 이력은 텍스트로 남긴다. 운영자가 `sqlite3`로 손으로만 바꾸면 다음 배포가 깨진다.
-
-동시 읽기가 많은 정적 사이트 생성기·분석 잡은 SQLite가 잘 맞는다. 쓰기를 한 프로세스에 모으면 된다. “웹 워커 8개가 같은 파일에 INSERT”는 설계가 틀린 것이다. 그때는 큐를 앞에 두거나 서버형 DB로 간다.1a:[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"SQLite: 파일 하나로 충분한 임베디드 SQL\",\"description\":\"서버 없이 파일 하나로 SQL을 쓰는 임베디드 DB로, 언제 충분하고 어디서 한계가 나는지를 정리한다.\",\"datePublished\":\"2025-04-29\",\"url\":\"https://kaisa.co.kr/posts/db-05/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"db\",\"keywords\":\"db\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"SQLite: 파일 하나로 충분한 임베디드 SQL\",\"item\":\"https://kaisa.co.kr/posts/db-05/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L6",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2025-04-29"}]}],["$","h1",null,{"className":"blog-post__title","children":"SQLite: 파일 하나로 충분한 임베디드 SQL"}],["$","$L23",null,{"content":"$24"}],"$L25","$L26"]}]}]}]]
-27:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-25:["$","$L27",null,{"pathKey":"db-05"}]
-26:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L6",null,{"href":"/posts/db-04/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Redis: 인메모리 키-값으로 캐시·세션·큐"}]]}],["$","$L6",null,{"href":"/posts/db-06/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"InfluxDB: 시계열 데이터베이스의 개념과 실무 활용"}]]}]]}],["$","$L6",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
+conn = sqlite3.connect(<span class="hljs-string">&quot;app.db&quot;</span>)
+conn.execute(<span class="hljs-string">&quot;PRAGMA foreign_keys = ON&quot;</span>)
+conn.execute(<span class="hljs-string">&quot;PRAGMA journal_mode = WAL&quot;</span>)
+conn.row_factory = sqlite3.Row</code></pre>
+<p>컨테이너·서버리스라면 파일 위치를 고정한다. 이미지 레이어 안 <code>app.db</code>는 재배포 때 사라진다. 볼륨 또는 객체 스토리지 동기화(운영 난이도 상승)를 전제로 둔다.</p>
+<p>마이그레이션은 파일 스키마 버전 테이블을 두거나, Prisma·Drizzle처럼 SQLite를 지원하는 도구를 쓴다.</p>
+<hr>
+<h2>4. 운영 시 주의</h2>
+<p><strong>연결.</strong> 요청마다 새 연결을 열어도 부담은 작은 편이다. 다만 쓰기 경합이 있으면 <code>SQLITE_BUSY</code>가 난다. <code>busy_timeout</code>을 두고, 긴 쓰기는 짧게 나눈다. 웹 서버 워커가 많으면 쓰기가 줄을 선다. 그때가 Postgres/MySQL로 옮길 신호다.</p>
+<p><strong>백업.</strong> 실행 중에 <code>app.db</code>만 복사하면 WAL과 어긋날 수 있다. <code>sqlite3 app.db &quot;.backup backup.db&quot;</code> 또는 <code>VACUUM INTO &#39;backup.db&#39;</code>를 쓴다. Litestream 등으로 S3에 복제하는 운영도 있다. 복원 후 <code>PRAGMA integrity_check</code>를 한 번 돌린다.</p>
+<p><strong>배포.</strong> 다중 인스턴스가 같은 파일을 쓰지 않는다. 읽기 전용 레플리카를 파일 복사로 흉내 내는 패턴은 지연을 감수한다. HA가 필요하면 서버형 DB로 옮긴다.</p>
+<p><strong>보안.</strong> 파일 권한이 곧 접근 권한이다. 웹 루트에 <code>app.db</code>를 두지 않는다. 다운로드되면 전체가 유출된다. 암호화가 필요하면 SQLCipher 등 확장 또는 OS 디스크 암호화를 검토한다.</p>
+<p><strong>디스크.</strong> WAL이 안 체크포인트되면 파일이 커진다. 주기적 체크포인트와 디스크 용량 알람을 둔다.</p>
+<p><strong>이동.</strong> 나중에 Postgres로 옮길 수 있다. 다만 타입·<code>datetime</code> 문자열·부분 인덱스 문법이 다르다. “언젠가 이전”을 가정하면 앱의 SQL을 방언에 덜 묶는 편이 낫다. 지금은 SQLite가 맞으면 맞다고 쓴다.</p>
+<p><strong>테스트.</strong> 메모리 DB(<code>:memory:</code>)는 연결마다 비어 있다. 마이그레이션을 테스트마다 적용한다. 파일 DB 픽스처는 CI 워크스페이스에 남기지 않게 지운다.</p>
+<p>옮겨야 할 신호는 대체로 이렇다. 쓰기 대기 큐가 상시 있다. 서버를 두 대로 늘려야 한다. 백업·페일오버 SLA가 파일 복사로 안 된다. 그때 Postgres나 MySQL로 간다. 스키마와 쿼리가 단순하면 이전이 덜 아프다.</p>
+<p><strong>흔한 실수.</strong> Docker 이미지 안에 DB 파일을 굽기, NFS 위에 SQLite, <code>PRAGMA foreign_keys</code>를 ORM이 켠 줄 알고 넘어가기. 세 가지가 데이터 유실로 이어진다.</p>
+<hr>
+<h2>5. 정리</h2>
+<p>SQLite는 작은 DB가 아니라 <strong>임베디드 관계형 엔진</strong>이다. 경계(단일 쓰기 주체, 파일 위치, 백업 방법)만 지키면 운영이 매우 단순해진다. 서버 여러 대가 같은 파일을 쓰는 순간부터는 다른 도구다.</p>
+<h3>체크리스트</h3>
+<ul>
+<li><input disabled="" type="checkbox"> <code>PRAGMA foreign_keys = ON</code>을 연결마다 켠다. 기본값은 꺼져 있다.</li>
+<li><input disabled="" type="checkbox"> 동시 읽기가 있으면 WAL을 검토한다. 기본 저널은 읽기가 더 자주 막힌다.</li>
+<li><input disabled="" type="checkbox"> 실행 중 파일 복사 대신 <code>.backup</code> / <code>VACUUM INTO</code>를 쓴다. 깨진 복사는 복구가 아니다.</li>
+<li><input disabled="" type="checkbox"> DB 파일을 웹 공개 경로와 이미지 레이어 밖에 둔다.</li>
+<li><input disabled="" type="checkbox"> 인스턴스가 둘 이상이면 공유 파일 SQLite를 포기한다. 잠금이 네트워크에서 깨진다.</li>
+</ul>
+<h3>연습</h3>
+<ol>
+<li><code>notes</code> 테이블을 만들고 세 건을 넣은 뒤 <code>ORDER BY created_at</code> 목록을 출력한다.</li>
+<li>WAL 모드에서 <code>.backup</code>으로 복사한 파일을 열어 건수가 같은지 확인한다.</li>
+<li>두 프로세스가 동시에 <code>INSERT</code>할 때 <code>busy_timeout</code> 유무 차이를 관찰한다.</li>
+</ol>
+<p>버전 테이블로 마이그레이션을 남기는 최소 예다.</p>
+<pre><code class="hljs language-sql"><span class="hljs-keyword">CREATE TABLE</span> schema_migrations (
+  version TEXT <span class="hljs-keyword">PRIMARY KEY</span>,
+  applied_at TEXT <span class="hljs-keyword">NOT NULL</span> <span class="hljs-keyword">DEFAULT</span> (datetime(<span class="hljs-string">&#x27;now&#x27;</span>))
+);</code></pre>
+<p>앱이 기동할 때 <code>version</code>을 보고 <code>ALTER TABLE</code>을 순서대로 적용한다. 파일 DB라도 스키마 이력은 텍스트로 남긴다. 운영자가 <code>sqlite3</code>로 손으로만 바꾸면 다음 배포가 깨진다.</p>
+<p>동시 읽기가 많은 정적 사이트 생성기·분석 잡은 SQLite가 잘 맞는다. 쓰기를 한 프로세스에 모으면 된다. “웹 워커 8개가 같은 파일에 INSERT”는 설계가 틀린 것이다. 그때는 큐를 앞에 두거나 서버형 DB로 간다.</p>
+1a:[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"SQLite: 파일 하나로 충분한 임베디드 SQL\",\"description\":\"서버 없이 파일 하나로 SQL을 쓰는 임베디드 DB로, 언제 충분하고 어디서 한계가 나는지를 정리한다.\",\"datePublished\":\"2025-04-29\",\"url\":\"https://kaisa.co.kr/posts/db-05/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"db\",\"keywords\":\"db\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"SQLite: 파일 하나로 충분한 임베디드 SQL\",\"item\":\"https://kaisa.co.kr/posts/db-05/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L6",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2025-04-29"}]}],["$","h1",null,{"className":"blog-post__title","children":"SQLite: 파일 하나로 충분한 임베디드 SQL"}],["$","div",null,{"className":"blog-post__body blog-post__body--markdown","children":["$","div",null,{"className":"markdown-body","dangerouslySetInnerHTML":{"__html":"$23"}}]}],"$L24","$L25"]}]}]}]]
+26:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],"default"]
+24:["$","$L26",null,{"pathKey":"db-05"}]
+25:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L6",null,{"href":"/posts/db-04/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Redis: 인메모리 키-값으로 캐시·세션·큐"}]]}],["$","$L6",null,{"href":"/posts/db-06/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"InfluxDB: 시계열 데이터베이스의 개념과 실무 활용"}]]}]]}],["$","$L6",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
 20:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
-28:I[27201,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"IconMark"]
+27:I[27201,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"IconMark"]
 1d:null
-22:[["$","title","0",{"children":"SQLite: 파일 하나로 충분한 임베디드 SQL · Kaisa"}],["$","meta","1",{"name":"description","content":"서버 없이 파일 하나로 SQL을 쓰는 임베디드 DB로, 언제 충분하고 어디서 한계가 나는지를 정리한다."}],["$","meta","2",{"name":"application-name","content":"Kaisa"}],["$","meta","3",{"name":"robots","content":"index, follow"}],["$","meta","4",{"name":"naver-site-verification","content":"4bc13b857695ff44988c260cb26124eedbcda90e"}],["$","link","5",{"rel":"canonical","href":"https://kaisa.co.kr/posts/db-05/"}],["$","meta","6",{"property":"og:title","content":"SQLite: 파일 하나로 충분한 임베디드 SQL · Kaisa"}],["$","meta","7",{"property":"og:description","content":"서버 없이 파일 하나로 SQL을 쓰는 임베디드 DB로, 언제 충분하고 어디서 한계가 나는지를 정리한다."}],["$","meta","8",{"property":"og:url","content":"https://kaisa.co.kr/posts/db-05/"}],["$","meta","9",{"property":"og:site_name","content":"Kaisa"}],["$","meta","10",{"property":"og:locale","content":"ko_KR"}],["$","meta","11",{"property":"og:type","content":"article"}],["$","meta","12",{"name":"twitter:card","content":"summary"}],["$","meta","13",{"name":"twitter:title","content":"SQLite: 파일 하나로 충분한 임베디드 SQL · Kaisa"}],["$","meta","14",{"name":"twitter:description","content":"서버 없이 파일 하나로 SQL을 쓰는 임베디드 DB로, 언제 충분하고 어디서 한계가 나는지를 정리한다."}],["$","link","15",{"rel":"shortcut icon","href":"/img/common/favicon.ico"}],["$","link","16",{"rel":"icon","href":"/img/common/favicon.ico"}],["$","link","17",{"rel":"apple-touch-icon","href":"/img/common/favicon.ico"}],["$","$L28","18",{}]]
+22:[["$","title","0",{"children":"SQLite: 파일 하나로 충분한 임베디드 SQL · Kaisa"}],["$","meta","1",{"name":"description","content":"서버 없이 파일 하나로 SQL을 쓰는 임베디드 DB로, 언제 충분하고 어디서 한계가 나는지를 정리한다."}],["$","meta","2",{"name":"application-name","content":"Kaisa"}],["$","meta","3",{"name":"robots","content":"index, follow"}],["$","meta","4",{"name":"naver-site-verification","content":"4bc13b857695ff44988c260cb26124eedbcda90e"}],["$","link","5",{"rel":"canonical","href":"https://kaisa.co.kr/posts/db-05/"}],["$","meta","6",{"property":"og:title","content":"SQLite: 파일 하나로 충분한 임베디드 SQL · Kaisa"}],["$","meta","7",{"property":"og:description","content":"서버 없이 파일 하나로 SQL을 쓰는 임베디드 DB로, 언제 충분하고 어디서 한계가 나는지를 정리한다."}],["$","meta","8",{"property":"og:url","content":"https://kaisa.co.kr/posts/db-05/"}],["$","meta","9",{"property":"og:site_name","content":"Kaisa"}],["$","meta","10",{"property":"og:locale","content":"ko_KR"}],["$","meta","11",{"property":"og:type","content":"article"}],["$","meta","12",{"name":"twitter:card","content":"summary"}],["$","meta","13",{"name":"twitter:title","content":"SQLite: 파일 하나로 충분한 임베디드 SQL · Kaisa"}],["$","meta","14",{"name":"twitter:description","content":"서버 없이 파일 하나로 SQL을 쓰는 임베디드 DB로, 언제 충분하고 어디서 한계가 나는지를 정리한다."}],["$","link","15",{"rel":"shortcut icon","href":"/img/common/favicon.ico"}],["$","link","16",{"rel":"icon","href":"/img/common/favicon.ico"}],["$","link","17",{"rel":"apple-touch-icon","href":"/img/common/favicon.ico"}],["$","$L27","18",{}]]

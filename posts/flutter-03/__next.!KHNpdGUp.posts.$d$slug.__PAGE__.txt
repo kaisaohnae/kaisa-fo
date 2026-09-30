@@ -1,193 +1,202 @@
 1:"$Sreact.fragment"
-2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],""]
-3:I[55489,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-c:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-d:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
-e:"$Sreact.suspense"
+2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],""]
+a:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],"default"]
+b:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
+c:"$Sreact.suspense"
 :HL["/_next/static/chunks/0br7e7j26qkj3.css","style"]
 :HL["/_next/static/chunks/21i9-auhncr4a.css","style"]
-4:T182f,# Row·Column·제약으로 레이아웃 잡기
+3:T2b2c,<h1>Row·Column·제약으로 레이아웃 잡기</h1>
+<blockquote>
+<p>요약: 레이아웃은 위젯 이름이 아니라 부모가 내려 준 제약 상자에서 결정된다.</p>
+</blockquote>
+<hr>
+<h2>1. 왜 / 언제</h2>
+<p>노란-검은 줄이 보이면 위젯을 더 감싸기 전에 멈춘다. 그 줄은 overflow다. 원인은 거의 항상 <strong>제약을 무시한 자식</strong>이다.</p>
+<p>웹의 흐름 레이아웃과 다르다. Flutter는 “부모가 허용한 상자 안에서 자식이 크기를 고른다”. <code>Row</code>에 긴 텍스트를 그냥 넣으면 상자가 터진다. <code>Column</code> 안에 <code>ListView</code>를 무방비로 넣으면 높이가 무한대가 된다.</p>
+<p>레이아웃을 고칠 때는 위젯 이름보다 <strong>누가 얼마의 폭·높이를 허용했는가</strong>를 본다.</p>
+<hr>
+<h2>2. 핵심</h2>
+<p>제약은 부모가 자식에게 내리는 규칙이다. 최소 너비, 최대 너비, 최소 높이, 최대 높이다.</p>
+<p>레이아웃은 세 단계로 끝난다.</p>
+<ol>
+<li>부모가 자식에게 제약을 내려 준다.</li>
+<li>자식은 그 범위 안에서 자기 크기를 고른다.</li>
+<li>부모는 그 크기를 보고 자식의 위치를 정한다.</li>
+</ol>
+<p>자식이 최대보다 크게 그려지려 하면 overflow다. 반대로 부모가 무한 제약을 주는데 자식이 “가능한 한 크게”를 원하면 예외가 난다. <code>ListView</code>가 대표적이다. 스크롤 뷰는 부모가 유한한 높이를 줘야 한다.</p>
+<table>
+<thead>
+<tr>
+<th>위젯</th>
+<th>주축</th>
+<th>역할</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Column</code></td>
+<td>세로</td>
+<td>위→아래 나열</td>
+</tr>
+<tr>
+<td><code>Row</code></td>
+<td>가로</td>
+<td>왼쪽→오른쪽 나열</td>
+</tr>
+<tr>
+<td><code>Stack</code></td>
+<td>겹침</td>
+<td>좌표로 포개기</td>
+</tr>
+<tr>
+<td><code>Wrap</code></td>
+<td>줄바꿈</td>
+<td>주축이 부족하면 다음 줄</td>
+</tr>
+<tr>
+<td><code>Expanded</code></td>
+<td>Flex 남은 공간</td>
+<td><code>Row</code>/<code>Column</code> 자식만</td>
+</tr>
+</tbody></table>
+<p><code>Row</code>의 주축은 가로다. 자식들의 고유 너비 합이 부모 최대 너비를 넘으면 overflow다. 남는 공간을 나눠 가질 자식에게 <code>Expanded</code> 또는 <code>Flexible</code>을 준다.</p>
+<p><code>Padding</code>은 안쪽 여백이다. <code>SafeArea</code>는 노치·시스템 바를 피한다. 간격은 <code>SizedBox</code>로 명시한다. 임의 margin을 여러 겹 쌓지 않는다.</p>
+<hr>
+<h2>3. 예제</h2>
+<h3>Row에서 텍스트가 줄어들게</h3>
+<pre><code class="hljs language-dart"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TitleRow</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">StatelessWidget</span> </span>{
+  <span class="hljs-keyword">const</span> <span class="hljs-title class_">TitleRow</span>({<span class="hljs-keyword">super</span>.key, <span class="hljs-keyword">required</span> <span class="hljs-keyword">this</span>.title});
 
-> 요약: 레이아웃은 위젯 이름이 아니라 부모가 내려 준 제약 상자에서 결정된다.
+  <span class="hljs-keyword">final</span> <span class="hljs-title class_">String</span> title;
 
----
-
-## 1. 왜 / 언제
-
-노란-검은 줄이 보이면 위젯을 더 감싸기 전에 멈춘다. 그 줄은 overflow다. 원인은 거의 항상 **제약을 무시한 자식**이다.
-
-웹의 흐름 레이아웃과 다르다. Flutter는 “부모가 허용한 상자 안에서 자식이 크기를 고른다”. `Row`에 긴 텍스트를 그냥 넣으면 상자가 터진다. `Column` 안에 `ListView`를 무방비로 넣으면 높이가 무한대가 된다.
-
-레이아웃을 고칠 때는 위젯 이름보다 **누가 얼마의 폭·높이를 허용했는가**를 본다.
-
----
-
-## 2. 핵심
-
-제약은 부모가 자식에게 내리는 규칙이다. 최소 너비, 최대 너비, 최소 높이, 최대 높이다.
-
-레이아웃은 세 단계로 끝난다.
-
-1. 부모가 자식에게 제약을 내려 준다.
-2. 자식은 그 범위 안에서 자기 크기를 고른다.
-3. 부모는 그 크기를 보고 자식의 위치를 정한다.
-
-자식이 최대보다 크게 그려지려 하면 overflow다. 반대로 부모가 무한 제약을 주는데 자식이 “가능한 한 크게”를 원하면 예외가 난다. `ListView`가 대표적이다. 스크롤 뷰는 부모가 유한한 높이를 줘야 한다.
-
-| 위젯 | 주축 | 역할 |
-|------|------|------|
-| `Column` | 세로 | 위→아래 나열 |
-| `Row` | 가로 | 왼쪽→오른쪽 나열 |
-| `Stack` | 겹침 | 좌표로 포개기 |
-| `Wrap` | 줄바꿈 | 주축이 부족하면 다음 줄 |
-| `Expanded` | Flex 남은 공간 | `Row`/`Column` 자식만 |
-
-`Row`의 주축은 가로다. 자식들의 고유 너비 합이 부모 최대 너비를 넘으면 overflow다. 남는 공간을 나눠 가질 자식에게 `Expanded` 또는 `Flexible`을 준다.
-
-`Padding`은 안쪽 여백이다. `SafeArea`는 노치·시스템 바를 피한다. 간격은 `SizedBox`로 명시한다. 임의 margin을 여러 겹 쌓지 않는다.
-
----
-
-## 3. 예제
-
-### Row에서 텍스트가 줄어들게
-
-```dart
-class TitleRow extends StatelessWidget {
-  const TitleRow({super.key, required this.title});
-
-  final String title;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
+  <span class="hljs-meta">@override</span>
+  <span class="hljs-title class_">Widget</span> <span class="hljs-title function_">build</span>(<span class="hljs-title class_">BuildContext</span> context) {
+    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Row</span>(
       children: [
-        const Icon(Icons.star),
-        const SizedBox(width: 8),
-        Expanded(
-          child: Text(
+        <span class="hljs-keyword">const</span> <span class="hljs-title class_">Icon</span>(<span class="hljs-title class_">Icons</span>.star),
+        <span class="hljs-keyword">const</span> <span class="hljs-title class_">SizedBox</span>(width: <span class="hljs-number">8</span>),
+        <span class="hljs-title class_">Expanded</span>(
+          child: <span class="hljs-title class_">Text</span>(
             title,
-            overflow: TextOverflow.ellipsis,
-            maxLines: 1,
+            overflow: <span class="hljs-title class_">TextOverflow</span>.ellipsis,
+            maxLines: <span class="hljs-number">1</span>,
           ),
         ),
       ],
     );
   }
-}
-```
+}</code></pre>
+<p>아이콘은 고유 너비를 갖는다. <code>Expanded</code>가 남은 가로를 텍스트에 준다. 텍스트는 그 안에서 줄임표를 쓴다. <code>Expanded</code> 없이 <code>Text</code>만 두면 긴 제목이 overflow를 만든다.</p>
+<h3>Column + 스크롤 목록</h3>
+<p>무한 높이(<code>Column</code>이 스크롤 없이 자식 고유 높이를 잴 때) 안에 <code>ListView</code>를 두면 실패한다. 목록은 유한한 높이를 받아야 한다.</p>
+<pre><code class="hljs language-dart"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">FeedBody</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">StatelessWidget</span> </span>{
+  <span class="hljs-keyword">const</span> <span class="hljs-title class_">FeedBody</span>({<span class="hljs-keyword">super</span>.key, <span class="hljs-keyword">required</span> <span class="hljs-keyword">this</span>.children});
 
-아이콘은 고유 너비를 갖는다. `Expanded`가 남은 가로를 텍스트에 준다. 텍스트는 그 안에서 줄임표를 쓴다. `Expanded` 없이 `Text`만 두면 긴 제목이 overflow를 만든다.
+  <span class="hljs-keyword">final</span> <span class="hljs-title class_">List</span>&lt;<span class="hljs-title class_">Widget</span>&gt; children;
 
-### Column + 스크롤 목록
-
-무한 높이(`Column`이 스크롤 없이 자식 고유 높이를 잴 때) 안에 `ListView`를 두면 실패한다. 목록은 유한한 높이를 받아야 한다.
-
-```dart
-class FeedBody extends StatelessWidget {
-  const FeedBody({super.key, required this.children});
-
-  final List<Widget> children;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
+  <span class="hljs-meta">@override</span>
+  <span class="hljs-title class_">Widget</span> <span class="hljs-title function_">build</span>(<span class="hljs-title class_">BuildContext</span> context) {
+    <span class="hljs-keyword">return</span> <span class="hljs-title class_">Column</span>(
       children: [
-        const Padding(
-          padding: EdgeInsets.all(16),
-          child: Text('피드'),
+        <span class="hljs-keyword">const</span> <span class="hljs-title class_">Padding</span>(
+          padding: <span class="hljs-title class_">EdgeInsets</span>.<span class="hljs-title function_">all</span>(<span class="hljs-number">16</span>),
+          child: <span class="hljs-title class_">Text</span>(<span class="hljs-string">&#x27;피드&#x27;</span>),
         ),
-        Expanded(
-          child: ListView(
+        <span class="hljs-title class_">Expanded</span>(
+          child: <span class="hljs-title class_">ListView</span>(
             children: children,
           ),
         ),
       ],
     );
   }
-}
-```
+}</code></pre>
+<p>바깥이 <code>Scaffold</code>의 <code>body</code>면 높이가 유한하다. <code>Expanded</code>가 그 남은 높이를 <code>ListView</code>에 넘긴다.</p>
+<p><code>shrinkWrap: true</code>는 목록이 자식 높이만큼만 차지하게 한다. 긴 목록에서 가상화를 포기하므로 기본값으로 쓰지 않는다.</p>
+<h3>정렬과 여백</h3>
+<pre><code class="hljs language-dart"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CenterCard</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">StatelessWidget</span> </span>{
+  <span class="hljs-keyword">const</span> <span class="hljs-title class_">CenterCard</span>({<span class="hljs-keyword">super</span>.key, <span class="hljs-keyword">required</span> <span class="hljs-keyword">this</span>.child});
 
-바깥이 `Scaffold`의 `body`면 높이가 유한하다. `Expanded`가 그 남은 높이를 `ListView`에 넘긴다.
+  <span class="hljs-keyword">final</span> <span class="hljs-title class_">Widget</span> child;
 
-`shrinkWrap: true`는 목록이 자식 높이만큼만 차지하게 한다. 긴 목록에서 가상화를 포기하므로 기본값으로 쓰지 않는다.
-
-### 정렬과 여백
-
-```dart
-class CenterCard extends StatelessWidget {
-  const CenterCard({super.key, required this.child});
-
-  final Widget child;
-
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Align(
-          alignment: Alignment.topCenter,
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 480),
+  <span class="hljs-meta">@override</span>
+  <span class="hljs-title class_">Widget</span> <span class="hljs-title function_">build</span>(<span class="hljs-title class_">BuildContext</span> context) {
+    <span class="hljs-keyword">return</span> <span class="hljs-title class_">SafeArea</span>(
+      child: <span class="hljs-title class_">Padding</span>(
+        padding: <span class="hljs-keyword">const</span> <span class="hljs-title class_">EdgeInsets</span>.<span class="hljs-title function_">all</span>(<span class="hljs-number">16</span>),
+        child: <span class="hljs-title class_">Align</span>(
+          alignment: <span class="hljs-title class_">Alignment</span>.topCenter,
+          child: <span class="hljs-title class_">ConstrainedBox</span>(
+            constraints: <span class="hljs-keyword">const</span> <span class="hljs-title class_">BoxConstraints</span>(maxWidth: <span class="hljs-number">480</span>),
             child: child,
           ),
         ),
       ),
     );
   }
-}
-```
+}</code></pre>
+<p><code>Center</code>는 남는 공간의 가운데다. <code>Align</code>은 위치를 고른다. <code>ConstrainedBox</code>는 자식에게 추가 최대 너비를 준다. 넓은 화면에서 본문이 늘어지는 것을 막는다.</p>
+<h3>디버그</h3>
+<pre><code class="hljs language-dart"><span class="hljs-keyword">import</span> <span class="hljs-string">&#x27;package:flutter/rendering.dart&#x27;</span>;
 
-`Center`는 남는 공간의 가운데다. `Align`은 위치를 고른다. `ConstrainedBox`는 자식에게 추가 최대 너비를 준다. 넓은 화면에서 본문이 늘어지는 것을 막는다.
-
-### 디버그
-
-```dart
-import 'package:flutter/rendering.dart';
-
-void main() {
-  debugPaintSizeEnabled = true;
-  runApp(const MyApp());
-}
-```
-
-테두리와 여백이 보인다. overflow 줄이 보이면 위젯을 더 넣기 전에 제약부터 고친다.
-
----
-
-## 4. 흔한 실수
-
-| 실수 | 일어나는 일 | 대안 |
-|------|-------------|------|
-| `Row`에 긴 `Text`만 넣는다 | 가로 overflow | `Expanded` / `Flexible` |
-| `Column` 안에 `ListView` | 세로 무한 제약 예외 | `Expanded` 또는 바깥을 스크롤 |
-| `width: double.infinity` 남발 | 부모가 무한이면 깨진다 | 제약에 맞게 `Expanded` |
-| 모든 간격을 `margin` | 누가 공간을 쓰는지 안 보인다 | `Padding` + `SizedBox` |
-| `Stack` 자식을 제약 없이 둔다 | 크기 0 또는 화면 전체 | `Positioned` + 명시 크기 |
-
-`Flexible`은 자식이 작으면 작아도 된다. `Expanded`는 `flex` 비율로 남은 공간을 채운다. 텍스트 한 줄은 보통 `Expanded`다.
-
-`Wrap`은 칩·태그처럼 줄바꿈이 자연스러울 때 쓴다. `Row` overflow의 만능 대체는 아니다. 한 줄 제목은 `Expanded`가 맞다.
-
----
-
-## 정리
-
-레이아웃 버그는 위젯 이름에서 시작하지 않는다. **누가 얼마의 폭·높이를 허용했는가**에서 시작한다. 부모는 제약을 주고, 자식은 그 안에서 크기를 고른다.
-
----
-
-## 연습
-
-1. 아이콘 + 긴 제목 `Row`를 만들고, `Expanded` 전후에 overflow를 비교한다.
-2. `Column` 헤더 아래 `ListView`를 `Expanded`로 넣어 스크롤되게 한다.
-3. `debugPaintSizeEnabled`로 여백과 제약 상자를 확인한다.
-4. `shrinkWrap: true` 목록을 긴 데이터로 바꿔 보고, 왜 빌더 리스트로 바꿔야 하는지 적는다.0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"Row·Column·제약으로 레이아웃 잡기\",\"description\":\"레이아웃은 위젯 이름이 아니라 부모가 내려 준 제약 상자에서 결정된다.\",\"datePublished\":\"2024-04-04\",\"url\":\"https://kaisa.co.kr/posts/flutter-03/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"flutter\",\"keywords\":\"flutter\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Row·Column·제약으로 레이아웃 잡기\",\"item\":\"https://kaisa.co.kr/posts/flutter-03/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2024-04-04"}]}],["$","h1",null,{"className":"blog-post__title","children":"Row·Column·제약으로 레이아웃 잡기"}],["$","$L3",null,{"content":"$4"}],"$L5","$L6"]}]}]}]],["$L7","$L8","$L9","$La"],"$Lb"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Zv4TpHss7ITjpJG-s6iGo"}
-5:["$","$Lc",null,{"pathKey":"flutter-03"}]
-6:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/flutter-02/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Stateless와 Stateful 위젯"}]]}],["$","$L2",null,{"href":"/posts/flutter-04/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Navigator와 라우트로 화면 전환"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
-7:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
-8:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
-9:["$","script","script-0",{"src":"/_next/static/chunks/1oevfsdj8hv5d.js","async":true}]
-a:["$","script","script-1",{"src":"/_next/static/chunks/22vl7s8dm-4u2.js","async":true}]
-b:["$","$Ld",null,{"children":["$","$e",null,{"name":"Next.MetadataOutlet","children":"$@f"}]}]
-f:null
+<span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span>() {
+  debugPaintSizeEnabled = <span class="hljs-keyword">true</span>;
+  <span class="hljs-title function_">runApp</span>(<span class="hljs-keyword">const</span> <span class="hljs-title class_">MyApp</span>());
+}</code></pre>
+<p>테두리와 여백이 보인다. overflow 줄이 보이면 위젯을 더 넣기 전에 제약부터 고친다.</p>
+<hr>
+<h2>4. 흔한 실수</h2>
+<table>
+<thead>
+<tr>
+<th>실수</th>
+<th>일어나는 일</th>
+<th>대안</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Row</code>에 긴 <code>Text</code>만 넣는다</td>
+<td>가로 overflow</td>
+<td><code>Expanded</code> / <code>Flexible</code></td>
+</tr>
+<tr>
+<td><code>Column</code> 안에 <code>ListView</code></td>
+<td>세로 무한 제약 예외</td>
+<td><code>Expanded</code> 또는 바깥을 스크롤</td>
+</tr>
+<tr>
+<td><code>width: double.infinity</code> 남발</td>
+<td>부모가 무한이면 깨진다</td>
+<td>제약에 맞게 <code>Expanded</code></td>
+</tr>
+<tr>
+<td>모든 간격을 <code>margin</code></td>
+<td>누가 공간을 쓰는지 안 보인다</td>
+<td><code>Padding</code> + <code>SizedBox</code></td>
+</tr>
+<tr>
+<td><code>Stack</code> 자식을 제약 없이 둔다</td>
+<td>크기 0 또는 화면 전체</td>
+<td><code>Positioned</code> + 명시 크기</td>
+</tr>
+</tbody></table>
+<p><code>Flexible</code>은 자식이 작으면 작아도 된다. <code>Expanded</code>는 <code>flex</code> 비율로 남은 공간을 채운다. 텍스트 한 줄은 보통 <code>Expanded</code>다.</p>
+<p><code>Wrap</code>은 칩·태그처럼 줄바꿈이 자연스러울 때 쓴다. <code>Row</code> overflow의 만능 대체는 아니다. 한 줄 제목은 <code>Expanded</code>가 맞다.</p>
+<hr>
+<h2>정리</h2>
+<p>레이아웃 버그는 위젯 이름에서 시작하지 않는다. <strong>누가 얼마의 폭·높이를 허용했는가</strong>에서 시작한다. 부모는 제약을 주고, 자식은 그 안에서 크기를 고른다.</p>
+<hr>
+<h2>연습</h2>
+<ol>
+<li>아이콘 + 긴 제목 <code>Row</code>를 만들고, <code>Expanded</code> 전후에 overflow를 비교한다.</li>
+<li><code>Column</code> 헤더 아래 <code>ListView</code>를 <code>Expanded</code>로 넣어 스크롤되게 한다.</li>
+<li><code>debugPaintSizeEnabled</code>로 여백과 제약 상자를 확인한다.</li>
+<li><code>shrinkWrap: true</code> 목록을 긴 데이터로 바꿔 보고, 왜 빌더 리스트로 바꿔야 하는지 적는다.</li>
+</ol>
+0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"Row·Column·제약으로 레이아웃 잡기\",\"description\":\"레이아웃은 위젯 이름이 아니라 부모가 내려 준 제약 상자에서 결정된다.\",\"datePublished\":\"2024-04-04\",\"url\":\"https://kaisa.co.kr/posts/flutter-03/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"flutter\",\"keywords\":\"flutter\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Row·Column·제약으로 레이아웃 잡기\",\"item\":\"https://kaisa.co.kr/posts/flutter-03/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2024-04-04"}]}],["$","h1",null,{"className":"blog-post__title","children":"Row·Column·제약으로 레이아웃 잡기"}],["$","div",null,{"className":"blog-post__body blog-post__body--markdown","children":["$","div",null,{"className":"markdown-body","dangerouslySetInnerHTML":{"__html":"$3"}}]}],"$L4","$L5"]}]}]}]],["$L6","$L7","$L8"],"$L9"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"_AZq8Hq_NwvdopxIW0Tgh"}
+4:["$","$La",null,{"pathKey":"flutter-03"}]
+5:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/flutter-02/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Stateless와 Stateful 위젯"}]]}],["$","$L2",null,{"href":"/posts/flutter-04/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Navigator와 라우트로 화면 전환"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
+6:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
+7:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
+8:["$","script","script-0",{"src":"/_next/static/chunks/26shoze10o-dc.js","async":true}]
+9:["$","$Lb",null,{"children":["$","$c",null,{"name":"Next.MetadataOutlet","children":"$@d"}]}]
+d:null

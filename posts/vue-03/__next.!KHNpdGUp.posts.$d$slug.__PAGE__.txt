@@ -1,241 +1,220 @@
 1:"$Sreact.fragment"
-2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],""]
-3:I[55489,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-c:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-d:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
-e:"$Sreact.suspense"
+2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],""]
+a:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],"default"]
+b:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
+c:"$Sreact.suspense"
 :HL["/_next/static/chunks/0br7e7j26qkj3.css","style"]
 :HL["/_next/static/chunks/21i9-auhncr4a.css","style"]
-4:T179f,# 컴포넌트 props·emits·슬롯
+3:T39e9,<h1>컴포넌트 props·emits·슬롯</h1>
+<blockquote>
+<p>요약: 부모는 props로 값을 내리고 자식은 이벤트로 알리며, 슬롯으로 자리를 열어 컴포넌트를 조립한다.</p>
+</blockquote>
+<hr>
+<h2>1. 왜 계약을 좁히는가</h2>
+<p>화면을 한 파일에 두면 수정이 한곳에 몰린다. 카드·검색창·모달처럼 <strong>같은 UI를 여러 곳에서</strong> 쓸 때 컴포넌트로 나눈다.</p>
+<p>데이터는 한 방향으로만 흐른다.</p>
+<table>
+<thead>
+<tr>
+<th>방향</th>
+<th>이름</th>
+<th>한 줄</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>부모 → 자식</td>
+<td>props</td>
+<td>부모가 자식에게 내려주는 값. 자식은 읽기만 한다</td>
+</tr>
+<tr>
+<td>자식 → 부모</td>
+<td>emits</td>
+<td>자식이 부모에게 보내는 알림. 값은 이벤트로 올린다</td>
+</tr>
+<tr>
+<td>부모 → 자식 UI</td>
+<td>slots</td>
+<td>자식 템플릿의 구멍. 부모가 마크업을 채운다</td>
+</tr>
+</tbody></table>
+<p>자식이 <code>props</code>를 직접 바꾸면 부모가 가진 진실과 어긋난다. 바꿀 일이 있으면 이벤트를 올려 부모가 상태를 고친다.</p>
+<hr>
+<h2>2. 핵심 문법 (script setup)</h2>
+<p><code>&lt;script setup&gt;</code>에서는 컴파일러 매크로를 쓴다. import 하지 않는다.</p>
+<pre><code class="hljs language-ts"><span class="hljs-keyword">const</span> props = defineProps&lt;{
+  <span class="hljs-attr">title</span>: <span class="hljs-built_in">string</span>
+  <span class="hljs-attr">count</span>?: <span class="hljs-built_in">number</span>
+}&gt;()
 
-> 요약: 부모는 props로 값을 내리고 자식은 이벤트로 알리며, 슬롯으로 자리를 열어 컴포넌트를 조립한다.
+<span class="hljs-keyword">const</span> emit = defineEmits&lt;{
+  <span class="hljs-attr">select</span>: [<span class="hljs-attr">id</span>: <span class="hljs-built_in">string</span>]
+  <span class="hljs-attr">close</span>: []
+}&gt;()</code></pre>
+<ul>
+<li><code>title</code>은 필수, <code>count</code>는 선택</li>
+<li><code>select</code>는 문자열 인자 하나, <code>close</code>는 인자 없음</li>
+<li>매크로 결과는 런타임에 컴포넌트 옵션으로 옮겨진다</li>
+</ul>
+<p>Vue 3.5+에서는 <code>defineProps</code>에 기본값을 <code>withDefaults</code>로 붙인다.</p>
+<pre><code class="hljs language-ts"><span class="hljs-keyword">const</span> props = <span class="hljs-title function_">withDefaults</span>(
+  defineProps&lt;{ <span class="hljs-attr">title</span>: <span class="hljs-built_in">string</span>; <span class="hljs-attr">count</span>?: <span class="hljs-built_in">number</span> }&gt;(),
+  { <span class="hljs-attr">count</span>: <span class="hljs-number">0</span> },
+)</code></pre>
+<hr>
+<h2>3. 동작하는 예: 사용자 카드</h2>
+<p><code>src/components/UserCard.vue</code>:</p>
+<pre><code class="hljs language-vue"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript">
+<span class="hljs-keyword">export</span> type <span class="hljs-title class_">User</span> = { <span class="hljs-attr">id</span>: string; <span class="hljs-attr">name</span>: string; <span class="hljs-attr">role</span>: string }
 
----
-
-## 1. 왜 계약을 좁히는가
-
-화면을 한 파일에 두면 수정이 한곳에 몰린다. 카드·검색창·모달처럼 **같은 UI를 여러 곳에서** 쓸 때 컴포넌트로 나눈다.
-
-데이터는 한 방향으로만 흐른다.
-
-| 방향 | 이름 | 한 줄 |
-|------|------|--------|
-| 부모 → 자식 | props | 부모가 자식에게 내려주는 값. 자식은 읽기만 한다 |
-| 자식 → 부모 | emits | 자식이 부모에게 보내는 알림. 값은 이벤트로 올린다 |
-| 부모 → 자식 UI | slots | 자식 템플릿의 구멍. 부모가 마크업을 채운다 |
-
-자식이 `props`를 직접 바꾸면 부모가 가진 진실과 어긋난다. 바꿀 일이 있으면 이벤트를 올려 부모가 상태를 고친다.
-
----
-
-## 2. 핵심 문법 (script setup)
-
-`<script setup>`에서는 컴파일러 매크로를 쓴다. import 하지 않는다.
-
-```ts
-const props = defineProps<{
-  title: string
-  count?: number
-}>()
-
-const emit = defineEmits<{
-  select: [id: string]
-  close: []
-}>()
-```
-
-- `title`은 필수, `count`는 선택
-- `select`는 문자열 인자 하나, `close`는 인자 없음
-- 매크로 결과는 런타임에 컴포넌트 옵션으로 옮겨진다
-
-Vue 3.5+에서는 `defineProps`에 기본값을 `withDefaults`로 붙인다.
-
-```ts
-const props = withDefaults(
-  defineProps<{ title: string; count?: number }>(),
-  { count: 0 },
-)
-```
-
----
-
-## 3. 동작하는 예: 사용자 카드
-
-`src/components/UserCard.vue`:
-
-```vue
-<script setup lang="ts">
-export type User = { id: string; name: string; role: string }
-
-defineProps<{
-  user: User
+defineProps&lt;{
+  <span class="hljs-attr">user</span>: <span class="hljs-title class_">User</span>
   selected?: boolean
-}>()
+}&gt;()
 
-const emit = defineEmits<{
-  select: [id: string]
-  remove: [id: string]
-}>()
-</script>
+<span class="hljs-keyword">const</span> emit = defineEmits&lt;{
+  <span class="hljs-attr">select</span>: [<span class="hljs-attr">id</span>: string]
+  <span class="hljs-attr">remove</span>: [<span class="hljs-attr">id</span>: string]
+}&gt;()
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-<template>
-  <article :class="{ selected }">
-    <h2>{{ user.name }}</h2>
-    <p>{{ user.role }}</p>
-    <slot name="actions">
-      <button type="button" @click="emit('select', user.id)">선택</button>
-    </slot>
-    <button type="button" @click="emit('remove', user.id)">삭제</button>
-  </article>
-</template>
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">article</span> <span class="hljs-attr">:class</span>=<span class="hljs-string">&quot;{ selected }&quot;</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span></span><span class="hljs-template-variable">{{ <span class="hljs-name">user.name</span> }}</span><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span></span><span class="hljs-template-variable">{{ <span class="hljs-name">user.role</span> }}</span><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">slot</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;actions&quot;</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;button&quot;</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">&quot;emit(&#x27;select&#x27;, user.id)&quot;</span>&gt;</span>선택<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">slot</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;button&quot;</span> @<span class="hljs-attr">click</span>=<span class="hljs-string">&quot;emit(&#x27;remove&#x27;, user.id)&quot;</span>&gt;</span>삭제<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">article</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span>
 
-<style scoped>
-.selected {
-  outline: 2px solid #2563eb;
+<span class="hljs-tag">&lt;<span class="hljs-name">style</span> <span class="hljs-attr">scoped</span>&gt;</span><span class="language-css">
+<span class="hljs-selector-class">.selected</span> {
+  <span class="hljs-attribute">outline</span>: <span class="hljs-number">2px</span> solid <span class="hljs-number">#2563eb</span>;
 }
-</style>
-```
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span></span></code></pre>
+<p><code>src/App.vue</code>:</p>
+<pre><code class="hljs language-vue">&lt;script setup lang=&quot;ts&quot;&gt;
+<span class="hljs-keyword">import</span> { <span class="hljs-keyword">ref</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>
+<span class="hljs-keyword">import</span> UserCard, { <span class="hljs-keyword">type</span> <span class="hljs-keyword">User</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./components/UserCard.vue&#x27;</span>
 
-`src/App.vue`:
-
-```vue
-<script setup lang="ts">
-import { ref } from 'vue'
-import UserCard, { type User } from './components/UserCard.vue'
-
-const users = ref<User[]>([
-  { id: '1', name: '김하늘', role: '편집' },
-  { id: '2', name: '이준', role: '보기' },
+const users = <span class="hljs-keyword">ref</span>&lt;<span class="hljs-keyword">User</span>[]&gt;([
+  { id: <span class="hljs-string">&#x27;1&#x27;</span>, <span class="hljs-type">name</span>: <span class="hljs-string">&#x27;김하늘&#x27;</span>, <span class="hljs-keyword">role</span>: <span class="hljs-string">&#x27;편집&#x27;</span> },
+  { id: <span class="hljs-string">&#x27;2&#x27;</span>, <span class="hljs-type">name</span>: <span class="hljs-string">&#x27;이준&#x27;</span>, <span class="hljs-keyword">role</span>: <span class="hljs-string">&#x27;보기&#x27;</span> },
 ])
-const selectedId = ref<string | null>(null)
+const selectedId = <span class="hljs-keyword">ref</span>&lt;string | <span class="hljs-keyword">null</span>&gt;(<span class="hljs-keyword">null</span>)
 
-function onSelect(id: string) {
-  selectedId.value = id
+<span class="hljs-keyword">function</span> onSelect(id: string) {
+  selectedId.<span class="hljs-keyword">value</span> = id
 }
 
-function onRemove(id: string) {
-  users.value = users.value.filter((u) => u.id !== id)
-  if (selectedId.value === id) selectedId.value = null
+<span class="hljs-keyword">function</span> onRemove(id: string) {
+  users.<span class="hljs-keyword">value</span> = users.<span class="hljs-keyword">value</span>.<span class="hljs-keyword">filter</span>((u) =&gt; u.id !== id)
+  <span class="hljs-keyword">if</span> (selectedId.<span class="hljs-keyword">value</span> === id) selectedId.<span class="hljs-keyword">value</span> = <span class="hljs-keyword">null</span>
 }
-</script>
+&lt;/script&gt;
 
-<template>
-  <UserCard
-    v-for="user in users"
-    :key="user.id"
-    :user="user"
-    :selected="user.id === selectedId"
-    @select="onSelect"
-    @remove="onRemove"
-  >
-    <template #actions>
-      <button type="button" @click="onSelect(user.id)">이 사람 선택</button>
-    </template>
-  </UserCard>
-</template>
-```
+&lt;<span class="hljs-keyword">template</span>&gt;
+  &lt;UserCard
+    v-<span class="hljs-keyword">for</span>=&quot;user in users&quot;
+    :key=&quot;user.id&quot;
+    :<span class="hljs-keyword">user</span>=&quot;user&quot;
+    :selected=&quot;user.id === selectedId&quot;
+    @<span class="hljs-keyword">select</span>=&quot;onSelect&quot;
+    @remove=&quot;onRemove&quot;
+  &gt;
+    &lt;<span class="hljs-keyword">template</span> #actions&gt;
+      &lt;button <span class="hljs-keyword">type</span>=&quot;button&quot; @click=&quot;onSelect(user.id)&quot;&gt;이 사람 선택&lt;/button&gt;
+    &lt;/<span class="hljs-keyword">template</span>&gt;
+  &lt;/UserCard&gt;
+&lt;/<span class="hljs-keyword">template</span>&gt;</code></pre>
+<ul>
+<li><code>:user=&quot;user&quot;</code> — props로 객체 전달</li>
+<li><code>@select=&quot;onSelect&quot;</code> — emit 이름이 이벤트 이름</li>
+<li><code>#actions</code> — named slot. 자식이 기본 버튼을 넣었고, 부모가 덮어쓴다</li>
+<li><code>v-for</code>의 <code>key</code>는 안정적인 <code>id</code>. 인덱스는 목록이 줄면 잘못 재사용된다</li>
+</ul>
+<hr>
+<h2>4. v-model과 defineModel</h2>
+<p>검색창처럼 <strong>자식 입력이 부모 상태와 같아야</strong> 하면 <code>v-model</code>을 쓴다. 실제로는 props + emit 관례다.</p>
+<p>부모:</p>
+<pre><code class="hljs language-vue">&lt;SearchInput v-model<span class="hljs-operator">=</span><span class="hljs-string">&quot;query&quot;</span> /&gt;</code></pre>
+<p>자식 (Vue 3.4+):</p>
+<pre><code class="hljs language-vue"><span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">setup</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">&quot;ts&quot;</span>&gt;</span><span class="language-javascript">
+<span class="hljs-keyword">const</span> model = defineModel&lt;string&gt;(</span></span><span class="hljs-template-variable">{ <span class="hljs-keyword">default</span>: &#x27;&#x27; }</span><span class="language-xml"><span class="language-javascript">)
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
 
-- `:user="user"` — props로 객체 전달
-- `@select="onSelect"` — emit 이름이 이벤트 이름
-- `#actions` — named slot. 자식이 기본 버튼을 넣었고, 부모가 덮어쓴다
-- `v-for`의 `key`는 안정적인 `id`. 인덱스는 목록이 줄면 잘못 재사용된다
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">:value</span>=<span class="hljs-string">&quot;model&quot;</span> @<span class="hljs-attr">input</span>=<span class="hljs-string">&quot;model = ($event.target as HTMLInputElement).value&quot;</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></span></code></pre>
+<p>축약:</p>
+<pre><code class="hljs language-vue"><span class="hljs-tag">&lt;<span class="hljs-name">template</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">v-model</span>=<span class="hljs-string">&quot;model&quot;</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></code></pre>
+<p><code>defineModel</code>은 <code>modelValue</code> props와 <code>update:modelValue</code> emit을 대신 만든다. 팀이 Vue 3.4 미만이면 수동으로 같은 계약을 적는다.</p>
+<pre><code class="hljs language-ts"><span class="hljs-keyword">const</span> props = defineProps&lt;{ <span class="hljs-attr">modelValue</span>: <span class="hljs-built_in">string</span> }&gt;()
+<span class="hljs-keyword">const</span> emit = defineEmits&lt;{ <span class="hljs-string">&#x27;update:modelValue&#x27;</span>: [<span class="hljs-attr">value</span>: <span class="hljs-built_in">string</span>] }&gt;()</code></pre>
+<hr>
+<h2>5. 슬롯 세 종류</h2>
+<table>
+<thead>
+<tr>
+<th>종류</th>
+<th>용도</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>default</td>
+<td><code>&lt;slot&gt;</code> 한 곳. 태그 사이 내용</td>
+</tr>
+<tr>
+<td>named</td>
+<td><code>#header</code>, <code>#actions</code>처럼 구역을 나눔</td>
+</tr>
+<tr>
+<td>scoped</td>
+<td>자식이 슬롯에 데이터를 넘겨 부모가 마크업을 그림</td>
+</tr>
+</tbody></table>
+<p>scoped 예:</p>
+<pre><code class="hljs language-vue"><span class="language-xml"><span class="hljs-comment">&lt;!-- 자식 --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">slot</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;item&quot;</span> <span class="hljs-attr">:row</span>=<span class="hljs-string">&quot;row&quot;</span> /&gt;</span>
 
----
-
-## 4. v-model과 defineModel
-
-검색창처럼 **자식 입력이 부모 상태와 같아야** 하면 `v-model`을 쓴다. 실제로는 props + emit 관례다.
-
-부모:
-
-```vue
-<SearchInput v-model="query" />
-```
-
-자식 (Vue 3.4+):
-
-```vue
-<script setup lang="ts">
-const model = defineModel<string>({ default: '' })
-</script>
-
-<template>
-  <input :value="model" @input="model = ($event.target as HTMLInputElement).value" />
-</template>
-```
-
-축약:
-
-```vue
-<template>
-  <input v-model="model" />
-</template>
-```
-
-`defineModel`은 `modelValue` props와 `update:modelValue` emit을 대신 만든다. 팀이 Vue 3.4 미만이면 수동으로 같은 계약을 적는다.
-
-```ts
-const props = defineProps<{ modelValue: string }>()
-const emit = defineEmits<{ 'update:modelValue': [value: string] }>()
-```
-
----
-
-## 5. 슬롯 세 종류
-
-| 종류 | 용도 |
-|------|------|
-| default | `<slot>` 한 곳. 태그 사이 내용 |
-| named | `#header`, `#actions`처럼 구역을 나눔 |
-| scoped | 자식이 슬롯에 데이터를 넘겨 부모가 마크업을 그림 |
-
-scoped 예:
-
-```vue
-<!-- 자식 -->
-<slot name="item" :row="row" />
-
-<!-- 부모 -->
-<template #item="{ row }">
-  <strong>{{ row.name }}</strong>
-</template>
-```
-
-레이아웃·디자인 시스템에서 슬롯이 재사용의 핵심이다. props로 HTML을 넘기지 않는다.
-
----
-
-## 6. 주의 / 흔한 실수
-
-- **자식에서 `props.user.name = 'x'`.** 단방향이 깨진다. emit으로 올리고 부모가 배열을 교체한다.
-- **이벤트 이름을 동사 없이.** `select`, `remove`, `update:modelValue`처럼 의도를 적는다. `change`만 있으면 무엇이 변했는지 모른다.
-- **props 객체/배열을 자식이 `push`.** 참조를 공유하므로 부모 상태를 몰래 바꾼다. 새 배열을 만들어 emit한다.
-- **`v-for`에 `key` 없음.** 슬롯·입력이 엉뚱한 행에 남는다.
-- **슬롯 대신 `v-html`로 부모 HTML 주입.** XSS(크로스 사이트 스크립팅) 위험이 크다. 슬롯을 쓴다.
-
----
-
-## 정리
-
-컴포넌트 API는 기능 나열이 아니다. **props / emits / slots 세 계약을 좁고 분명하게** 적는 일이다.
-
-- 내려줄 값 → props (읽기 전용)
-- 올릴 일 → emits
-- 채울 UI → slots
-- 입력 동기화 → `v-model` / `defineModel`
-
----
-
-## 연습
-
-1. `AlertBanner.vue`에 `message: string` props와 `close` emit을 넣고, 부모가 닫으면 배너를 제거한다.
-2. `SearchInput.vue`에 `defineModel<string>()`을 연결해 부모 `query`와 양방향으로 맞춘다.
-3. 카드에 `#footer` named slot을 추가하고, 부모에서 수정 링크를 넣는다.0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"컴포넌트 props·emits·슬롯\",\"description\":\"부모는 props로 값을 내리고 자식은 이벤트로 알리며, 슬롯으로 자리를 열어 컴포넌트를 조립한다.\",\"datePublished\":\"2024-06-03\",\"url\":\"https://kaisa.co.kr/posts/vue-03/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"vue\",\"keywords\":\"vue\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"컴포넌트 props·emits·슬롯\",\"item\":\"https://kaisa.co.kr/posts/vue-03/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2024-06-03"}]}],["$","h1",null,{"className":"blog-post__title","children":"컴포넌트 props·emits·슬롯"}],["$","$L3",null,{"content":"$4"}],"$L5","$L6"]}]}]}]],["$L7","$L8","$L9","$La"],"$Lb"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Zv4TpHss7ITjpJG-s6iGo"}
-5:["$","$Lc",null,{"pathKey":"vue-03"}]
-6:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/vue-02/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"ref와 reactive로 반응형 상태 다루기"}]]}],["$","$L2",null,{"href":"/posts/vue-04/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Vue Router와 Pinia로 화면·상태 구성"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
-7:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
-8:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
-9:["$","script","script-0",{"src":"/_next/static/chunks/1oevfsdj8hv5d.js","async":true}]
-a:["$","script","script-1",{"src":"/_next/static/chunks/22vl7s8dm-4u2.js","async":true}]
-b:["$","$Ld",null,{"children":["$","$e",null,{"name":"Next.MetadataOutlet","children":"$@f"}]}]
-f:null
+<span class="hljs-comment">&lt;!-- 부모 --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">template</span> #<span class="hljs-attr">item</span>=<span class="hljs-string">&quot;{ row }&quot;</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">strong</span>&gt;</span></span><span class="hljs-template-variable">{{ <span class="hljs-name">row.name</span> }}</span><span class="language-xml"><span class="hljs-tag">&lt;/<span class="hljs-name">strong</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">template</span>&gt;</span></span></code></pre>
+<p>레이아웃·디자인 시스템에서 슬롯이 재사용의 핵심이다. props로 HTML을 넘기지 않는다.</p>
+<hr>
+<h2>6. 주의 / 흔한 실수</h2>
+<ul>
+<li><strong>자식에서 <code>props.user.name = &#39;x&#39;</code>.</strong> 단방향이 깨진다. emit으로 올리고 부모가 배열을 교체한다.</li>
+<li><strong>이벤트 이름을 동사 없이.</strong> <code>select</code>, <code>remove</code>, <code>update:modelValue</code>처럼 의도를 적는다. <code>change</code>만 있으면 무엇이 변했는지 모른다.</li>
+<li><strong>props 객체/배열을 자식이 <code>push</code>.</strong> 참조를 공유하므로 부모 상태를 몰래 바꾼다. 새 배열을 만들어 emit한다.</li>
+<li><strong><code>v-for</code>에 <code>key</code> 없음.</strong> 슬롯·입력이 엉뚱한 행에 남는다.</li>
+<li><strong>슬롯 대신 <code>v-html</code>로 부모 HTML 주입.</strong> XSS(크로스 사이트 스크립팅) 위험이 크다. 슬롯을 쓴다.</li>
+</ul>
+<hr>
+<h2>정리</h2>
+<p>컴포넌트 API는 기능 나열이 아니다. <strong>props / emits / slots 세 계약을 좁고 분명하게</strong> 적는 일이다.</p>
+<ul>
+<li>내려줄 값 → props (읽기 전용)</li>
+<li>올릴 일 → emits</li>
+<li>채울 UI → slots</li>
+<li>입력 동기화 → <code>v-model</code> / <code>defineModel</code></li>
+</ul>
+<hr>
+<h2>연습</h2>
+<ol>
+<li><code>AlertBanner.vue</code>에 <code>message: string</code> props와 <code>close</code> emit을 넣고, 부모가 닫으면 배너를 제거한다.</li>
+<li><code>SearchInput.vue</code>에 <code>defineModel&lt;string&gt;()</code>을 연결해 부모 <code>query</code>와 양방향으로 맞춘다.</li>
+<li>카드에 <code>#footer</code> named slot을 추가하고, 부모에서 수정 링크를 넣는다.</li>
+</ol>
+0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"컴포넌트 props·emits·슬롯\",\"description\":\"부모는 props로 값을 내리고 자식은 이벤트로 알리며, 슬롯으로 자리를 열어 컴포넌트를 조립한다.\",\"datePublished\":\"2024-06-03\",\"url\":\"https://kaisa.co.kr/posts/vue-03/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"vue\",\"keywords\":\"vue\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"컴포넌트 props·emits·슬롯\",\"item\":\"https://kaisa.co.kr/posts/vue-03/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2024-06-03"}]}],["$","h1",null,{"className":"blog-post__title","children":"컴포넌트 props·emits·슬롯"}],["$","div",null,{"className":"blog-post__body blog-post__body--markdown","children":["$","div",null,{"className":"markdown-body","dangerouslySetInnerHTML":{"__html":"$3"}}]}],"$L4","$L5"]}]}]}]],["$L6","$L7","$L8"],"$L9"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"_AZq8Hq_NwvdopxIW0Tgh"}
+4:["$","$La",null,{"pathKey":"vue-03"}]
+5:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/vue-02/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"ref와 reactive로 반응형 상태 다루기"}]]}],["$","$L2",null,{"href":"/posts/vue-04/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Vue Router와 Pinia로 화면·상태 구성"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
+6:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
+7:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
+8:["$","script","script-0",{"src":"/_next/static/chunks/26shoze10o-dc.js","async":true}]
+9:["$","$Lb",null,{"children":["$","$c",null,{"name":"Next.MetadataOutlet","children":"$@d"}]}]
+d:null

@@ -1,75 +1,74 @@
 1:"$Sreact.fragment"
-2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],""]
-3:I[55489,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-c:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-d:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
-e:"$Sreact.suspense"
+2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],""]
+a:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],"default"]
+b:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
+c:"$Sreact.suspense"
 :HL["/_next/static/chunks/0br7e7j26qkj3.css","style"]
 :HL["/_next/static/chunks/21i9-auhncr4a.css","style"]
-4:T190b,# 리스트·키·성능의 기본
+3:T3149,<h1>리스트·키·성능의 기본</h1>
+<blockquote>
+<p>요약: 긴 목록은 빌더로 그리고, 키로 아이템 정체성을 지키면 스크롤이 버틴다.</p>
+</blockquote>
+<hr>
+<h2>1. 왜 / 언제</h2>
+<p>피드·검색 결과·채팅처럼 아이템이 많으면 <code>Column</code> + <code>map</code>은 한 번에 모든 자식을 만든다. 스크롤이 버벅이고 메모리만 는다.</p>
+<p><code>ListView.builder</code>는 화면에 보이는 근처만 위젯으로 만든다. 이것이 기본이다.</p>
+<p>같은 타입 행이 재배열되면 또 다른 문제가 생긴다. 입력 중이던 글자가 다른 행으로 옮겨 간다. 원인은 레이아웃이 아니다. Flutter가 <strong>누가 같은 위젯인지</strong>를 자리로만 맞춰서다. 그때 키가 필요하다.</p>
+<hr>
+<h2>2. 핵심</h2>
+<p>키는 위젯의 이름표다.</p>
+<p>Flutter는 리빌드할 때 이전 트리와 새 트리를 맞춘다. 기본 규칙은 타입과 위치다. 같은 자리의 <code>ListTile</code>은 같은 것으로 본다. 목록이 섞이면 3번 자리의 State가 새 3번 아이템에 붙는다.</p>
+<p>키를 주면 타입+키로 맞춘다. 서버 id처럼 <strong>안 바뀌는 값</strong>을 <code>ValueKey</code>로 붙인다. 인덱스를 키로 쓰면 재배열과 함께 키가 바뀌므로 의미가 없다.</p>
+<table>
+<thead>
+<tr>
+<th>키</th>
+<th>언제</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>ValueKey(id)</code></td>
+<td>리스트 아이템, 폼 필드. 값이 안정적이어야 한다.</td>
+</tr>
+<tr>
+<td><code>ObjectKey(obj)</code></td>
+<td>동일 인스턴스로 구분할 때.</td>
+</tr>
+<tr>
+<td><code>UniqueKey()</code></td>
+<td>매번 새 위젯으로 강제해 상태를 리셋할 때.</td>
+</tr>
+<tr>
+<td><code>GlobalKey</code></td>
+<td>다른 서브트리에서 State에 접근할 때. 남용하면 비싸다.</td>
+</tr>
+</tbody></table>
+<p>빌더 리스트는 <code>itemBuilder</code>가 index마다 위젯을 돌려준다. 화면에 안 보이면 만들지 않는다. 타일은 가볍게 둔다. 무거운 차트·큰 이미지를 행 안에 중첩하지 않는다.</p>
+<p>상위 <code>setState</code>가 리스트 전체를 다시 돌리지 않게 행을 Stateless로 분리한다. 변하지 않는 서브트리는 <code>const</code>다.</p>
+<p>네트워크 이미지는 크기와 캐시를 지정한다. 원본 해상도를 스크롤에 그대로 넣지 않는다.</p>
+<hr>
+<h2>3. 예제</h2>
+<h3>빌더 + 안정적 키</h3>
+<pre><code class="hljs language-dart"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Post</span> </span>{
+  <span class="hljs-keyword">const</span> <span class="hljs-title class_">Post</span>({<span class="hljs-keyword">required</span> <span class="hljs-keyword">this</span>.id, <span class="hljs-keyword">required</span> <span class="hljs-keyword">this</span>.title});
 
-> 요약: 긴 목록은 빌더로 그리고, 키로 아이템 정체성을 지키면 스크롤이 버틴다.
-
----
-
-## 1. 왜 / 언제
-
-피드·검색 결과·채팅처럼 아이템이 많으면 `Column` + `map`은 한 번에 모든 자식을 만든다. 스크롤이 버벅이고 메모리만 는다.
-
-`ListView.builder`는 화면에 보이는 근처만 위젯으로 만든다. 이것이 기본이다.
-
-같은 타입 행이 재배열되면 또 다른 문제가 생긴다. 입력 중이던 글자가 다른 행으로 옮겨 간다. 원인은 레이아웃이 아니다. Flutter가 **누가 같은 위젯인지**를 자리로만 맞춰서다. 그때 키가 필요하다.
-
----
-
-## 2. 핵심
-
-키는 위젯의 이름표다.
-
-Flutter는 리빌드할 때 이전 트리와 새 트리를 맞춘다. 기본 규칙은 타입과 위치다. 같은 자리의 `ListTile`은 같은 것으로 본다. 목록이 섞이면 3번 자리의 State가 새 3번 아이템에 붙는다.
-
-키를 주면 타입+키로 맞춘다. 서버 id처럼 **안 바뀌는 값**을 `ValueKey`로 붙인다. 인덱스를 키로 쓰면 재배열과 함께 키가 바뀌므로 의미가 없다.
-
-| 키 | 언제 |
-|----|------|
-| `ValueKey(id)` | 리스트 아이템, 폼 필드. 값이 안정적이어야 한다. |
-| `ObjectKey(obj)` | 동일 인스턴스로 구분할 때. |
-| `UniqueKey()` | 매번 새 위젯으로 강제해 상태를 리셋할 때. |
-| `GlobalKey` | 다른 서브트리에서 State에 접근할 때. 남용하면 비싸다. |
-
-빌더 리스트는 `itemBuilder`가 index마다 위젯을 돌려준다. 화면에 안 보이면 만들지 않는다. 타일은 가볍게 둔다. 무거운 차트·큰 이미지를 행 안에 중첩하지 않는다.
-
-상위 `setState`가 리스트 전체를 다시 돌리지 않게 행을 Stateless로 분리한다. 변하지 않는 서브트리는 `const`다.
-
-네트워크 이미지는 크기와 캐시를 지정한다. 원본 해상도를 스크롤에 그대로 넣지 않는다.
-
----
-
-## 3. 예제
-
-### 빌더 + 안정적 키
-
-```dart
-class Post {
-  const Post({required this.id, required this.title});
-
-  final String id;
-  final String title;
+  <span class="hljs-keyword">final</span> <span class="hljs-title class_">String</span> id;
+  <span class="hljs-keyword">final</span> <span class="hljs-title class_">String</span> title;
 }
 
-class PostList extends StatelessWidget {
-  const PostList({super.key, required this.items});
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PostList</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">StatelessWidget</span> </span>{
+  <span class="hljs-keyword">const</span> <span class="hljs-title class_">PostList</span>({<span class="hljs-keyword">super</span>.key, <span class="hljs-keyword">required</span> <span class="hljs-keyword">this</span>.items});
 
-  final List<Post> items;
+  <span class="hljs-keyword">final</span> <span class="hljs-title class_">List</span>&lt;<span class="hljs-title class_">Post</span>&gt; items;
 
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
+  <span class="hljs-meta">@override</span>
+  <span class="hljs-title class_">Widget</span> <span class="hljs-title function_">build</span>(<span class="hljs-title class_">BuildContext</span> context) {
+    <span class="hljs-keyword">return</span> <span class="hljs-title class_">ListView</span>.<span class="hljs-title function_">builder</span>(
       itemCount: items.length,
-      itemBuilder: (BuildContext context, int index) {
-        final Post item = items[index];
-        return PostTile(
-          key: ValueKey<String>(item.id),
+      itemBuilder: (<span class="hljs-title class_">BuildContext</span> context, <span class="hljs-built_in">int</span> index) {
+        <span class="hljs-keyword">final</span> <span class="hljs-title class_">Post</span> item = items[index];
+        <span class="hljs-keyword">return</span> <span class="hljs-title class_">PostTile</span>(
+          key: <span class="hljs-title class_">ValueKey</span>&lt;<span class="hljs-title class_">String</span>&gt;(item.id),
           post: item,
         );
       },
@@ -77,136 +76,136 @@ class PostList extends StatelessWidget {
   }
 }
 
-class PostTile extends StatelessWidget {
-  const PostTile({super.key, required this.post});
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">PostTile</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">StatelessWidget</span> </span>{
+  <span class="hljs-keyword">const</span> <span class="hljs-title class_">PostTile</span>({<span class="hljs-keyword">super</span>.key, <span class="hljs-keyword">required</span> <span class="hljs-keyword">this</span>.post});
 
-  final Post post;
+  <span class="hljs-keyword">final</span> <span class="hljs-title class_">Post</span> post;
 
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      title: Text(post.title),
+  <span class="hljs-meta">@override</span>
+  <span class="hljs-title class_">Widget</span> <span class="hljs-title function_">build</span>(<span class="hljs-title class_">BuildContext</span> context) {
+    <span class="hljs-keyword">return</span> <span class="hljs-title class_">ListTile</span>(
+      title: <span class="hljs-title class_">Text</span>(post.title),
     );
   }
-}
-```
+}</code></pre>
+<p><code>key</code>는 리스트의 직접 자식에 둔다. <code>ListTile</code> 안쪽이 아니라 <code>PostTile</code>에 붙인다. Flutter가 맞추는 대상은 부모 <code>children</code>의 그 자리다.</p>
+<p>아이템이 매우 많으면 <code>ListView.separated</code>로 구분선을 빌더에 맡긴다. <code>Column</code>에 <code>Divider</code>를 미리 다 만들지 않는다.</p>
+<h3>키가 없을 때 깨지는 입력</h3>
+<pre><code class="hljs language-dart"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">NamedField</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">StatefulWidget</span> </span>{
+  <span class="hljs-keyword">const</span> <span class="hljs-title class_">NamedField</span>({<span class="hljs-keyword">super</span>.key, <span class="hljs-keyword">required</span> <span class="hljs-keyword">this</span>.label});
 
-`key`는 리스트의 직접 자식에 둔다. `ListTile` 안쪽이 아니라 `PostTile`에 붙인다. Flutter가 맞추는 대상은 부모 `children`의 그 자리다.
+  <span class="hljs-keyword">final</span> <span class="hljs-title class_">String</span> label;
 
-아이템이 매우 많으면 `ListView.separated`로 구분선을 빌더에 맡긴다. `Column`에 `Divider`를 미리 다 만들지 않는다.
-
-### 키가 없을 때 깨지는 입력
-
-```dart
-class NamedField extends StatefulWidget {
-  const NamedField({super.key, required this.label});
-
-  final String label;
-
-  @override
-  State<NamedField> createState() => _NamedFieldState();
+  <span class="hljs-meta">@override</span>
+  <span class="hljs-title class_">State</span>&lt;<span class="hljs-title class_">NamedField</span>&gt; <span class="hljs-title function_">createState</span>() =&gt; <span class="hljs-title class_">_NamedFieldState</span>();
 }
 
-class _NamedFieldState extends State<NamedField> {
-  final TextEditingController controller = TextEditingController();
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">_NamedFieldState</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">State</span>&lt;<span class="hljs-title">NamedField</span>&gt; </span>{
+  <span class="hljs-keyword">final</span> <span class="hljs-title class_">TextEditingController</span> controller = <span class="hljs-title class_">TextEditingController</span>();
 
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
+  <span class="hljs-meta">@override</span>
+  <span class="hljs-keyword">void</span> <span class="hljs-title function_">dispose</span>() {
+    controller.<span class="hljs-title function_">dispose</span>();
+    <span class="hljs-keyword">super</span>.<span class="hljs-title function_">dispose</span>();
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return TextField(
+  <span class="hljs-meta">@override</span>
+  <span class="hljs-title class_">Widget</span> <span class="hljs-title function_">build</span>(<span class="hljs-title class_">BuildContext</span> context) {
+    <span class="hljs-keyword">return</span> <span class="hljs-title class_">TextField</span>(
       controller: controller,
-      decoration: InputDecoration(labelText: widget.label),
+      decoration: <span class="hljs-title class_">InputDecoration</span>(labelText: widget.label),
     );
   }
-}
-```
+}</code></pre>
+<p>이 필드를 리스트에서 순서를 바꾸면, 키가 없을 때 컨트롤러가 잘못된 행에 남는다. 각 행에 <code>ValueKey(label)</code> 또는 항목 id를 준다.</p>
+<h3>스크롤 성능</h3>
+<pre><code class="hljs language-dart"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AvatarTile</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">StatelessWidget</span> </span>{
+  <span class="hljs-keyword">const</span> <span class="hljs-title class_">AvatarTile</span>({<span class="hljs-keyword">super</span>.key, <span class="hljs-keyword">required</span> <span class="hljs-keyword">this</span>.url, <span class="hljs-keyword">required</span> <span class="hljs-keyword">this</span>.title});
 
-이 필드를 리스트에서 순서를 바꾸면, 키가 없을 때 컨트롤러가 잘못된 행에 남는다. 각 행에 `ValueKey(label)` 또는 항목 id를 준다.
+  <span class="hljs-keyword">final</span> <span class="hljs-title class_">String</span> url;
+  <span class="hljs-keyword">final</span> <span class="hljs-title class_">String</span> title;
 
-### 스크롤 성능
-
-```dart
-class AvatarTile extends StatelessWidget {
-  const AvatarTile({super.key, required this.url, required this.title});
-
-  final String url;
-  final String title;
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      leading: Image.network(
+  <span class="hljs-meta">@override</span>
+  <span class="hljs-title class_">Widget</span> <span class="hljs-title function_">build</span>(<span class="hljs-title class_">BuildContext</span> context) {
+    <span class="hljs-keyword">return</span> <span class="hljs-title class_">ListTile</span>(
+      leading: <span class="hljs-title class_">Image</span>.<span class="hljs-title function_">network</span>(
         url,
-        width: 40,
-        height: 40,
-        fit: BoxFit.cover,
-        cacheWidth: 80,
+        width: <span class="hljs-number">40</span>,
+        height: <span class="hljs-number">40</span>,
+        fit: <span class="hljs-title class_">BoxFit</span>.cover,
+        cacheWidth: <span class="hljs-number">80</span>,
       ),
-      title: Text(title, maxLines: 1, overflow: TextOverflow.ellipsis),
+      title: <span class="hljs-title class_">Text</span>(title, maxLines: <span class="hljs-number">1</span>, overflow: <span class="hljs-title class_">TextOverflow</span>.ellipsis),
     );
   }
-}
-```
-
-`cacheWidth`는 디코드 크기를 제한한다. 디스플레이 픽셀을 고려해 논리 크기의 2배 정도가 흔하다.
-
-고정 높이 행이면 `itemExtent`를 준다. 스크롤 오프셋 계산이 싸진다.
-
-```dart
-ListView.builder(
-  itemExtent: 56,
+}</code></pre>
+<p><code>cacheWidth</code>는 디코드 크기를 제한한다. 디스플레이 픽셀을 고려해 논리 크기의 2배 정도가 흔하다.</p>
+<p>고정 높이 행이면 <code>itemExtent</code>를 준다. 스크롤 오프셋 계산이 싸진다.</p>
+<pre><code class="hljs language-dart"><span class="hljs-title class_">ListView</span>.<span class="hljs-title function_">builder</span>(
+  itemExtent: <span class="hljs-number">56</span>,
   itemCount: items.length,
-  itemBuilder: (BuildContext context, int index) {
-    return PostTile(
-      key: ValueKey<String>(items[index].id),
+  itemBuilder: (<span class="hljs-title class_">BuildContext</span> context, <span class="hljs-built_in">int</span> index) {
+    <span class="hljs-keyword">return</span> <span class="hljs-title class_">PostTile</span>(
+      key: <span class="hljs-title class_">ValueKey</span>&lt;<span class="hljs-title class_">String</span>&gt;(items[index].id),
       post: items[index],
     );
   },
-);
-```
-
-`RepaintBoundary`는 측정 후에 쓴다. 추측으로 모든 행에 씌우지 않는다. DevTools Performance와 rebuild 하이라이트로 먼저 본다.
-
----
-
-## 4. 흔한 실수
-
-| 실수 | 결과 | 대안 |
-|------|------|------|
-| `Column` + `map`으로 긴 목록 | 한 번에 전부 빌드 | `ListView.builder` |
-| `key: ValueKey(index)` | 재배열 때 상태 꼬임 | 안정적 id |
-| 행을 화면 State 안에 인라인 | 상위 setState가 전부 리빌드 | 타일 Stateless 분리 |
-| 원본 이미지를 행에 그대로 | 스크롤 드롭 | 크기·캐시 지정 |
-| `shrinkWrap` 기본값화 | 가상화 포기 | 부모가 유한 높이 |
-
-`GlobalKey`로 행을 식별하지 않는다. 리스트 길이만큼 전역 키가 생기면 비용이 크다. `ValueKey`면 충분하다.
-
-`Sliver`는 커스텀 스크롤(헤더 고정, 그리드 혼합)이 필요할 때 쓴다. 일반 목록은 `ListView.builder`로 시작한다.
-
----
-
-## 정리
-
-리스트 성능은 마법이 아니다. **빌더 + 키 + 작은 타일**의 합이다. 키는 자리 대신 정체성을 알려 주는 이름표다.
-
----
-
-## 연습
-
-1. 200개 항목을 `Column`과 `ListView.builder`로 각각 그려 스크롤을 비교한다.
-2. 입력 필드 리스트를 재배열하고, id 키 전후에 텍스트가 따라오는지 확인한다.
-3. 타일을 Stateless로 분리하고 `const` 생성자를 붙인다.
-4. 네트워크 이미지에 `width`/`height`/`cacheWidth`를 지정한다.0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"리스트·키·성능의 기본\",\"description\":\"긴 목록은 빌더로 그리고, 키로 아이템 정체성을 지키면 스크롤이 버틴다.\",\"datePublished\":\"2026-01-26\",\"url\":\"https://kaisa.co.kr/posts/flutter-07/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"flutter\",\"keywords\":\"flutter\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"리스트·키·성능의 기본\",\"item\":\"https://kaisa.co.kr/posts/flutter-07/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2026-01-26"}]}],["$","h1",null,{"className":"blog-post__title","children":"리스트·키·성능의 기본"}],["$","$L3",null,{"content":"$4"}],"$L5","$L6"]}]}]}]],["$L7","$L8","$L9","$La"],"$Lb"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Zv4TpHss7ITjpJG-s6iGo"}
-5:["$","$Lc",null,{"pathKey":"flutter-07"}]
-6:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/flutter-06/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"비동기·HTTP·JSON으로 서버 연동"}]]}],["$","$L2",null,{"href":"/posts/flutter-08/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"ThemeData로 머티리얼 디자인 토큰"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
-7:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
-8:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
-9:["$","script","script-0",{"src":"/_next/static/chunks/1oevfsdj8hv5d.js","async":true}]
-a:["$","script","script-1",{"src":"/_next/static/chunks/22vl7s8dm-4u2.js","async":true}]
-b:["$","$Ld",null,{"children":["$","$e",null,{"name":"Next.MetadataOutlet","children":"$@f"}]}]
-f:null
+);</code></pre>
+<p><code>RepaintBoundary</code>는 측정 후에 쓴다. 추측으로 모든 행에 씌우지 않는다. DevTools Performance와 rebuild 하이라이트로 먼저 본다.</p>
+<hr>
+<h2>4. 흔한 실수</h2>
+<table>
+<thead>
+<tr>
+<th>실수</th>
+<th>결과</th>
+<th>대안</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>Column</code> + <code>map</code>으로 긴 목록</td>
+<td>한 번에 전부 빌드</td>
+<td><code>ListView.builder</code></td>
+</tr>
+<tr>
+<td><code>key: ValueKey(index)</code></td>
+<td>재배열 때 상태 꼬임</td>
+<td>안정적 id</td>
+</tr>
+<tr>
+<td>행을 화면 State 안에 인라인</td>
+<td>상위 setState가 전부 리빌드</td>
+<td>타일 Stateless 분리</td>
+</tr>
+<tr>
+<td>원본 이미지를 행에 그대로</td>
+<td>스크롤 드롭</td>
+<td>크기·캐시 지정</td>
+</tr>
+<tr>
+<td><code>shrinkWrap</code> 기본값화</td>
+<td>가상화 포기</td>
+<td>부모가 유한 높이</td>
+</tr>
+</tbody></table>
+<p><code>GlobalKey</code>로 행을 식별하지 않는다. 리스트 길이만큼 전역 키가 생기면 비용이 크다. <code>ValueKey</code>면 충분하다.</p>
+<p><code>Sliver</code>는 커스텀 스크롤(헤더 고정, 그리드 혼합)이 필요할 때 쓴다. 일반 목록은 <code>ListView.builder</code>로 시작한다.</p>
+<hr>
+<h2>정리</h2>
+<p>리스트 성능은 마법이 아니다. <strong>빌더 + 키 + 작은 타일</strong>의 합이다. 키는 자리 대신 정체성을 알려 주는 이름표다.</p>
+<hr>
+<h2>연습</h2>
+<ol>
+<li>200개 항목을 <code>Column</code>과 <code>ListView.builder</code>로 각각 그려 스크롤을 비교한다.</li>
+<li>입력 필드 리스트를 재배열하고, id 키 전후에 텍스트가 따라오는지 확인한다.</li>
+<li>타일을 Stateless로 분리하고 <code>const</code> 생성자를 붙인다.</li>
+<li>네트워크 이미지에 <code>width</code>/<code>height</code>/<code>cacheWidth</code>를 지정한다.</li>
+</ol>
+0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"리스트·키·성능의 기본\",\"description\":\"긴 목록은 빌더로 그리고, 키로 아이템 정체성을 지키면 스크롤이 버틴다.\",\"datePublished\":\"2026-01-26\",\"url\":\"https://kaisa.co.kr/posts/flutter-07/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"flutter\",\"keywords\":\"flutter\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"리스트·키·성능의 기본\",\"item\":\"https://kaisa.co.kr/posts/flutter-07/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2026-01-26"}]}],["$","h1",null,{"className":"blog-post__title","children":"리스트·키·성능의 기본"}],["$","div",null,{"className":"blog-post__body blog-post__body--markdown","children":["$","div",null,{"className":"markdown-body","dangerouslySetInnerHTML":{"__html":"$3"}}]}],"$L4","$L5"]}]}]}]],["$L6","$L7","$L8"],"$L9"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"_AZq8Hq_NwvdopxIW0Tgh"}
+4:["$","$La",null,{"pathKey":"flutter-07"}]
+5:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/flutter-06/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"비동기·HTTP·JSON으로 서버 연동"}]]}],["$","$L2",null,{"href":"/posts/flutter-08/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"ThemeData로 머티리얼 디자인 토큰"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
+6:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
+7:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
+8:["$","script","script-0",{"src":"/_next/static/chunks/26shoze10o-dc.js","async":true}]
+9:["$","$Lb",null,{"children":["$","$c",null,{"name":"Next.MetadataOutlet","children":"$@d"}]}]
+d:null

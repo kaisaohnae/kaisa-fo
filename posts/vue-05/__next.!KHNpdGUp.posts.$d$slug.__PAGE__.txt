@@ -1,76 +1,68 @@
 1:"$Sreact.fragment"
-2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],""]
-3:I[55489,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-c:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-d:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
-e:"$Sreact.suspense"
+2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],""]
+a:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],"default"]
+b:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
+c:"$Sreact.suspense"
 :HL["/_next/static/chunks/0br7e7j26qkj3.css","style"]
 :HL["/_next/static/chunks/21i9-auhncr4a.css","style"]
-4:T1066,# Vue 앱 실무 체크리스트
-
-> 요약: 구조·성능·접근성·보안·배포까지, Vue 앱을 내보내기 전에 항목마다 이유를 붙여 확인하는 실무 체크리스트다.
-
----
-
-## 1. 구조·품질
-
-- [ ] Vue 3 + `<script setup>` + TypeScript를 기본선으로 둔다 — Options와 혼용하면 같은 기능이 두 문법으로 갈라진다.
-- [ ] 컴포넌트는 한 책임, props/emits 이름을 계약처럼 적는다 — 자식이 props를 mutate하면 부모 상태가 몰래 바뀐다.
-- [ ] ESLint(및 팀 합의된 Vitest)를 CI에서 돌린다 — 리뷰만으로는 `.value` 누락·잘못된 `key`가 빠진다.
-- [ ] 환경 변수는 `VITE_` 접두사만 클라이언트에 노출한다 — 접두사 없는 시크릿은 빌드에 들어가면 누구나 읽는다.
-- [ ] `src/components`, `pages`, `stores` 경계를 지킨다 — 페이지가 스토어·API를 한 파일에 다 넣으면 재사용이 끊긴다.
-
----
-
-## 2. 성능
-
-- [ ] 라우트·무거운 모달은 `() => import(...)`로 나눈다 — 첫 페인트에 관리자 화면 JS가 따라오면 초기 비용이 커진다.
-- [ ] `v-for`에 안정적인 `key`(id)를 둔다 — 인덱스 `key`는 행이 지워질 때 입력·컴포넌트 상태가 다른 행으로 옮는다.
-- [ ] 수천 행 리스트는 가상 스크롤을 검토한다 — DOM 노드가 모두 붙으면 스크롤이 버벅인다.
-- [ ] `{ deep: true }` watch와 불필요한 `reactive` 큰 객체를 줄인다 — 깊은 추적은 매 키 입력마다 비용이 난다.
-- [ ] `computed`로 파생 값을 두고 템플릿에 무거운 함수를 반복 호출하지 않는다 — 렌더마다 필터·정렬이 다시 돈다.
-- [ ] 프로덕션 `vite build` 후 번들 분석으로 큰 의존성을 본다 — 개발 모드 속도는 배포 크기와 무관하다.
-
----
-
-## 3. UX·접근성
-
-- [ ] 동작은 `button`, 이동은 `a`/`RouterLink`를 쓴다 — `div`+클릭은 키보드·스크린 리더가 버튼을 찾지 못한다.
-- [ ] `:focus-visible` 스타일을 남긴다 — 마우스만 쓰는 개발자가 포커스 링을 지우면 키보드 사용자가 길을 잃는다.
-- [ ] 비동기 화면은 로딩·에러·빈 상태를 나눈다 — 흰 화면은 실패인지 대기인지 구분할 수 없다.
-- [ ] 폼 오류는 필드 옆 문구로 보여 준다 — `alert`만 쓰면 어떤 칸이 틀렸는지 모른다.
-- [ ] 라우트 전환 후 스크롤·포커스 정책을 정한다 — SPA는 기본이 스크롤 유지라 본문이 화면 밖에 남을 수 있다.
-
----
-
-## 4. 데이터·보안
-
-- [ ] HTTP 타임아웃·4xx/5xx를 UI 메시지로 연결한다 — 미처리 Promise는 버튼이 영원히 로딩으로 남는다.
-- [ ] `v-html`은 살균한 마크업만, 가능하면 슬롯으로 대체한다 — 사용자 문자열이 HTML로 들어가면 XSS가 된다.
-- [ ] 액세스 토큰 저장 위치를 팀과 합의한다 — `localStorage`는 XSS에 읽힌다. 세션은 httpOnly 쿠키가 기본 후보이다.
-- [ ] 쿠키 인증이면 CSRF(사이트 간 요청 위조)와 SameSite를 백엔드와 맞춘다 — 프론트만 SameSite를 바꿀 수 없다.
-- [ ] 공개 API 키·관리자 URL을 프론트 상수로 두지 않는다 — 번들에 들어간 문자열은 숨길 수 없다.
-
----
-
-## 5. 배포
-
-- [ ] `vite build` 산출물의 `base`가 실제 공개 경로와 같다 — 서브경로 배포인데 `base: '/'`면 JS가 404다.
-- [ ] 서버에 SPA 폴백을 둔다 (`try_files $uri /index.html`) — `/posts/1` 새로고침이 서버 파일로 해석되면 404다.
-- [ ] 프로덕션 소스맵 공개 범위를 정한다 — 전체 소스맵은 원본 TS가 그대로 내려간다.
-- [ ] `console.log`·개발용 플래그가 프로덕션 번들에 남지 않게 한다 — 토큰·개인정보가 로그로 새기 쉽다.
-- [ ] 버전 문자열 또는 헬스 엔드포인트를 필요 시 백엔드와 맞춘다 — “어느 빌드가 나갔는지”를 로그와 대조할 수 있다.
-
----
-
-## 정리
-
-Vue 배포 품질은 API 암기량이 아니다. **위 목록을 통과하는 앱을 반복해 만드는 힘**이다. 항목을 건너뛸 때는 티켓에 이유를 남긴다.0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"Vue 앱 실무 체크리스트\",\"description\":\"구조·성능·접근성·보안·배포까지, Vue 앱을 내보내기 전에 항목마다 이유를 붙여 확인하는 실무 체크리스트다.\",\"datePublished\":\"2025-06-04\",\"url\":\"https://kaisa.co.kr/posts/vue-05/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"vue\",\"keywords\":\"vue\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Vue 앱 실무 체크리스트\",\"item\":\"https://kaisa.co.kr/posts/vue-05/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2025-06-04"}]}],["$","h1",null,{"className":"blog-post__title","children":"Vue 앱 실무 체크리스트"}],["$","$L3",null,{"content":"$4"}],"$L5","$L6"]}]}]}]],["$L7","$L8","$L9","$La"],"$Lb"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Zv4TpHss7ITjpJG-s6iGo"}
-5:["$","$Lc",null,{"pathKey":"vue-05"}]
-6:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/vue-04/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Vue Router와 Pinia로 화면·상태 구성"}]]}],null]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
-7:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
-8:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
-9:["$","script","script-0",{"src":"/_next/static/chunks/1oevfsdj8hv5d.js","async":true}]
-a:["$","script","script-1",{"src":"/_next/static/chunks/22vl7s8dm-4u2.js","async":true}]
-b:["$","$Ld",null,{"children":["$","$e",null,{"name":"Next.MetadataOutlet","children":"$@f"}]}]
-f:null
+3:T1636,<h1>Vue 앱 실무 체크리스트</h1>
+<blockquote>
+<p>요약: 구조·성능·접근성·보안·배포까지, Vue 앱을 내보내기 전에 항목마다 이유를 붙여 확인하는 실무 체크리스트다.</p>
+</blockquote>
+<hr>
+<h2>1. 구조·품질</h2>
+<ul>
+<li><input disabled="" type="checkbox"> Vue 3 + <code>&lt;script setup&gt;</code> + TypeScript를 기본선으로 둔다 — Options와 혼용하면 같은 기능이 두 문법으로 갈라진다.</li>
+<li><input disabled="" type="checkbox"> 컴포넌트는 한 책임, props/emits 이름을 계약처럼 적는다 — 자식이 props를 mutate하면 부모 상태가 몰래 바뀐다.</li>
+<li><input disabled="" type="checkbox"> ESLint(및 팀 합의된 Vitest)를 CI에서 돌린다 — 리뷰만으로는 <code>.value</code> 누락·잘못된 <code>key</code>가 빠진다.</li>
+<li><input disabled="" type="checkbox"> 환경 변수는 <code>VITE_</code> 접두사만 클라이언트에 노출한다 — 접두사 없는 시크릿은 빌드에 들어가면 누구나 읽는다.</li>
+<li><input disabled="" type="checkbox"> <code>src/components</code>, <code>pages</code>, <code>stores</code> 경계를 지킨다 — 페이지가 스토어·API를 한 파일에 다 넣으면 재사용이 끊긴다.</li>
+</ul>
+<hr>
+<h2>2. 성능</h2>
+<ul>
+<li><input disabled="" type="checkbox"> 라우트·무거운 모달은 <code>() =&gt; import(...)</code>로 나눈다 — 첫 페인트에 관리자 화면 JS가 따라오면 초기 비용이 커진다.</li>
+<li><input disabled="" type="checkbox"> <code>v-for</code>에 안정적인 <code>key</code>(id)를 둔다 — 인덱스 <code>key</code>는 행이 지워질 때 입력·컴포넌트 상태가 다른 행으로 옮는다.</li>
+<li><input disabled="" type="checkbox"> 수천 행 리스트는 가상 스크롤을 검토한다 — DOM 노드가 모두 붙으면 스크롤이 버벅인다.</li>
+<li><input disabled="" type="checkbox"> <code>{ deep: true }</code> watch와 불필요한 <code>reactive</code> 큰 객체를 줄인다 — 깊은 추적은 매 키 입력마다 비용이 난다.</li>
+<li><input disabled="" type="checkbox"> <code>computed</code>로 파생 값을 두고 템플릿에 무거운 함수를 반복 호출하지 않는다 — 렌더마다 필터·정렬이 다시 돈다.</li>
+<li><input disabled="" type="checkbox"> 프로덕션 <code>vite build</code> 후 번들 분석으로 큰 의존성을 본다 — 개발 모드 속도는 배포 크기와 무관하다.</li>
+</ul>
+<hr>
+<h2>3. UX·접근성</h2>
+<ul>
+<li><input disabled="" type="checkbox"> 동작은 <code>button</code>, 이동은 <code>a</code>/<code>RouterLink</code>를 쓴다 — <code>div</code>+클릭은 키보드·스크린 리더가 버튼을 찾지 못한다.</li>
+<li><input disabled="" type="checkbox"> <code>:focus-visible</code> 스타일을 남긴다 — 마우스만 쓰는 개발자가 포커스 링을 지우면 키보드 사용자가 길을 잃는다.</li>
+<li><input disabled="" type="checkbox"> 비동기 화면은 로딩·에러·빈 상태를 나눈다 — 흰 화면은 실패인지 대기인지 구분할 수 없다.</li>
+<li><input disabled="" type="checkbox"> 폼 오류는 필드 옆 문구로 보여 준다 — <code>alert</code>만 쓰면 어떤 칸이 틀렸는지 모른다.</li>
+<li><input disabled="" type="checkbox"> 라우트 전환 후 스크롤·포커스 정책을 정한다 — SPA는 기본이 스크롤 유지라 본문이 화면 밖에 남을 수 있다.</li>
+</ul>
+<hr>
+<h2>4. 데이터·보안</h2>
+<ul>
+<li><input disabled="" type="checkbox"> HTTP 타임아웃·4xx/5xx를 UI 메시지로 연결한다 — 미처리 Promise는 버튼이 영원히 로딩으로 남는다.</li>
+<li><input disabled="" type="checkbox"> <code>v-html</code>은 살균한 마크업만, 가능하면 슬롯으로 대체한다 — 사용자 문자열이 HTML로 들어가면 XSS가 된다.</li>
+<li><input disabled="" type="checkbox"> 액세스 토큰 저장 위치를 팀과 합의한다 — <code>localStorage</code>는 XSS에 읽힌다. 세션은 httpOnly 쿠키가 기본 후보이다.</li>
+<li><input disabled="" type="checkbox"> 쿠키 인증이면 CSRF(사이트 간 요청 위조)와 SameSite를 백엔드와 맞춘다 — 프론트만 SameSite를 바꿀 수 없다.</li>
+<li><input disabled="" type="checkbox"> 공개 API 키·관리자 URL을 프론트 상수로 두지 않는다 — 번들에 들어간 문자열은 숨길 수 없다.</li>
+</ul>
+<hr>
+<h2>5. 배포</h2>
+<ul>
+<li><input disabled="" type="checkbox"> <code>vite build</code> 산출물의 <code>base</code>가 실제 공개 경로와 같다 — 서브경로 배포인데 <code>base: &#39;/&#39;</code>면 JS가 404다.</li>
+<li><input disabled="" type="checkbox"> 서버에 SPA 폴백을 둔다 (<code>try_files $uri /index.html</code>) — <code>/posts/1</code> 새로고침이 서버 파일로 해석되면 404다.</li>
+<li><input disabled="" type="checkbox"> 프로덕션 소스맵 공개 범위를 정한다 — 전체 소스맵은 원본 TS가 그대로 내려간다.</li>
+<li><input disabled="" type="checkbox"> <code>console.log</code>·개발용 플래그가 프로덕션 번들에 남지 않게 한다 — 토큰·개인정보가 로그로 새기 쉽다.</li>
+<li><input disabled="" type="checkbox"> 버전 문자열 또는 헬스 엔드포인트를 필요 시 백엔드와 맞춘다 — “어느 빌드가 나갔는지”를 로그와 대조할 수 있다.</li>
+</ul>
+<hr>
+<h2>정리</h2>
+<p>Vue 배포 품질은 API 암기량이 아니다. <strong>위 목록을 통과하는 앱을 반복해 만드는 힘</strong>이다. 항목을 건너뛸 때는 티켓에 이유를 남긴다.</p>
+0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"Vue 앱 실무 체크리스트\",\"description\":\"구조·성능·접근성·보안·배포까지, Vue 앱을 내보내기 전에 항목마다 이유를 붙여 확인하는 실무 체크리스트다.\",\"datePublished\":\"2025-06-04\",\"url\":\"https://kaisa.co.kr/posts/vue-05/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"vue\",\"keywords\":\"vue\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"Vue 앱 실무 체크리스트\",\"item\":\"https://kaisa.co.kr/posts/vue-05/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2025-06-04"}]}],["$","h1",null,{"className":"blog-post__title","children":"Vue 앱 실무 체크리스트"}],["$","div",null,{"className":"blog-post__body blog-post__body--markdown","children":["$","div",null,{"className":"markdown-body","dangerouslySetInnerHTML":{"__html":"$3"}}]}],"$L4","$L5"]}]}]}]],["$L6","$L7","$L8"],"$L9"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"_AZq8Hq_NwvdopxIW0Tgh"}
+4:["$","$La",null,{"pathKey":"vue-05"}]
+5:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/vue-04/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Vue Router와 Pinia로 화면·상태 구성"}]]}],null]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
+6:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
+7:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
+8:["$","script","script-0",{"src":"/_next/static/chunks/26shoze10o-dc.js","async":true}]
+9:["$","$Lb",null,{"children":["$","$c",null,{"name":"Next.MetadataOutlet","children":"$@d"}]}]
+d:null

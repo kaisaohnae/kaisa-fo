@@ -1,198 +1,188 @@
 1:"$Sreact.fragment"
-2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],""]
-3:I[55489,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-c:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-d:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
-e:"$Sreact.suspense"
+2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],""]
+a:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],"default"]
+b:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
+c:"$Sreact.suspense"
 :HL["/_next/static/chunks/0br7e7j26qkj3.css","style"]
 :HL["/_next/static/chunks/21i9-auhncr4a.css","style"]
-4:T16b0,# 라우팅·레이아웃·동적 세그먼트
+3:T308f,<h1>라우팅·레이아웃·동적 세그먼트</h1>
+<blockquote>
+<p>요약: 폴더가 URL이 되는 규칙을 익히고, 동적 주소와 중첩 레이아웃으로 화면 구조를 잡는다.</p>
+</blockquote>
+<hr>
+<h2>1. 왜 이 주제가 필요한가</h2>
+<p>웹 앱은 URL이 곧 정보 구조다. <code>/posts/hello</code>가 글이고 <code>/about</code>이 소개라면, 폴더를 그렇게 나누면 된다.</p>
+<p>App Router는 설정 파일에 라우트를 나열하지 않는다. <code>app/</code> 아래 폴더 이름이 경로가 된다. 레이아웃은 부모 폴더에서 자식으로 중첩된다.</p>
+<p>주소와 UI 껍질을 같이 설계하면 페이지마다 헤더를 복사하지 않아도 된다.</p>
+<hr>
+<h2>2. 한 줄 규칙</h2>
+<p><code>page.tsx</code>가 있는 폴더만 공개 URL이다. 대괄호 폴더(<code>[slug]</code>)는 값이 바뀌는 구간이다.</p>
+<p>레이아웃은 하위 이동 시 리마운트되지 않는다. 공통 셸은 <code>layout.tsx</code>에 둔다.</p>
+<hr>
+<h2>3. 예제</h2>
+<h3>파일과 URL</h3>
+<table>
+<thead>
+<tr>
+<th>파일</th>
+<th>URL</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>app/page.tsx</code></td>
+<td><code>/</code></td>
+</tr>
+<tr>
+<td><code>app/posts/page.tsx</code></td>
+<td><code>/posts</code></td>
+</tr>
+<tr>
+<td><code>app/posts/[slug]/page.tsx</code></td>
+<td><code>/posts/hello</code></td>
+</tr>
+<tr>
+<td><code>app/docs/[...slug]/page.tsx</code></td>
+<td><code>/docs/a</code>, <code>/docs/a/b</code></td>
+</tr>
+<tr>
+<td><code>app/shop/[[...slug]]/page.tsx</code></td>
+<td><code>/shop</code>와 <code>/shop/a</code> 모두</td>
+</tr>
+</tbody></table>
+<p><code>[slug]</code>는 한 칸. <code>[...slug]</code>는 나머지 칸 전부(캐치올). <code>[[...slug]]</code>는 그 칸이 없어도 된다(선택 캐치올).</p>
+<h3>동적 세그먼트</h3>
+<p>Next.js 15부터 <code>params</code>는 Promise다. 서버 페이지에서 <code>await</code>로 읽는다.</p>
+<pre><code class="hljs language-tsx"><span class="hljs-comment">// app/posts/[slug]/page.tsx</span>
+<span class="hljs-keyword">import</span> {notFound} <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;next/navigation&#x27;</span>;
 
-> 요약: 폴더가 URL이 되는 규칙을 익히고, 동적 주소와 중첩 레이아웃으로 화면 구조를 잡는다.
-
----
-
-## 1. 왜 이 주제가 필요한가
-
-웹 앱은 URL이 곧 정보 구조다. `/posts/hello`가 글이고 `/about`이 소개라면, 폴더를 그렇게 나누면 된다.
-
-App Router는 설정 파일에 라우트를 나열하지 않는다. `app/` 아래 폴더 이름이 경로가 된다. 레이아웃은 부모 폴더에서 자식으로 중첩된다.
-
-주소와 UI 껍질을 같이 설계하면 페이지마다 헤더를 복사하지 않아도 된다.
-
----
-
-## 2. 한 줄 규칙
-
-`page.tsx`가 있는 폴더만 공개 URL이다. 대괄호 폴더(`[slug]`)는 값이 바뀌는 구간이다.
-
-레이아웃은 하위 이동 시 리마운트되지 않는다. 공통 셸은 `layout.tsx`에 둔다.
-
----
-
-## 3. 예제
-
-### 파일과 URL
-
-| 파일 | URL |
-|------|-----|
-| `app/page.tsx` | `/` |
-| `app/posts/page.tsx` | `/posts` |
-| `app/posts/[slug]/page.tsx` | `/posts/hello` |
-| `app/docs/[...slug]/page.tsx` | `/docs/a`, `/docs/a/b` |
-| `app/shop/[[...slug]]/page.tsx` | `/shop`와 `/shop/a` 모두 |
-
-`[slug]`는 한 칸. `[...slug]`는 나머지 칸 전부(캐치올). `[[...slug]]`는 그 칸이 없어도 된다(선택 캐치올).
-
-### 동적 세그먼트
-
-Next.js 15부터 `params`는 Promise다. 서버 페이지에서 `await`로 읽는다.
-
-```tsx
-// app/posts/[slug]/page.tsx
-import {notFound} from 'next/navigation';
-
-type Props = {
-  params: Promise<{slug: string}>;
+<span class="hljs-keyword">type</span> <span class="hljs-title class_">Props</span> = {
+  <span class="hljs-attr">params</span>: <span class="hljs-title class_">Promise</span>&lt;{<span class="hljs-attr">slug</span>: <span class="hljs-built_in">string</span>}&gt;;
 };
 
-const POSTS: Record<string, string> = {
-  hello: '첫 글',
-  world: '둘째 글',
+<span class="hljs-keyword">const</span> <span class="hljs-attr">POSTS</span>: <span class="hljs-title class_">Record</span>&lt;<span class="hljs-built_in">string</span>, <span class="hljs-built_in">string</span>&gt; = {
+  <span class="hljs-attr">hello</span>: <span class="hljs-string">&#x27;첫 글&#x27;</span>,
+  <span class="hljs-attr">world</span>: <span class="hljs-string">&#x27;둘째 글&#x27;</span>,
 };
 
-export default async function PostPage({params}: Props) {
-  const {slug} = await params;
-  const title = POSTS[slug];
-  if (!title) notFound();
-  return (
-    <article>
-      <h1>{title}</h1>
-      <p>slug: {slug}</p>
-    </article>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">async</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">PostPage</span>(<span class="hljs-params">{params}: <span class="hljs-title class_">Props</span></span>) {
+  <span class="hljs-keyword">const</span> {slug} = <span class="hljs-keyword">await</span> params;
+  <span class="hljs-keyword">const</span> title = <span class="hljs-variable constant_">POSTS</span>[slug];
+  <span class="hljs-keyword">if</span> (!title) <span class="hljs-title function_">notFound</span>();
+  <span class="hljs-keyword">return</span> (
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">article</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>{title}<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>slug: {slug}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">article</span>&gt;</span></span>
   );
-}
-```
+}</code></pre>
+<p>빌드 때 HTML을 미리 만들려면 <code>generateStaticParams</code>를 같이 쓴다. 정적 사이트 생성(SSG, 빌드 시 HTML을 고정하는 방식)과 충돌하지 않는다. <code>await params</code>는 Next API일 뿐, 페이지를 클라이언트 렌더로 바꾸지 않는다.</p>
+<pre><code class="hljs language-tsx"><span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">generateStaticParams</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">return</span> [{<span class="hljs-attr">slug</span>: <span class="hljs-string">&#x27;hello&#x27;</span>}, {<span class="hljs-attr">slug</span>: <span class="hljs-string">&#x27;world&#x27;</span>}];
+}</code></pre>
+<h3>중첩 레이아웃</h3>
+<pre><code class="hljs language-tsx"><span class="hljs-comment">// app/posts/layout.tsx</span>
+<span class="hljs-keyword">import</span> <span class="hljs-keyword">type</span> {<span class="hljs-title class_">ReactNode</span>} <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-title class_">Link</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;next/link&#x27;</span>;
 
-빌드 때 HTML을 미리 만들려면 `generateStaticParams`를 같이 쓴다. 정적 사이트 생성(SSG, 빌드 시 HTML을 고정하는 방식)과 충돌하지 않는다. `await params`는 Next API일 뿐, 페이지를 클라이언트 렌더로 바꾸지 않는다.
-
-```tsx
-export function generateStaticParams() {
-  return [{slug: 'hello'}, {slug: 'world'}];
-}
-```
-
-### 중첩 레이아웃
-
-```tsx
-// app/posts/layout.tsx
-import type {ReactNode} from 'react';
-import Link from 'next/link';
-
-export default function PostsLayout({children}: {children: ReactNode}) {
-  return (
-    <div>
-      <aside>
-        <nav>
-          <Link href="/posts/hello/">hello</Link>
-          <Link href="/posts/world/">world</Link>
-        </nav>
-      </aside>
-      <section>{children}</section>
-    </div>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">PostsLayout</span>(<span class="hljs-params">{children}: {children: ReactNode}</span>) {
+  <span class="hljs-keyword">return</span> (
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">aside</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">nav</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">Link</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;/posts/hello/&quot;</span>&gt;</span>hello<span class="hljs-tag">&lt;/<span class="hljs-name">Link</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-name">Link</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;/posts/world/&quot;</span>&gt;</span>world<span class="hljs-tag">&lt;/<span class="hljs-name">Link</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">nav</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">aside</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">section</span>&gt;</span>{children}<span class="hljs-tag">&lt;/<span class="hljs-name">section</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
   );
-}
-```
+}</code></pre>
+<p><code>/posts/hello</code>에서 <code>/posts/world</code>로 이동해도 이 레이아웃은 다시 마운트되지 않는다. 사이드바 스크롤·필터 상태를 유지하기 쉽다.</p>
+<p>루트 <code>layout.tsx</code>는 <code>&lt;html&gt;</code>/<code>&lt;body&gt;</code>를 가진다. 하위 레이아웃은 그 안의 껍질만 추가한다.</p>
+<h3>라우트 그룹</h3>
+<p>폴더 이름을 <code>(marketing)</code>처럼 괄호로 감싸면 URL에 안 들어간다. 레이아웃만 나누고 싶을 때 쓴다.</p>
+<pre><code class="hljs">app/<span class="hljs-punctuation">(</span>site<span class="hljs-punctuation">)</span>/page.tsx              → /
+app/<span class="hljs-punctuation">(</span>site<span class="hljs-punctuation">)</span>/about/page.tsx        → /about
+app/<span class="hljs-punctuation">(</span>manager<span class="hljs-punctuation">)</span>/manager/page.tsx   → /manager</code></pre>
+<p><code>(site)</code>와 <code>(manager)</code>에 서로 다른 <code>layout.tsx</code>를 둘 수 있다. 주소는 폴더 이름에서 괄호 그룹을 뺀 나머지다.</p>
+<h3>Link와 이동</h3>
+<pre><code class="hljs language-tsx"><span class="hljs-keyword">import</span> <span class="hljs-title class_">Link</span> <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;next/link&#x27;</span>;
 
-`/posts/hello`에서 `/posts/world`로 이동해도 이 레이아웃은 다시 마운트되지 않는다. 사이드바 스크롤·필터 상태를 유지하기 쉽다.
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">PostLink</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">Link</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;/posts/hello/&quot;</span>&gt;</span>글 보기<span class="hljs-tag">&lt;/<span class="hljs-name">Link</span>&gt;</span></span>;
+}</code></pre>
+<p>내부 이동은 <code>&lt;a&gt;</code> 대신 <code>next/link</code>의 <code>Link</code>를 쓴다. 미리 코드를 받아 전환이 빠르다.</p>
+<p><code>trailingSlash: true</code>면 <code>href</code>도 <code>/posts/hello/</code>처럼 맞춘다. 슬래시가 어긋나면 같은 페이지가 두 URL로 열린다.</p>
+<p>버튼을 눌러 이동할 때는 Client Component에서 라우터를 쓴다.</p>
+<pre><code class="hljs language-tsx"><span class="hljs-string">&#x27;use client&#x27;</span>;
 
-루트 `layout.tsx`는 `<html>`/`<body>`를 가진다. 하위 레이아웃은 그 안의 껍질만 추가한다.
+<span class="hljs-keyword">import</span> {useRouter} <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;next/navigation&#x27;</span>;
 
-### 라우트 그룹
-
-폴더 이름을 `(marketing)`처럼 괄호로 감싸면 URL에 안 들어간다. 레이아웃만 나누고 싶을 때 쓴다.
-
-```
-app/(site)/page.tsx              → /
-app/(site)/about/page.tsx        → /about
-app/(manager)/manager/page.tsx   → /manager
-```
-
-`(site)`와 `(manager)`에 서로 다른 `layout.tsx`를 둘 수 있다. 주소는 폴더 이름에서 괄호 그룹을 뺀 나머지다.
-
-### Link와 이동
-
-```tsx
-import Link from 'next/link';
-
-export function PostLink() {
-  return <Link href="/posts/hello/">글 보기</Link>;
-}
-```
-
-내부 이동은 `<a>` 대신 `next/link`의 `Link`를 쓴다. 미리 코드를 받아 전환이 빠르다.
-
-`trailingSlash: true`면 `href`도 `/posts/hello/`처럼 맞춘다. 슬래시가 어긋나면 같은 페이지가 두 URL로 열린다.
-
-버튼을 눌러 이동할 때는 Client Component에서 라우터를 쓴다.
-
-```tsx
-'use client';
-
-import {useRouter} from 'next/navigation';
-
-export function GoPostsButton() {
-  const router = useRouter();
-  return (
-    <button type="button" onClick={() => router.push('/posts/')}>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">GoPostsButton</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> router = <span class="hljs-title function_">useRouter</span>();
+  <span class="hljs-keyword">return</span> (
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;button&quot;</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{()</span> =&gt;</span> router.push(&#x27;/posts/&#x27;)}&gt;
       목록
-    </button>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>
   );
-}
-```
-
-`next/navigation`이다. Pages Router의 `next/router`가 아니다.
-
-### 병렬·인터셉트
-
-`@folder` 슬롯은 한 레이아웃에 여러 `page`를 나란히 넣을 때 쓴다. 대시보드 다중 패널이 전형적인 경우다.
-
-`(.)photo` 같은 인터셉트 라우트는 목록 위에 모달을 얹고, 새로고침하면 전용 페이지로 열 때 쓴다.
-
-입문 앱은 동적 세그먼트와 중첩 레이아웃만으로 충분한 경우가 많다. 필요할 때 문서에서 추가한다.
-
----
-
-## 4. 흔한 실수
-
-| 실수 | 결과 | 대안 |
-|------|------|------|
-| `params.slug`를 동기로 읽는다 | Next 15에서 타입·런타임 경고 | `const {slug} = await params` |
-| 레이아웃에서 `{children}`을 뺀다 | 하위 페이지가 안 보인다 | 레이아웃은 껍질만, 본문은 children |
-| 라우트 그룹을 URL에 기대한다 | `(site)`가 주소에 없다 | 괄호는 URL에서 빠진다 |
-| `<a href="/posts">`만 쓴다 | 풀 새로고침 | 내부는 `Link` |
-| trailing slash 혼용 | 중복 URL, 깨진 링크 | 설정과 `href`를 일치 |
-
----
-
-## 정리
-
-라우팅은 폴더 이름이고, 공개 여부는 `page.tsx`다. 바뀌는 칸은 `[slug]`, 공통 셸은 `layout.tsx`다.
-
-URL을 먼저 그리고 폴더를 만든다. 레이아웃은 “이 구간에서 무엇이 유지돼야 하는가”로 나눈다.
-
----
-
-## 연습
-
-1. `/posts/[slug]` 페이지와 `generateStaticParams` 두 개(`hello`, `world`)를 만든다.
-2. `(marketing)` / `(app)` 그룹으로 공개 사이트와 로그인 후 화면의 레이아웃을 나눈다.
-3. 내부 링크를 모두 `Link`로 바꾸고, `trailingSlash` 정책과 `href`를 맞춘다.0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"라우팅·레이아웃·동적 세그먼트\",\"description\":\"폴더가 URL이 되는 규칙을 익히고, 동적 주소와 중첩 레이아웃으로 화면 구조를 잡는다.\",\"datePublished\":\"2024-01-08\",\"url\":\"https://kaisa.co.kr/posts/nextjs-02/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"nextjs\",\"keywords\":\"nextjs\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"라우팅·레이아웃·동적 세그먼트\",\"item\":\"https://kaisa.co.kr/posts/nextjs-02/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2024-01-08"}]}],["$","h1",null,{"className":"blog-post__title","children":"라우팅·레이아웃·동적 세그먼트"}],["$","$L3",null,{"content":"$4"}],"$L5","$L6"]}]}]}]],["$L7","$L8","$L9","$La"],"$Lb"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Zv4TpHss7ITjpJG-s6iGo"}
-5:["$","$Lc",null,{"pathKey":"nextjs-02"}]
-6:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/nextjs-01/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Next.js App Router로 프로젝트 시작하기"}]]}],["$","$L2",null,{"href":"/posts/nextjs-03/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Server Component와 Client Component"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
-7:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
-8:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
-9:["$","script","script-0",{"src":"/_next/static/chunks/1oevfsdj8hv5d.js","async":true}]
-a:["$","script","script-1",{"src":"/_next/static/chunks/22vl7s8dm-4u2.js","async":true}]
-b:["$","$Ld",null,{"children":["$","$e",null,{"name":"Next.MetadataOutlet","children":"$@f"}]}]
-f:null
+}</code></pre>
+<p><code>next/navigation</code>이다. Pages Router의 <code>next/router</code>가 아니다.</p>
+<h3>병렬·인터셉트</h3>
+<p><code>@folder</code> 슬롯은 한 레이아웃에 여러 <code>page</code>를 나란히 넣을 때 쓴다. 대시보드 다중 패널이 전형적인 경우다.</p>
+<p><code>(.)photo</code> 같은 인터셉트 라우트는 목록 위에 모달을 얹고, 새로고침하면 전용 페이지로 열 때 쓴다.</p>
+<p>입문 앱은 동적 세그먼트와 중첩 레이아웃만으로 충분한 경우가 많다. 필요할 때 문서에서 추가한다.</p>
+<hr>
+<h2>4. 흔한 실수</h2>
+<table>
+<thead>
+<tr>
+<th>실수</th>
+<th>결과</th>
+<th>대안</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>params.slug</code>를 동기로 읽는다</td>
+<td>Next 15에서 타입·런타임 경고</td>
+<td><code>const {slug} = await params</code></td>
+</tr>
+<tr>
+<td>레이아웃에서 <code>{children}</code>을 뺀다</td>
+<td>하위 페이지가 안 보인다</td>
+<td>레이아웃은 껍질만, 본문은 children</td>
+</tr>
+<tr>
+<td>라우트 그룹을 URL에 기대한다</td>
+<td><code>(site)</code>가 주소에 없다</td>
+<td>괄호는 URL에서 빠진다</td>
+</tr>
+<tr>
+<td><code>&lt;a href=&quot;/posts&quot;&gt;</code>만 쓴다</td>
+<td>풀 새로고침</td>
+<td>내부는 <code>Link</code></td>
+</tr>
+<tr>
+<td>trailing slash 혼용</td>
+<td>중복 URL, 깨진 링크</td>
+<td>설정과 <code>href</code>를 일치</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>정리</h2>
+<p>라우팅은 폴더 이름이고, 공개 여부는 <code>page.tsx</code>다. 바뀌는 칸은 <code>[slug]</code>, 공통 셸은 <code>layout.tsx</code>다.</p>
+<p>URL을 먼저 그리고 폴더를 만든다. 레이아웃은 “이 구간에서 무엇이 유지돼야 하는가”로 나눈다.</p>
+<hr>
+<h2>연습</h2>
+<ol>
+<li><code>/posts/[slug]</code> 페이지와 <code>generateStaticParams</code> 두 개(<code>hello</code>, <code>world</code>)를 만든다.</li>
+<li><code>(marketing)</code> / <code>(app)</code> 그룹으로 공개 사이트와 로그인 후 화면의 레이아웃을 나눈다.</li>
+<li>내부 링크를 모두 <code>Link</code>로 바꾸고, <code>trailingSlash</code> 정책과 <code>href</code>를 맞춘다.</li>
+</ol>
+0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"라우팅·레이아웃·동적 세그먼트\",\"description\":\"폴더가 URL이 되는 규칙을 익히고, 동적 주소와 중첩 레이아웃으로 화면 구조를 잡는다.\",\"datePublished\":\"2024-01-08\",\"url\":\"https://kaisa.co.kr/posts/nextjs-02/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"nextjs\",\"keywords\":\"nextjs\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"라우팅·레이아웃·동적 세그먼트\",\"item\":\"https://kaisa.co.kr/posts/nextjs-02/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2024-01-08"}]}],["$","h1",null,{"className":"blog-post__title","children":"라우팅·레이아웃·동적 세그먼트"}],["$","div",null,{"className":"blog-post__body blog-post__body--markdown","children":["$","div",null,{"className":"markdown-body","dangerouslySetInnerHTML":{"__html":"$3"}}]}],"$L4","$L5"]}]}]}]],["$L6","$L7","$L8"],"$L9"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"_AZq8Hq_NwvdopxIW0Tgh"}
+4:["$","$La",null,{"pathKey":"nextjs-02"}]
+5:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/nextjs-01/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Next.js App Router로 프로젝트 시작하기"}]]}],["$","$L2",null,{"href":"/posts/nextjs-03/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"Server Component와 Client Component"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
+6:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
+7:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
+8:["$","script","script-0",{"src":"/_next/static/chunks/26shoze10o-dc.js","async":true}]
+9:["$","$Lb",null,{"children":["$","$c",null,{"name":"Next.MetadataOutlet","children":"$@d"}]}]
+d:null

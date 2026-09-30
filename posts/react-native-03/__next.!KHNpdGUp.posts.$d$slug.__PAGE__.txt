@@ -1,232 +1,228 @@
 1:"$Sreact.fragment"
-2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],""]
-3:I[55489,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-c:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/1210t6uckuu_4.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/07ogw60khanqf.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/1oevfsdj8hv5d.js","/_next/static/chunks/22vl7s8dm-4u2.js"],"default"]
-d:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
-e:"$Sreact.suspense"
+2:I[522016,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],""]
+a:I[644398,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js","/_next/static/chunks/2t60f4_2tjmro.js","/_next/static/chunks/1i1l5t--me2mi.js","/_next/static/chunks/2-06zdxz3h-nd.js","/_next/static/chunks/3ha5i75rsjlst.js","/_next/static/chunks/26shoze10o-dc.js"],"default"]
+b:I[897367,["/_next/static/chunks/3hb4n4ylf5-a0.js","/_next/static/chunks/1ntn7efqc-iiw.js"],"OutletBoundary"]
+c:"$Sreact.suspense"
 :HL["/_next/static/chunks/0br7e7j26qkj3.css","style"]
 :HL["/_next/static/chunks/21i9-auhncr4a.css","style"]
-4:T1702,# 상태·훅·폼 — 사용자 입력과 데이터 흐름
+3:T3c59,<h1>상태·훅·폼 — 사용자 입력과 데이터 흐름</h1>
+<blockquote>
+<p>요약: 화면 상태는 훅에 두고, 폼 입력은 검증과 키보드 UX까지 한 흐름으로 만든다.</p>
+</blockquote>
+<hr>
+<h2>1. 왜 상태를 나누나</h2>
+<p>입력은 로컬 상태다. 게시글 목록은 서버 상태다. 둘을 <code>useState</code> 하나로 섞으면 로딩·동기화 버그가 난다.</p>
+<p>웹과 같은 React 훅을 쓴다. 차이는 <strong>키보드, 자동완성, 포커스 이동</strong>이 폼 UX의 중심이라는 점이다.</p>
+<p>필드가 두세 개면 <code>useState</code>로 충분하다. 필드가 늘고 검증이 생기면 <code>react-hook-form</code> + zod가 기본선이다.</p>
+<hr>
+<h2>2. 핵심 개념</h2>
+<table>
+<thead>
+<tr>
+<th>범위</th>
+<th>수단</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>한 화면 UI</td>
+<td><code>useState</code></td>
+</tr>
+<tr>
+<td>부모→자식</td>
+<td>props</td>
+</tr>
+<tr>
+<td>멀리 공유</td>
+<td>Context, Zustand</td>
+</tr>
+<tr>
+<td>서버 데이터</td>
+<td>React Query (다음 글)</td>
+</tr>
+<tr>
+<td>다필드 폼</td>
+<td><code>react-hook-form</code></td>
+</tr>
+</tbody></table>
+<p>계산으로 나오는 값은 state로 두지 않는다.</p>
+<pre><code class="hljs language-tsx"><span class="hljs-keyword">const</span> [count, setCount] = <span class="hljs-title function_">useState</span>(<span class="hljs-number">0</span>);
+<span class="hljs-keyword">const</span> doubled = count * <span class="hljs-number">2</span>;</code></pre>
+<p>객체는 이전 값을 펼친다.</p>
+<pre><code class="hljs language-tsx"><span class="hljs-title function_">setUser</span>(<span class="hljs-function">(<span class="hljs-params">prev</span>) =&gt;</span> ({ ...prev, name }));</code></pre>
+<p><code>useRef</code>는 DOM이 아니라 <strong>컴포넌트 인스턴스</strong>다. <code>TextInput</code>에 포커스를 옮길 때 쓴다. 렌더와 무관한 이전 값 보관에도 쓴다.</p>
+<p><code>useEffect</code>는 구독과 정리용이다. 마운트마다 <code>fetch</code> + <code>setState</code>로 서버를 따라가는 패턴은 지양한다.</p>
+<hr>
+<h2>3. 예제</h2>
+<p>로그인 필드 두 개:</p>
+<pre><code class="hljs language-tsx"><span class="hljs-keyword">import</span> { useState } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react&#x27;</span>;
+<span class="hljs-keyword">import</span> { <span class="hljs-title class_">TextInput</span>, <span class="hljs-title class_">Text</span>, <span class="hljs-title class_">View</span>, <span class="hljs-title class_">Pressable</span>, <span class="hljs-title class_">ActivityIndicator</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react-native&#x27;</span>;
 
-> 요약: 화면 상태는 훅에 두고, 폼 입력은 검증과 키보드 UX까지 한 흐름으로 만든다.
-
----
-
-## 1. 왜 상태를 나누나
-
-입력은 로컬 상태다. 게시글 목록은 서버 상태다. 둘을 `useState` 하나로 섞으면 로딩·동기화 버그가 난다.
-
-웹과 같은 React 훅을 쓴다. 차이는 **키보드, 자동완성, 포커스 이동**이 폼 UX의 중심이라는 점이다.
-
-필드가 두세 개면 `useState`로 충분하다. 필드가 늘고 검증이 생기면 `react-hook-form` + zod가 기본선이다.
-
----
-
-## 2. 핵심 개념
-
-| 범위 | 수단 |
-|------|------|
-| 한 화면 UI | `useState` |
-| 부모→자식 | props |
-| 멀리 공유 | Context, Zustand |
-| 서버 데이터 | React Query (다음 글) |
-| 다필드 폼 | `react-hook-form` |
-
-계산으로 나오는 값은 state로 두지 않는다.
-
-```tsx
-const [count, setCount] = useState(0);
-const doubled = count * 2;
-```
-
-객체는 이전 값을 펼친다.
-
-```tsx
-setUser((prev) => ({ ...prev, name }));
-```
-
-`useRef`는 DOM이 아니라 **컴포넌트 인스턴스**다. `TextInput`에 포커스를 옮길 때 쓴다. 렌더와 무관한 이전 값 보관에도 쓴다.
-
-`useEffect`는 구독과 정리용이다. 마운트마다 `fetch` + `setState`로 서버를 따라가는 패턴은 지양한다.
-
----
-
-## 3. 예제
-
-로그인 필드 두 개:
-
-```tsx
-import { useState } from 'react';
-import { TextInput, Text, View, Pressable, ActivityIndicator } from 'react-native';
-
-export function LoginForm({
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">LoginForm</span>(<span class="hljs-params">{
   onSubmit,
 }: {
-  onSubmit: (email: string, password: string) => Promise<void>;
-}) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
+  onSubmit: (email: <span class="hljs-built_in">string</span>, password: <span class="hljs-built_in">string</span>) =&gt; <span class="hljs-built_in">Promise</span>&lt;<span class="hljs-built_in">void</span>&gt;;
+}</span>) {
+  <span class="hljs-keyword">const</span> [email, setEmail] = <span class="hljs-title function_">useState</span>(<span class="hljs-string">&#x27;&#x27;</span>);
+  <span class="hljs-keyword">const</span> [password, setPassword] = <span class="hljs-title function_">useState</span>(<span class="hljs-string">&#x27;&#x27;</span>);
+  <span class="hljs-keyword">const</span> [error, setError] = useState&lt;<span class="hljs-built_in">string</span> | <span class="hljs-literal">null</span>&gt;(<span class="hljs-literal">null</span>);
+  <span class="hljs-keyword">const</span> [loading, setLoading] = <span class="hljs-title function_">useState</span>(<span class="hljs-literal">false</span>);
 
-  const handleSubmit = async () => {
-    if (!email.includes('@')) {
-      setError('이메일 형식을 확인하세요');
-      return;
+  <span class="hljs-keyword">const</span> <span class="hljs-title function_">handleSubmit</span> = <span class="hljs-keyword">async</span> (<span class="hljs-params"></span>) =&gt; {
+    <span class="hljs-keyword">if</span> (!email.<span class="hljs-title function_">includes</span>(<span class="hljs-string">&#x27;@&#x27;</span>)) {
+      <span class="hljs-title function_">setError</span>(<span class="hljs-string">&#x27;이메일 형식을 확인하세요&#x27;</span>);
+      <span class="hljs-keyword">return</span>;
     }
-    setError(null);
-    setLoading(true);
-    try {
-      await onSubmit(email.trim(), password);
-    } finally {
-      setLoading(false);
+    <span class="hljs-title function_">setError</span>(<span class="hljs-literal">null</span>);
+    <span class="hljs-title function_">setLoading</span>(<span class="hljs-literal">true</span>);
+    <span class="hljs-keyword">try</span> {
+      <span class="hljs-keyword">await</span> <span class="hljs-title function_">onSubmit</span>(email.<span class="hljs-title function_">trim</span>(), password);
+    } <span class="hljs-keyword">finally</span> {
+      <span class="hljs-title function_">setLoading</span>(<span class="hljs-literal">false</span>);
     }
   };
 
-  return (
-    <View style={{ gap: 12 }}>
-      <TextInput
-        value={email}
-        onChangeText={setEmail}
-        placeholder="email"
-        autoCapitalize="none"
-        keyboardType="email-address"
-        textContentType="emailAddress"
-        returnKeyType="next"
-      />
-      <TextInput
-        value={password}
-        onChangeText={setPassword}
-        placeholder="password"
-        secureTextEntry
-        textContentType="password"
-        returnKeyType="done"
-        onSubmitEditing={handleSubmit}
-      />
-      {error ? <Text style={{ color: 'tomato' }}>{error}</Text> : null}
-      <Pressable onPress={handleSubmit} disabled={loading}>
-        {loading ? <ActivityIndicator /> : <Text>로그인</Text>}
-      </Pressable>
-    </View>
+  <span class="hljs-keyword">return</span> (
+    <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">View</span> <span class="hljs-attr">style</span>=<span class="hljs-string">{{</span> <span class="hljs-attr">gap:</span> <span class="hljs-attr">12</span> }}&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">TextInput</span>
+        <span class="hljs-attr">value</span>=<span class="hljs-string">{email}</span>
+        <span class="hljs-attr">onChangeText</span>=<span class="hljs-string">{setEmail}</span>
+        <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;email&quot;</span>
+        <span class="hljs-attr">autoCapitalize</span>=<span class="hljs-string">&quot;none&quot;</span>
+        <span class="hljs-attr">keyboardType</span>=<span class="hljs-string">&quot;email-address&quot;</span>
+        <span class="hljs-attr">textContentType</span>=<span class="hljs-string">&quot;emailAddress&quot;</span>
+        <span class="hljs-attr">returnKeyType</span>=<span class="hljs-string">&quot;next&quot;</span>
+      /&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">TextInput</span>
+        <span class="hljs-attr">value</span>=<span class="hljs-string">{password}</span>
+        <span class="hljs-attr">onChangeText</span>=<span class="hljs-string">{setPassword}</span>
+        <span class="hljs-attr">placeholder</span>=<span class="hljs-string">&quot;password&quot;</span>
+        <span class="hljs-attr">secureTextEntry</span>
+        <span class="hljs-attr">textContentType</span>=<span class="hljs-string">&quot;password&quot;</span>
+        <span class="hljs-attr">returnKeyType</span>=<span class="hljs-string">&quot;done&quot;</span>
+        <span class="hljs-attr">onSubmitEditing</span>=<span class="hljs-string">{handleSubmit}</span>
+      /&gt;</span>
+      {error ? <span class="hljs-tag">&lt;<span class="hljs-name">Text</span> <span class="hljs-attr">style</span>=<span class="hljs-string">{{</span> <span class="hljs-attr">color:</span> &#x27;<span class="hljs-attr">tomato</span>&#x27; }}&gt;</span>{error}<span class="hljs-tag">&lt;/<span class="hljs-name">Text</span>&gt;</span> : null}
+      <span class="hljs-tag">&lt;<span class="hljs-name">Pressable</span> <span class="hljs-attr">onPress</span>=<span class="hljs-string">{handleSubmit}</span> <span class="hljs-attr">disabled</span>=<span class="hljs-string">{loading}</span>&gt;</span>
+        {loading ? <span class="hljs-tag">&lt;<span class="hljs-name">ActivityIndicator</span> /&gt;</span> : <span class="hljs-tag">&lt;<span class="hljs-name">Text</span>&gt;</span>로그인<span class="hljs-tag">&lt;/<span class="hljs-name">Text</span>&gt;</span>}
+      <span class="hljs-tag">&lt;/<span class="hljs-name">Pressable</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">View</span>&gt;</span></span>
   );
-}
-```
+}</code></pre>
+<p><code>textContentType</code> / <code>autoComplete</code>는 비밀번호 매니저 대응에 도움이 된다.</p>
+<p>다음 필드로 포커스:</p>
+<pre><code class="hljs language-tsx"><span class="hljs-keyword">const</span> passwordRef = useRef&lt;<span class="hljs-title class_">TextInput</span>&gt;(<span class="hljs-literal">null</span>);
 
-`textContentType` / `autoComplete`는 비밀번호 매니저 대응에 도움이 된다.
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">TextInput</span>
+  <span class="hljs-attr">returnKeyType</span>=<span class="hljs-string">&quot;next&quot;</span>
+  <span class="hljs-attr">onSubmitEditing</span>=<span class="hljs-string">{()</span> =&gt;</span> passwordRef.current?.focus()}
+/&gt;</span>
+<span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">TextInput</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">{passwordRef}</span> <span class="hljs-attr">secureTextEntry</span> /&gt;</span></span></code></pre>
+<p>검증이 커지면 스키마를 한곳으로 모은다.</p>
+<pre><code class="hljs language-bash">npx expo install react-hook-form zod @hookform/resolvers</code></pre>
+<pre><code class="hljs language-tsx"><span class="hljs-keyword">import</span> { useForm, <span class="hljs-title class_">Controller</span> } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react-hook-form&#x27;</span>;
+<span class="hljs-keyword">import</span> { z } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;zod&#x27;</span>;
+<span class="hljs-keyword">import</span> { zodResolver } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@hookform/resolvers/zod&#x27;</span>;
 
-다음 필드로 포커스:
-
-```tsx
-const passwordRef = useRef<TextInput>(null);
-
-<TextInput
-  returnKeyType="next"
-  onSubmitEditing={() => passwordRef.current?.focus()}
-/>
-<TextInput ref={passwordRef} secureTextEntry />
-```
-
-검증이 커지면 스키마를 한곳으로 모은다.
-
-```bash
-npx expo install react-hook-form zod @hookform/resolvers
-```
-
-```tsx
-import { useForm, Controller } from 'react-hook-form';
-import { z } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
-
-const schema = z.object({
-  email: z.string().email(),
-  password: z.string().min(8),
+<span class="hljs-keyword">const</span> schema = z.<span class="hljs-title function_">object</span>({
+  <span class="hljs-attr">email</span>: z.<span class="hljs-title function_">string</span>().<span class="hljs-title function_">email</span>(),
+  <span class="hljs-attr">password</span>: z.<span class="hljs-title function_">string</span>().<span class="hljs-title function_">min</span>(<span class="hljs-number">8</span>),
 });
 
-type FormValues = z.infer<typeof schema>;
+<span class="hljs-keyword">type</span> <span class="hljs-title class_">FormValues</span> = z.<span class="hljs-property">infer</span>&lt;<span class="hljs-keyword">typeof</span> schema&gt;;
 
-export function SignupForm() {
-  const { control, handleSubmit, formState: { errors } } = useForm<FormValues>({
-    resolver: zodResolver(schema),
-    defaultValues: { email: '', password: '' },
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">function</span> <span class="hljs-title function_">SignupForm</span>(<span class="hljs-params"></span>) {
+  <span class="hljs-keyword">const</span> { control, handleSubmit, <span class="hljs-attr">formState</span>: { errors } } = useForm&lt;<span class="hljs-title class_">FormValues</span>&gt;({
+    <span class="hljs-attr">resolver</span>: <span class="hljs-title function_">zodResolver</span>(schema),
+    <span class="hljs-attr">defaultValues</span>: { <span class="hljs-attr">email</span>: <span class="hljs-string">&#x27;&#x27;</span>, <span class="hljs-attr">password</span>: <span class="hljs-string">&#x27;&#x27;</span> },
   });
 
-  return (
-    <>
-      <Controller
-        control={control}
-        name="email"
-        render={({ field: { onChange, onBlur, value } }) => (
-          <TextInput value={value} onBlur={onBlur} onChangeText={onChange} />
+  <span class="hljs-keyword">return</span> (
+    <span class="language-xml"><span class="hljs-tag">&lt;&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">Controller</span>
+        <span class="hljs-attr">control</span>=<span class="hljs-string">{control}</span>
+        <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;email&quot;</span>
+        <span class="hljs-attr">render</span>=<span class="hljs-string">{({</span> <span class="hljs-attr">field:</span> { <span class="hljs-attr">onChange</span>, <span class="hljs-attr">onBlur</span>, <span class="hljs-attr">value</span> } }) =&gt;</span> (
+          <span class="hljs-tag">&lt;<span class="hljs-name">TextInput</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{value}</span> <span class="hljs-attr">onBlur</span>=<span class="hljs-string">{onBlur}</span> <span class="hljs-attr">onChangeText</span>=<span class="hljs-string">{onChange}</span> /&gt;</span>
         )}
-      />
-      {errors.email ? <Text>{errors.email.message}</Text> : null}
-      <Pressable onPress={handleSubmit((data) => console.log(data))} />
-    </>
+      /&gt;
+      {errors.email ? <span class="hljs-tag">&lt;<span class="hljs-name">Text</span>&gt;</span>{errors.email.message}<span class="hljs-tag">&lt;/<span class="hljs-name">Text</span>&gt;</span> : null}
+      <span class="hljs-tag">&lt;<span class="hljs-name">Pressable</span> <span class="hljs-attr">onPress</span>=<span class="hljs-string">{handleSubmit((data)</span> =&gt;</span> console.log(data))} /&gt;
+    <span class="hljs-tag">&lt;/&gt;</span></span>
   );
-}
-```
-
-키보드 UX 체크:
-
-- `returnKeyType="next" | "done"`
-- `onSubmitEditing`으로 다음 포커스
-- `Keyboard.dismiss()`
-- `ScrollView`에 `keyboardShouldPersistTaps="handled"`
-- 제출 중 버튼 비활성
-
-반복 UI 로직만 훅으로 뺀다.
-
-```tsx
-function useToggle(initial = false) {
-  const [on, setOn] = useState(initial);
-  const toggle = useCallback(() => setOn((v) => !v), []);
-  return { on, toggle, setOn };
-}
-```
-
----
-
-## 4. 흔한 실수
-
-| 실수 | 대안 |
-|------|------|
-| 서버 목록을 `useEffect` + `setState` | React Query |
-| 파생 값을 또 `useState` | 렌더 중 계산 |
-| `onChange` (웹) | `onChangeText` |
-| 로딩 중에도 제출 가능 | `disabled` + 스피너 |
-| 모든 필드를 전역 스토어 | 폼은 로컬. 제출 결과만 공유 |
-| `useEffect`로 입력값을 다른 state에 복사 | 한 곳만 진실로 둔다 |
-
-구독은 정리 함수를 같이 둔다.
-
-```tsx
-useEffect(() => {
-  const sub = AppState.addEventListener('change', onChange);
-  return () => sub.remove();
-}, []);
-```
-
----
-
-## 5. 정리
-
-상태는 **누가 소유하는가**가 먼저다. 입력은 화면, 서버 데이터는 Query, 세션만 전역에 가깝게 둔다.
-
-- 작은 폼: `useState` + 에러 메시지.
-- 큰 폼: `react-hook-form` + zod.
-- 키보드는 `returnKeyType`, 포커스, AvoidingView가 한 세트다.
-
-## 연습
-
-1. 이메일·비밀번호·에러·로딩이 있는 로그인 폼을 만든다.
-2. zod + react-hook-form으로 회원가입 검증을 붙인다.
-3. `useRef`로 비밀번호 필드 자동 포커스를 구현한다.
-4. `useToggle`로 비밀번호 표시/숨김을 만든다.0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"상태·훅·폼 — 사용자 입력과 데이터 흐름\",\"description\":\"화면 상태는 훅에 두고, 폼 입력은 검증과 키보드 UX까지 한 흐름으로 만든다.\",\"datePublished\":\"2024-03-13\",\"url\":\"https://kaisa.co.kr/posts/react-native-03/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"react-native\",\"keywords\":\"react-native\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"상태·훅·폼 — 사용자 입력과 데이터 흐름\",\"item\":\"https://kaisa.co.kr/posts/react-native-03/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2024-03-13"}]}],["$","h1",null,{"className":"blog-post__title","children":"상태·훅·폼 — 사용자 입력과 데이터 흐름"}],["$","$L3",null,{"content":"$4"}],"$L5","$L6"]}]}]}]],["$L7","$L8","$L9","$La"],"$Lb"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"Zv4TpHss7ITjpJG-s6iGo"}
-5:["$","$Lc",null,{"pathKey":"react-native-03"}]
-6:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/react-native-02/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"컴포넌트·스타일·레이아웃 — Flex와 StyleSheet"}]]}],["$","$L2",null,{"href":"/posts/react-native-04/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"리스트·네비게이션 — FlatList와 Expo Router"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
-7:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
-8:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
-9:["$","script","script-0",{"src":"/_next/static/chunks/1oevfsdj8hv5d.js","async":true}]
-a:["$","script","script-1",{"src":"/_next/static/chunks/22vl7s8dm-4u2.js","async":true}]
-b:["$","$Ld",null,{"children":["$","$e",null,{"name":"Next.MetadataOutlet","children":"$@f"}]}]
-f:null
+}</code></pre>
+<p>키보드 UX 체크:</p>
+<ul>
+<li><code>returnKeyType=&quot;next&quot; | &quot;done&quot;</code></li>
+<li><code>onSubmitEditing</code>으로 다음 포커스</li>
+<li><code>Keyboard.dismiss()</code></li>
+<li><code>ScrollView</code>에 <code>keyboardShouldPersistTaps=&quot;handled&quot;</code></li>
+<li>제출 중 버튼 비활성</li>
+</ul>
+<p>반복 UI 로직만 훅으로 뺀다.</p>
+<pre><code class="hljs language-tsx"><span class="hljs-keyword">function</span> <span class="hljs-title function_">useToggle</span>(<span class="hljs-params">initial = <span class="hljs-literal">false</span></span>) {
+  <span class="hljs-keyword">const</span> [on, setOn] = <span class="hljs-title function_">useState</span>(initial);
+  <span class="hljs-keyword">const</span> toggle = <span class="hljs-title function_">useCallback</span>(<span class="hljs-function">() =&gt;</span> <span class="hljs-title function_">setOn</span>(<span class="hljs-function">(<span class="hljs-params">v</span>) =&gt;</span> !v), []);
+  <span class="hljs-keyword">return</span> { on, toggle, setOn };
+}</code></pre>
+<hr>
+<h2>4. 흔한 실수</h2>
+<table>
+<thead>
+<tr>
+<th>실수</th>
+<th>대안</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>서버 목록을 <code>useEffect</code> + <code>setState</code></td>
+<td>React Query</td>
+</tr>
+<tr>
+<td>파생 값을 또 <code>useState</code></td>
+<td>렌더 중 계산</td>
+</tr>
+<tr>
+<td><code>onChange</code> (웹)</td>
+<td><code>onChangeText</code></td>
+</tr>
+<tr>
+<td>로딩 중에도 제출 가능</td>
+<td><code>disabled</code> + 스피너</td>
+</tr>
+<tr>
+<td>모든 필드를 전역 스토어</td>
+<td>폼은 로컬. 제출 결과만 공유</td>
+</tr>
+<tr>
+<td><code>useEffect</code>로 입력값을 다른 state에 복사</td>
+<td>한 곳만 진실로 둔다</td>
+</tr>
+</tbody></table>
+<p>구독은 정리 함수를 같이 둔다.</p>
+<pre><code class="hljs language-tsx"><span class="hljs-title function_">useEffect</span>(<span class="hljs-function">() =&gt;</span> {
+  <span class="hljs-keyword">const</span> sub = <span class="hljs-title class_">AppState</span>.<span class="hljs-title function_">addEventListener</span>(<span class="hljs-string">&#x27;change&#x27;</span>, onChange);
+  <span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> sub.<span class="hljs-title function_">remove</span>();
+}, []);</code></pre>
+<hr>
+<h2>5. 정리</h2>
+<p>상태는 <strong>누가 소유하는가</strong>가 먼저다. 입력은 화면, 서버 데이터는 Query, 세션만 전역에 가깝게 둔다.</p>
+<ul>
+<li>작은 폼: <code>useState</code> + 에러 메시지.</li>
+<li>큰 폼: <code>react-hook-form</code> + zod.</li>
+<li>키보드는 <code>returnKeyType</code>, 포커스, AvoidingView가 한 세트다.</li>
+</ul>
+<h2>연습</h2>
+<ol>
+<li>이메일·비밀번호·에러·로딩이 있는 로그인 폼을 만든다.</li>
+<li>zod + react-hook-form으로 회원가입 검증을 붙인다.</li>
+<li><code>useRef</code>로 비밀번호 필드 자동 포커스를 구현한다.</li>
+<li><code>useToggle</code>로 비밀번호 표시/숨김을 만든다.</li>
+</ol>
+0:{"rsc":["$","$1","c",{"children":[[["$","script",null,{"type":"application/ld+json","dangerouslySetInnerHTML":{"__html":"{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BlogPosting\",\"headline\":\"상태·훅·폼 — 사용자 입력과 데이터 흐름\",\"description\":\"화면 상태는 훅에 두고, 폼 입력은 검증과 키보드 UX까지 한 흐름으로 만든다.\",\"datePublished\":\"2024-03-13\",\"url\":\"https://kaisa.co.kr/posts/react-native-03/\",\"author\":{\"@type\":\"Organization\",\"name\":\"Kaisa\"},\"publisher\":{\"@type\":\"Organization\",\"name\":\"Kaisa\",\"url\":\"https://kaisa.co.kr/\"},\"articleSection\":\"react-native\",\"keywords\":\"react-native\"},{\"@type\":\"BreadcrumbList\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Kaisa\",\"item\":\"https://kaisa.co.kr/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Posts\",\"item\":\"https://kaisa.co.kr/posts/\"},{\"@type\":\"ListItem\",\"position\":3,\"name\":\"상태·훅·폼 — 사용자 입력과 데이터 흐름\",\"item\":\"https://kaisa.co.kr/posts/react-native-03/\"}]}]}"}}],["$","main",null,{"className":"blog-main","children":["$","div",null,{"className":"site-shell","children":["$","article",null,{"className":"blog-post site-shell__inner","children":[["$","$L2",null,{"href":"/posts/","className":"blog-post__back","children":"← 목록으로"}],["$","div",null,{"className":"blog-post__meta","children":["$","span",null,{"children":"2024-03-13"}]}],["$","h1",null,{"className":"blog-post__title","children":"상태·훅·폼 — 사용자 입력과 데이터 흐름"}],["$","div",null,{"className":"blog-post__body blog-post__body--markdown","children":["$","div",null,{"className":"markdown-body","dangerouslySetInnerHTML":{"__html":"$3"}}]}],"$L4","$L5"]}]}]}]],["$L6","$L7","$L8"],"$L9"]}],"isPartial":false,"staleTime":300,"varyParams":null,"buildId":"_AZq8Hq_NwvdopxIW0Tgh"}
+4:["$","$La",null,{"pathKey":"react-native-03"}]
+5:["$","nav",null,{"className":"blog-post__footer-nav","aria-label":"포스트 이동","children":[["$","div",null,{"className":"blog-post__adjacent","children":[["$","$L2",null,{"href":"/posts/react-native-02/","className":"blog-post__adjacent-link blog-post__adjacent-link--prev","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"이전 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"컴포넌트·스타일·레이아웃 — Flex와 StyleSheet"}]]}],["$","$L2",null,{"href":"/posts/react-native-04/","className":"blog-post__adjacent-link blog-post__adjacent-link--next","children":[["$","span",null,{"className":"blog-post__adjacent-label","children":"다음 글"}],["$","span",null,{"className":"blog-post__adjacent-title","children":"리스트·네비게이션 — FlatList와 Expo Router"}]]}]]}],["$","$L2",null,{"href":"/posts/","className":"blog-post__back blog-post__back--footer","children":"← 목록으로"}]]}]
+6:["$","link","0",{"rel":"stylesheet","href":"/_next/static/chunks/0br7e7j26qkj3.css","precedence":"next"}]
+7:["$","link","1",{"rel":"stylesheet","href":"/_next/static/chunks/21i9-auhncr4a.css","precedence":"next"}]
+8:["$","script","script-0",{"src":"/_next/static/chunks/26shoze10o-dc.js","async":true}]
+9:["$","$Lb",null,{"children":["$","$c",null,{"name":"Next.MetadataOutlet","children":"$@d"}]}]
+d:null
